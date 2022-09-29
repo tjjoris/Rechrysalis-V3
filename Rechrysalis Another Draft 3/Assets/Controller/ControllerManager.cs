@@ -11,11 +11,12 @@ namespace Rechrysalis.Controller
         private Mover _mover;
         private void Awake() {
             _mover = GetComponent<Mover>();
-        }
-        void Start()
-        {
+            _mover.Initialize();
             _click?.Initialize(gameObject);
             _touch?.Initialize(gameObject);
+        }
+        void Start()
+        {         
             
         }
         private void Update() 
