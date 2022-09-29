@@ -13,11 +13,12 @@ namespace Rechrysalis.Controller
         
         public void CheckRayCastFunction(Vector2 _mousePos, int _touchID)
         {
-            Debug.Log("called check");
-            if (false)
-            {
-                //controller click to stop
-            }
+                LayerMask _stopMask = LayerMask.GetMask("PlayerController");
+                RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, _stopMask);
+                if (hit)
+                {
+                    _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = true;
+                }
             else if (false)
             {
                 //unit click to focus fire or upgrade
@@ -37,6 +38,7 @@ namespace Rechrysalis.Controller
                 Vector2 _direction = _clickInfo.ControlledController.transform.position;
                 _direction = _mousePos - _direction;
                 _clickInfo.ControlledController.GetComponent<Mover>().Direction = _direction;
+                _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = false;
             }
         }
     }
