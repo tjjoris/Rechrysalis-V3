@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Click Instance
   m_EditorClassIdentifier: 
   _clickInfo: {fileID: 11400000, guid: e171d8617455e4b868df738d3092d9ad, type: 2}
+  _checkRayCast: {fileID: 11400000, guid: ccaf1a1cf438f4f49a8c3935f00ee5d8, type: 2}
