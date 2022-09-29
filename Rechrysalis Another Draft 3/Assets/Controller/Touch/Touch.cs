@@ -15,6 +15,13 @@ namespace Rechrysalis.Controller
             _clickInfo.ControlledController = _controllerGO;
             _checkRayCast.ClickInfo = _clickInfo;
         }
-
+        public void Tick()
+        {
+            CheckTouch();            
+        }
+        private void CheckTouch()
+        {
+            
+        }
     }
 }
