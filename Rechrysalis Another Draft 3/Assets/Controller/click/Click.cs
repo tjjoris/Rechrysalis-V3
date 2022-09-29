@@ -16,9 +16,16 @@ namespace Rechrysalis.Controller
             _clickInfo.ControlledController = _controllerGO;
             _checkRayCast.ClickInfo = _clickInfo;
         }        
-        private void OnMouseDown() {
+        public void Tick()
+        {
+            CheckIfMouseDown();
+        }
+        private void CheckIfMouseDown() {
+            if (Input.GetMouseButtonDown(0))
+            {
             Debug.Log("check");
-            _checkRayCast.CheckRayCastFunction(Input.mousePosition);
+            _checkRayCast.CheckRayCastFunction(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            }
         }
     }
 }

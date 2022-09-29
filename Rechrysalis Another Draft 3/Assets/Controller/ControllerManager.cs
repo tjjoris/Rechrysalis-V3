@@ -14,7 +14,7 @@ namespace Rechrysalis.Controller
         }
         void Update()
         {
-        
+            _click.Tick();
         }
     }
 }
