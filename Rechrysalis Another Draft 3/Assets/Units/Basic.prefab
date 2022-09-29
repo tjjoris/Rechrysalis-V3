@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledObjects: []
-  objectToPool: {fileID: 0}
+  objectToPool: {fileID: 5167810372607863140, guid: e9eabadce2d294281b141351b04370f6, type: 3}
   amountToPool: 0
 --- !u!114 &3415973168710224442
 MonoBehaviour:
@@ -60,3 +60,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 768857a65777a42ecb3e0adb0cd0d609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _unitStats: {fileID: 0}
