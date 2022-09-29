@@ -18,10 +18,13 @@ namespace Rechrysalis.Controller
             _touch?.Initialize(gameObject);
             
         }
-        private void FixedUpdate() {  
-            float _deltaTime = Time.deltaTime;              
+        private void Update() 
+        {
             _click?.Tick();
             _touch?.Tick();
+        }
+        private void FixedUpdate() {  
+            float _deltaTime = Time.deltaTime;              
             _mover?.Tick(_deltaTime);
         }
     }
