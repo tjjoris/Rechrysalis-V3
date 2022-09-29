@@ -4,9 +4,11 @@ using UnityEngine;
 
 namespace Rechrysalis.Controller
 {
+    [CreateAssetMenu(fileName = "Click Info", menuName = "Controller/Click/ClickInfo")]
+    [System.Serializable]
     public class ClickInfo : ScriptableObject
     {
-        private GameObject _controlledController;
+        [SerializeField] private GameObject _controlledController;
         public GameObject ControlledController{set{_controlledController = value;} get{return _controlledController;}}
         private GameObject _controlledUnit;
         public GameObject ControlledUnit {set{_controlledUnit = value;} get{return _controlledUnit;}}

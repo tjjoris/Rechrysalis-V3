@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rechrysalis
+namespace Rechrysalis.Controller
 {
     public class ControllerManager : MonoBehaviour
     {
-        // Start is called before the first frame update
+        [SerializeField] private Click _click;
         void Start()
         {
-        
+            _click.Initialize(gameObject);
             
         }
-
-        // Update is called once per frame
         void Update()
         {
         

@@ -4,7 +4,9 @@ using UnityEngine;
 
 namespace Rechrysalis.Controller
 {
-    public class Click : MonoBehaviour
+    [System.Serializable]
+    [CreateAssetMenu(fileName = "Click", menuName = "Controller/Click/Click")]
+    public class Click : ScriptableObject
     {
         [SerializeField] ClickInfo _clickInfo;
         public void Initialize(GameObject _controllerGO)
