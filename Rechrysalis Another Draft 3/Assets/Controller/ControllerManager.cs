@@ -21,6 +21,10 @@ namespace Rechrysalis.Controller
             _mover.Initialize();
             _click?.Initialize(gameObject);
             _touch?.Initialize(gameObject);
+            for (int i=0; i<_parentUnits.Length;i++)
+            {
+                _parentUnits[i].GetComponent<UnitManager>()?.ActivateUnit(0);
+            }
         }
         void Start()
         {         
