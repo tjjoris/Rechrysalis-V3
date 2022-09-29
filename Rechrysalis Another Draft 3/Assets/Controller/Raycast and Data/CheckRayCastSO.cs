@@ -33,7 +33,10 @@ namespace Rechrysalis.Controller
             else 
             {//map clicked
                 Debug.Log("map clicked " + _mousePos.ToString());
-                _clickInfo.TouchID = _touchID;
+                _clickInfo.FingerIDMove = _touchID;
+                Vector2 _direction = _clickInfo.ControlledController.transform.position;
+                _direction = _mousePos - _direction;
+                _clickInfo.ControlledController.GetComponent<Mover>().Direction = _direction;
             }
         }
     }

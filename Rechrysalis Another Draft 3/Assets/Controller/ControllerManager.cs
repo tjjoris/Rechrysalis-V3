@@ -8,6 +8,10 @@ namespace Rechrysalis.Controller
     {
         [SerializeField] private Click _click;
         [SerializeField] private TouchSO _touch;
+        private Mover _mover;
+        private void Awake() {
+            _mover = GetComponent<Mover>();
+        }
         void Start()
         {
             _click?.Initialize(gameObject);
@@ -18,6 +22,7 @@ namespace Rechrysalis.Controller
         {
             _click?.Tick();
             _touch?.Tick();
+            _mover?.Tick();
         }
     }
 }

@@ -14,8 +14,8 @@ namespace Rechrysalis.Controller
         public GameObject ControlledUnit {set{_controlledUnit = value;} get{return _controlledUnit;}}
         private bool _hilightRingVisable;
         public bool HilightRingVisibile{set{_hilightRingVisable = value;} get {return _hilightRingVisable;}}
-        [SerializeField] private int _touchID;
-        public int TouchID {set{_touchID = value;}get {return _touchID;}}
+        [SerializeField] private int _fingerIDMove;
+        public int FingerIDMove {set{_fingerIDMove = value;}get {return _fingerIDMove;}}
 
     }
 }
