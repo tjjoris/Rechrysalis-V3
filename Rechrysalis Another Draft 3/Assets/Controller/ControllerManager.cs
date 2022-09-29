@@ -7,7 +7,7 @@ namespace Rechrysalis.Controller
     public class ControllerManager : MonoBehaviour
     {
         [SerializeField] private Click _click;
-        [SerializeField] private Touch _touch;
+        [SerializeField] private TouchSO _touch;
         void Start()
         {
             _click?.Initialize(gameObject);
@@ -17,6 +17,7 @@ namespace Rechrysalis.Controller
         void Update()
         {
             _click?.Tick();
+            _touch?.Tick();
         }
     }
 }
