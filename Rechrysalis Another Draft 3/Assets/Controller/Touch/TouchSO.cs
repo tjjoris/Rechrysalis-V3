@@ -5,8 +5,8 @@ using UnityEngine;
 namespace Rechrysalis.Controller
 {
     [System.Serializable]
-    [CreateAssetMenu(fileName ="TouchInstance", menuName ="Controller/Touch/Touch")]
-    public class Touch : ScriptableObject
+    [CreateAssetMenu(fileName ="TouchInstance", menuName ="Controller/Touch/TouchSO")]
+    public class TouchSO : ScriptableObject
     {
         [SerializeField] private ClickInfo _clickInfo;
         [SerializeField] private CheckRayCastSO _checkRayCast;
@@ -21,7 +21,16 @@ namespace Rechrysalis.Controller
         }
         private void CheckTouch()
         {
-            
+            int i=0;
+            while (i<Input.touchCount)
+            {
+                Touch t = Input.GetTouch(i);
+                if (t.phase == TouchPhase.Began)
+                {
+                    
+                }
+                i++;
+            }
         }
     }
 }
