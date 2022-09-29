@@ -11,7 +11,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private ClickInfo _clickInfo;
         public ClickInfo ClickInfo {set {_clickInfo = value;} get{return _clickInfo;}}
         
-        public void CheckRayCastFunction(Vector2 _mousePos)
+        public void CheckRayCastFunction(Vector2 _mousePos, int _touchID)
         {
             Debug.Log("called check");
             if (false)
@@ -33,6 +33,7 @@ namespace Rechrysalis.Controller
             else 
             {//map clicked
                 Debug.Log("map clicked " + _mousePos.ToString());
+                _clickInfo.TouchID = _touchID;
             }
         }
     }
