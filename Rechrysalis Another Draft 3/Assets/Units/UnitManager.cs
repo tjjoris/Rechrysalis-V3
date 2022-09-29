@@ -2,26 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rechrysalis
+namespace Rechrysalis.Unit
 {
     public class UnitManager : MonoBehaviour
     {
-        [SerializeField] private GameObject[] _subUnits;
-        public GameObject[] SubUnits {get {return _subUnits;}set {_subUnits = value;}}
-
-        public void ActivateUnit(int _unitIndex)
+        [SerializeField] private UnitStatsSO _unitStats;
+        public UnitStatsSO UnitStats {get{return _unitStats;}}
+        public void Initialize(UnitStatsSO _unitStats)
         {
-            for (int i=0; i<_subUnits.Length; i++)
-            {
-                if (i == _unitIndex)  
-                {
-                    _subUnits[_unitIndex].SetActive(true);
-                }
-                else 
-                {
-                    _subUnits[i].SetActive(false);
-                }
-            }
+            this._unitStats = _unitStats;
+            GetComponent<ProjectilesPool>()?.CreatePool(10, 5, _unitStats.ProjectileSprite);
         }
     }
 }

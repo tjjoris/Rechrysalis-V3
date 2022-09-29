@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.Controller
 {
@@ -23,7 +24,7 @@ namespace Rechrysalis.Controller
             _touch?.Initialize(gameObject);
             for (int i=0; i<_parentUnits.Length;i++)
             {
-                _parentUnits[i].GetComponent<UnitManager>()?.ActivateUnit(0);
+                _parentUnits[i].GetComponent<ParentUnitManager>()?.ActivateUnit(0);
             }
         }
         void Start()
