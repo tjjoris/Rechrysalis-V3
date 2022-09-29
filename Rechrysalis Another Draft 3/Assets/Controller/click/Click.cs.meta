@@ -3,7 +3,9 @@ guid: e1423ad04ed754d2da9885bd21fab51d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _clickInfo: {fileID: 11400000, guid: e171d8617455e4b868df738d3092d9ad, type: 2}
+  - _checkRayCast: {fileID: 11400000, guid: ccaf1a1cf438f4f49a8c3935f00ee5d8, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

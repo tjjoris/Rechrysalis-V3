@@ -9,9 +9,12 @@ namespace Rechrysalis.Controller
     public class Click : ScriptableObject
     {
         [SerializeField] ClickInfo _clickInfo;
+        [SerializeField] CheckRayCastSO _checkRayCast;
+
         public void Initialize(GameObject _controllerGO)
         {
             _clickInfo.ControlledController = _controllerGO;
+            _checkRayCast.ClickInfo = _clickInfo;
         }        
     }
 }
