@@ -20,6 +20,11 @@ namespace Rechrysalis.Controller
         public void Initialize()
         {
             _backG = GameMaster.GetSingleton().ReferenceManager.BackG;
+            Background _backGScript = _backG.GetComponent<Background>();
+            _minX = _backGScript.MinX;
+            _maxX = _backGScript.MaxX;
+            _minY = _backGScript.MinY;
+            _maxY = _backGScript.MaxY;
         }
 
         public void Tick(float _deltaTime)
