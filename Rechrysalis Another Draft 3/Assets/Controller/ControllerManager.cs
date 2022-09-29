@@ -18,8 +18,7 @@ namespace Rechrysalis.Controller
             _touch?.Initialize(gameObject);
             
         }
-        void Update()
-        {
+        private void FixedUpdate() {                
             _click?.Tick();
             _touch?.Tick();
             _mover?.Tick();
