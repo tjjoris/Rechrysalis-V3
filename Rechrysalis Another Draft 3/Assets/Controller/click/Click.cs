@@ -16,5 +16,9 @@ namespace Rechrysalis.Controller
             _clickInfo.ControlledController = _controllerGO;
             _checkRayCast.ClickInfo = _clickInfo;
         }        
+        private void OnMouseDown() {
+            Debug.Log("check");
+            _checkRayCast.CheckRayCastFunction(Input.mousePosition);
+        }
     }
 }
