@@ -6,16 +6,22 @@ namespace Rechrysalis
 {
     public class UnitManager : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        [SerializeField] private GameObject[] _subUnits;
+        public GameObject[] SubUnits {get {return _subUnits;}set {_subUnits = value;}}
 
-        // Update is called once per frame
-        void Update()
+        public void ActivateUnit(int _unitIndex)
         {
-        
+            for (int i=0; i<_subUnits.Length; i++)
+            {
+                if (i == _unitIndex)  
+                {
+                    _subUnits[_unitIndex].SetActive(true);
+                }
+                else 
+                {
+                    _subUnits[i].SetActive(false);
+                }
+            }
         }
     }
 }
