@@ -14,5 +14,9 @@ namespace Rechrysalis
         [SerializeField] private ControllerManager _controllerManager;
         public ControllerManager ControllerManager {get{return _controllerManager;}}
         
+        public void InitializePlayerUnitsSize(int _size)
+        {
+            _activeUnits = new GameObject[_size];
+        }
     }
 }

@@ -543,6 +543,7 @@ MonoBehaviour:
   _maxX: 3
   _minY: -15
   _maxY: 15
+  _moveVector: {x: 0, y: 0, z: 0}
   _direction: {x: 0, y: 0}
   _isStopped: 1
   _speed: 0.08
@@ -638,7 +639,9 @@ MonoBehaviour:
   _controllerManager:
   - {fileID: 1159822626}
   - {fileID: 691481331}
-  _playerUnitsSO: []
+  _playerUnitsSO:
+  - {fileID: 11400000, guid: a186d15dd72244bde8ba225ce4035960, type: 2}
+  - {fileID: 11400000, guid: 1daf28c3beb2646cb904b5af54346828, type: 2}
   _compSO:
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}

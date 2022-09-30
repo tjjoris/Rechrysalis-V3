@@ -59,7 +59,10 @@ namespace Rechrysalis.Controller
             {
                 foreach (GameObject _unitToReset in _playerUnitsSO[_controllerIndex].ActiveUnits)
                 {
+                    if (_unitToReset != null)
+                    {
                     _unitToReset.GetComponent<Mover>()?.ResetMovement();
+                    }
                 }
             }
         }
@@ -68,9 +71,12 @@ namespace Rechrysalis.Controller
             _mover?.Tick(_deltaTime);
             if (_playerUnitsSO[_controllerIndex].ActiveUnits.Length > 0)
             {
-                foreach (GameObject _unitToReset in _playerUnitsSO[_controllerIndex].ActiveUnits)
+                foreach (GameObject _unitToTick in _playerUnitsSO[_controllerIndex].ActiveUnits)
                 {
-                    _unitToReset.GetComponent<Mover>()?.Tick(_deltaTime);
+                    if (_unitToTick != null)
+                    {
+                    _unitToTick.GetComponent<Mover>()?.Tick(_deltaTime);
+                    }
                 }
             }
         }

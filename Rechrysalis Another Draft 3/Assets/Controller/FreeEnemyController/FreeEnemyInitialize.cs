@@ -11,6 +11,8 @@ namespace Rechrysalis.Controller
         [SerializeField] private GameObject _FreeUnitPrefab;
         public void Initialize(ControllerManager _enemyController, CompSO _freeUnitCompSO, PlayerUnitsSO _playerUnitsSO)        
         {
+            Debug.Log("size " + _freeUnitCompSO.UnitSOArray.Length.ToString());
+            _playerUnitsSO.InitializePlayerUnitsSize(_freeUnitCompSO.UnitSOArray.Length);
             if (_freeUnitCompSO.UnitSOArray.Length > 0) {
             for (int i = 0; i < _freeUnitCompSO.UnitSOArray.Length; i++)
             {
