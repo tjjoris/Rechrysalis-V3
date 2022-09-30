@@ -13,6 +13,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private float _maxX;
         [SerializeField] private float _minY;
         [SerializeField] private float _maxY;
+        [SerializeField] private Vector3 _moveVector;        
         [SerializeField] private Vector2 _direction;
         public Vector2 Direction {set{_direction = value;}get {return _direction;}}
         [SerializeField] bool _isStopped;
@@ -30,9 +31,13 @@ namespace Rechrysalis.Controller
             _minY = _backGScript.MinY;
             _maxY = _backGScript.MaxY;
         }
-
+        public void ResetMovement()
+        {   
+            _moveVector = Vector2.zero;            
+        }
         public void Tick(float _deltaTime)
         {
+            ResetMovement();
             if (!_isStopped){                
                 float _x = _direction.x * _speed / _direction.magnitude;
                 float _y = _direction.y * _speed / _direction.magnitude;
@@ -48,9 +53,10 @@ namespace Rechrysalis.Controller
                 {
                     _causesPushBack.PushBack(_y);
                 }                
-                Vector3 _directionV3 = new Vector3(_x, _y, 0f);
-                transform.Translate(_directionV3);
+                _moveVector = new Vector3(_x, _y, 0f);
             }
+
+            transform.Translate(_moveVector);
         }
     }
 }
