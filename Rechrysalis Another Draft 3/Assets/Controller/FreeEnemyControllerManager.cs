@@ -26,7 +26,7 @@ namespace Rechrysalis.Controller
         //             GameObject newFreeEnemy = Instantiate(_freeEnemyPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
         //         }
         //     }
-            GetComponent<FreeEnemyInitialize>()?.Initialize(_freeEnemyComp);
+            // GetComponent<FreeEnemyInitialize>()?.Initialize(_freeEnemyComp);
         }
         public void Tick()
         {

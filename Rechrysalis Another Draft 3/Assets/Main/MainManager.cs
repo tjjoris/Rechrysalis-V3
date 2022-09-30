@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Controller;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis
 {
@@ -9,7 +10,8 @@ namespace Rechrysalis
     {
         [SerializeField] ControllerManager[] _controllerManager;
         [SerializeField] FreeEnemyControllerManager[] _freeEnemyControllerManager;
-        [SerializeField] PlayerUnitsSO[] _playerUnitsSO;        
+        [SerializeField] PlayerUnitsSO[] _playerUnitsSO;  
+        [SerializeField] CompSO[] _compSO;   
 
         private void Awake() {
             if ((_controllerManager != null) && (_controllerManager.Length > 0))
@@ -18,7 +20,7 @@ namespace Rechrysalis
                 {
                     if (_controllerManager[i] != null) 
                     {
-                        _controllerManager[i].Initialize(_playerUnitsSO);
+                        _controllerManager[i].Initialize(_playerUnitsSO, _compSO[i]);
                     }
                 }
             }

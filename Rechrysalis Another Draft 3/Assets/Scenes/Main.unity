@@ -362,7 +362,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 691481328}
-  - component: {fileID: 691481329}
+  - component: {fileID: 691481330}
+  - component: {fileID: 691481331}
   m_Layer: 0
   m_Name: FreeController
   m_TagString: Untagged
@@ -385,7 +386,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &691481329
+--- !u!114 &691481330
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -394,14 +395,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 691481327}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adaa5728f75b947b3a8d9ef9a493bb33, type: 3}
+  m_Script: {fileID: 11500000, guid: a4cd5fc75d837434ea4b8a639a65723d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitsList: []
-  _unitListSOArray: []
-  _freeEnemyComp: {fileID: 11400000, guid: 8ec5c4d26c91a49e0a7fea0097c5e036, type: 2}
-  _freeEnemyPrefab: {fileID: 2833293522152398769, guid: fc92d36ab971a4db7a70bb0162526b4a, type: 3}
-  _freeEnemeyCompLayout: {fileID: 11400000, guid: a1e1c700875364149b83fe7c50f7e289, type: 2}
+  _freeEnemyCompLayout: {fileID: 0}
+  _FreeUnitPrefab: {fileID: 0}
+--- !u!114 &691481331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691481327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6ef97af7cec47d5abfb65fbd090e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _click: {fileID: 0}
+  _touch: {fileID: 0}
+  _parentUnits: []
+  _playerUnitsSO: []
+  _compSO: {fileID: 0}
 --- !u!1 &886669363
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +517,9 @@ MonoBehaviour:
   _touch: {fileID: 11400000, guid: 87a4f46d393ad4191b399aa2156c091e, type: 2}
   _parentUnits:
   - {fileID: 5960935201740169133}
-  _unitListSOArray: []
+  _playerUnitsSO:
+  - {fileID: 0}
+  - {fileID: 0}
   _compSO: {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
 --- !u!114 &1159822627
 MonoBehaviour:
@@ -602,10 +619,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controllerManager:
   - {fileID: 1159822626}
-  - {fileID: 0}
+  - {fileID: 691481331}
   _freeEnemyControllerManager:
   - {fileID: 0}
-  - {fileID: 691481329}
+  - {fileID: 0}
+  _playerUnitsSO: []
+  _compSO:
+  - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
+  - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
 --- !u!4 &1448413823
 Transform:
   m_ObjectHideFlags: 0

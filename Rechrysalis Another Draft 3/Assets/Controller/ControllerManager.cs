@@ -16,12 +16,17 @@ namespace Rechrysalis.Controller
         [SerializeField] private CompSO _compSO;       
 
         private Mover _mover;
-        public void Initialize(PlayerUnitsSO[] _playerUnitsSO) {
+        public void Initialize(PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO) {
             this._playerUnitsSO = _playerUnitsSO;
+            this._compSO = _compSO;
             _mover = GetComponent<Mover>();
-            _mover.Initialize();
+            if (_mover != null) {
+            _mover?.Initialize();
+            }
             _click?.Initialize(gameObject);
             _touch?.Initialize(gameObject);
+            if (_parentUnits.Length > 0)
+            {
             for (int i=0; i<_parentUnits.Length;i++)
             {
                 for (int j=0; j<3; j++)
@@ -31,6 +36,8 @@ namespace Rechrysalis.Controller
                 }
                 _parentUnits[i].GetComponent<ParentUnitManager>()?.ActivateUnit(0);
             }
+            }
+            GetComponent<FreeEnemyInitialize>()?.Initialize(_compSO);
         }
         private void Update() 
         {
