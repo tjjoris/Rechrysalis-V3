@@ -9,7 +9,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private int _controllerIndex;
         [SerializeField] private PlayerUnitsSO[] _playerUnitsSO;
 
-        public void Initialize()
+        public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO)
         {
             this._controllerIndex = _controllerIndex;
             this._playerUnitsSO = _playerUnitsSO;
@@ -20,7 +20,7 @@ namespace Rechrysalis.Controller
         }
         private void EnableActions()
         {
-            // foreach ( _playerUnitsSO[GetOppositeController.ReturnOppositeController(_controllerIndex)].ActiveUnits            
+            // foreach ( _playerUnitsSO[GetOppositeController.ReturnOppositeController(_controllerIndex)].ActiveUnits
         }
         public void SendPlayerPosAndYSpeed(Vector2 _playerPos, float _ySpeed, GameObject[] _unitsGO)
         {
