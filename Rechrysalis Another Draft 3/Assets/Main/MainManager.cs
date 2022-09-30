@@ -9,7 +9,6 @@ namespace Rechrysalis
     public class MainManager : MonoBehaviour
     {
         [SerializeField] ControllerManager[] _controllerManager;
-        [SerializeField] FreeEnemyControllerManager[] _freeEnemyControllerManager;
         [SerializeField] PlayerUnitsSO[] _playerUnitsSO;  
         [SerializeField] CompSO[] _compSO;   
 
@@ -24,16 +23,6 @@ namespace Rechrysalis
                     }
                 }
             }
-            if ((_freeEnemyControllerManager != null) && (_freeEnemyControllerManager.Length > 0))
-            {
-                for (int i = 0; i < _freeEnemyControllerManager.Length; i++)
-                {
-                    if (_freeEnemyControllerManager[i] != null)
-                    {
-                        _freeEnemyControllerManager[i].Initialize();
-                    }
-                }
-            }
         }
 
         private void FixedUpdate()
@@ -45,16 +34,6 @@ namespace Rechrysalis
                     if (_controllerManager[i] != null)
                     {
                         _controllerManager[i].Tick();
-                    }
-                }
-            }
-            if ((_freeEnemyControllerManager != null) && (_freeEnemyControllerManager.Length > 0))
-            {
-                for (int i = 0; i < _freeEnemyControllerManager.Length; i++)
-                {
-                    if (_freeEnemyControllerManager[i] != null)
-                    {
-                        _freeEnemyControllerManager[i].Tick();
                     }
                 }
             }
