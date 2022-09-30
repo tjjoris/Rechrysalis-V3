@@ -9,7 +9,7 @@ namespace Rechrysalis.Controller
     {
         [SerializeField] private List<GameObject> _unitsList;
         public List<GameObject> UnitsList {get{return _unitsList;} set{_unitsList = value;}}
-        [SerializeField] private CompSO[] _playerCompSO;
-        public CompSO[] PlayerCompSO {get{return _playerCompSO;}set{_playerCompSO = value;}}
+        [SerializeField] private CompSO[] _unitListSOArray;
+        public CompSO[] UnitListSoArray {get{return _unitListSOArray;}set{_unitListSOArray = value;}}
     }
 }

@@ -11,10 +11,8 @@ namespace Rechrysalis.Controller
         [SerializeField] private TouchSO _touch;
         [SerializeField] private GameObject[] _parentUnits;
         public GameObject[] ParentUnits{get{return _parentUnits;} set{_parentUnits = value;}}
-        [SerializeField] private PlayerUnitsSO _myUnits;
-        public PlayerUnitsSO MyUnits {get{return _myUnits;} set{_myUnits = value;}}
-        [SerializeField] private PlayerUnitsSO _enemyUnits;
-        public  PlayerUnitsSO EnemyUnits {get{return _enemyUnits;} set {_enemyUnits = value;}}
+        [SerializeField] private PlayerUnitsSO[] _unitListSOArray;
+        public PlayerUnitsSO[] UnitListSOArray {get{return _unitListSOArray;} set{_unitListSOArray = value;}}
         [SerializeField] private CompSO _compSO;        
 
         private Mover _mover;
