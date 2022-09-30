@@ -21,8 +21,8 @@ namespace Rechrysalis
                 if (_unitPos == null) {                    
                 _unitPos = new Vector2[_numberOfRows,_enemiesPerRow];
                 SetEnemeisInRow(_row0, 0);
-                SetEnemeisInRow(_row1, 1);
-                SetEnemeisInRow(_row2, 2);
+                // SetEnemeisInRow(_row1, 1);
+                // SetEnemeisInRow(_row2, 2);
                 Debug.Log("set up 2d array "+_unitPos[0,0].ToString());
             }
                 return _unitPos;   
