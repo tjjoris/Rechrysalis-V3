@@ -16,7 +16,6 @@ namespace Rechrysalis.Controller
         public PlayerUnitsSO[] PlayerUnitsSO {get{return _playerUnitsSO;} set{_playerUnitsSO = value;}}    
         [SerializeField] private CompSO _compSO;     
         private ControllerManager _enemyController;
-        // public ControllerManager EnemyController   
 
         private Mover _mover;
         public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController) {
@@ -31,7 +30,7 @@ namespace Rechrysalis.Controller
             _click?.Initialize(gameObject);
             _touch?.Initialize(gameObject);
             
-            GetComponent<FreeEnemyInitialize>()?.Initialize(_enemyController, _compSO);
+            GetComponent<FreeEnemyInitialize>()?.Initialize(_enemyController, _compSO, _playerUnitsSO[_controllerIndex]);
         }
         private void SetUpParentUnits()
         {
@@ -56,17 +55,23 @@ namespace Rechrysalis.Controller
         public void ResetTick()
         {
             _mover?.ResetMovement();
-            foreach (GameObject _unitToReset in _playerUnitsSO[_controllerIndex].ActiveUnits)
+            if (_playerUnitsSO[_controllerIndex].ActiveUnits.Length > 0)
             {
-                _unitToReset.GetComponent<Mover>()?.ResetMovement();
+                foreach (GameObject _unitToReset in _playerUnitsSO[_controllerIndex].ActiveUnits)
+                {
+                    _unitToReset.GetComponent<Mover>()?.ResetMovement();
+                }
             }
         }
         public void Tick() {  
             float _deltaTime = Time.deltaTime;         
             _mover?.Tick(_deltaTime);
-            foreach (GameObject _unitToReset in _playerUnitsSO[_controllerIndex].ActiveUnits)
+            if (_playerUnitsSO[_controllerIndex].ActiveUnits.Length > 0)
             {
-                _unitToReset.GetComponent<Mover>()?.Tick(_deltaTime);
+                foreach (GameObject _unitToReset in _playerUnitsSO[_controllerIndex].ActiveUnits)
+                {
+                    _unitToReset.GetComponent<Mover>()?.Tick(_deltaTime);
+                }
             }
         }
     }
