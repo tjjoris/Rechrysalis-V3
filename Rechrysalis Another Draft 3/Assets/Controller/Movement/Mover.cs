@@ -61,7 +61,7 @@ namespace Rechrysalis.Controller
                 }                
                 _moveVector = new Vector3(_x, _y, 0f);
             }
-            if (_moveVector.y < _pushBackMovement)
+            if ((GetComponent<PushBackFromPlayer>() != null) && (_pushBackMovement > 0) && (_moveVector.y < _pushBackMovement))
             {
                 _moveVector.y = _pushBackMovement;
             }
