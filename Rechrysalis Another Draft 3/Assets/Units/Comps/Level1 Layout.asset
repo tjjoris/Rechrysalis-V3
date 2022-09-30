@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2889dce85ad1a444f9102f6402ca50ba, type: 3}
   m_Name: Level1 Layout
   m_EditorClassIdentifier: 
-  _enemiesPerRow: 1
+  _enemiesPerRow: 3
   _numberOfRows: 1
   _row0:
-  - {x: 2, y: 2}
+  - {x: 1, y: -5}
+  - {x: 2, y: -5}
+  - {x: 3, y: -5}
   _row1: []
   _row2: []
