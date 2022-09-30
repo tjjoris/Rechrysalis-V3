@@ -15,14 +15,20 @@ namespace Rechrysalis
             {
                 for (int i=0; i<_controllerManager.Length; i++)
                 {
-                    _controllerManager[i].Initialize();
+                    if (_controllerManager[i] != null) 
+                    {
+                        _controllerManager[i].Initialize();
+                    }
                 }
             }
             if ((_freeEnemyControllerManager != null) && (_freeEnemyControllerManager.Length > 0))
             {
                 for (int i = 0; i < _freeEnemyControllerManager.Length; i++)
                 {
-                    _freeEnemyControllerManager[i].Initialize();
+                    if (_freeEnemyControllerManager[i] != null)
+                    {
+                        _freeEnemyControllerManager[i].Initialize();
+                    }
                 }
             }
         }
@@ -33,14 +39,20 @@ namespace Rechrysalis
             {
                 for (int i = 0; i < _controllerManager.Length; i++)
                 {
-                    _controllerManager[i].Tick();
+                    if (_controllerManager[i] != null)
+                    {
+                        _controllerManager[i].Tick();
+                    }
                 }
             }
             if ((_freeEnemyControllerManager != null) && (_freeEnemyControllerManager.Length > 0))
             {
                 for (int i = 0; i < _freeEnemyControllerManager.Length; i++)
                 {
-                    _freeEnemyControllerManager[i].Tick();
+                    if (_freeEnemyControllerManager[i] != null)
+                    {
+                        _freeEnemyControllerManager[i].Tick();
+                    }
                 }
             }
         }
