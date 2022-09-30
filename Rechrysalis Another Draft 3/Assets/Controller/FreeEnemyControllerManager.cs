@@ -5,7 +5,7 @@ using Rechrysalis.Unit;
 
 namespace Rechrysalis.Controller
 {
-    public class FreeEnemyController : MonoBehaviour
+    public class FreeEnemyControllerManager : MonoBehaviour
     {
         [SerializeField] private List<GameObject> _unitsList;
         public List<GameObject> UnitsList {get{return _unitsList;} set{_unitsList = value;}}
