@@ -19,7 +19,7 @@ namespace Rechrysalis.Controller
         [SerializeField] bool _isStopped;
         public bool IsStopped {set{_isStopped = value;}get {return _isStopped;}}
         [SerializeField] float _speed;
-        public Action playerPushBack;
+        public Action<Vector2, float> playerPushBack;
         public void Initialize(int _controllerIndex)
         {
             this._controllerIndex = _controllerIndex;
@@ -46,7 +46,7 @@ namespace Rechrysalis.Controller
                 }
                 if ((GetComponent<ControllerManager>() != null) &&(_y > 0))
                 {
-                    playerPushBack?.Invoke();
+                    playerPushBack?.Invoke(transform.position, _y);
                 }
                 Vector3 _directionV3 = new Vector3(_x, _y, 0f);
                 transform.Translate(_directionV3);
