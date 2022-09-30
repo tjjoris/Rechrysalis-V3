@@ -11,12 +11,13 @@ namespace Rechrysalis.Controller
         [SerializeField] private TouchSO _touch;
         [SerializeField] private GameObject[] _parentUnits;
         public GameObject[] ParentUnits{get{return _parentUnits;} set{_parentUnits = value;}}
-        [SerializeField] private PlayerUnitsSO[] _unitListSOArray;
-        public PlayerUnitsSO[] UnitListSOArray {get{return _unitListSOArray;} set{_unitListSOArray = value;}}    
+        [SerializeField] private PlayerUnitsSO[] _playerUnitsSO;
+        public PlayerUnitsSO[] PlayerUnitsSO {get{return _playerUnitsSO;} set{_playerUnitsSO = value;}}    
         [SerializeField] private CompSO _compSO;       
 
         private Mover _mover;
-        public void Initialize() {
+        public void Initialize(PlayerUnitsSO[] _playerUnitsSO) {
+            this._playerUnitsSO = _playerUnitsSO;
             _mover = GetComponent<Mover>();
             _mover.Initialize();
             _click?.Initialize(gameObject);

@@ -9,6 +9,7 @@ namespace Rechrysalis
     {
         [SerializeField] ControllerManager[] _controllerManager;
         [SerializeField] FreeEnemyControllerManager[] _freeEnemyControllerManager;
+        [SerializeField] PlayerUnitsSO[] _playerUnitsSO;        
 
         private void Awake() {
             if ((_controllerManager != null) && (_controllerManager.Length > 0))
@@ -17,7 +18,7 @@ namespace Rechrysalis
                 {
                     if (_controllerManager[i] != null) 
                     {
-                        _controllerManager[i].Initialize();
+                        _controllerManager[i].Initialize(_playerUnitsSO);
                     }
                 }
             }

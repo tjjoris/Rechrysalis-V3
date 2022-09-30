@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.Controller;
 
 namespace Rechrysalis
 {
@@ -10,5 +11,8 @@ namespace Rechrysalis
     {
         [SerializeField] private GameObject[] _activeUnits;
         public GameObject[] ActiveUnits {get{return _activeUnits;} set{_activeUnits = value;}}
+        [SerializeField] private ControllerManager _controllerManager;
+        public ControllerManager ControllerManager {get{return _controllerManager;}}
+        
     }
 }
