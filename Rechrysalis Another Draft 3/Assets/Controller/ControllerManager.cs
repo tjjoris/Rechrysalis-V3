@@ -12,8 +12,8 @@ namespace Rechrysalis.Controller
         [SerializeField] private GameObject[] _parentUnits;
         public GameObject[] ParentUnits{get{return _parentUnits;} set{_parentUnits = value;}}
         [SerializeField] private PlayerUnitsSO[] _unitListSOArray;
-        public PlayerUnitsSO[] UnitListSOArray {get{return _unitListSOArray;} set{_unitListSOArray = value;}}
-        [SerializeField] private CompSO _compSO;        
+        public PlayerUnitsSO[] UnitListSOArray {get{return _unitListSOArray;} set{_unitListSOArray = value;}}    
+        [SerializeField] private CompSO _compSO;       
 
         private Mover _mover;
         private void Awake() {
