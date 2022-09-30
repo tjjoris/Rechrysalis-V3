@@ -485,8 +485,7 @@ MonoBehaviour:
   _touch: {fileID: 11400000, guid: 87a4f46d393ad4191b399aa2156c091e, type: 2}
   _parentUnits:
   - {fileID: 5960935201740169133}
-  _myUnits: {fileID: 11400000, guid: a186d15dd72244bde8ba225ce4035960, type: 2}
-  _enemyUnits: {fileID: 0}
+  _unitListSOArray: []
   _compSO: {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
 --- !u!114 &1159822627
 MonoBehaviour:
@@ -769,9 +768,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitsList: []
-  _playerCompSO:
-  - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
-  - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
+  _unitListSOArray: []
+  _freeEnemyComp: {fileID: 11400000, guid: 8ec5c4d26c91a49e0a7fea0097c5e036, type: 2}
 --- !u!1001 &5960935201740169132
 PrefabInstance:
   m_ObjectHideFlags: 0
