@@ -30,6 +30,10 @@ namespace Rechrysalis.Controller
                 }
             }
         }
+        public void Tick()
+        {
+            
+        }
         
     }
 }

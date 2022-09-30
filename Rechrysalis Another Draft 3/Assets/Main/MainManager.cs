@@ -5,7 +5,7 @@ using Rechrysalis.Controller;
 
 namespace Rechrysalis
 {
-    public class MainHandler : MonoBehaviour
+    public class MainManager : MonoBehaviour
     {
         [SerializeField] ControllerManager[] _controllerManager;
         [SerializeField] FreeEnemyControllerManager[] _freeEnemyControllerManager;
@@ -15,14 +15,14 @@ namespace Rechrysalis
             {
                 for (int i=0; i<_controllerManager.Length; i++)
                 {
-
+                    _controllerManager[i].Initialize();
                 }
             }
             if ((_freeEnemyControllerManager != null) && (_freeEnemyControllerManager.Length > 0))
             {
                 for (int i = 0; i < _freeEnemyControllerManager.Length; i++)
                 {
-
+                    _freeEnemyControllerManager[i].Initialize();
                 }
             }
         }
@@ -33,14 +33,14 @@ namespace Rechrysalis
             {
                 for (int i = 0; i < _controllerManager.Length; i++)
                 {
-                    
+                    _controllerManager[i].Tick();
                 }
             }
             if ((_freeEnemyControllerManager != null) && (_freeEnemyControllerManager.Length > 0))
             {
                 for (int i = 0; i < _freeEnemyControllerManager.Length; i++)
                 {
-
+                    _freeEnemyControllerManager[i].Tick();
                 }
             }
         }

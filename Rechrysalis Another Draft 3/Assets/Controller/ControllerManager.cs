@@ -16,7 +16,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private CompSO _compSO;       
 
         private Mover _mover;
-        private void Awake() {
+        public void Initialize() {
             _mover = GetComponent<Mover>();
             _mover.Initialize();
             _click?.Initialize(gameObject);
@@ -31,16 +31,12 @@ namespace Rechrysalis.Controller
                 _parentUnits[i].GetComponent<ParentUnitManager>()?.ActivateUnit(0);
             }
         }
-        void Start()
-        {         
-            
-        }
         private void Update() 
         {
             _click?.Tick();
             _touch?.Tick();
         }
-        private void FixedUpdate() {  
+        public void Tick() {  
             float _deltaTime = Time.deltaTime;              
             _mover?.Tick(_deltaTime);
         }
