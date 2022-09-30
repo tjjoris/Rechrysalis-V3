@@ -16,9 +16,6 @@ namespace Rechrysalis.Controller
         [SerializeField] private GameObject _freeEnemyPrefab;
         [SerializeField] private FreeUnitLayoutSO _freeEnemeyCompLayout;
 
-        private void Awake() {
-            Initialize();
-        }
         public void Initialize()
         {
             for (int i=0; i<_freeEnemyComp.UnitSOArray.Length;i++)
@@ -32,7 +29,7 @@ namespace Rechrysalis.Controller
         }
         public void Tick()
         {
-            
+
         }
         
     }
