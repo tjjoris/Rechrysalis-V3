@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8755162302603452497}
   - component: {fileID: 2206268559358365383}
+  - component: {fileID: 4350597574370061380}
+  - component: {fileID: 7004137065191994488}
   m_Layer: 0
   m_Name: FreeEnemy
   m_TagString: Untagged
@@ -47,6 +49,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controllerIndex: 0
   _playerUnitsSO: []
+  _enemyController: {fileID: 0}
+--- !u!114 &4350597574370061380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833293522152398769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c63cca6f7c44af0aad94b29b9dbbd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controllerIndex: 0
+  _playerUnitsSO: []
+  _enemyController: {fileID: 0}
+--- !u!114 &7004137065191994488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833293522152398769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7207323077f4e589598ecab6ca7d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controllerIndex: 0
+  _backG: {fileID: 0}
+  _minX: 0
+  _maxX: 0
+  _minY: 0
+  _maxY: 0
+  _moveVector: {x: 0, y: 0, z: 0}
+  _direction: {x: 0, y: 0}
+  _isStopped: 0
+  _speed: 0
 --- !u!1 &6335642851339446156
 GameObject:
   m_ObjectHideFlags: 0
