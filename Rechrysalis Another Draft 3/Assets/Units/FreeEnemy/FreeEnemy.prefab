@@ -85,7 +85,7 @@ MonoBehaviour:
   _maxY: 0
   _moveVector: {x: 0, y: 0, z: 0}
   _direction: {x: 0, y: 0}
-  _isStopped: 0
+  _isStopped: 1
   _speed: 0
 --- !u!1 &6335642851339446156
 GameObject:

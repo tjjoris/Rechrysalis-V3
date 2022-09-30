@@ -15,9 +15,9 @@ namespace Rechrysalis.Controller
         [SerializeField] private float _maxY;
         private float _pushBackMovement;
         [SerializeField] private Vector3 _moveVector;        
-        [SerializeField] private Vector2 _direction;
+        [SerializeField] private Vector2 _direction = Vector2.zero;
         public Vector2 Direction {set{_direction = value;}get {return _direction;}}
-        [SerializeField] bool _isStopped;
+        [SerializeField] bool _isStopped = true;
         public bool IsStopped {set{_isStopped = value;}get {return _isStopped;}}
         [SerializeField] float _speed;
         private CausesPushBack _causesPushBack;
@@ -43,9 +43,11 @@ namespace Rechrysalis.Controller
         }
         public void Tick(float _deltaTime)
         {
+            float _x = 0f;
+            float _y = 0f;
             if (!_isStopped){                
-                float _x = _direction.x * _speed / _direction.magnitude;
-                float _y = _direction.y * _speed / _direction.magnitude;
+                _x = _direction.x * _speed / _direction.magnitude;
+                _y = _direction.y * _speed / _direction.magnitude;
                 if (((_x <0) && (transform.position.x + _x < _minX)) || ((_x > 0) && (transform.position.x + _x > _maxX)))
                 {
                     _x = 0; 
@@ -54,16 +56,18 @@ namespace Rechrysalis.Controller
                 {
                     _y = 0;
                 }
-                Debug.Log("Y = " +_y.ToString());
-                if ((_causesPushBack != null) && (_y > 0)) 
-                {
-                    _causesPushBack.PushBack(_y);
-                }                
-                _moveVector = new Vector3(_x, _y, 0f);
             }
+            if ((_causesPushBack != null) && (_y > 0)) 
+            {
+                _causesPushBack.PushBack(_y);
+            }                
+            _moveVector = new Vector3(_x, _y, 0f);            
             if ((GetComponent<PushBackFromPlayer>() != null) && (_pushBackMovement > 0) && (_moveVector.y < _pushBackMovement))
             {
                 _moveVector.y = _pushBackMovement;
+            }
+            if (_controllerIndex == 1) {
+                Debug.Log("_move vector y " + _moveVector.y.ToString());
             }
             transform.Translate(_moveVector);
         }
