@@ -16,6 +16,7 @@ namespace Rechrysalis
         private void Awake() {
             _compsAndUnitsSO.CompsSO = _compSO;
             _compsAndUnitsSO.ControllerManagers = _controllerManager;
+            GameMaster.GetSingleton().ReferenceManager.CompsAndUnitsSO = _compsAndUnitsSO;
             if ((_controllerManager != null) && (_controllerManager.Length > 0))
             {
                 for (int i=0; i<_controllerManager.Length; i++)
