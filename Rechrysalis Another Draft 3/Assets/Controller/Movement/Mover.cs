@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace Rechrysalis.Controller
 {
     public class Mover : MonoBehaviour
     {
+        [SerializeField] int _controllerIndex;
         [SerializeField] private GameObject _backG;
         [SerializeField] private float _minX;
 
@@ -17,8 +19,10 @@ namespace Rechrysalis.Controller
         [SerializeField] bool _isStopped;
         public bool IsStopped {set{_isStopped = value;}get {return _isStopped;}}
         [SerializeField] float _speed;
-        public void Initialize()
+        public Action playerPushBack;
+        public void Initialize(int _controllerIndex)
         {
+            this._controllerIndex = _controllerIndex;
             _backG = GameMaster.GetSingleton().ReferenceManager.BackG;
             Background _backGScript = _backG.GetComponent<Background>();
             _minX = _backGScript.MinX;
@@ -39,6 +43,10 @@ namespace Rechrysalis.Controller
                 if (((_y <0) && (transform.position.y + _y < _minY)) || ((_y > 0) && (transform.position.y + _y > _maxY)))
                 {
                     _y = 0;
+                }
+                if ((GetComponent<ControllerManager>() != null) &&(_y > 0))
+                {
+                    playerPushBack?.Invoke();
                 }
                 Vector3 _directionV3 = new Vector3(_x, _y, 0f);
                 transform.Translate(_directionV3);

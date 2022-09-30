@@ -7,6 +7,7 @@ namespace Rechrysalis.Controller
 {
     public class ControllerManager : MonoBehaviour
     {
+        [SerializeField] private int _controllerIndex;
         [SerializeField] private Click _click;
         [SerializeField] private TouchSO _touch;
         [SerializeField] private GameObject[] _parentUnits;
@@ -16,12 +17,13 @@ namespace Rechrysalis.Controller
         [SerializeField] private CompSO _compSO;       
 
         private Mover _mover;
-        public void Initialize(PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO) {
+        public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO) {
+            this._controllerIndex = _controllerIndex;
             this._playerUnitsSO = _playerUnitsSO;
             this._compSO = _compSO;
             _mover = GetComponent<Mover>();
             if (_mover != null) {
-            _mover?.Initialize();
+            _mover?.Initialize(_controllerIndex);
             }
             _click?.Initialize(gameObject);
             _touch?.Initialize(gameObject);

@@ -19,7 +19,7 @@ namespace Rechrysalis
                 {
                     if (_controllerManager[i] != null) 
                     {
-                        _controllerManager[i].Initialize(_playerUnitsSO, _compSO[i]);
+                        _controllerManager[i].Initialize(i, _playerUnitsSO, _compSO[i]);
                     }
                 }
             }
