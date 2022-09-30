@@ -18,8 +18,10 @@ namespace Rechrysalis.Controller
         [SerializeField] bool _isStopped;
         public bool IsStopped {set{_isStopped = value;}get {return _isStopped;}}
         [SerializeField] float _speed;
+        private CausesPushBack _causesPushBack;
         public void Initialize(int _controllerIndex)
         {
+            _causesPushBack = GetComponent<CausesPushBack>();
             this._controllerIndex = _controllerIndex;
             _backG = GameMaster.GetSingleton().ReferenceManager.BackG;
             Background _backGScript = _backG.GetComponent<Background>();
@@ -41,6 +43,10 @@ namespace Rechrysalis.Controller
                 if (((_y <0) && (transform.position.y + _y < _minY)) || ((_y > 0) && (transform.position.y + _y > _maxY)))
                 {
                     _y = 0;
+                }
+                if ((_causesPushBack != null) && (_y > 0)) 
+                {
+                    _causesPushBack.PushBack(_y);
                 }                
                 Vector3 _directionV3 = new Vector3(_x, _y, 0f);
                 transform.Translate(_directionV3);
