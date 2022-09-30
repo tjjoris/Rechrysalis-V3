@@ -54,6 +54,7 @@ namespace Rechrysalis.Controller
                 {
                     _y = 0;
                 }
+                Debug.Log("Y = " +_y.ToString());
                 if ((_causesPushBack != null) && (_y > 0)) 
                 {
                     _causesPushBack.PushBack(_y);
@@ -64,7 +65,6 @@ namespace Rechrysalis.Controller
             {
                 _moveVector.y = _pushBackMovement;
             }
-
             transform.Translate(_moveVector);
         }
     }

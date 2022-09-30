@@ -47,11 +47,11 @@ namespace Rechrysalis.Controller
                 }
             }
         }
-        // private void Update() 
-        // {
-        //     _click?.Tick();
-        //     _touch?.Tick();
-        // }
+        private void Update() 
+        {
+            _click?.Tick();
+            _touch?.Tick();
+        }
         public void ResetTick()
         {
             _mover?.ResetMovement();
