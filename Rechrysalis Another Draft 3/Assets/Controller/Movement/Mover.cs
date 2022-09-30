@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace Rechrysalis.Controller
 {
@@ -19,7 +18,6 @@ namespace Rechrysalis.Controller
         [SerializeField] bool _isStopped;
         public bool IsStopped {set{_isStopped = value;}get {return _isStopped;}}
         [SerializeField] float _speed;
-        public Action<Vector2, float> playerPushBack;
         public void Initialize(int _controllerIndex)
         {
             this._controllerIndex = _controllerIndex;
@@ -43,11 +41,7 @@ namespace Rechrysalis.Controller
                 if (((_y <0) && (transform.position.y + _y < _minY)) || ((_y > 0) && (transform.position.y + _y > _maxY)))
                 {
                     _y = 0;
-                }
-                if ((GetComponent<ControllerManager>() != null) &&(_y > 0))
-                {
-                    playerPushBack?.Invoke(transform.position, _y);
-                }
+                }                
                 Vector3 _directionV3 = new Vector3(_x, _y, 0f);
                 transform.Translate(_directionV3);
             }

@@ -22,11 +22,11 @@ namespace Rechrysalis.Controller
         }
         private void EnableActionsFunction()
         {
-            _enemyController.GetComponent<Mover>().playerPushBack += CalledPushBack;
+            _enemyController.GetComponent<CausesPushBack>().playerPushBack += CalledPushBack;
         }
         private void OnDisable()
          {
-            _enemyController.GetComponent<Mover>().playerPushBack -= CalledPushBack;
+            _enemyController.GetComponent<CausesPushBack>().playerPushBack -= CalledPushBack;
         }
         public void SendPlayerPosAndYSpeed(Vector2 _playerPos, float _ySpeed, GameObject[] _unitsGO)
         {
