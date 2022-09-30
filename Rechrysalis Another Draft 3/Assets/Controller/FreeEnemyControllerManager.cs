@@ -18,14 +18,15 @@ namespace Rechrysalis.Controller
 
         public void Initialize()
         {
-            for (int i=0; i<_freeEnemyComp.UnitSOArray.Length;i++)
-            {
-                if (_freeEnemyComp.UnitSOArray[i] != null)
-                {
-                    Vector3 _newUnitPos = _freeEnemeyCompLayout.UnitPos[0,i];
-                    GameObject newFreeEnemy = Instantiate(_freeEnemyPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
-                }
-            }
+        //     for (int i=0; i<_freeEnemyComp.UnitSOArray.Length;i++)
+        //     {
+        //         if (_freeEnemyComp.UnitSOArray[i] != null)
+        //         {
+        //             Vector3 _newUnitPos = _freeEnemeyCompLayout.UnitPos[0,i];
+        //             GameObject newFreeEnemy = Instantiate(_freeEnemyPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
+        //         }
+        //     }
+            GetComponent<FreeEnemyInitialize>()?.Initialize(_freeEnemyComp);
         }
         public void Tick()
         {
