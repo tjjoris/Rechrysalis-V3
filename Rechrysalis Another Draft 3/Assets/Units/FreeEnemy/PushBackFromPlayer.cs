@@ -8,26 +8,33 @@ namespace Rechrysalis.Controller
     {
         [SerializeField] private int _controllerIndex;
         [SerializeField] private PlayerUnitsSO[] _playerUnitsSO;
+        [SerializeField] private ControllerManager _enemyController;
 
-        public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO)
+        public void Initialize(ControllerManager _enemyController)
         {
-            this._controllerIndex = _controllerIndex;
-            this._playerUnitsSO = _playerUnitsSO;
-            EnableActions();
+            this._enemyController = _enemyController;
+            // this._controllerIndex = _controllerIndex;
+            // this._playerUnitsSO = _playerUnitsSO;
+            EnableActionsFunction();
         }
         private void OnEnable() {
-            EnableActions();
+            EnableActionsFunction();
         }
-        private void EnableActions()
+        private void EnableActionsFunction()
         {
-            // foreach ( _playerUnitsSO[GetOppositeController.ReturnOppositeController(_controllerIndex)].ActiveUnits
+            _enemyController.GetComponent<Mover>().playerPushBack += CalledPushBack;
+        }
+        private void OnDisable()
+         {
+            _enemyController.GetComponent<Mover>().playerPushBack -= CalledPushBack;
         }
         public void SendPlayerPosAndYSpeed(Vector2 _playerPos, float _ySpeed, GameObject[] _unitsGO)
         {
-            if (_ySpeed > 0)
-            {
+            
+        }
+        private void CalledPushBack(Vector2 _controllerPos, float _ySpeed)
+        {
 
-            }
         }
     }
 }
