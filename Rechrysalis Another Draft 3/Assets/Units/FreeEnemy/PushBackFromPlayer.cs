@@ -21,8 +21,15 @@ namespace Rechrysalis.Controller
             EnableActionsFunction();
         }
         private void EnableActionsFunction()
-        {
-            _enemyController.GetComponent<CausesPushBack>().playerPushBack += CalledPushBack;
+        {            
+            if (_enemyController != null)
+            {
+            CausesPushBack _causesPushBack = _enemyController.GetComponent<CausesPushBack>();
+            if (_causesPushBack != null)
+            {
+            _causesPushBack.playerPushBack += CalledPushBack;
+            }
+            }
         }
         private void OnDisable()
          {
