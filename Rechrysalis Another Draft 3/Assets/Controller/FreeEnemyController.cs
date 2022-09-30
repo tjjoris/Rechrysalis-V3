@@ -13,6 +13,23 @@ namespace Rechrysalis.Controller
         public PlayerUnitsSO[] UnitListSoArray {get{return _unitListSOArray;}set{_unitListSOArray = value;}}
         [SerializeField] private FreeUnitCompSO _freeEnemyComp;
         public FreeUnitCompSO FreeUnitComp{get{return _freeEnemyComp;}set{_freeEnemyComp = value;}}
+        [SerializeField] private GameObject _freeEnemyPrefab;
+        [SerializeField] private FreeUnitLayoutSO _freeEnemeyCompLayout;
+
+        private void Awake() {
+            Initialize();
+        }
+        public void Initialize()
+        {
+            for (int i=0; i<_freeEnemyComp.UnitSOArray.Length;i++)
+            {
+                if (_freeEnemyComp.UnitSOArray[i] != null)
+                {
+                    Vector3 _newUnitPos = _freeEnemeyCompLayout.UnitPos[0,i];
+                    GameObject newFreeEnemy = Instantiate(_freeEnemyPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
+                }
+            }
+        }
         
     }
 }
