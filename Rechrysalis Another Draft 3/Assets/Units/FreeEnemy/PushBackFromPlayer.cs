@@ -41,7 +41,10 @@ namespace Rechrysalis.Controller
         }
         private void CalledPushBack(Vector2 _controllerPos, float _ySpeed)
         {
-
+            if ((_ySpeed > 0) && (_controllerPos.y >= gameObject.transform.position.y))
+            {
+                GetComponent<Mover>().PushBackMovement = _ySpeed;
+            }
         }
     }
 }
