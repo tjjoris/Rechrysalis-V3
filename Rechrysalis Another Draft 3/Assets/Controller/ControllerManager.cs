@@ -48,14 +48,26 @@ namespace Rechrysalis.Controller
                 }
             }
         }
-        private void Update() 
+        // private void Update() 
+        // {
+        //     _click?.Tick();
+        //     _touch?.Tick();
+        // }
+        public void ResetTick()
         {
-            _click?.Tick();
-            _touch?.Tick();
+            _mover?.ResetMovement();
+            foreach (GameObject _unitToReset in _playerUnitsSO[_controllerIndex].ActiveUnits)
+            {
+                _unitToReset.GetComponent<Mover>()?.ResetMovement();
+            }
         }
         public void Tick() {  
-            float _deltaTime = Time.deltaTime;              
+            float _deltaTime = Time.deltaTime;         
             _mover?.Tick(_deltaTime);
+            foreach (GameObject _unitToReset in _playerUnitsSO[_controllerIndex].ActiveUnits)
+            {
+                _unitToReset.GetComponent<Mover>()?.Tick(_deltaTime);
+            }
         }
     }
 }

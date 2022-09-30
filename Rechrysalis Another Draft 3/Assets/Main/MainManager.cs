@@ -31,6 +31,24 @@ namespace Rechrysalis
 
         private void FixedUpdate()
         {
+            ResetTick();
+            Tick();
+        }
+        private void ResetTick()
+        {
+            if ((_controllerManager != null) && (_controllerManager.Length > 0))
+            {
+                for (int i = 0; i < _controllerManager.Length; i++)
+                {
+                    if (_controllerManager[i] != null)
+                    {
+                        _controllerManager[i].ResetTick();
+                    }
+                }
+            }
+        }
+        private void Tick()
+        {
             if ((_controllerManager != null) && (_controllerManager.Length > 0))
             {
                 for (int i = 0; i < _controllerManager.Length; i++)
