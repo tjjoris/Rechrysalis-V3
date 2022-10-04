@@ -16,19 +16,21 @@ namespace Rechrysalis.Controller
         public PlayerUnitsSO[] PlayerUnitsSO {get{return _playerUnitsSO;} set{_playerUnitsSO = value;}}    
         [SerializeField] private CompSO _compSO;     
         private ControllerManager _enemyController;
+        [SerializeField] private CompsAndUnitsSO _compsAndUnits;
 
         private Mover _mover;
-        public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController) {
+        public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits) {
             this._controllerIndex = _controllerIndex;
             this._playerUnitsSO = _playerUnitsSO;
             this._compSO = _compSO;
             this._enemyController = _enemyController;
+            this._compsAndUnits = _compsAndUnits;
             _mover = GetComponent<Mover>();
             if (_mover != null) {
             _mover?.Initialize(_controllerIndex);
             }
-            _click?.Initialize(gameObject);
-            _touch?.Initialize(gameObject);
+            _click?.Initialize(gameObject, _compsAndUnits);
+            _touch?.Initialize(gameObject, _compsAndUnits);
             
             GetComponent<FreeEnemyInitialize>()?.Initialize(_controllerIndex, _enemyController, _compSO, _playerUnitsSO[_controllerIndex]);
             RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();

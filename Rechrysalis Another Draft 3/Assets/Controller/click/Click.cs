@@ -10,11 +10,14 @@ namespace Rechrysalis.Controller
     {
         [SerializeField] ClickInfo _clickInfo;
         [SerializeField] CheckRayCastSO _checkRayCast;
+        [SerializeField] CompsAndUnitsSO _compsAndUnits;
 
-        public void Initialize(GameObject _controllerGO)
+        public void Initialize(GameObject _controllerGO, CompsAndUnitsSO _compsAndUnits)
         {
             _clickInfo.ControlledController = _controllerGO;
             _checkRayCast.ClickInfo = _clickInfo;
+            this._compsAndUnits = _compsAndUnits;
+            _checkRayCast.Initialize(_compsAndUnits);
         }        
         public void Tick()
         {

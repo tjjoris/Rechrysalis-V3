@@ -9,9 +9,14 @@ namespace Rechrysalis.Controller
     [CreateAssetMenu(fileName = "CheckRayCastInstance", menuName = "Controller/Click/CheckRayCast")]
     public class CheckRayCastSO : ScriptableObject
     {
+        [SerializeField] private CompsAndUnitsSO _compsAndUnits;
         [SerializeField] private ClickInfo _clickInfo;
         public ClickInfo ClickInfo {set {_clickInfo = value;} get{return _clickInfo;}}
         
+        public void Initialize(CompsAndUnitsSO _compsAndUnits)
+        {
+            this._compsAndUnits = _compsAndUnits;
+        }
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {
             LayerMask _mask = ~LayerMask.GetMask("PlayerController");
@@ -26,7 +31,6 @@ namespace Rechrysalis.Controller
                 }
                 else if (hit.collider.gameObject.layer == 7)
                 {
-                    Debug.Log("unitHit");
                     UnitManager _unitManager = hit.collider.gameObject.GetComponent<UnitManager>();
                     if (_unitManager != null)
                     {
@@ -35,6 +39,7 @@ namespace Rechrysalis.Controller
                     if ((_unitManager != null) && (_unitManager.ControllerIndex == 1))
                     {
                         Debug.Log($"click enemy");
+
                     }
                 }
             }
