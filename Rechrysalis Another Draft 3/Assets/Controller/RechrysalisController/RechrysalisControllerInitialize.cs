@@ -26,7 +26,19 @@ namespace Rechrysalis.Controller
                         _parentUnits[_parentUnitIndex] = go;
                         go.name = "Parent Unit " + _parentUnitIndex.ToString();
                         go.GetComponent<ParentUnitManager>()?.Initialize(_controllerIndex, _parentUnitIndex, _unitComp);                        
+            }            
+        }
+        public List<GameObject> GetAllUnits()
+        {
+            List<GameObject> _allUnits = new List<GameObject>();
+            foreach (GameObject _parentUnit in _parentUnits)
+            {
+                foreach (GameObject _subUnit in _parentUnit.GetComponent<ParentUnitManager>()?.SubUnits)
+                {
+                    _allUnits.Add(_subUnit);
+                }
             }
+            return _allUnits;
         }
     }
 }

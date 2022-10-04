@@ -10,8 +10,12 @@ namespace Rechrysalis.Controller
     {
         [SerializeField] private FreeUnitLayoutSO _freeEnemyCompLayout;
         [SerializeField] private GameObject _FreeUnitPrefab;
+        // private int _controllerIndex;
+        private List<GameObject> _allUnits;
         public void Initialize(int _controllerIndex, ControllerManager _enemyController, CompSO _freeUnitCompSO, PlayerUnitsSO _playerUnitsSO)        
         {
+            _allUnits = new List<GameObject>();
+            // this._controllerIndex = _controllerIndex;
             Debug.Log("size " + _freeUnitCompSO.UnitSOArray.Length.ToString());
             _playerUnitsSO.InitializePlayerUnitsSize(_freeUnitCompSO.UnitSOArray.Length);
             if (_freeUnitCompSO.UnitSOArray.Length > 0) {
@@ -26,9 +30,14 @@ namespace Rechrysalis.Controller
                     newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _freeUnitCompSO.UnitSOArray[i]);
                     newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerIndex);
                     _playerUnitsSO.ActiveUnits[i] = newFreeEnemy;
+                    _allUnits.Add(newFreeEnemy);
                 }
             }
             }
+        }
+        public List<GameObject> GetAllUnits()
+        {
+            return _allUnits;
         }
     }
 }

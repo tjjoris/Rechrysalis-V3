@@ -48,6 +48,7 @@ namespace Rechrysalis.Attacking
             }
             if ((_attackChargeCurrent < _attackChargeUp) && (_isStopped))
             {
+                Debug.Log($"increae time");
                 _attackChargeCurrent += _timeAmount;                
             }            
         }

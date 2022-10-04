@@ -12,7 +12,8 @@ namespace Rechrysalis.Controller
         [SerializeField] private Click _click;
         [SerializeField] private TouchSO _touch;
         [SerializeField] private GameObject[] _parentUnits;
-        public GameObject[] ParentUnits{get{return _parentUnits;} set{_parentUnits = value;}}
+        public GameObject[] ParentUnits{get{return _parentUnits;} set{_parentUnits = value;}}  
+        private List<GameObject> _allUnits;      
         [SerializeField] private PlayerUnitsSO[] _playerUnitsSO;
         public PlayerUnitsSO[] PlayerUnitsSO {get{return _playerUnitsSO;} set{_playerUnitsSO = value;}}    
         [SerializeField] private CompSO _compSO;     
@@ -20,18 +21,18 @@ namespace Rechrysalis.Controller
         [SerializeField] private CompsAndUnitsSO _compsAndUnits;
         private Mover _mover;
         private bool _isStopped;
-        public bool IsStopped
-        {
-            set
-            {
-                _isStopped = value;
-                _mover.IsStopped = value;
-                foreach (GameObject _parentUnit in _parentUnits)
-                {
-                    _parentUnit.GetComponent<ParentUnitManager>().IsStopped = value;
-                }
-            }
-        }
+        // public bool IsStopped
+        // {
+        //     set
+        //     {
+        //         _isStopped = value;
+        //         _mover.IsStopped = value;
+        //         foreach (GameObject _parentUnit in _parentUnits)
+        //         {
+        //             _parentUnit.GetComponent<ParentUnitManager>().IsStopped = value;
+        //         }
+        //     }
+        // }
 
         public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits) {
             this._controllerIndex = _controllerIndex;
@@ -39,6 +40,8 @@ namespace Rechrysalis.Controller
             this._compSO = _compSO;
             this._enemyController = _enemyController;
             this._compsAndUnits = _compsAndUnits;
+            _allUnits = new List<GameObject>();
+            _allUnits.Clear();
             _mover = GetComponent<Mover>();
             if (_mover != null) {
             _mover?.Initialize(_controllerIndex);
@@ -53,6 +56,7 @@ namespace Rechrysalis.Controller
             _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO);
             _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
             }
+            SetIsStopped(true);
 
 
         }
@@ -108,7 +112,9 @@ namespace Rechrysalis.Controller
         public void SetIsStopped(bool _isStopped)
         {
             this._isStopped = _isStopped;
+            if (_mover != null) {
             _mover.IsStopped = _isStopped;
+            }
             foreach (GameObject _parentUnit in _parentUnits)
             {
                 _parentUnit.GetComponent<ParentUnitManager>().IsStopped = _isStopped;
