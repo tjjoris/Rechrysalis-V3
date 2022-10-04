@@ -25,10 +25,10 @@ namespace Rechrysalis.Controller
             set
             {
                 _isStopped = value;
-                _mover.IsStopped = _isStopped;
+                _mover.IsStopped = value;
                 foreach (GameObject _parentUnit in _parentUnits)
                 {
-                    _parentUnit.GetComponent<ParentUnitManager>().IsStopped = _isStopped;
+                    _parentUnit.GetComponent<ParentUnitManager>().IsStopped = value;
                 }
             }
         }
@@ -103,6 +103,15 @@ namespace Rechrysalis.Controller
                     _unitToTick.GetComponent<UnitManager>()?.Tick(_timeAmount);
                     }
                 }
+            }
+        }
+        public void SetIsStopped(bool _isStopped)
+        {
+            this._isStopped = _isStopped;
+            _mover.IsStopped = _isStopped;
+            foreach (GameObject _parentUnit in _parentUnits)
+            {
+                _parentUnit.GetComponent<ParentUnitManager>().IsStopped = _isStopped;
             }
         }
     }

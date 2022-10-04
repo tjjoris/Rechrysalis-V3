@@ -14,6 +14,7 @@ namespace Rechrysalis.Controller
         public GameObject[] ParentUnits {get{return _parentUnits;}}
         public void Initialize(int _controllerIndex, CompSO _unitComp)
         {
+            _parentUnits = new GameObject[1];
             // foreach (GameObject _unit in _parentUnits)
             for (int _parentUnitIndex = 0; _parentUnitIndex < 1; _parentUnitIndex++)
             {       
@@ -22,8 +23,9 @@ namespace Rechrysalis.Controller
                 Debug.Log($"radtooffset" + _radToOffset + "vector 3 " + _unitOffset);
                 GameObject go = Instantiate(_parentUnitPrefab, _unitRing.transform);
                         go.transform.localPosition = _unitOffset;
+                        _parentUnits[_parentUnitIndex] = go;
                         go.name = "Parent Unit " + _parentUnitIndex.ToString();
-                        go.GetComponent<ParentUnitManager>()?.Initialize(_controllerIndex, _parentUnitIndex, _unitComp);
+                        go.GetComponent<ParentUnitManager>()?.Initialize(_controllerIndex, _parentUnitIndex, _unitComp);                        
             }
         }
     }
