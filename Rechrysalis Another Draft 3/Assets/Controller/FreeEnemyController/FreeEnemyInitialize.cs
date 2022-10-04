@@ -22,6 +22,7 @@ namespace Rechrysalis.Controller
                     GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
                     newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(_enemyController);
                     newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _freeUnitCompSO.UnitSOArray[i]);
+                    newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerIndex);
                     _playerUnitsSO.ActiveUnits[i] = newFreeEnemy;
                 }
             }
