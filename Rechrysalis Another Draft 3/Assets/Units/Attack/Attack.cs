@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.Unit;
 
-namespace Rechrysalis.Unit
+namespace Rechrysalis.Attacking
 {
     public class Attack : MonoBehaviour
     {
@@ -13,6 +14,8 @@ namespace Rechrysalis.Unit
         [SerializeField] private  float _baseDamage;
         private ProjectilesPool _projectilesPool;
         private bool _isWindingDown;
+        private bool _isStopped;
+        public bool IsStopped{set{_isStopped = value;}}
 
         public void Initialize(UnitStatsSO _unitStats)
         {   
@@ -28,7 +31,7 @@ namespace Rechrysalis.Unit
             _attackChargeCurrent = 0;
             _isWindingDown = false;
         }
-        public void Tick(float _timeAmount, bool _isStopped)
+        public void Tick(float _timeAmount)
         {
             if (_attackChargeCurrent >= _attackWindDown) 
             {
