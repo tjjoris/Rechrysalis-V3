@@ -11,7 +11,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private ClickInfo _clickInfo;
         public ClickInfo ClickInfo {set {_clickInfo = value;} get{return _clickInfo;}}
         
-        public void CheckRayCastFunction(Vector2 _mousePos, int _touchID)
+        public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {
                 LayerMask _stopMask = LayerMask.GetMask("PlayerController");
                 RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, _stopMask);

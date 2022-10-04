@@ -24,7 +24,7 @@ namespace Rechrysalis.Controller
             if (Input.GetMouseButtonDown(0))
             {
             Debug.Log("check");
-            _checkRayCast.CheckRayCastFunction(Camera.main.ScreenToWorldPoint(Input.mousePosition), -1);
+            _checkRayCast.CheckRayCastDownFunction(Camera.main.ScreenToWorldPoint(Input.mousePosition), -1);
             }
         }
     }

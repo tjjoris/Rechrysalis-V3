@@ -27,7 +27,7 @@ namespace Rechrysalis.Controller
                 Touch t = Input.GetTouch(i);
                 if (t.phase == TouchPhase.Began)
                 {
-                    _checkRayCast.CheckRayCastFunction(Camera.main.ScreenToWorldPoint(t.position), t.fingerId);
+                    _checkRayCast.CheckRayCastDownFunction(Camera.main.ScreenToWorldPoint(t.position), t.fingerId);
                 }
                 i++;
             }
