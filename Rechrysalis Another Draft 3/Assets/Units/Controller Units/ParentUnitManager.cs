@@ -9,11 +9,14 @@ namespace Rechrysalis.Unit
         [SerializeField] private GameObject[] _subUnits;
         public GameObject[] SubUnits {get {return _subUnits;}set {_subUnits = value;}}
 
-        public void Initialize()
+        public void Initialize(int _parentUnitIndex, CompSO _unitComp)
         {
             for (int i=0; i<_subUnits.Length; i++)
             {
                 UnitManager _unitManager = _subUnits[i].GetComponent<UnitManager>();
+                int _unitIndex = (_parentUnitIndex * 3) + i;
+                if (_unitComp.UnitSOArray[_unitIndex] != null)
+                _unitManager?.Initialize(_unitComp.UnitSOArray[_unitIndex]);
                 // _unitManager
             }
         }

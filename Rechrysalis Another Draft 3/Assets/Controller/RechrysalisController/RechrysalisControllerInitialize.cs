@@ -17,12 +17,12 @@ namespace Rechrysalis.Controller
             // foreach (GameObject _unit in _parentUnits)
             for (int _parentUnitIndex = 0; _parentUnitIndex < 1; _parentUnitIndex++)
             {       
-                for (int _childUnitIndex =0; _childUnitIndex < 3; _childUnitIndex++)
-                {      
+                // for (int _childUnitIndex =0; _childUnitIndex < 3; _childUnitIndex++)
+                // {      
                         // _unit.GetComponent<ParentUnitManager>()?.Initialize();
                         GameObject go = Instantiate(_parentUnitPrefab, _unitRing.transform);
-                        go.GetComponent<ParentUnitManager>()?.Initialize();
-                }                
+                        go.GetComponent<ParentUnitManager>()?.Initialize(int _parentUnitIndex, CompSO _unitComp);
+                // }                
             }
         }
     }
