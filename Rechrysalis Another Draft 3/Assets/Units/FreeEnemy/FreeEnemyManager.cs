@@ -2,20 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rechrysalis
+namespace Rechrysalis.Unit
 {
     public class FreeEnemyManager : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        public void Initialize(UnitStatsSO _unitStats)
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            GetComponent<ProjectilesPool>()?.CreatePool(_unitStats.AmountToPool, _unitStats.ProjectileSpeed, _unitStats.ProjectileSprite);
         }
     }
 }

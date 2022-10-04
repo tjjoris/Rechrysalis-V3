@@ -8,6 +8,10 @@ namespace Rechrysalis.Unit
     [CreateAssetMenu(fileName = "NewUnitStats", menuName ="Unit/UnitStatsSO")]
     public class UnitStatsSO : ScriptableObject
     {
+        [SerializeField] private int _amountToPool;
+        public int AmountToPool{get{return _amountToPool;}}
+        [SerializeField] private float _projectileSpeed;
+        public float ProjectileSpeed {get{return _projectileSpeed;}}
        [SerializeField] private Sprite _projectileSprite;
        public Sprite ProjectileSprite {get{return _projectileSprite;}}
        [SerializeField] private string _unitName;
