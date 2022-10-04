@@ -21,7 +21,7 @@ namespace Rechrysalis.Controller
                 // {      
                         // _unit.GetComponent<ParentUnitManager>()?.Initialize();
                         GameObject go = Instantiate(_parentUnitPrefab, _unitRing.transform);
-                        go.GetComponent<ParentUnitManager>()?.Initialize(int _parentUnitIndex, CompSO _unitComp);
+                        go.GetComponent<ParentUnitManager>()?.Initialize(_parentUnitIndex, _unitComp);
                 // }                
             }
         }
