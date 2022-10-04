@@ -48,14 +48,20 @@ namespace Rechrysalis.Controller
             }
             _click?.Initialize(gameObject, _compsAndUnits);
             _touch?.Initialize(gameObject, _compsAndUnits);
-            
-            GetComponent<FreeEnemyInitialize>()?.Initialize(_controllerIndex, _enemyController, _compSO, _playerUnitsSO[_controllerIndex]);
+            FreeEnemyInitialize _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
+            if (_freeEnemyInitialize != null)
+            {
+            _freeEnemyInitialize.Initialize(_controllerIndex, _enemyController, _compSO, _playerUnitsSO[_controllerIndex]);
+            _allUnits = _freeEnemyInitialize.GetAllUnits();
+            }
             RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();
             if (GetComponent<RechrysalisControllerInitialize>() != null)
             {
             _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO);
+            _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
             _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
             }
+
             SetIsStopped(true);
 
 
@@ -115,9 +121,13 @@ namespace Rechrysalis.Controller
             if (_mover != null) {
             _mover.IsStopped = _isStopped;
             }
-            foreach (GameObject _parentUnit in _parentUnits)
+            // foreach (GameObject _parentUnit in _parentUnits)
+            // {
+            //     _parentUnit.GetComponent<ParentUnitManager>().IsStopped = _isStopped;
+            // }
+            foreach (GameObject _unit in _allUnits)
             {
-                _parentUnit.GetComponent<ParentUnitManager>().IsStopped = _isStopped;
+                _unit.GetComponent<UnitManager>().IsStopped = _isStopped;
             }
         }
     }
