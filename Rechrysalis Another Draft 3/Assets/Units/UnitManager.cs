@@ -39,6 +39,7 @@ namespace Rechrysalis.Unit
             _nameText.text = _unitStats.UnitName;
             _mover = GetComponent<Mover>();
             _attack = GetComponent<Attack>();
+            _attack?.Initialize(_unitStats);
         }
         public void Tick(float _timeAmount)
         {
