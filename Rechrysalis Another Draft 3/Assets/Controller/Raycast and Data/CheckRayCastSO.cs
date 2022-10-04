@@ -14,31 +14,29 @@ namespace Rechrysalis.Controller
         
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {
-                LayerMask _stopMask = LayerMask.GetMask("PlayerController");
-                RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, _stopMask);
-                if ((hit) && (hit.collider.gameObject.layer == 6))
+                LayerMask _mask = ~LayerMask.GetMask("PlayerController");
+                _mask += LayerMask.GetMask("Unit");
+                RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, _mask);
+                if (hit) 
                 {
-                    Debug.Log($"stop");
-                    _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = true;
-                }
-            else
-            {
-                LayerMask _unitMask = LayerMask.GetMask("Unit");
-                RaycastHit2D unitHit = Physics2D.Raycast(_mousePos, Vector2.zero, _unitMask);
-                // if (unitHit)
-                if (false)
-                {
-                    Debug.Log("unitHit");
-                    UnitManager _unitManager = unitHit.collider.gameObject.GetComponent<UnitManager>();
-                    if (_unitManager != null)
+                    if (hit.collider.gameObject.layer == 7)
                     {
-                        Debug.Log($"clicked unit");
+                        Debug.Log($"stop");
+                        _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = true;
                     }
-                    if ((_unitManager != null) && (_unitManager.ControllerIndex == 1))
+                    else if (hit.collider.gameObject.layer == 8)
                     {
-                        Debug.Log($"click enemy");
+                        Debug.Log("unitHit");
+                        UnitManager _unitManager = hit.collider.gameObject.GetComponent<UnitManager>();
+                        if (_unitManager != null)
+                        {
+                            Debug.Log($"clicked unit");
+                        }
+                        if ((_unitManager != null) && (_unitManager.ControllerIndex == 1))
+                        {
+                            Debug.Log($"click enemy");
+                        }
                     }
-                }
                 else if (false)
                 {
                     //ring to rotate
