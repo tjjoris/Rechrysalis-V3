@@ -13,7 +13,7 @@ namespace Rechrysalis.Unit
         public void Initialize(UnitStatsSO _unitStats)
         {
             this._unitStats = _unitStats;
-            GetComponent<ProjectilesPool>()?.CreatePool(10, 5, _unitStats.ProjectileSprite);
+            GetComponent<ProjectilesPool>()?.CreatePool(_unitStats.AmountToPool, _unitStats.ProjectileSpeed, _unitStats.ProjectileSprite);
             _nameText.text = _unitStats.UnitName;
         }
     }
