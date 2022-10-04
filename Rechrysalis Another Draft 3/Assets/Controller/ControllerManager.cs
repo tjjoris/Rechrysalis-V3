@@ -18,8 +18,21 @@ namespace Rechrysalis.Controller
         [SerializeField] private CompSO _compSO;     
         private ControllerManager _enemyController;
         [SerializeField] private CompsAndUnitsSO _compsAndUnits;
-
         private Mover _mover;
+        private bool _isStopped;
+        public bool IsStopped
+        {
+            set
+            {
+                _isStopped = value;
+                _mover.IsStopped = _isStopped;
+                foreach (GameObject _parentUnit in _parentUnits)
+                {
+                    _parentUnit.GetComponent<ParentUnitManager>().IsStopped = _isStopped;
+                }
+            }
+        }
+
         public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits) {
             this._controllerIndex = _controllerIndex;
             this._playerUnitsSO = _playerUnitsSO;

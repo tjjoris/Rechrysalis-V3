@@ -31,7 +31,8 @@ namespace Rechrysalis.Controller
                 if (hit.collider.gameObject.layer == 6)
                 {
                     Debug.Log($"stop");
-                    _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = true;
+                    // _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = true;
+                    _clickInfo.ControlledController.GetComponent<ControllerManager>().IsStopped = false;
                 }
                 else if (hit.collider.gameObject.layer == 7)
                 {
@@ -62,7 +63,8 @@ namespace Rechrysalis.Controller
                 Vector2 _direction = _clickInfo.ControlledController.transform.position;
                 _direction = _mousePos - _direction;
                 _clickInfo.ControlledController.GetComponent<Mover>().Direction = _direction;
-                _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = false;
+                // _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = false;
+                _clickInfo.ControlledController.GetComponent<ControllerManager>().IsStopped = false;
             }
         }
     }

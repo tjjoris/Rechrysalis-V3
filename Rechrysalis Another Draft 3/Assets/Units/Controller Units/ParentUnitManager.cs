@@ -10,6 +10,18 @@ namespace Rechrysalis.Unit
         [SerializeField] private GameObject[] _subUnits;
         public GameObject[] SubUnits {get {return _subUnits;}set {_subUnits = value;}}
 
+        private bool _isStopped;
+        public bool IsStopped 
+        {
+            set{
+                _isStopped = value;
+                foreach(GameObject _unit in _subUnits)
+                {
+                    _unit.GetComponent<UnitManager>().IsStopped = _isStopped;
+                }
+            }
+         }
+
         public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO _unitComp)
         {
             this._controllerIndex = _controllerIndex;

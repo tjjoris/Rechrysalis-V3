@@ -17,7 +17,14 @@ namespace Rechrysalis.Unit
         private Mover _mover;
         private Attack _attack;
         [SerializeField] private bool _isStopped;
-        public bool IsStopped {set{_isStopped = value;}}
+        public bool IsStopped 
+        {
+            set{
+                _isStopped = value;
+                _mover.IsStopped = _isStopped;
+                _attack.IsStopped = _isStopped;
+                }
+            }
         public void Initialize(int _controllerIndex, UnitStatsSO _unitStats)
         {
             this._controllerIndex = _controllerIndex;
