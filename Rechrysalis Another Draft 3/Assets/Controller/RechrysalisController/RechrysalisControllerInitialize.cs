@@ -12,7 +12,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private float _ringDistFromCentre = 2f;
         [SerializeField] private GameObject[] _parentUnits;
         public GameObject[] ParentUnits {get{return _parentUnits;}}
-        public void Initialize(CompSO _unitComp)
+        public void Initialize(int _controllerIndex, CompSO _unitComp)
         {
             // foreach (GameObject _unit in _parentUnits)
             for (int _parentUnitIndex = 0; _parentUnitIndex < 1; _parentUnitIndex++)
@@ -22,7 +22,7 @@ namespace Rechrysalis.Controller
                 Debug.Log($"radtooffset" + _radToOffset + "vector 3 " + _unitOffset);
                 GameObject go = Instantiate(_parentUnitPrefab, _unitRing.transform);
                         go.transform.localPosition = _unitOffset;
-                        go.GetComponent<ParentUnitManager>()?.Initialize(_parentUnitIndex, _unitComp);
+                        go.GetComponent<ParentUnitManager>()?.Initialize(_controllerIndex, _parentUnitIndex, _unitComp);
             }
         }
     }

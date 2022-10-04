@@ -34,7 +34,7 @@ namespace Rechrysalis.Controller
             RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();
             if (GetComponent<RechrysalisControllerInitialize>() != null)
             {
-            _rechrysalisControllerInitialize.Initialize(_compSO);
+            _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO);
             _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
             }
 
