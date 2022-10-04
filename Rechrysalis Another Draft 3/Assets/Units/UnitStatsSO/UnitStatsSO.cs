@@ -10,7 +10,7 @@ namespace Rechrysalis.Unit
     {
        [SerializeField] private Sprite _projectileSprite;
        public Sprite ProjectileSprite {get{return _projectileSprite;}}
-       [SerializeField] private string _name;
-       public string Name {get{return _name;}}
+       [SerializeField] private string _unitName;
+       public string UnitName {get{return _unitName;}}
     }
 }

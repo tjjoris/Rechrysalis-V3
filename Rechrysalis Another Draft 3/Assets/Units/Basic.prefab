@@ -232,3 +232,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitStats: {fileID: 0}
+  _nameText: {fileID: 1178424233875251256}

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: BasicShortRange
   m_EditorClassIdentifier: 
   _projectileSprite: {fileID: 21300000, guid: acf2a1d752267428eaf137c494e17c8b, type: 3}
+  _unitName: Fighter
