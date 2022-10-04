@@ -20,9 +20,15 @@ namespace Rechrysalis.Unit
         public bool IsStopped 
         {
             set{
-                _isStopped = value;
-                _mover.IsStopped = _isStopped;
-                _attack.IsStopped = _isStopped;
+                    _isStopped = value;
+                    if (_mover != null)
+                    {
+                    _mover.IsStopped = _isStopped;
+                    }
+                    if (_attack != null)
+                    {
+                    _attack.IsStopped = _isStopped;
+                    }
                 }
             }
         public void Initialize(int _controllerIndex, UnitStatsSO _unitStats)
