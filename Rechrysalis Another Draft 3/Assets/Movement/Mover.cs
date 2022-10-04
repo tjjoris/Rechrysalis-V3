@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.Controller;
 
-namespace Rechrysalis.Controller
+namespace Rechrysalis.Movement
 {
     public class Mover : MonoBehaviour
     {

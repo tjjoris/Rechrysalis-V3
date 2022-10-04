@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
+using Rechrysalis.Movement;
 
 namespace Rechrysalis.Controller
 {
@@ -77,15 +78,16 @@ namespace Rechrysalis.Controller
             }
         }
         public void Tick() {  
-            float _deltaTime = Time.deltaTime;         
-            _mover?.Tick(_deltaTime);
+            float _timeAmount = Time.deltaTime;         
+            _mover?.Tick(_timeAmount);
             if (_playerUnitsSO[_controllerIndex].ActiveUnits.Length > 0)
             {
                 foreach (GameObject _unitToTick in _playerUnitsSO[_controllerIndex].ActiveUnits)
                 {
                     if (_unitToTick != null)
                     {
-                    _unitToTick.GetComponent<Mover>()?.Tick(_deltaTime);
+                    // _unitToTick.GetComponent<Mover>()?.Tick(_deltaTime);
+                    _unitToTick.GetComponent<UnitManager>()?.Tick(_timeAmount);
                     }
                 }
             }
