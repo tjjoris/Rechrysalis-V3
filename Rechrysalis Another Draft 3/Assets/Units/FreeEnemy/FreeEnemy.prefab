@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2206268559358365383}
   - component: {fileID: 7004137065191994488}
   - component: {fileID: 316562131673386523}
-  - component: {fileID: 7184182062680592886}
   - component: {fileID: 3601232384251862538}
+  - component: {fileID: 1891597175858307882}
   m_Layer: 7
   m_Name: FreeEnemy
   m_TagString: Untagged
@@ -89,19 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToPool: {fileID: 5167810372607863140, guid: e9eabadce2d294281b141351b04370f6, type: 3}
---- !u!114 &7184182062680592886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2833293522152398769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 445091a0be8ea41558dc8e3a13569de3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _nameText: {fileID: 5944765683813516378}
 --- !u!58 &3601232384251862538
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -118,6 +105,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &1891597175858307882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833293522152398769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768857a65777a42ecb3e0adb0cd0d609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controllerIndex: 0
+  _unitStats: {fileID: 0}
+  _nameText: {fileID: 5944765683813516378}
 --- !u!1 &6335642851339446156
 GameObject:
   m_ObjectHideFlags: 0
