@@ -49,6 +49,7 @@ MonoBehaviour:
   _controllerIndex: 0
   _playerUnitsSO: []
   _enemyController: {fileID: 0}
+  _pushBackY: 2
 --- !u!114 &7004137065191994488
 MonoBehaviour:
   m_ObjectHideFlags: 0

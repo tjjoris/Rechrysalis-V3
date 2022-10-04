@@ -9,6 +9,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private int _controllerIndex;
         [SerializeField] private PlayerUnitsSO[] _playerUnitsSO;
         [SerializeField] private ControllerManager _enemyController;
+        [SerializeField] private float _pushBackY = 2f;
 
         public void Initialize(ControllerManager _enemyController)
         {
@@ -41,7 +42,7 @@ namespace Rechrysalis.Controller
         }
         private void CalledPushBack(Vector2 _controllerPos, float _ySpeed)
         {
-            if ((_ySpeed > 0) && (_controllerPos.y >= gameObject.transform.position.y))
+            if ((_ySpeed > 0) && (_controllerPos.y >= gameObject.transform.position.y - _pushBackY))
             {
                 GetComponent<Mover>().PushBackMovement = _ySpeed;
             }
