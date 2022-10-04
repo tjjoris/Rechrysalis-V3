@@ -6,9 +6,9 @@ namespace Rechrysalis
 {
     public class ProjectilesPool : MonoBehaviour
     {
-        public List<GameObject> pooledObjects;
-        public GameObject objectToPool;
-        public int amountToPool;
+        private List<GameObject> pooledObjects;
+        [SerializeField] private GameObject objectToPool;
+        private int amountToPool;
 
         public void CreatePool(int amountToPool, float _projectileSpeed, Sprite _projectileSprite)
         {
