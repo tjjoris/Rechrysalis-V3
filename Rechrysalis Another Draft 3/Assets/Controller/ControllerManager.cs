@@ -31,6 +31,7 @@ namespace Rechrysalis.Controller
             _touch?.Initialize(gameObject);
             
             GetComponent<FreeEnemyInitialize>()?.Initialize(_enemyController, _compSO, _playerUnitsSO[_controllerIndex]);
+            GetComponent<RechrysalisControllerInitialize>()?.Initialize();
         }
         private void SetUpParentUnits()
         {
