@@ -8,6 +8,7 @@ namespace Rechrysalis.Unit
     public class UnitManager : MonoBehaviour
     {
         [SerializeField] private int _controllerIndex;
+        public int ControllerIndex {get{return _controllerIndex;}}
         [SerializeField] private UnitStatsSO _unitStats;
         [SerializeField] private TMP_Text _nameText;
         public UnitStatsSO UnitStats {get{return _unitStats;}}
