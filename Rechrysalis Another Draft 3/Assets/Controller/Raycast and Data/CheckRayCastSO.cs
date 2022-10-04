@@ -16,7 +16,7 @@ namespace Rechrysalis.Controller
         {
                 LayerMask _stopMask = LayerMask.GetMask("PlayerController");
                 RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, _stopMask);
-                if (hit)
+                if ((hit) && (hit.collider.gameObject.layer == 6))
                 {
                     Debug.Log($"stop");
                     _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = true;
