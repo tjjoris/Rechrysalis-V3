@@ -18,15 +18,22 @@ namespace Rechrysalis.Controller
                 RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, _stopMask);
                 if (hit)
                 {
+                    Debug.Log($"stop");
                     _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = true;
                 }
             else
             {
                 LayerMask _unitMask = LayerMask.GetMask("Unit");
-                RaycastHit2D unitHit = Physics2D.Raycast(_mousePos, Vector2.zero, _stopMask);
-                if (unitHit)
+                RaycastHit2D unitHit = Physics2D.Raycast(_mousePos, Vector2.zero, _unitMask);
+                // if (unitHit)
+                if (false)
                 {
-                    UnitManager _unitManager = unitHit.collider.GetComponent<UnitManager>();
+                    Debug.Log("unitHit");
+                    UnitManager _unitManager = unitHit.collider.gameObject.GetComponent<UnitManager>();
+                    if (_unitManager != null)
+                    {
+                        Debug.Log($"clicked unit");
+                    }
                     if ((_unitManager != null) && (_unitManager.ControllerIndex == 1))
                     {
                         Debug.Log($"click enemy");

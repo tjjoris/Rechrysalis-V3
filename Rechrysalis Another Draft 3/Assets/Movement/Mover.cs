@@ -68,7 +68,6 @@ namespace Rechrysalis.Controller
                 _moveVector.y = _pushBackMovement;
             }
             if (_controllerIndex == 1) {
-                Debug.Log("_move vector y " + _moveVector.y.ToString());
             }
             transform.Translate(_moveVector);
         }
