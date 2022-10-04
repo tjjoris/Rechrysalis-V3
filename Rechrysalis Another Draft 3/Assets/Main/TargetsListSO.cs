@@ -12,7 +12,10 @@ namespace Rechrysalis.Unit
         // public int ListLength {set {_listLength = value;}}
         [SerializeField] private List<GameObject> _targets;
         public List<GameObject> Targets {get{return _targets;}}
-
+        public void Initialize()
+        {
+            _targets.Clear();
+        }
         public void SetNewTarget(GameObject _newTarget)
         {
             for (int _listIndex = 0; _listIndex < _targets.Count; _listIndex ++)

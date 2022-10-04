@@ -10,12 +10,15 @@ namespace Rechrysalis.Controller
     public class CheckRayCastSO : ScriptableObject
     {
         [SerializeField] private CompsAndUnitsSO _compsAndUnits;
+        private TargetsListSO _playerTargtList;
         [SerializeField] private ClickInfo _clickInfo;
         public ClickInfo ClickInfo {set {_clickInfo = value;} get{return _clickInfo;}}
         
         public void Initialize(CompsAndUnitsSO _compsAndUnits)
         {
             this._compsAndUnits = _compsAndUnits;
+            _playerTargtList = _compsAndUnits.TargetsLists[0];
+            _playerTargtList.Initialize();
         }
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {
@@ -39,7 +42,7 @@ namespace Rechrysalis.Controller
                     if ((_unitManager != null) && (_unitManager.ControllerIndex == 1))
                     {
                         Debug.Log($"click enemy");
-                        _compsAndUnits.TargetsLists[0].SetNewTarget(hit.collider.gameObject);
+                        _playerTargtList.SetNewTarget(hit.collider.gameObject);
                     }
                 }
             }

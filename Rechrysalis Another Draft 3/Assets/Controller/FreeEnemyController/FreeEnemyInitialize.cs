@@ -20,6 +20,7 @@ namespace Rechrysalis.Controller
                 {
                     Vector3 _newUnitPos = _freeEnemyCompLayout.UnitPos[0, i];
                     GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
+                    newFreeEnemy.name = _freeUnitCompSO.UnitSOArray[i].name + " " + i.ToString();
                     newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(_enemyController);
                     newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _freeUnitCompSO.UnitSOArray[i]);
                     newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerIndex);

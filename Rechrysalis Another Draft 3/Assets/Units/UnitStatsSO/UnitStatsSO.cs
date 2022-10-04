@@ -16,5 +16,11 @@ namespace Rechrysalis.Unit
        public Sprite ProjectileSprite {get{return _projectileSprite;}}
        [SerializeField] private string _unitName;
        public string UnitName {get{return _unitName;}}
+       [SerializeField] private float _attackChargeUp;
+       public float AttackChargeUp {get{return _attackChargeUp;}}
+       [SerializeField] private float   _attackWindDown;
+       public float AttackWindDown {get {return _attackWindDown;}}
+       [SerializeField] private float _baseDamage;
+       public float BaseDamage {get{return _baseDamage;}}
     }
 }

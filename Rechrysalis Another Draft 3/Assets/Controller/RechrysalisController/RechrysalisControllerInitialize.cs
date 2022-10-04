@@ -22,6 +22,7 @@ namespace Rechrysalis.Controller
                 Debug.Log($"radtooffset" + _radToOffset + "vector 3 " + _unitOffset);
                 GameObject go = Instantiate(_parentUnitPrefab, _unitRing.transform);
                         go.transform.localPosition = _unitOffset;
+                        go.name = "Parent Unit " + _parentUnitIndex.ToString();
                         go.GetComponent<ParentUnitManager>()?.Initialize(_controllerIndex, _parentUnitIndex, _unitComp);
             }
         }
