@@ -30,7 +30,7 @@ namespace Rechrysalis.Controller
             _click?.Initialize(gameObject);
             _touch?.Initialize(gameObject);
             
-            GetComponent<FreeEnemyInitialize>()?.Initialize(_enemyController, _compSO, _playerUnitsSO[_controllerIndex]);
+            GetComponent<FreeEnemyInitialize>()?.Initialize(_controllerIndex, _enemyController, _compSO, _playerUnitsSO[_controllerIndex]);
             RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();
             if (GetComponent<RechrysalisControllerInitialize>() != null)
             {
@@ -49,7 +49,7 @@ namespace Rechrysalis.Controller
                     for (int j = 0; j < 3; j++)
                     {
                         ParentUnitManager _parentUnitManager = _parentUnits[i].GetComponent<ParentUnitManager>();
-                        _parentUnitManager.SubUnits[j].GetComponent<UnitManager>()?.Initialize(_compSO.UnitSOArray[(i * 3) + j]);
+                        _parentUnitManager.SubUnits[j].GetComponent<UnitManager>()?.Initialize(_controllerIndex, _compSO.UnitSOArray[(i * 3) + j]);
                     }
                     _parentUnits[i].GetComponent<ParentUnitManager>()?.ActivateUnit(0);
                 }

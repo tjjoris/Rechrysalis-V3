@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7004137065191994488}
   - component: {fileID: 316562131673386523}
   - component: {fileID: 7184182062680592886}
-  m_Layer: 0
+  - component: {fileID: 3601232384251862538}
+  m_Layer: 7
   m_Name: FreeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +102,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameText: {fileID: 5944765683813516378}
+--- !u!58 &3601232384251862538
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833293522152398769}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &6335642851339446156
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6335642851339446156}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0.1, y: 0, z: -0.35}
+  m_LocalPosition: {x: 0.05, y: 0.06, z: -0.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []

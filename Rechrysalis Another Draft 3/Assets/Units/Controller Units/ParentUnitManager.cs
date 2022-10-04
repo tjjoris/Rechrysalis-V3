@@ -16,7 +16,7 @@ namespace Rechrysalis.Unit
                 UnitManager _unitManager = _subUnits[i].GetComponent<UnitManager>();
                 int _unitIndex = (_parentUnitIndex * 3) + i;
                 if (_unitComp.UnitSOArray[_unitIndex] != null)
-                _unitManager?.Initialize(_unitComp.UnitSOArray[_unitIndex]);
+                _unitManager?.Initialize(_unitIndex, _unitComp.UnitSOArray[_unitIndex]);
                 // _unitManager
             }
         }
