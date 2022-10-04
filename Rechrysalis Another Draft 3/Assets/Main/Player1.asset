@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1482a46f61544d36ab5e935923d13b0, type: 3}
-  m_Name: BasicShortRange
+  m_Script: {fileID: 11500000, guid: 925b335363d1043108eac5d622936ff7, type: 3}
+  m_Name: Player1
   m_EditorClassIdentifier: 
-  _amountToPool: 2
-  _projectileSpeed: 1
-  _projectileSprite: {fileID: 21300000, guid: acf2a1d752267428eaf137c494e17c8b, type: 3}
-  _unitName: Fighter
+  _targets: []
