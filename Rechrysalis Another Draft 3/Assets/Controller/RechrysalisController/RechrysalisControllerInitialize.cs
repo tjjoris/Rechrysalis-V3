@@ -9,7 +9,9 @@ namespace Rechrysalis.Controller
     {
         [SerializeField] private GameObject _parentUnitPrefab;
         [SerializeField] private float _ringDistFromCentre = 2f;
-        public void Initialize(GameObject[] _parentUnits, CompSO _unitComp)
+        [SerializeField] private GameObject[] _parentUnits;
+        public GameObject[] ParentUnits {get{return _parentUnits;}}
+        public void Initialize(CompSO _unitComp)
         {
             // foreach (GameObject _unit in _parentUnits)
             for (int _parentUnitIndex = 0; _parentUnitIndex < 1; _parentUnitIndex++)
