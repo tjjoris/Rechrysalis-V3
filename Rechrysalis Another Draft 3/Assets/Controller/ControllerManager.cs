@@ -103,16 +103,20 @@ namespace Rechrysalis.Controller
         public void Tick() {  
             float _timeAmount = Time.deltaTime;         
             _mover?.Tick(_timeAmount);
-            if (_playerUnitsSO[_controllerIndex].ActiveUnits.Length > 0)
+            // if (_playerUnitsSO[_controllerIndex].ActiveUnits.Length > 0)
+            // {
+            //     foreach (GameObject _unitToTick in _playerUnitsSO[_controllerIndex].ActiveUnits)
+            //     {
+            //         if (_unitToTick != null)
+            //         {
+            //         // _unitToTick.GetComponent<Mover>()?.Tick(_deltaTime);
+            //         _unitToTick.GetComponent<UnitManager>()?.Tick(_timeAmount);
+            //         }
+            //     }
+            // }
+            foreach (GameObject _unit in _allUnits)
             {
-                foreach (GameObject _unitToTick in _playerUnitsSO[_controllerIndex].ActiveUnits)
-                {
-                    if (_unitToTick != null)
-                    {
-                    // _unitToTick.GetComponent<Mover>()?.Tick(_deltaTime);
-                    _unitToTick.GetComponent<UnitManager>()?.Tick(_timeAmount);
-                    }
-                }
+                _unit.GetComponent<UnitManager>().Tick(_timeAmount);
             }
         }
         public void SetIsStopped(bool _isStopped)
