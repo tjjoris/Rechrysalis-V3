@@ -17,9 +17,11 @@ namespace Rechrysalis.Controller
             // foreach (GameObject _unit in _parentUnits)
             for (int _parentUnitIndex = 0; _parentUnitIndex < 1; _parentUnitIndex++)
             {       
-                        float _angleToOffset = (360f / _parentUnitIndex) - (360f / 3f);
-                        // Vector3 _unitOffset = 
-                        GameObject go = Instantiate(_parentUnitPrefab, _unitRing.transform);
+                        float _radToOffset = Mathf.Deg2Rad * (((360f / 3f) * _parentUnitIndex) + 90);  
+                        Vector3 _unitOffset = new Vector3 (Mathf.Cos(_radToOffset) * _ringDistFromCentre, Mathf.Sin(_radToOffset) * _ringDistFromCentre, 0f);
+                Debug.Log($"radtooffset" + _radToOffset + "vector 3 " + _unitOffset);
+                GameObject go = Instantiate(_parentUnitPrefab, _unitRing.transform);
+                        go.transform.localPosition = _unitOffset;
                         go.GetComponent<ParentUnitManager>()?.Initialize(_parentUnitIndex, _unitComp);
             }
         }
