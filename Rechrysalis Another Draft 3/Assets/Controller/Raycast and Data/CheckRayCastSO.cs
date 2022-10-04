@@ -39,7 +39,7 @@ namespace Rechrysalis.Controller
                     if ((_unitManager != null) && (_unitManager.ControllerIndex == 1))
                     {
                         Debug.Log($"click enemy");
-
+                        _compsAndUnits.TargetsLists[0].SetNewTarget(hit.collider.gameObject);
                     }
                 }
             }
