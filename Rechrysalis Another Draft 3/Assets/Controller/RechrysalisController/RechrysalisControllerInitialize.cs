@@ -16,7 +16,7 @@ namespace Rechrysalis.Controller
         {
             _parentUnits = new GameObject[1];
             // foreach (GameObject _unit in _parentUnits)
-            for (int _parentUnitIndex = 0; _parentUnitIndex < 1; _parentUnitIndex++)
+            for (int _parentUnitIndex = 0; _parentUnitIndex < _unitComp.ParentUnitCount; _parentUnitIndex++)
             {       
                         float _radToOffset = Mathf.Deg2Rad * (((360f / 3f) * _parentUnitIndex) + 90);  
                         Vector3 _unitOffset = new Vector3 (Mathf.Cos(_radToOffset) * _ringDistFromCentre, Mathf.Sin(_radToOffset) * _ringDistFromCentre, 0f);
