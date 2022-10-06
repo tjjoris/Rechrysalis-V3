@@ -418,6 +418,7 @@ MonoBehaviour:
   _parentUnits: []
   _playerUnitsSO: []
   _compSO: {fileID: 0}
+  _compsAndUnits: {fileID: 0}
 --- !u!1 &886669363
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +527,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _compSO: {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
+  _compsAndUnits: {fileID: 0}
 --- !u!114 &1159822627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,6 +591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parentUnitPrefab: {fileID: 6178309120940175549, guid: 698b84a32e980457eafacf3a1c859666, type: 3}
+  _childUnitPrefab: {fileID: 6826342493758786654, guid: 4c302ce45bcef4d9f8fcb6e8224443c6, type: 3}
   _unitRing: {fileID: 2056162101}
   _ringDistFromCentre: 1
   _parentUnits: []
