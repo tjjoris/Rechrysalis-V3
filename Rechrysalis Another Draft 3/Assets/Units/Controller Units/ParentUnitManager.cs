@@ -25,14 +25,14 @@ namespace Rechrysalis.Unit
         public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO _unitComp)
         {
             this._controllerIndex = _controllerIndex;
-            for (int i=0; i<_subUnits.Length; i++)
-            {
-                UnitManager _unitManager = _subUnits[i].GetComponent<UnitManager>();
-                int _unitIndex = (_parentUnitIndex * 3) + i;
-                if (_unitComp.UnitSOArray[_unitIndex] != null)
-                _unitManager?.Initialize(_controllerIndex, _unitComp.UnitSOArray[_unitIndex]);
-                // _unitManager
-            }
+            // for (int i=0; i<_subUnits.Length; i++)
+            // {
+            //     UnitManager _unitManager = _subUnits[i].GetComponent<UnitManager>();
+            //     int _unitIndex = (_parentUnitIndex * 3) + i;
+            //     if (_unitComp.UnitSOArray[_unitIndex] != null)
+            //     _unitManager?.Initialize(_controllerIndex, _unitComp.UnitSOArray[_unitIndex]);
+            //     // _unitManager
+            // }
         }
         public void ActivateUnit(int _unitIndex)
         {

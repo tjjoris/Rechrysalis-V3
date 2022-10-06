@@ -34,6 +34,7 @@ namespace Rechrysalis.Controller
                 for (int _childUnitIndex = 0; _childUnitIndex < _unitComp.ChildUnitCount; _childUnitIndex++)
                 {
                     GameObject childGo = Instantiate(_childUnitPrefab, go.transform);
+                    childGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitComp.UnitSOArray[(_parentUnitIndex * _unitComp.ParentUnitCount) + (_childUnitIndex)]);
                     _pum.SubUnits[_childUnitIndex] = childGo;
                     childGo.name = $"Child Unit " + _childUnitIndex;
                     _allUnits.Add(childGo);
