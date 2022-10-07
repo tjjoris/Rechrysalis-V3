@@ -17,7 +17,7 @@ namespace Rechrysalis.Attacking
         }
         public GameObject CheckPriorityTargetInRange()
         {
-            for (int _target = _targetsList.Targets.Count; _target >= 0; _target--)
+            for (int _target = _targetsList.Targets.Count - 1; _target >= 0; _target--)
             {
                 if (_targetsList.Targets[_target] != null)
                 {
