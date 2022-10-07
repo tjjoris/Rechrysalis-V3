@@ -27,9 +27,6 @@ namespace Rechrysalis.Attacking
                     }
                 }
             }
-            {
-
-            }
             return null;
         }
     }

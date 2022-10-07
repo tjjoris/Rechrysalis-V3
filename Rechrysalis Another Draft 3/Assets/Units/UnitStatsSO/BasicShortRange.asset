@@ -19,3 +19,4 @@ MonoBehaviour:
   _attackChargeUp: 2
   _attackWindDown: 4
   _baseDamage: 3
+  _baseRange: 5

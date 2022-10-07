@@ -17,7 +17,7 @@ namespace Rechrysalis.Attacking
         private bool _isStopped;
         public bool IsStopped{set{_isStopped = value;}}
         [SerializeField] private TargetsListSO _targetsList;
-        private InRangeByPriority _inRangeByPriority;
+        private InRangeByPriority _inRangeByPriority;    
 
         public void Initialize(UnitStatsSO _unitStats)
         {   
@@ -47,11 +47,13 @@ namespace Rechrysalis.Attacking
             }
             if ((_attackChargeCurrent >= _attackChargeUp) && (_isStopped))
             {
-                _isWindingDown = true;
+                if (_inRangeByPriority?.CheckPriorityTargetInRange() != null)
+                {
+                    _isWindingDown = true;                       
+                }
             }
             if ((_attackChargeCurrent < _attackChargeUp) && (_isStopped))
             {
-                Debug.Log($"increae time");
                 _attackChargeCurrent += _timeAmount;                
             }            
         }
