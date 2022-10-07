@@ -39,16 +39,16 @@ namespace Rechrysalis
             }
             return null;
         }
-        // public void TickProjectiles(float _amount)
-        // {
-        //     foreach (GameObject projectile in pooledObjects)
-        //     {
-        //         if (projectile == isActiveAndEnabled)
-        //         {
-        //             projectile.GetComponent<ProjectileHandler>().TickProjectile(_amount);
-        //         }
-        //     }
-        // }
 
+        public void TickProjectiles(float _timeAmount)
+        {
+            foreach (GameObject _projectile in pooledObjects)
+            {
+                if (_projectile.activeInHierarchy)
+                {
+                    _projectile.GetComponent<ProjectileHandler>().Tick(_timeAmount);
+                }
+            }
+        }
     }
 }

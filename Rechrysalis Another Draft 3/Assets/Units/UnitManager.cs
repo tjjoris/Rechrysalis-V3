@@ -18,6 +18,7 @@ namespace Rechrysalis.Unit
         private Attack _attack;
         [SerializeField] private bool _isStopped;
         private CompsAndUnitsSO _compsAndUnits;
+        private ProjectilesPool _projectilesPool;
         public bool IsStopped 
         {
             set{
@@ -44,11 +45,13 @@ namespace Rechrysalis.Unit
             _attack?.Initialize(_unitStats);
             GetComponent<InRangeByPriority>()?.Initialize(_compsAndUnits.TargetsLists[_controllerIndex]);
             GetComponent<Range>()?.Initialize(_unitStats);
+            _projectilesPool = GetComponent<ProjectilesPool>();
         }
         public void Tick(float _timeAmount)
         {
             _mover?.Tick(_timeAmount);
             _attack?.Tick(_timeAmount);
+            _projectilesPool?.TickProjectiles(_timeAmount);
         }
     }
 }

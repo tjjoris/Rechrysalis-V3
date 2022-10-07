@@ -51,10 +51,13 @@ namespace Rechrysalis.Attacking
                 if (_targetUnit != null)
                 {
                     GameObject _projectile = _projectilesPool?.GetPooledObject();
-                    _projectile.SetActive(true);
-                    _projectile.transform.position = gameObject.transform.position;
-                    _projectile.GetComponent<ProjectileHandler>()?.SetTarget(_targetUnit);
-                    _isWindingDown = true;                       
+                    if (_projectile != null) 
+                    {
+                        _projectile.SetActive(true);
+                        _projectile.transform.position = gameObject.transform.position;
+                        _projectile.GetComponent<ProjectileHandler>()?.SetTarget(_targetUnit);
+                        _isWindingDown = true;                       
+                    }
                 }
             }
             if ((_attackChargeCurrent < _attackChargeUp) && (_isStopped))

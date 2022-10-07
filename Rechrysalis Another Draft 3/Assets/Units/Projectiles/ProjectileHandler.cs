@@ -12,7 +12,7 @@ namespace Rechrysalis
         // public GameObject TargetUnit {set{_targetUnit = value;} get {return _targetUnit;}}
         [SerializeField] private float _speed;
         public float Speed {set{_speed = value;}get{return _speed;}}
-        private float _minDistToDisable = 0.5f;
+        private float _minDistToDisable = 1f;
 
     public void SetTarget (GameObject _targetUnit)
     {
@@ -22,7 +22,7 @@ namespace Rechrysalis
     {
         Vector3 _direction = Vector3.MoveTowards(gameObject.transform.position, _targetUnit.transform.position, _speed);
         _direction.z = 0;
-        gameObject.transform.Translate(_direction);
+        gameObject.transform.Translate(-_direction * _timeAmount);
         if ((_targetUnit.transform.position - gameObject.transform.position).magnitude <= _minDistToDisable)
         {
             gameObject.SetActive(false);
