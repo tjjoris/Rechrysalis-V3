@@ -22,5 +22,7 @@ namespace Rechrysalis.Unit
        public float AttackWindDown {get {return _attackWindDown;}}
        [SerializeField] private float _baseDamage;
        public float BaseDamage {get{return _baseDamage;}}
+       [SerializeField] private float _baseRange;
+       public float BaseRange {get{return _baseRange;}}
     }
 }

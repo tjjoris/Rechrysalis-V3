@@ -17,11 +17,13 @@ namespace Rechrysalis.Attacking
         private bool _isStopped;
         public bool IsStopped{set{_isStopped = value;}}
         [SerializeField] private TargetsListSO _targetsList;
+        private float _baseRange;
 
         public void Initialize(UnitStatsSO _unitStats, TargetsListSO _targetsList)
         {   
             this._targetsList = _targetsList;
             this._unitStats = _unitStats;
+            this._baseRange = _unitStats.BaseRange;
             _attackChargeUp = _unitStats.AttackChargeUp;
             _attackWindDown = _unitStats.AttackWindDown;
             _baseDamage = _unitStats.BaseDamage;
@@ -53,6 +55,26 @@ namespace Rechrysalis.Attacking
                 Debug.Log($"increae time");
                 _attackChargeCurrent += _timeAmount;                
             }            
+        }
+        private GameObject ChooseBestTarget()
+        {
+            for (int _target = 0; _target < _targetsList.Targets.Count; _target ++)
+                {
+                    if (_targetsList.Targets[_target] != null) {
+                        if ((_targetsList.Targets[_target].transform.position - gameObject.transform.position).magnitude <= GetRange())
+                        {
+                            return _targetsList.Targets[_target];                        
+                        }
+                    }
+                }
+            {
+
+            }
+            return null;
+        }
+        private float GetRange()
+        {
+            return _baseRange;
         }
     }
 }
