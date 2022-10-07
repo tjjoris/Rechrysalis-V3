@@ -14,15 +14,20 @@ namespace Rechrysalis
         public float Speed {set{_speed = value;}get{return _speed;}}
         private float _minDistToDisable = 1f;
 
-    public void SetTarget (GameObject _targetUnit)
+    public void Initialize (GameObject _targetUnit, float _speed)
     {
+        this._speed = _speed;
         this._targetUnit = _targetUnit;
     }
     public void Tick (float _timeAmount)
     {
-        Vector3 _direction = Vector3.MoveTowards(gameObject.transform.position, _targetUnit.transform.position, _speed);
-        _direction.z = 0;
-        gameObject.transform.Translate(-_direction * _timeAmount);
+        // Debug.Log($"speed " + _speed + " time " + Time.deltaTime + " fixed time " + Time.fixedDeltaTime);
+        
+        Vector3 _direction = Vector2.MoveTowards(gameObject.transform.position, _targetUnit.transform.position, _speed);
+            Debug.Log($"direction" + _direction);
+        // _direction.z = 0;
+        // gameObject.transform.Translate(_direction * _timeAmount);
+        gameObject.transform.position = _direction;
         if ((_targetUnit.transform.position - gameObject.transform.position).magnitude <= _minDistToDisable)
         {
             gameObject.SetActive(false);

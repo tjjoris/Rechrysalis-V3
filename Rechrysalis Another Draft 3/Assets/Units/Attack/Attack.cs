@@ -45,7 +45,7 @@ namespace Rechrysalis.Attacking
             {
                 _attackChargeCurrent += _timeAmount;
             }
-            if ((_attackChargeCurrent >= _attackChargeUp) && (_isStopped))
+            if ((_attackChargeCurrent >= _attackChargeUp) && (_isStopped) && (!_isWindingDown))
             {
                 GameObject _targetUnit = _inRangeByPriority?.CheckPriorityTargetInRange();
                 if (_targetUnit != null)
@@ -55,7 +55,8 @@ namespace Rechrysalis.Attacking
                     {
                         _projectile.SetActive(true);
                         _projectile.transform.position = gameObject.transform.position;
-                        _projectile.GetComponent<ProjectileHandler>()?.SetTarget(_targetUnit);
+                        Debug.Log($"position " + _projectile.transform.position);
+                        _projectile.GetComponent<ProjectileHandler>()?.Initialize(_targetUnit, _unitStats.ProjectileSpeed);
                         _isWindingDown = true;                       
                     }
                 }

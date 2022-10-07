@@ -100,8 +100,8 @@ namespace Rechrysalis.Controller
                 }
             }
         }
-        public void Tick() {  
-            float _timeAmount = Time.deltaTime;         
+        public void Tick(float _timeAmount) {  
+            // float _timeAmount = Time.fixedDeltaTime;         
             _mover?.Tick(_timeAmount);
             // if (_playerUnitsSO[_controllerIndex].ActiveUnits.Length > 0)
             // {

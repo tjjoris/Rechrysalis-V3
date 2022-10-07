@@ -49,13 +49,14 @@ namespace Rechrysalis
         }
         private void Tick()
         {
+            float _timeAmount = Time.fixedDeltaTime;
             if ((_controllerManager != null) && (_controllerManager.Length > 0))
             {
                 for (int i = 0; i < _controllerManager.Length; i++)
                 {
                     if (_controllerManager[i] != null)
                     {
-                        _controllerManager[i].Tick();
+                        _controllerManager[i].Tick(_timeAmount);
                     }
                 }
             }
