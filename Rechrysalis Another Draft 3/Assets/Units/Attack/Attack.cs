@@ -47,8 +47,13 @@ namespace Rechrysalis.Attacking
             }
             if ((_attackChargeCurrent >= _attackChargeUp) && (_isStopped))
             {
-                if (_inRangeByPriority?.CheckPriorityTargetInRange() != null)
+                GameObject _targetUnit = _inRangeByPriority?.CheckPriorityTargetInRange();
+                if (_targetUnit != null)
                 {
+                    GameObject _projectile = _projectilesPool?.GetPooledObject();
+                    _projectile.SetActive(true);
+                    _projectile.transform.position = gameObject.transform.position;
+                    _projectile.GetComponent<ProjectileHandler>()?.SetTarget(_targetUnit);
                     _isWindingDown = true;                       
                 }
             }
