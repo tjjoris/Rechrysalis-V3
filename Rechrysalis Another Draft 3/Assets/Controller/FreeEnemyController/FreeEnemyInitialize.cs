@@ -12,7 +12,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private GameObject _FreeUnitPrefab;
         // private int _controllerIndex;
         private List<GameObject> _allUnits;
-        public void Initialize(int _controllerIndex, ControllerManager _enemyController, CompSO _freeUnitCompSO, PlayerUnitsSO _playerUnitsSO)        
+        public void Initialize(int _controllerIndex, ControllerManager _enemyController, CompSO _freeUnitCompSO, PlayerUnitsSO _playerUnitsSO, CompsAndUnitsSO _compsAndUnits)        
         {
             _allUnits = new List<GameObject>();
             // this._controllerIndex = _controllerIndex;
@@ -27,7 +27,7 @@ namespace Rechrysalis.Controller
                     GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
                     newFreeEnemy.name = _freeUnitCompSO.UnitSOArray[i].name + " " + i.ToString();
                     newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(_enemyController);
-                    newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _freeUnitCompSO.UnitSOArray[i]);
+                    newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _freeUnitCompSO.UnitSOArray[i], _compsAndUnits);
                     newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerIndex);
                     _playerUnitsSO.ActiveUnits[i] = newFreeEnemy;
                     _allUnits.Add(newFreeEnemy);

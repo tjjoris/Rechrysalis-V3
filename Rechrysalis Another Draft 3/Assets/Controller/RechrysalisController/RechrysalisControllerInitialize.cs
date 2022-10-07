@@ -14,7 +14,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private GameObject[] _parentUnits;
         public GameObject[] ParentUnits {get{return _parentUnits;}}
         private List<GameObject> _allUnits;        
-        public void Initialize(int _controllerIndex, CompSO _unitComp)
+        public void Initialize(int _controllerIndex, CompSO _unitComp, CompsAndUnitsSO _compsAndUnits)
         {
             _allUnits = new List<GameObject>();
             _allUnits.Clear();        
@@ -34,25 +34,13 @@ namespace Rechrysalis.Controller
                 for (int _childUnitIndex = 0; _childUnitIndex < _unitComp.ChildUnitCount; _childUnitIndex++)
                 {
                     GameObject childGo = Instantiate(_childUnitPrefab, go.transform);
-                    childGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitComp.UnitSOArray[(_parentUnitIndex * _unitComp.ParentUnitCount) + (_childUnitIndex)]);
+                    childGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitComp.UnitSOArray[(_parentUnitIndex * _unitComp.ParentUnitCount) + (_childUnitIndex)], _compsAndUnits);
                     _pum.SubUnits[_childUnitIndex] = childGo;
                     childGo.name = $"Child Unit " + _childUnitIndex;
                     _allUnits.Add(childGo);
                 }
             }            
         }
-        // public List<GameObject> GetAllUnits()
-        // {
-        //     List<GameObject> _allUnits = new List<GameObject>();
-        //     foreach (GameObject _parentUnit in _parentUnits)
-        //     {
-        //         foreach (GameObject _subUnit in _parentUnit.GetComponent<ParentUnitManager>()?.SubUnits)
-        //         {
-        //             _allUnits.Add(_subUnit);
-        //         }
-        //     }
-        //     return _allUnits;
-        // }
         public List<GameObject> GetAllUnits()
         {
             return _allUnits;

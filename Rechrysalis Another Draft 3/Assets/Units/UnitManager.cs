@@ -17,6 +17,7 @@ namespace Rechrysalis.Unit
         private Mover _mover;
         private Attack _attack;
         [SerializeField] private bool _isStopped;
+        private CompsAndUnitsSO _compsAndUnits;
         public bool IsStopped 
         {
             set{
@@ -31,15 +32,16 @@ namespace Rechrysalis.Unit
                     }
                 }
             }
-        public void Initialize(int _controllerIndex, UnitStatsSO _unitStats)
+        public void Initialize(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits)
         {
             this._controllerIndex = _controllerIndex;
             this._unitStats = _unitStats;
+            this._compsAndUnits = _compsAndUnits;
             GetComponent<ProjectilesPool>()?.CreatePool(_unitStats.AmountToPool, _unitStats.ProjectileSpeed, _unitStats.ProjectileSprite);
             _nameText.text = _unitStats.UnitName;
             _mover = GetComponent<Mover>();
             _attack = GetComponent<Attack>();
-            _attack?.Initialize(_unitStats);
+            _attack?.Initialize(_unitStats, _compsAndUnits.TargetsLists[_controllerIndex]);
         }
         public void Tick(float _timeAmount)
         {

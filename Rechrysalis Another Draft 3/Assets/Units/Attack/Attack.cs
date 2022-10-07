@@ -16,9 +16,11 @@ namespace Rechrysalis.Attacking
         private bool _isWindingDown;
         private bool _isStopped;
         public bool IsStopped{set{_isStopped = value;}}
+        [SerializeField] private TargetsListSO _targetsList;
 
-        public void Initialize(UnitStatsSO _unitStats)
+        public void Initialize(UnitStatsSO _unitStats, TargetsListSO _targetsList)
         {   
+            this._targetsList = _targetsList;
             this._unitStats = _unitStats;
             _attackChargeUp = _unitStats.AttackChargeUp;
             _attackWindDown = _unitStats.AttackWindDown;

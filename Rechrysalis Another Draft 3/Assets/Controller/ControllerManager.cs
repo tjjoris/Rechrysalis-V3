@@ -51,13 +51,13 @@ namespace Rechrysalis.Controller
             FreeEnemyInitialize _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             if (_freeEnemyInitialize != null)
             {
-            _freeEnemyInitialize.Initialize(_controllerIndex, _enemyController, _compSO, _playerUnitsSO[_controllerIndex]);
+            _freeEnemyInitialize.Initialize(_controllerIndex, _enemyController, _compSO, _playerUnitsSO[_controllerIndex], _compsAndUnits);
             _allUnits = _freeEnemyInitialize.GetAllUnits();
             }
             RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();
             if (GetComponent<RechrysalisControllerInitialize>() != null)
             {
-            _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO);
+            _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits);
             _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
             _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
             }
@@ -75,7 +75,7 @@ namespace Rechrysalis.Controller
                     for (int j = 0; j < 3; j++)
                     {
                         ParentUnitManager _parentUnitManager = _parentUnits[i].GetComponent<ParentUnitManager>();
-                        _parentUnitManager.SubUnits[j].GetComponent<UnitManager>()?.Initialize(_controllerIndex, _compSO.UnitSOArray[(i * 3) + j]);
+                        _parentUnitManager.SubUnits[j].GetComponent<UnitManager>()?.Initialize(_controllerIndex, _compSO.UnitSOArray[(i * 3) + j], _compsAndUnits);
                     }
                     _parentUnits[i].GetComponent<ParentUnitManager>()?.ActivateUnit(0);
                 }
