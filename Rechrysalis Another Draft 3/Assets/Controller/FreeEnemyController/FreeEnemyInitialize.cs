@@ -29,7 +29,7 @@ namespace Rechrysalis.Controller
                     newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(_enemyController);
                     newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _freeUnitCompSO.UnitSOArray[i], _compsAndUnits);
                     newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerIndex);
-                    _playerUnitsSO.ActiveUnits[i] = newFreeEnemy;
+                    _playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
                     _allUnits.Add(newFreeEnemy);
                 }
             }

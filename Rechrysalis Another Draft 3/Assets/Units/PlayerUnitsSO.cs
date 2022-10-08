@@ -9,14 +9,15 @@ namespace Rechrysalis
     [CreateAssetMenu(menuName ="Unit/PlayerUnitsSO", fileName ="PlayerUnits")]
     public class PlayerUnitsSO : ScriptableObject
     {
-        [SerializeField] private GameObject[] _activeUnits;
-        public GameObject[] ActiveUnits {get{return _activeUnits;} set{_activeUnits = value;}}
+        [SerializeField] private List<GameObject> _activeUnits;
+        public List<GameObject> ActiveUnits {get{return _activeUnits;} set{_activeUnits = value;}}
         [SerializeField] private ControllerManager _controllerManager;
         public ControllerManager ControllerManager {get{return _controllerManager;}}
         
         public void InitializePlayerUnitsSize(int _size)
         {
-            _activeUnits = new GameObject[_size];
+            _activeUnits = new List<GameObject>();
+            _activeUnits.Clear();
         }
     }
 }

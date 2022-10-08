@@ -89,7 +89,7 @@ namespace Rechrysalis.Controller
         public void ResetTick()
         {
             _mover?.ResetMovement();
-            if (_playerUnitsSO[_controllerIndex].ActiveUnits.Length > 0)
+            if (_playerUnitsSO[_controllerIndex].ActiveUnits.Count > 0)
             {
                 foreach (GameObject _unitToReset in _playerUnitsSO[_controllerIndex].ActiveUnits)
                 {
