@@ -17,7 +17,8 @@ namespace Rechrysalis.Attacking
         private bool _isStopped;
         public bool IsStopped{set{_isStopped = value;}}
         [SerializeField] private TargetsListSO _targetsList;
-        private InRangeByPriority _inRangeByPriority;    
+        private InRangeByPriority _inRangeByPriority;  
+        private ClosestTarget _closestTarget;  
 
         public void Initialize(UnitStatsSO _unitStats)
         {   
@@ -27,6 +28,7 @@ namespace Rechrysalis.Attacking
             _baseDamage = _unitStats.BaseDamage;
             _projectilesPool = GetComponent<ProjectilesPool>();
             _inRangeByPriority = GetComponent<InRangeByPriority>();
+            _closestTarget = GetComponent<ClosestTarget>();
             ResetUnit();
         }
         public void ResetUnit()
@@ -48,6 +50,10 @@ namespace Rechrysalis.Attacking
             if ((_attackChargeCurrent >= _attackChargeUp) && (_isStopped) && (!_isWindingDown))
             {
                 GameObject _targetUnit = _inRangeByPriority?.CheckPriorityTargetInRange();
+                if (_targetUnit == null)
+                {
+                    _targetUnit = _closestTarget.GetNearestEnemyInRange();
+                }
                 if (_targetUnit != null)
                 {
                     GameObject _projectile = _projectilesPool?.GetPooledObject();
