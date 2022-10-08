@@ -66,21 +66,21 @@ namespace Rechrysalis.Controller
 
 
         }
-        private void SetUpParentUnits()
-        {
-            if (_parentUnits.Length > 0)
-            {
-                for (int i = 0; i < _parentUnits.Length; i++)
-                {
-                    for (int j = 0; j < 3; j++)
-                    {
-                        ParentUnitManager _parentUnitManager = _parentUnits[i].GetComponent<ParentUnitManager>();
-                        _parentUnitManager.SubUnits[j].GetComponent<UnitManager>()?.Initialize(_controllerIndex, _compSO.UnitSOArray[(i * 3) + j], _compsAndUnits);
-                    }
-                    _parentUnits[i].GetComponent<ParentUnitManager>()?.ActivateUnit(0);
-                }
-            }
-        }
+        // private void SetUpParentUnits()
+        // {
+        //     if (_parentUnits.Length > 0)
+        //     {
+        //         for (int i = 0; i < _parentUnits.Length; i++)
+        //         {
+        //             for (int j = 0; j < 3; j++)
+        //             {
+        //                 ParentUnitManager _parentUnitManager = _parentUnits[i].GetComponent<ParentUnitManager>();
+        //                 _parentUnitManager.SubUnits[j].GetComponent<UnitManager>()?.Initialize(_controllerIndex, _compSO.UnitSOArray[(i * 3) + j], _compsAndUnits);
+        //             }
+        //             _parentUnits[i].GetComponent<ParentUnitManager>()?.ActivateUnit(0);
+        //         }
+        //     }
+        // }
         private void Update() 
         {
             _click?.Tick();

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a52d5d7bbcb54b0ea5048d9ccc06214, type: 3}
   m_Name: PlayerUnitsSO
   m_EditorClassIdentifier: 
-  _activeUnits:
-  - {fileID: 0}
+  _activeUnits: []
+  _controllerManager: {fileID: 0}
