@@ -6,6 +6,7 @@ namespace Rechrysalis
 {
     public class ProjectileHandler : MonoBehaviour
     {
+        [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private GameObject _parentUnit;
         public GameObject ParentUnit {get{return _parentUnit;}set{_parentUnit = value;}}
         [SerializeField] private GameObject _targetUnit;
@@ -14,7 +15,11 @@ namespace Rechrysalis
         public float Speed {set{_speed = value;}get{return _speed;}}
         private float _minDistToDisable = 1f;
 
-    public void Initialize (GameObject _targetUnit, float _speed)
+    public void Initialize(Sprite _sprite)
+    {
+        _spriteRenderer.sprite = _sprite;
+    }
+    public void TurnOnProjectile (GameObject _targetUnit, float _speed)
     {
         this._speed = _speed;
         this._targetUnit = _targetUnit;

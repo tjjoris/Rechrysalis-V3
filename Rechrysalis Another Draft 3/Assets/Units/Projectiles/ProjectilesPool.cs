@@ -17,11 +17,12 @@ namespace Rechrysalis
             GameObject tmp;
             for (int i = 0; i < this.amountToPool; i++)
             {
-                tmp = Instantiate(objectToPool);
-                tmp.GetComponent<SpriteRenderer>().sprite = _projectileSprite;
-                tmp.SetActive(false);
-                tmp.transform.SetParent(GameMaster.Instance.ReferenceManager.ProjectilesHolder.transform);
+                tmp = Instantiate(objectToPool, GameMaster.Instance.ReferenceManager.ProjectilesHolder.transform);
                 ProjectileHandler ph = tmp.GetComponent<ProjectileHandler>();
+                ph.Initialize(_projectileSprite);
+                // tmp.GetComponent<SpriteRenderer>().sprite = _projectileSprite;
+                tmp.SetActive(false);
+                // tmp.transform.SetParent(GameMaster.Instance.ReferenceManager.ProjectilesHolder.transform);
                 // ph.ProjectileDuration = _projectileDuration;
                 // ph.Damage = _damage;
                 ph.ParentUnit = gameObject;
