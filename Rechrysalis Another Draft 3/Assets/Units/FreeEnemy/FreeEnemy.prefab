@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3601232384251862538}
   - component: {fileID: 1891597175858307882}
   - component: {fileID: 3954166826758611184}
+  - component: {fileID: 4179298318273708490}
   m_Layer: 7
   m_Name: FreeEnemy
   m_TagString: Untagged
@@ -121,6 +122,7 @@ MonoBehaviour:
   _controllerIndex: 0
   _unitStats: {fileID: 0}
   _nameText: {fileID: 5944765683813516378}
+  _isStopped: 0
 --- !u!114 &3954166826758611184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +135,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256e6d63f0c3c47ba9b5444374c39a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackChargeCurrent: 0
+  _attackChargeUp: 0
+  _attackWindDown: 0
+  _baseDamage: 0
+  _targetsList: {fileID: 0}
+--- !u!114 &4179298318273708490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833293522152398769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e489e5ce718947b4a513109f5473f14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyUnits: {fileID: 0}
 --- !u!1 &6335642851339446156
 GameObject:
   m_ObjectHideFlags: 0
