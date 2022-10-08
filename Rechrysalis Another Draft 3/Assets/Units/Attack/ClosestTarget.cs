@@ -22,10 +22,12 @@ namespace Rechrysalis.Attacking
             GameObject _closestUnitChecked = null;
             foreach (GameObject _targetToCheck in _enemyUnits.ActiveUnits)
             {
-                if (((_targetToCheck.transform.position - gameObject.transform.position).magnitude <= _rangeOfUnit))
+                float _distToUnitChecking = (_targetToCheck.transform.position - gameObject.transform.position).magnitude;
+                if ((_distToUnitChecking <= _rangeOfUnit))
                 {   
                     _unitInRange = true;
                     _closestUnitChecked = _targetToCheck;
+                    _rangeOfUnit = _distToUnitChecking;
                 }
             }
             if (_unitInRange)
