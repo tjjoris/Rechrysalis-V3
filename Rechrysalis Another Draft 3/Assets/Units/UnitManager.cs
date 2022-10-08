@@ -44,6 +44,7 @@ namespace Rechrysalis.Unit
             _attack = GetComponent<Attack>();
             _attack?.Initialize(_unitStats);
             GetComponent<InRangeByPriority>()?.Initialize(_compsAndUnits.TargetsLists[_controllerIndex]);
+            GetComponent<ClosestTarget>()?.Initialize(_compsAndUnits.PlayerUnits[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
             GetComponent<Range>()?.Initialize(_unitStats);
             _projectilesPool = GetComponent<ProjectilesPool>();
         }

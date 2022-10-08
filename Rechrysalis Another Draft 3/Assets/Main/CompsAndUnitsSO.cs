@@ -16,6 +16,8 @@ namespace Rechrysalis
         public ControllerManager[] ControllerManagers {set{_controllerManagers = value;} get{return _controllerManagers;}}
         [SerializeField] private TargetsListSO[] _targetsLists;
         public TargetsListSO[] TargetsLists {get{return _targetsLists;}}
+        [SerializeField] private PlayerUnitsSO[] _playerUnits;
+        public PlayerUnitsSO[] PlayerUnits {get{return _playerUnits;}}
         
         public void Initialize(CompSO[] _compSO, ControllerManager _controllerMangerOne, ControllerManager _ControllerManagerTwo)
         {
