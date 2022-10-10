@@ -39,11 +39,20 @@ namespace Rechrysalis.Controller
                     childGo.name = $"Child Unit " + _childUnitIndex;
                     _allUnits.Add(childGo);
                 }
+                _pum.ActivateUnit(0);
             }            
         }
         public List<GameObject> GetAllUnits()
         {
             return _allUnits;
         }
+        // private void SetBasicStartingUnits()
+        // {
+        //     foreach (GameObject _parentUnit in _parentUnits)
+        //     {
+        //         ParentUnitManager _parentUnitManager = _parentUnit.GetComponent<ParentUnitManager>();
+        //         _parentUnitManager?.ActivateUnit(0);
+        //     }
+        // }
     }
 }
