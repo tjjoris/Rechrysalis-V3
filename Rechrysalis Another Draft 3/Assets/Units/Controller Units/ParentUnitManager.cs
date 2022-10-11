@@ -74,13 +74,13 @@ namespace Rechrysalis.Unit
                         _theseUnits.ActiveUnits.Remove(_theseUnits.ActiveUnits[_indexInActiveUnits]);
                     }                                     
                 }   
-                if (_subChrysalii[_unitIndex].active == true)
+                if (_subChrysalii[_indexInSubUnits].active == true)
                 {
-                    _subChrysalii[_unitIndex].SetActive(false);
+                    _subChrysalii[_indexInSubUnits].SetActive(false);
                 }
-                if (_theseUnits.ActiveUnits.Contains(_subChrysalii[_unitIndex]))
+                if (_theseUnits.ActiveUnits.Contains(_subChrysalii[_indexInSubUnits]))
                 {
-                    _theseUnits.ActiveUnits.Remove(_subChrysalii[_unitIndex]);
+                    _theseUnits.ActiveUnits.Remove(_subChrysalii[_indexInSubUnits]);
                 }        
             }
         }
