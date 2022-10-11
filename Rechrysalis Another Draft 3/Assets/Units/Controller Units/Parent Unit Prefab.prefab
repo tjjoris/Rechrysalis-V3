@@ -45,7 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controllerIndex: 0
-  _subUnits:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _subUnits: []
+  _subChrysalii: []

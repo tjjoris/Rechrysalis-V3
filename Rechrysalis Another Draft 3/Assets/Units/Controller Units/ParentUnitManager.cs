@@ -41,15 +41,30 @@ namespace Rechrysalis.Unit
         }
         public void AddChrysalisAndUnitActions()
         {
-            foreach (GameObject _chrysalis in _subChrysalii)
+            // foreach (GameObject _chrysalis in _subChrysalii)
+            // {
+            //     _chrysalis.GetComponent<ChrysalisTimer>()._startUnit -= ActivateUnit;
+            //     _chrysalis.GetComponent<ChrysalisTimer>()._startUnit += ActivateUnit;
+            // }
+            // foreach (GameObject _unit in _subUnits)
+            // {
+            //     _unit.GetComponent<Rechrysalize>()._startChrysalis -= ActivateChrysalis;
+            //     _unit.GetComponent<Rechrysalize>()._startChrysalis += ActivateChrysalis; 
+            // }
+            foreach (Transform _child in transform)
             {
-                _chrysalis.GetComponent<ChrysalisTimer>()._startUnit -= ActivateUnit;
-                _chrysalis.GetComponent<ChrysalisTimer>()._startUnit += ActivateUnit;
-            }
-            foreach (GameObject _unit in _subUnits)
-            {
-                _unit.GetComponent<Rechrysalize>()._startChrysalis -= ActivateChrysalis;
-                _unit.GetComponent<Rechrysalize>()._startChrysalis += ActivateChrysalis; 
+                ChrysalisTimer _chryslisTimer = _child.GetComponent<ChrysalisTimer>();
+                if (_chryslisTimer != null)
+                {
+                    _chryslisTimer._startUnit -= ActivateUnit;
+                    _chryslisTimer._startUnit += ActivateUnit;
+                }
+                Rechrysalize _rechrysalize = _child.GetComponent<Rechrysalize>();
+                if (_rechrysalize != null)
+                {
+                    _rechrysalize._startChrysalis -= ActivateChrysalis;
+                    _rechrysalize._startChrysalis += ActivateChrysalis;
+                }
             }
         }
         private void OnDisable()
