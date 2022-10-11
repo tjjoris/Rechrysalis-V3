@@ -12,6 +12,8 @@ namespace Rechrysalis
     {
         [SerializeField] private CompSO[] _compsSO;
         public CompSO[] CompsSO {set{_compsSO = value;}get{return _compsSO;}}
+        [SerializeField] private FreeUnitCompSO[] _freeUnitCompSO;
+        public FreeUnitCompSO[] FreeUnitCompSO {get { return _freeUnitCompSO;}}
         [SerializeField] private ControllerManager[] _controllerManagers;
         public ControllerManager[] ControllerManagers {set{_controllerManagers = value;} get{return _controllerManagers;}}
         [SerializeField] private TargetsListSO[] _targetsLists;
@@ -26,6 +28,6 @@ namespace Rechrysalis
             
                         this._controllerManagers = new ControllerManager[_compSO.Length];
 
-        }
+        }        
     }
 }

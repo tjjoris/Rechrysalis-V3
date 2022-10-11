@@ -15,6 +15,9 @@ MonoBehaviour:
   _compsSO:
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
+  _freeUnitCompSO:
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 8ec5c4d26c91a49e0a7fea0097c5e036, type: 2}
   _controllerManagers:
   - {fileID: 0}
   - {fileID: 0}

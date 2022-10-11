@@ -8,7 +8,7 @@ namespace Rechrysalis.Unit
     [CreateAssetMenu(fileName = "NewWave", menuName ="Comps/Wave")]
     public class WaveSO : ScriptableObject
     {
-        [SerializeField] private UnitStatsSO[] _unitWave;
-        public UnitStatsSO[] UnitWave {get{return _unitWave;}}
+        [SerializeField] private UnitStatsSO[] _unitInWave;
+        public UnitStatsSO[] UnitInWave {get{return _unitInWave;}}
     }
 }
