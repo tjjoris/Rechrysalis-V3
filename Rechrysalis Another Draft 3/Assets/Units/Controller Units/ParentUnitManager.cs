@@ -56,9 +56,12 @@ namespace Rechrysalis.Unit
         {
             foreach (GameObject _chrysalis in _subChrysalii)
             {
-                _unit.GetComponent<Rechrysalize>()._startChrysalis -= ActivateChrysalis;
                 _chrysalis.GetComponent<ChrysalisTimer>()._startUnit -= ActivateUnit;
             }
+            foreach (GameObject _unit in _subUnits)
+            {
+                _unit.GetComponent<Rechrysalize>()._startChrysalis -= ActivateChrysalis;
+            }            
         }
         public void ActivateChrysalis(int _chrysalisIndex)
         {
