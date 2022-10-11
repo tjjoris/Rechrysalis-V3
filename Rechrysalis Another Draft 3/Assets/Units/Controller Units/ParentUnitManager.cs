@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.Attacking;
 
 namespace Rechrysalis.Unit
 {
@@ -29,29 +30,50 @@ namespace Rechrysalis.Unit
         {
             this._controllerIndex = _controllerIndex;
             this._theseUnits = _theseUnits;
-            AddChrysalisActions();
+            AddChrysalisAndUnitActions();
         }
         /// <summary>
         /// This function is called when the object becomes enabled and active.
         /// </summary>
         private void OnEnable()
         {
-            AddChrysalisActions();
+            AddChrysalisAndUnitActions();
         }
-        private void AddChrysalisActions()
+        private void AddChrysalisAndUnitActions()
         {
             foreach (GameObject _chrysalis in _subChrysalii)
             {
                 _chrysalis.GetComponent<ChrysalisTimer>()._startUnit -= ActivateUnit;
                 _chrysalis.GetComponent<ChrysalisTimer>()._startUnit += ActivateUnit;
             }
+            foreach (GameObject _unit in _subUnits)
+            {
+                _unit.GetComponent<Rechrysalize>()._startChrysalis -= ActivateChrysalis;
+                _unit.GetComponent<Rechrysalize>()._startChrysalis += ActivateChrysalis; 
+            }
         }
         private void OnDisable()
         {
             foreach (GameObject _chrysalis in _subChrysalii)
             {
+                _unit.GetComponent<Rechrysalize>()._startChrysalis -= ActivateChrysalis;
                 _chrysalis.GetComponent<ChrysalisTimer>()._startUnit -= ActivateUnit;
             }
+        }
+        public void ActivateChrysalis(int _chrysalisIndex)
+        {
+            for (int _indexInSubChrysalis=0; _indexInSubChrysalis<_subChrysalii.Length; _indexInSubChrysalis++)
+            {
+                if (_indexInSubChrysalis == _chrysalisIndex)
+                {
+                    _subChrysalii[_chrysalisIndex].SetActive(true);
+                    if (!_theseUnits.ActiveUnits.Contains(_subChrysalii[_indexInSubChrysalis]))
+                    {
+                        _theseUnits.ActiveUnits.Add(_subChrysalii[_chrysalisIndex]);
+                    }
+                }
+            }
+            DeactivateUnit(_chrysalisIndex);
         }
         public void ActivateUnit(int _unitIndex)
         {
@@ -65,23 +87,46 @@ namespace Rechrysalis.Unit
                         _theseUnits.ActiveUnits.Add(_subUnits[_unitIndex]);
                     }
                 }
-                else 
-                {
-                    _subUnits[_indexInSubUnits].SetActive(false);   
-                    if (_theseUnits.ActiveUnits.Contains(_subUnits[_indexInSubUnits]))
-                    {
-                        int _indexInActiveUnits = _theseUnits.ActiveUnits.IndexOf(_subUnits[_indexInSubUnits]);
-                        _theseUnits.ActiveUnits.Remove(_theseUnits.ActiveUnits[_indexInActiveUnits]);
-                    }                                     
-                }   
-                if (_subChrysalii[_indexInSubUnits].active == true)
-                {
-                    _subChrysalii[_indexInSubUnits].SetActive(false);
-                }
-                if (_theseUnits.ActiveUnits.Contains(_subChrysalii[_indexInSubUnits]))
-                {
-                    _theseUnits.ActiveUnits.Remove(_subChrysalii[_indexInSubUnits]);
-                }        
+                // else 
+                // {
+                //     _subUnits[_indexInSubUnits].SetActive(false);   
+                //     if (_theseUnits.ActiveUnits.Contains(_subUnits[_indexInSubUnits]))
+                //     {
+                //         int _indexInActiveUnits = _theseUnits.ActiveUnits.IndexOf(_subUnits[_indexInSubUnits]);
+                //         _theseUnits.ActiveUnits.Remove(_theseUnits.ActiveUnits[_indexInActiveUnits]);
+                //     }                                     
+                // }   
+                DeactivateChrysalis(_indexInSubUnits);
+                // if (_subChrysalii[_indexInSubUnits].active == true)
+                // {
+                //     _subChrysalii[_indexInSubUnits].SetActive(false);
+                // }
+                // if (_theseUnits.ActiveUnits.Contains(_subChrysalii[_indexInSubUnits]))
+                // {
+                //     _theseUnits.ActiveUnits.Remove(_subChrysalii[_indexInSubUnits]);
+                // }        
+            }
+        }
+        private void DeactivateChrysalis(int _chryslisIndex)
+        {
+            if (_subChrysalii[_chryslisIndex].active == true)
+            {
+                _subChrysalii[_chryslisIndex].SetActive(false);
+            }
+            if (_theseUnits.ActiveUnits.Contains(_subChrysalii[_chryslisIndex]))
+            {
+                _theseUnits.ActiveUnits.Remove(_subChrysalii[_chryslisIndex]);
+            }
+        }
+        private void DeactivateUnit(int _unitIndex)
+        {
+            if (_subUnits[_unitIndex].active == true)
+            {
+                _subUnits[_unitIndex].SetActive(false);
+            }
+            if (_theseUnits.ActiveUnits.Contains(_subUnits[_unitIndex]))
+            {
+                _theseUnits.ActiveUnits.Remove(_subUnits[_unitIndex]);
             }
         }
     }

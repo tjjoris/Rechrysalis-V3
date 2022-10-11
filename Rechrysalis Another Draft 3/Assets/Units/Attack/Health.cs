@@ -9,6 +9,7 @@ namespace Rechrysalis.Attacking
        [SerializeField] private float _healthMax;
        [SerializeField] private float _healthCurrent;
        private Die _die;
+       private Rechrysalize _rechrysalize;
 
        public void Initialize(float _healthMax)
        {
@@ -21,7 +22,8 @@ namespace Rechrysalis.Attacking
         this._healthCurrent -= _damageAmount;     
         if (_healthCurrent <= 0)
         {
-            _die?.UnitDies();   
+            _die?.UnitDies();  
+            _rechrysalize.UnitDies(); 
         }
        }
     }

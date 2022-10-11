@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.Attacking
 {
@@ -8,15 +10,22 @@ namespace Rechrysalis.Attacking
     {
         private int _maxSubUnits;
         private int _nextEvolvedUnit;
+        private ChrysalisTimer _chryslisTimer;
+        public Action<int> _startChrysalis;
 
         public void Initialize (int _maxSubUnits)
         {
+            _chryslisTimer = GetComponent<ChrysalisTimer>();
             this._maxSubUnits = _maxSubUnits;
+            _nextEvolvedUnit = 0;
+        }
+        public void ResetRechrysalisSubIndex()
+        {
             _nextEvolvedUnit = 0;
         }
         public void UnitDies()
         {
-            _nextEvolvedUnit = 0;
+            _startChrysalis?.Invoke(_nextEvolvedUnit);
         }
         public void ChrysalizeUnit(int _nextEvolvedUnit)
         {
