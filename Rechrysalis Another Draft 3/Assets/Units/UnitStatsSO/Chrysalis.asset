@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1482a46f61544d36ab5e935923d13b0, type: 3}
+  m_Name: Chrysalis
+  m_EditorClassIdentifier: 
+  _amountToPool: 0
+  _projectileSpeed: 0
+  _projectileSprite: {fileID: 0}
+  _unitName: 
+  _attackChargeUp: 0
+  _attackWindDown: 0
+  _baseDamage: 0
+  _baseRange: 0
+  _healthMaxBase: 0
+  _typeHealthMaxMultiplier: 0
+  _tierHealthMaxMultipleir: 0
+  _healthMax: 0
+  _chrysalisTimerMax: 0

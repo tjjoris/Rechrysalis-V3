@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1048985059932078878}
   - component: {fileID: 1556479816644051695}
   - component: {fileID: 7050183295212557629}
+  - component: {fileID: 8030698657273627931}
   m_Layer: 0
   m_Name: Chrysallis Prefab
   m_TagString: Untagged
@@ -57,3 +58,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14a1203e798a4ce2a772a0136a4210d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8030698657273627931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4275633068800706783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768857a65777a42ecb3e0adb0cd0d609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controllerIndex: 0
+  _unitStats: {fileID: 0}
+  _nameText: {fileID: 0}
+  _isStopped: 0

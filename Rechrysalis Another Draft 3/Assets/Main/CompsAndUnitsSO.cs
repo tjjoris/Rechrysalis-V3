@@ -18,6 +18,8 @@ namespace Rechrysalis
         public TargetsListSO[] TargetsLists {get{return _targetsLists;}}
         [SerializeField] private PlayerUnitsSO[] _playerUnits;
         public PlayerUnitsSO[] PlayerUnits {get{return _playerUnits;}}
+        [SerializeField] private UnitStatsSO _chrysalis;
+        public UnitStatsSO Chrysalis {get{return _chrysalis;}}
         
         public void Initialize(CompSO[] _compSO, ControllerManager _controllerMangerOne, ControllerManager _ControllerManagerTwo)
         {
