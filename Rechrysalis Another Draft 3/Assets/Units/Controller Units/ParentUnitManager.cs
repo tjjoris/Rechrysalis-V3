@@ -89,10 +89,11 @@ namespace Rechrysalis.Unit
                 {
                     Debug.Log($"activating chrysalis" + _chrysalisIndex);
                     _subChrysalii[_chrysalisIndex].SetActive(true);
+                    _subChrysalii[_chrysalisIndex].GetComponent<ChrysalisTimer>()?.StartThisChrysalis();
                     if (!_theseUnits.ActiveUnits.Contains(_subChrysalii[_indexInSubChrysalis]))
                     {
                         _theseUnits.ActiveUnits.Add(_subChrysalii[_chrysalisIndex]);
-                    }
+                    }                    
                 }
             }
             DeactivateUnit(_chrysalisIndex);
