@@ -16,6 +16,7 @@ namespace Rechrysalis.Unit
         public UnitStatsSO UnitStats {get{return _unitStats;}}
         private Mover _mover;
         private Attack _attack;
+        private ChrysalisTimer _chrysalisTimer;
         [SerializeField] private bool _isStopped;
         private CompsAndUnitsSO _compsAndUnits;
         private ProjectilesPool _projectilesPool;
@@ -50,13 +51,18 @@ namespace Rechrysalis.Unit
             GetComponent<InRangeByPriority>()?.Initialize(_compsAndUnits.TargetsLists[_controllerIndex]);
             GetComponent<ClosestTarget>()?.Initialize(_compsAndUnits.PlayerUnits[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
             GetComponent<Range>()?.Initialize(_unitStats);
+            _chrysalisTimer = GetComponent<ChrysalisTimer>();
             _projectilesPool = GetComponent<ProjectilesPool>();
         }
         public void Tick(float _timeAmount)
         {
-            _mover?.Tick(_timeAmount);
-            _attack?.Tick(_timeAmount);
-            _projectilesPool?.TickProjectiles(_timeAmount);
+            if (gameObject.active == true) 
+            {
+                _mover?.Tick(_timeAmount);
+                _attack?.Tick(_timeAmount);
+                _projectilesPool?.TickProjectiles(_timeAmount);
+                _chrysalisTimer?.Tick(_timeAmount);
+            }
         }
     }
 }
