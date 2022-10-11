@@ -9,6 +9,8 @@ namespace Rechrysalis.Unit
         [SerializeField] private int _controllerIndex;
         [SerializeField] private GameObject[] _subUnits;
         public GameObject[] SubUnits {get {return _subUnits;}set {_subUnits = value;}}
+        [SerializeField] private GameObject[] _subChrysalii;
+        public GameObject[] SubChrysalii {get{return _subChrysalii;}set {_subChrysalii = value;}}
         private PlayerUnitsSO _theseUnits;
 
         private bool _isStopped;
@@ -27,6 +29,17 @@ namespace Rechrysalis.Unit
         {
             this._controllerIndex = _controllerIndex;
             this._theseUnits = _theseUnits;
+        }
+        /// <summary>
+        /// This function is called when the object becomes enabled and active.
+        /// </summary>
+        private void OnEnable()
+        {
+            
+        }
+        private void AddChrysalisActions()
+        {
+
         }
         public void ActivateUnit(int _unitIndex)
         {
