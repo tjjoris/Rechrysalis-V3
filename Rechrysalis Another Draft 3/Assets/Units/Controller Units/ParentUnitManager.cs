@@ -30,7 +30,7 @@ namespace Rechrysalis.Unit
         {
             this._controllerIndex = _controllerIndex;
             this._theseUnits = _theseUnits;
-            AddChrysalisAndUnitActions();
+            // AddChrysalisAndUnitActions();
         }
         /// <summary>
         /// This function is called when the object becomes enabled and active.
@@ -39,7 +39,7 @@ namespace Rechrysalis.Unit
         {
             AddChrysalisAndUnitActions();
         }
-        private void AddChrysalisAndUnitActions()
+        public void AddChrysalisAndUnitActions()
         {
             foreach (GameObject _chrysalis in _subChrysalii)
             {

@@ -54,9 +54,9 @@ namespace Rechrysalis.Controller
                     chrysalisGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _compsAndUnits.Chrysalis, _compsAndUnits);
                     chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(_unitStats.ChrysalisTimerMax);
                     _pum.SubChrysalii[_childUnitIndex] = chrysalisGo;
-                    _allUnits.Add(chrysalisGo);
-
+                    _allUnits.Add(chrysalisGo);                    
                 }
+                _pum.AddChrysalisAndUnitActions();
                 _pum.ActivateUnit(0);
             }            
         }
