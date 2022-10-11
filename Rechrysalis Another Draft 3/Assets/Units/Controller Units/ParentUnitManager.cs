@@ -29,17 +29,29 @@ namespace Rechrysalis.Unit
         {
             this._controllerIndex = _controllerIndex;
             this._theseUnits = _theseUnits;
+            AddChrysalisActions();
         }
         /// <summary>
         /// This function is called when the object becomes enabled and active.
         /// </summary>
         private void OnEnable()
         {
-            
+            AddChrysalisActions();
         }
         private void AddChrysalisActions()
         {
-
+            foreach (GameObject _chrysalis in _subChrysalii)
+            {
+                _chrysalis.GetComponent<ChrysalisTimer>()._startUnit -= ActivateUnit;
+                _chrysalis.GetComponent<ChrysalisTimer>()._startUnit += ActivateUnit;
+            }
+        }
+        private void OnDisable()
+        {
+            foreach (GameObject _chrysalis in _subChrysalii)
+            {
+                _chrysalis.GetComponent<ChrysalisTimer>()._startUnit -= ActivateUnit;
+            }
         }
         public void ActivateUnit(int _unitIndex)
         {
@@ -61,7 +73,15 @@ namespace Rechrysalis.Unit
                         int _indexInActiveUnits = _theseUnits.ActiveUnits.IndexOf(_subUnits[_indexInSubUnits]);
                         _theseUnits.ActiveUnits.Remove(_theseUnits.ActiveUnits[_indexInActiveUnits]);
                     }                                     
-                }             
+                }   
+                if (_subChrysalii[_unitIndex].active == true)
+                {
+                    _subChrysalii[_unitIndex].SetActive(false);
+                }
+                if (_theseUnits.ActiveUnits.Contains(_subChrysalii[_unitIndex]))
+                {
+                    _theseUnits.ActiveUnits.Remove(_subChrysalii[_unitIndex]);
+                }        
             }
         }
     }
