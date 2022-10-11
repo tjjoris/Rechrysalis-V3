@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Rechrysalis.Attacking;
 
 namespace Rechrysalis.Unit
 {

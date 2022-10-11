@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rechrysalis
+namespace Rechrysalis.Attacking
 {
     public class ProjectileHandler : MonoBehaviour
     {
@@ -29,13 +29,15 @@ namespace Rechrysalis
         // Debug.Log($"speed " + _speed + " time " + Time.deltaTime + " fixed time " + Time.fixedDeltaTime);
         
         Vector3 _direction = Vector2.MoveTowards(gameObject.transform.position, _targetUnit.transform.position, _speed);
-            Debug.Log($"direction" + _direction);
+            // Debug.Log($"direction" + _direction);
         // _direction.z = 0;
         // gameObject.transform.Translate(_direction * _timeAmount);
         gameObject.transform.position = _direction;
         if ((_targetUnit.transform.position - gameObject.transform.position).magnitude <= _minDistToDisable)
         {
             gameObject.SetActive(false);
+            Health _targetHealth = _targetUnit.GetComponent<Health>();
+            _targetHealth?.TakeDamage(_parentUnit.GetComponent<Attack>().getDamage());
         }
     }
     }

@@ -23,9 +23,10 @@ namespace Rechrysalis.Unit
             }
          }
 
-        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO _unitComp)
+        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO _unitComp, PlayerUnitsSO _theseUnits)
         {
             this._controllerIndex = _controllerIndex;
+            this._theseUnits = _theseUnits;
         }
         public void ActivateUnit(int _unitIndex)
         {

@@ -9,16 +9,21 @@ namespace Rechrysalis.Controller
     {
         [SerializeField] private GameObject _parentUnitPrefab;
         [SerializeField] private GameObject _childUnitPrefab;
+        [SerializeField] private GameObject _chrysalisPrefab;
         [SerializeField] private GameObject _unitRing;
         [SerializeField] private float _ringDistFromCentre = 2f;
         [SerializeField] private GameObject[] _parentUnits;
         public GameObject[] ParentUnits {get{return _parentUnits;}}
-        private List<GameObject> _allUnits;        
+        private List<GameObject> _allUnits;    
+        private PlayerUnitsSO _theseUnits;    
         public void Initialize(int _controllerIndex, CompSO _unitComp, CompsAndUnitsSO _compsAndUnits)
         {
             _allUnits = new List<GameObject>();
-            _allUnits.Clear();        
+            _allUnits.Clear();                    
             _parentUnits = new GameObject[_unitComp.ParentUnitCount];
+            _theseUnits = _compsAndUnits.PlayerUnits[_controllerIndex];
+            _theseUnits.ActiveUnits = new List<GameObject>();
+            _theseUnits.ActiveUnits.Clear();
             // foreach (GameObject _unit in _parentUnits)
             for (int _parentUnitIndex = 0; _parentUnitIndex < _unitComp.ParentUnitCount; _parentUnitIndex++)
             {       
@@ -30,14 +35,20 @@ namespace Rechrysalis.Controller
                 _parentUnits[_parentUnitIndex] = go;
                 go.name = "Parent Unit " + _parentUnitIndex.ToString();
                 ParentUnitManager _pum = go.GetComponent<ParentUnitManager>();
-                _pum?.Initialize(_controllerIndex, _parentUnitIndex, _unitComp);                        
+                _pum?.Initialize(_controllerIndex, _parentUnitIndex, _unitComp, _compsAndUnits.PlayerUnits[_controllerIndex]);                        
                 for (int _childUnitIndex = 0; _childUnitIndex < _unitComp.ChildUnitCount; _childUnitIndex++)
                 {
-                    GameObject childGo = Instantiate(_childUnitPrefab, go.transform);
-                    childGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitComp.UnitSOArray[(_parentUnitIndex * _unitComp.ParentUnitCount) + (_childUnitIndex)], _compsAndUnits);
-                    _pum.SubUnits[_childUnitIndex] = childGo;
-                    childGo.name = $"Child Unit " + _childUnitIndex;
-                    _allUnits.Add(childGo);
+                    GameObject childUnitGo = Instantiate(_childUnitPrefab, go.transform);
+                    UnitStatsSO _unitStats = _unitComp.UnitSOArray[(_parentUnitIndex * _unitComp.ParentUnitCount) + (_childUnitIndex)];
+                    _unitStats.Initialize();
+                    childUnitGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitComp.UnitSOArray[(_parentUnitIndex * _unitComp.ParentUnitCount) + (_childUnitIndex)], _compsAndUnits);
+                    _pum.SubUnits[_childUnitIndex] = childUnitGo;
+                    childUnitGo.name = $"Child Unit " + _childUnitIndex;
+                    _allUnits.Add(childUnitGo);
+                    _theseUnits.ActiveUnits.Add(childUnitGo);
+                    GameObject chrysalisGo = Instantiate(_chrysalisPrefab, go.transform);
+                    chrysalisGo.GetComponent<ChrysalisManager>()?.Initialize(_unitStats.ChrysalisTimerMax, childUnitGo);
+                    chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(_unitStats.ChrysalisTimerMax);
                 }
                 _pum.ActivateUnit(0);
             }            

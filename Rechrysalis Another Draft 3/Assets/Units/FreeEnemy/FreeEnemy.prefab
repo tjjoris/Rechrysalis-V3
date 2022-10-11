@@ -17,6 +17,9 @@ GameObject:
   - component: {fileID: 3954166826758611184}
   - component: {fileID: 4179298318273708490}
   - component: {fileID: 3321464517238779324}
+  - component: {fileID: 2080685535575421179}
+  - component: {fileID: 852335242743516816}
+  - component: {fileID: 3988051625825090081}
   m_Layer: 7
   m_Name: FreeEnemy
   m_TagString: Untagged
@@ -164,6 +167,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dd88869367d64f4bb691b8845a5d49b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2080685535575421179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833293522152398769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32353dabc57e43bb8bf08dcd3390783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthMax: 0
+  _healthCurrent: 0
+--- !u!114 &852335242743516816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833293522152398769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449dba754117b4f8cbf2c49c502ddf7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3988051625825090081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833293522152398769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3def203b7be44c8bb1693413aaada95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6335642851339446156

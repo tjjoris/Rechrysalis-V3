@@ -72,5 +72,9 @@ namespace Rechrysalis.Attacking
                 _attackChargeCurrent += _timeAmount;                
             }            
         }
+        public float getDamage()
+        {
+            return _baseDamage;
+        }
     }
 }
