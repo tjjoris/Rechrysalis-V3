@@ -23,4 +23,5 @@ MonoBehaviour:
   _healthMaxBase: 40
   _typeHealthMaxMultiplier: 1.2
   _tierHealthMaxMultipleir: 1
-  _healthMax: 50
+  _healthMax: 48
+  _chrysalisTimerMax: 4
