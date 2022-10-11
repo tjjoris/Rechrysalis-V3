@@ -18,7 +18,7 @@ MonoBehaviour:
   _unitName: Fighter
   _attackChargeUp: 2
   _attackWindDown: 4
-  _baseDamage: 3
+  _baseDamage: 10
   _baseRange: 5
   _healthMaxBase: 40
   _typeHealthMaxMultiplier: 1.2

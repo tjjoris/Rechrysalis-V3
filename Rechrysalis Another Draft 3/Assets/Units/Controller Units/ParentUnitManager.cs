@@ -52,16 +52,18 @@ namespace Rechrysalis.Unit
             //     _unit.GetComponent<Rechrysalize>()._startChrysalis += ActivateChrysalis; 
             // }
             foreach (Transform _child in transform)
-            {
+            {                
                 ChrysalisTimer _chryslisTimer = _child.GetComponent<ChrysalisTimer>();
                 if (_chryslisTimer != null)
                 {
+                    Debug.Log($"chryslis timer " + _child);
                     _chryslisTimer._startUnit -= ActivateUnit;
                     _chryslisTimer._startUnit += ActivateUnit;
                 }
                 Rechrysalize _rechrysalize = _child.GetComponent<Rechrysalize>();
                 if (_rechrysalize != null)
                 {
+                    Debug.Log($"rechrysalize " + _child);
                     _rechrysalize._startChrysalis -= ActivateChrysalis;
                     _rechrysalize._startChrysalis += ActivateChrysalis;
                 }
@@ -80,10 +82,12 @@ namespace Rechrysalis.Unit
         }
         public void ActivateChrysalis(int _chrysalisIndex)
         {
+            Debug.Log($"activate chryslis");
             for (int _indexInSubChrysalis=0; _indexInSubChrysalis<_subChrysalii.Length; _indexInSubChrysalis++)
             {
                 if (_indexInSubChrysalis == _chrysalisIndex)
                 {
+                    Debug.Log($"activating chrysalis" + _chrysalisIndex);
                     _subChrysalii[_chrysalisIndex].SetActive(true);
                     if (!_theseUnits.ActiveUnits.Contains(_subChrysalii[_indexInSubChrysalis]))
                     {

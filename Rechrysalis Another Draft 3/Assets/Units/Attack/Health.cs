@@ -15,6 +15,7 @@ namespace Rechrysalis.Attacking
        {
         this._healthMax = _healthMax;
         this._healthCurrent = _healthMax;
+        _rechrysalize = GetComponent<Rechrysalize>();
         _die = GetComponent<Die>();
        }
        public void TakeDamage(float _damageAmount)
@@ -23,7 +24,7 @@ namespace Rechrysalis.Attacking
         if (_healthCurrent <= 0)
         {
             _die?.UnitDies();  
-            _rechrysalize.UnitDies(); 
+            _rechrysalize?.UnitDies(); 
         }
        }
     }

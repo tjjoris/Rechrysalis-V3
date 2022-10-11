@@ -48,13 +48,15 @@ namespace Rechrysalis.Controller
                     childUnitGo.name = $"Child Unit " + _childUnitIndex;
                     _allUnits.Add(childUnitGo);
                     // _theseUnits.ActiveUnits.Add(childUnitGo);
+                    childUnitGo.SetActive(false);
                     GameObject chrysalisGo = Instantiate(_chrysalisPrefab, go.transform);
                     chrysalisGo.name = $"Chrysalis " + _childUnitIndex;
                     // chrysalisGo.GetComponent<ChrysalisManager>()?.Initialize(_unitStats.ChrysalisTimerMax, childUnitGo);
                     chrysalisGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _compsAndUnits.Chrysalis, _compsAndUnits);
                     chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(_unitStats.ChrysalisTimerMax);
-                    _pum.SubChrysalii[_childUnitIndex] = chrysalisGo;
-                    _allUnits.Add(chrysalisGo);                    
+                    _pum.SubChrysalii[_childUnitIndex] = chrysalisGo;                    
+                    _allUnits.Add(chrysalisGo);                  
+                    chrysalisGo.SetActive(false);  
                 }
                 _pum.AddChrysalisAndUnitActions();
                 _pum.ActivateUnit(0);
