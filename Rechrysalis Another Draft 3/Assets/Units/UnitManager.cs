@@ -43,6 +43,7 @@ namespace Rechrysalis.Unit
             _nameText.text = _unitStats.UnitName;
             _mover = GetComponent<Mover>();
             _attack = GetComponent<Attack>();
+            if (_attack != null)  _attack.IsStopped = true;
             _attack?.Initialize(_unitStats);
             GetComponent<Health>()?.Initialize(_unitStats.HealthMax);
             GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
@@ -56,13 +57,13 @@ namespace Rechrysalis.Unit
         }
         public void Tick(float _timeAmount)
         {
-            if (gameObject.active == true) 
-            {
+            // if (gameObject.active == true) 
+            // {
                 _mover?.Tick(_timeAmount);
                 _attack?.Tick(_timeAmount);
                 _projectilesPool?.TickProjectiles(_timeAmount);
                 _chrysalisTimer?.Tick(_timeAmount);
-            }
+            // }
         }
     }
 }

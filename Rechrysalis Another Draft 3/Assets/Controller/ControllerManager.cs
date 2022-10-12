@@ -116,7 +116,10 @@ namespace Rechrysalis.Controller
             // }
             foreach (GameObject _unit in _allUnits)
             {
-                _unit.GetComponent<UnitManager>().Tick(_timeAmount);
+                if (_unit.active)
+                {
+                    _unit.GetComponent<UnitManager>().Tick(_timeAmount);
+                }
             }
         }
         public void SetIsStopped(bool _isStopped)
