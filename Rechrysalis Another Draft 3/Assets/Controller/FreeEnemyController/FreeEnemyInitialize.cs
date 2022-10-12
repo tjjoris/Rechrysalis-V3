@@ -44,18 +44,20 @@ namespace Rechrysalis.Controller
         private void CreateWave(int _controllerIndex, ControllerManager _enemyController, CompSO _compSO, PlayerUnitsSO _playerUnitsSO, CompsAndUnitsSO _compsAndUnits, FreeUnitCompSO _freeUnitCompSO, int _waveIndex)
         {
             // if (_compSO.UnitSOArray.Length > 0) {
-            if (_freeUnitCompSO.Waves[_waveIndex].UnitInWave.Length > 0)
+                WaveSO _wave = _freeUnitCompSO.Waves[_waveIndex];
+            if (_wave.UnitInWave.Length > 0)
             {
                 // for (int i = 0; i < _compSO.UnitSOArray.Length; i++)
                 for (int _unitInWaveIndex = 0; _unitInWaveIndex < _freeUnitCompSO.Waves[_waveIndex].UnitInWave.Length; _unitInWaveIndex++)
                 {
-                    if (_compSO.UnitSOArray[_unitInWaveIndex] != null)
+                    UnitStatsSO _unitStats = _wave.UnitInWave[_unitInWaveIndex];
+                    if (_unitStats != null)
                     {
                         Vector3 _newUnitPos = _freeEnemyCompLayout.UnitPos[0, _unitInWaveIndex];
                         GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
-                        newFreeEnemy.name = _compSO.UnitSOArray[_unitInWaveIndex].name + " " + _unitInWaveIndex.ToString();
+                        newFreeEnemy.name = _unitStats.name + " " + _unitInWaveIndex.ToString();
                         newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(_enemyController);
-                        newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _compSO.UnitSOArray[_unitInWaveIndex], _compsAndUnits);
+                        newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits);
                         newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerIndex);
                         _playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
                         _allUnits.Add(newFreeEnemy);
