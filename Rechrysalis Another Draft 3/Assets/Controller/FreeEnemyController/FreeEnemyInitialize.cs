@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.Movement;
+using Rechrysalis.Attacking;
 
 namespace Rechrysalis.Controller
 {
@@ -39,6 +40,7 @@ namespace Rechrysalis.Controller
                     CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);
                 // }
             }
+            AddNextWaveAction();
         }
 
         private void CreateWave(int _controllerIndex, ControllerManager _enemyController, CompSO _compSO, PlayerUnitsSO _playerUnitsSO, CompsAndUnitsSO _compsAndUnits, FreeUnitCompSO _freeUnitCompSO, int _waveIndex)
@@ -71,6 +73,32 @@ namespace Rechrysalis.Controller
             if (_freeUnitCompSO.Waves.Length >= _waveIndex)
             {                
                 CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);
+            }
+        }
+        private void OnEnable()
+        {
+            AddNextWaveAction();
+        }
+        private void AddNextWaveAction()
+        {
+            foreach (Transform _childUnit in transform)
+            {
+                Die _die = _childUnit.GetComponent<Die>();
+                if (_die != null) {
+                    _die._spawnWaveAction -= NextWave;
+                    _die._spawnWaveAction += NextWave;
+                }
+            }
+        }
+        private void OnDisable()
+        {
+            foreach (Transform _childUnit in transform)
+            {
+                Die _die = _childUnit.GetComponent<Die>();
+                if (_die != null)
+                {
+                    _die._spawnWaveAction -= NextWave;
+                }
             }
         }
 
