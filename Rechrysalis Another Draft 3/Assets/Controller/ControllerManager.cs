@@ -47,8 +47,8 @@ namespace Rechrysalis.Controller
             if (_mover != null) {
             _mover?.Initialize(_controllerIndex);
             }
-            _click?.Initialize(gameObject, _compsAndUnits);
-            _touch?.Initialize(gameObject, _compsAndUnits);
+            _click?.Initialize(gameObject, _compsAndUnits, _unitRingManager);
+            _touch?.Initialize(gameObject, _compsAndUnits, _unitRingManager);
             FreeEnemyInitialize _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             if (_freeEnemyInitialize != null)
             {
@@ -64,7 +64,7 @@ namespace Rechrysalis.Controller
             }
             // Debug.Log($"health " + _compsAndUnits.ControllerHealth[_controllerIndex]);
             GetComponent<ControllerHealth>()?.Initialize(_compsAndUnits.ControllerHealth[_controllerIndex], _allUnits);
-            _unitRingManager.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount);
+            _unitRingManager?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount);
             SetIsStopped(true);
 
 

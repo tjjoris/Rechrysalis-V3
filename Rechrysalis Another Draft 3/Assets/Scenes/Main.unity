@@ -419,6 +419,7 @@ MonoBehaviour:
   _playerUnitsSO: []
   _compSO: {fileID: 0}
   _compsAndUnits: {fileID: 0}
+  _unitRingManager: {fileID: 0}
 --- !u!1 &886669363
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,6 +530,7 @@ MonoBehaviour:
   - {fileID: 0}
   _compSO: {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   _compsAndUnits: {fileID: 0}
+  _unitRingManager: {fileID: 2056162103}
 --- !u!114 &1159822627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -609,6 +611,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e7d0c40bd1d44ef92cf2e869426cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthMax: 0
+  _healthCurrent: 0
 --- !u!1 &1295238389
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,6 +808,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2056162102}
+  - component: {fileID: 2056162103}
   m_Layer: 0
   m_Name: UnitRing
   m_TagString: Untagged
@@ -827,3 +832,16 @@ Transform:
   m_Father: {fileID: 1159822624}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2056162103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056162101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6215f780addbe481c934c8d5517c824b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitDegreeWidth: 5
