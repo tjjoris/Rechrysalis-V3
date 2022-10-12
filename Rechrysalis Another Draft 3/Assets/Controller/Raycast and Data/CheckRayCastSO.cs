@@ -58,6 +58,7 @@ namespace Rechrysalis.Controller
             else if ((_mousePosV3 - _controller.transform.position).magnitude < 10)           
             {
                 //clicked inside ring
+                checkIfIntUnitBounds(_mousePos);
             }
             else if (false)
             {
@@ -74,6 +75,25 @@ namespace Rechrysalis.Controller
                 // _clickInfo.ControlledController.GetComponent<ControllerManager>().IsStopped = false;
                 _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(false);
             }
+        }
+        private int checkIfIntUnitBounds(Vector3 _mousePos)
+        {
+            if (_unitRingManager.GetUnitDegreeWidthArray().Length > 0)
+            {
+                for (int _parentUnitIndex = 0; _parentUnitIndex < (_unitRingManager.GetUnitDegreeWidthArray().Length / 2); _parentUnitIndex++)
+                {
+                    if ((RingAngle(_mousePos) >= _unitRingManager.GetUnitDegreeWidthArray()[_parentUnitIndex]) && (RingAngle(_mousePos) <= _unitRingManager.GetUnitDegreeWidthArray()[_parentUnitIndex + 1]))
+                    {
+                        Debug.Log($"Unit clicked");
+                    }
+                }
+            }
+            return -1;
+        }
+        private float RingAngle(Vector3 _mousePos)
+        {
+            Vector3 _mouseDiff = _mousePos - _controller.transform.position;
+            return AnglesMath.V2ToDegrees(new Vector2( _mouseDiff.x, _mouseDiff.y));
         }
     }
 }

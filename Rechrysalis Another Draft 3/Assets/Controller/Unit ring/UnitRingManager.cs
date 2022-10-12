@@ -11,7 +11,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private float _unitDegreeWidth;
         // public float UnitDegreeWidth {get{return _unitDegreeWidth;}}
         private float[] _unitDegreeWidthArray;
-        public float[] UnitDegreeWidthArray {get {return _unitDegreeWidthArray;}}
+        // public float[] UnitDegreeWidthArray {get {return _unitDegreeWidthArray;}}
     
         public void Initialize (int _numberOfParentUnits)
         {
@@ -23,6 +23,15 @@ namespace Rechrysalis.Controller
                 _unitDegreeWidthArray[(_parentUnitIndex * 2) + 1] = ((360 / _numberOfParentUnits) * _parentUnitIndex) + _unitDegreeWidth;
             }
             }
+        }
+        public float[] GetUnitDegreeWidthArray()
+        {
+            float[] _unitDegreeWidthArrayWithRingAngle = new float[_unitDegreeWidthArray.Length];
+            for (int _unitWidth = 0; _unitWidth < _unitDegreeWidthArray.Length; _unitWidth++)
+            {
+                _unitDegreeWidthArrayWithRingAngle[_unitWidth] = AnglesMath.LimitAngle(_unitDegreeWidthArray[_unitWidth] + _unitRingAngle);
+            }
+            return _unitDegreeWidthArray;
         }
     }    
 }
