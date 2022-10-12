@@ -19,6 +19,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private CompSO _compSO;     
         private ControllerManager _enemyController;
         [SerializeField] private CompsAndUnitsSO _compsAndUnits;
+        [SerializeField] private UnitRingManager _unitRingManager;
         private Mover _mover;
         private bool _isStopped;
         // public bool IsStopped
@@ -63,6 +64,7 @@ namespace Rechrysalis.Controller
             }
             // Debug.Log($"health " + _compsAndUnits.ControllerHealth[_controllerIndex]);
             GetComponent<ControllerHealth>()?.Initialize(_compsAndUnits.ControllerHealth[_controllerIndex], _allUnits);
+            _unitRingManager.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount);
             SetIsStopped(true);
 
 

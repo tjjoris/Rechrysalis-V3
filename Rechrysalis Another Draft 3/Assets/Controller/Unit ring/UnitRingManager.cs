@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Rechrysalis.Controller
+{
+    public class UnitRingManager : MonoBehaviour
+    {
+        private float _unitRingAngle;
+        public float UnitRingAngle {get{return _unitRingAngle;}}
+        [SerializeField] private float _unitDegreeWidth;
+        // public float UnitDegreeWidth {get{return _unitDegreeWidth;}}
+        private float[] _unitDegreeWidthArray;
+        public float[] UnitDegreeWidthArray {get {return _unitDegreeWidthArray;}}
+    
+        public void Initialize (int _numberOfParentUnits)
+        {
+            if (_numberOfParentUnits > 0) {
+            _unitDegreeWidthArray = new float[_numberOfParentUnits * 2];
+            for (int _parentUnitIndex = 0; _parentUnitIndex < _numberOfParentUnits; _parentUnitIndex++)
+            {
+                _unitDegreeWidthArray[_parentUnitIndex * 2] = ((360 / _numberOfParentUnits) * _parentUnitIndex) - _unitDegreeWidth;
+                _unitDegreeWidthArray[(_parentUnitIndex * 2) + 1] = ((360 / _numberOfParentUnits) * _parentUnitIndex) + _unitDegreeWidth;
+            }
+            }
+        }
+    }    
+}

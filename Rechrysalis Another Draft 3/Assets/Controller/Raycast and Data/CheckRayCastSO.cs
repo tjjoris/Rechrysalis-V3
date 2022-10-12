@@ -14,15 +14,21 @@ namespace Rechrysalis.Controller
         private TargetsListSO _playerTargtList;
         [SerializeField] private ClickInfo _clickInfo;
         public ClickInfo ClickInfo {set {_clickInfo = value;} get{return _clickInfo;}}
+        private GameObject _controller;
+        private float _ringSize;
+        private UnitRingManager _unitRingManager;
         
-        public void Initialize(CompsAndUnitsSO _compsAndUnits)
+        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager)
         {
             this._compsAndUnits = _compsAndUnits;
             _playerTargtList = _compsAndUnits.TargetsLists[0];
             _playerTargtList.Initialize();
+            _controller = _compsAndUnits.ControllerManagers[0].gameObject;
+            this._unitRingManager = _unitRIngManager;
         }
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {
+            Vector3 _mousePosV3 = _mousePos;
             LayerMask _mask = ~LayerMask.GetMask("PlayerController");
             _mask += LayerMask.GetMask("Unit");
             RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, _mask);
@@ -49,9 +55,9 @@ namespace Rechrysalis.Controller
                     }
                 }
             }
-            else if (false)
+            else if ((_mousePosV3 - _controller.transform.position).magnitude < 10)           
             {
-                //ring to rotate
+                //clicked inside ring
             }
             else if (false)
             {
