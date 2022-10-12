@@ -10,7 +10,7 @@ namespace Rechrysalis.Attacking
         public Action<float> _damagesControllerAction;
         public void DamagesControllerFunction(float _damageAmount)
         {
-            _damagesControllerAction.Invoke(_damageAmount);
+            _damagesControllerAction?.Invoke(_damageAmount);
         }
     }
 }

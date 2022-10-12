@@ -22,12 +22,12 @@ namespace Rechrysalis.Attacking
        }
        public void TakeDamage(float _damageAmount)
        {
-        this._healthCurrent -= _damageAmount;     
+        this._healthCurrent -= _damageAmount;
+            _damagesController?.DamagesControllerFunction(_damageAmount);    
         if (_healthCurrent <= 0)
         {
             _die?.UnitDies();  
             _rechrysalize?.UnitDies(); 
-            _damagesController?.DamagesControllerFunction(_damageAmount);
         }
        }
     }

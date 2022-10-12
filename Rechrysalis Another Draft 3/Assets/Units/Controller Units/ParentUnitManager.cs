@@ -56,14 +56,14 @@ namespace Rechrysalis.Unit
                 ChrysalisTimer _chryslisTimer = _child.GetComponent<ChrysalisTimer>();
                 if (_chryslisTimer != null)
                 {
-                    Debug.Log($"chryslis timer " + _child);
+                    // Debug.Log($"chryslis timer " + _child);
                     _chryslisTimer._startUnit -= ActivateUnit;
                     _chryslisTimer._startUnit += ActivateUnit;
                 }
                 Rechrysalize _rechrysalize = _child.GetComponent<Rechrysalize>();
                 if (_rechrysalize != null)
                 {
-                    Debug.Log($"rechrysalize " + _child);
+                    // Debug.Log($"rechrysalize " + _child);
                     _rechrysalize._startChrysalis -= ActivateChrysalis;
                     _rechrysalize._startChrysalis += ActivateChrysalis;
                 }

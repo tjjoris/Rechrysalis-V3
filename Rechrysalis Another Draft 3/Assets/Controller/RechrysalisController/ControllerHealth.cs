@@ -34,6 +34,7 @@ namespace Rechrysalis.Controller
                         DamagesController _damagesController = _unit.GetComponent<DamagesController>();
                         if (_damagesController != null)
                         {
+                            Debug.Log($"adding damages controller");
                             _damagesController._damagesControllerAction -= TakeDamage;
                             _damagesController._damagesControllerAction += TakeDamage;
                         }
