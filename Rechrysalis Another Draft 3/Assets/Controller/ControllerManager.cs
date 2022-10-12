@@ -61,7 +61,8 @@ namespace Rechrysalis.Controller
             _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
             _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
             }
-
+            // Debug.Log($"health " + _compsAndUnits.ControllerHealth[_controllerIndex]);
+            GetComponent<ControllerHealth>()?.Initialize(_compsAndUnits.ControllerHealth[_controllerIndex], _allUnits);
             SetIsStopped(true);
 
 

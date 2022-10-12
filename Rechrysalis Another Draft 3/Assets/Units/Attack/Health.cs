@@ -10,6 +10,7 @@ namespace Rechrysalis.Attacking
        [SerializeField] private float _healthCurrent;
        private Die _die;
        private Rechrysalize _rechrysalize;
+       private DamagesController _damagesController;
 
        public void Initialize(float _healthMax)
        {
@@ -17,6 +18,7 @@ namespace Rechrysalis.Attacking
         this._healthCurrent = _healthMax;
         _rechrysalize = GetComponent<Rechrysalize>();
         _die = GetComponent<Die>();
+        _damagesController = GetComponent<DamagesController>();
        }
        public void TakeDamage(float _damageAmount)
        {
@@ -25,6 +27,7 @@ namespace Rechrysalis.Attacking
         {
             _die?.UnitDies();  
             _rechrysalize?.UnitDies(); 
+            _damagesController?.DamagesControllerFunction(_damageAmount);
         }
        }
     }
