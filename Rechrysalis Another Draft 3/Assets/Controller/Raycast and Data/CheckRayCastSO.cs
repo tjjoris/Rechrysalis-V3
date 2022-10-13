@@ -114,17 +114,18 @@ namespace Rechrysalis.Controller
         }
         private int checkIfIntUnitBounds(Vector3 _mousePos)
         {
-            if (_unitRingManager.GetUnitDegreeWidthArray().Length > 0)
-            {
-                for (int _parentUnitIndex = 0; _parentUnitIndex < (_unitRingManager.GetUnitDegreeWidthArray().Length / 2); _parentUnitIndex++)
-                {
-                    if ((RingAngle(_mousePos) >= _unitRingManager.GetUnitDegreeWidthArray()[_parentUnitIndex]) && (RingAngle(_mousePos) <= _unitRingManager.GetUnitDegreeWidthArray()[_parentUnitIndex + 1]))
-                    {
-                        Debug.Log($"Unit clicked");
-                    }
-                }
-            }
-            return -1;
+            // if (_unitRingManager.GetUnitDegreeWidthArray().Length > 0)
+            // {
+            //     for (int _parentUnitIndex = 0; _parentUnitIndex < (_unitRingManager.GetUnitDegreeWidthArray().Length / 2); _parentUnitIndex++)
+            //     {
+            //         if ((RingAngle(_mousePos) >= _unitRingManager.GetUnitDegreeWidthArray()[_parentUnitIndex]) && (RingAngle(_mousePos) <= _unitRingManager.GetUnitDegreeWidthArray()[_parentUnitIndex + 1]))
+            //         {
+            //             Debug.Log($"Unit clicked");
+            //         }
+            //     }
+            // }
+            // return -1;
+            return CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _compsAndUnits.CompsSO[0].ParentUnitCount, _unitRingManager.UnitRingAngle, _unitRingManager.UnitDegreeWidth);
         }
         private int CheckIfInUnitBoundsWithAngle(float _mouseAngleCurrent, int _unitCount, float _angleOffset, float _unitWidthDegrees)
         {
@@ -134,7 +135,9 @@ namespace Rechrysalis.Controller
                 {
                     if ((_mouseAngleCurrent >= (((360 / _unitCount) * _unitIndex) - _unitWidthDegrees + _angleOffset)) && (_mouseAngleCurrent <= (((360 / _unitCount) * _unitIndex) + _unitWidthDegrees + _angleOffset)))
                     {
+                        Debug.Log($"clicked unit " + _unitIndex);
                         return _unitIndex;
+
                     }
                 }
             }
