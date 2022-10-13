@@ -17,13 +17,15 @@ namespace Rechrysalis.Controller
         private GameObject _controller;
         private float _ringSize;
         private UnitRingManager _unitRingManager;
+        private UpgradeRingManager _upgradeRingManager;
         private float _unitRingOuterRadius;
         public enum TouchTypeEnum {nothing, controller, map, friendlyUnit, unitRing, menu, other }
         private TouchTypeEnum[] _touchTypeArray = new TouchTypeEnum[5];
 
         
-        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, float _unitRingOuterRadius)
+        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius)
         {
+            this._upgradeRingManager = _upgradeRingManager;
             this._compsAndUnits = _compsAndUnits;
             _playerTargtList = _compsAndUnits.TargetsLists[0];
             _playerTargtList.Initialize();

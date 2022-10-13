@@ -21,6 +21,7 @@ namespace Rechrysalis.Controller
         private ControllerManager _enemyController;
         [SerializeField] private CompsAndUnitsSO _compsAndUnits;
         [SerializeField] private UnitRingManager _unitRingManager;
+        [SerializeField] private UpgradeRingManager _upgradeRingManager;
         [SerializeField] private float _unitRingOuterRadius;
         private Mover _mover;
         private bool _isStopped;
@@ -51,7 +52,7 @@ namespace Rechrysalis.Controller
             }
             _click?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
             _touch?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
-            _checkRayCast?.Initialize(_compsAndUnits, _unitRingManager, _unitRingOuterRadius);
+            _checkRayCast?.Initialize(_compsAndUnits, _unitRingManager, _upgradeRingManager, _unitRingOuterRadius);
             FreeEnemyInitialize _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             if (_freeEnemyInitialize != null)
             {

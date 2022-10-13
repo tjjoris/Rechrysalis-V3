@@ -6,7 +6,7 @@ namespace Rechrysalis.Controller
 {
     public class UnitRingManager : MonoBehaviour
     {
-        private float _unitRingAngle = 90;
+        private float _unitRingAngle;
         public float UnitRingAngle {get{return _unitRingAngle;}}
         [SerializeField] private float _unitDegreeWidth;
         public float UnitDegreeWidth {get{return _unitDegreeWidth;}}
@@ -14,8 +14,9 @@ namespace Rechrysalis.Controller
         // public float[] UnitDegreeWidthArray {get {return _unitDegreeWidthArray;}}
         private GameObject[] _parentUnits;        
     
-        public void Initialize (int _numberOfParentUnits, GameObject[] _parentunits)
+        public void Initialize (int _numberOfParentUnits, GameObject[] _parentunits, float _unitRingAngle)
         {
+            this._unitRingAngle = _unitRingAngle;
             this._parentUnits = _parentUnits;
             if (_numberOfParentUnits > 0) {
             _unitDegreeWidthArray = new float[_numberOfParentUnits * 2];
