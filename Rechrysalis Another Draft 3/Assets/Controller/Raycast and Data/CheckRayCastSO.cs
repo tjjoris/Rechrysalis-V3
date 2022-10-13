@@ -90,6 +90,20 @@ namespace Rechrysalis.Controller
             }
             return -1;
         }
+        private int CheckIfInUnitBoundsWithAngle(float _mouseAngleCurrent, int _unitCount, float _angleOffset, float _unitWidthDegrees)
+        {
+            if (_unitCount > 0)
+            {
+                for (int _unitIndex = 0; _unitIndex < _unitCount; _unitIndex++)
+                {
+                    if ((_mouseAngleCurrent >= (((360 / _unitCount) * _unitIndex) - _unitWidthDegrees + _angleOffset)) && (_mouseAngleCurrent <= (((360 / _unitCount) * _unitIndex) + _unitWidthDegrees + _angleOffset)))
+                    {
+                        return _unitIndex;
+                    }
+                }
+            }
+            return -1;
+        }
         private float RingAngle(Vector3 _mousePos)
         {
             Vector3 _mouseDiff = _mousePos - _controller.transform.position;
