@@ -18,6 +18,9 @@ namespace Rechrysalis.Controller
         private float _ringSize;
         private UnitRingManager _unitRingManager;
         private float _unitRingOuterRadius;
+        public enum TouchTypeEnum {controller, map, friendlyUnit, unitRing, menu, other }
+        private TouchTypeEnum[] _touchTypeArray = new TouchTypeEnum[5];
+
         
         public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, float _unitRingOuterRadius)
         {
@@ -38,24 +41,33 @@ namespace Rechrysalis.Controller
                 if (ControllerMouseOver(hit))
                 {
                     _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
+                    _touchTypeArray[_touchID] = TouchTypeEnum.controller;
                 }
                 if ((UnitMouseOver(hit)) && (EnemyUnitHitCollider(hit.collider.gameObject.GetComponent<UnitManager>())))
                 {
                     Debug.Log($"click enemy");
                     _playerTargtList.SetNewTarget(hit.collider.gameObject);
+                    _touchTypeArray[_touchID] = TouchTypeEnum.other;
                 }
             }
             else if (UnitRingMouseOver(_mousePos, _controller.transform.position))
             {
-                checkIfIntUnitBounds(_mousePos);
+                int _unitInbounds = checkIfIntUnitBounds(_mousePos);
+                if (_unitInbounds != -1)
+                {
+                    _touchTypeArray[_touchID] = TouchTypeEnum.friendlyUnit;
+                    Debug.Log($"friendly unit " + _unitInbounds);
+                }
             }
             else if (false)
             {
                 //menu clicked
+                _touchTypeArray[_touchID] = TouchTypeEnum.other;
             }
             else
             {//map clicked
                 MapClicked(_mousePos, _touchID);
+                _touchTypeArray[_touchID] = TouchTypeEnum.map;
             }
         }
 
@@ -137,9 +149,7 @@ namespace Rechrysalis.Controller
                 {
                     if ((_mouseAngleCurrent >= (((360 / _unitCount) * _unitIndex) - _unitWidthDegrees + _angleOffset)) && (_mouseAngleCurrent <= (((360 / _unitCount) * _unitIndex) + _unitWidthDegrees + _angleOffset)))
                     {
-                        Debug.Log($"clicked unit " + _unitIndex);
                         return _unitIndex;
-
                     }
                 }
             }
