@@ -33,31 +33,18 @@ namespace Rechrysalis.Controller
             CreateRayCastFunction(_mousePos, out _mousePosV3, out hit);
             if (hit)
             {
-                // if (hit.collider.gameObject.layer == 6)
                 if (ControllerMouseOver(hit))
                 {
                     _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
                 }
-                // else if (hit.collider.gameObject.layer == 7)
-                if (UnitMouseOver(hit))
+                if ((UnitMouseOver(hit)) && (EnemyUnitHitCollider(hit.collider.gameObject.GetComponent<UnitManager>())))
                 {
-                    UnitManager _unitManager = hit.collider.gameObject.GetComponent<UnitManager>();
-                    if (_unitManager != null)
-                    {
-                        Debug.Log($"clicked unit");
-                    }
-                    // if ((_unitManager != null) && (_unitManager.ControllerIndex == 1))
-                    if (FriendlyUnitHitCollider(hit.collider.gameObject.GetComponent<UnitManager>()))
-                    {
-                        Debug.Log($"click enemy");
-                        _playerTargtList.SetNewTarget(hit.collider.gameObject);
-                    }
+                    Debug.Log($"click enemy");
+                    _playerTargtList.SetNewTarget(hit.collider.gameObject);
                 }
             }
-            // else if ((_mousePosV3 - _controller.transform.position).magnitude < 10)
             else if (UnitRingMouseOver(_mousePos, _controller.transform.position, 3f))
             {
-                //clicked inside ring
                 checkIfIntUnitBounds(_mousePos);
             }
             else if (false)
@@ -100,7 +87,7 @@ namespace Rechrysalis.Controller
             }
             else return false;
         }
-        private bool FriendlyUnitHitCollider(UnitManager _unitManager)
+        private bool EnemyUnitHitCollider(UnitManager _unitManager)
         {
             if ((_unitManager != null) && (_unitManager.ControllerIndex == 1))
             {
