@@ -76,6 +76,10 @@ namespace Rechrysalis.Controller
                 _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(false);
             }
         }
+        public void CheckRayCastReleaseFunction(Vector2 _mousPos, int _touchID)
+        {
+            
+        }
         private int checkIfIntUnitBounds(Vector3 _mousePos)
         {
             if (_unitRingManager.GetUnitDegreeWidthArray().Length > 0)
