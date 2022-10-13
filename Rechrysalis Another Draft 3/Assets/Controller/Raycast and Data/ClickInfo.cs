@@ -16,6 +16,9 @@ namespace Rechrysalis.Controller
         public bool HilightRingVisibile{set{_hilightRingVisable = value;} get {return _hilightRingVisable;}}
         [SerializeField] private int _fingerIDMove;
         public int FingerIDMove {set{_fingerIDMove = value;}get {return _fingerIDMove;}}
+        public enum TouchTypeEnum {controller, map, friendlyUnit, unitRing, menu, other}
+        private TouchTypeEnum _touchType;
+        public TouchTypeEnum TouchType {set{_touchType = value;} get {return _touchType;}}
 
     }
 }
