@@ -413,6 +413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controllerIndex: 0
+  _checkRayCast: {fileID: 0}
   _click: {fileID: 0}
   _touch: {fileID: 0}
   _parentUnits: []
@@ -420,6 +421,7 @@ MonoBehaviour:
   _compSO: {fileID: 0}
   _compsAndUnits: {fileID: 0}
   _unitRingManager: {fileID: 0}
+  _unitRingOuterRadius: 0
 --- !u!1 &886669363
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controllerIndex: 0
+  _checkRayCast: {fileID: 11400000, guid: ccaf1a1cf438f4f49a8c3935f00ee5d8, type: 2}
   _click: {fileID: 11400000, guid: 8d0cd0d9344a540809dd8a15a6d9d0aa, type: 2}
   _touch: {fileID: 11400000, guid: 87a4f46d393ad4191b399aa2156c091e, type: 2}
   _parentUnits:
@@ -531,6 +534,7 @@ MonoBehaviour:
   _compSO: {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   _compsAndUnits: {fileID: 0}
   _unitRingManager: {fileID: 2056162103}
+  _unitRingOuterRadius: 1
 --- !u!114 &1159822627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,4 +848,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6215f780addbe481c934c8d5517c824b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitDegreeWidth: 5
+  _unitDegreeWidth: 10

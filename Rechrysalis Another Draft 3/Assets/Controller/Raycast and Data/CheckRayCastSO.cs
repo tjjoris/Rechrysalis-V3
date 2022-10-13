@@ -45,7 +45,7 @@ namespace Rechrysalis.Controller
                     _playerTargtList.SetNewTarget(hit.collider.gameObject);
                 }
             }
-            else if (UnitRingMouseOver(_mousePos, _controller.transform.position, 1.5f))
+            else if (UnitRingMouseOver(_mousePos, _controller.transform.position))
             {
                 checkIfIntUnitBounds(_mousePos);
             }
@@ -101,9 +101,9 @@ namespace Rechrysalis.Controller
             }
             return false;
         }
-        private bool UnitRingMouseOver(Vector2 _mousePos, Vector2 _controllerPos, float _ringSize)
+        private bool UnitRingMouseOver(Vector2 _mousePos, Vector2 _controllerPos)
         {
-            if ((_mousePos - _controllerPos).magnitude <= _ringSize)
+            if ((_mousePos - _controllerPos).magnitude <= _unitRingOuterRadius)
             {
                 return true;
             }
