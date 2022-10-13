@@ -28,34 +28,34 @@ namespace Rechrysalis.Controller
         }
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {
-            Vector3 _mousePosV3 = _mousePos;
-            LayerMask _mask = ~LayerMask.GetMask("PlayerController");
-            _mask += LayerMask.GetMask("Unit");
-            RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, _mask);
-            if (hit) 
+            Vector3 _mousePosV3;
+            RaycastHit2D hit;
+            CreateRayCastFunction(_mousePos, out _mousePosV3, out hit);
+            if (hit)
             {
-                if (hit.collider.gameObject.layer == 6)
+                // if (hit.collider.gameObject.layer == 6)
+                if (ControllerMouseOver(hit))
                 {
-                    Debug.Log($"stop");
-                    // _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = true;
-                    // _clickInfo.ControlledController.GetComponent<ControllerManager>().IsStopped = true;
                     _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
                 }
-                else if (hit.collider.gameObject.layer == 7)
+                // else if (hit.collider.gameObject.layer == 7)
+                if (UnitMouseOver(hit))
                 {
                     UnitManager _unitManager = hit.collider.gameObject.GetComponent<UnitManager>();
                     if (_unitManager != null)
                     {
                         Debug.Log($"clicked unit");
                     }
-                    if ((_unitManager != null) && (_unitManager.ControllerIndex == 1))
+                    // if ((_unitManager != null) && (_unitManager.ControllerIndex == 1))
+                    if (FriendlyUnitHitCollider(hit.collider.gameObject.GetComponent<UnitManager>()))
                     {
                         Debug.Log($"click enemy");
                         _playerTargtList.SetNewTarget(hit.collider.gameObject);
                     }
                 }
             }
-            else if ((_mousePosV3 - _controller.transform.position).magnitude < 10)           
+            // else if ((_mousePosV3 - _controller.transform.position).magnitude < 10)
+            else if (UnitRingMouseOver(_mousePos, _controller.transform.position, 3f))
             {
                 //clicked inside ring
                 checkIfIntUnitBounds(_mousePos);
@@ -64,7 +64,7 @@ namespace Rechrysalis.Controller
             {
                 //menu clicked
             }
-            else 
+            else
             {//map clicked
                 Debug.Log("map clicked " + _mousePos.ToString());
                 _clickInfo.FingerIDMove = _touchID;
@@ -76,9 +76,50 @@ namespace Rechrysalis.Controller
                 _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(false);
             }
         }
+
+        private static void CreateRayCastFunction(Vector2 _mousePos, out Vector3 _mousePosV3, out RaycastHit2D hit)
+        {
+            _mousePosV3 = _mousePos;
+            LayerMask _mask = ~LayerMask.GetMask("PlayerController");
+            _mask += LayerMask.GetMask("Unit");
+            hit = Physics2D.Raycast(_mousePos, Vector2.zero, _mask);
+        }
+        private bool ControllerMouseOver(RaycastHit2D _hit)
+        {
+            if (_hit.collider.gameObject.layer == 6)
+            {
+                return true;
+            }
+            else return false;
+        }
+        private bool UnitMouseOver(RaycastHit2D _hit)
+        {
+            if (_hit.collider.gameObject.layer == 7)
+            {
+                return true;
+            }
+            else return false;
+        }
+        private bool FriendlyUnitHitCollider(UnitManager _unitManager)
+        {
+            if ((_unitManager != null) && (_unitManager.ControllerIndex == 1))
+            {
+                return true;
+            }
+            return false;
+        }
+        private bool UnitRingMouseOver(Vector2 _mousePos, Vector2 _controllerPos, float _ringSize)
+        {
+            if ((_mousePos - _controllerPos).magnitude <= _ringSize)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public void CheckRayCastReleaseFunction(Vector2 _mousPos, int _touchID)
         {
-            
+
         }
         private int checkIfIntUnitBounds(Vector3 _mousePos)
         {
