@@ -12,9 +12,11 @@ namespace Rechrysalis.Controller
         // public float UnitDegreeWidth {get{return _unitDegreeWidth;}}
         private float[] _unitDegreeWidthArray;
         // public float[] UnitDegreeWidthArray {get {return _unitDegreeWidthArray;}}
+        private GameObject[] _parentUnits;        
     
-        public void Initialize (int _numberOfParentUnits)
+        public void Initialize (int _numberOfParentUnits, GameObject[] _parentunits)
         {
+            this._parentUnits = _parentUnits;
             if (_numberOfParentUnits > 0) {
             _unitDegreeWidthArray = new float[_numberOfParentUnits * 2];
             for (int _parentUnitIndex = 0; _parentUnitIndex < _numberOfParentUnits; _parentUnitIndex++)

@@ -16,7 +16,7 @@ namespace Rechrysalis.Controller
         public GameObject[] ParentUnits {get{return _parentUnits;}}
         private List<GameObject> _allUnits;    
         private PlayerUnitsSO _theseUnits;    
-        public void Initialize(int _controllerIndex, CompSO _unitComp, CompsAndUnitsSO _compsAndUnits)
+        public void Initialize(int _controllerIndex, CompSO _unitComp, CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRingManager)
         {
             _allUnits = new List<GameObject>();
             _allUnits.Clear();                    
@@ -29,7 +29,7 @@ namespace Rechrysalis.Controller
             {       
                 float _radToOffset = Mathf.Deg2Rad * (((360f / 3f) * _parentUnitIndex) + 90);  
                 Vector3 _unitOffset = new Vector3 (Mathf.Cos(_radToOffset) * _ringDistFromCentre, Mathf.Sin(_radToOffset) * _ringDistFromCentre, 0f);
-                Debug.Log($"radtooffset" + _radToOffset + "vector 3 " + _unitOffset);
+                // Debug.Log($"radtooffset" + _radToOffset + "vector 3 " + _unitOffset);
                 GameObject go = Instantiate(_parentUnitPrefab, _unitRing.transform);
                 go.transform.localPosition = _unitOffset;
                 _parentUnits[_parentUnitIndex] = go;
@@ -60,7 +60,8 @@ namespace Rechrysalis.Controller
                 }
                 _pum.AddChrysalisAndUnitActions();
                 _pum.ActivateUnit(0);
-            }            
+            }
+            _unitRingManager?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount, _parentUnits);          
         }
         public List<GameObject> GetAllUnits()
         {

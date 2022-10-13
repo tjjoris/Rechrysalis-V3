@@ -58,13 +58,13 @@ namespace Rechrysalis.Controller
             RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();
             if (GetComponent<RechrysalisControllerInitialize>() != null)
             {
-            _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits);
+            _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager);
             _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
             _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
             }
             // Debug.Log($"health " + _compsAndUnits.ControllerHealth[_controllerIndex]);
             GetComponent<ControllerHealth>()?.Initialize(_compsAndUnits.ControllerHealth[_controllerIndex], _allUnits);
-            _unitRingManager?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount);
+            // _unitRingManager?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount);
             SetIsStopped(true);
 
 
