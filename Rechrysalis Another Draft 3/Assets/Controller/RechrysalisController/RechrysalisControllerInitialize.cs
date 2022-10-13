@@ -16,7 +16,8 @@ namespace Rechrysalis.Controller
         public GameObject[] ParentUnits {get{return _parentUnits;}}
         private List<GameObject> _allUnits;    
         private PlayerUnitsSO _theseUnits;    
-        public void Initialize(int _controllerIndex, CompSO _unitComp, CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRingManager)
+        private float _unitRingOutRadius;
+        public void Initialize(int _controllerIndex, CompSO _unitComp, CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRingManager, float _unitRingOuterRadius)
         {
             _allUnits = new List<GameObject>();
             _allUnits.Clear();                    

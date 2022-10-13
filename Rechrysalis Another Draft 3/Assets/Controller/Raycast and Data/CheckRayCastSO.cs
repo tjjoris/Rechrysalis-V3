@@ -17,14 +17,16 @@ namespace Rechrysalis.Controller
         private GameObject _controller;
         private float _ringSize;
         private UnitRingManager _unitRingManager;
+        private float _unitRingOuterRadius;
         
-        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager)
+        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, float _unitRingOuterRadius)
         {
             this._compsAndUnits = _compsAndUnits;
             _playerTargtList = _compsAndUnits.TargetsLists[0];
             _playerTargtList.Initialize();
             _controller = _compsAndUnits.ControllerManagers[0].gameObject;
             this._unitRingManager = _unitRIngManager;
+            this._unitRingOuterRadius = _unitRingOuterRadius;
         }
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {

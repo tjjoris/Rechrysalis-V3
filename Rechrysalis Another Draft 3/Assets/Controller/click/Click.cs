@@ -12,12 +12,13 @@ namespace Rechrysalis.Controller
         [SerializeField] CheckRayCastSO _checkRayCast;
         [SerializeField] CompsAndUnitsSO _compsAndUnits;
 
-        public void Initialize(GameObject _controllerGO, CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRingManager)
+        public void Initialize(GameObject _controllerGO, CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRingManager, CheckRayCastSO _checkRayCast)
         {
             _clickInfo.ControlledController = _controllerGO;
             _checkRayCast.ClickInfo = _clickInfo;
             this._compsAndUnits = _compsAndUnits;
-            _checkRayCast.Initialize(_compsAndUnits, _unitRingManager);
+            // _checkRayCast.Initialize(_compsAndUnits, _unitRingManager);
+            this._checkRayCast = _checkRayCast;
         }        
         public void Tick()
         {

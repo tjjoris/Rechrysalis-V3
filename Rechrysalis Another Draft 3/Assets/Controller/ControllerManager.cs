@@ -9,6 +9,7 @@ namespace Rechrysalis.Controller
     public class ControllerManager : MonoBehaviour
     {
         [SerializeField] private int _controllerIndex;
+        [SerializeField] private CheckRayCastSO _checkRayCast;
         [SerializeField] private Click _click;
         [SerializeField] private TouchSO _touch;
         [SerializeField] private GameObject[] _parentUnits;
@@ -20,6 +21,7 @@ namespace Rechrysalis.Controller
         private ControllerManager _enemyController;
         [SerializeField] private CompsAndUnitsSO _compsAndUnits;
         [SerializeField] private UnitRingManager _unitRingManager;
+        [SerializeField] private float _unitRingOuterRadius;
         private Mover _mover;
         private bool _isStopped;
         // public bool IsStopped
@@ -47,8 +49,9 @@ namespace Rechrysalis.Controller
             if (_mover != null) {
             _mover?.Initialize(_controllerIndex);
             }
-            _click?.Initialize(gameObject, _compsAndUnits, _unitRingManager);
-            _touch?.Initialize(gameObject, _compsAndUnits, _unitRingManager);
+            _click?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
+            _touch?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
+            _checkRayCast.Initialize(_compsAndUnits, _unitRingManager, _unitRingOuterRadius);
             FreeEnemyInitialize _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             if (_freeEnemyInitialize != null)
             {
@@ -58,7 +61,7 @@ namespace Rechrysalis.Controller
             RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();
             if (GetComponent<RechrysalisControllerInitialize>() != null)
             {
-            _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager);
+            _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _unitRingOuterRadius);
             _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
             _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
             }
