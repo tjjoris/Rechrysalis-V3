@@ -17,7 +17,7 @@ namespace Rechrysalis.Controller
         private List<GameObject> _allUnits;    
         private PlayerUnitsSO _theseUnits;    
         private float _unitRingOutRadius;
-        private float _unitRingAngle;
+        private float _unitRingAngle = 90f;
         public void Initialize(int _controllerIndex, CompSO _unitComp, CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius)
         {
             _allUnits = new List<GameObject>();
