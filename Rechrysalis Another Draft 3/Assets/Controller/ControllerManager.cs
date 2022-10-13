@@ -62,7 +62,7 @@ namespace Rechrysalis.Controller
             RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();
             if (GetComponent<RechrysalisControllerInitialize>() != null)
             {
-            _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _unitRingOuterRadius);
+            _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _upgradeRingManager, _unitRingOuterRadius);
             _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
             _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
             }
