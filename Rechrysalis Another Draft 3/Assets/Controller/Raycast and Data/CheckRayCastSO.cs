@@ -18,7 +18,7 @@ namespace Rechrysalis.Controller
         private float _ringSize;
         private UnitRingManager _unitRingManager;
         private float _unitRingOuterRadius;
-        public enum TouchTypeEnum {controller, map, friendlyUnit, unitRing, menu, other }
+        public enum TouchTypeEnum {nothing, controller, map, friendlyUnit, unitRing, menu, other }
         private TouchTypeEnum[] _touchTypeArray = new TouchTypeEnum[5];
 
         
