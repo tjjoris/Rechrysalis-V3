@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: db3f022e624af490da1ed973efc08e3d, type: 2}
   _parentUnitcount: 1
   _childUnitCount: 3
+  _upgradeCountArray: 03000000

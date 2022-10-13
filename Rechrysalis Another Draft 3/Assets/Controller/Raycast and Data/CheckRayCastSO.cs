@@ -21,6 +21,8 @@ namespace Rechrysalis.Controller
         private float _unitRingOuterRadius;
         public enum TouchTypeEnum {nothing, controller, map, friendlyUnit, unitRing, menu, other }
         private TouchTypeEnum[] _touchTypeArray = new TouchTypeEnum[5];
+        private int[] _upgradeCountArray;
+        private int _unitUpgrading;
 
         
         public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius)
@@ -32,6 +34,7 @@ namespace Rechrysalis.Controller
             _controller = _compsAndUnits.ControllerManagers[0].gameObject;
             this._unitRingManager = _unitRIngManager;
             this._unitRingOuterRadius = _unitRingOuterRadius;
+            _upgradeCountArray = _compsAndUnits.CompsSO[0].UpgradeCountArray;
         }
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {
@@ -124,9 +127,21 @@ namespace Rechrysalis.Controller
             return false;
         }
 
-        public void CheckRayCastReleaseFunction(Vector2 _mousPos, int _touchID)
+        public void CheckRayCastReleaseFunction(Vector2 _mousePos, int _touchID)
         {
-
+            Vector3 _mousePosV3;
+            RaycastHit2D hit;
+            CreateRayCastFunction(_mousePos, out _mousePosV3, out hit);  
+            if (_touchTypeArray[_touchID] == TouchTypeEnum.friendlyUnit)
+            {          
+                if (ControllerMouseOver(hit));
+                else if (UnitRingMouseOver(_mousePos, _controller.transform.position))
+                {
+                    int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], _upgradeRingManager.CurrentAngle, _unitRingManager.UnitDegreeWidth);
+                    Debug.Log($"upgrade to " + _unitToUpgradeTo);
+                }
+            }
+            _touchTypeArray[_touchID] =TouchTypeEnum.nothing;
         }
         private int checkIfIntUnitBounds(Vector3 _mousePos)
         {

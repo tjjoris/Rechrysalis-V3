@@ -14,5 +14,7 @@ namespace Rechrysalis.Unit
         public int ParentUnitCount {get { return _parentUnitcount;}}
         [SerializeField] private int _childUnitCount;
         public int ChildUnitCount {get{return _childUnitCount;}}
+        [SerializeField] private int[] _upgradeCountArray;
+        public int[] UpgradeCountArray {get {return _upgradeCountArray;}}
     }
 }

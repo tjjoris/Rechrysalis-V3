@@ -435,6 +435,7 @@ MonoBehaviour:
   _compSO: {fileID: 0}
   _compsAndUnits: {fileID: 0}
   _unitRingManager: {fileID: 0}
+  _upgradeRingManager: {fileID: 0}
   _unitRingOuterRadius: 0
 --- !u!1 &886669363
 GameObject:
@@ -549,6 +550,7 @@ MonoBehaviour:
   _compSO: {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   _compsAndUnits: {fileID: 0}
   _unitRingManager: {fileID: 2056162103}
+  _upgradeRingManager: {fileID: 688441835}
   _unitRingOuterRadius: 1
 --- !u!114 &1159822627
 MonoBehaviour:
