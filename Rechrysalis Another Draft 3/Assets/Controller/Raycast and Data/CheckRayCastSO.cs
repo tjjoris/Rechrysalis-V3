@@ -43,7 +43,7 @@ namespace Rechrysalis.Controller
                     _playerTargtList.SetNewTarget(hit.collider.gameObject);
                 }
             }
-            else if (UnitRingMouseOver(_mousePos, _controller.transform.position, 3f))
+            else if (UnitRingMouseOver(_mousePos, _controller.transform.position, 1.5f))
             {
                 checkIfIntUnitBounds(_mousePos);
             }
@@ -53,15 +53,19 @@ namespace Rechrysalis.Controller
             }
             else
             {//map clicked
-                Debug.Log("map clicked " + _mousePos.ToString());
-                _clickInfo.FingerIDMove = _touchID;
-                Vector2 _direction = _clickInfo.ControlledController.transform.position;
-                _direction = _mousePos - _direction;
-                _clickInfo.ControlledController.GetComponent<Mover>().Direction = _direction;
-                // _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = false;
-                // _clickInfo.ControlledController.GetComponent<ControllerManager>().IsStopped = false;
-                _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(false);
+                MapClicked(_mousePos, _touchID);
             }
+        }
+
+        private void MapClicked(Vector2 _mousePos, int _touchID)
+        {
+            _clickInfo.FingerIDMove = _touchID;
+            Vector2 _direction = _clickInfo.ControlledController.transform.position;
+            _direction = _mousePos - _direction;
+            _clickInfo.ControlledController.GetComponent<Mover>().Direction = _direction;
+            // _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = false;
+            // _clickInfo.ControlledController.GetComponent<ControllerManager>().IsStopped = false;
+            _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(false);
         }
 
         private static void CreateRayCastFunction(Vector2 _mousePos, out Vector3 _mousePosV3, out RaycastHit2D hit)
