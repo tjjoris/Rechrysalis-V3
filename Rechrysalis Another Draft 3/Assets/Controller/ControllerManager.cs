@@ -144,5 +144,9 @@ namespace Rechrysalis.Controller
                 _unit.GetComponent<UnitManager>().IsStopped = _isStopped;
             }
         }
+        public void ActivateChrysalis(int _parentUnit, int _childUnit)
+        {
+            _parentUnits[_parentUnit].GetComponent<ParentUnitManager>()?.ActivateChrysalis(_childUnit);
+        }
     }
 }

@@ -23,6 +23,7 @@ namespace Rechrysalis.Controller
         private TouchTypeEnum[] _touchTypeArray = new TouchTypeEnum[5];
         private int[] _upgradeCountArray;
         private int _unitUpgrading;
+        private ControllerManager _controllermanager;
 
         
         public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius)
@@ -39,6 +40,7 @@ namespace Rechrysalis.Controller
             {
                 _touchTypeArray[_touchTypeIndex] = TouchTypeEnum.nothing;
             }
+            _controllermanager = _clickInfo.ControlledController.GetComponent<ControllerManager>();
         }
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {
@@ -148,6 +150,7 @@ namespace Rechrysalis.Controller
                 {
                     int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], _upgradeRingManager.CurrentAngle, _unitRingManager.UnitDegreeWidth);
                     Debug.Log($"upgrade to " + _unitToUpgradeTo);
+                    _controllermanager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
                 }
             }
             _touchTypeArray[_touchID] =TouchTypeEnum.nothing;
