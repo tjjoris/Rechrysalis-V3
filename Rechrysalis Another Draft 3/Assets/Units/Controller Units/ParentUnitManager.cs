@@ -91,9 +91,9 @@ namespace Rechrysalis.Unit
             {
                 _timeToKeep = _chrysalisTimer.TimerCurrent;
             }
-            // for (int _indexInSubChrysalis=0; _indexInSubChrysalis<_subChrysalii.Length; _indexInSubChrysalis++)
+            for (int _indexInSubChrysalis=0; _indexInSubChrysalis<_subChrysalii.Length; _indexInSubChrysalis++)
             {
-                // if (_indexInSubChrysalis == _chrysalisIndex)
+                if (_indexInSubChrysalis == _chrysalisIndex)
                 {
                     _currentSubUnit = _subChrysalii[_chrysalisIndex];
                     Debug.Log($"activating chrysalis" + _chrysalisIndex);
@@ -104,6 +104,7 @@ namespace Rechrysalis.Unit
                         _theseUnits.ActiveUnits.Add(_subChrysalii[_chrysalisIndex]);
                     }                    
                 }
+                else DeactivateChrysalis(_indexInSubChrysalis);
             }
             for (int _unitIndex = 0; _unitIndex < _subUnits.Length; _unitIndex ++)
             {
