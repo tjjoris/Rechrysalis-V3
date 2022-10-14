@@ -83,7 +83,6 @@ namespace Rechrysalis.Unit
         }
         public void ActivateChrysalis(int _chrysalisIndex)
         {
-            Debug.Log($"Activate Chrysalis index " + _chrysalisIndex);
             if (_currentSubUnit != _subChrysalii[_chrysalisIndex])
             {
             float _timeToKeep = 0;

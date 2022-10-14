@@ -148,9 +148,9 @@ namespace Rechrysalis.Controller
                 if ((hit) && (ControllerMouseOver(hit)));
                 else if (UnitRingMouseOver(_mousePos, _controller.transform.position))
                 {
-                    Debug.Log($" ring angle " + RingAngle(_mousePos) + "unit count " + _upgradeCountArray[_unitUpgrading]);
+                    // Debug.Log($" ring angle " + RingAngle(_mousePos) + "unit count " + _upgradeCountArray[_unitUpgrading]);
                     int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], _upgradeRingManager.CurrentAngle, _unitRingManager.UnitDegreeWidth);
-                    Debug.Log($"upgrade to " + _unitToUpgradeTo);
+                    // Debug.Log($"upgrade to " + _unitToUpgradeTo);
                     _controllermanager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
                 }
             }
