@@ -39,7 +39,6 @@ namespace Rechrysalis.Controller
         {
             if ((_mouseButtonDown) && (Input.GetMouseButtonUp(0)))
             {
-                Debug.Log($"release start");
                 _mouseButtonDown = false;
                 _checkRayCast.CheckRayCastReleaseFunction(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0);
                 

@@ -24,7 +24,7 @@ namespace Rechrysalis
         }
         public static float V2ToDegrees(Vector2 _v2)
         {
-            return (Mathf.Atan2(_v2.y, _v2.x) * Mathf.Rad2Deg);
+            return LimitAngle(Mathf.Atan2(_v2.y, _v2.x) * Mathf.Rad2Deg);
         }
         public static Vector2 DegreeToVector2(float degree)
         {

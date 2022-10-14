@@ -148,6 +148,7 @@ namespace Rechrysalis.Controller
                 if ((hit) && (ControllerMouseOver(hit)));
                 else if (UnitRingMouseOver(_mousePos, _controller.transform.position))
                 {
+                    Debug.Log($" ring angle " + RingAngle(_mousePos) + "unit count " + _upgradeCountArray[_unitUpgrading]);
                     int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], _upgradeRingManager.CurrentAngle, _unitRingManager.UnitDegreeWidth);
                     Debug.Log($"upgrade to " + _unitToUpgradeTo);
                     _controllermanager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
@@ -176,7 +177,9 @@ namespace Rechrysalis.Controller
             {
                 for (int _unitIndex = 0; _unitIndex < _unitCount; _unitIndex++)
                 {
-                    if ((_mouseAngleCurrent >= (((360 / _unitCount) * _unitIndex) - _unitWidthDegrees + _angleOffset)) && (_mouseAngleCurrent <= (((360 / _unitCount) * _unitIndex) + _unitWidthDegrees + _angleOffset)))
+                    float _angleToCompare = AnglesMath.LimitAngle(((360 / _unitCount) * _unitIndex) - -_angleOffset);
+                    if ((_mouseAngleCurrent >= _angleToCompare - _unitWidthDegrees) && (_mouseAngleCurrent <= _angleToCompare + _unitWidthDegrees))
+                    // if ((_mouseAngleCurrent >= (((360 / _unitCount) * _unitIndex) - _unitWidthDegrees + _angleOffset)) && (_mouseAngleCurrent <= (((360 / _unitCount) * _unitIndex) + _unitWidthDegrees + _angleOffset)))
                     {
                         return _unitIndex;
                     }
