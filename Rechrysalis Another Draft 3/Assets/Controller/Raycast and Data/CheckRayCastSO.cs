@@ -150,7 +150,7 @@ namespace Rechrysalis.Controller
                 else if (UnitRingMouseOver(_mousePos, _controller.transform.position))
                 {
                     // Debug.Log($" ring angle " + RingAngle(_mousePos) + "unit count " + _upgradeCountArray[_unitUpgrading]);
-                    int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], _upgradeRingManager.CurrentAngle, _unitRingManager.UnitDegreeWidth);
+                    int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
                     // Debug.Log($"upgrade to " + _unitToUpgradeTo);
                     _controllermanager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
                 }
@@ -187,6 +187,10 @@ namespace Rechrysalis.Controller
                 }
             }
             return -1;
+        }
+        private float UnitAngle (int _unitIndex, int _maxUnits)
+        {
+            return AnglesMath.LimitAngle((360 / _maxUnits) * _unitIndex);
         }
         private float RingAngle(Vector3 _mousePos)
         {
