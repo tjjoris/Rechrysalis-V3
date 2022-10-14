@@ -17,6 +17,7 @@ namespace Rechrysalis.Controller
         private GameObject _controller;
         private float _ringSize;
         private UnitRingManager _unitRingManager;
+        private HilightRingManager _hilightRingManager;
         private UpgradeRingManager _upgradeRingManager;
         private float _unitRingOuterRadius;
         public enum TouchTypeEnum {nothing, controller, map, friendlyUnit, unitRing, menu, other }
@@ -26,7 +27,7 @@ namespace Rechrysalis.Controller
         private ControllerManager _controllermanager;
 
         
-        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius)
+        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius)
         {
             this._upgradeRingManager = _upgradeRingManager;
             this._compsAndUnits = _compsAndUnits;
@@ -34,6 +35,7 @@ namespace Rechrysalis.Controller
             _playerTargtList.Initialize();
             _controller = _compsAndUnits.ControllerManagers[0].gameObject;
             this._unitRingManager = _unitRIngManager;
+            this._hilightRingManager = _hilightRingManager;
             this._unitRingOuterRadius = _unitRingOuterRadius;
             _upgradeCountArray = _compsAndUnits.CompsSO[0].UpgradeCountArray;
             for (int _touchTypeIndex = 0; _touchTypeIndex < _touchTypeArray.Length; _touchTypeIndex ++)
@@ -69,6 +71,10 @@ namespace Rechrysalis.Controller
                     _unitUpgrading = _unitInbounds;
                     _touchTypeArray[_touchID] = TouchTypeEnum.friendlyUnit;
                     Debug.Log($"friendly unit " + _unitInbounds);
+                }
+                else 
+                {
+
                 }
             }
             else if (false)

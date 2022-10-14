@@ -54,7 +54,7 @@ namespace Rechrysalis.Controller
             }
             _click?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
             _touch?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
-            _checkRayCast?.Initialize(_compsAndUnits, _unitRingManager, _upgradeRingManager, _unitRingOuterRadius);
+            _checkRayCast?.Initialize(_compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius);
             FreeEnemyInitialize _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             if (_freeEnemyInitialize != null)
             {
