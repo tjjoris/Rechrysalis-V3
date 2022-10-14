@@ -14,6 +14,7 @@ namespace Rechrysalis.Unit
         [SerializeField] private UnitStatsSO _unitStats;
         [SerializeField] private TMP_Text _nameText;
         public UnitStatsSO UnitStats {get{return _unitStats;}}
+        private Health _health;
         private Mover _mover;
         private Attack _attack;
         private ChrysalisTimer _chrysalisTimer;
@@ -45,7 +46,8 @@ namespace Rechrysalis.Unit
             _attack = GetComponent<Attack>();
             if (_attack != null)  _attack.IsStopped = true;
             _attack?.Initialize(_unitStats);
-            GetComponent<Health>()?.Initialize(_unitStats.HealthMax);
+            _health = GetComponent<Health>();
+            _health?.Initialize(_unitStats.HealthMax);
             GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
             GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[_controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
             GetComponent<Rechrysalize>()?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ChildUnitCount);
@@ -54,6 +56,10 @@ namespace Rechrysalis.Unit
             GetComponent<Range>()?.Initialize(_unitStats);
             _chrysalisTimer = GetComponent<ChrysalisTimer>();
             _projectilesPool = GetComponent<ProjectilesPool>();
+        }
+        public void RestartUnit()
+        {
+            _health?.RestartUnit();
         }
         public void Tick(float _timeAmount)
         {

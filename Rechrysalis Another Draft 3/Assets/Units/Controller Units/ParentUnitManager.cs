@@ -105,6 +105,7 @@ namespace Rechrysalis.Unit
                 if (_indexInSubUnits == _unitIndex)  
                 {
                     _subUnits[_unitIndex].SetActive(true);
+                    _subUnits[_unitIndex].GetComponent<UnitManager>()?.RestartUnit();
                     if (!_theseUnits.ActiveUnits.Contains(_subUnits[_indexInSubUnits]))
                     {
                         _theseUnits.ActiveUnits.Add(_subUnits[_unitIndex]);

@@ -20,6 +20,10 @@ namespace Rechrysalis.Attacking
         _die = GetComponent<Die>();
         _damagesController = GetComponent<DamagesController>();
        }
+       public void RestartUnit()
+       {
+        _healthCurrent = _healthMax;
+       }
        public void TakeDamage(float _damageAmount)
        {
         this._healthCurrent -= _damageAmount;

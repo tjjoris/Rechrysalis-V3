@@ -13,7 +13,7 @@ namespace Rechrysalis.Attacking
         // public GameObject TargetUnit {set{_targetUnit = value;} get {return _targetUnit;}}
         [SerializeField] private float _speed;
         public float Speed {set{_speed = value;}get{return _speed;}}
-        private float _minDistToDisable = 1f;
+        private float _minDistToDisable = 0.2f;
 
     public void Initialize(Sprite _sprite)
     {

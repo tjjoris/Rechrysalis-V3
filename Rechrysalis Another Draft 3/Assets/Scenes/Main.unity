@@ -551,7 +551,7 @@ MonoBehaviour:
   _compsAndUnits: {fileID: 0}
   _unitRingManager: {fileID: 2056162103}
   _upgradeRingManager: {fileID: 688441835}
-  _unitRingOuterRadius: 1
+  _unitRingOuterRadius: 1.02
 --- !u!114 &1159822627
 MonoBehaviour:
   m_ObjectHideFlags: 0
