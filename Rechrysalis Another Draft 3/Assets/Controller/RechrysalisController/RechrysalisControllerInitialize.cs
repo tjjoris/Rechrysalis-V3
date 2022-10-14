@@ -43,7 +43,7 @@ namespace Rechrysalis.Controller
                 for (int _childUnitIndex = 0; _childUnitIndex < _unitComp.UpgradeCountArray[_parentUnitIndex]; _childUnitIndex++)
                 {
                     GameObject childUnitGo = Instantiate(_childUnitPrefab, go.transform);
-                    UnitStatsSO _unitStats = _unitComp.UnitSOArray[(_parentUnitIndex * _unitComp.ParentUnitCount) + (_childUnitIndex)];
+                    UnitStatsSO _unitStats = _unitComp.UnitSOArray[(_parentUnitIndex * 3) + (_childUnitIndex)];
                     Debug.Log($"name " + (_unitStats.UnitName));
                     _unitStats.Initialize();
                     childUnitGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits);
