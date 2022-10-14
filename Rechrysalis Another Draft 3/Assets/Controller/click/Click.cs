@@ -37,11 +37,12 @@ namespace Rechrysalis.Controller
         }
         private void CheckIfMouseUp()
         {
-            if ((_mouseButtonDown) && (!Input.GetMouseButtonDown(0)))
+            if ((_mouseButtonDown) && (Input.GetMouseButtonUp(0)))
             {
                 Debug.Log($"release start");
-                // _checkRayCast.CheckRayCastReleaseFunction(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0);
                 _mouseButtonDown = false;
+                _checkRayCast.CheckRayCastReleaseFunction(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0);
+                
             }
         }
     }

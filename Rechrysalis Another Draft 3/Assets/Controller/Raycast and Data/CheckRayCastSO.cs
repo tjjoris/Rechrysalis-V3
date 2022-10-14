@@ -133,17 +133,16 @@ namespace Rechrysalis.Controller
 
         public void CheckRayCastReleaseFunction(Vector2 _mousePos, int _touchID)
         {
-            Debug.Log($"release");
+            // Debug.Log($"mouse pos " + _mousePos + "touchiD " + _touchID);
             Vector3 _mousePosV3;
             RaycastHit2D hit;
             CreateRayCastFunction(_mousePos, out _mousePosV3, out hit);  
             if (_touchTypeArray[_touchID] == TouchTypeEnum.friendlyUnit)
             {          
-                if (ControllerMouseOver(hit));
-                else if (UnitRingMouseOver(_mousePos, _controller.transform.position))
+                // if ((!ControllerMouseOver(hit)) && (UnitRingMouseOver(_mousePos, _controller.transform.position)))
                 {
-                    int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], _upgradeRingManager.CurrentAngle, _unitRingManager.UnitDegreeWidth);
-                    Debug.Log($"upgrade to " + _unitToUpgradeTo);
+                    // int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], _upgradeRingManager.CurrentAngle, _unitRingManager.UnitDegreeWidth);
+                    // Debug.Log($"upgrade to " + _unitToUpgradeTo);
                 }
             }
             _touchTypeArray[_touchID] =TouchTypeEnum.nothing;
