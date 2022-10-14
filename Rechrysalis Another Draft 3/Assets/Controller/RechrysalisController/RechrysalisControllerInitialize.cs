@@ -40,7 +40,7 @@ namespace Rechrysalis.Controller
                 _pum?.Initialize(_controllerIndex, _parentUnitIndex, _unitComp, _compsAndUnits.PlayerUnits[_controllerIndex]);                        
                 _pum.SubUnits = new GameObject[_unitComp.ChildUnitCount];
                 _pum.SubChrysalii = new GameObject[_unitComp.ChildUnitCount];
-                for (int _childUnitIndex = 0; _childUnitIndex < _unitComp.ChildUnitCount; _childUnitIndex++)
+                for (int _childUnitIndex = 0; _childUnitIndex < _unitComp.UpgradeCountArray[_parentUnitIndex]; _childUnitIndex++)
                 {
                     GameObject childUnitGo = Instantiate(_childUnitPrefab, go.transform);
                     UnitStatsSO _unitStats = _unitComp.UnitSOArray[(_parentUnitIndex * _unitComp.ParentUnitCount) + (_childUnitIndex)];
