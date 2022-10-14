@@ -24,6 +24,8 @@ namespace Rechrysalis
         public UnitStatsSO Chrysalis {get{return _chrysalis;}}
         [SerializeField] private float[] _controllerHealth;
         public float[] ControllerHealth {get{return _controllerHealth;}}
+        // [SerializeField] private List<GameObject> _projectilesList;
+        // public List<GameObject> ProjectilesList {set {_projectilesList = value;} get{return _projectilesList;}}
         
         public void Initialize(CompSO[] _compSO, ControllerManager _controllerMangerOne, ControllerManager _ControllerManagerTwo)
         {

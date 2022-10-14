@@ -67,7 +67,7 @@ namespace Rechrysalis.Unit
             // {
                 _mover?.Tick(_timeAmount);
                 _attack?.Tick(_timeAmount);
-                _projectilesPool?.TickProjectiles(_timeAmount);
+                // _projectilesPool?.TickProjectiles(_timeAmount);
                 _chrysalisTimer?.Tick(_timeAmount);
             // }
         }

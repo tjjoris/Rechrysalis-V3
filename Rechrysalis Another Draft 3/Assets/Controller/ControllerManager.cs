@@ -123,7 +123,7 @@ namespace Rechrysalis.Controller
             // }
             foreach (GameObject _unit in _allUnits)
             {
-                if (_unit.active)
+                if (_unit.activeInHierarchy)
                 {
                     _unit.GetComponent<UnitManager>().Tick(_timeAmount);
                 }

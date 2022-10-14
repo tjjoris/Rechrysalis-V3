@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Controller;
 using Rechrysalis.Unit;
+using Rechrysalis.Attacking;
 
 namespace Rechrysalis
 {
@@ -12,6 +13,7 @@ namespace Rechrysalis
         [SerializeField] ControllerManager[] _controllerManager;
         [SerializeField] PlayerUnitsSO[] _playerUnitsSO;  
         [SerializeField] CompSO[] _compSO;   
+        [SerializeField] ProjectilesHolder _projectilesHolder;
 
         private void Awake() {
             _compsAndUnitsSO.CompsSO = _compSO;
@@ -60,6 +62,7 @@ namespace Rechrysalis
                     }
                 }
             }
+            _projectilesHolder?.Tick(_timeAmount);
         }
     }
 }

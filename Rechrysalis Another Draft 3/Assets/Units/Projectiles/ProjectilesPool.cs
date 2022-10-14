@@ -51,5 +51,15 @@ namespace Rechrysalis.Attacking
                 }
             }
         }
+        // public void Tick(float _timeAmount)
+        // {
+        //     foreach (ProjectileHandler _projectileHandler in _projectilehandlers)
+        //     {
+        //         if ((_projectileHandler != null) && (_projectileHandler.gameObject.activeInHierarchy))
+        //         {
+        //             _projectileHandler.Tick(_timeAmount);
+        //         }
+        //     }
+        // }
     }
 }
