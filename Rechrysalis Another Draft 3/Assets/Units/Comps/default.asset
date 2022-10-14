@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitSOArray:
   - {fileID: 11400000, guid: db3f022e624af490da1ed973efc08e3d, type: 2}
-  - {fileID: 11400000, guid: db3f022e624af490da1ed973efc08e3d, type: 2}
-  - {fileID: 11400000, guid: db3f022e624af490da1ed973efc08e3d, type: 2}
+  - {fileID: 11400000, guid: 933474abe37604f519a69c6018637d2c, type: 2}
+  - {fileID: 11400000, guid: 03b6e30d012bb4980b779ae16ca499c7, type: 2}
   _parentUnitcount: 1
   _childUnitCount: 3
   _upgradeCountArray: 03000000

@@ -44,8 +44,9 @@ namespace Rechrysalis.Controller
                 {
                     GameObject childUnitGo = Instantiate(_childUnitPrefab, go.transform);
                     UnitStatsSO _unitStats = _unitComp.UnitSOArray[(_parentUnitIndex * _unitComp.ParentUnitCount) + (_childUnitIndex)];
+                    Debug.Log($"name " + (_unitStats.UnitName));
                     _unitStats.Initialize();
-                    childUnitGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitComp.UnitSOArray[(_parentUnitIndex * _unitComp.ParentUnitCount) + (_childUnitIndex)], _compsAndUnits);
+                    childUnitGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits);
                     _pum.SubUnits[_childUnitIndex] = childUnitGo;
                     childUnitGo.name = $"Child Unit " + _childUnitIndex;
                     _allUnits.Add(childUnitGo);
@@ -55,7 +56,7 @@ namespace Rechrysalis.Controller
                     chrysalisGo.name = $"Chrysalis " + _childUnitIndex;
                     // chrysalisGo.GetComponent<ChrysalisManager>()?.Initialize(_unitStats.ChrysalisTimerMax, childUnitGo);
                     chrysalisGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _compsAndUnits.Chrysalis, _compsAndUnits);
-                    chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(_unitStats.ChrysalisTimerMax);
+                    chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(_unitStats.ChrysalisTimerMax, _childUnitIndex);
                     _pum.SubChrysalii[_childUnitIndex] = chrysalisGo;                    
                     _allUnits.Add(chrysalisGo);                  
                     chrysalisGo.SetActive(false);  

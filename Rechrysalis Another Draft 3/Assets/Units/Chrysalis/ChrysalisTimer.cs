@@ -14,9 +14,10 @@ namespace Rechrysalis.Unit
         private int _subUnitCount;
         public Action<int> _startUnit;
 
-        public void Initialize (float _timerMax)
+        public void Initialize (float _timerMax, int _nextUnitBuilding)
         {
             this._timerMax = _timerMax;
+            this._nextUnitBuilding = _nextUnitBuilding;
         }
         public void StartThisChrysalis(float _timeToKeep)
         {

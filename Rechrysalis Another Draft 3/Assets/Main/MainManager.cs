@@ -16,7 +16,8 @@ namespace Rechrysalis
         [SerializeField] ProjectilesHolder _projectilesHolder;
 
         private void Awake() {
-            _compsAndUnitsSO.CompsSO = _compSO;
+            // _compsAndUnitsSO.CompsSO = _compSO;
+            _compSO = _compsAndUnitsSO.CompsSO;
             _compsAndUnitsSO.ControllerManagers = _controllerManager;
             GameMaster.GetSingleton().ReferenceManager.CompsAndUnitsSO = _compsAndUnitsSO;
             _projectilesHolder.Initialize();
