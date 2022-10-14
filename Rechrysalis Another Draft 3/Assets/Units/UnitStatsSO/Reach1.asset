@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _amountToPool: 2
   _projectileSpeed: 0.1
-  _projectileSprite: {fileID: 0}
+  _projectileSprite: {fileID: 21300000, guid: acf2a1d752267428eaf137c494e17c8b, type: 3}
   _unitName: Reach1
   _attackChargeUp: 0.4
   _attackWindDown: 0.4
@@ -23,5 +23,5 @@ MonoBehaviour:
   _healthMaxBase: 13
   _typeHealthMaxMultiplier: 1.2
   _tierHealthMaxMultipleir: 1.2
-  _healthMax: 0
+  _healthMax: 18.720001
   _chrysalisTimerMax: 5
