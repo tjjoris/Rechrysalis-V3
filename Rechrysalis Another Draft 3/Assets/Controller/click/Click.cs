@@ -11,9 +11,11 @@ namespace Rechrysalis.Controller
         [SerializeField] ClickInfo _clickInfo;
         [SerializeField] CheckRayCastSO _checkRayCast;
         [SerializeField] CompsAndUnitsSO _compsAndUnits;
+        private bool _mouseButtonDown;
 
         public void Initialize(GameObject _controllerGO, CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRingManager, CheckRayCastSO _checkRayCast)
         {
+            _mouseButtonDown = false;
             _clickInfo.ControlledController = _controllerGO;
             _checkRayCast.ClickInfo = _clickInfo;
             this._compsAndUnits = _compsAndUnits;
@@ -23,12 +25,23 @@ namespace Rechrysalis.Controller
         public void Tick()
         {
             CheckIfMouseDown();
+            CheckIfMouseUp();
         }
         private void CheckIfMouseDown() {
             if (Input.GetMouseButtonDown(0))
             {
-            Debug.Log("check");
+            // Debug.Log("check");
             _checkRayCast.CheckRayCastDownFunction(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0);
+            _mouseButtonDown = true;
+            }
+        }
+        private void CheckIfMouseUp()
+        {
+            if ((_mouseButtonDown) && (!Input.GetMouseButtonDown(0)))
+            {
+                Debug.Log($"release start");
+                // _checkRayCast.CheckRayCastReleaseFunction(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0);
+                _mouseButtonDown = false;
             }
         }
     }

@@ -35,6 +35,10 @@ namespace Rechrysalis.Controller
             this._unitRingManager = _unitRIngManager;
             this._unitRingOuterRadius = _unitRingOuterRadius;
             _upgradeCountArray = _compsAndUnits.CompsSO[0].UpgradeCountArray;
+            for (int _touchTypeIndex = 0; _touchTypeIndex < _touchTypeArray.Length; _touchTypeIndex ++)
+            {
+                _touchTypeArray[_touchTypeIndex] = TouchTypeEnum.nothing;
+            }
         }
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {
@@ -129,6 +133,7 @@ namespace Rechrysalis.Controller
 
         public void CheckRayCastReleaseFunction(Vector2 _mousePos, int _touchID)
         {
+            Debug.Log($"release");
             Vector3 _mousePosV3;
             RaycastHit2D hit;
             CreateRayCastFunction(_mousePos, out _mousePosV3, out hit);  
