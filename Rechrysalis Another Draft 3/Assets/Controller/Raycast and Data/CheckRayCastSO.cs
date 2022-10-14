@@ -141,13 +141,13 @@ namespace Rechrysalis.Controller
             // Debug.Log($"controller pos " + _controller.transform.position); 
             if (_touchTypeArray[_touchID] == TouchTypeEnum.friendlyUnit)
             {      
-                Debug.Log($"mouse pos" + _mousePos);
-                Debug.Log($"controller pos " + _controller.transform.position);
+                // Debug.Log($"mouse pos" + _mousePos);
+                // Debug.Log($"controller pos " + _controller.transform.position);
                 if ((hit) && (ControllerMouseOver(hit)));
                 else if (UnitRingMouseOver(_mousePos, _controller.transform.position))
                 {
-                    // int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], _upgradeRingManager.CurrentAngle, _unitRingManager.UnitDegreeWidth);
-                    // Debug.Log($"upgrade to " + _unitToUpgradeTo);
+                    int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], _upgradeRingManager.CurrentAngle, _unitRingManager.UnitDegreeWidth);
+                    Debug.Log($"upgrade to " + _unitToUpgradeTo);
                 }
             }
             _touchTypeArray[_touchID] =TouchTypeEnum.nothing;
