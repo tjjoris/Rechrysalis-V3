@@ -21,6 +21,7 @@ namespace Rechrysalis.Controller
         private ControllerManager _enemyController;
         [SerializeField] private CompsAndUnitsSO _compsAndUnits;
         [SerializeField] private UnitRingManager _unitRingManager;
+        [SerializeField] private HilightRingManager _hilightRingManager;
         [SerializeField] private UpgradeRingManager _upgradeRingManager;
         [SerializeField] private float _unitRingOuterRadius;
         private Mover _mover;
@@ -44,6 +45,7 @@ namespace Rechrysalis.Controller
             this._compSO = _compSO;
             this._enemyController = _enemyController;
             this._compsAndUnits = _compsAndUnits;
+            _hilightRingManager.Initialize(_unitRingManager);
             _allUnits = new List<GameObject>();
             _allUnits.Clear();
             _mover = GetComponent<Mover>();
