@@ -66,6 +66,7 @@ namespace Rechrysalis.Controller
                 int _unitInbounds = checkIfIntUnitBounds(_mousePos);
                 if (_unitInbounds != -1)
                 {
+                    _unitUpgrading = _unitInbounds;
                     _touchTypeArray[_touchID] = TouchTypeEnum.friendlyUnit;
                     Debug.Log($"friendly unit " + _unitInbounds);
                 }
