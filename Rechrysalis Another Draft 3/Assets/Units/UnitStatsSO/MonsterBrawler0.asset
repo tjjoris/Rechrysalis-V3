@@ -17,7 +17,7 @@ MonoBehaviour:
   _projectileSprite: {fileID: 21300000, guid: acf2a1d752267428eaf137c494e17c8b, type: 3}
   _unitName: Monster
   _attackChargeUp: 2
-  _attackWindDown: 3
+  _attackWindDown: 1
   _baseDamage: 3
   _baseRange: 3
   _healthMaxBase: 25

@@ -16,10 +16,10 @@ MonoBehaviour:
   _projectileSpeed: 0.1
   _projectileSprite: {fileID: 21300000, guid: acf2a1d752267428eaf137c494e17c8b, type: 3}
   _unitName: Brawler 0
-  _attackChargeUp: 1
-  _attackWindDown: 1.5
-  _baseDamage: 5
-  _baseRange: 3
+  _attackChargeUp: 0.8
+  _attackWindDown: 0.3
+  _baseDamage: 4
+  _baseRange: 4
   _healthMaxBase: 40
   _typeHealthMaxMultiplier: 1.2
   _tierHealthMaxMultipleir: 1

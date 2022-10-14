@@ -24,8 +24,8 @@ namespace Rechrysalis.Controller
             _healthCurrent -= _damageAmount;
         }
         public void SubscribeToControllerDamage()        
-        {
-            if (_allUnits.Count > 0)
+        {            
+            if ((_allUnits != null) && (_allUnits.Count > 0))
             {
                 foreach (GameObject _unit in _allUnits)
                 {

@@ -38,16 +38,16 @@ namespace Rechrysalis.Attacking
         }
         public void Tick(float _timeAmount)
         {
-            if (_attackChargeCurrent >= _attackWindDown) 
+            if (_attackChargeCurrent >= _attackWindDown + _attackChargeUp) 
             {
                 _attackChargeCurrent = 0;
                 _isWindingDown = false;
             }
-            if ((_isWindingDown) && (_attackChargeCurrent >= _attackChargeUp) && (_attackChargeCurrent < _attackWindDown))
+            else if ((_isWindingDown) && (_attackChargeCurrent >= _attackChargeUp) && (_attackChargeCurrent < (_attackWindDown + _attackChargeUp)))
             {
                 _attackChargeCurrent += _timeAmount;
             }
-            if ((_attackChargeCurrent >= _attackChargeUp) && (_isStopped) && (!_isWindingDown))
+            else if ((_attackChargeCurrent >= _attackChargeUp) && (_isStopped) && (!_isWindingDown))
             {
                 GameObject _targetUnit = _inRangeByPriority?.CheckPriorityTargetInRange();
                 if (_targetUnit == null)
@@ -59,6 +59,7 @@ namespace Rechrysalis.Attacking
                     GameObject _projectile = _projectilesPool?.GetPooledObject();
                     if (_projectile != null) 
                     {
+                        Debug.Log($"shoot projectile");
                         _projectile.SetActive(true);
                         _projectile.transform.position = gameObject.transform.position;
                         // Debug.Log($"position " + _projectile.transform.position);
@@ -67,7 +68,7 @@ namespace Rechrysalis.Attacking
                     }
                 }
             }
-            if ((_attackChargeCurrent < _attackChargeUp) && (_isStopped))
+            else if ((_attackChargeCurrent < _attackChargeUp) && (_isStopped))
             {
                 _attackChargeCurrent += _timeAmount;                
             }            
