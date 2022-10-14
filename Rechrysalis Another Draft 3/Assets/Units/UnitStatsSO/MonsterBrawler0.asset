@@ -19,7 +19,7 @@ MonoBehaviour:
   _attackChargeUp: 2
   _attackWindDown: 1
   _baseDamage: 3
-  _baseRange: 3
+  _baseRange: 5
   _healthMaxBase: 25
   _typeHealthMaxMultiplier: 1.2
   _tierHealthMaxMultipleir: 1
