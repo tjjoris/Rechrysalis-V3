@@ -15,8 +15,13 @@ namespace Rechrysalis.Controller
         }
         public void SetAngle(float _angle)
         {
-            transform.eulerAngles = new Vector3 (0, 0, _angle);
-            _unitRingManager.SetTargetAngle(_angle);
+            float _newAngle = _angle - _oldAngle;
+            transform.eulerAngles = new Vector3 (0, 0, _newAngle);
+            _unitRingManager.SetTargetAngle(_newAngle);
+        }
+        public void SetOldAngle(float _oldAngle)
+        {
+            this._oldAngle = _oldAngle;
         }
         // public void Tick()
         // {
