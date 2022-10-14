@@ -85,7 +85,7 @@ namespace Rechrysalis.Unit
         {
             Debug.Log($"activate chryslis");
             float _timeToKeep = 0;
-            ChrysalisTimer _chrysalisTimer = GetComponent<ChrysalisTimer>();
+            ChrysalisTimer _chrysalisTimer = _currentSubUnit.GetComponent<ChrysalisTimer>();
             if (_chrysalisTimer != null)
             {
                 _timeToKeep = _chrysalisTimer.TimerCurrent;
