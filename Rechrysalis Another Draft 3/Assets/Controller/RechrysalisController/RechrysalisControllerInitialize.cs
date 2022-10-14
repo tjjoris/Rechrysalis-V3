@@ -29,7 +29,7 @@ namespace Rechrysalis.Controller
             // foreach (GameObject _unit in _parentUnits)
             for (int _parentUnitIndex = 0; _parentUnitIndex < _unitComp.ParentUnitCount; _parentUnitIndex++)
             {       
-                float _radToOffset = Mathf.Deg2Rad * (((360f / 3f) * _parentUnitIndex) + _unitRingAngle);  
+                float _radToOffset = Mathf.Deg2Rad * (((360f / _unitComp.ParentUnitCount) * _parentUnitIndex) + _unitRingAngle);  
                 Vector3 _unitOffset = new Vector3 (Mathf.Cos(_radToOffset) * _ringDistFromCentre, Mathf.Sin(_radToOffset) * _ringDistFromCentre, 0f);
                 // Debug.Log($"radtooffset" + _radToOffset + "vector 3 " + _unitOffset);
                 GameObject go = Instantiate(_parentUnitPrefab, _unitRing.transform);
@@ -38,8 +38,8 @@ namespace Rechrysalis.Controller
                 go.name = "Parent Unit " + _parentUnitIndex.ToString();
                 ParentUnitManager _pum = go.GetComponent<ParentUnitManager>();
                 _pum?.Initialize(_controllerIndex, _parentUnitIndex, _unitComp, _compsAndUnits.PlayerUnits[_controllerIndex]);                        
-                _pum.SubUnits = new GameObject[_unitComp.ChildUnitCount];
-                _pum.SubChrysalii = new GameObject[_unitComp.ChildUnitCount];
+                _pum.SubUnits = new GameObject[_unitComp.UpgradeCountArray[_parentUnitIndex]];
+                _pum.SubChrysalii = new GameObject[_unitComp.UpgradeCountArray[_parentUnitIndex]];
                 for (int _childUnitIndex = 0; _childUnitIndex < _unitComp.UpgradeCountArray[_parentUnitIndex]; _childUnitIndex++)
                 {
                     GameObject childUnitGo = Instantiate(_childUnitPrefab, go.transform);
