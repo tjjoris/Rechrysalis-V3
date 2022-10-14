@@ -13,6 +13,7 @@ namespace Rechrysalis.Unit
         [SerializeField] private GameObject[] _subChrysalii;
         public GameObject[] SubChrysalii {get{return _subChrysalii;}set {_subChrysalii = value;}}
         private PlayerUnitsSO _theseUnits;
+        private GameObject _currentSubUnit;
 
         private bool _isStopped;
         public bool IsStopped 
@@ -83,13 +84,20 @@ namespace Rechrysalis.Unit
         public void ActivateChrysalis(int _chrysalisIndex)
         {
             Debug.Log($"activate chryslis");
+            float _timeToKeep = 0;
+            ChrysalisTimer _chrysalisTimer = GetComponent<ChrysalisTimer>();
+            if (_chrysalisTimer != null)
+            {
+                _timeToKeep = _chrysalisTimer.TimerCurrent;
+            }
             for (int _indexInSubChrysalis=0; _indexInSubChrysalis<_subChrysalii.Length; _indexInSubChrysalis++)
             {
                 if (_indexInSubChrysalis == _chrysalisIndex)
                 {
+                    _currentSubUnit = _subChrysalii[_chrysalisIndex];
                     Debug.Log($"activating chrysalis" + _chrysalisIndex);
                     _subChrysalii[_chrysalisIndex].SetActive(true);
-                    _subChrysalii[_chrysalisIndex].GetComponent<ChrysalisTimer>()?.StartThisChrysalis();
+                    _subChrysalii[_chrysalisIndex].GetComponent<ChrysalisTimer>()?.StartThisChrysalis(_timeToKeep);
                     if (!_theseUnits.ActiveUnits.Contains(_subChrysalii[_indexInSubChrysalis]))
                     {
                         _theseUnits.ActiveUnits.Add(_subChrysalii[_chrysalisIndex]);
@@ -104,6 +112,7 @@ namespace Rechrysalis.Unit
             {
                 if (_indexInSubUnits == _unitIndex)  
                 {
+                    _currentSubUnit = _subUnits[_unitIndex];
                     _subUnits[_unitIndex].SetActive(true);
                     _subUnits[_unitIndex].GetComponent<UnitManager>()?.RestartUnit();
                     if (!_theseUnits.ActiveUnits.Contains(_subUnits[_indexInSubUnits]))

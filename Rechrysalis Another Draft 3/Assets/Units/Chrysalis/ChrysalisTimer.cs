@@ -9,6 +9,7 @@ namespace Rechrysalis.Unit
     {
         private float _timerMax;
         private float _timerCurrent;
+        public float TimerCurrent {set {_timerCurrent = value;} get {return _timerCurrent;}}
         private  int _nextUnitBuilding;
         private int _subUnitCount;
         public Action<int> _startUnit;
@@ -17,9 +18,9 @@ namespace Rechrysalis.Unit
         {
             this._timerMax = _timerMax;
         }
-        public void StartThisChrysalis()
+        public void StartThisChrysalis(float _timeToKeep)
         {
-            _timerCurrent = 0;            
+            _timerCurrent = 0 + _timeToKeep;            
         }
         public void Tick (float _timeAmount)
         {
