@@ -24,6 +24,11 @@ namespace Rechrysalis.Controller
         {
             this._oldAngle = _oldAngle;
         }
+        public void ResetToOldAngle()
+        {
+            transform.eulerAngles = new Vector3(0, 0, _oldAngle);
+            _unitRingManager.SetTargetAngle(_oldAngle);
+        }
         // public void Tick()
         // {
 

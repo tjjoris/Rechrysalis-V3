@@ -143,8 +143,13 @@ namespace Rechrysalis.Controller
         }
         public void CheckRayCastMoveFunction(Vector2 _mousePos, int _touchID)
         {
-
-            if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
+            LayerMask _mask = ~LayerMask.GetMask("PlayerController");
+            RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, _mask);
+            if (hit)
+            {
+                _hilightRingManager.ResetToOldAngle();
+            } 
+            else if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
             {
                 _hilightRingManager.SetAngle(RingAngle(_mousePos));
             }
