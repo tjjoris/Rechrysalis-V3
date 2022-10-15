@@ -74,7 +74,9 @@ namespace Rechrysalis.Controller
                 }
                 else 
                 {
-
+                    _hilightRingManager.SetOldAngle(RingAngle(_mousePos));
+                    _touchTypeArray[_touchID] = TouchTypeEnum.unitRing;
+                    _hilightRingManager.gameObject.SetActive(true);
                 }
             }
             else if (false)
@@ -139,7 +141,14 @@ namespace Rechrysalis.Controller
             }
             return false;
         }
+        public void CheckRayCastMoveFunction(Vector2 _mousePos, int _touchID)
+        {
 
+            if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
+            {
+                _hilightRingManager.SetAngle(RingAngle(_mousePos));
+            }
+        }
         public void CheckRayCastReleaseFunction(Vector2 _mousePos, int _touchID)
         {
             
@@ -161,7 +170,12 @@ namespace Rechrysalis.Controller
                     _controllermanager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
                 }
             }
+            if ((_touchTypeArray[_touchID] == TouchTypeEnum.unitRing) && (_hilightRingManager.gameObject.activeInHierarchy == true))
+            {
+                _hilightRingManager.gameObject.SetActive(false);
+            }
             _touchTypeArray[_touchID] =TouchTypeEnum.nothing;
+
         }
         private int checkIfIntUnitBounds(Vector3 _mousePos)
         {
