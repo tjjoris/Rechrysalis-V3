@@ -60,7 +60,7 @@ namespace Rechrysalis
                 {
                     if (_controllerManager[i] != null)
                     {
-                        _controllerManager[i].Tick(_timeAmount);
+                        _controllerManager[i].FixedTick(_timeAmount);
                     }
                 }
             }

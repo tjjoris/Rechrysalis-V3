@@ -30,5 +30,32 @@ namespace Rechrysalis
         {
             return RadianToVector2(degree * Mathf.Deg2Rad);
         }
+        public static float GetIncreaseOrDecreaseAngle(float _firstAngle, float _secondAngle, float _minToIgnore)
+        {
+            _firstAngle = AnglesMath.LimitAngle(_firstAngle);
+            _secondAngle = AnglesMath.LimitAngle(_secondAngle);
+            // if ((_firstAngle > _secondAngle - 180) && (_firstAngle < _secondAngle - _minToIgnore))
+            // {
+            //     return 1;
+            // }
+            // else if ((_firstAngle < _secondAngle + 180) && (_firstAngle > _secondAngle - _minToIgnore)
+            // {
+            //     return  -1;
+            // }
+            // else 
+            // return 0;
+            float _newAngle = AnglesMath.LimitAngle(_secondAngle - _firstAngle);
+            if ((_newAngle < 180) && (_newAngle > _minToIgnore))
+            {
+                return -1;
+            }
+            else if ((_newAngle > 180) && (_newAngle < 360 - _minToIgnore))
+            {
+                return 1;
+            }
+            else {
+                return  0;
+            }
+        }
     }
 }

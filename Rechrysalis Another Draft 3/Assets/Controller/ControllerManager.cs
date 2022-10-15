@@ -45,7 +45,7 @@ namespace Rechrysalis.Controller
             this._compSO = _compSO;
             this._enemyController = _enemyController;
             this._compsAndUnits = _compsAndUnits;
-            _hilightRingManager.Initialize(_unitRingManager);
+            
             _allUnits = new List<GameObject>();
             _allUnits.Clear();
             _mover = GetComponent<Mover>();
@@ -64,7 +64,7 @@ namespace Rechrysalis.Controller
             RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();
             if (GetComponent<RechrysalisControllerInitialize>() != null)
             {
-            _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _upgradeRingManager, _unitRingOuterRadius);
+            _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius);
             _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
             _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
             }
@@ -109,7 +109,7 @@ namespace Rechrysalis.Controller
                 }
             }
         }
-        public void Tick(float _timeAmount) {  
+        public void FixedTick(float _timeAmount) {  
             // float _timeAmount = Time.fixedDeltaTime;         
             _mover?.Tick(_timeAmount);
             // if (_playerUnitsSO[_controllerIndex].ActiveUnits.Length > 0)
@@ -123,6 +123,7 @@ namespace Rechrysalis.Controller
             //         }
             //     }
             // }
+            _unitRingManager?.Tick(_timeAmount);
             foreach (GameObject _unit in _allUnits)
             {
                 if (_unit.activeInHierarchy)

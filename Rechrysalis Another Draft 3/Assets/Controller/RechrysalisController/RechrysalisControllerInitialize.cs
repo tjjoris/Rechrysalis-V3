@@ -18,7 +18,7 @@ namespace Rechrysalis.Controller
         private PlayerUnitsSO _theseUnits;    
         private float _unitRingOutRadius;
         private float _unitRingAngle = 90f;
-        public void Initialize(int _controllerIndex, CompSO _unitComp, CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius)
+        public void Initialize(int _controllerIndex, CompSO _unitComp, CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRingManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius)
         {
             _allUnits = new List<GameObject>();
             _allUnits.Clear();                    
@@ -64,7 +64,8 @@ namespace Rechrysalis.Controller
                 _pum.AddChrysalisAndUnitActions();
                 _pum.ActivateUnit(0);
             }
-            _unitRingManager?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount, _parentUnits, _unitRingAngle);  
+            _hilightRingManager?.Initialize(_unitRingManager);
+            _unitRingManager?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount, _parentUnits, _unitRingAngle, _hilightRingManager.transform);  
             _upgradeRingManager?.Initialize(_unitRingAngle);        
         }
         public List<GameObject> GetAllUnits()
