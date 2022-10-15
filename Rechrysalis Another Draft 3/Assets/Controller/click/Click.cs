@@ -24,7 +24,7 @@ namespace Rechrysalis.Controller
         }        
         public void Tick()
         {
-
+            CheckIfMouseIsHeld();
             CheckIfMouseDown();
             CheckIfMouseUp();
         }
