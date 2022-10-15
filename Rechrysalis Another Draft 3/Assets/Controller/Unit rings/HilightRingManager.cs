@@ -11,18 +11,18 @@ namespace Rechrysalis.Controller
 
         public void Initialize(UnitRingManager _unitRingManager)
         {
-            this._unitRingManager = _unitRingManager;
+            this._unitRingManager = _unitRingManager;            
         }
         public void SetAngle(float _angle)
         {
-            float _newAngle = _angle - _oldAngle;
+            float _newAngle = (_angle + _unitRingManager.UnitRingAngle) - _oldAngle;
             transform.eulerAngles = new Vector3 (0, 0, _newAngle);
             _unitRingManager.SetTargetAngle(_newAngle);
-            _unitRingManager.SetTargetTransform(transform);
+            // _unitRingManager.SetTargetTransform(transform);
         }
         public void SetOldAngle(float _oldAngle)
         {
-            this._oldAngle = _oldAngle;
+            this._oldAngle = _oldAngle + _unitRingManager.UnitRingAngle;
         }
         public void ResetToOldAngle()
         {

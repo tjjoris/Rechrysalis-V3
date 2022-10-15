@@ -56,6 +56,7 @@ namespace Rechrysalis.Controller
             Vector3 _targetV3 = new Vector3 (0, 0, _targetAngle * Mathf.Deg2Rad);
             // Vector3 _rotateTowards = Vector3.RotateTowards(transform.rotation, _targetV3, _amountToRotate, 0.0f);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetQuaternionRotationTransform.rotation, _amountToRotate * _timeAmount);
+            _unitRingAngle = AnglesMath.LimitAngle((transform.rotation.eulerAngles.z) + 90);
         }
         private void RotateRing (float _amountToRotate)
         {
