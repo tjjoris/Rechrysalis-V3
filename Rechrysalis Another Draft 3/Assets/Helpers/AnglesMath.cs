@@ -57,5 +57,10 @@ namespace Rechrysalis
                 return  0;
             }
         }
+
+        public static float UnitAngle(int _unitIndex, int _maxUnits)
+        {
+            return AnglesMath.LimitAngle((360 / _maxUnits) * _unitIndex);
+        }
     }
 }

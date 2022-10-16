@@ -25,6 +25,7 @@ namespace Rechrysalis.Controller
         private int[] _upgradeCountArray;
         private int _unitUpgrading;
         private ControllerManager _controllermanager;
+        private int _controllerIndex = 0;
 
         
         public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius)
@@ -56,9 +57,9 @@ namespace Rechrysalis.Controller
                     _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
                     _touchTypeArray[_touchID] = TouchTypeEnum.controller;
                 }
-                if ((UnitMouseOver(hit)) && (EnemyUnitHitCollider(hit.collider.gameObject.GetComponent<UnitManager>())))
+                if ((UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<UnitManager>().IsEnemy(_controllerIndex)))
                 {
-                    Debug.Log($"click enemy");
+                    // Debug.Log($"click enemy");
                     _playerTargtList.SetNewTarget(hit.collider.gameObject);
                     _touchTypeArray[_touchID] = TouchTypeEnum.other;
                 }
@@ -125,14 +126,14 @@ namespace Rechrysalis.Controller
             }
             else return false;
         }
-        private bool EnemyUnitHitCollider(UnitManager _unitManager)
-        {
-            if ((_unitManager != null) && (_unitManager.ControllerIndex == 1))
-            {
-                return true;
-            }
-            return false;
-        }
+        // private bool EnemyUnitHitCollider(UnitManager _unitManager)
+        // {
+        //     if ((_unitManager != null) && (_unitManager.ControllerIndex == 1))
+        //     {
+        //         return true;
+        //     }
+        //     return false;
+        // }
         private bool UnitRingMouseOver(Vector2 _mousePos, Vector2 _controllerPos)
         {
             if ((_mousePos - _controllerPos).magnitude <= _unitRingOuterRadius)
@@ -153,6 +154,7 @@ namespace Rechrysalis.Controller
             {
                 _hilightRingManager.SetAngle(RingAngle(_mousePos));
             }
+            // Debug.Log($"mouse angle " + RingAngle(_mousePos));
         }
         public void CheckRayCastReleaseFunction(Vector2 _mousePos, int _touchID)
         {
@@ -170,7 +172,7 @@ namespace Rechrysalis.Controller
                 else if (UnitRingMouseOver(_mousePos, _controller.transform.position))
                 {
                     // Debug.Log($" ring angle " + RingAngle(_mousePos) + "unit count " + _upgradeCountArray[_unitUpgrading]);
-                    int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
+                    int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
                     // Debug.Log($"upgrade to " + _unitToUpgradeTo);
                     _controllermanager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
                 }
@@ -213,10 +215,10 @@ namespace Rechrysalis.Controller
             }
             return -1;
         }
-        private float UnitAngle (int _unitIndex, int _maxUnits)
-        {
-            return AnglesMath.LimitAngle((360 / _maxUnits) * _unitIndex);
-        }
+        // private float UnitAngle (int _unitIndex, int _maxUnits)
+        // {
+        //     return AnglesMath.LimitAngle((360 / _maxUnits) * _unitIndex);
+        // }
         private float RingAngle(Vector3 _mousePos)
         {
             Vector3 _mouseDiff = _mousePos - _controller.transform.position;

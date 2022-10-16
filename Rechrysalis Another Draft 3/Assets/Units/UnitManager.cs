@@ -71,5 +71,13 @@ namespace Rechrysalis.Unit
                 _chrysalisTimer?.Tick(_timeAmount);
             // }
         }
+        public bool IsEnemy(int _controllerIndex)
+        {
+            if (this._controllerIndex != _controllerIndex)
+            {
+                return true;
+            }
+            return  false;
+        }
     }
 }

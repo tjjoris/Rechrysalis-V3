@@ -124,12 +124,20 @@ namespace Rechrysalis.Controller
             //     }
             // }
             _unitRingManager?.Tick(_timeAmount);
+            TickParentUnits();
             foreach (GameObject _unit in _allUnits)
             {
                 if (_unit.activeInHierarchy)
                 {
                     _unit.GetComponent<UnitManager>().Tick(_timeAmount);
                 }
+            }
+        }
+        private void TickParentUnits()
+        {
+            foreach (GameObject _parentUnit in _parentUnits)
+            {
+                    _parentUnit.GetComponent<RotateParentUnit>()?.Tick();
             }
         }
         public void SetIsStopped(bool _isStopped)

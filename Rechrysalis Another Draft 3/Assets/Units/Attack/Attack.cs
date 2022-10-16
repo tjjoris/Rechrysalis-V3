@@ -59,7 +59,7 @@ namespace Rechrysalis.Attacking
                     GameObject _projectile = _projectilesPool?.GetPooledObject();
                     if (_projectile != null) 
                     {
-                        Debug.Log($"shoot projectile");
+                        // Debug.Log($"shoot projectile");
                         _projectile.SetActive(true);
                         _projectile.transform.position = gameObject.transform.position;
                         // Debug.Log($"position " + _projectile.transform.position);

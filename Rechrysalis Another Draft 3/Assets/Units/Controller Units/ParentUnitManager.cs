@@ -14,6 +14,7 @@ namespace Rechrysalis.Unit
         public GameObject[] SubChrysalii {get{return _subChrysalii;}set {_subChrysalii = value;}}
         private PlayerUnitsSO _theseUnits;
         private GameObject _currentSubUnit;
+        private RotateParentUnit _rotateParentUnit;
 
         private bool _isStopped;
         public bool IsStopped 
@@ -27,11 +28,17 @@ namespace Rechrysalis.Unit
             }
          }
 
-        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO _unitComp, PlayerUnitsSO _theseUnits)
+        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO _unitComp, PlayerUnitsSO _theseUnits, Transform _controllertransform)
         {
             this._controllerIndex = _controllerIndex;
             this._theseUnits = _theseUnits;
             // AddChrysalisAndUnitActions();
+            _rotateParentUnit = GetComponent<RotateParentUnit>();
+            _rotateParentUnit?.Initialize(_controllertransform);
+        }
+        public void Tick()
+        {
+            _rotateParentUnit?.Tick();
         }
         /// <summary>
         /// This function is called when the object becomes enabled and active.

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7906783939778000626}
   - component: {fileID: 2115299758558649765}
+  - component: {fileID: 9014156547805089921}
   m_Layer: 0
   m_Name: Parent Unit Prefab
   m_TagString: Untagged
@@ -47,3 +48,15 @@ MonoBehaviour:
   _controllerIndex: 0
   _subUnits: []
   _subChrysalii: []
+--- !u!114 &9014156547805089921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6178309120940175549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052f5b675f7e548cfbfca92d0678dd21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
