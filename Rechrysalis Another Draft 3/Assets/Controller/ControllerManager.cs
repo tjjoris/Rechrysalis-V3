@@ -29,6 +29,7 @@ namespace Rechrysalis.Controller
         private bool _isStopped;
         private List<GameObject> _hatchEffects;
         private FreeEnemyInitialize _freeEnemyInitialize;
+        private ControllerFreeUnitHatchEffectManager _controllerFreeHatchEffectManager;
         // public bool IsStopped
         // {
         //     set
@@ -59,12 +60,13 @@ namespace Rechrysalis.Controller
             _click?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
             _touch?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
             _checkRayCast?.Initialize(_compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius);
+            _controllerFreeHatchEffectManager = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             if (_freeEnemyInitialize != null)
             {
             _freeEnemyInitialize.Initialize(_controllerIndex, _enemyController, _compSO, _playerUnitsSO[_controllerIndex], _compsAndUnits, _compsAndUnits.FreeUnitCompSO[_controllerIndex]);
             _allUnits = _freeEnemyInitialize.GetAllUnits();
-            }
+            }            
             RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();
             if (GetComponent<RechrysalisControllerInitialize>() != null)
             {
@@ -205,7 +207,7 @@ namespace Rechrysalis.Controller
             
             if (_freeEnemyInitialize != null) 
             {
-                _freeEnemyInitialize.AddHatchEffects(this._allUnits, _hatchEffect, _unitIndex, _allUnits);
+                _controllerFreeHatchEffectManager?.AddHatchEffects(this._allUnits, _hatchEffect, _unitIndex, _allUnits);
             }
             else 
             {
