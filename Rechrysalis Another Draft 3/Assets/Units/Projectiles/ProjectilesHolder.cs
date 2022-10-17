@@ -15,11 +15,12 @@ namespace Rechrysalis.Attacking
         }
         public void Tick(float _timeAmount)
         {
-            foreach (ProjectileHandler _projectileHandler in _projectileHandlers)
+            // foreach (ProjectileHandler _projectileHandler in _projectileHandlers)
+            for (int _projectileIndex = 0; _projectileIndex < _projectileHandlers.Count; _projectileIndex ++)
             {
-                if ((_projectileHandler != null) && (_projectileHandler.gameObject.activeInHierarchy))
+                if ((_projectileHandlers[_projectileIndex] != null) && (_projectileHandlers[_projectileIndex].gameObject.activeInHierarchy))
                 {
-                    _projectileHandler.Tick(_timeAmount);
+                    _projectileHandlers[_projectileIndex].Tick(_timeAmount);
                 }
             }
         }
