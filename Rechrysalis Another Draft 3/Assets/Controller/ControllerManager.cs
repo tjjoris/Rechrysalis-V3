@@ -76,23 +76,31 @@ namespace Rechrysalis.Controller
             // _unitRingManager?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount);
             SetIsStopped(true);
 
-
+            SubScribeToParentUnits();
         }        
-        // private void SetUpParentUnits()
-        // {
-        //     if (_parentUnits.Length > 0)
-        //     {
-        //         for (int i = 0; i < _parentUnits.Length; i++)
-        //         {
-        //             for (int j = 0; j < 3; j++)
-        //             {
-        //                 ParentUnitManager _parentUnitManager = _parentUnits[i].GetComponent<ParentUnitManager>();
-        //                 _parentUnitManager.SubUnits[j].GetComponent<UnitManager>()?.Initialize(_controllerIndex, _compSO.UnitSOArray[(i * 3) + j], _compsAndUnits);
-        //             }
-        //             _parentUnits[i].GetComponent<ParentUnitManager>()?.ActivateUnit(0);
-        //         }
-        //     }
-        // }
+        private void OnEnable()
+        {
+           SubScribeToParentUnits();
+        }
+        public void SubScribeToParentUnits()
+        {
+            if ((_parentUnits != null))
+            {
+                foreach (GameObject _parentUnit in _parentUnits)
+                {
+                    _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect -= AddHatchEffect;
+                    _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect += AddHatchEffect;
+                }
+            }
+        }
+        
+        private void OnDisable()
+        {
+            foreach (GameObject _parentUnit in _parentUnits)
+            {
+                _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect -= AddHatchEffect;
+            }
+        }
         private void Update() 
         {
             _click?.Tick();
@@ -137,11 +145,17 @@ namespace Rechrysalis.Controller
             }
             foreach (GameObject _hatchEffect in _hatchEffects)
             {
-                HEIncreaseDamage _hEIncreaseDamage = _hatchEffect.GetComponent<HEIncreaseDamage>();
-                _hEIncreaseDamage?.Tick(_timeAmount);
-                if ((_hEIncreaseDamage != null) && (_hEIncreaseDamage.CheckIsExpired()))
+                HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
+                if ((_hETimer != null))
                 {
-
+                    _hETimer.Tick(_timeAmount);
+                    if (_hETimer.CheckIsExpired())
+                    {
+                        foreach(GameObject _parentUnit in _parentUnits)
+                        {
+                            _parentUnit.GetComponent<ParentUnitManager>()?.RemoveHatchEffect(_hatchEffect);
+                        }
+                    }
                 }
             }
         }
@@ -180,6 +194,10 @@ namespace Rechrysalis.Controller
             {
                 _parentUnits[_parentIndex].GetComponent<ParentUnitManager>()?.ReserveChrysalis(_parentIndex, _childIndex);
             }
+        }
+        public void AddHatchEffect(GameObject _hatchEffect, int _unitIndex, bool _allUnits)
+        {
+
         }
     }
 }

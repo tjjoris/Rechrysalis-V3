@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Attacking;
 using Rechrysalis.HatchEffect;
+using System;
 
 namespace Rechrysalis.Unit
 {
@@ -16,6 +17,8 @@ namespace Rechrysalis.Unit
         private PlayerUnitsSO _theseUnits;
         private GameObject _currentSubUnit;
         private RotateParentUnit _rotateParentUnit;
+        public Action<GameObject, int, bool> _addHatchEffect;
+        public Action<GameObject, int, bool> _removeHatchEffect;
 
         private bool _isStopped;
         public bool IsStopped 
@@ -168,14 +171,15 @@ namespace Rechrysalis.Unit
                 GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
                 HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
                 _hETimer.Initialize(_unitIndex, _hETimer.AllUnits);
-                foreach (GameObject _subUnit in _subUnits)
-                {
-                    _subUnit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-                }
-                foreach (GameObject _chrysalis in _subChrysalii)
-                {
-                    _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-                }
+                // foreach (GameObject _subUnit in _subUnits)
+                // {
+                //     _subUnit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                // }
+                // foreach (GameObject _chrysalis in _subChrysalii)
+                // {
+                //     _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                // }
+                _addHatchEffect?.Invoke(_hatchEffect, _unitIndex, _hETimer.AllUnits);
             }
         }
         public void ReserveChrysalis(int _parentIndex, int _childIndex)
