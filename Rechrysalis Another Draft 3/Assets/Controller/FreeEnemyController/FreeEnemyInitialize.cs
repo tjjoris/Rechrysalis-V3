@@ -74,6 +74,7 @@ namespace Rechrysalis.Controller
             if (_freeUnitCompSO.Waves.Length >= _waveIndex)
             {                
                 CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);
+                AddNextWaveAction();
             }
         }
         private void OnEnable()
