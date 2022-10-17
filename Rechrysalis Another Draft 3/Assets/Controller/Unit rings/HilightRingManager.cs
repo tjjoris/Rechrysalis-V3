@@ -17,7 +17,7 @@ namespace Rechrysalis.Controller
         public void SetAngle(float _angle)
         {
             float _newAngle = AnglesMath.LimitAngle((_angle - 90 - _oldAngle) );
-            Debug.Log($"old angle " + _oldAngle + "mouse _angle " + (_angle-90) );
+            // Debug.Log($"old angle " + _oldAngle + "mouse _angle " + (_angle-90) );
             transform.eulerAngles = new Vector3 (0, 0, _newAngle);
             _unitRingManager.SetTargetAngle(_newAngle);
             // _unitRingManager.SetTargetTransform(transform);

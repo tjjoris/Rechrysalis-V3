@@ -71,6 +71,7 @@ namespace Rechrysalis.Controller
                 {
                     _unitUpgrading = _unitInbounds;
                     _touchTypeArray[_touchID] = TouchTypeEnum.friendlyUnit;
+                    _upgradeRingManager.SetCurrentAngle(_unitRingManager.UnitRingAngle);
                     Debug.Log($"friendly unit " + _unitInbounds);
                 }
                 else 
@@ -201,6 +202,8 @@ namespace Rechrysalis.Controller
         }
         private int CheckIfInUnitBoundsWithAngle(float _mouseAngleCurrent, int _unitCount, float _angleOffset, float _unitWidthDegrees)
         {
+            _mouseAngleCurrent -= 90;
+            Debug.Log($"mouse angle" + _mouseAngleCurrent + " angle offset " + _angleOffset);
             if (_unitCount > 0)
             {
                 for (int _unitIndex = 0; _unitIndex < _unitCount; _unitIndex++)
