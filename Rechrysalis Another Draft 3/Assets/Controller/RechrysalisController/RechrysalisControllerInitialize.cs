@@ -81,13 +81,5 @@ namespace Rechrysalis.Controller
         {
             return _allUnits;
         }
-        // private void SetBasicStartingUnits()
-        // {
-        //     foreach (GameObject _parentUnit in _parentUnits)
-        //     {
-        //         ParentUnitManager _parentUnitManager = _parentUnit.GetComponent<ParentUnitManager>();
-        //         _parentUnitManager?.ActivateUnit(0);
-        //     }
-        // }
     }
 }

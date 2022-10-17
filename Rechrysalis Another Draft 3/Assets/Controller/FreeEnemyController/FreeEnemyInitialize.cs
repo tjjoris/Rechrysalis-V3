@@ -108,5 +108,22 @@ namespace Rechrysalis.Controller
         {
             return _allUnits;
         }
+        public void AddHatchEffects(List<GameObject> _allUnitsList, GameObject _hatchEffect, int _unitIndex, bool _allUnits)
+        {
+            for (int _unitInList = 0; _unitInList < _allUnitsList.Count; _unitInList ++)
+            {
+                if (_allUnitsList[_unitIndex] != null)
+                {
+                    if (_unitIndex == _unitInList)
+                    {
+                        _allUnitsList[_unitInList].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                    }
+                    else if (_allUnits)
+                    {
+                        _allUnitsList[_unitInList].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                    }
+                }
+            }
+        }
     }
 }

@@ -28,6 +28,7 @@ namespace Rechrysalis.Controller
         private Mover _mover;
         private bool _isStopped;
         private List<GameObject> _hatchEffects;
+        private FreeEnemyInitialize _freeEnemyInitialize;
         // public bool IsStopped
         // {
         //     set
@@ -58,7 +59,7 @@ namespace Rechrysalis.Controller
             _click?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
             _touch?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
             _checkRayCast?.Initialize(_compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius);
-            FreeEnemyInitialize _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
+            _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             if (_freeEnemyInitialize != null)
             {
             _freeEnemyInitialize.Initialize(_controllerIndex, _enemyController, _compSO, _playerUnitsSO[_controllerIndex], _compsAndUnits, _compsAndUnits.FreeUnitCompSO[_controllerIndex]);
@@ -77,7 +78,7 @@ namespace Rechrysalis.Controller
             SetIsStopped(true);
 
             SubScribeToParentUnits();
-            _rechrysalisControllerInitialize.ActivateInitialUnits();
+            _rechrysalisControllerInitialize?.ActivateInitialUnits();
         }        
         private void OnEnable()
         {
@@ -201,6 +202,13 @@ namespace Rechrysalis.Controller
         }
         public void AddHatchEffect(GameObject _hatchEffect, int _unitIndex, bool _allUnits)
         {
+            
+            if (_freeEnemyInitialize != null) 
+            {
+                _freeEnemyInitialize.AddHatchEffects(this._allUnits, _hatchEffect, _unitIndex, _allUnits);
+            }
+            else 
+            {
             Debug.Log($" add hatch effect for parents");
             for (int _parentIndex = 0; _parentIndex < _parentUnits.Length; _parentIndex++)
             {
@@ -213,6 +221,7 @@ namespace Rechrysalis.Controller
                     _parentUnits[_unitIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
                 }
             }
+        }
         }
     }
 }
