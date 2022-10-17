@@ -19,7 +19,7 @@ namespace Rechrysalis.Controller
             float _newAngle = AnglesMath.LimitAngle((_angle - 90 - _oldAngle) );
             // Debug.Log($"old angle " + _oldAngle + "mouse _angle " + (_angle-90) );
             transform.eulerAngles = new Vector3 (0, 0, _newAngle);
-            _unitRingManager.SetTargetAngle(_newAngle);
+            // _unitRingManager.SetTargetAngle(_newAngle);
             // _unitRingManager.SetTargetTransform(transform);
         }
         public void SetOldAngle(float _mouseAngle)
@@ -31,8 +31,8 @@ namespace Rechrysalis.Controller
         }
         public void ResetToOldAngle()
         {
-            transform.eulerAngles = new Vector3(0, 0, _oldAngle);
-            _unitRingManager.SetTargetAngle(_oldAngle);
+            transform.eulerAngles = new Vector3(0, 0, _unitRingOldAngle);
+            // _unitRingManager.SetTargetAngle(_oldAngle);
         }
         // public void Tick()
         // {

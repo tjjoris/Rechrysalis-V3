@@ -978,4 +978,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6215f780addbe481c934c8d5517c824b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unitDegreeWidth: 20
+  _unitDegreeWidth: 30
