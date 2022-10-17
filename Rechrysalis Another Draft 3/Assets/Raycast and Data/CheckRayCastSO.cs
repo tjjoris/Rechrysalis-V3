@@ -205,13 +205,14 @@ namespace Rechrysalis.Controller
         }
         private int CheckIfInUnitBoundsWithAngle(float _mouseAngleCurrent, int _unitCount, float _angleOffset, float _unitWidthDegrees)
         {
-            _mouseAngleCurrent -= 90;
+            _mouseAngleCurrent = AnglesMath.LimitAngle(_mouseAngleCurrent - 90);
             Debug.Log($"mouse angle" + _mouseAngleCurrent + " angle offset " + _angleOffset);
             if (_unitCount > 0)
             {
                 for (int _unitIndex = 0; _unitIndex < _unitCount; _unitIndex++)
                 {
                     float _angleToCompare = AnglesMath.LimitAngle(((360 / _unitCount) * _unitIndex) - -_angleOffset);
+                    Debug.Log($"angle to compare " + _angleToCompare);
                     if ((_mouseAngleCurrent >= _angleToCompare - _unitWidthDegrees) && (_mouseAngleCurrent <= _angleToCompare + _unitWidthDegrees))
                     // if ((_mouseAngleCurrent >= (((360 / _unitCount) * _unitIndex) - _unitWidthDegrees + _angleOffset)) && (_mouseAngleCurrent <= (((360 / _unitCount) * _unitIndex) + _unitWidthDegrees + _angleOffset)))
                     {
