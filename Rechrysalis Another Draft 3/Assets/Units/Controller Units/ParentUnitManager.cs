@@ -170,7 +170,7 @@ namespace Rechrysalis.Unit
             {
                 GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
                 HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
-                _hETimer.Initialize(_unitIndex, _hETimer.AllUnits);
+                _hETimer?.Initialize(_unitIndex);
                 // foreach (GameObject _subUnit in _subUnits)
                 // {
                 //     _subUnit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);

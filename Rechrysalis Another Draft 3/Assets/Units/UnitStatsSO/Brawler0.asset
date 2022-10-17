@@ -25,3 +25,4 @@ MonoBehaviour:
   _tierHealthMaxMultipleir: 1
   _healthMax: 18
   _chrysalisTimerMax: 5
+  _hatchEffectPrefab: {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}

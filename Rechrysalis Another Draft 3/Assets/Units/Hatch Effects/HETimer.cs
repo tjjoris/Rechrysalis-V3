@@ -10,13 +10,12 @@ namespace Rechrysalis.HatchEffect
         [SerializeField] private float _timeCurrent;
         private int _unitIndex;
         public int UnitIndex {set {_unitIndex = value;} get {return _unitIndex;}}
-        private bool _allUnits;
+        [SerializeField] private bool _allUnits;
         public bool AllUnits {set {_allUnits = value;} get {return _allUnits;}}
 
-        public void Initialize(int _unitIndex, bool _allunits)
+        public void Initialize(int _unitIndex)
         {
             this._unitIndex = _unitIndex;
-            this._allUnits = _allunits;
         }
         public void Tick(float _timeAmount)
         {

@@ -77,6 +77,7 @@ namespace Rechrysalis.Controller
             SetIsStopped(true);
 
             SubScribeToParentUnits();
+            _rechrysalisControllerInitialize.ActivateInitialUnits();
         }        
         private void OnEnable()
         {
@@ -84,12 +85,15 @@ namespace Rechrysalis.Controller
         }
         public void SubScribeToParentUnits()
         {
-            if ((_parentUnits != null))
+            if ((_parentUnits != null) && (_parentUnits.Length > 0))
             {
                 foreach (GameObject _parentUnit in _parentUnits)
                 {
-                    _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect -= AddHatchEffect;
-                    _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect += AddHatchEffect;
+                    if (_parentUnit != null)
+                    {
+                        _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect -= AddHatchEffect;
+                        _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect += AddHatchEffect;
+                    }
                 }
             }
         }
@@ -197,7 +201,18 @@ namespace Rechrysalis.Controller
         }
         public void AddHatchEffect(GameObject _hatchEffect, int _unitIndex, bool _allUnits)
         {
-
+            Debug.Log($" add hatch effect for parents");
+            for (int _parentIndex = 0; _parentIndex < _parentUnits.Length; _parentIndex++)
+            {
+                if (_parentIndex == _unitIndex)
+                {
+                    _parentUnits[_unitIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
+                }
+                else if (_allUnits)
+                {
+                    _parentUnits[_unitIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
+                }
+            }
         }
     }
 }
