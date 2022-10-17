@@ -15,8 +15,13 @@ MonoBehaviour:
   _enemiesPerRow: 3
   _numberOfRows: 1
   _row0:
+  - {x: -1, y: 7}
   - {x: 1, y: 7}
+  - {x: -2, y: 7}
   - {x: 2, y: 7}
+  - {x: -3, y: 7}
   - {x: 3, y: 7}
+  - {x: -4, y: 7}
+  - {x: 4, y: 7}
   _row1: []
   _row2: []

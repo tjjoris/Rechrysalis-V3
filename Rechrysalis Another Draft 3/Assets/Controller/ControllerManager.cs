@@ -159,8 +159,15 @@ namespace Rechrysalis.Controller
         {
             if (_childUnit != -1) 
             {
-            _parentUnits[_parentUnit].GetComponent<ParentUnitManager>()?.ActivateChrysalis(_childUnit);
+                _parentUnits[_parentUnit].GetComponent<ParentUnitManager>()?.ActivateChrysalis(_childUnit);
+            }
         }
+        public void ReserveChrysalis(int _parentIndex, int _childIndex)
+        {
+            if (_childIndex != -1)
+            {
+                _parentUnits[_parentIndex].GetComponent<ParentUnitManager>()?.ReserveChrysalis(_parentIndex, _childIndex);
+            }
         }
     }
 }

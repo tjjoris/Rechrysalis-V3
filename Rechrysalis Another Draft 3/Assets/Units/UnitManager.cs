@@ -18,6 +18,7 @@ namespace Rechrysalis.Unit
         private Mover _mover;
         private Attack _attack;
         private ChrysalisTimer _chrysalisTimer;
+        private Rechrysalize _rechrysalize;
         [SerializeField] private bool _isStopped;
         private CompsAndUnitsSO _compsAndUnits;
         private ProjectilesPool _projectilesPool;
@@ -50,11 +51,12 @@ namespace Rechrysalis.Unit
             _health?.Initialize(_unitStats.HealthMax);
             GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
             GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[_controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
-            GetComponent<Rechrysalize>()?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ChildUnitCount);
+            GetComponent<Rechrysalize>()?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ChildUnitCount);            
             GetComponent<InRangeByPriority>()?.Initialize(_compsAndUnits.TargetsLists[_controllerIndex]);
             GetComponent<ClosestTarget>()?.Initialize(_compsAndUnits.PlayerUnits[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
             GetComponent<Range>()?.Initialize(_unitStats);
             _chrysalisTimer = GetComponent<ChrysalisTimer>();
+            _rechrysalize = GetComponent<Rechrysalize>();
             _projectilesPool = GetComponent<ProjectilesPool>();
         }
         public void RestartUnit()
@@ -78,6 +80,10 @@ namespace Rechrysalis.Unit
                 return true;
             }
             return  false;
+        }
+        public void SetReserveChrysalis(int _childIndex)
+        {
+            _rechrysalize?.SetNextEvolved(_childIndex);
         }
     }
 }

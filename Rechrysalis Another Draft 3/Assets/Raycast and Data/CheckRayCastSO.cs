@@ -180,6 +180,11 @@ namespace Rechrysalis.Controller
                     // Debug.Log($"upgrade to " + _unitToUpgradeTo);
                     _controllermanager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
                 }
+                else 
+                {
+                    int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
+                    _controllermanager.ReserveChrysalis(_unitUpgrading, _unitToUpgradeTo);
+                }
             }
             if ((_touchTypeArray[_touchID] == TouchTypeEnum.unitRing) && (_hilightRingManager.gameObject.activeInHierarchy == true))
             {

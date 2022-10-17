@@ -175,5 +175,16 @@ namespace Rechrysalis.Unit
                 _theseUnits.ActiveUnits.Remove(_subUnits[_unitIndex]);
             }
         }
+        public void ReserveChrysalis(int _parentIndex, int _childIndex)
+        {
+            Rechrysalize _rechrysalize = _currentSubUnit.GetComponent<Rechrysalize>();
+            if (_rechrysalize!= null)
+            {
+                Debug.Log($"reserve chrysalis");
+                _rechrysalize.SetNextEvolved(_childIndex);
+                return;
+            }
+            ActivateChrysalis(_childIndex);
+        }
     }
 }
