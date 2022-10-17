@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Attacking;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Unit
 {
@@ -127,11 +128,13 @@ namespace Rechrysalis.Unit
                 {
                     _currentSubUnit = _subUnits[_unitIndex];
                     _subUnits[_unitIndex].SetActive(true);
+                    UnitManager _unitManager = _subUnits[_unitIndex].GetComponent<UnitManager>();
                     _subUnits[_unitIndex].GetComponent<UnitManager>()?.RestartUnit();
                     if (!_theseUnits.ActiveUnits.Contains(_subUnits[_indexInSubUnits]))
                     {
                         _theseUnits.ActiveUnits.Add(_subUnits[_unitIndex]);
                     }
+                    CreateHatchEffect(_unitManager.HatchEffectPrefab, _unitIndex);
                 }
                 DeactivateChrysalis(_indexInSubUnits);    
             }
@@ -156,6 +159,23 @@ namespace Rechrysalis.Unit
             if (_theseUnits.ActiveUnits.Contains(_subUnits[_unitIndex]))
             {
                 _theseUnits.ActiveUnits.Remove(_subUnits[_unitIndex]);
+            }
+        }
+        private void CreateHatchEffect(GameObject _hatchEffectPrefab, int _unitIndex)
+        {
+            if (_hatchEffectPrefab != null) 
+            {
+                GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
+                HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
+                _hETimer.Initialize(_unitIndex, _hETimer.AllUnits);
+                foreach (GameObject _subUnit in _subUnits)
+                {
+                    _subUnit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                }
+                foreach (GameObject _chrysalis in _subChrysalii)
+                {
+                    _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                }
             }
         }
         public void ReserveChrysalis(int _parentIndex, int _childIndex)

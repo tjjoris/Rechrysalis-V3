@@ -31,6 +31,8 @@ namespace Rechrysalis.Unit
        public float HealthMax {get{return _healthMax;}}
        [SerializeField] private float _chrysalisTimerMax;
        public float ChrysalisTimerMax {get {return _chrysalisTimerMax;}}
+       [SerializeField] private GameObject _hatchEffectPrefab;
+       public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
 
         public void Initialize()
         {

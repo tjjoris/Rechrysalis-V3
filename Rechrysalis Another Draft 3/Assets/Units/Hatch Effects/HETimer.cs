@@ -13,6 +13,11 @@ namespace Rechrysalis.HatchEffect
         private bool _allUnits;
         public bool AllUnits {set {_allUnits = value;} get {return _allUnits;}}
 
+        public void Initialize(int _unitIndex, bool _allunits)
+        {
+            this._unitIndex = _unitIndex;
+            this._allUnits = _allunits;
+        }
         public void Tick(float _timeAmount)
         {
             _timeCurrent += _timeAmount;

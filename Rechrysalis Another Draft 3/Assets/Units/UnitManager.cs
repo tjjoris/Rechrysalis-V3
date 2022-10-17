@@ -23,6 +23,8 @@ namespace Rechrysalis.Unit
         private CompsAndUnitsSO _compsAndUnits;
         private ProjectilesPool _projectilesPool;
         private List<GameObject> _hatchEffects;
+        private GameObject _hatchEffectPrefab;
+        public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
         public bool IsStopped 
         {
             set{
@@ -60,6 +62,7 @@ namespace Rechrysalis.Unit
             _rechrysalize = GetComponent<Rechrysalize>();
             _projectilesPool = GetComponent<ProjectilesPool>();
             _hatchEffects = new List<GameObject>();
+            _hatchEffectPrefab = _unitStats.HatchEffectPrefab;
         }
         public void RestartUnit()
         {
