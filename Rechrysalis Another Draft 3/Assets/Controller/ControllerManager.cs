@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.Movement;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Controller
 {
@@ -26,6 +27,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private float _unitRingOuterRadius;
         private Mover _mover;
         private bool _isStopped;
+        private List<GameObject> _hatchEffects;
         // public bool IsStopped
         // {
         //     set
@@ -47,6 +49,7 @@ namespace Rechrysalis.Controller
             this._compsAndUnits = _compsAndUnits;
             
             _allUnits = new List<GameObject>();
+            _hatchEffects = new List<GameObject>();
             _allUnits.Clear();
             _mover = GetComponent<Mover>();
             if (_mover != null) {
@@ -130,6 +133,15 @@ namespace Rechrysalis.Controller
                 if (_unit.activeInHierarchy)
                 {
                     _unit.GetComponent<UnitManager>().Tick(_timeAmount);
+                }
+            }
+            foreach (GameObject _hatchEffect in _hatchEffects)
+            {
+                HEIncreaseDamage _hEIncreaseDamage = _hatchEffect.GetComponent<HEIncreaseDamage>();
+                _hEIncreaseDamage?.Tick(_timeAmount);
+                if ((_hEIncreaseDamage != null) && (_hEIncreaseDamage.CheckIsExpired()))
+                {
+
                 }
             }
         }

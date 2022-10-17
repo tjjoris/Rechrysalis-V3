@@ -22,6 +22,7 @@ namespace Rechrysalis.Unit
         [SerializeField] private bool _isStopped;
         private CompsAndUnitsSO _compsAndUnits;
         private ProjectilesPool _projectilesPool;
+        private List<GameObject> _hatchEffects;
         public bool IsStopped 
         {
             set{
@@ -58,6 +59,7 @@ namespace Rechrysalis.Unit
             _chrysalisTimer = GetComponent<ChrysalisTimer>();
             _rechrysalize = GetComponent<Rechrysalize>();
             _projectilesPool = GetComponent<ProjectilesPool>();
+            _hatchEffects = new List<GameObject>();
         }
         public void RestartUnit()
         {
@@ -84,6 +86,20 @@ namespace Rechrysalis.Unit
         public void SetReserveChrysalis(int _childIndex)
         {
             _rechrysalize?.SetNextEvolved(_childIndex);
+        }
+        public void RemoveHatchEffect(GameObject _hatchEffect)
+        {
+            if (_hatchEffects.Contains(_hatchEffect))
+            {
+                _hatchEffects.Remove(_hatchEffect);
+            }
+        }
+        public void AddHatchEffect(GameObject _hatchEffect)
+        {
+            if (!_hatchEffects.Contains(_hatchEffect))
+            {
+                _hatchEffects.Add(_hatchEffect);
+            }
         }
     }
 }

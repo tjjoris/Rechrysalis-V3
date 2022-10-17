@@ -133,24 +133,7 @@ namespace Rechrysalis.Unit
                         _theseUnits.ActiveUnits.Add(_subUnits[_unitIndex]);
                     }
                 }
-                // else 
-                // {
-                //     _subUnits[_indexInSubUnits].SetActive(false);   
-                //     if (_theseUnits.ActiveUnits.Contains(_subUnits[_indexInSubUnits]))
-                //     {
-                //         int _indexInActiveUnits = _theseUnits.ActiveUnits.IndexOf(_subUnits[_indexInSubUnits]);
-                //         _theseUnits.ActiveUnits.Remove(_theseUnits.ActiveUnits[_indexInActiveUnits]);
-                //     }                                     
-                // }   
-                DeactivateChrysalis(_indexInSubUnits);
-                // if (_subChrysalii[_indexInSubUnits].active == true)
-                // {
-                //     _subChrysalii[_indexInSubUnits].SetActive(false);
-                // }
-                // if (_theseUnits.ActiveUnits.Contains(_subChrysalii[_indexInSubUnits]))
-                // {
-                //     _theseUnits.ActiveUnits.Remove(_subChrysalii[_indexInSubUnits]);
-                // }        
+                DeactivateChrysalis(_indexInSubUnits);    
             }
         }
         private void DeactivateChrysalis(int _chryslisIndex)
@@ -185,6 +168,28 @@ namespace Rechrysalis.Unit
                 return;
             }
             ActivateChrysalis(_childIndex);
+        }
+        public void RemoveHatchEffect (GameObject _hatchEffect)
+        {
+            foreach (GameObject _unit in _subUnits)
+            {
+                _unit.GetComponent<UnitManager>()?.RemoveHatchEffect(_hatchEffect);
+            }
+            foreach (GameObject _chrysalis in _subChrysalii)
+            {
+                _chrysalis.GetComponent<UnitManager>()?.RemoveHatchEffect(_hatchEffect);
+            }
+        }
+        public void AddHatchEffect (GameObject _hatchEffect)
+        {
+            foreach (GameObject _unit in _subUnits)
+            {
+                _unit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+            }
+            foreach (GameObject _chrysalis in _subChrysalii)
+            {
+                _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+            }
         }
     }
 }
