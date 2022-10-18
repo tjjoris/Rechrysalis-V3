@@ -13,12 +13,13 @@ namespace Rechrysalis.Controller
         [SerializeField] private GameObject _FreeUnitPrefab;
         private int _controllerIndex;
         private ControllerManager _enemyController;
+        private ControllerFreeUnitHatchEffectManager _controllerFreeHatch;
         private CompSO _compSO;
         private PlayerUnitsSO _playerUnitsSO;
         private CompsAndUnitsSO _compsAndUnits;
         private FreeUnitCompSO _freeUnitCompSO;
         // private int _controllerIndex;
-        private List<GameObject> _allUnits;
+        private List<GameObject> _allUnits;        
         int _waveIndex;
         public void Initialize(int _controllerIndex, ControllerManager _enemyController, CompSO _compSO, PlayerUnitsSO _playerUnitsSO, CompsAndUnitsSO _compsAndUnits, FreeUnitCompSO _freeUnitCompSO)        
         {
@@ -28,6 +29,7 @@ namespace Rechrysalis.Controller
             this._playerUnitsSO = _playerUnitsSO;
             this._compsAndUnits = _compsAndUnits;
             this._freeUnitCompSO = _freeUnitCompSO;
+            _controllerFreeHatch = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _allUnits = new List<GameObject>();
             // this._controllerIndex = _controllerIndex;
             Debug.Log("size " + _compSO.UnitSOArray.Length.ToString());
@@ -41,6 +43,7 @@ namespace Rechrysalis.Controller
                 // }
             }
             AddNextWaveAction();
+            _controllerFreeHatch?.SubscribeToUnits();
         }
 
         private void CreateWave(int _controllerIndex, ControllerManager _enemyController, CompSO _compSO, PlayerUnitsSO _playerUnitsSO, CompsAndUnitsSO _compsAndUnits, FreeUnitCompSO _freeUnitCompSO, int _waveIndex)
@@ -108,22 +111,22 @@ namespace Rechrysalis.Controller
         {
             return _allUnits;
         }
-        public void AddHatchEffects(List<GameObject> _allUnitsList, GameObject _hatchEffect, int _unitIndex, bool _allUnits)
-        {
-            for (int _unitInList = 0; _unitInList < _allUnitsList.Count; _unitInList ++)
-            {
-                if (_allUnitsList[_unitIndex] != null)
-                {
-                    if (_unitIndex == _unitInList)
-                    {
-                        _allUnitsList[_unitInList].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-                    }
-                    else if (_allUnits)
-                    {
-                        _allUnitsList[_unitInList].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-                    }
-                }
-            }
-        }
+        // public void AddHatchEffects(List<GameObject> _allUnitsList, GameObject _hatchEffect, int _unitIndex, bool _allUnits)
+        // {
+        //     for (int _unitInList = 0; _unitInList < _allUnitsList.Count; _unitInList ++)
+        //     {
+        //         if (_allUnitsList[_unitIndex] != null)
+        //         {
+        //             if (_unitIndex == _unitInList)
+        //             {
+        //                 _allUnitsList[_unitInList].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+        //             }
+        //             else if (_allUnits)
+        //             {
+        //                 _allUnitsList[_unitInList].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+        //             }
+        //         }
+        //     }
+        // }
     }
 }

@@ -39,16 +39,17 @@ namespace Rechrysalis.Controller
         
         private void OnEnable()
         {
-            
+            SubscribeToUnits();
         }
         public void SubscribeToUnits()
         {
-            UnitManager[] _unitManagers = GetComponentInChildren<UnitManager>())
-            foreach (UnitManager _unitManager in _unitManagers)
+            FreeUnitHatchEffect[] _freeHatches = GetComponentsInChildren<FreeUnitHatchEffect>();
+            foreach (FreeUnitHatchEffect _freeUnitHatch in _freeHatches)
             {
-                if (_unitManager !=null)
+                if (_freeUnitHatch !=null)
                 {
-                    _unitManager.
+                    _freeUnitHatch._addHatchEffect -= AddHatchEffect;
+                    _freeUnitHatch._addHatchEffect += AddHatchEffect;
                 }
             }
         }
