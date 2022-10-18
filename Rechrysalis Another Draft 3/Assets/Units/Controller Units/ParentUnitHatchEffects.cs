@@ -1,4 +1,4 @@
-using System.Collections;
+////////using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,14 +18,14 @@ namespace Rechrysalis.Unit
         public void AddHatchEffect(GameObject _hatchEffect)
         {
             _hatchEffects.Add(_hatchEffect);
-            foreach (GameObject _unit in _subUnits)
-            {
-                _unit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-            }
-            foreach (GameObject _chrysalis in _subChrysalii)
-            {
-                _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-            }
+            // foreach (GameObject _unit in _subUnits)
+            // {
+            //     _unit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+            // }
+            // foreach (GameObject _chrysalis in _subChrysalii)
+            // {
+            //     _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+            // }
         }
         public void RemoveHatchEffect(GameObject _hatchEffect)
         {
