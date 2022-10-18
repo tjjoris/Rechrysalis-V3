@@ -17,6 +17,7 @@ namespace Rechrysalis.Unit
         private PlayerUnitsSO _theseUnits;
         private GameObject _currentSubUnit;
         private RotateParentUnit _rotateParentUnit;
+        private ParentUnitHatchEffects _pUHE;
         public Action<GameObject, int, bool> _addHatchEffect;
         public Action<GameObject, int, bool> _removeHatchEffect;
 
@@ -39,6 +40,7 @@ namespace Rechrysalis.Unit
             // AddChrysalisAndUnitActions();
             _rotateParentUnit = GetComponent<RotateParentUnit>();
             _rotateParentUnit?.Initialize(_controllertransform);
+            _pUHE = GetComponent<ParentUnitHatchEffects>();
         }
         public void Tick()
         {
@@ -206,14 +208,15 @@ namespace Rechrysalis.Unit
         }
         public void AddHatchEffect (GameObject _hatchEffect)
         {
-            foreach (GameObject _unit in _subUnits)
-            {
-                _unit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-            }
-            foreach (GameObject _chrysalis in _subChrysalii)
-            {
-                _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-            }
+            _pUHE?.AddHatchEffect(_hatchEffect);
+            // foreach (GameObject _unit in _subUnits)
+            // {
+            //     _unit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+            // }
+            // foreach (GameObject _chrysalis in _subChrysalii)
+            // {
+            //     _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+            // }
         }
     }
 }
