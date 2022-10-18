@@ -204,13 +204,6 @@ namespace Rechrysalis.Controller
         }
         public void AddHatchEffect(GameObject _hatchEffect, int _unitIndex, bool _effectAll)
         {
-            
-            // if (_controllerFreeHatchEffectManager != null) 
-            // {
-            //     // _controllerFreeHatchEffectManager?.AddHatchEffects(this._allUnits, _hatchEffect, _unitIndex, _allUnits);
-            //     _controllerFreeHatchEffectManager?.AddHatchEffects(_hatchEffect, _unitIndex, _effectAll);
-            // }
-            // else 
             {
             Debug.Log($" add hatch effect for parents");
             for (int _parentIndex = 0; _parentIndex < _parentUnits.Length; _parentIndex++)

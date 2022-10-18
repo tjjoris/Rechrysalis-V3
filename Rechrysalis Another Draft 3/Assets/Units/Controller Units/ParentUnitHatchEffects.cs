@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rechrysalis
+namespace Rechrysalis.Unit
 {
     public class ParentUnitHatchEffects : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        private List<GameObject> _hatchEffects;
+        private GameObject[] _subUnits;
+        private GameObject[] _subchrysalii;
+        public void Initialize (GameObject[] _subUnits, GameObject[] _subchrysalii)
         {
-        
+            this._subUnits = _subUnits;
+            this._subchrysalii =_subchrysalii;
+            _hatchEffects = new List<GameObject>();
         }
-
-        // Update is called once per frame
-        void Update()
+        public void AddHatchEffect(GameObject _hatchEffect)
         {
-        
+            _hatchEffects.Add(_hatchEffect);
+        }
+        public void RemoveHatchEffect(GameObject _hatchEffect)
+        {
+            if (_hatchEffects.Contains(_hatchEffect))
+            {
+                _hatchEffects.Remove(_hatchEffect);
+            }
         }
     }
 }
