@@ -82,9 +82,9 @@ namespace Rechrysalis.Controller
                 }
             }
         }
-        public void AddHatchEffect(GameObject _hatchEffect, int _unitIndex, bool _effectAll)
-        {
+        // public void AddHatchEffect(GameObject _hatchEffect, int _unitIndex, bool _effectAll)
+        // {
 
-        }
+        // }
     }
 }

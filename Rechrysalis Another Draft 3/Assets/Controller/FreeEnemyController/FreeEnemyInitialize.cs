@@ -44,6 +44,7 @@ namespace Rechrysalis.Controller
             }
             AddNextWaveAction();
             _controllerFreeHatch?.SubscribeToUnits();
+            RestartUnits();
         }
 
         private void CreateWave(int _controllerIndex, ControllerManager _enemyController, CompSO _compSO, PlayerUnitsSO _playerUnitsSO, CompsAndUnitsSO _compsAndUnits, FreeUnitCompSO _freeUnitCompSO, int _waveIndex)
@@ -52,6 +53,7 @@ namespace Rechrysalis.Controller
                 WaveSO _wave = _freeUnitCompSO.Waves[_waveIndex];
             if (_wave.UnitInWave.Length > 0)
             {
+                _controllerFreeHatch?.InitializeUnitsArray(_wave.UnitInWave.Length);
                 // for (int i = 0; i < _compSO.UnitSOArray.Length; i++)
                 for (int _unitInWaveIndex = 0; _unitInWaveIndex < _freeUnitCompSO.Waves[_waveIndex].UnitInWave.Length; _unitInWaveIndex++)
                 {
@@ -64,12 +66,23 @@ namespace Rechrysalis.Controller
                         newFreeEnemy.name = _unitStats.name + " " + _unitInWaveIndex.ToString();
                         newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(_enemyController);
                         UnitManager _unitManager = newFreeEnemy.GetComponent<UnitManager>();
-                        newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);
-                        _unitManager?.RestartUnit();
+                        newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);                    
                         newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerIndex);
                         _playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
                         _allUnits.Add(newFreeEnemy);
+                        _controllerFreeHatch?.SetUnitsArray(newFreeEnemy, _unitInWaveIndex);
+                        // _unitManager?.RestartUnit();
                     }
+                }
+            }
+        }
+        private void RestartUnits()
+        {
+            if (_allUnits.Count > 0) 
+            {
+                foreach (GameObject _unit in _allUnits)
+                {
+                    _unit.GetComponent<UnitManager>()?.RestartUnit();
                 }
             }
         }
