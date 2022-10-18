@@ -22,9 +22,13 @@ namespace Rechrysalis.HatchEffect
         {
             if (_hatchEffectPrefab != null)
             {
+                if (_addHatchEffect != null)
+                {
                 GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
                 bool _effectAll = _hatchEffect.GetComponent<HETimer>().AllUnits;
-                _addHatchEffect?.Invoke(_hatchEffect, _unitIndex, _effectAll);
+                Debug.Log($"hatch effect " + _hatchEffect.name + " unit index " + _unitIndex + " effect all " + _effectAll);
+                    _addHatchEffect?.Invoke(_hatchEffect, _unitIndex, _effectAll);
+                }
             }
         }
     }

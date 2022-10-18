@@ -78,6 +78,7 @@ namespace Rechrysalis.Controller
                 _freeHatches[_unitCount] = _allUnits[_unitCount].GetComponent<FreeUnitHatchEffect>();
             }
             _controllerHatchEffect?.SetFreeHatches(_freeHatches);
+            _controllerHatchEffect?.SubscribeToUnits();
         }
         public void ActivateInitialUnits()
         {

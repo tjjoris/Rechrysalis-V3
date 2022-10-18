@@ -139,7 +139,7 @@ namespace Rechrysalis.Unit
                     {
                         _theseUnits.ActiveUnits.Add(_subUnits[_unitIndex]);
                     }
-                    CreateHatchEffect(_unitManager.HatchEffectPrefab, _unitIndex);
+                    // CreateHatchEffect(_unitManager.HatchEffectPrefab, _unitIndex);
                 }
                 DeactivateChrysalis(_indexInSubUnits);    
             }

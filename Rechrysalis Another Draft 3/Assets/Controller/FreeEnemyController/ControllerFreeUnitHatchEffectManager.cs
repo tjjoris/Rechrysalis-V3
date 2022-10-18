@@ -41,6 +41,7 @@ namespace Rechrysalis.Controller
         // }
         public void AddHatchEffects(GameObject _hatchEffect, int _unitIndex, bool _effectAll)
         {
+            Debug.Log($"add");
             // Debug.Log($"add hacth effects!!!");
             if (_unitsArray.Length > 0)
             {
@@ -78,6 +79,7 @@ namespace Rechrysalis.Controller
         public void SubscribeToUnits()
         {
             // FreeUnitHatchEffect[] _freeHatches = GetComponentsInChildren<FreeUnitHatchEffect>();
+            // Debug.Log($"subscribe length " + _freeHatches.Length);
             if ((_freeHatches != null) && (_freeHatches.Length > 0))
             {
                 // foreach (FreeUnitHatchEffect _freeUnitHatch in _freeHatches)

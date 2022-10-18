@@ -79,12 +79,12 @@ namespace Rechrysalis.Controller
             // _unitRingManager?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount);
             SetIsStopped(true);
 
-            SubScribeToParentUnits();
+            // SubScribeToParentUnits();
             _rechrysalisControllerInitialize?.ActivateInitialUnits();
         }        
         private void OnEnable()
         {
-           SubScribeToParentUnits();
+        //    SubScribeToParentUnits();
         }
         public void SubScribeToParentUnits()
         {
