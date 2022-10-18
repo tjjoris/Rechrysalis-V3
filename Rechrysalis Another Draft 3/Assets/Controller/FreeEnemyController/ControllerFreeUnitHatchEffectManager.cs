@@ -8,20 +8,49 @@ namespace Rechrysalis.Controller
 {
     public class ControllerFreeUnitHatchEffectManager : MonoBehaviour
     {
-
-        public void AddHatchEffects(List<GameObject> _allUnitsList, GameObject _hatchEffect, int _unitIndex, bool _allUnits)
+        private GameObject[] _unitsArray;
+        public void InitializeUnitsArray(int _length)
         {
-            for (int _unitInList = 0; _unitInList < _allUnitsList.Count; _unitInList++)
+            _unitsArray = new GameObject[_length];
+        }
+        public void SetUnitsArray(GameObject _unit, int _index)
+        {
+            _unitsArray[_index] = _unit;
+        }
+        // public void AddHatchEffectsOld(List<GameObject> _allUnitsList, GameObject _hatchEffect, int _unitIndex, bool _allUnits)
+        // {
+        //     for (int _unitInList = 0; _unitInList < _allUnitsList.Count; _unitInList++)
+        //     {
+        //         if (_allUnitsList[_unitIndex] != null)
+        //         {
+        //             if (_unitIndex == _unitInList)
+        //             {
+        //                 _allUnitsList[_unitInList].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+        //             }
+        //             else if (_allUnits)
+        //             {
+        //                 _allUnitsList[_unitInList].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+        //             }
+        //         }
+        //     }            
+        // }
+        public void AddHatchEffects(GameObject _hatchEffect, int _unitIndex, bool _effectAll)
+        {
+            Debug.Log($"add hacth effects!!!");
+            if (_unitsArray.Length > 0)
             {
-                if (_allUnitsList[_unitIndex] != null)
+            for (int _arrayIndex =0; _arrayIndex < _unitsArray.Length; _arrayIndex++)
                 {
-                    if (_unitIndex == _unitInList)
+                    if (_unitsArray[_arrayIndex] != null)
                     {
-                        _allUnitsList[_unitInList].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-                    }
-                    else if (_allUnits)
-                    {
-                        _allUnitsList[_unitInList].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                        if (_unitIndex == _arrayIndex)
+                        {
+                            _unitsArray[_arrayIndex].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                        }
+                        else if (_effectAll)
+                        {
+                            _unitsArray[_arrayIndex].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                        }
                     }
                 }
             }
@@ -48,8 +77,8 @@ namespace Rechrysalis.Controller
             {
                 if (_freeUnitHatch !=null)
                 {
-                    _freeUnitHatch._addHatchEffect -= AddHatchEffect;
-                    _freeUnitHatch._addHatchEffect += AddHatchEffect;
+                    _freeUnitHatch._addHatchEffect -= AddHatchEffects;
+                    _freeUnitHatch._addHatchEffect += AddHatchEffects;
                 }
             }
         }

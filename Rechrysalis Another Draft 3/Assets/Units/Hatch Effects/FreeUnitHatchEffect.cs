@@ -20,9 +20,12 @@ namespace Rechrysalis.HatchEffect
         }
         public void TriggerHatchEffect()
         {
-            GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
-            bool _effectAll = _hatchEffect.GetComponent<HETimer>().AllUnits;
-            _addHatchEffect?.Invoke(_hatchEffect, _unitIndex, _effectAll);
+            if (_hatchEffectPrefab != null)
+            {
+                GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
+                bool _effectAll = _hatchEffect.GetComponent<HETimer>().AllUnits;
+                _addHatchEffect?.Invoke(_hatchEffect, _unitIndex, _effectAll);
+            }
         }
     }
 }

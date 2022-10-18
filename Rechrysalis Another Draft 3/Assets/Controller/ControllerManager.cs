@@ -202,14 +202,15 @@ namespace Rechrysalis.Controller
                 _parentUnits[_parentIndex].GetComponent<ParentUnitManager>()?.ReserveChrysalis(_parentIndex, _childIndex);
             }
         }
-        public void AddHatchEffect(GameObject _hatchEffect, int _unitIndex, bool _allUnits)
+        public void AddHatchEffect(GameObject _hatchEffect, int _unitIndex, bool _effectAll)
         {
             
-            if (_freeEnemyInitialize != null) 
-            {
-                _controllerFreeHatchEffectManager?.AddHatchEffects(this._allUnits, _hatchEffect, _unitIndex, _allUnits);
-            }
-            else 
+            // if (_controllerFreeHatchEffectManager != null) 
+            // {
+            //     // _controllerFreeHatchEffectManager?.AddHatchEffects(this._allUnits, _hatchEffect, _unitIndex, _allUnits);
+            //     _controllerFreeHatchEffectManager?.AddHatchEffects(_hatchEffect, _unitIndex, _effectAll);
+            // }
+            // else 
             {
             Debug.Log($" add hatch effect for parents");
             for (int _parentIndex = 0; _parentIndex < _parentUnits.Length; _parentIndex++)
@@ -218,7 +219,7 @@ namespace Rechrysalis.Controller
                 {
                     _parentUnits[_unitIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
                 }
-                else if (_allUnits)
+                else if (_effectAll)
                 {
                     _parentUnits[_unitIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
                 }
