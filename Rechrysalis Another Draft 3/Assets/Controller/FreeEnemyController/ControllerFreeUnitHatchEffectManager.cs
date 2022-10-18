@@ -55,22 +55,22 @@ namespace Rechrysalis.Controller
             {
                 _parentUnitHatchEffects[_unitIndex].AddHatchEffect(_hatchEffect);
             }
-            if ((_freeHatches != null)  && (_freeHatches.Length > 0))
-            {
-                for (int _arrayIndex = 0; _arrayIndex < _freeHatches.Length; _arrayIndex++)
-                {
-                    if (_freeHatches[_arrayIndex] != null)
-                    {
-                        if (_arrayIndex == _unitIndex)
-                        {
-                            _freeHatches[_arrayIndex]._addHatchEffect(_hatchEffect, _unitIndex, _effectAll);
-                        }
-                        else if (_effectAll)
-                        {
-                            _freeHatches[_arrayIndex]._addHatchEffect(_hatchEffect, _unitIndex, _effectAll);
-                        }
-                    }
-                }
+            // if ((_freeHatches != null)  && (_freeHatches.Length > 0))
+            // {
+            //     for (int _arrayIndex = 0; _arrayIndex < _freeHatches.Length; _arrayIndex++)
+            //     {
+            //         if (_freeHatches[_arrayIndex] != null)
+            //         {
+            //             if (_arrayIndex == _unitIndex)
+            //             {
+            //                 // _freeHatches[_arrayIndex]._addHatchEffect(_hatchEffect, _unitIndex, _effectAll);
+            //             }
+            //             else if (_effectAll)
+            //             {
+            //                 // _freeHatches[_arrayIndex]._addHatchEffect(_hatchEffect, _unitIndex, _effectAll);
+            //             }
+            //         }
+                // }
                 // for (int _arrayIndex =0; _arrayIndex < _unitsArray.Length; _arrayIndex++)
                 // {
                 //     if (_unitsArray[_arrayIndex] != null)
@@ -85,7 +85,7 @@ namespace Rechrysalis.Controller
                 //         }
                 //     }
                 // }
-            }
+            // }
         }
         public void Tick(float _timeAmount, List<GameObject> _allUnitsList)
         {
