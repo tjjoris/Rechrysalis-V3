@@ -26,7 +26,7 @@ namespace Rechrysalis.Controller
         public void SetParentUnitHatchEffects(ParentUnitHatchEffects[] _parentUnitHatchEffects)
         {
             this._parentUnitHatchEffects = _parentUnitHatchEffects;
-        }
+        }        
         // public void AddHatchEffectsOld(List<GameObject> _allUnitsList, GameObject _hatchEffect, int _unitIndex, bool _allUnits)
         // {
         //     for (int _unitInList = 0; _unitInList < _allUnitsList.Count; _unitInList++)
@@ -47,7 +47,6 @@ namespace Rechrysalis.Controller
         public void AddHatchEffects(GameObject _hatchEffect, int _unitIndex, bool _effectAll)
         {
             Debug.Log($"add hacth effects!!!");
-            // if ((_unitsArray != null) && (_unitsArray.Length > 0))
             // {
 
             // Debug.Log($"add (units array length) " + _unitsArray.Length);
@@ -70,22 +69,24 @@ namespace Rechrysalis.Controller
             //                 // _freeHatches[_arrayIndex]._addHatchEffect(_hatchEffect, _unitIndex, _effectAll);
             //             }
             //         }
-                // }
-                // for (int _arrayIndex =0; _arrayIndex < _unitsArray.Length; _arrayIndex++)
-                // {
-                //     if (_unitsArray[_arrayIndex] != null)
-                //     {
-                //         if (_unitIndex == _arrayIndex)
-                //         {
-                //             _unitsArray[_arrayIndex].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-                //         }
-                //         else if (_effectAll)
-                //         {
-                //             _unitsArray[_arrayIndex].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-                //         }
-                //     }
-                // }
             // }
+            if ((_unitsArray != null) && (_unitsArray.Length > 0))
+            {
+                for (int _arrayIndex =0; _arrayIndex < _unitsArray.Length; _arrayIndex++)
+                {
+                    if (_unitsArray[_arrayIndex] != null)
+                    {
+                        if (_unitIndex == _arrayIndex)
+                        {
+                            _unitsArray[_arrayIndex].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                        }
+                        else if (_effectAll)
+                        {
+                            _unitsArray[_arrayIndex].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                        }
+                    }
+                }
+            }
         }
         public void Tick(float _timeAmount, List<GameObject> _allUnitsList)
         {
