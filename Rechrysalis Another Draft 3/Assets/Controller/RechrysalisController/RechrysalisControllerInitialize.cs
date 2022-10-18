@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Controller
 {
@@ -13,6 +14,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private GameObject _unitRing;
         [SerializeField] private float _ringDistFromCentre = 2f;
         [SerializeField] private GameObject[] _parentUnits;
+        private ControllerFreeUnitHatchEffectManager _controllerHatchEffect;
         public GameObject[] ParentUnits {get{return _parentUnits;}}
         private List<GameObject> _allUnits;    
         private PlayerUnitsSO _theseUnits;   
@@ -28,6 +30,7 @@ namespace Rechrysalis.Controller
             _theseUnits = _compsAndUnits.PlayerUnits[_controllerIndex];
             _theseUnits.ActiveUnits = new List<GameObject>();
             _theseUnits.ActiveUnits.Clear();
+            _controllerHatchEffect = GetComponent<ControllerFreeUnitHatchEffectManager>();
             // foreach (GameObject _unit in _parentUnits)
             for (int _parentUnitIndex = 0; _parentUnitIndex < _unitComp.ParentUnitCount; _parentUnitIndex++)
             {       
@@ -64,12 +67,17 @@ namespace Rechrysalis.Controller
                 }
                 ParentUnitHatchEffects _pUHE = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
                 _pUHE?.Initialize(_pum.SubUnits, _pum.SubChrysalii);
-                _pum.AddChrysalisAndUnitActions();
-                // _pum.ActivateUnit(0);
+                _pum.AddChrysalisAndUnitActions();                
             }
             _hilightRingManager?.Initialize(_unitRingManager);
             _unitRingManager?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount, _parentUnits, _unitRingAngle, _hilightRingManager.transform);  
-            _upgradeRingManager?.Initialize(_unitRingAngle);            
+            _upgradeRingManager?.Initialize(_unitRingAngle);
+            FreeUnitHatchEffect[] _freeHatches = new FreeUnitHatchEffect[_allUnits.Count];
+            for (int _unitCount = 0; _unitCount < _allUnits.Count; _unitCount ++)
+            {
+                _freeHatches[_unitCount] = _allUnits[_unitCount].GetComponent<FreeUnitHatchEffect>();
+            }
+            _controllerHatchEffect?.SetFreeHatches(_freeHatches);
         }
         public void ActivateInitialUnits()
         {

@@ -9,9 +9,14 @@ namespace Rechrysalis.Controller
     public class ControllerFreeUnitHatchEffectManager : MonoBehaviour
     {
         private GameObject[] _unitsArray;
+        private FreeUnitHatchEffect[] _freeHatches;
         public void InitializeUnitsArray(int _length)
         {
             _unitsArray = new GameObject[_length];
+        }
+        public void SetFreeHatches(FreeUnitHatchEffect[] _freeHatches)
+        {
+            this._freeHatches = _freeHatches;
         }
         public void SetUnitsArray(GameObject _unit, int _index)
         {
@@ -36,7 +41,7 @@ namespace Rechrysalis.Controller
         // }
         public void AddHatchEffects(GameObject _hatchEffect, int _unitIndex, bool _effectAll)
         {
-            Debug.Log($"add hacth effects!!!");
+            // Debug.Log($"add hacth effects!!!");
             if (_unitsArray.Length > 0)
             {
             for (int _arrayIndex =0; _arrayIndex < _unitsArray.Length; _arrayIndex++)
@@ -72,13 +77,17 @@ namespace Rechrysalis.Controller
         }
         public void SubscribeToUnits()
         {
-            FreeUnitHatchEffect[] _freeHatches = GetComponentsInChildren<FreeUnitHatchEffect>();
-            foreach (FreeUnitHatchEffect _freeUnitHatch in _freeHatches)
+            // FreeUnitHatchEffect[] _freeHatches = GetComponentsInChildren<FreeUnitHatchEffect>();
+            if ((_freeHatches != null) && (_freeHatches.Length > 0))
             {
-                if (_freeUnitHatch !=null)
+                // foreach (FreeUnitHatchEffect _freeUnitHatch in _freeHatches)
+                for (int _hEIndex = 0; _hEIndex < _freeHatches.Length; _hEIndex ++)
                 {
-                    _freeUnitHatch._addHatchEffect -= AddHatchEffects;
-                    _freeUnitHatch._addHatchEffect += AddHatchEffects;
+                    if (_freeHatches[_hEIndex] !=null)
+                    {
+                        _freeHatches[_hEIndex]._addHatchEffect -= AddHatchEffects;
+                        _freeHatches[_hEIndex]._addHatchEffect += AddHatchEffects;
+                    }
                 }
             }
         }

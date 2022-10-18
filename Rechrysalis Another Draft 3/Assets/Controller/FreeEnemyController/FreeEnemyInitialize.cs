@@ -4,6 +4,7 @@ using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.Movement;
 using Rechrysalis.Attacking;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Controller
 {
@@ -43,6 +44,12 @@ namespace Rechrysalis.Controller
                 // }
             }
             AddNextWaveAction();
+            FreeUnitHatchEffect[] _freeUnitHatchEffects = new FreeUnitHatchEffect[_allUnits.Count];
+            for (int _unitIndex = 0; _unitIndex < _allUnits.Count; _unitIndex++)
+            {                
+                _freeUnitHatchEffects[_unitIndex] = _allUnits[_unitIndex].GetComponent<FreeUnitHatchEffect>();
+            }
+            _controllerFreeHatch?.SetFreeHatches(_freeUnitHatchEffects);
             _controllerFreeHatch?.SubscribeToUnits();
             RestartUnits();
         }
