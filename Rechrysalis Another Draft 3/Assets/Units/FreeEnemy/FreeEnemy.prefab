@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 2080685535575421179}
   - component: {fileID: 852335242743516816}
   - component: {fileID: 3988051625825090081}
+  - component: {fileID: 3630162138141907094}
   m_Layer: 7
   m_Name: FreeEnemy
   m_TagString: Untagged
@@ -205,6 +206,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3def203b7be44c8bb1693413aaada95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3630162138141907094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833293522152398769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf5ee83f97cf4c02ac793aa182da4dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6335642851339446156

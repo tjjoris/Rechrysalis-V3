@@ -63,7 +63,7 @@ namespace Rechrysalis.Controller
                         GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
                         newFreeEnemy.name = _unitStats.name + " " + _unitInWaveIndex.ToString();
                         newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(_enemyController);
-                        newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits);
+                        newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);
                         newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerIndex);
                         _playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
                         _allUnits.Add(newFreeEnemy);

@@ -4,13 +4,15 @@ using UnityEngine;
 using TMPro;
 using Rechrysalis.Movement;
 using Rechrysalis.Attacking;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Unit
 {
     public class UnitManager : MonoBehaviour
     {
-        [SerializeField] private int _controllerIndex;
+        [SerializeField] private int _controllerIndex;        
         public int ControllerIndex {get{return _controllerIndex;}}
+        private int _freeUnitIndex;
         [SerializeField] private UnitStatsSO _unitStats;
         [SerializeField] private TMP_Text _nameText;
         public UnitStatsSO UnitStats {get{return _unitStats;}}
@@ -25,6 +27,7 @@ namespace Rechrysalis.Unit
         private List<GameObject> _hatchEffects;
         private GameObject _hatchEffectPrefab;
         public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
+        private FreeUnitHatchEffect _freeHatchScript;
         public bool IsStopped 
         {
             set{
@@ -39,7 +42,7 @@ namespace Rechrysalis.Unit
                     }
                 }
             }
-        public void Initialize(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits)
+        public void Initialize(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _freeUnitIndex)
         {
             this._controllerIndex = _controllerIndex;
             this._unitStats = _unitStats;
@@ -63,10 +66,14 @@ namespace Rechrysalis.Unit
             _projectilesPool = GetComponent<ProjectilesPool>();
             _hatchEffects = new List<GameObject>();
             _hatchEffectPrefab = _unitStats.HatchEffectPrefab;
+            _freeHatchScript = GetComponent<FreeUnitHatchEffect>();
+            this._freeUnitIndex = _freeUnitIndex;
+            _freeHatchScript?.Initialize(_unitStats.HatchEffectPrefab, _freeUnitIndex);
         }
         public void RestartUnit()
         {
             _health?.RestartUnit();
+            _freeHatchScript?.TriggerHatchEffect();
         }
         public void Tick(float _timeAmount)
         {
