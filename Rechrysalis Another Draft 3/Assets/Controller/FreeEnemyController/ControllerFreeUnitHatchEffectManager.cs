@@ -10,6 +10,7 @@ namespace Rechrysalis.Controller
     {
         private GameObject[] _unitsArray;
         private FreeUnitHatchEffect[] _freeHatches;
+        private ParentUnitHatchEffects[] _parentUnitHatchEffects;
         public void InitializeUnitsArray(int _length)
         {
             _unitsArray = new GameObject[_length];
@@ -21,6 +22,10 @@ namespace Rechrysalis.Controller
         public void SetUnitsArray(GameObject _unit, int _index)
         {
             _unitsArray[_index] = _unit;
+        }
+        public void SetParentUnitHatchEffects(ParentUnitHatchEffects[] _parentUnitHatchEffects)
+        {
+            this._parentUnitHatchEffects = _parentUnitHatchEffects;
         }
         // public void AddHatchEffectsOld(List<GameObject> _allUnitsList, GameObject _hatchEffect, int _unitIndex, bool _allUnits)
         // {
@@ -43,8 +48,12 @@ namespace Rechrysalis.Controller
         {
             Debug.Log($"add");
             // Debug.Log($"add hacth effects!!!");
-            if (_unitsArray.Length > 0)
+            if ((_unitsArray != null) && (_unitsArray.Length > 0))
             {
+                if ((_parentUnitHatchEffects != null) && (_parentUnitHatchEffects.Length > 0))
+                {
+                    _parentUnitHatchEffects[_unitIndex].AddHatchEffect(_hatchEffect);
+                }
             for (int _arrayIndex =0; _arrayIndex < _unitsArray.Length; _arrayIndex++)
                 {
                     if (_unitsArray[_arrayIndex] != null)

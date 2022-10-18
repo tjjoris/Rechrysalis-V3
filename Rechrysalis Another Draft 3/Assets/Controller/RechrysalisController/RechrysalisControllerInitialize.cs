@@ -31,6 +31,7 @@ namespace Rechrysalis.Controller
             _theseUnits.ActiveUnits = new List<GameObject>();
             _theseUnits.ActiveUnits.Clear();
             _controllerHatchEffect = GetComponent<ControllerFreeUnitHatchEffectManager>();
+            ParentUnitHatchEffects[] _parentUnitHatchEffects = new ParentUnitHatchEffects[_unitComp.ParentUnitCount];
             // foreach (GameObject _unit in _parentUnits)
             for (int _parentUnitIndex = 0; _parentUnitIndex < _unitComp.ParentUnitCount; _parentUnitIndex++)
             {       
@@ -45,6 +46,7 @@ namespace Rechrysalis.Controller
                 _pum?.Initialize(_controllerIndex, _parentUnitIndex, _unitComp, _compsAndUnits.PlayerUnits[_controllerIndex], transform);                        
                 _pum.SubUnits = new GameObject[_unitComp.UpgradeCountArray[_parentUnitIndex]];
                 _pum.SubChrysalii = new GameObject[_unitComp.UpgradeCountArray[_parentUnitIndex]];
+                _parentUnitHatchEffects[_parentUnitIndex] = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
                 for (int _childUnitIndex = 0; _childUnitIndex < _unitComp.UpgradeCountArray[_parentUnitIndex]; _childUnitIndex++)
                 {
                     GameObject childUnitGo = Instantiate(_childUnitPrefab, parentUnitGO.transform);
@@ -78,6 +80,7 @@ namespace Rechrysalis.Controller
                 _freeHatches[_unitCount] = _allUnits[_unitCount].GetComponent<FreeUnitHatchEffect>();
             }
             _controllerHatchEffect?.SetFreeHatches(_freeHatches);
+            _controllerHatchEffect?.SetParentUnitHatchEffects(_parentUnitHatchEffects);
             _controllerHatchEffect?.SubscribeToUnits();
         }
         public void ActivateInitialUnits()
