@@ -20,6 +20,7 @@ namespace Rechrysalis.HatchEffect
         }
         public void TriggerHatchEffect()
         {
+            Debug.Log($"trigger hatch for unit " + _unitIndex);
             if (_hatchEffectPrefab != null)
             {
                 if (_addHatchEffect != null)
