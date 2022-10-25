@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Controller;
+using Rechrysalis.Background;
 
 namespace Rechrysalis.Movement
 {
@@ -28,7 +29,7 @@ namespace Rechrysalis.Movement
             _causesPushBack = GetComponent<CausesPushBack>();
             this._controllerIndex = _controllerIndex;
             _backG = GameMaster.GetSingleton().ReferenceManager.BackG;
-            Background _backGScript = _backG.GetComponent<Background>();
+            BackgroundManager _backGScript = _backG.GetComponent<BackgroundManager>();
             _minX = _backGScript.MinX;
             _maxX = _backGScript.MaxX;
             _minY = _backGScript.MinY;

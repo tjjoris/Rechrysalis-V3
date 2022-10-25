@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rechrysalis
+namespace Rechrysalis.Background
 {
-    public class Background : MonoBehaviour
+    public class BackgroundManager : MonoBehaviour
     {
         [SerializeField] private float _minX = -3;
         public float MinX {get{return _minX;}}
@@ -14,5 +14,12 @@ namespace Rechrysalis
         public float MinY {get{return _minY;}}
         [SerializeField] private float _maxY = 14;
         public float MaxY {get{return _maxY;}}
+        private BackgroundPool _backGroundPool;
+
+        public void Initialize ()
+        {
+            _backGroundPool = GetComponent<BackgroundPool>();
+            _backGroundPool?.CreatePool(20);
+        }
     }
 }

@@ -47,6 +47,7 @@ namespace Rechrysalis.Unit
         {
             this._controllerIndex = _controllerIndex;
             this._unitStats = _unitStats;
+            _unitStats.Initialize();
             this._compsAndUnits = _compsAndUnits;
             GetComponent<ProjectilesPool>()?.CreatePool(_unitStats.AmountToPool, _unitStats.ProjectileSpeed, _unitStats.ProjectileSprite);
             _nameText.text = _unitStats.UnitName;

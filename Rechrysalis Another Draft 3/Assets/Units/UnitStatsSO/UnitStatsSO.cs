@@ -18,16 +18,20 @@ namespace Rechrysalis.Unit
        public Sprite UnitSprite {get{return _unitSprite;}}
        [SerializeField] private string _unitName;
        public string UnitName {get{return _unitName;}}
+       [SerializeField] private float _origionalBaseAttackChargeUp = 1;
        [SerializeField] private float _attackChargeUp;
        public float AttackChargeUp {get{return _attackChargeUp;}}
        [SerializeField] private float   _attackWindDown;
+       [SerializeField] private float _origionalBaseAttackWindDown = 1;
        public float AttackWindDown {get {return _attackWindDown;}}
        [SerializeField] private float _baseDamage;
        public float BaseDamage {get{return _baseDamage;}}
+       [SerializeField] private float _origionalBaseDPS = 1;
        [SerializeField] private float _baseDPS;
        public float BaseDPS {get{return _baseDPS;}}
        [SerializeField] private float _baseRange;       
        public float BaseRange {get{return _baseRange;}}
+       [SerializeField] private float _origionalBaseHealthMax = 1;
        [SerializeField] private float _healthMaxBase;
     //   [SerializeField] private float _typeHealthMaxMultiplier;
     //    [SerializeField] private float _tierHealthMaxMultipleir;
@@ -43,11 +47,11 @@ namespace Rechrysalis.Unit
 
         public void Initialize()
         {
-            _healthMax = _healthMaxBase * _baseMultipler.HealthMultiplier * _typeMultipler.HealthMultiplier * _tierMultiplier.HealthMultiplier;
-            _baseDPS = _baseDPS * _baseMultipler.DPSMultiplier * _typeMultipler.DPSMultiplier * _tierMultiplier.DPSMultiplier;
+            _healthMax = _origionalBaseHealthMax * _baseMultipler.HealthMultiplier * _typeMultipler.HealthMultiplier * _tierMultiplier.HealthMultiplier;
+            _baseDPS = _origionalBaseDPS * _baseMultipler.DPSMultiplier * _typeMultipler.DPSMultiplier * _tierMultiplier.DPSMultiplier;
             _baseRange = _typeMultipler.Range;
-            _attackChargeUp = _attackChargeUp * _baseMultipler.AttackChargeUp * _typeMultipler.AttackChargeUp * _tierMultiplier.AttackChargeUp;
-            _attackWindDown = _attackWindDown * _baseMultipler.AttackWindDown * _typeMultipler.AttackWindDown * _tierMultiplier.AttackWindDown;
+            _attackChargeUp = _origionalBaseAttackChargeUp * _baseMultipler.AttackChargeUp * _typeMultipler.AttackChargeUp * _tierMultiplier.AttackChargeUp;
+            _attackWindDown = _origionalBaseAttackWindDown * _baseMultipler.AttackWindDown * _typeMultipler.AttackWindDown * _tierMultiplier.AttackWindDown;
             _baseDamage = _baseDPS / (_attackChargeUp + _attackWindDown);
         }
     }
