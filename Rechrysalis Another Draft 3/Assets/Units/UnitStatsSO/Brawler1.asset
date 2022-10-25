@@ -19,9 +19,9 @@ MonoBehaviour:
   _unitName: Brawler 1
   _attackChargeUp: 1
   _attackWindDown: 1
-  _baseDamage: 0
+  _baseDamage: 1
   _baseDPS: 1
-  _baseRange: 5
+  _baseRange: 1
   _healthMaxBase: 1
   _healthMax: 1
   _chrysalisTimerMax: 5

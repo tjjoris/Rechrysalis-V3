@@ -16,10 +16,10 @@ MonoBehaviour:
   _projectileSpeed: 0.1
   _projectileSprite: {fileID: 21300000, guid: acf2a1d752267428eaf137c494e17c8b, type: 3}
   _unitSprite: {fileID: 21300000, guid: d85cca01e0de2469181415bb6acc7f11, type: 3}
-  _unitName: Ranger 0
+  _unitName: Ranger 1
   _attackChargeUp: 1
   _attackWindDown: 1
-  _baseDamage: 0
+  _baseDamage: 1
   _baseDPS: 1
   _baseRange: 1
   _healthMaxBase: 1

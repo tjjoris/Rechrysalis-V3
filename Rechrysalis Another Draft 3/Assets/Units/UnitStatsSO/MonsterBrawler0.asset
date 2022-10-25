@@ -15,17 +15,17 @@ MonoBehaviour:
   _amountToPool: 2
   _projectileSpeed: 0.1
   _projectileSprite: {fileID: 21300000, guid: acf2a1d752267428eaf137c494e17c8b, type: 3}
-  _unitSprite: {fileID: 0}
+  _unitSprite: {fileID: 21300000, guid: dd68c10b9768845e990ea15aa47d6cff, type: 3}
   _unitName: Monster
   _attackChargeUp: 1
   _attackWindDown: 1
-  _baseDamage: 3
+  _baseDamage: 1
   _baseDPS: 1
-  _baseRange: 5
+  _baseRange: 1
   _healthMaxBase: 1
-  _healthMax: 15
-  _chrysalisTimerMax: 0
+  _healthMax: 1
+  _chrysalisTimerMax: 5
   _hatchEffectPrefab: {fileID: 0}
-  _baseMultipler: {fileID: 0}
+  _baseMultipler: {fileID: 11400000, guid: addd200285bff46b3b959eb8552a2b8c, type: 2}
   _typeMultipler: {fileID: 11400000, guid: 95843a30ae5df4e278fb90f53cc2e39e, type: 2}
   _tierMultiplier: {fileID: 11400000, guid: 5a7eba2dca58d4b84bd3939ad2a43062, type: 2}
