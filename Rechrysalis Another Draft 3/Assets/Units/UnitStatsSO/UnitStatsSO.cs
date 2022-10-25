@@ -25,18 +25,20 @@ namespace Rechrysalis.Unit
        [SerializeField] private float _baseRange;
        public float BaseRange {get{return _baseRange;}}
        [SerializeField] private float _healthMaxBase;
-      [SerializeField] private float _typeHealthMaxMultiplier;
-       [SerializeField] private float _tierHealthMaxMultipleir;
+    //   [SerializeField] private float _typeHealthMaxMultiplier;
+    //    [SerializeField] private float _tierHealthMaxMultipleir;
        [SerializeField] private float _healthMax;
        public float HealthMax {get{return _healthMax;}}
        [SerializeField] private float _chrysalisTimerMax;
        public float ChrysalisTimerMax {get {return _chrysalisTimerMax;}}
        [SerializeField] private GameObject _hatchEffectPrefab;
        public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
+       [SerializeField] private UnitStatsMultiplierSO _typeMultipler;
+       [SerializeField] private UnitStatsMultiplierSO _tierMultiplier;
 
         public void Initialize()
         {
-            _healthMax = _healthMaxBase * _typeHealthMaxMultiplier * _tierHealthMaxMultipleir;
+            _healthMax = _healthMaxBase * _typeMultipler.Multiplier * _tierMultiplier.Multiplier;
         }
     }
 }
