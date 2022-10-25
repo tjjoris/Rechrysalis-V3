@@ -38,6 +38,7 @@ namespace Rechrysalis
 
         private void FixedUpdate()
         {
+            _backGroundManager.Tick();
             ResetTick();
             Tick();
         }

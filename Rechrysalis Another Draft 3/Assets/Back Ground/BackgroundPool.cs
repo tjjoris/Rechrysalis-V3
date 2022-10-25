@@ -12,10 +12,10 @@ namespace Rechrysalis.Background
         // private GameObject _projectilesHolderGO;
         // private ProjectilesHolder _projectilesHolderScript;
         private int amountToPool;
-        private int _xCount = 4;
-        private int _yCount = 8;
-        private float _tileWidth = 100;
-        private float _tileHeight = 100;
+        private int _xCount = 3;
+        private int _yCount = 5;
+        private float _tileWidth = 5;
+        private float _tileHeight = 5;
 
         public void CreatePool(int amountToPool)
         {
@@ -53,7 +53,7 @@ namespace Rechrysalis.Background
         }
         public void Tick ()
         {
-            
+            Debug.Log($"background tick");
             for (int _xIndex = 0; _xIndex < _xCount; _xIndex ++)
             {
                 for (int _yIndex = 0; _yIndex < _yCount; _yIndex ++)
@@ -61,21 +61,22 @@ namespace Rechrysalis.Background
                     bool _objectExists = false;
                     float _xCameraCount = Camera.main.transform.position.x / _tileWidth;
                     _xCameraCount = Mathf.Floor(_xCameraCount);
-                    float _xIndexToCheck = _xCameraCount + _xIndex;
+                    float _xIndexToCheck = _xCameraCount + _xIndex - ((_xCount -1) * 0.5f);
                     float _yCameraCount = Camera.main.transform.position.y / _tileHeight;
                     _yCameraCount = Mathf.Floor(_yCameraCount);
-                    float _yIndexToCheck = _yCameraCount + _yIndex;
-                    Vector2 _vectorToCheck = new Vector2((_xIndex * _tileWidth), (_yIndex * _tileHeight));
+                    float _yIndexToCheck = _yCameraCount + _yIndex - ((_yCount -1) * 0.5f);
+                    Vector2 _vectorToCheck = new Vector2(((_xIndexToCheck * _tileWidth)), (_yIndexToCheck * _tileHeight));
+                    Debug.Log($"vector " + _vectorToCheck + "x Index " + _xIndex + " x camera count " + _xCameraCount);
                     if (_activeObjects.Count > 0)
                     {
                         for (int _activeIndex = 0; _activeIndex < _activeObjects.Count; _activeIndex ++)
                         {
                             _objectExists = CheckIfInRange(_activeObjects[_activeIndex].transform.position, _vectorToCheck);
                         }
-                        if (!_objectExists)
-                        {
-                            ActivateTile(_vectorToCheck);
-                        }
+                    }
+                    if (!_objectExists)
+                    {
+                        ActivateTile(_vectorToCheck);
                     }
                 }
             }
@@ -89,7 +90,7 @@ namespace Rechrysalis.Background
         }
         private bool CheckIfInRange(Vector2 _objectVector,Vector2 _vectorToCheck)
         {
-            if (_objectVector == _vectorToCheck)
+            if ((_objectVector - _vectorToCheck).magnitude < 0.1f)
             {
                 return true;
             }
