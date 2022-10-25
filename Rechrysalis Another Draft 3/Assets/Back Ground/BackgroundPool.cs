@@ -12,8 +12,8 @@ namespace Rechrysalis.Background
         // private GameObject _projectilesHolderGO;
         // private ProjectilesHolder _projectilesHolderScript;
         private int amountToPool;
-        private int _xCount = 3;
-        private int _yCount = 5;
+        private int _xCount = 4;
+        private int _yCount = 7;
         private float _tileWidth = 2.4f;
         private float _tileHeight = 2.4f;
 
@@ -53,7 +53,7 @@ namespace Rechrysalis.Background
         }
         public void Tick ()
         {
-            Debug.Log($"background tick");
+            // Debug.Log($"background tick");
             if (_activeObjects.Count > 0)
             {
                 for (int _activeIndex = 0; _activeIndex < _activeObjects.Count; _activeIndex++)
@@ -109,24 +109,24 @@ namespace Rechrysalis.Background
         }
         private void CheckToRemoveTile (GameObject _tile)
         {
-            if (Mathf.Abs((Camera.main.transform.position.y - _tile.transform.position.y)) > ((_tileHeight * _yCount * 0.5f)))
+            if (Mathf.Abs((Camera.main.transform.position.y - _tile.transform.position.y)) > ((_tileHeight * _yCount * 0.6f)))
             {
                 RemoveTile(_tile);
-                return;
             }
-            if (Mathf.Abs((Camera.main.transform.position.x - _tile.transform.position.x)) > ((_tileWidth * _xCount * 0.5f)))
+            if (Mathf.Abs((Camera.main.transform.position.x - _tile.transform.position.x)) > ((_tileWidth * _xCount * 0.6f)))
             {
                 RemoveTile(_tile);
             }
         }
         private void RemoveTile (GameObject _tile)
         {
+
+            _tile.SetActive(false);
             Debug.Log($"remove tile");
             if (_activeObjects.Contains(_tile))
             {
                 _activeObjects.Remove(_tile);
             }
-            _tile.SetActive(false);
         }
     }
 }
