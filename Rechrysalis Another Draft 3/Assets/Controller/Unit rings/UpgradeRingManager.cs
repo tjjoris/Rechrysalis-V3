@@ -7,6 +7,7 @@ namespace Rechrysalis.Controller
     public class UpgradeRingManager : MonoBehaviour
     {
         [SerializeField] private float _currentAngle;
+        [SerializeField] private GameObject _upgradeRingForUnitPrefab;
         public float CurrentAngle {get{return _currentAngle;}}
 
         public void Initialize (float _currentAngle)

@@ -16,6 +16,7 @@ namespace Rechrysalis.Background
         private int _yCount = 7;
         private float _tileWidth = 2.4f;
         private float _tileHeight = 2.4f;
+        private float _zOffset = 7f;
 
         public void CreatePool(int amountToPool)
         {
@@ -72,7 +73,7 @@ namespace Rechrysalis.Background
                     float _yCameraCount = Camera.main.transform.position.y / _tileHeight;
                     _yCameraCount = Mathf.Floor(_yCameraCount);
                     float _yIndexToCheck = _yCameraCount + _yIndex - ((_yCount -1) * 0.5f);
-                    Vector2 _vectorToCheck = new Vector2(((_xIndexToCheck * _tileWidth)), (_yIndexToCheck * _tileHeight));
+                    Vector3 _vectorToCheck = new Vector3(((_xIndexToCheck * _tileWidth)), (_yIndexToCheck * _tileHeight), _zOffset);
                     // Debug.Log($"vector " + _vectorToCheck + "x Index " + _xIndex + " x camera count " + _xCameraCount);
                     if (_activeObjects.Count > 0)
                     {
@@ -91,7 +92,7 @@ namespace Rechrysalis.Background
                 }
             }
         }
-        private void ActivateTile (Vector2 _location)
+        private void ActivateTile (Vector3 _location)
         {
             GameObject go = GetPooledObject();
             go.SetActive(true);
