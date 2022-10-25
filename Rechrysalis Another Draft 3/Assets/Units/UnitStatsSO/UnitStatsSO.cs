@@ -35,13 +35,17 @@ namespace Rechrysalis.Unit
        public float ChrysalisTimerMax {get {return _chrysalisTimerMax;}}
        [SerializeField] private GameObject _hatchEffectPrefab;
        public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
+       [SerializeField] private UnitStatsMultiplierSO _baseMultipler;
        [SerializeField] private UnitStatsMultiplierSO _typeMultipler;
        [SerializeField] private UnitStatsMultiplierSO _tierMultiplier;
 
         public void Initialize()
         {
-            _healthMax = _healthMaxBase * _typeMultipler.HealthMultiplier * _tierMultiplier.HealthMultiplier;
-            _baseDPS = _baseDPS * _typeMultipler.DPSMultiplier * _tierMultiplier.DPSMultiplier;
+            _healthMax = _healthMaxBase * _baseMultipler.HealthMultiplier * _typeMultipler.HealthMultiplier * _tierMultiplier.HealthMultiplier;
+            _baseDPS = _baseDPS * _baseMultipler.DPSMultiplier * _typeMultipler.DPSMultiplier * _tierMultiplier.DPSMultiplier;
+            _baseRange = _typeMultipler.Range;
+            _attackChargeUp = _attackChargeUp * _baseMultipler.AttackChargeUp * _typeMultipler.AttackChargeUp * _tierMultiplier.AttackChargeUp;
+            _attackWindDown = _attackWindDown * _baseMultipler.AttackWindDown * _typeMultipler.AttackWindDown * _tierMultiplier.AttackWindDown;
             _baseDamage = _baseDPS / (_attackChargeUp + _attackWindDown);
         }
     }

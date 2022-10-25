@@ -19,9 +19,11 @@ MonoBehaviour:
   _attackChargeUp: 2
   _attackWindDown: 1
   _baseDamage: 3
+  _baseDPS: 0
   _baseRange: 5
   _healthMaxBase: 25
-  _typeHealthMaxMultiplier: 1.2
-  _tierHealthMaxMultipleir: 1
   _healthMax: 15
   _chrysalisTimerMax: 0
+  _hatchEffectPrefab: {fileID: 0}
+  _typeMultipler: {fileID: 11400000, guid: 95843a30ae5df4e278fb90f53cc2e39e, type: 2}
+  _tierMultiplier: {fileID: 11400000, guid: 5a7eba2dca58d4b84bd3939ad2a43062, type: 2}

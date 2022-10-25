@@ -18,11 +18,12 @@ MonoBehaviour:
   _unitName: Brawler 0
   _attackChargeUp: 0.3
   _attackWindDown: 0.3
-  _baseDamage: 2
+  _baseDamage: 0
+  _baseDPS: 0
   _baseRange: 5
   _healthMaxBase: 15
-  _typeHealthMaxMultiplier: 1.2
-  _tierHealthMaxMultipleir: 1
-  _healthMax: 18
+  _healthMax: 19.5
   _chrysalisTimerMax: 5
   _hatchEffectPrefab: {fileID: 0}
+  _typeMultipler: {fileID: 11400000, guid: 95843a30ae5df4e278fb90f53cc2e39e, type: 2}
+  _tierMultiplier: {fileID: 11400000, guid: 5a7eba2dca58d4b84bd3939ad2a43062, type: 2}
