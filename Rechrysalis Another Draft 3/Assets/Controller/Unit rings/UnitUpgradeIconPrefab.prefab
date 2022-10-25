@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 8841047358117259317}
   - component: {fileID: 8841047358117259316}
   m_Layer: 0
-  m_Name: UnitUpgrade
+  m_Name: UnitUpgradeIconPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

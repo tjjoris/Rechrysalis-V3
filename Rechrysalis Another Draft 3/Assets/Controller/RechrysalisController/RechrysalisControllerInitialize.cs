@@ -76,7 +76,7 @@ namespace Rechrysalis.Controller
             }
             _hilightRingManager?.Initialize(_unitRingManager);
             _unitRingManager?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount, _parentUnits, _unitRingAngle, _hilightRingManager.transform);  
-            _upgradeRingManager?.Initialize(_unitRingAngle);
+            _upgradeRingManager?.Initialize(_unitRingAngle, _unitComp, _ringDistFromCentre);
             FreeUnitHatchEffect[] _freeHatches = new FreeUnitHatchEffect[_allUnits.Count];
             for (int _unitCount = 0; _unitCount < _allUnits.Count; _unitCount ++)
             {
