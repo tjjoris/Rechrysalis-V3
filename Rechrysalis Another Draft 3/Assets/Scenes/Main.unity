@@ -760,6 +760,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   _projectilesHolder: {fileID: 1295238391}
+  _backGround: {fileID: 1949008738}
 --- !u!4 &1448413823
 Transform:
   m_ObjectHideFlags: 0
@@ -786,6 +787,7 @@ GameObject:
   - component: {fileID: 1949008737}
   - component: {fileID: 1949008736}
   - component: {fileID: 1949008738}
+  - component: {fileID: 1949008739}
   m_Layer: 0
   m_Name: BackGround
   m_TagString: Untagged
@@ -834,7 +836,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6a68c666108ea4715a147ff3607bccf7, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -842,7 +844,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1949008737
@@ -876,6 +878,19 @@ MonoBehaviour:
   _maxX: 3
   _minY: -14
   _maxY: 14
+--- !u!114 &1949008739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949008735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e19f3e91d404ffe906b56e4b6459d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToPool: {fileID: 5831894403065707093, guid: 690b90870c7544b0abec440205d1381b, type: 3}
 --- !u!1 &1990266995
 GameObject:
   m_ObjectHideFlags: 0

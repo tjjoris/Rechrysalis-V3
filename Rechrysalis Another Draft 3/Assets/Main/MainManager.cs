@@ -4,6 +4,7 @@ using UnityEngine;
 using Rechrysalis.Controller;
 using Rechrysalis.Unit;
 using Rechrysalis.Attacking;
+using Rechrysalis.Background;
 
 namespace Rechrysalis
 {
@@ -14,6 +15,7 @@ namespace Rechrysalis
         [SerializeField] PlayerUnitsSO[] _playerUnitsSO;  
         [SerializeField] CompSO[] _compSO;   
         [SerializeField] ProjectilesHolder _projectilesHolder;
+        [SerializeField] BackgroundManager _backGround;
 
         private void Awake() {
             // _compsAndUnitsSO.CompsSO = _compSO;
