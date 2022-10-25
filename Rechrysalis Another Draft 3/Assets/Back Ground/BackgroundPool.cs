@@ -14,8 +14,8 @@ namespace Rechrysalis.Background
         private int amountToPool;
         private int _xCount = 3;
         private int _yCount = 5;
-        private float _tileWidth = 5;
-        private float _tileHeight = 5;
+        private float _tileWidth = 2.4f;
+        private float _tileHeight = 2.4f;
 
         public void CreatePool(int amountToPool)
         {
@@ -54,6 +54,13 @@ namespace Rechrysalis.Background
         public void Tick ()
         {
             Debug.Log($"background tick");
+            if (_activeObjects.Count > 0)
+            {
+                for (int _activeIndex = 0; _activeIndex < _activeObjects.Count; _activeIndex++)
+                {
+                    CheckToRemoveTile(_activeObjects[_activeIndex]);
+                }
+            }
             for (int _xIndex = 0; _xIndex < _xCount; _xIndex ++)
             {
                 for (int _yIndex = 0; _yIndex < _yCount; _yIndex ++)
@@ -66,12 +73,15 @@ namespace Rechrysalis.Background
                     _yCameraCount = Mathf.Floor(_yCameraCount);
                     float _yIndexToCheck = _yCameraCount + _yIndex - ((_yCount -1) * 0.5f);
                     Vector2 _vectorToCheck = new Vector2(((_xIndexToCheck * _tileWidth)), (_yIndexToCheck * _tileHeight));
-                    Debug.Log($"vector " + _vectorToCheck + "x Index " + _xIndex + " x camera count " + _xCameraCount);
+                    // Debug.Log($"vector " + _vectorToCheck + "x Index " + _xIndex + " x camera count " + _xCameraCount);
                     if (_activeObjects.Count > 0)
                     {
                         for (int _activeIndex = 0; _activeIndex < _activeObjects.Count; _activeIndex ++)
                         {
-                            _objectExists = CheckIfInRange(_activeObjects[_activeIndex].transform.position, _vectorToCheck);
+                            if (!_objectExists)
+                            {
+                                _objectExists = CheckIfInRange(_activeObjects[_activeIndex].transform.position, _vectorToCheck);
+                            }
                         }
                     }
                     if (!_objectExists)
@@ -90,11 +100,33 @@ namespace Rechrysalis.Background
         }
         private bool CheckIfInRange(Vector2 _objectVector,Vector2 _vectorToCheck)
         {
+            // Debug.Log($"check vector" + _objectVector + " " +  _vectorToCheck);
             if ((_objectVector - _vectorToCheck).magnitude < 0.1f)
             {
                 return true;
             }
             else return false;
+        }
+        private void CheckToRemoveTile (GameObject _tile)
+        {
+            if (Mathf.Abs((Camera.main.transform.position.y - _tile.transform.position.y)) > ((_tileHeight * _yCount * 0.5f)))
+            {
+                RemoveTile(_tile);
+                return;
+            }
+            if (Mathf.Abs((Camera.main.transform.position.x - _tile.transform.position.x)) > ((_tileWidth * _xCount * 0.5f)))
+            {
+                RemoveTile(_tile);
+            }
+        }
+        private void RemoveTile (GameObject _tile)
+        {
+            Debug.Log($"remove tile");
+            if (_activeObjects.Contains(_tile))
+            {
+                _activeObjects.Remove(_tile);
+            }
+            _tile.SetActive(false);
         }
     }
 }

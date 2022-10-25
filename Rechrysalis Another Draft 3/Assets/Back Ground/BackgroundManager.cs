@@ -15,13 +15,13 @@ namespace Rechrysalis.Background
         [SerializeField] private float _maxY = 14;
         public float MaxY {get{return _maxY;}}
         private BackgroundPool _backGroundPool;
-        private int _tickCount = 1000;
-        private int _tickMax = 1000;
+        private int _tickCount = 50;
+        private int _tickMax = 50;
 
         public void Initialize ()
         {
             _backGroundPool = GetComponent<BackgroundPool>();
-            _backGroundPool?.CreatePool(20);
+            _backGroundPool?.CreatePool(40);
         }
         public void Tick()
         {

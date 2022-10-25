@@ -55,10 +55,10 @@ namespace Rechrysalis.Movement
                 {
                     _x = 0; 
                 }
-                if (((_y <0) && (transform.position.y + _y < _minY)) || ((_y > 0) && (transform.position.y + _y > _maxY)))
-                {
-                    _y = 0;
-                }
+                // if (((_y <0) && (transform.position.y + _y < _minY)) || ((_y > 0) && (transform.position.y + _y > _maxY)))
+                // {
+                //     _y = 0;
+                // }
             }
             if ((_causesPushBack != null) && (_y > 0)) 
             {
