@@ -15,7 +15,7 @@ namespace Rechrysalis
         [SerializeField] PlayerUnitsSO[] _playerUnitsSO;  
         [SerializeField] CompSO[] _compSO;   
         [SerializeField] ProjectilesHolder _projectilesHolder;
-        [SerializeField] BackgroundManager _backGround;
+        [SerializeField] BackgroundManager _backGroundManager;
 
         private void Awake() {
             // _compsAndUnitsSO.CompsSO = _compSO;
@@ -33,6 +33,7 @@ namespace Rechrysalis
                     }
                 }
             }
+            _backGroundManager?.Initialize();
         }
 
         private void FixedUpdate()
