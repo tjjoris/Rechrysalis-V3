@@ -22,7 +22,9 @@ namespace Rechrysalis.Unit
        public float AttackWindDown {get {return _attackWindDown;}}
        [SerializeField] private float _baseDamage;
        public float BaseDamage {get{return _baseDamage;}}
-       [SerializeField] private float _baseRange;
+       [SerializeField] private float _baseDPS;
+       public float BaseDPS {get{return _baseDPS;}}
+       [SerializeField] private float _baseRange;       
        public float BaseRange {get{return _baseRange;}}
        [SerializeField] private float _healthMaxBase;
     //   [SerializeField] private float _typeHealthMaxMultiplier;
@@ -38,7 +40,9 @@ namespace Rechrysalis.Unit
 
         public void Initialize()
         {
-            _healthMax = _healthMaxBase * _typeMultipler.Multiplier * _tierMultiplier.Multiplier;
+            _healthMax = _healthMaxBase * _typeMultipler.HealthMultiplier * _tierMultiplier.HealthMultiplier;
+            _baseDPS = _baseDPS * _typeMultipler.DPSMultiplier * _tierMultiplier.DPSMultiplier;
+            _baseDamage = _baseDPS / (_attackChargeUp + _attackWindDown);
         }
     }
 }
