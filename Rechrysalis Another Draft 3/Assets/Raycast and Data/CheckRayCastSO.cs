@@ -43,7 +43,7 @@ namespace Rechrysalis.Controller
             {
                 _touchTypeArray[_touchTypeIndex] = TouchTypeEnum.nothing;
             }
-            _controllermanager = _clickInfo.ControlledController.GetComponent<ControllerManager>();
+            _controllermanager = _clickInfo.ControlledController.GetComponent<ControllerManager>();            
         }
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {
@@ -72,6 +72,7 @@ namespace Rechrysalis.Controller
                     _unitUpgrading = _unitInbounds;
                     _touchTypeArray[_touchID] = TouchTypeEnum.friendlyUnit;
                     _upgradeRingManager.SetCurrentAngle(_unitRingManager.UnitRingAngle);
+                    _upgradeRingManager.SetActiveUpgradeRing(_unitInbounds);
                     Debug.Log($"friendly unit " + _unitInbounds);
                 }
                 else 
@@ -185,6 +186,7 @@ namespace Rechrysalis.Controller
                     int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
                     _controllermanager.ReserveChrysalis(_unitUpgrading, _unitToUpgradeTo);
                 }
+                _upgradeRingManager.SetActiveUpgradeRing(-1);
             }
             if ((_touchTypeArray[_touchID] == TouchTypeEnum.unitRing) && (_hilightRingManager.gameObject.activeInHierarchy == true))
             {

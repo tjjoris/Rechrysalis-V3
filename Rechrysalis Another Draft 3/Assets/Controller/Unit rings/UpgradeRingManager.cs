@@ -32,5 +32,18 @@ namespace Rechrysalis.Controller
         {
             this._currentAngle = _currentAngle;
         }
+        public void SetActiveUpgradeRing(int _parentUnit)
+        {
+            for (int _ringIndex = 0; _ringIndex < 3; _ringIndex ++) 
+            {
+                if (_ringIndex == _parentUnit)
+                {
+                    _upgradeRingForUnit[_ringIndex].gameObject.SetActive(true);
+                }
+                else {
+                    _upgradeRingForUnit[_ringIndex].gameObject.SetActive(false);
+                }
+            }
+        }
     }
 }

@@ -85,6 +85,7 @@ namespace Rechrysalis.Controller
             _controllerHatchEffect?.SetFreeHatches(_freeHatches);
             _controllerHatchEffect?.SetParentUnitHatchEffects(_parentUnitHatchEffects);
             _controllerHatchEffect?.SubscribeToUnits();
+            _upgradeRingManager?.SetActiveUpgradeRing(-1);
         }
         public void ActivateInitialUnits()
         {

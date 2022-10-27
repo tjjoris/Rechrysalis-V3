@@ -23,5 +23,19 @@ namespace Rechrysalis.Controller
                 _upgradeIconManager[_iconIndex].Initialize(_upgradeIcons[_iconIndex]);
             }
         }
+        public void MouseOverForUnit(int _unitIndex)
+        {
+            for (int _iconIndex = 0; _iconIndex < 3; _iconIndex ++)
+            {
+                if (_iconIndex == _unitIndex)
+                {
+                    _upgradeIconManager[_iconIndex].MouseOverThisUpgrade();
+                }
+                else 
+                {
+                    _upgradeIconManager[_iconIndex].MouseOffThisUpgrade();
+                }
+            }
+        }
     }
 }
