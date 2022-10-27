@@ -220,12 +220,8 @@ namespace Rechrysalis.Controller
                 {
                     float _angleToCompare = AnglesMath.LimitAngle(((360 / _unitCount) * _unitIndex) - -_angleOffset);
                     Debug.Log($"angle to compare " + _angleToCompare);
-                    // float _angleToCompareLess = AnglesMath.LimitAngle(_angleToCompare - _unitWidthDegrees);
-                    // float _angleToCompareMore = AnglesMath.LimitAngle(_angleToCompare + _unitWidthDegrees);
-                    // if (((_mouseAngleCurrent >= AnglesMath.LimitAngle(_angleToCompareLess)) && (_mouseAngleCurrent <= _angleToCompareMore)))
                     float _mouseSubtractAngle = _mouseAngleCurrent - _angleToCompare;
-                    if ((Mathf.Abs(_mouseSubtractAngle) < _unitWidthDegrees) || ((Mathf.Abs(_mouseSubtractAngle) > (360 - _unitWidthDegrees))))
-                    // if ((_mouseAngleCurrent >= (((360 / _unitCount) * _unitIndex) - _unitWidthDegrees + _angleOffset)) && (_mouseAngleCurrent <= (((360 / _unitCount) * _unitIndex) + _unitWidthDegrees + _angleOffset)))
+                    if ((Mathf.Abs(_mouseSubtractAngle) < _unitWidthDegrees) || ((Mathf.Abs(_mouseSubtractAngle) > (360 - _unitWidthDegrees))))                    
                     {
                         return _unitIndex;
                     }
