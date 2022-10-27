@@ -10,7 +10,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private GameObject _upgradeIconPrefab;
         private UpgradeIconManager[] _upgradeIconManager;
 
-        public void Initialize (Sprite[] _upgradeIcons, float _ringDistFromCentre)
+        public void Initialize (Sprite[] _upgradeIcons, float _ringDistFromCentre, int _parentIndex)
         {
             _upgradeIconManager = new UpgradeIconManager[_upgradeIcons.Length];
             for (int _iconIndex = 0; _iconIndex < _upgradeIcons.Length; _iconIndex ++)
@@ -22,6 +22,8 @@ namespace Rechrysalis.Controller
                 _upgradeIconManager[_iconIndex] = go.GetComponent<UpgradeIconManager>();
                 _upgradeIconManager[_iconIndex].Initialize(_upgradeIcons[_iconIndex]);
             }
+            Vector3 _rotation = new Vector3(0, 0, 120 * _parentIndex);
+            transform.localEulerAngles = _rotation;
         }
         public void MouseOverForUnit(int _unitIndex)
         {

@@ -25,7 +25,7 @@ namespace Rechrysalis.Controller
                 {
                     _upgradeIcons[_childIndex] = _compSO.UnitSOArray[(_parentIndex * 3) + _childIndex].UnitSprite;
                 }
-                _upgradeRingForUnit[_parentIndex]?.Initialize(_upgradeIcons, _ringDistFromCentre);
+                _upgradeRingForUnit[_parentIndex]?.Initialize(_upgradeIcons, _ringDistFromCentre, _parentIndex);
             }
         }
         public void SetCurrentAngle (float  _currentAngle)
