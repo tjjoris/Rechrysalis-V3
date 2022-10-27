@@ -31,6 +31,8 @@ namespace Rechrysalis.Controller
         public void SetCurrentAngle (float  _currentAngle)
         {
             this._currentAngle = _currentAngle;
+            Vector3 _rotationAngle = new Vector3(0, 0, _currentAngle + 90);
+            transform.eulerAngles = _rotationAngle;
         }
         public void SetActiveUpgradeRing(int _parentUnit)
         {
