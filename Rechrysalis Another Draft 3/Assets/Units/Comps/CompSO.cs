@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Unit
 {
@@ -10,6 +11,8 @@ namespace Rechrysalis.Unit
     {
         [SerializeField] private UnitStatsSO[] _unitSOArray;        
         public UnitStatsSO[] UnitSOArray {get{return _unitSOArray;}}
+        [SerializeField] private HatchEffectSO[] _hatchEffectSOArray;
+        public HatchEffectSO[] HatchEffectSOArray {get{return _hatchEffectSOArray;}}
         [SerializeField] private int _parentUnitcount;
         public int ParentUnitCount {get { return _parentUnitcount;}}
         [SerializeField] private int _childUnitCount;
