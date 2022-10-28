@@ -94,11 +94,11 @@ namespace Rechrysalis.Controller
         {
             for (int _childIndex = 0; _childIndex < _comp.ParentUnitCount; _childIndex ++)
             {
-                if ((_comp.UnitSOArray[(_parentIndex * 3) + _childIndex].UnitName != "Empty"))
+                if (_comp.UnitSOArray[(_parentIndex * 3) + _childIndex].UnitName != "Empty")
                 {
                     return true;
                 }
-                if ((_childIndex == 0) || ((_childIndex > 0) && (_comp.HatchEffectSOArray[(_parentIndex * 3) + _childIndex] != null)))
+                if ((_childIndex > 0) && (_comp.HatchEffectSOArray[(_parentIndex * 3) + _childIndex] != null))
                 {
                     return true;
                 }
@@ -109,7 +109,9 @@ namespace Rechrysalis.Controller
         {
             for (int _parentUnitIndex = 0; _parentUnitIndex < _unitComp.ParentUnitCount; _parentUnitIndex++)
             {
+                if (_parentUnits[_parentUnitIndex] != null){
                 _parentUnits[_parentUnitIndex].GetComponent<ParentUnitManager>()?.ActivateUnit(0);
+                }
             }
         }
         public List<GameObject> GetAllUnits()

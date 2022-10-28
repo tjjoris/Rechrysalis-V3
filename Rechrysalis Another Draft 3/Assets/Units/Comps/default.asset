@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: default
   m_EditorClassIdentifier: 
   _unitSOArray:
-  - {fileID: 11400000, guid: db3f022e624af490da1ed973efc08e3d, type: 2}
-  - {fileID: 11400000, guid: 933474abe37604f519a69c6018637d2c, type: 2}
-  - {fileID: 11400000, guid: 03b6e30d012bb4980b779ae16ca499c7, type: 2}
+  - {fileID: 11400000, guid: e260c777035e74f93ad00058c32967d8, type: 2}
+  - {fileID: 11400000, guid: e260c777035e74f93ad00058c32967d8, type: 2}
+  - {fileID: 11400000, guid: e260c777035e74f93ad00058c32967d8, type: 2}
   - {fileID: 11400000, guid: e260c777035e74f93ad00058c32967d8, type: 2}
   - {fileID: 11400000, guid: 5dcf8ec989b724e3cad5e16ab71c379b, type: 2}
   - {fileID: 11400000, guid: 03b6e30d012bb4980b779ae16ca499c7, type: 2}

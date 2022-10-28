@@ -170,7 +170,10 @@ namespace Rechrysalis.Controller
         {
             foreach (GameObject _parentUnit in _parentUnits)
             {
+                if (_parentUnit != null)
+                {
                     _parentUnit.GetComponent<RotateParentUnit>()?.Tick();
+                }
             }
         }
         public void SetIsStopped(bool _isStopped)
