@@ -17,7 +17,7 @@ namespace Rechrysalis.Controller
             {
                 // Vector2 _position =
                 float _radToOffset = Mathf.Deg2Rad * (((360f / _upgradeIcons.Length) * _iconIndex));
-                Vector3 _unitOffset = new Vector3(Mathf.Cos(_radToOffset) * _ringDistFromCentre, Mathf.Sin(_radToOffset) * _ringDistFromCentre, 0f);
+                Vector3 _unitOffset = new Vector3(Mathf.Cos(_radToOffset) * _ringDistFromCentre, Mathf.Sin(_radToOffset) * _ringDistFromCentre, -0.1f);
                 GameObject go = Instantiate (_upgradeIconPrefab, (transform.position  + _unitOffset), Quaternion.identity, transform);
                 _upgradeIconManager[_iconIndex] = go.GetComponent<UpgradeIconManager>();
                 _upgradeIconManager[_iconIndex].Initialize(_upgradeIcons[_iconIndex]);

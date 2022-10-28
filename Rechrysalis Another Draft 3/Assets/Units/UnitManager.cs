@@ -114,5 +114,13 @@ namespace Rechrysalis.Unit
                 _hatchEffects.Add(_hatchEffect);
             }
         }
+        public void ShowUnitText()
+        {
+            _nameText.gameObject.SetActive(true);
+        }
+        public void HideUnitText()
+        {
+            _nameText.gameObject.SetActive(false);
+        }
     }
 }

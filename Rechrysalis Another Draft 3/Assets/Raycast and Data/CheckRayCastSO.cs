@@ -24,7 +24,7 @@ namespace Rechrysalis.Controller
         private TouchTypeEnum[] _touchTypeArray = new TouchTypeEnum[5];
         private int[] _upgradeCountArray;
         private int _unitUpgrading;
-        private ControllerManager _controllermanager;
+        private ControllerManager _controllerManager;
         private int _controllerIndex = 0;
 
         
@@ -43,7 +43,7 @@ namespace Rechrysalis.Controller
             {
                 _touchTypeArray[_touchTypeIndex] = TouchTypeEnum.nothing;
             }
-            _controllermanager = _clickInfo.ControlledController.GetComponent<ControllerManager>();            
+            _controllerManager = _clickInfo.ControlledController.GetComponent<ControllerManager>();            
         }
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {
@@ -73,6 +73,7 @@ namespace Rechrysalis.Controller
                     _touchTypeArray[_touchID] = TouchTypeEnum.friendlyUnit;
                     _upgradeRingManager.SetCurrentAngle(_unitRingManager.UnitRingAngle);
                     _upgradeRingManager.SetActiveUpgradeRing(_unitInbounds);
+                    _controllerManager.HideUnitText();
                     Debug.Log($"friendly unit " + _unitInbounds);
                 }
                 else 
@@ -179,14 +180,15 @@ namespace Rechrysalis.Controller
                     // Debug.Log($" ring angle " + RingAngle(_mousePos) + "unit count " + _upgradeCountArray[_unitUpgrading]);
                     int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
                     // Debug.Log($"upgrade to " + _unitToUpgradeTo);
-                    _controllermanager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
+                    _controllerManager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
                 }
                 else 
                 {
                     int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
-                    _controllermanager.ReserveChrysalis(_unitUpgrading, _unitToUpgradeTo);
+                    _controllerManager.ReserveChrysalis(_unitUpgrading, _unitToUpgradeTo);
                 }
                 _upgradeRingManager.SetActiveUpgradeRing(-1);
+                _controllerManager.ShowUnitText();
             }
             if ((_touchTypeArray[_touchID] == TouchTypeEnum.unitRing) && (_hilightRingManager.gameObject.activeInHierarchy == true))
             {
