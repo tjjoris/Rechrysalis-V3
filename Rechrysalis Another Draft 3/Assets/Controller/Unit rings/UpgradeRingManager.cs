@@ -27,7 +27,8 @@ namespace Rechrysalis.Controller
                     {
                         _upgradeIcons[_childIndex] = _compSO.UnitSOArray[(_parentIndex * 3) + _childIndex].UnitSprite;
                     }
-                    _upgradeRingForUnit[_parentIndex]?.Initialize(_upgradeIcons, _ringDistFromCentre, _parentIndex);
+                    GameObject[] _childUnits= _parentUnits[_parentIndex].GetComponent<ParentUnitManager>().SubUnits;
+                    _upgradeRingForUnit[_parentIndex]?.Initialize(_upgradeIcons, _ringDistFromCentre, _parentIndex, _childUnits);
                 }
             }
         }
