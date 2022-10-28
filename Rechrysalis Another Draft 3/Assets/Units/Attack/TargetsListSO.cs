@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Rechrysalis.Unit
 {
     [System.Serializable]
-    [CreateAssetMenu(fileName ="TargetsList", menuName ="Units/TargetList")]
+    [CreateAssetMenu(fileName ="TargetsList", menuName ="Unit/TargetList")]
     public class TargetsListSO : ScriptableObject
     {
         // [SerializeField] private int _listLength;
