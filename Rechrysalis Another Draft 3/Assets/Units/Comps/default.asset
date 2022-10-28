@@ -24,7 +24,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03b6e30d012bb4980b779ae16ca499c7, type: 2}
   _hatchEffectSOArray:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: c2ac6c8fc40424eda843552f46aadd13, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -34,4 +34,4 @@ MonoBehaviour:
   - {fileID: 0}
   _parentUnitcount: 3
   _childUnitCount: 3
-  _upgradeCountArray: 030000000200000002000000
+  _upgradeCountArray: 030000000300000003000000

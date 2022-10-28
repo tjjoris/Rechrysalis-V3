@@ -193,7 +193,7 @@ namespace Rechrysalis.Controller
         }
         public void ActivateChrysalis(int _parentUnit, int _childUnit)
         {
-            if (_childUnit != -1) 
+            if ((_childUnit != -1) && (_parentUnits[_parentUnit] != null))
             {
                 _parentUnits[_parentUnit].GetComponent<ParentUnitManager>()?.ActivateChrysalis(_childUnit);
             }

@@ -96,6 +96,7 @@ namespace Rechrysalis.Unit
         }
         public void ActivateChrysalis(int _chrysalisIndex)
         {
+            if (_subChrysalii[_chrysalisIndex] == null) return;
             if (_currentSubUnit != _subChrysalii[_chrysalisIndex])
             {
             float _timeToKeep = 0;
@@ -146,9 +147,11 @@ namespace Rechrysalis.Unit
         }
         private void DeactivateChrysalis(int _chryslisIndex)
         {
-            if (_subChrysalii[_chryslisIndex].activeInHierarchy == true)
-            {
-                _subChrysalii[_chryslisIndex].SetActive(false);
+            if (_subChrysalii[_chryslisIndex] != null) {
+                if (_subChrysalii[_chryslisIndex].activeInHierarchy == true)
+                {
+                    _subChrysalii[_chryslisIndex].SetActive(false);
+                }
             }
             if (_theseUnits.ActiveUnits.Contains(_subChrysalii[_chryslisIndex]))
             {
@@ -157,9 +160,11 @@ namespace Rechrysalis.Unit
         }
         private void DeactivateUnit(int _unitIndex)
         {
-            if (_subUnits[_unitIndex].activeInHierarchy == true)
-            {
-                _subUnits[_unitIndex].SetActive(false);
+            if (_subUnits[_unitIndex] != null) {
+                if (_subUnits[_unitIndex].activeInHierarchy == true)
+                {
+                    _subUnits[_unitIndex].SetActive(false);
+                }
             }
             if (_theseUnits.ActiveUnits.Contains(_subUnits[_unitIndex]))
             {
