@@ -19,15 +19,18 @@ namespace Rechrysalis.CompCustomizer
 
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
 
-        public void Initialize (CompCustomizerSO _compCustomizerSO, UnitStatsSO _basicUnitNotToPick, UnitStatsSO _advUnitNotToPick, HatchEffectSO _hatchEfectNotToPick)
+        public void Initialize (CompCustomizerSO _compCustomizerSO, UnitStatsSO _basicUnitNotToPick, UnitStatsSO _advUnitNotToPick, HatchEffectSO _hatchEfectNotToPick, Color _basicColour, Color _advColour, Color _hatchColour)
         {
             this._compCustomizerSO = _compCustomizerSO;
             CheckTOPickABasicUnit(_basicUnitNotToPick);
             CheckToPickAAdvUnit(_advUnitNotToPick);
             CheckToPickHatchEffect(_hatchEfectNotToPick);
             _upgradeButtonManagerArray[0].Initialize(_basicUnitSO, null);
+            _upgradeButtonManagerArray[0].SetBackGColour(_basicColour);
             _upgradeButtonManagerArray[1].Initialize(_advUnitSO, null);
+            _upgradeButtonManagerArray[1].SetBackGColour(_advColour);
             _upgradeButtonManagerArray[2].Initialize(null, _hatchEffectSO);
+            _upgradeButtonManagerArray[2].SetBackGColour(_hatchColour);
 
         }
         private HatchEffectSO CheckToPickHatchEffect (HatchEffectSO _hatchEffectNotToPick)

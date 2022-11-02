@@ -13,9 +13,9 @@ namespace Rechrysalis.CompCustomizer
         public void SetBackGColour(Color _colour)
         {
             _backG.GetComponent<SpriteRenderer>();
-            _backG.color = _colour;
             _selected = new Color(_colour.r, _colour.g, _colour.b, 1f);
             _notSelected = new Color(_colour.r, _colour.g, _colour.b, 0.5f);
+            _backG.color = _notSelected;
         }
         public void NotSelected()
         {

@@ -16,7 +16,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         private UpgradeButtonManager[] _upgradeButtonArray;
         
-        public void Initialize(CompSO _compSO)
+        public void Initialize(CompSO _compSO, Color _basicColour, Color _advColour, Color _hatchColour)
         {
             this._compSO = _compSO;
             _numberOfUpgradesToChoose = _compCustomizerSO.NumberOfUpgrades;
@@ -28,7 +28,7 @@ namespace Rechrysalis.CompCustomizer
             {
                 GameObject go = Instantiate (_upgradeButtonHorizontalLayoutGroupPrefab, _upgradeButtonVerticalLayoutGroup.transform);
                 UpgradeButtonHorizontalLayoutManager _horizontalManager = go.GetComponent<UpgradeButtonHorizontalLayoutManager>();
-                _horizontalManager?.Initialize(_compCustomizerSO, _basicUnitNotToPick, _advUnitNotToPick, _hatchEffectNotToPick);
+                _horizontalManager?.Initialize(_compCustomizerSO, _basicUnitNotToPick, _advUnitNotToPick, _hatchEffectNotToPick, _basicColour, _advColour, _hatchColour);
                 _basicUnitNotToPick = _horizontalManager.BasicUnitSO;
                 _advUnitNotToPick = _horizontalManager.AdvUnitSO;
                 _hatchEffectNotToPick = _horizontalManager.HatchEffectSO;

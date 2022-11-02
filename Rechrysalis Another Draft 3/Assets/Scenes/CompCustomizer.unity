@@ -154,6 +154,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _compCustomizerManager: {fileID: 1226326098}
   _compSO: {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
+  _basicColour: {r: 0, g: 0.5849056, b: 0.103030756, a: 0}
+  _advColour: {r: 0.9622642, g: 0.74491435, b: 0, a: 0}
+  _hatchColour: {r: 0.59850883, g: 0, b: 0.8301887, a: 0}
 --- !u!4 &236959238
 Transform:
   m_ObjectHideFlags: 0

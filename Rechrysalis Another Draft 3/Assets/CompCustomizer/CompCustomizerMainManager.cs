@@ -10,9 +10,12 @@ namespace Rechrysalis
     {
         [SerializeField] private CompCustomizerManager _compCustomizerManager;
         [SerializeField] private CompSO _compSO;
+        [SerializeField] private Color _basicColour;
+        [SerializeField] private Color _advColour;
+        [SerializeField] private Color _hatchColour;
         private void Awake() 
         {
-            _compCustomizerManager.Initialize(_compSO);
+            _compCustomizerManager.Initialize(_compSO, _basicColour, _advColour, _hatchColour);
         }
     }
 }
