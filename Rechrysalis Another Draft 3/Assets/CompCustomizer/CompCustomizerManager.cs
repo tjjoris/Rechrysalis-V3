@@ -33,7 +33,7 @@ namespace Rechrysalis.CompCustomizer
                 _advUnitNotToPick = _horizontalManager.AdvUnitSO;
                 _hatchEffectNotToPick = _horizontalManager.HatchEffectSO;
             }
-            _compWindowManager.Initialize(_compSO);
+            _compWindowManager.Initialize(_compSO, _basicColour, _advColour);
         }
     }
 }

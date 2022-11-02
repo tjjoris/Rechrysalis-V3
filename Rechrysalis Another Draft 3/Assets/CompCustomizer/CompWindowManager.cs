@@ -12,7 +12,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField]private float _distFromCentreForBasic = 1f;
         [SerializeField]private float _distFromCentreForAdv = 2f;
 
-        public void Initialize(CompSO _compSO)
+        public void Initialize(CompSO _compSO, Color _basicColour, Color _advColour)
         {           
             // Vector2 _posOffset = Vector2.zero; 
             _ArrayOfUnitButtonManagers = new UnitButtonManager[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
@@ -24,19 +24,19 @@ namespace Rechrysalis.CompCustomizer
                 // GameObject go = Instantiate (_unitButtonPrefab, _newPosition, Quaternion.identity, transform);
                 // _ArrayOfUnitButtonManagers[_parentUnitIndex * 3] = go.GetComponent<UnitButtonManager>();
                 // if (_compSO.ChildUnitCount >= 2)
-                CreateUnitButton(_compSO, _parentUnitIndex, 0, 90, _distFromCentreForBasic);
+                CreateUnitButton(_compSO, _parentUnitIndex, 0, 90, _distFromCentreForBasic, _basicColour);
                 if (_compSO.ChildUnitCount == 2)
                 {
-                    CreateUnitButton(_compSO, _parentUnitIndex, 1, 90, _distFromCentreForAdv);
+                    CreateUnitButton(_compSO, _parentUnitIndex, 1, 90, _distFromCentreForAdv, _advColour);
                 }
                 else if (_compSO.ChildUnitCount == 3)
                 {
-                    CreateUnitButton(_compSO, _parentUnitIndex, 1, 70, _distFromCentreForAdv);
-                    CreateUnitButton(_compSO, _parentUnitIndex, 2, 110, _distFromCentreForAdv);
+                    CreateUnitButton(_compSO, _parentUnitIndex, 1, 70, _distFromCentreForAdv, _advColour);
+                    CreateUnitButton(_compSO, _parentUnitIndex, 2, 110, _distFromCentreForAdv, _advColour);
                 }
             }
         }
-        private void CreateUnitButton(CompSO _compSO, int _parentUnitIndex, int _childUnitIndex, float _offsetAngle, float _distFromCentre)
+        private void CreateUnitButton(CompSO _compSO, int _parentUnitIndex, int _childUnitIndex, float _offsetAngle, float _distFromCentre, Color _colour)
         {
             Vector2 _posOffset = AnglesMath.PosForUnitInRing(_compSO.ParentUnitCount, _parentUnitIndex, _offsetAngle, _distFromCentre);
             Vector3 _posOffsetV3 = _posOffset;
@@ -46,6 +46,7 @@ namespace Rechrysalis.CompCustomizer
             Debug.Log($"index " + _indexInButtonManagerArray);
             _ArrayOfUnitButtonManagers[_indexInButtonManagerArray] = go.GetComponent<UnitButtonManager>();
             _ArrayOfUnitButtonManagers[_indexInButtonManagerArray].Initialize(_compSO.UnitSOArray[_indexInButtonManagerArray]);
+            _ArrayOfUnitButtonManagers[_indexInButtonManagerArray].SetBackGColour(_colour);
         }
     }
 }
