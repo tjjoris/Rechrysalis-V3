@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _compCustomizerManager: {fileID: 1226326098}
+  _compSO: {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
 --- !u!4 &236959238
 Transform:
   m_ObjectHideFlags: 0
@@ -404,6 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfaa7360d547c426f8298d99cc113f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _compWindowManager: {fileID: 1311290339}
   _upgradeButtonHorizontalLayoutGroupPrefab: {fileID: 1694530870821105980, guid: c977cf08c60454b3497b780bdd826952, type: 3}
   _upgradeButtonVerticalLayoutGroup: {fileID: 1992929248}
   _compCustomizerSO: {fileID: 11400000, guid: 3136fec9482a441c4869125a51a68276, type: 2}
@@ -416,6 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1311290338}
+  - component: {fileID: 1311290339}
   m_Layer: 5
   m_Name: Comp
   m_TagString: Untagged
@@ -440,9 +443,22 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -113.47}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1311290339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311290337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72761621a73e54ecabf6d0a1afdfda00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitButtonPrefab: {fileID: 5681619936608453150, guid: 5c76328bbd94b4a4984808d0abf2e02c, type: 3}
 --- !u!1 &1356620785
 GameObject:
   m_ObjectHideFlags: 0

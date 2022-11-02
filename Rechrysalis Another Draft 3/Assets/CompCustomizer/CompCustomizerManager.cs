@@ -8,15 +8,17 @@ namespace Rechrysalis.CompCustomizer
 {
     public class CompCustomizerManager : MonoBehaviour
     {
-        // [SerializeField] private GameObject _upgradeButtonPrefab;
+        private CompSO _compSO;
+        [SerializeField] private CompWindowManager _compWindowManager;
         private int _numberOfUpgradesToChoose;
         [SerializeField] private GameObject _upgradeButtonHorizontalLayoutGroupPrefab;
         [SerializeField] private GameObject _upgradeButtonVerticalLayoutGroup;
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         private UpgradeButtonManager[] _upgradeButtonArray;
         
-        public void Initialize()
+        public void Initialize(CompSO _compSO)
         {
+            this._compSO = _compSO;
             _numberOfUpgradesToChoose = _compCustomizerSO.NumberOfUpgrades;
             _upgradeButtonArray = new UpgradeButtonManager[3 * _numberOfUpgradesToChoose];
             UnitStatsSO _basicUnitNotToPick = null;
@@ -31,6 +33,7 @@ namespace Rechrysalis.CompCustomizer
                 _advUnitNotToPick = _horizontalManager.AdvUnitSO;
                 _hatchEffectNotToPick = _horizontalManager.HatchEffectSO;
             }
+            _compWindowManager.Initialize(_compSO);
         }
     }
 }

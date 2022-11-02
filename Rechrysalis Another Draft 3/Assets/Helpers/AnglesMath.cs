@@ -62,5 +62,11 @@ namespace Rechrysalis
         {
             return AnglesMath.LimitAngle((360 / _maxUnits) * _unitIndex);
         }
+        public static Vector2 PosForUnitInRing(int _numberInRing, int _indexInRing, float _ringAngle, float _distFromCentre)
+        {
+            float _radToOffset = Mathf.Deg2Rad * (((360f / _numberInRing) * _indexInRing) + _ringAngle);
+            Vector2 _unitOffset = new Vector2(Mathf.Cos(_radToOffset) * _distFromCentre, Mathf.Sin(_radToOffset) * _distFromCentre);
+            return _unitOffset;
+        }
     }
 }
