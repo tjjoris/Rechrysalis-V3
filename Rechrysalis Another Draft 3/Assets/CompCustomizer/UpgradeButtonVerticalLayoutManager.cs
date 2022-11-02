@@ -9,13 +9,13 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField]private GameObject _upgradeButtonHorizontalLayoutPrefab;
         private UpgradeButtonHorizontalLayoutManager[] _upgradeButtonHorizontalLayoutManagerArray;
 
-        public void Initialize(CompCustomizerSO _compCustomizerSO, int _upgradeCount)
-        {
-            for (int _upgradeIndex = 0; _upgradeIndex < _upgradeCount; _upgradeIndex ++)
-            {
-                GameObject go = Instantiate(_upgradeButtonHorizontalLayoutPrefab, transform);
-            }
-        }
+        // public void Initialize(CompCustomizerSO _compCustomizerSO, int _upgradeCount)
+        // {
+        //     for (int _upgradeIndex = 0; _upgradeIndex < _upgradeCount; _upgradeIndex ++)
+        //     {
+        //         GameObject go = Instantiate(_upgradeButtonHorizontalLayoutPrefab, transform);
+        //     }
+        // }
 
     }
 }

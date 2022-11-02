@@ -8,8 +8,8 @@ namespace Rechrysalis.CompCustomizer
 {
     public class CompCustomizerManager : MonoBehaviour
     {
-        [SerializeField] private GameObject _upgradeButtonPrefab;
-        private int _numberOfUpgradesToChoose = 2;
+        // [SerializeField] private GameObject _upgradeButtonPrefab;
+        private int _numberOfUpgradesToChoose;
         [SerializeField] private GameObject _upgradeButtonHorizontalLayoutGroupPrefab;
         [SerializeField] private GameObject _upgradeButtonVerticalLayoutGroup;
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
@@ -17,6 +17,7 @@ namespace Rechrysalis.CompCustomizer
         
         public void Initialize()
         {
+            _numberOfUpgradesToChoose = _compCustomizerSO.NumberOfUpgrades;
             _upgradeButtonArray = new UpgradeButtonManager[3 * _numberOfUpgradesToChoose];
             UnitStatsSO _basicUnitNotToPick = null;
             UnitStatsSO _advUnitNotToPick = null;
