@@ -9,8 +9,8 @@ namespace Rechrysalis.CompCustomizer
     {
         [SerializeField] private GameObject _unitButtonPrefab;
         private UnitButtonManager[] _ArrayOfUnitButtonManagers;
-        private float _distFromCentreForBasic = 1f;
-        private float _distFromCentreForAdv = 2f;
+        [SerializeField]private float _distFromCentreForBasic = 1f;
+        [SerializeField]private float _distFromCentreForAdv = 2f;
 
         public void Initialize(CompSO _compSO)
         {           
