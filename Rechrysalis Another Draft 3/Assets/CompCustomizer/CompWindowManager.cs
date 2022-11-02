@@ -43,8 +43,9 @@ namespace Rechrysalis.CompCustomizer
             Vector3 _newPosition = transform.position + _posOffsetV3;
             GameObject go = Instantiate(_unitButtonPrefab, _newPosition, Quaternion.identity, transform);
             int _indexInButtonManagerArray = (_parentUnitIndex * 3) + _childUnitIndex;
+            Debug.Log($"index " + _indexInButtonManagerArray);
             _ArrayOfUnitButtonManagers[_indexInButtonManagerArray] = go.GetComponent<UnitButtonManager>();
-            _ArrayOfUnitButtonManagers[_indexInButtonManagerArray].Initialize(_compSO.UnitSOArray[(_parentUnitIndex * 3) + _childUnitIndex]);
+            _ArrayOfUnitButtonManagers[_indexInButtonManagerArray].Initialize(_compSO.UnitSOArray[_indexInButtonManagerArray]);
         }
     }
 }
