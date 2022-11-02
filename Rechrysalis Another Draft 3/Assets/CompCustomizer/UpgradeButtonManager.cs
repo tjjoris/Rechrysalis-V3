@@ -12,6 +12,7 @@ namespace Rechrysalis.CompCustomizer
         private UnitStatsSO _unitStats;
         private HatchEffectSO _hatchEffect;
         [SerializeField] private SpriteRenderer _body;
+        [SerializeField] private IconSetBackGColor _iconSetBackGColour;
         public Action<GameObject> _upgradeClicked;
         public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect)
         {
@@ -29,6 +30,10 @@ namespace Rechrysalis.CompCustomizer
         public void ClickUpgradeButton()
         {
             _upgradeClicked?.Invoke(this.gameObject);
+        }
+        public void SetBackGColour(Color _colour)
+        {
+            _iconSetBackGColour.SetBackGColour(_colour);
         }
     }
 }
