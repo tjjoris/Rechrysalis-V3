@@ -22,6 +22,13 @@ namespace Rechrysalis.CompCustomizer
         public void Initialize (CompCustomizerSO _compCustomizerSO, UnitStatsSO _basicUnitNotToPick, UnitStatsSO _advUnitNotToPick, HatchEffectSO _hatchEfectNotToPick)
         {
             this._compCustomizerSO = _compCustomizerSO;
+            CheckTOPickABasicUnit(_basicUnitNotToPick);
+            CheckToPickAAdvUnit(_advUnitNotToPick);
+            CheckToPickHatchEffect(_hatchEfectNotToPick);
+            _upgradeButtonManagerArray[0].Initialize(_basicUnitSO, null);
+            _upgradeButtonManagerArray[1].Initialize(_advUnitSO, null);
+            _upgradeButtonManagerArray[2].Initialize(null, _hatchEffectSO);
+
         }
         private HatchEffectSO CheckToPickHatchEffect (HatchEffectSO _hatchEffectNotToPick)
         {

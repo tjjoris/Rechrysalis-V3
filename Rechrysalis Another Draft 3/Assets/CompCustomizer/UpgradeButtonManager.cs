@@ -11,7 +11,7 @@ namespace Rechrysalis.CompCustomizer
     {
         private UnitStatsSO _unitStats;
         private HatchEffectSO _hatchEffect;
-        private SpriteRenderer _body;
+        [SerializeField] private SpriteRenderer _body;
         public Action<GameObject> _upgradeClicked;
         public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect)
         {
