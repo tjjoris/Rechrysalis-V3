@@ -10,6 +10,7 @@ namespace Rechrysalis.CompCustomizer
     {
         private CompSO _compSO;
         [SerializeField] private CompWindowManager _compWindowManager;
+        [SerializeField] private DisplayManager _displayManager;
         private int _numberOfUpgradesToChoose;
         [SerializeField] private GameObject _upgradeButtonHorizontalLayoutGroupPrefab;
         [SerializeField] private GameObject _upgradeButtonVerticalLayoutGroup;
@@ -34,6 +35,7 @@ namespace Rechrysalis.CompCustomizer
                 _hatchEffectNotToPick = _horizontalManager.HatchEffectSO;
             }
             _compWindowManager.Initialize(_compSO, _basicColour, _advColour);
+            _displayManager.Initialize();
         }
     }
 }
