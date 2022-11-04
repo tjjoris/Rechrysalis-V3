@@ -8,14 +8,15 @@ namespace Rechrysalis.CompCustomizer
     public class CompWindowManager : MonoBehaviour
     {
         [SerializeField] private GameObject _unitButtonPrefab;
-        private UnitButtonManager[] _ArrayOfUnitButtonManagers;
+        private UnitButtonManager[] _arrayOfUnitButtonManagers;
+        public UnitButtonManager[] ArrayOfUnitButtonManagers {get {return _arrayOfUnitButtonManagers;}}
         [SerializeField]private float _distFromCentreForBasic = 1f;
         [SerializeField]private float _distFromCentreForAdv = 2f;
 
         public void Initialize(CompSO _compSO, Color _basicColour, Color _advColour)
         {           
             // Vector2 _posOffset = Vector2.zero; 
-            _ArrayOfUnitButtonManagers = new UnitButtonManager[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
+            _arrayOfUnitButtonManagers = new UnitButtonManager[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
             for (int _parentUnitIndex = 0; _parentUnitIndex < _compSO.ParentUnitCount; _parentUnitIndex++)
             {
                 // _posOffset = AnglesMath.PosForUnitInRing(_compSO.ParentUnitCount, _parentUnitIndex, 90, _distFromCentreForBasic);                
@@ -44,9 +45,9 @@ namespace Rechrysalis.CompCustomizer
             GameObject go = Instantiate(_unitButtonPrefab, _newPosition, Quaternion.identity, transform);
             int _indexInButtonManagerArray = (_parentUnitIndex * 3) + _childUnitIndex;
             Debug.Log($"index " + _indexInButtonManagerArray);
-            _ArrayOfUnitButtonManagers[_indexInButtonManagerArray] = go.GetComponent<UnitButtonManager>();
-            _ArrayOfUnitButtonManagers[_indexInButtonManagerArray].Initialize(_compSO.UnitSOArray[_indexInButtonManagerArray]);
-            _ArrayOfUnitButtonManagers[_indexInButtonManagerArray].SetBackGColour(_colour);
+            _arrayOfUnitButtonManagers[_indexInButtonManagerArray] = go.GetComponent<UnitButtonManager>();
+            _arrayOfUnitButtonManagers[_indexInButtonManagerArray].Initialize(_compSO.UnitSOArray[_indexInButtonManagerArray]);
+            _arrayOfUnitButtonManagers[_indexInButtonManagerArray].SetBackGColour(_colour);
         }
     }
 }

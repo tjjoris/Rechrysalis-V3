@@ -16,6 +16,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private GameObject _upgradeButtonVerticalLayoutGroup;
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         private UpgradeButtonManager[] _upgradeButtonArray;
+        private UnitButtonManager[] _arrayOfUnitButtonManagers;
         private GameObject[] _appliedUpgradesToComp;
         
         public void Initialize(CompSO _compSO, Color _basicColour, Color _advColour, Color _hatchColour)
@@ -39,17 +40,28 @@ namespace Rechrysalis.CompCustomizer
                 {
                     _upgradeButtonArray[_upgradeIndex + (3 * _numberOfUpgradesCount)] = _horizontalManager.UpgradeButtonManagerArray[_upgradeIndex];
                 }
-            }
+            }            
             _compWindowManager.Initialize(_compSO, _basicColour, _advColour);
+            _arrayOfUnitButtonManagers = _compWindowManager.ArrayOfUnitButtonManagers;
             _displayManager.Initialize();
+            SubscribeToButtons();
         }
         private void SubscribeToButtons()
         {
-            if (_upgradeButtonArray.Length <= 0) return;
-            for (int _upgradeIndex = 0; _upgradeIndex < _upgradeButtonArray.Length; _upgradeIndex ++)
+            if (_upgradeButtonArray.Length > 0) {
+                for (int _upgradeIndex = 0; _upgradeIndex < _upgradeButtonArray.Length; _upgradeIndex ++)
+                {
+                    _upgradeButtonArray[_upgradeIndex]._upgradeClicked -= UpgradeClickedFunction;
+                    _upgradeButtonArray[_upgradeIndex]._upgradeClicked += UpgradeClickedFunction;
+                }
+            }
+            if (_arrayOfUnitButtonManagers.Length > 0) 
             {
-                _upgradeButtonArray[_upgradeIndex]._upgradeClicked -= UpgradeClickedFunction;
-                _upgradeButtonArray[_upgradeIndex]._upgradeClicked += UpgradeClickedFunction;
+                for (int _unitIndex = 0; _unitIndex < _arrayOfUnitButtonManagers.Length; _unitIndex ++)
+                {
+                    _arrayOfUnitButtonManagers[_unitIndex]._unitButtonClicked -= UnitClickedFunction;
+                    _arrayOfUnitButtonManagers[_unitIndex]._unitButtonClicked += UnitClickedFunction;
+                }
             }
         }
         private void OnEnable()
@@ -59,15 +71,26 @@ namespace Rechrysalis.CompCustomizer
         private void OnDisable()
         {
             if (_upgradeButtonArray.Length > 0) {
-            for (int _upgradeIndex = 0; _upgradeIndex < _upgradeButtonArray.Length; _upgradeIndex++)
-            {
-                _upgradeButtonArray[_upgradeIndex]._upgradeClicked -= UpgradeClickedFunction;
+                for (int _upgradeIndex = 0; _upgradeIndex < _upgradeButtonArray.Length; _upgradeIndex++)
+                {
+                    _upgradeButtonArray[_upgradeIndex]._upgradeClicked -= UpgradeClickedFunction;
+                }
             }
+            if (_arrayOfUnitButtonManagers.Length > 0)
+            {
+                for (int _unitIndex = 0; _unitIndex < _arrayOfUnitButtonManagers.Length; _unitIndex++)
+                {
+                    _arrayOfUnitButtonManagers[_unitIndex]._unitButtonClicked -= UnitClickedFunction;
+                }
             }
         }
         private void UpgradeClickedFunction(UpgradeButtonManager _upgradeButtonManager)
         {
             _displayManager.DisplayUnitText(_upgradeButtonManager.UnitStats);
+        }
+        private void UnitClickedFunction(UnitButtonManager _unitButotnManager)
+        {
+            _displayManager.DisplayUnitText(_unitButotnManager.UnitStats);
         }
     }
 }

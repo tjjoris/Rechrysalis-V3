@@ -17,7 +17,7 @@ namespace Rechrysalis.CompCustomizer
         public void DisplayUnitText(UnitStatsSO _unitStats)
         {
             // _info.text = _unitStats.UnitName
-            string _textToDisplay = _unitStats.UnitName + "\n" + "tier " + _unitStats.TierMultiplier.Tier.ToString() + "\n" + _unitStats.BaseRange.ToString();        
+            string _textToDisplay = _unitStats.UnitName + "\n" + "tier " + _unitStats.TierMultiplier.Tier.ToString() + "\n" + "range " + _unitStats.BaseRange.ToString();        
             _info.text = _textToDisplay;
         }
     }
