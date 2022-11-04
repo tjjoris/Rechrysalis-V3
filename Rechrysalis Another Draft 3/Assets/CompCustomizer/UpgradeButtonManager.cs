@@ -4,6 +4,7 @@ using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.HatchEffect;
 using System;
+using TMPro;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -13,6 +14,7 @@ namespace Rechrysalis.CompCustomizer
         private HatchEffectSO _hatchEffect;
         [SerializeField] private SpriteRenderer _body;
         [SerializeField] private IconSetBackGColor _iconSetBackGColour;
+        [SerializeField] private TMP_Text _name;
         public Action<GameObject> _upgradeClicked;
         public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect)
         {
@@ -25,6 +27,7 @@ namespace Rechrysalis.CompCustomizer
             if (_unitStats != null)
             {
                 _body.sprite = _unitStats.UnitSprite;
+                _name.text = _unitStats.UnitName;
             }
         }
         public void ClickUpgradeButton()
