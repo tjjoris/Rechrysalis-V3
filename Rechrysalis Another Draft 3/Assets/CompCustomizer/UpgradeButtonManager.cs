@@ -20,7 +20,10 @@ namespace Rechrysalis.CompCustomizer
         public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect)
         {
             this._hatchEffect = _hatchEffect;
-            this._unitStats = _unitStats;
+            if (_unitStats != null) {
+                this._unitStats = _unitStats;
+                _unitStats.Initialize();
+            }
             if (_hatchEffect != null)
             {
                 // _body.sprite = _hatchEffect

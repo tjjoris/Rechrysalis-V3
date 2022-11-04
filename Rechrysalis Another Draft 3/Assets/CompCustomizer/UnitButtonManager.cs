@@ -17,9 +17,13 @@ namespace Rechrysalis.CompCustomizer
         public Action<UnitButtonManager> _unitButtonClicked;
         public void Initialize(UnitStatsSO _unitStats)
         {
+            if (_unitStats != null)
+            {
+                this._unitStats = _unitStats;
+                _unitStats.Initialize();
+            }
             _body.sprite = _unitStats.UnitSprite;
             _name.text = _unitStats.UnitName;
-            this._unitStats = _unitStats;
         }
         public void ClickUnitButton()
         {
