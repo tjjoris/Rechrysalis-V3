@@ -33,7 +33,8 @@ namespace Rechrysalis.CompCustomizer
         }
         public void ClickUpgradeButton()
         {
-            _upgradeClicked?.Invoke(this);
+            Debug.Log($"clicked");
+            _upgradeClicked?.Invoke(this);            
         }
         public void SetBackGColour(Color _colour)
         {

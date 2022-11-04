@@ -18,7 +18,7 @@ namespace Rechrysalis.CompCustomizer
         }
         public void ClickUnitButton()
         {
-
+            Debug.Log($"unit clicked");
         }
         public void SetBackGColour(Color _colour)
         {
