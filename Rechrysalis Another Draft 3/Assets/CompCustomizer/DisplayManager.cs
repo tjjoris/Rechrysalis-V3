@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -12,6 +13,12 @@ namespace Rechrysalis.CompCustomizer
         public void Initialize()
         {
             _info.text = _initialText;
+        }
+        public void DisplayUnitText(UnitStatsSO _unitStats)
+        {
+            // _info.text = _unitStats.UnitName
+            string _textToDisplay = _unitStats.UnitName + "\n" + "tier " + _unitStats.TierMultiplier.Tier.ToString() + "\n" + _unitStats.BaseRange.ToString();        
+            _info.text = _textToDisplay;
         }
     }
 }

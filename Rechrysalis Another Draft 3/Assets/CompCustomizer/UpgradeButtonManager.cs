@@ -11,11 +11,12 @@ namespace Rechrysalis.CompCustomizer
     public class UpgradeButtonManager : MonoBehaviour
     {
         private UnitStatsSO _unitStats;
+        public UnitStatsSO UnitStats {get {return _unitStats;}}
         private HatchEffectSO _hatchEffect;
         [SerializeField] private SpriteRenderer _body;
         [SerializeField] private IconSetBackGColor _iconSetBackGColour;
         [SerializeField] private TMP_Text _name;
-        public Action<GameObject> _upgradeClicked;
+        public Action<UpgradeButtonManager> _upgradeClicked;
         public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect)
         {
             this._hatchEffect = _hatchEffect;
@@ -32,7 +33,7 @@ namespace Rechrysalis.CompCustomizer
         }
         public void ClickUpgradeButton()
         {
-            _upgradeClicked?.Invoke(this.gameObject);
+            _upgradeClicked?.Invoke(this);
         }
         public void SetBackGColour(Color _colour)
         {

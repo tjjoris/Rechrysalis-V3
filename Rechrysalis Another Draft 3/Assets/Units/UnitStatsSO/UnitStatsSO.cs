@@ -44,6 +44,7 @@ namespace Rechrysalis.Unit
        [SerializeField] private UnitStatsMultiplierSO _baseMultipler;
        [SerializeField] private UnitStatsMultiplierSO _typeMultipler;
        [SerializeField] private UnitStatsMultiplierSO _tierMultiplier;
+       public UnitStatsMultiplierSO TierMultiplier {get {return _tierMultiplier;}}
 
         public void Initialize()
         {

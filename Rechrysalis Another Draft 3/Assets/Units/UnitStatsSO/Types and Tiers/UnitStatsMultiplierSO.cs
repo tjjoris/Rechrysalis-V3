@@ -18,5 +18,7 @@ namespace Rechrysalis.Unit
         public float AttackChargeUp {get{return _attackChargeUp;}}
         [SerializeField] private float _attackWindDown = 1;
         public float AttackWindDown {get{return _attackWindDown;}}
+        [SerializeField] private int _tier;
+        public int Tier {get {return _tier;}}
     }
 }
