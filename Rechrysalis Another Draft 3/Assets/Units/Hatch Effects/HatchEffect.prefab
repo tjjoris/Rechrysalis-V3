@@ -182,6 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6041632317738301057}
   - component: {fileID: 2217491252393193199}
+  - component: {fileID: 5162682908650232571}
   m_Layer: 0
   m_Name: HatchEffect
   m_TagString: Untagged
@@ -220,3 +221,15 @@ MonoBehaviour:
   _duration: 0
   _timeCurrent: 0
   _allUnits: 0
+--- !u!114 &5162682908650232571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4387173649336406545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00a8ce385e1a04ce081d229dd4ec44c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

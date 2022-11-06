@@ -26,7 +26,7 @@ namespace Rechrysalis.Unit
         private CompsAndUnitsSO _compsAndUnits;
         private ProjectilesPool _projectilesPool;
         private List<GameObject> _hatchEffects;
-        private GameObject _hatchEffectPrefab;
+        [SerializeField] private GameObject _hatchEffectPrefab;
         public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
         private FreeUnitHatchEffect _freeHatchScript;
         public bool IsStopped 
@@ -67,7 +67,7 @@ namespace Rechrysalis.Unit
             _rechrysalize = GetComponent<Rechrysalize>();
             _projectilesPool = GetComponent<ProjectilesPool>();
             _hatchEffects = new List<GameObject>();
-            _hatchEffectPrefab = _unitStats.HatchEffectPrefab;
+            // _hatchEffectPrefab = _unitStats.HatchEffectPrefab;
             _freeHatchScript = GetComponent<FreeUnitHatchEffect>();
             this._freeUnitIndex = _freeUnitIndex;
             _freeHatchScript?.Initialize(_unitStats.HatchEffectPrefab, _freeUnitIndex);

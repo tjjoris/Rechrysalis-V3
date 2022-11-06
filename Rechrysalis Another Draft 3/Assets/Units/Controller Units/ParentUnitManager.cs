@@ -14,6 +14,7 @@ namespace Rechrysalis.Unit
         public GameObject[] SubUnits {get {return _subUnits;}set {_subUnits = value;}}
         [SerializeField] private GameObject[] _subChrysalii;
         public GameObject[] SubChrysalii {get{return _subChrysalii;}set {_subChrysalii = value;}}
+        private HatchEffectSO[] _subHatchEffects;        
         private PlayerUnitsSO _theseUnits;
         private GameObject _currentSubUnit;
         private RotateParentUnit _rotateParentUnit;
@@ -33,8 +34,9 @@ namespace Rechrysalis.Unit
             }
          }
 
-        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO _unitComp, PlayerUnitsSO _theseUnits, Transform _controllertransform)
+        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO _unitComp, PlayerUnitsSO _theseUnits, Transform _controllertransform, HatchEffectSO[] _subHatchEffects)
         {
+            this._subHatchEffects = _subHatchEffects;
             this._controllerIndex = _controllerIndex;
             this._theseUnits = _theseUnits;
             // AddChrysalisAndUnitActions();
@@ -129,6 +131,7 @@ namespace Rechrysalis.Unit
         }
         public void ActivateUnit(int _unitIndex)
         {
+            Debug.Log($"activating");
             for (int _indexInSubUnits=0; _indexInSubUnits<_subUnits.Length; _indexInSubUnits++)
             {
                 if (_indexInSubUnits == _unitIndex)  
@@ -141,7 +144,7 @@ namespace Rechrysalis.Unit
                     {
                         _theseUnits.ActiveUnits.Add(_subUnits[_unitIndex]);
                     }
-                    // CreateHatchEffect(_unitManager.HatchEffectPrefab, _unitIndex);
+                    CreateHatchEffect(_unitManager.HatchEffectPrefab, _unitIndex);
                 }
                 DeactivateChrysalis(_indexInSubUnits);    
             }
@@ -174,11 +177,13 @@ namespace Rechrysalis.Unit
         }
         private void CreateHatchEffect(GameObject _hatchEffectPrefab, int _unitIndex)
         {
-            if (_hatchEffectPrefab != null) 
+            if ((_hatchEffectPrefab != null) && (_subHatchEffects[_unitIndex] != null))
             {
                 GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
-                HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
-                _hETimer?.Initialize(_unitIndex);
+                HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
+                _hatchEffectManager?.Initialize(_subHatchEffects[_unitIndex]);
+                // HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
+                // _hETimer?.Initialize(_unitIndex);
                 // foreach (GameObject _subUnit in _subUnits)
                 // {
                 //     _subUnit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
@@ -187,7 +192,7 @@ namespace Rechrysalis.Unit
                 // {
                 //     _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
                 // }
-                _addHatchEffect?.Invoke(_hatchEffect, _unitIndex, _hETimer.AllUnits);
+                _addHatchEffect?.Invoke(_hatchEffect, _unitIndex, _hatchEffectManager.AffectAll);
             }
         }
         public void ReserveChrysalis(int _parentIndex, int _childIndex)

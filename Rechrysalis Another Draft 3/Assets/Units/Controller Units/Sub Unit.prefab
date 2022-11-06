@@ -343,6 +343,7 @@ MonoBehaviour:
   _unitStats: {fileID: 0}
   _nameText: {fileID: 1178424233875251256}
   _isStopped: 0
+  _hatchEffectPrefab: {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}
 --- !u!114 &5745213307618876047
 MonoBehaviour:
   m_ObjectHideFlags: 0

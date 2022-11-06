@@ -46,7 +46,8 @@ namespace Rechrysalis.Controller
                     _parentUnits[_parentUnitIndex] = parentUnitGO;
                     parentUnitGO.name = "Parent Unit " + _parentUnitIndex.ToString();
                     ParentUnitManager _pum = parentUnitGO.GetComponent<ParentUnitManager>();
-                    _pum?.Initialize(_controllerIndex, _parentUnitIndex, _unitComp, _compsAndUnits.PlayerUnits[_controllerIndex], transform);                        
+                    HatchEffectSO[] _hatchEffectSOs = SetHatchEffectSOs(_parentUnitIndex);
+                    _pum?.Initialize(_controllerIndex, _parentUnitIndex, _unitComp, _compsAndUnits.PlayerUnits[_controllerIndex], transform, _hatchEffectSOs);                        
                     _pum.SubUnits = new GameObject[_unitComp.UpgradeCountArray[_parentUnitIndex]];
                     _pum.SubChrysalii = new GameObject[_unitComp.UpgradeCountArray[_parentUnitIndex]];
                     _parentUnitHatchEffects[_parentUnitIndex] = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
@@ -93,9 +94,20 @@ namespace Rechrysalis.Controller
             _controllerHatchEffect?.SubscribeToUnits();
             _upgradeRingManager?.SetActiveUpgradeRing(-1);
         }
+        private HatchEffectSO[] SetHatchEffectSOs (int _parentUnitIndex)
+        {
+            HatchEffectSO[] _hatchEffectSOs = new HatchEffectSO[_unitComp.ChildUnitCount];
+            for (int _childIndex = 0; _childIndex < _unitComp.ChildUnitCount; _childIndex ++)
+            {
+                _hatchEffectSOs[_childIndex] = _unitComp.HatchEffectSOArray[(_parentUnitIndex * _unitComp.ChildUnitCount) + _childIndex];
+                // if (_hatchEffectSOs[_childIndex] != null)
+                // Debug.Log($"hatch effect SOs " + _hatchEffectSOs[_childIndex].HatchEffectName);
+            }
+            return _hatchEffectSOs;
+        }
         private bool CheckIfParentUnitShouldExist(CompSO _comp, int _parentIndex)
         {
-            for (int _childIndex = 0; _childIndex < _comp.ParentUnitCount; _childIndex ++)
+            for (int _childIndex = 0; _childIndex < _comp.ChildUnitCount; _childIndex ++)
             {
                 if (CheckIfChildUnitShouldExist(_comp, _parentIndex, _childIndex))
                 {
