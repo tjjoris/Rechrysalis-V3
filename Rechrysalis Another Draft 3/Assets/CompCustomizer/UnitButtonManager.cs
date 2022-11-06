@@ -26,14 +26,17 @@ namespace Rechrysalis.CompCustomizer
         public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect, int _compPosition, bool _advUnit, UnitStatsSO _emptyUnitSO)
         {
             this._advUnit = _advUnit;
-            if (_unitStats == null)
+            // if (_unitStats == null)
+            // {
+            //     _unitStats = _emptyUnitSO;
+            // }
+            if (_unitStats != null)
             {
-                _unitStats = _emptyUnitSO;
-            }
             this._unitStats = _unitStats;
             _newUnit = _unitStats;
             SetButtonAppearanceToUnit();
             _unitStats.Initialize();
+            }
             if (_hatchEffect != null)
             {
                 this._hatchEffect = _hatchEffect;

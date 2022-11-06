@@ -106,7 +106,12 @@ namespace Rechrysalis.Controller
         }
         private bool CheckIfChildUnitShouldExist(CompSO _comp, int _parentIndex, int _childIndex)
         {
-            if (_comp.UnitSOArray[(_parentIndex * 3) + _childIndex].UnitName != "Empty")
+            int _index = (_parentIndex * _comp.ParentUnitCount) + _childIndex;
+            if (_comp.UnitSOArray[_index] == null)
+            {
+                return false;
+            }
+            if (_comp.UnitSOArray[(_parentIndex * _comp.ParentUnitCount) + _childIndex].UnitName != "Empty")
             {
                 return true;
             }
