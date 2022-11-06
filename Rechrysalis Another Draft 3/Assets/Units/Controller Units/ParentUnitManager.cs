@@ -181,6 +181,7 @@ namespace Rechrysalis.Unit
             {
                 GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
                 HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
+                Debug.Log($"creating hatch effect unit index " +_unitIndex);
                 _hatchEffectManager?.Initialize(_subHatchEffects[_unitIndex]);
                 // HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
                 // _hETimer?.Initialize(_unitIndex);

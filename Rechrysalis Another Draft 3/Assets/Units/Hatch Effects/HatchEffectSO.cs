@@ -24,7 +24,7 @@ namespace Rechrysalis.HatchEffect
         public float[] HPHealed {get {return _hpHealed;}}
         [SerializeField] private float[] _hpRegenPerTick;
         public float[] HPRegenPerTIck {get { return _hpRegenPerTick;}}
-        private float[] _damageLossPerTick;
+        [SerializeField] private float[] _damageLossPerTick;
         public float[] DamageLossPerTick {get {return _damageLossPerTick;}}
         [SerializeField] private float[] _healthMax;
         public float[] HealthMax { get { return HealthMax; } }

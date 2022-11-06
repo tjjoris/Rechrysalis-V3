@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace Rechrysalis.HatchEffect
 {
@@ -10,11 +11,15 @@ namespace Rechrysalis.HatchEffect
         private HETimer _hETimer;
         private bool _affectAll = true;
         public bool AffectAll {get{return _affectAll;}}
+        [SerializeField] private TMP_Text _name;
 
         public void Initialize(HatchEffectSO _hatchEffectSO)
         {
+            Debug.Log($"Name ");
             this._hatchEffectSO = _hatchEffectSO;
             _hETimer = GetComponent<HETimer>();
+            _name.text = _hatchEffectSO.HatchEffectName;
+
 
         }
     }
