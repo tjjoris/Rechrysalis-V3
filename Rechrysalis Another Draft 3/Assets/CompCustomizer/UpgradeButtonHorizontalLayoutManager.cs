@@ -25,11 +25,11 @@ namespace Rechrysalis.CompCustomizer
             CheckTOPickABasicUnit(_basicUnitNotToPick);
             CheckToPickAAdvUnit(_advUnitNotToPick);
             CheckToPickHatchEffect(_hatchEfectNotToPick);
-            _upgradeButtonManagerArray[0].Initialize(_basicUnitSO, null);
+            _upgradeButtonManagerArray[0].Initialize(_basicUnitSO, null, false);
             _upgradeButtonManagerArray[0].SetBackGColour(_basicColour);
-            _upgradeButtonManagerArray[1].Initialize(_advUnitSO, null);
+            _upgradeButtonManagerArray[1].Initialize(_advUnitSO, null, true);
             _upgradeButtonManagerArray[1].SetBackGColour(_advColour);
-            _upgradeButtonManagerArray[2].Initialize(null, _hatchEffectSO);
+            _upgradeButtonManagerArray[2].Initialize(null, _hatchEffectSO, true);
             _upgradeButtonManagerArray[2].SetBackGColour(_hatchColour);
 
         }

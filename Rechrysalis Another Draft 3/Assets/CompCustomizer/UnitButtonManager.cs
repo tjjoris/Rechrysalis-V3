@@ -11,6 +11,8 @@ namespace Rechrysalis.CompCustomizer
     {
         private int _compPosition;
         public int CompPosition {get {return _compPosition;}}
+        private bool _advUnit;
+        public bool AdvUnit {get {return _advUnit;}}
         [SerializeField] private SpriteRenderer _body;
         [SerializeField] private IconSetBackGColor _iconSetBackGColour;
         [SerializeField] private TMP_Text _name;
@@ -18,8 +20,9 @@ namespace Rechrysalis.CompCustomizer
         public UnitStatsSO UnitStats {get {return _unitStats;}}
         private UnitStatsSO _newUnit;
         public Action<UnitButtonManager> _unitButtonClicked;
-        public void Initialize(UnitStatsSO _unitStats, int _compPosition)
+        public void Initialize(UnitStatsSO _unitStats, int _compPosition, bool _advUnit)
         {
+            this._advUnit = _advUnit;
             if (_unitStats != null)
             {
                 this._unitStats = _unitStats;

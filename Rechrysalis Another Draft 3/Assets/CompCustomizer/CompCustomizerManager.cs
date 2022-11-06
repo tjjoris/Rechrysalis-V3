@@ -104,15 +104,18 @@ namespace Rechrysalis.CompCustomizer
         }
         private void CheckIfCompChanged()
         {
-            if ((_compPositionSelected != null) && (_upgradeSelected != null))
+            if (_compPositionSelected.AdvUnit == _upgradeSelected.AdvUnit)
             {
-                if (_compPositionSelected.UnitStats != null)
+                if ((_compPositionSelected != null) && (_upgradeSelected != null))
                 {
-                    _appliedUnitsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.UnitStats;
-                    _compPositionSelected.ChangeUnit(_upgradeSelected.UnitStats);
+                    if (_compPositionSelected.UnitStats != null)
+                    {
+                        _appliedUnitsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.UnitStats;
+                        _compPositionSelected.ChangeUnit(_upgradeSelected.UnitStats);
+                    }
+                    _compPositionSelected = null;
+                    _upgradeSelected = null;
                 }
-                _compPositionSelected = null;
-                _upgradeSelected = null;
             }
         }
     }

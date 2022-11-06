@@ -10,6 +10,8 @@ namespace Rechrysalis.CompCustomizer
 {
     public class UpgradeButtonManager : MonoBehaviour
     {
+        private bool _advUnit;
+        public bool AdvUnit {get {return _advUnit;}}
         private UnitStatsSO _unitStats;
         public UnitStatsSO UnitStats {get {return _unitStats;}}
         private HatchEffectSO _hatchEffect;
@@ -17,8 +19,9 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private IconSetBackGColor _iconSetBackGColour;
         [SerializeField] private TMP_Text _name;
         public Action<UpgradeButtonManager> _upgradeClicked;
-        public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect)
+        public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect, bool _advUnit)
         {
+            this._advUnit = _advUnit;
             this._hatchEffect = _hatchEffect;
             if (_unitStats != null) {
                 this._unitStats = _unitStats;
