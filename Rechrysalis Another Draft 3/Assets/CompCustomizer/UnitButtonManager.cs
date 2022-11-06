@@ -56,7 +56,7 @@ namespace Rechrysalis.CompCustomizer
         }
         public void ChangeHatchEffect(HatchEffectSO _newHatchEffect)
         {
-            this._newHatchEffect = _newHatchEffect;
+            this._newHatchEffect = _newHatchEffect;            
         }
         public void ResetHatchEffect()
         {
@@ -64,6 +64,12 @@ namespace Rechrysalis.CompCustomizer
         }
         private void SetButtonAppearanceToUnit()
         {
+            if (_newUnit == null)
+            {
+                _body.sprite = null;
+                _name.text = "";
+                return;
+            }
             _body.sprite = _newUnit.UnitSprite;
             _name.text = _newUnit.UnitName;
         }
