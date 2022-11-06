@@ -205,19 +205,19 @@ namespace Rechrysalis.Controller
                 _parentUnits[_parentIndex].GetComponent<ParentUnitManager>()?.ReserveChrysalis(_parentIndex, _childIndex);
             }
         }
-        public void AddHatchEffect(GameObject _hatchEffect, int _unitIndex, bool _effectAll)
+        public void AddHatchEffect(GameObject _hatchEffect, int _parentIndex, int _unitIndex, bool _effectAll)
         {
             {
-            Debug.Log($" add hatch effect for parents");
-            for (int _parentIndex = 0; _parentIndex < _parentUnits.Length; _parentIndex++)
+            Debug.Log($" add hatch effect for parents" + _parentIndex + "unit " + _unitIndex);
+            for (int _parentLoopIndex = 0; _parentLoopIndex < _parentUnits.Length; _parentLoopIndex++)
             {
-                if (_parentIndex == _unitIndex)
+                if (_parentLoopIndex == _parentIndex)
                 {
-                    _parentUnits[_unitIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
+                    _parentUnits[_parentLoopIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
                 }
                 else if (_effectAll)
                 {
-                    _parentUnits[_unitIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
+                    _parentUnits[_parentLoopIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
                 }
             }
         }

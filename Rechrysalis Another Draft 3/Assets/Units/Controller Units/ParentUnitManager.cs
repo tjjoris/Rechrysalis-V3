@@ -9,6 +9,7 @@ namespace Rechrysalis.Unit
 {
     public class ParentUnitManager : MonoBehaviour
     {
+        private int _parentIndex;
         [SerializeField] private int _controllerIndex;
         [SerializeField] private GameObject[] _subUnits;
         public GameObject[] SubUnits {get {return _subUnits;}set {_subUnits = value;}}
@@ -19,7 +20,7 @@ namespace Rechrysalis.Unit
         private GameObject _currentSubUnit;
         private RotateParentUnit _rotateParentUnit;
         private ParentUnitHatchEffects _pUHE;
-        public Action<GameObject, int, bool> _addHatchEffect;
+        public Action<GameObject, int, int, bool> _addHatchEffect;
         public Action<GameObject, int, bool> _removeHatchEffect;
 
         private bool _isStopped;
@@ -36,6 +37,7 @@ namespace Rechrysalis.Unit
 
         public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO _unitComp, PlayerUnitsSO _theseUnits, Transform _controllertransform, HatchEffectSO[] _subHatchEffects)
         {
+            this._parentIndex = _parentUnitIndex;
             this._subHatchEffects = _subHatchEffects;
             this._controllerIndex = _controllerIndex;
             this._theseUnits = _theseUnits;
@@ -193,7 +195,7 @@ namespace Rechrysalis.Unit
                 // {
                 //     _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
                 // }
-                _addHatchEffect?.Invoke(_hatchEffect, _unitIndex, _hatchEffectManager.AffectAll);
+                _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
             }
         }
         public void ReserveChrysalis(int _parentIndex, int _childIndex)
