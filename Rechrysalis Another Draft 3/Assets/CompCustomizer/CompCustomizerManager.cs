@@ -133,8 +133,9 @@ namespace Rechrysalis.CompCustomizer
                     _upgradeSelected.CompUnitSetTo = _compPositionSelected;
                     if (_upgradeSelected.UnitStats != null)
                     {
-                        _appliedUnitsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.UnitStats;
-                        _compPositionSelected.ChangeUnit(_upgradeSelected.UnitStats);
+                        // _appliedUnitsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.UnitStats;
+                        // _compPositionSelected.ChangeUnit(_upgradeSelected.UnitStats);
+                        ChangeUnit(_upgradeSelected.UnitStats);
                     }            
                     else if (_upgradeSelected.HatchEffect != null)
                     {
@@ -151,6 +152,18 @@ namespace Rechrysalis.CompCustomizer
                     CheckIfCompIsFullToEnableReady();
                 }
             }
+        }
+        private void CheckToSetEmptyUnitWhenChangingHatchEffect()
+        {
+            if (_compPositionSelected.UnitStats == null)
+            {
+                ChangeUnit(_emptyUnitStatsSO);
+            }
+        }
+        private void ChangeUnit(UnitStatsSO _newUnit)
+        {
+             _appliedUnitsToComp[_compPositionSelected.CompPosition] = _newUnit;
+            _compPositionSelected.ChangeUnit(_newUnit);
         }
         private void RemoveUpgrade(int _upgradeIndex)
         {
