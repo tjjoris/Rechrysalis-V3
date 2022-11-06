@@ -37,8 +37,9 @@ namespace Rechrysalis.CompCustomizer
             _listOfSetUpgrades = new List<UpgradeButtonManager>();
             // _appliedUnitsToComp = new UnitStatsSO[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
             // _appliedHatchEffectsToComp = new HatchEffectSO[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
-            _appliedUnitsToComp = _compSO.UnitSOArray;
-            _appliedHatchEffectsToComp = _compSO.HatchEffectSOArray;
+            // _appliedUnitsToComp = _compSO.UnitSOArray;
+            // _appliedHatchEffectsToComp = _compSO.HatchEffectSOArray;
+            SetUnitAndHatchArraysToCompSO();
             _numberOfUpgradesToChoose = _compCustomizerSO.NumberOfUpgrades;
             _upgradeButtonArray = new UpgradeButtonManager[3 * _numberOfUpgradesToChoose];
             UnitStatsSO _basicUnitNotToPick = null;
@@ -63,6 +64,16 @@ namespace Rechrysalis.CompCustomizer
             SubscribeToButtons();
             CheckToMakeEmptyUnits();
             CheckIfCompIsFullToEnableReady();
+        }        
+        private void SetUnitAndHatchArraysToCompSO()
+        {
+            _appliedHatchEffectsToComp = new HatchEffectSO[_compSO.UnitSOArray.Length];
+            _appliedUnitsToComp = new UnitStatsSO[_compSO.UnitSOArray.Length];
+            for (int _index = 0; _index < _compSO.UnitSOArray.Length; _index ++)
+            {
+                _appliedHatchEffectsToComp[_index] = _compSO.HatchEffectSOArray[_index];
+                _appliedUnitsToComp[_index] = _compSO.UnitSOArray[_index];
+            }
         }
         private void SubscribeToButtons()
         {
@@ -184,10 +195,19 @@ namespace Rechrysalis.CompCustomizer
         }
         private void RemoveUpgrade(int _upgradeIndex)
         {
-            _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo.ResetUnit();
             int _oldUnitIndexInComp = _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo.IndexInComp;
-            _appliedUnitsToComp[_listOfSetUpgrades[_upgradeIndex].CompUnitSetTo.IndexInComp] = null;
+            if (_listOfSetUpgrades[_upgradeIndex].UnitStats != null)
+            {
+            _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo.ResetUnit();
+            Debug.Log($"old index" + _oldUnitIndexInComp);
+            _appliedUnitsToComp[_oldUnitIndexInComp] = _compSO.UnitSOArray[_oldUnitIndexInComp];
             // _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo = null;
+            }
+            if (_listOfSetUpgrades[_upgradeIndex].HatchEffect != null)
+            {
+                _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo.ResetHatchEffect();
+                _appliedHatchEffectsToComp[_oldUnitIndexInComp] = _compSO.HatchEffectSOArray[_oldUnitIndexInComp];
+            }
             _listOfSetUpgrades.RemoveAt(_upgradeIndex);
         }
         private void CheckToMakeEmptyUnits()
@@ -223,10 +243,10 @@ namespace Rechrysalis.CompCustomizer
                         _childUpgradePresent = true;
                     }
                 }
-                Debug.Log($"child or unit hatch " + _childUpgradePresent + " parent " + _parentIndex);
+                // Debug.Log($"child or unit hatch " + _childUpgradePresent + " parent " + _parentIndex);
                 if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount] != null) && (_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_childUpgradePresent == false))                
                 {
-                    Debug.Log($"clear unit");
+                    // Debug.Log($"clear unit");
                     ChangeUnit(_arrayOfUnitButtonManagers[_parentIndex * _compSO.ParentUnitCount], null);
                 }
             }
