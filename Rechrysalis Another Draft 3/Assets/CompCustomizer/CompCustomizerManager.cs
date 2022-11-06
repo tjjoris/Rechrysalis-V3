@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.HatchEffect;
+using UnityEngine.SceneManagement;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -15,6 +16,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private GameObject _upgradeButtonHorizontalLayoutGroupPrefab;
         [SerializeField] private GameObject _upgradeButtonVerticalLayoutGroup;
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
+        [SerializeField] private GameObject _readyButton;
         private UpgradeButtonManager[] _upgradeButtonArray;
         private UnitButtonManager[] _arrayOfUnitButtonManagers;
         private UnitStatsSO[] _appliedUnitsToComp;
@@ -25,6 +27,7 @@ namespace Rechrysalis.CompCustomizer
         
         public void Initialize(CompSO _compSO, Color _basicColour, Color _advColour, Color _hatchColour)
         {
+            _readyButton.SetActive(false);
             _listOfSetUpgrades = new List<UpgradeButtonManager>();
             // _appliedUnitsToComp = new UnitStatsSO[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
             // _appliedHatchEffectsToComp = new HatchEffectSO[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
@@ -123,11 +126,14 @@ namespace Rechrysalis.CompCustomizer
                     {
                         _appliedUnitsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.UnitStats;
                         _compPositionSelected.ChangeUnit(_upgradeSelected.UnitStats);
-                    }
-                    
+                    }                    
                     _listOfSetUpgrades.Add(_upgradeSelected);
                     _compPositionSelected = null;
                     _upgradeSelected = null;
+                    if (_listOfSetUpgrades.Count >= _numberOfUpgradesToChoose)
+                    {
+                        _readyButton.SetActive(true);
+                    }
                 }
             }
         }
@@ -136,6 +142,10 @@ namespace Rechrysalis.CompCustomizer
             _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo.ResetUnit();
             _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo = null;
             _listOfSetUpgrades.RemoveAt(_upgradeIndex);
+        }
+        public void ReadyClicked()
+        {   
+            SceneManager.LoadScene(1);
         }
     }
 }
