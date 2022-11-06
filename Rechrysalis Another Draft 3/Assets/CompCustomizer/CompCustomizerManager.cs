@@ -56,6 +56,7 @@ namespace Rechrysalis.CompCustomizer
             _arrayOfUnitButtonManagers = _compWindowManager.ArrayOfUnitButtonManagers;
             _displayManager.Initialize();
             SubscribeToButtons();
+            CheckIfCompIsFullToEnableReady();
         }
         private void SubscribeToButtons()
         {
@@ -134,6 +135,7 @@ namespace Rechrysalis.CompCustomizer
                     {
                         _readyButton.SetActive(true);
                     }
+                    CheckIfCompIsFullToEnableReady();
                 }
             }
         }
@@ -145,7 +147,52 @@ namespace Rechrysalis.CompCustomizer
         }
         public void ReadyClicked()
         {   
+            _compSO.UnitSOArray = _appliedUnitsToComp;
+            _compSO.HatchEffectSOArray = _appliedHatchEffectsToComp;
             SceneManager.LoadScene(1);
         }
+        private void CheckIfCompIsFullToEnableReady()
+        {
+            bool _compIsReady = true;
+            for (int _compIndex = 0; _compIndex < _appliedUnitsToComp.Length; _compIndex ++)
+            {
+                if (_appliedUnitsToComp[_compIndex].UnitName == "Empty")
+                {
+                    _compIsReady = false;
+                }
+                if (_appliedHatchEffectsToComp[_compIndex].HatchEffectName == "Empty")
+                {
+                    _compIsReady = false;
+                }
+            }
+            if (_compIsReady == true)
+            {
+                _readyButton.SetActive(true);
+            }
+        }
+        private bool LoopCompAndCheckIfReady()
+        {
+            for (int _compIndex = 0; _compIndex < _appliedUnitsToComp.Length; _compIndex++)
+            {
+                if (_appliedUnitsToComp[_compIndex] == null)
+                {
+                    return false;
+                }
+                if (_appliedHatchEffectsToComp[_compIndex] == null)
+                {
+                    return false;
+                }
+                if (_appliedUnitsToComp[_compIndex].UnitName == "Empty")
+                {
+                    return false;
+                }
+                if (_appliedHatchEffectsToComp[_compIndex].HatchEffectName == "Empty")
+                {
+                    return false;
+                }
+            }   
+            return true;
+        }
+        
     }
 }

@@ -10,9 +10,9 @@ namespace Rechrysalis.Unit
     public class CompSO : ScriptableObject
     {
         [SerializeField] private UnitStatsSO[] _unitSOArray;        
-        public UnitStatsSO[] UnitSOArray {get{return _unitSOArray;}}
+        public UnitStatsSO[] UnitSOArray {get{return _unitSOArray;} set {_unitSOArray = value;}}
         [SerializeField] private HatchEffectSO[] _hatchEffectSOArray;
-        public HatchEffectSO[] HatchEffectSOArray {get{return _hatchEffectSOArray;}}
+        public HatchEffectSO[] HatchEffectSOArray {get{return _hatchEffectSOArray;} set {_hatchEffectSOArray = value;}}
         [SerializeField] private int _parentUnitcount;
         public int ParentUnitCount {get { return _parentUnitcount;}}
         [SerializeField] private int _childUnitCount;

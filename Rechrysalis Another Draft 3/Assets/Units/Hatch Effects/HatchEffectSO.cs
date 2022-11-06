@@ -8,5 +8,7 @@ namespace Rechrysalis.HatchEffect
     [CreateAssetMenu (menuName = "Unit/HatchEffectsSO", fileName = "new Hatch Efect")]
     public class HatchEffectSO : ScriptableObject
     {
+        [SerializeField] private string _hatchEffectName;
+        public string HatchEffectName {get {return _hatchEffectName;}}
     }
 }
