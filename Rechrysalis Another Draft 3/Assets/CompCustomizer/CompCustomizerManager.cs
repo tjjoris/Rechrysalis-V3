@@ -106,19 +106,25 @@ namespace Rechrysalis.CompCustomizer
         }
         private void CheckIfCompChanged()
         {
-            if (_compPositionSelected.AdvUnit == _upgradeSelected.AdvUnit)
+            if ((_compPositionSelected != null) && (_upgradeSelected != null))
             {
-                if ((_compPositionSelected != null) && (_upgradeSelected != null))
+                if (_compPositionSelected.AdvUnit == _upgradeSelected.AdvUnit)                
                 {
+                    if (_listOfSetUpgrades.Contains(_upgradeSelected))
+                    {
+                        RemoveUpgrade(_listOfSetUpgrades.IndexOf(_upgradeSelected));
+                    }
+                    else if (_listOfSetUpgrades.Count >= _numberOfUpgradesToChoose)
+                    {
+                        RemoveUpgrade(0);
+                    }
+                    _upgradeSelected.CompUnitSetTo = _compPositionSelected;
                     if (_compPositionSelected.UnitStats != null)
                     {
                         _appliedUnitsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.UnitStats;
                         _compPositionSelected.ChangeUnit(_upgradeSelected.UnitStats);
                     }
-                    if (_listOfSetUpgrades.Count > _numberOfUpgradesToChoose)
-                    {
-                        RemoveUpgrade(0);
-                    }
+                    
                     _listOfSetUpgrades.Add(_upgradeSelected);
                     _compPositionSelected = null;
                     _upgradeSelected = null;
