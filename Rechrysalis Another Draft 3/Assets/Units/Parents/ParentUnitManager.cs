@@ -88,6 +88,7 @@ namespace Rechrysalis.Unit
                 //     _rechrysalize._startChrysalis += ActivateChrysalis;
                 // }
             }
+            _parentHealth = GetComponent<ParentHealth>();
             _parentHealth._unitDies -= ActivateChrysalis;
             _parentHealth._unitDies -= ActivateChrysalis;
         }

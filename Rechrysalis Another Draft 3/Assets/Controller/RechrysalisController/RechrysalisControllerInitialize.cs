@@ -42,6 +42,7 @@ namespace Rechrysalis.Controller
                     Vector3 _unitOffset = new Vector3 (Mathf.Cos(_radToOffset) * _ringDistFromCentre, Mathf.Sin(_radToOffset) * _ringDistFromCentre, 0f);
                     // Debug.Log($"radtooffset" + _radToOffset + "vector 3 " + _unitOffset);
                     GameObject parentUnitGO = Instantiate(_parentUnitPrefab, _unitRing.transform);
+                    _theseUnits.ParentUnits.Add(parentUnitGO);
                     parentUnitGO.transform.localPosition = _unitOffset;
                     _parentUnits[_parentUnitIndex] = parentUnitGO;
                     parentUnitGO.name = "Parent Unit " + _parentUnitIndex.ToString();

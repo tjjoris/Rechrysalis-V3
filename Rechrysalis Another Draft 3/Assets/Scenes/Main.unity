@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _freeEnemyCompLayout: {fileID: 11400000, guid: a1e1c700875364149b83fe7c50f7e289, type: 2}
-  _FreeUnitPrefab: {fileID: 2833293522152398769, guid: fc92d36ab971a4db7a70bb0162526b4a, type: 3}
+  _FreeUnitPrefab: {fileID: 8804105779283925579, guid: 76eb3c923da744f9cae202ff2279002c, type: 3}
 --- !u!114 &691481331
 MonoBehaviour:
   m_ObjectHideFlags: 0
