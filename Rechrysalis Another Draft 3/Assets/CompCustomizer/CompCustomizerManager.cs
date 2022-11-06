@@ -182,11 +182,11 @@ namespace Rechrysalis.CompCustomizer
                     int _unitIndex = (_parentIndex * _compSO.ParentUnitCount) + _childIndex;
                     if ((_childIndex != 0))
                     {
-                        if (_appliedUnitsToComp[(_parentIndex * 3)] == null)
+                        if (_appliedUnitsToComp[(_parentIndex * _compSO.ParentUnitCount)] == null)
                         {
                             if ((_appliedUnitsToComp[_unitIndex] != null) || (_appliedHatchEffectsToComp[_unitIndex] != null))
                             {
-                                ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], _emptyUnitStatsSO);
+                                ChangeUnit(_arrayOfUnitButtonManagers[_parentIndex * _compSO.ParentUnitCount], _emptyUnitStatsSO);
                             }
                         }
                         if ((_appliedUnitsToComp[_unitIndex] == null) && (_appliedHatchEffectsToComp[_unitIndex] != null))

@@ -15,7 +15,7 @@ MonoBehaviour:
   _unitSOArray:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: e260c777035e74f93ad00058c32967d8, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
