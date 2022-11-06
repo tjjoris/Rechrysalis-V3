@@ -48,7 +48,7 @@ namespace Rechrysalis.CompCustomizer
             int _indexInButtonManagerArray = (_parentUnitIndex * _compSO.ParentUnitCount) + _childUnitIndex;
             Debug.Log($"index " + _indexInButtonManagerArray);
             _arrayOfUnitButtonManagers[_indexInButtonManagerArray] = go.GetComponent<UnitButtonManager>();
-            _arrayOfUnitButtonManagers[_indexInButtonManagerArray].Initialize(_compSO.UnitSOArray[_indexInButtonManagerArray], _compSO.HatchEffectSOArray[_indexInButtonManagerArray], _indexInButtonManagerArray, _advUnit, _emptyUnitStatsSO);
+            _arrayOfUnitButtonManagers[_indexInButtonManagerArray].Initialize(_compSO.UnitSOArray[_indexInButtonManagerArray], _compSO.HatchEffectSOArray[_indexInButtonManagerArray], _indexInButtonManagerArray, _advUnit, _emptyUnitStatsSO, _indexInButtonManagerArray);
             _arrayOfUnitButtonManagers[_indexInButtonManagerArray].SetBackGColour(_colour);
         }
     }

@@ -8,6 +8,8 @@ namespace Rechrysalis.Unit
     [CreateAssetMenu(fileName = "NewUnitStats", menuName ="Unit/UnitStatsSO")]
     public class UnitStatsSO : ScriptableObject
     {
+        // [SerializeField] private bool _empty;
+        // public bool Empty {get {return _empty;}}
         [SerializeField] private int _amountToPool;
         public int AmountToPool{get{return _amountToPool;}}
         [SerializeField] private float _projectileSpeed;

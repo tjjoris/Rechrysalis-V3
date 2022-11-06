@@ -185,14 +185,16 @@ namespace Rechrysalis.CompCustomizer
         private void RemoveUpgrade(int _upgradeIndex)
         {
             _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo.ResetUnit();
-            _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo = null;
+            int _oldUnitIndexInComp = _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo.IndexInComp;
+            _appliedUnitsToComp[_listOfSetUpgrades[_upgradeIndex].CompUnitSetTo.IndexInComp] = null;
+            // _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo = null;
             _listOfSetUpgrades.RemoveAt(_upgradeIndex);
         }
         private void CheckToMakeEmptyUnits()
         {
             for (int _parentIndex = 0; _parentIndex < _compSO.ParentUnitCount; _parentIndex ++)
             {
-                bool _unitOrUpgrade = false;
+                bool _childUpgradePresent = false;
                 for (int _childIndex = 0; _childIndex < _compSO.ChildUnitCount; _childIndex ++)
                 {
                     int _unitIndex = (_parentIndex * _compSO.ParentUnitCount) + _childIndex;
@@ -215,13 +217,16 @@ namespace Rechrysalis.CompCustomizer
                     {
                         ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], null);
                     }
-                    if ((_appliedUnitsToComp[_unitIndex] != null) || (_appliedHatchEffectsToComp[_unitIndex] != null))
+                    if (((_appliedUnitsToComp[_unitIndex] != null) && (_appliedUnitsToComp[_unitIndex].UnitName != "Empty")) || (_appliedHatchEffectsToComp[_unitIndex] != null))
                     {
-                        _unitOrUpgrade = true;
+                        if (_appliedUnitsToComp[_unitIndex] != null) Debug.Log($" name " + _appliedUnitsToComp[_unitIndex].UnitName + " index " + _unitIndex);                        
+                        _childUpgradePresent = true;
                     }
                 }
-                if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount] != null) && (_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_unitOrUpgrade == false))                
+                Debug.Log($"child or unit hatch " + _childUpgradePresent + " parent " + _parentIndex);
+                if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount] != null) && (_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_childUpgradePresent == false))                
                 {
+                    Debug.Log($"clear unit");
                     ChangeUnit(_arrayOfUnitButtonManagers[_parentIndex * _compSO.ParentUnitCount], null);
                 }
             }

@@ -10,6 +10,8 @@ namespace Rechrysalis.CompCustomizer
 {
     public class UnitButtonManager : MonoBehaviour
     {
+        private int _indexInComp;
+        public int IndexInComp {get {return _indexInComp;}}
         private int _compPosition;
         public int CompPosition {get {return _compPosition;}}
         private bool _advUnit;
@@ -23,8 +25,9 @@ namespace Rechrysalis.CompCustomizer
         private HatchEffectSO _hatchEffect;
         private HatchEffectSO _newHatchEffect;
         public Action<UnitButtonManager> _unitButtonClicked;
-        public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect, int _compPosition, bool _advUnit, UnitStatsSO _emptyUnitSO)
+        public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect, int _compPosition, bool _advUnit, UnitStatsSO _emptyUnitSO, int _indexInComp)
         {
+            this._indexInComp = _indexInComp;
             this._advUnit = _advUnit;
             // if (_unitStats == null)
             // {
