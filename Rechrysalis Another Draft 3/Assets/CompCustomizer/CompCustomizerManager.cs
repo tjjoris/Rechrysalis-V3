@@ -157,6 +157,7 @@ namespace Rechrysalis.CompCustomizer
                     {
                         RemoveUpgrade(0);
                     }
+                    CheckForDuplicateOnCompSlot(_compPositionSelected);
                     _upgradeSelected.CompUnitSetTo = _compPositionSelected;
                     if (_upgradeSelected.UnitStats != null)
                     {
@@ -192,6 +193,19 @@ namespace Rechrysalis.CompCustomizer
         {
              _appliedUnitsToComp[_compPosition.CompPosition] = _newUnit;
             _compPosition.ChangeUnit(_newUnit);
+        }
+        private void CheckForDuplicateOnCompSlot(UnitButtonManager _compSlot)
+        {
+            if (_listOfSetUpgrades.Count > 0)
+            {
+                for (int _index = 0; _index < _listOfSetUpgrades.Count; _index ++)
+                {
+                    if (_listOfSetUpgrades[_index].CompUnitSetTo == _compSlot)
+                    {
+                        RemoveUpgrade(_index);
+                    }
+                }
+            }
         }
         private void RemoveUpgrade(int _upgradeIndex)
         {
