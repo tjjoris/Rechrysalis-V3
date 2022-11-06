@@ -192,6 +192,7 @@ namespace Rechrysalis.CompCustomizer
         {
             for (int _parentIndex = 0; _parentIndex < _compSO.ParentUnitCount; _parentIndex ++)
             {
+                bool _unitOrUpgrade = false;
                 for (int _childIndex = 0; _childIndex < _compSO.ChildUnitCount; _childIndex ++)
                 {
                     int _unitIndex = (_parentIndex * _compSO.ParentUnitCount) + _childIndex;
@@ -201,14 +202,27 @@ namespace Rechrysalis.CompCustomizer
                         {
                             if ((_appliedUnitsToComp[_unitIndex] != null) || (_appliedHatchEffectsToComp[_unitIndex] != null))
                             {
+                                Debug.Log($"changed basic to empty because advanced");
                                 ChangeUnit(_arrayOfUnitButtonManagers[_parentIndex * _compSO.ParentUnitCount], _emptyUnitStatsSO);
                             }
-                        }
+                        }                    
                         if ((_appliedUnitsToComp[_unitIndex] == null) && (_appliedHatchEffectsToComp[_unitIndex] != null))
                         {
                             ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], _emptyUnitStatsSO);
                         }
                     }
+                    if ((_childIndex != 0) && (_appliedUnitsToComp[_unitIndex] != null) && (_appliedUnitsToComp[_unitIndex].UnitName == "Empty") && (_appliedHatchEffectsToComp[_unitIndex] == null))
+                    {
+                        ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], null);
+                    }
+                    if ((_appliedUnitsToComp[_unitIndex] != null) || (_appliedHatchEffectsToComp[_unitIndex] != null))
+                    {
+                        _unitOrUpgrade = true;
+                    }
+                }
+                if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount] != null) && (_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_unitOrUpgrade == false))                
+                {
+                    ChangeUnit(_arrayOfUnitButtonManagers[_parentIndex * _compSO.ParentUnitCount], null);
                 }
             }
         }
