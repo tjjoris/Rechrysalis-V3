@@ -19,6 +19,7 @@ namespace Rechrysalis.Unit
         private PlayerUnitsSO _theseUnits;
         private GameObject _currentSubUnit;
         private RotateParentUnit _rotateParentUnit;
+        private ParentHealth _parentHealth;
         private ParentUnitHatchEffects _pUHE;
         public Action<GameObject, int, int, bool> _addHatchEffect;
         public Action<GameObject, int, bool> _removeHatchEffect;
@@ -41,6 +42,7 @@ namespace Rechrysalis.Unit
             this._subHatchEffects = _subHatchEffects;
             this._controllerIndex = _controllerIndex;
             this._theseUnits = _theseUnits;
+            _parentHealth = GetComponent<ParentHealth>();
             // AddChrysalisAndUnitActions();
             _rotateParentUnit = GetComponent<RotateParentUnit>();
             _rotateParentUnit?.Initialize(_controllertransform);
@@ -78,14 +80,16 @@ namespace Rechrysalis.Unit
                     _chryslisTimer._startUnit -= ActivateUnit;
                     _chryslisTimer._startUnit += ActivateUnit;
                 }
-                Rechrysalize _rechrysalize = _child.GetComponent<Rechrysalize>();
-                if (_rechrysalize != null)
-                {
-                    // Debug.Log($"rechrysalize " + _child);
-                    _rechrysalize._startChrysalis -= ActivateChrysalis;
-                    _rechrysalize._startChrysalis += ActivateChrysalis;
-                }
+                // Rechrysalize _rechrysalize = _child.GetComponent<Rechrysalize>();
+                // if (_rechrysalize != null)
+                // {
+                //     // Debug.Log($"rechrysalize " + _child);
+                //     _rechrysalize._startChrysalis -= ActivateChrysalis;
+                //     _rechrysalize._startChrysalis += ActivateChrysalis;
+                // }
             }
+            _parentHealth._unitDies -= ActivateChrysalis;
+            _parentHealth._unitDies -= ActivateChrysalis;
         }
         private void OnDisable()
         {
@@ -102,8 +106,9 @@ namespace Rechrysalis.Unit
         {
             if (_subChrysalii[_chrysalisIndex] == null) return;
             if ((_chrysalisIndex == 0) && (_currentSubUnit != _subUnits[0])) return;
-            if (_currentSubUnit != _subChrysalii[_chrysalisIndex])
+            // if (_currentSubUnit != _subChrysalii[_chrysalisIndex])
             {
+                _parentHealth.SetChrysalis(true);
             float _timeToKeep = 0;
             ChrysalisTimer _chrysalisTimer = _currentSubUnit.GetComponent<ChrysalisTimer>();
             if (_chrysalisTimer != null)
@@ -140,6 +145,7 @@ namespace Rechrysalis.Unit
                 {
                     _currentSubUnit = _subUnits[_unitIndex];
                     _subUnits[_unitIndex].SetActive(true);
+                    _parentHealth.SetChrysalis(false);
                     UnitManager _unitManager = _subUnits[_unitIndex].GetComponent<UnitManager>();
                     _subUnits[_unitIndex].GetComponent<UnitManager>()?.RestartUnit();
                     if (!_theseUnits.ActiveUnits.Contains(_subUnits[_indexInSubUnits]))

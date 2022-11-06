@@ -13,11 +13,15 @@ namespace Rechrysalis
         public List<GameObject> ActiveUnits {get{return _activeUnits;} set{_activeUnits = value;}}
         [SerializeField] private ControllerManager _controllerManager;
         public ControllerManager ControllerManager {get{return _controllerManager;}}
+        private List<GameObject> _parentUnits;
+        public List<GameObject> ParentUnits {get {return _parentUnits;} set {_parentUnits = value;}}
         
         public void InitializePlayerUnitsSize(int _size)
         {
             _activeUnits = new List<GameObject>();
             _activeUnits.Clear();
+            _parentUnits = new List<GameObject>();
+            _parentUnits.Clear();
         }
     }
 }
