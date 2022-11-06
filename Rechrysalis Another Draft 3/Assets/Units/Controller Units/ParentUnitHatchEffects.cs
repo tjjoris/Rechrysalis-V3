@@ -1,6 +1,7 @@
 ////////using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Unit
 {
@@ -18,6 +19,10 @@ namespace Rechrysalis.Unit
         public void AddHatchEffect(GameObject _hatchEffect)
         {
             _hatchEffects.Add(_hatchEffect);
+            for (int _index = 0; _index < _hatchEffects.Count; _index ++)
+            {
+                _hatchEffects[_index].GetComponent<HEDisplay>().PositionOffset(_index);
+            }
             // foreach (GameObject _unit in _subUnits)
             // {
             //     _unit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
@@ -32,6 +37,10 @@ namespace Rechrysalis.Unit
             if (_hatchEffects.Contains(_hatchEffect))
             {
                 _hatchEffects.Remove(_hatchEffect);
+            }
+            for (int _index = 0; _index < _hatchEffects.Count; _index++)
+            {
+                _hatchEffects[_index].GetComponent<HEDisplay>().PositionOffset(_index);
             }
         }
     }

@@ -76,7 +76,7 @@ namespace Rechrysalis.Unit
         public void RestartUnit()
         {
             _health?.RestartUnit();
-            _freeHatchScript?.TriggerHatchEffect();
+            // _freeHatchScript?.TriggerHatchEffect();
         }
         public void Tick(float _timeAmount)
         {
