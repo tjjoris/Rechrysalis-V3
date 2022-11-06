@@ -17,13 +17,17 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         private UpgradeButtonManager[] _upgradeButtonArray;
         private UnitButtonManager[] _arrayOfUnitButtonManagers;
-        private UpgradeButtonManager[] _appliedUpgradesToComp;
+        private UnitStatsSO[] _appliedUnitsToComp;
+        private HatchEffectSO[] _appliedHatchEffectsToComp;
         private UnitButtonManager _compPositionSelected;
         private UpgradeButtonManager _upgradeSelected;
         
         public void Initialize(CompSO _compSO, Color _basicColour, Color _advColour, Color _hatchColour)
         {
-            _appliedUpgradesToComp = new UpgradeButtonManager[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
+            // _appliedUnitsToComp = new UnitStatsSO[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
+            // _appliedHatchEffectsToComp = new HatchEffectSO[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
+            _appliedUnitsToComp = _compSO.UnitSOArray;
+            _appliedHatchEffectsToComp = _compSO.HatchEffectSOArray;
             this._compSO = _compSO;
             _numberOfUpgradesToChoose = _compCustomizerSO.NumberOfUpgrades;
             _upgradeButtonArray = new UpgradeButtonManager[3 * _numberOfUpgradesToChoose];
@@ -90,11 +94,26 @@ namespace Rechrysalis.CompCustomizer
         {
             _upgradeSelected = _upgradeButtonManager;
             _displayManager.DisplayUnitText(_upgradeButtonManager.UnitStats);
+            CheckIfCompChanged();
         }
         private void UnitClickedFunction(UnitButtonManager _unitButotnManager)
         {
             _compPositionSelected = _unitButotnManager;
             _displayManager.DisplayUnitText(_unitButotnManager.UnitStats);
+            CheckIfCompChanged();
+        }
+        private void CheckIfCompChanged()
+        {
+            if ((_compPositionSelected != null) && (_upgradeSelected != null))
+            {
+                if (_compPositionSelected.UnitStats != null)
+                {
+                    _appliedUnitsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.UnitStats;
+                    _compPositionSelected.ChangeUnit(_upgradeSelected.UnitStats);
+                }
+                _compPositionSelected = null;
+                _upgradeSelected = null;
+            }
         }
     }
 }

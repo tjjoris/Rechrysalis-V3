@@ -16,17 +16,25 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private TMP_Text _name;
         private UnitStatsSO _unitStats;
         public UnitStatsSO UnitStats {get {return _unitStats;}}
+        private UnitStatsSO _newUnit;
         public Action<UnitButtonManager> _unitButtonClicked;
         public void Initialize(UnitStatsSO _unitStats, int _compPosition)
         {
             if (_unitStats != null)
             {
                 this._unitStats = _unitStats;
+                _newUnit = _unitStats;
                 _body.sprite = _unitStats.UnitSprite;
                 _name.text = _unitStats.UnitName;
                 _unitStats.Initialize();
             }
             this._compPosition = _compPosition;
+        }
+        public void ChangeUnit(UnitStatsSO _unitStats)
+        {
+            _newUnit = _unitStats;
+            _body.sprite = _newUnit.UnitSprite;
+            _name.text = _newUnit.UnitName;
         }
         public void ClickUnitButton()
         {
