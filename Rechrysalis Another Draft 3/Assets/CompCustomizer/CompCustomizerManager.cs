@@ -280,23 +280,30 @@ namespace Rechrysalis.CompCustomizer
         }
         private bool LoopCompAndCheckIfReady()
         {
-            for (int _compIndex = 0; _compIndex < _appliedUnitsToComp.Length; _compIndex++)
+            for (int _parentIndex = 0; _parentIndex < _appliedHatchEffectsToComp.Length; _parentIndex +=_compSO.ParentUnitCount)
             {
-                if (_appliedUnitsToComp[_compIndex] == null)
+                for (int _childIndex = 0; _childIndex < _compSO.ChildUnitCount; _childIndex ++)
                 {
-                    return false;
-                }
-                if (_appliedHatchEffectsToComp[_compIndex] == null)
-                {
-                    return false;
-                }
-                if (_appliedUnitsToComp[_compIndex].UnitName == "Empty")
-                {
-                    return false;
-                }
-                if (_appliedHatchEffectsToComp[_compIndex].HatchEffectName == "Empty")
-                {
-                    return false;
+                    int _compIndex = _parentIndex + _childIndex;
+                    Debug.Log($"comp index " + _compIndex);
+            // for (int _compIndex = 0; _compIndex < _appliedUnitsToComp.Length; _compIndex++)
+            //{
+                    if (_appliedUnitsToComp[_compIndex] == null)
+                    {
+                        return false;
+                    }
+                    if ((_childIndex != 0) && (_appliedHatchEffectsToComp[_compIndex] == null))
+                    {
+                        return false;
+                    }
+                    if (_appliedUnitsToComp[_compIndex].UnitName == "Empty")
+                    {
+                        return false;
+                    }
+                    if ((_appliedHatchEffectsToComp[_compIndex] != null) && (_appliedHatchEffectsToComp[_compIndex].HatchEffectName == "Empty"))
+                    {
+                        return false;
+                    }
                 }
             }   
             return true;
