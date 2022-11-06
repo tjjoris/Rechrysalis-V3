@@ -57,6 +57,7 @@ namespace Rechrysalis.CompCustomizer
             _arrayOfUnitButtonManagers = _compWindowManager.ArrayOfUnitButtonManagers;
             _displayManager.Initialize();
             SubscribeToButtons();
+            CheckToMakeEmptyUnits();
             CheckIfCompIsFullToEnableReady();
         }
         private void SubscribeToButtons()
@@ -135,7 +136,7 @@ namespace Rechrysalis.CompCustomizer
                     {
                         // _appliedUnitsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.UnitStats;
                         // _compPositionSelected.ChangeUnit(_upgradeSelected.UnitStats);
-                        ChangeUnit(_upgradeSelected.UnitStats);
+                        ChangeUnit(_compPositionSelected, _upgradeSelected.UnitStats);
                     }            
                     else if (_upgradeSelected.HatchEffect != null)
                     {
@@ -149,27 +150,52 @@ namespace Rechrysalis.CompCustomizer
                     {
                         _readyButton.SetActive(true);
                     }
+                    CheckToMakeEmptyUnits();
                     CheckIfCompIsFullToEnableReady();
                 }
             }
         }
-        private void CheckToSetEmptyUnitWhenChangingHatchEffect()
+        // private void CheckToSetEmptyUnitWhenChangingHatchEffect()
+        // {
+        //     if (_compPositionSelected.UnitStats == null)
+        //     {
+        //         ChangeUnit(_compPositionSelected, _emptyUnitStatsSO);
+        //     }
+        // }
+        private void ChangeUnit(UnitButtonManager _compPosition, UnitStatsSO _newUnit)
         {
-            if (_compPositionSelected.UnitStats == null)
-            {
-                ChangeUnit(_emptyUnitStatsSO);
-            }
-        }
-        private void ChangeUnit(UnitStatsSO _newUnit)
-        {
-             _appliedUnitsToComp[_compPositionSelected.CompPosition] = _newUnit;
-            _compPositionSelected.ChangeUnit(_newUnit);
+             _appliedUnitsToComp[_compPosition.CompPosition] = _newUnit;
+            _compPosition.ChangeUnit(_newUnit);
         }
         private void RemoveUpgrade(int _upgradeIndex)
         {
             _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo.ResetUnit();
             _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo = null;
             _listOfSetUpgrades.RemoveAt(_upgradeIndex);
+        }
+        private void CheckToMakeEmptyUnits()
+        {
+            for (int _parentIndex = 0; _parentIndex < _compSO.ParentUnitCount; _parentIndex ++)
+            {
+                for (int _childIndex = 0; _childIndex < _compSO.ChildUnitCount; _childIndex ++)
+                {
+                    int _unitIndex = (_parentIndex * _compSO.ParentUnitCount) + _childIndex;
+                    if ((_childIndex != 0))
+                    {
+                        if (_appliedUnitsToComp[(_parentIndex * 3)] == null)
+                        {
+                            if ((_appliedUnitsToComp[_unitIndex] != null) || (_appliedHatchEffectsToComp[_unitIndex] != null))
+                            {
+                                ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], _emptyUnitStatsSO);
+                            }
+                        }
+                        if ((_appliedUnitsToComp[_unitIndex] == null) && (_appliedHatchEffectsToComp[_unitIndex] != null))
+                        {
+                            ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], _emptyUnitStatsSO);
+                        }
+                    }
+                }
+            }
         }
         public void ReadyClicked()
         {   
