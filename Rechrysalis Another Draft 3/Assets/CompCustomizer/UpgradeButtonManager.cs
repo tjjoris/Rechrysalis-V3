@@ -12,6 +12,8 @@ namespace Rechrysalis.CompCustomizer
     {
         private bool _advUnit;
         public bool AdvUnit {get {return _advUnit;}}
+        private UnitButtonManager _compUnitSetTo;
+        public UnitButtonManager CompUnitSetTo {set { _compUnitSetTo = value;} get {return _compUnitSetTo;}}
         private UnitStatsSO _unitStats;
         public UnitStatsSO UnitStats {get {return _unitStats;}}
         private HatchEffectSO _hatchEffect;

@@ -27,15 +27,23 @@ namespace Rechrysalis.CompCustomizer
             {
                 this._unitStats = _unitStats;
                 _newUnit = _unitStats;
-                _body.sprite = _unitStats.UnitSprite;
-                _name.text = _unitStats.UnitName;
+                SetButtonAppearanceToUnit();
                 _unitStats.Initialize();
             }
             this._compPosition = _compPosition;
         }
-        public void ChangeUnit(UnitStatsSO _unitStats)
+        public void ChangeUnit(UnitStatsSO _newUnit)
+        {
+            this._newUnit = _newUnit;
+            SetButtonAppearanceToUnit();
+        }
+        public void ResetUnit()
         {
             _newUnit = _unitStats;
+            SetButtonAppearanceToUnit();
+        }
+        private void SetButtonAppearanceToUnit()
+        {
             _body.sprite = _newUnit.UnitSprite;
             _name.text = _newUnit.UnitName;
         }

@@ -21,9 +21,11 @@ namespace Rechrysalis.CompCustomizer
         private HatchEffectSO[] _appliedHatchEffectsToComp;
         private UnitButtonManager _compPositionSelected;
         private UpgradeButtonManager _upgradeSelected;
+        private List<UpgradeButtonManager> _listOfSetUpgrades;
         
         public void Initialize(CompSO _compSO, Color _basicColour, Color _advColour, Color _hatchColour)
         {
+            _listOfSetUpgrades = new List<UpgradeButtonManager>();
             // _appliedUnitsToComp = new UnitStatsSO[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
             // _appliedHatchEffectsToComp = new HatchEffectSO[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
             _appliedUnitsToComp = _compSO.UnitSOArray;
@@ -113,10 +115,21 @@ namespace Rechrysalis.CompCustomizer
                         _appliedUnitsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.UnitStats;
                         _compPositionSelected.ChangeUnit(_upgradeSelected.UnitStats);
                     }
+                    if (_listOfSetUpgrades.Count > _numberOfUpgradesToChoose)
+                    {
+                        RemoveUpgrade(0);
+                    }
+                    _listOfSetUpgrades.Add(_upgradeSelected);
                     _compPositionSelected = null;
                     _upgradeSelected = null;
                 }
             }
+        }
+        private void RemoveUpgrade(int _upgradeIndex)
+        {
+            _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo.ResetUnit();
+            _listOfSetUpgrades[_upgradeIndex].CompUnitSetTo = null;
+            _listOfSetUpgrades.RemoveAt(_upgradeIndex);
         }
     }
 }
