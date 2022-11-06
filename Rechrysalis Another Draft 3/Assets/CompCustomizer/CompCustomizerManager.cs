@@ -152,20 +152,8 @@ namespace Rechrysalis.CompCustomizer
             SceneManager.LoadScene(1);
         }
         private void CheckIfCompIsFullToEnableReady()
-        {
-            bool _compIsReady = true;
-            for (int _compIndex = 0; _compIndex < _appliedUnitsToComp.Length; _compIndex ++)
-            {
-                if (_appliedUnitsToComp[_compIndex].UnitName == "Empty")
-                {
-                    _compIsReady = false;
-                }
-                if (_appliedHatchEffectsToComp[_compIndex].HatchEffectName == "Empty")
-                {
-                    _compIsReady = false;
-                }
-            }
-            if (_compIsReady == true)
+        {            
+            if (LoopCompAndCheckIfReady())
             {
                 _readyButton.SetActive(true);
             }
