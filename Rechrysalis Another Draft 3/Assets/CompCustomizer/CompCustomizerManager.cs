@@ -26,15 +26,19 @@ namespace Rechrysalis.CompCustomizer
         private UpgradeButtonManager _upgradeSelected;
         private List<UpgradeButtonManager> _listOfSetUpgrades;
         
-        public void Initialize(CompSO _compSO, Color _basicColour, Color _advColour, Color _hatchColour)
+        public void Initialize(CompSO _compSO, Color _basicColour, Color _advColour, Color _hatchColour, int _level)
         {
+            this._compSO = _compSO;
+            if (_level == 0)
+            {
+                ResetWholeComp();
+            }
             _readyButton.SetActive(false);
             _listOfSetUpgrades = new List<UpgradeButtonManager>();
             // _appliedUnitsToComp = new UnitStatsSO[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
             // _appliedHatchEffectsToComp = new HatchEffectSO[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
             _appliedUnitsToComp = _compSO.UnitSOArray;
             _appliedHatchEffectsToComp = _compSO.HatchEffectSOArray;
-            this._compSO = _compSO;
             _numberOfUpgradesToChoose = _compCustomizerSO.NumberOfUpgrades;
             _upgradeButtonArray = new UpgradeButtonManager[3 * _numberOfUpgradesToChoose];
             UnitStatsSO _basicUnitNotToPick = null;
@@ -97,6 +101,17 @@ namespace Rechrysalis.CompCustomizer
                     _arrayOfUnitButtonManagers[_unitIndex]._unitButtonClicked -= UnitClickedFunction;
                 }
             }
+        }
+        private void ResetWholeComp()
+        {
+            _compSO.UnitSOArray = new UnitStatsSO[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
+            _compSO.HatchEffectSOArray = new HatchEffectSO[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
+
+            for (int _unitIndex = 0; _unitIndex < _compSO.UnitSOArray.Length; _unitIndex++)
+            {
+                _compSO.UnitSOArray[_unitIndex] = null;
+                _compSO.HatchEffectSOArray[_unitIndex] = null;
+            }           
         }
         private void UpgradeClickedFunction(UpgradeButtonManager _upgradeButtonManager)
         {
