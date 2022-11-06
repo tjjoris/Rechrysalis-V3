@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Rechrysalis.Unit;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -18,6 +19,11 @@ namespace Rechrysalis.CompCustomizer
         {
             // _info.text = _unitStats.UnitName
             string _textToDisplay = _unitStats.UnitName + "\n" + "tier " + _unitStats.TierMultiplier.Tier.ToString() + "\n" + "range " + _unitStats.BaseRange.ToString();        
+            _info.text = _textToDisplay;
+        }
+        public void DisplayHatchText(HatchEffectSO _hatchEffect)
+        {
+            string _textToDisplay = _hatchEffect.HatchEffectName;
             _info.text = _textToDisplay;
         }
     }

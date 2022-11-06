@@ -4,6 +4,7 @@ using UnityEngine;
 using Rechrysalis.Unit;
 using TMPro;
 using System;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -19,16 +20,24 @@ namespace Rechrysalis.CompCustomizer
         private UnitStatsSO _unitStats;
         public UnitStatsSO UnitStats {get {return _unitStats;}}
         private UnitStatsSO _newUnit;
+        private HatchEffectSO _hatchEffect;
+        private HatchEffectSO _newHatchEffect;
         public Action<UnitButtonManager> _unitButtonClicked;
-        public void Initialize(UnitStatsSO _unitStats, int _compPosition, bool _advUnit)
+        public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect, int _compPosition, bool _advUnit, UnitStatsSO _emptyUnitSO)
         {
             this._advUnit = _advUnit;
-            if (_unitStats != null)
+            if (_unitStats == null)
             {
-                this._unitStats = _unitStats;
-                _newUnit = _unitStats;
-                SetButtonAppearanceToUnit();
-                _unitStats.Initialize();
+                _unitStats = _emptyUnitSO;
+            }
+            this._unitStats = _unitStats;
+            _newUnit = _unitStats;
+            SetButtonAppearanceToUnit();
+            _unitStats.Initialize();
+            if (_hatchEffect != null)
+            {
+                this._hatchEffect = _hatchEffect;
+                _newHatchEffect = _hatchEffect;
             }
             this._compPosition = _compPosition;
         }
@@ -41,6 +50,14 @@ namespace Rechrysalis.CompCustomizer
         {
             _newUnit = _unitStats;
             SetButtonAppearanceToUnit();
+        }
+        public void ChangeHatchEffect(HatchEffectSO _newHatchEffect)
+        {
+            this._newHatchEffect = _newHatchEffect;
+        }
+        public void ResetHatchEffect()
+        {
+            _newHatchEffect = _hatchEffect;
         }
         private void SetButtonAppearanceToUnit()
         {

@@ -12,9 +12,11 @@ namespace Rechrysalis.CompCustomizer
         public UnitButtonManager[] ArrayOfUnitButtonManagers {get {return _arrayOfUnitButtonManagers;}}
         [SerializeField]private float _distFromCentreForBasic = 1f;
         [SerializeField]private float _distFromCentreForAdv = 2f;
+        private UnitStatsSO _emptyUnitStatsSO;
 
-        public void Initialize(CompSO _compSO, Color _basicColour, Color _advColour)
+        public void Initialize(CompSO _compSO, Color _basicColour, Color _advColour, UnitStatsSO _emptyUnitStatsSO)
         {           
+            this._emptyUnitStatsSO = _emptyUnitStatsSO;
             // Vector2 _posOffset = Vector2.zero; 
             _arrayOfUnitButtonManagers = new UnitButtonManager[_compSO.ParentUnitCount * _compSO.ChildUnitCount];
             for (int _parentUnitIndex = 0; _parentUnitIndex < _compSO.ParentUnitCount; _parentUnitIndex++)
@@ -46,7 +48,7 @@ namespace Rechrysalis.CompCustomizer
             int _indexInButtonManagerArray = (_parentUnitIndex * _compSO.ParentUnitCount) + _childUnitIndex;
             Debug.Log($"index " + _indexInButtonManagerArray);
             _arrayOfUnitButtonManagers[_indexInButtonManagerArray] = go.GetComponent<UnitButtonManager>();
-            _arrayOfUnitButtonManagers[_indexInButtonManagerArray].Initialize(_compSO.UnitSOArray[_indexInButtonManagerArray], _indexInButtonManagerArray, _advUnit);
+            _arrayOfUnitButtonManagers[_indexInButtonManagerArray].Initialize(_compSO.UnitSOArray[_indexInButtonManagerArray], _compSO.HatchEffectSOArray[_indexInButtonManagerArray], _indexInButtonManagerArray, _advUnit, _emptyUnitStatsSO);
             _arrayOfUnitButtonManagers[_indexInButtonManagerArray].SetBackGColour(_colour);
         }
     }

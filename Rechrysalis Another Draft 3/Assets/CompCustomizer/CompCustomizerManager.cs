@@ -17,6 +17,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private GameObject _upgradeButtonVerticalLayoutGroup;
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         [SerializeField] private GameObject _readyButton;
+        [SerializeField] private UnitStatsSO _emptyUnitStatsSO;
         private UpgradeButtonManager[] _upgradeButtonArray;
         private UnitButtonManager[] _arrayOfUnitButtonManagers;
         private UnitStatsSO[] _appliedUnitsToComp;
@@ -52,7 +53,7 @@ namespace Rechrysalis.CompCustomizer
                     _upgradeButtonArray[_upgradeIndex + (3 * _numberOfUpgradesCount)] = _horizontalManager.UpgradeButtonManagerArray[_upgradeIndex];
                 }
             }            
-            _compWindowManager.Initialize(_compSO, _basicColour, _advColour);
+            _compWindowManager.Initialize(_compSO, _basicColour, _advColour, _emptyUnitStatsSO);
             _arrayOfUnitButtonManagers = _compWindowManager.ArrayOfUnitButtonManagers;
             _displayManager.Initialize();
             SubscribeToButtons();
@@ -99,7 +100,14 @@ namespace Rechrysalis.CompCustomizer
         private void UpgradeClickedFunction(UpgradeButtonManager _upgradeButtonManager)
         {
             _upgradeSelected = _upgradeButtonManager;
+            if (_upgradeSelected.UnitStats != null)
+            {
             _displayManager.DisplayUnitText(_upgradeButtonManager.UnitStats);
+            }
+            if (_upgradeSelected.HatchEffect != null)
+            {
+                _displayManager.DisplayHatchText(_upgradeButtonManager.HatchEffect);
+            }
             CheckIfCompChanged();
         }
         private void UnitClickedFunction(UnitButtonManager _unitButotnManager)
@@ -123,11 +131,16 @@ namespace Rechrysalis.CompCustomizer
                         RemoveUpgrade(0);
                     }
                     _upgradeSelected.CompUnitSetTo = _compPositionSelected;
-                    if (_compPositionSelected.UnitStats != null)
+                    if (_upgradeSelected.UnitStats != null)
                     {
                         _appliedUnitsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.UnitStats;
                         _compPositionSelected.ChangeUnit(_upgradeSelected.UnitStats);
-                    }                    
+                    }            
+                    else if (_upgradeSelected.HatchEffect != null)
+                    {
+                        _appliedHatchEffectsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.HatchEffect;
+                        _compPositionSelected.ChangeHatchEffect(_upgradeSelected.HatchEffect);
+                    }        
                     _listOfSetUpgrades.Add(_upgradeSelected);
                     _compPositionSelected = null;
                     _upgradeSelected = null;

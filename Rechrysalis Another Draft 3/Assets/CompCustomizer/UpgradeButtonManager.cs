@@ -17,6 +17,8 @@ namespace Rechrysalis.CompCustomizer
         private UnitStatsSO _unitStats;
         public UnitStatsSO UnitStats {get {return _unitStats;}}
         private HatchEffectSO _hatchEffect;
+        public HatchEffectSO HatchEffect {get {return _hatchEffect;}}
+
         [SerializeField] private SpriteRenderer _body;
         [SerializeField] private IconSetBackGColor _iconSetBackGColour;
         [SerializeField] private TMP_Text _name;
@@ -24,19 +26,17 @@ namespace Rechrysalis.CompCustomizer
         public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect, bool _advUnit)
         {
             this._advUnit = _advUnit;
-            this._hatchEffect = _hatchEffect;
-            if (_unitStats != null) {
-                this._unitStats = _unitStats;
-                _unitStats.Initialize();
-            }
             if (_hatchEffect != null)
             {
-                // _body.sprite = _hatchEffect
+                this._hatchEffect = _hatchEffect;
+                _name.text = _hatchEffect.HatchEffectName;
             }
             if (_unitStats != null)
             {
                 _body.sprite = _unitStats.UnitSprite;
                 _name.text = _unitStats.UnitName;
+                this._unitStats = _unitStats;
+                _unitStats.Initialize();
             }
         }
         public void ClickUpgradeButton()
