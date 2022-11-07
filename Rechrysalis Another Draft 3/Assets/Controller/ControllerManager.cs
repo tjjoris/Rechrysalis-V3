@@ -100,6 +100,20 @@ namespace Rechrysalis.Controller
                 }
             }
         }
+        public void SubscribeToHatchEffects()
+        {
+            if ((_hatchEffects != null) && (_hatchEffects.Count > 0))
+            {
+                foreach (GameObject _hatchEffect in _hatchEffects)
+                {
+                    if (_hatchEffect != null)
+                    {
+                        _hatchEffect.GetComponent<HatchEffectManager>()._hatchEffectDies -= RemoveHatchEffect;
+                        _hatchEffect.GetComponent<HatchEffectManager>()._hatchEffectDies -= RemoveHatchEffect;
+                    }
+                }
+            }
+        }
         
         private void OnDisable()
         {

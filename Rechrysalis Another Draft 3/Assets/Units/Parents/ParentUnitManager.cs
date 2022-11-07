@@ -160,12 +160,13 @@ namespace Rechrysalis.Unit
                     _subUnits[_unitIndex].SetActive(true);
                     _parentHealth.SetChrysalis(false);
                     UnitManager _unitManager = _subUnits[_unitIndex].GetComponent<UnitManager>();
+                    int _tier = _unitManager.UnitStats.TierMultiplier.Tier;
                     _subUnits[_unitIndex].GetComponent<UnitManager>()?.RestartUnit();
                     if (!_theseUnits.ActiveUnits.Contains(_subUnits[_indexInSubUnits]))
                     {
                         _theseUnits.ActiveUnits.Add(_subUnits[_unitIndex]);
                     }
-                    CreateHatchEffect(_unitManager.HatchEffectPrefab, _unitIndex, _unitManager.UnitStats.TierMultiplier.Tier);
+                    CreateHatchEffect(_unitManager.HatchEffectPrefab, _tier, _parentIndex, _unitIndex, _subHatchEffects[_parentIndex].AffectAll[_tier]);
                 }
                 DeactivateChrysalis(_indexInSubUnits);    
             }
@@ -196,14 +197,14 @@ namespace Rechrysalis.Unit
                 _theseUnits.ActiveUnits.Remove(_subUnits[_unitIndex]);
             }
         }
-        private void CreateHatchEffect(GameObject _hatchEffectPrefab, int _unitIndex, int _unitTier)
+        private void CreateHatchEffect(GameObject _hatchEffectPrefab, int _unitTier, int _parentIndex, int _unitIndex, bool _affectAll)
         {
             if ((_hatchEffectPrefab != null) && (_subHatchEffects[_unitIndex] != null))
             {
                 GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
                 HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
                 Debug.Log($"creating hatch effect unit index " +_unitIndex);
-                _hatchEffectManager?.Initialize(_subHatchEffects[_unitIndex], _unitTier);
+                _hatchEffectManager?.Initialize(_subHatchEffects[_unitIndex], _unitTier, _parentIndex, _unitIndex, _affectAll);
                 // HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
                 // _hETimer?.Initialize(_unitIndex);
                 // foreach (GameObject _subUnit in _subUnits)

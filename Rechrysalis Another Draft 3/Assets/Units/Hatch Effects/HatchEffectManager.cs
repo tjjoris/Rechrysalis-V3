@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 namespace Rechrysalis.HatchEffect
 {
     public class HatchEffectManager : MonoBehaviour
     {
+        private int _parentIndex;
+        private int _unitIndex;
         private HatchEffectSO _hatchEffectSO;
         private HETimer _hETimer;
         private HatchEffectHealth _hEHealth;
@@ -18,9 +21,13 @@ namespace Rechrysalis.HatchEffect
         // private float _currentHP;
         private float _hpDrainPerTick;
         private int _tier;
+        public Action<GameObject, int, int, bool> _hatchEffectDies;
 
-        public void Initialize(HatchEffectSO _hatchEffectSO, int _tier)
+        public void Initialize(HatchEffectSO _hatchEffectSO, int _tier, int _parentIndex, int _unitIndex, bool _affectAll)
         {
+            this._parentIndex = _parentIndex;
+            this._unitIndex = _unitIndex;
+            this._affectAll = _affectAll;
             this._tier = _tier -1;
             Debug.Log($"Name ");
             this._hatchEffectSO = _hatchEffectSO;
@@ -46,10 +53,11 @@ namespace Rechrysalis.HatchEffect
         public void Tick(float _timeAmount)
         {
             _hEHealth?.TakeDamage(_timeAmount * _hpDrainPerTick);
-            // if (!_hEHealth.CheckIfAlive())
-            // {
-            //     // Destroy(gameObject);
-            // }
+            if (!_hEHealth.CheckIfAlive())
+            {
+                _hatchEffectDies?.Invoke(gameObject, _parentIndex, _unitIndex, _affectAll);
+                // Destroy(gameObject);
+            }
         } 
     }
 }

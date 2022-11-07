@@ -28,6 +28,8 @@ namespace Rechrysalis.HatchEffect
         public float[] DamageLossPerTick {get {return _damageLossPerTick;}}
         [SerializeField] private float[] _healthMax;
         public float[] HealthMax { get { return _healthMax; } }
+        [SerializeField] private bool[] _affectAll;
+        public bool[] AffectAll {get{return _affectAll;}}
 
 
         [SerializeField] private string _hatchEffectName;
