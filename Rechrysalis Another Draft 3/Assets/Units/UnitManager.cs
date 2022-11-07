@@ -50,7 +50,7 @@ namespace Rechrysalis.Unit
             _unitStats.Initialize();
             this._compsAndUnits = _compsAndUnits;
             GetComponent<ProjectilesPool>()?.CreatePool(_unitStats.AmountToPool, _unitStats.ProjectileSpeed, _unitStats.ProjectileSprite);
-            _nameText.text = _unitStats.UnitName;
+            // _nameText.text = _unitStats.UnitName;
             _mover = GetComponent<Mover>();
             _attack = GetComponent<Attack>();
             if (_attack != null)  _attack.IsStopped = true;
@@ -72,6 +72,10 @@ namespace Rechrysalis.Unit
             this._freeUnitIndex = _freeUnitIndex;
             _freeHatchScript?.Initialize(_unitStats.HatchEffectPrefab, _freeUnitIndex);
             _unitSpriteHandler.SetSpriteFunction(_unitStats.UnitSprite);
+        }
+        public void SetUnitName (string _unitName)
+        {
+            _nameText.text = _unitName;
         }
         public void RestartUnit()
         {
