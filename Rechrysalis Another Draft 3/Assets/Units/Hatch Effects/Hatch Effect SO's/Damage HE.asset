@@ -28,7 +28,7 @@ MonoBehaviour:
   - 0.01
   - 0.01
   _healthMax:
-  - 200
+  - 50
   - 200
   - 200
   _affectAll: 010101

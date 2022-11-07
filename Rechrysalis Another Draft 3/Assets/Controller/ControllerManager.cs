@@ -185,6 +185,8 @@ namespace Rechrysalis.Controller
 
         private void TickHatchEffects(float _timeAmount)
         {
+            if (_hatchEffects.Count > 0)
+            {
             foreach (GameObject _hatchEffect in _hatchEffects)
             {
                 // HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
@@ -204,6 +206,7 @@ namespace Rechrysalis.Controller
                     HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
                     _hatchEffectManager?.Tick(_timeAmount);
                 }
+            }
             }
         }
 
@@ -304,6 +307,7 @@ namespace Rechrysalis.Controller
             {
                 _hatchEffects.Remove(_hatchEffect);
             }
+            Destroy(_hatchEffect.gameObject);
         }
         public void ShowUnitText()
         {
