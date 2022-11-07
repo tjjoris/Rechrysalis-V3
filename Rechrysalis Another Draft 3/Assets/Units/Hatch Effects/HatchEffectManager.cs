@@ -32,8 +32,11 @@ namespace Rechrysalis.HatchEffect
             {
             _maxHP = _hatchEffectSO.HealthMax[_tier];
             }
-            // _currentHP = _maxHP;
-            // _hpDrainPerTick = _hatchEffectSO.DamageLossPerTick[_tier];
+            _currentHP = _maxHP;
+            if (_hatchEffectSO.DamageLossPerTick.Length >= _tier)
+            {
+            _hpDrainPerTick = _hatchEffectSO.DamageLossPerTick[_tier];
+            }
         }
         public void SetOffset(int _multiplier)
         {
