@@ -90,7 +90,7 @@ namespace Rechrysalis.Unit
             }
             _parentHealth = GetComponent<ParentHealth>();
             _parentHealth._unitDies -= ActivateChrysalis;
-            _parentHealth._unitDies -= ActivateChrysalis;
+            _parentHealth._unitDies += ActivateChrysalis;
         }
         private void OnDisable()
         {
@@ -103,6 +103,12 @@ namespace Rechrysalis.Unit
                 _unit.GetComponent<Rechrysalize>()._startChrysalis -= ActivateChrysalis;
             }            
         }
+        public void ActivateInitialUnit()
+        {
+            // Debug.Log($"set health" + _subUnits[0].GetComponent<UnitManager>().UnitStats.HealthMax);
+            _parentHealth.SetMaxHealth(_subUnits[0].GetComponent<UnitManager>().UnitStats.HealthMax);
+            ActivateUnit(0);            
+        }
         public void ActivateChrysalis(int _chrysalisIndex)
         {
             if (_subChrysalii[_chrysalisIndex] == null) return;
@@ -110,6 +116,8 @@ namespace Rechrysalis.Unit
             // if (_currentSubUnit != _subChrysalii[_chrysalisIndex])
             {
                 _parentHealth.SetChrysalis(true);
+
+                _parentHealth.SetMaxHealth(_subUnits[_chrysalisIndex].GetComponent<UnitManager>().UnitStats.HealthMax);
             float _timeToKeep = 0;
             ChrysalisTimer _chrysalisTimer = _currentSubUnit.GetComponent<ChrysalisTimer>();
             if (_chrysalisTimer != null)

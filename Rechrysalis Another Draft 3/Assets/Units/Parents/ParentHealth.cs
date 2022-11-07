@@ -21,7 +21,7 @@ namespace Rechrysalis.Unit
             // _parentUnitManager = GetComponent<ParentUnitManager>();
         }
 
-        public void SetMaxHealth(float _maxHelath)
+        public void SetMaxHealth(float _maxHealth)
         {
             this._maxHealth = _maxHealth;
             _currentHealth = _maxHealth;
