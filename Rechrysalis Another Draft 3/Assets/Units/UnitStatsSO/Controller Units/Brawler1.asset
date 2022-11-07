@@ -21,9 +21,9 @@ MonoBehaviour:
   _attackChargeUp: 1.7
   _attackWindDown: 1.7
   _origionalBaseAttackWindDown: 1
-  _baseDamage: 1
-  _origionalBaseDPS: 0
-  _baseDPS: 0
+  _baseDamage: 8.411764
+  _origionalBaseDPS: 1
+  _baseDPS: 28.6
   _baseRange: 3
   _origionalBaseHealthMax: 1
   _healthMaxBase: 1

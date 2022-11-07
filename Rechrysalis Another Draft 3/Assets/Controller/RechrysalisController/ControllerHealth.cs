@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Attacking;
+using Rechrysalis.UI;
 
 namespace Rechrysalis.Controller
 {
@@ -10,6 +11,7 @@ namespace Rechrysalis.Controller
     {
         [SerializeField] private float _healthMax;
         [SerializeField] private float _healthCurrent;
+        [SerializeField] private ControllerHPBar _controllerHPBar;
         private List<GameObject> _allUnits;
 
         public void Initialize(float _healthMax, List<GameObject> _allUnits)
@@ -17,11 +19,13 @@ namespace Rechrysalis.Controller
             this._healthMax = _healthMax;
             _healthCurrent = _healthMax;
             this._allUnits = _allUnits;
+            _controllerHPBar?.Initialize(_healthMax);
             SubscribeToControllerDamage();
         }
         public void TakeDamage(float _damageAmount)
         {
             _healthCurrent -= _damageAmount;
+            _controllerHPBar?.ChangeHPBar(_healthCurrent);
         }
         public void SubscribeToControllerDamage()        
         {            
