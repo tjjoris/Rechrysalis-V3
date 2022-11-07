@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4378128114718766567}
   - component: {fileID: 7721016742656668050}
   - component: {fileID: 8477975428765417811}
+  - component: {fileID: 1196362697060269112}
+  - component: {fileID: 225529875955136253}
   m_Layer: 7
   m_Name: FreeEnemyParent
   m_TagString: Untagged
@@ -98,6 +100,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62d405f2c9e241b5aecf2054694bcad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1196362697060269112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8804105779283925579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7207323077f4e589598ecab6ca7d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controllerIndex: 0
+  _backG: {fileID: 0}
+  _minX: 0
+  _maxX: 0
+  _minY: 0
+  _maxY: 0
+  _moveVector: {x: 0, y: 0, z: 0}
+  _direction: {x: 0, y: 0}
+  _isStopped: 1
+  _speed: 0
+--- !u!114 &225529875955136253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8804105779283925579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c63cca6f7c44af0aad94b29b9dbbd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _controllerIndex: 0
+  _playerUnitsSO: []
+  _enemyController: {fileID: 0}
+  _pushBackY: 2
 --- !u!1001 &8804105778334795660
 PrefabInstance:
   m_ObjectHideFlags: 0

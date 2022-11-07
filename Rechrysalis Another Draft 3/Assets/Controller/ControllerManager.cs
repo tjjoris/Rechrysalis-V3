@@ -150,6 +150,13 @@ namespace Rechrysalis.Controller
                     _unit.GetComponent<UnitManager>().Tick(_timeAmount);
                 }
             }
+            foreach (GameObject _freeParentUnit in _playerUnitsSO[_controllerIndex].ParentUnits)
+            {
+                if ((_freeParentUnit != null))
+                {
+                    _freeParentUnit.GetComponent<ParentFreeEnemyManager>()?.Tick(_timeAmount);
+                }
+            }
             foreach (GameObject _hatchEffect in _hatchEffects)
             {
                 HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
