@@ -48,6 +48,7 @@ namespace Rechrysalis.Unit
         {
             if ((_hatchEffects.Count > 0) && (_hatchEffects[0] != null))
             {
+                Debug.Log($"take damage " + _damage);
                 _hatchEffects[0].GetComponent<HatchEffectManager>().TakeDamage(_damage);
             }
         }
