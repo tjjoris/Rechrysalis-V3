@@ -35,8 +35,12 @@ namespace Rechrysalis.CompCustomizer
         }
         private HatchEffectSO CheckToPickHatchEffect (HatchEffectSO _hatchEffectNotToPick)
         {
-            _hatchEffectSO = PickAHatchEffect();
-            return _hatchEffectSO;            
+                _hatchEffectSO = PickAHatchEffect();
+                while (_hatchEffectNotToPick == _hatchEffectSO)
+                {
+                    _hatchEffectSO = PickAHatchEffect();
+                }
+                return _hatchEffectSO;            
         }
         private HatchEffectSO PickAHatchEffect ()
         {
