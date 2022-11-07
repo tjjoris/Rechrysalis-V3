@@ -144,7 +144,7 @@ namespace Rechrysalis.Unit
                 {
                     HatchEffectManager _hatchEffectManager = _hatchEffects[_hatchIndex].GetComponent<HatchEffectManager>();
                     _newDPS += _hatchEffectManager.DPSIncrease;
-                    // _newIncomingDamageMult *= _hatchEffectManager.IncomingDamageMult;
+                    _newIncomingDamageMult *= _hatchEffectManager.IncomingDamageMult;
                 }
             }
             if (_newDPS == 0) 

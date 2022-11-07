@@ -33,7 +33,7 @@ namespace Rechrysalis.Unit
         }
         public void TakeDamage(float _damage)
         {
-            float _damageToTake = _damage;
+            float _damageToTake = _damage * _currentUnit.GetIncomingDamageMultiplier();            
             if (_isChrysalis)
             {
                 _damageToTake *= _chrysalisDefenceMult;

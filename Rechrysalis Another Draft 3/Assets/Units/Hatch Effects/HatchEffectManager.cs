@@ -17,7 +17,7 @@ namespace Rechrysalis.HatchEffect
         public bool AffectAll {get{return _affectAll;}}
         private float _dPSIncrease;
         public float DPSIncrease {get {return _dPSIncrease;}}
-        private float _incomingDamageMult;
+        private float _incomingDamageMult = 1;
         public float IncomingDamageMult {get{return _incomingDamageMult;}}
         private HEDisplay _hEDisplay;
         [SerializeField] private TMP_Text _name;
@@ -55,7 +55,7 @@ namespace Rechrysalis.HatchEffect
             }
             if (_hatchEffectSO.IncomingDamageMultiplier.Length > this._tier)
             {
-                // _incomingDamageMult = _hatchEffectSO.IncomingDamageMultiplier[this._tier];
+                _incomingDamageMult = _hatchEffectSO.IncomingDamageMultiplier[this._tier];
             }
         }
         public void SetOffset(int _multiplier)
