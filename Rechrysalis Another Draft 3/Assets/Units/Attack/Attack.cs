@@ -73,6 +73,10 @@ namespace Rechrysalis.Attacking
                 _attackChargeCurrent += _timeAmount;                
             }            
         }
+        public void SetDamage(float _damage)
+        {
+            _baseDamage = _damage;
+        }
         public float getDamage()
         {
             return _baseDamage;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Damage HE
   m_EditorClassIdentifier: 
   _dpsIncrease:
-  - 3
+  - 20
   - 6
   - 9
   _incomingDamageMultiplier: []

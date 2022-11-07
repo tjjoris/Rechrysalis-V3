@@ -15,6 +15,8 @@ namespace Rechrysalis.HatchEffect
         private HatchEffectHealth _hEHealth;
         private bool _affectAll = true;
         public bool AffectAll {get{return _affectAll;}}
+        private float _dPSIncrease;
+        public float DPSIncrease {get {return _dPSIncrease;}}
         private HEDisplay _hEDisplay;
         [SerializeField] private TMP_Text _name;
         // private float _maxHP;
@@ -38,12 +40,16 @@ namespace Rechrysalis.HatchEffect
             if (_hatchEffectSO.HealthMax.Length > this._tier)
             {
             // _maxHP = _hatchEffectSO.HealthMax[_tier];
-            _hEHealth.Initialize(_hatchEffectSO.HealthMax[_tier]);
+            _hEHealth.Initialize(_hatchEffectSO.HealthMax[this._tier]);
             }
             // _currentHP = _maxHP;
-            if (_hatchEffectSO.DamageLossPerTick.Length > _tier)
+            if (_hatchEffectSO.DamageLossPerTick.Length > this._tier)
             {
             _hpDrainPerTick = _hatchEffectSO.DamageLossPerTick[this._tier];
+            }
+            if (_hatchEffectSO.DPSIncrease.Length > this._tier)
+            {
+                _dPSIncrease = _hatchEffectSO.DPSIncrease[this._tier];
             }
         }
         public void SetOffset(int _multiplier)

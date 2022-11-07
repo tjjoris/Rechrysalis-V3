@@ -29,6 +29,12 @@ namespace Rechrysalis.Unit
         [SerializeField] private GameObject _hatchEffectPrefab;
         public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
         private FreeUnitHatchEffect _freeHatchScript;
+        private float _baseDPS;
+        private float _newDPS;
+        private float _baseChargeUp;
+        private float _newChargeUp;
+        private float _baseWindDown;
+        private float _newWindDown;
         public bool IsStopped 
         {
             set{
@@ -48,6 +54,9 @@ namespace Rechrysalis.Unit
             this._controllerIndex = _controllerIndex;
             this._unitStats = _unitStats;
             _unitStats.Initialize();
+            _baseDPS = _unitStats.BaseDPS;
+            _baseChargeUp = _unitStats.AttackChargeUp;
+            _baseWindDown = _unitStats.AttackWindDown;
             this._compsAndUnits = _compsAndUnits;
             GetComponent<ProjectilesPool>()?.CreatePool(_unitStats.AmountToPool, _unitStats.ProjectileSpeed, _unitStats.ProjectileSprite);
             // _nameText.text = _unitStats.UnitName;
@@ -72,6 +81,7 @@ namespace Rechrysalis.Unit
             this._freeUnitIndex = _freeUnitIndex;
             _freeHatchScript?.Initialize(_unitStats.HatchEffectPrefab, _freeUnitIndex);
             _unitSpriteHandler.SetSpriteFunction(_unitStats.UnitSprite);
+            ReCalculateStatChanges();
         }
         public void SetUnitName (string _unitName)
         {
@@ -110,6 +120,7 @@ namespace Rechrysalis.Unit
             {
                 _hatchEffects.Remove(_hatchEffect);
             }
+            ReCalculateStatChanges();
         }
         public void AddHatchEffect(GameObject _hatchEffect)
         {
@@ -117,6 +128,21 @@ namespace Rechrysalis.Unit
             {
                 _hatchEffects.Add(_hatchEffect);
             }
+            ReCalculateStatChanges();
+        }
+        private void ReCalculateStatChanges()
+        {
+            _newDPS = _baseDPS;
+            _newChargeUp = _baseChargeUp;
+            _newWindDown = _baseWindDown;
+            if ((_hatchEffects!= null) && (_hatchEffects.Count > 0))
+            {
+                for (int _hatchIndex = 0; _hatchIndex < _hatchEffects.Count; _hatchIndex++)
+                {
+                    _newDPS += _hatchEffects[_hatchIndex].GetComponent<HatchEffectManager>().DPSIncrease;
+                }
+            }
+            // _attack?.SetDamage(_newDPS / (_newChargeUp + _newWindDown));
         }
         public void ShowUnitText()
         {
