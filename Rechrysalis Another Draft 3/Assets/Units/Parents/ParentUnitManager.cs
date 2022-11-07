@@ -161,12 +161,16 @@ namespace Rechrysalis.Unit
                     _parentHealth.SetChrysalis(false);
                     UnitManager _unitManager = _subUnits[_unitIndex].GetComponent<UnitManager>();
                     int _tier = _unitManager.UnitStats.TierMultiplier.Tier;
+                    HatchEffectSO _hatchEffectSO = _subHatchEffects[_unitIndex];
                     _subUnits[_unitIndex].GetComponent<UnitManager>()?.RestartUnit();
                     if (!_theseUnits.ActiveUnits.Contains(_subUnits[_indexInSubUnits]))
                     {
                         _theseUnits.ActiveUnits.Add(_subUnits[_unitIndex]);
                     }
-                    CreateHatchEffect(_unitManager.HatchEffectPrefab, _tier, _parentIndex, _unitIndex, _subHatchEffects[_parentIndex].AffectAll[_tier]);
+                    if (_hatchEffectSO != null)
+                    {
+                        CreateHatchEffect(_unitManager.HatchEffectPrefab, _tier, _parentIndex, _unitIndex, _hatchEffectSO.AffectAll[_tier]);
+                    }
                 }
                 DeactivateChrysalis(_indexInSubUnits);    
             }
