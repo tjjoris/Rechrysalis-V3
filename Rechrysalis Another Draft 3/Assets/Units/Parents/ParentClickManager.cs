@@ -14,6 +14,7 @@ namespace Rechrysalis.Unit
         }
         public bool IsEnemy(int _sourceControllerIndex)
         {
+            Debug.Log($"check if enemy " + _sourceControllerIndex);
             if (_controllerIndex != _sourceControllerIndex)
             {
                 return true;

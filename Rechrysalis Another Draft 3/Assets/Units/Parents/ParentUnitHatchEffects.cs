@@ -15,6 +15,7 @@ namespace Rechrysalis.Unit
             this._subUnits = _subUnits;
             this._subChrysalii =_subchrysalii;
             _hatchEffects = new List<GameObject>();
+            // GetComponent<ParentClickManager>().Initialize(_controllerIndex);
         }
         public void AddHatchEffect(GameObject _hatchEffect)
         {
