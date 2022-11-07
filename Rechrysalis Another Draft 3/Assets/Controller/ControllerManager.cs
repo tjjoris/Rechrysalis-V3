@@ -290,6 +290,16 @@ namespace Rechrysalis.Controller
                 _hatchEffects.Add(_hatchEffect);
                 SubscribeToHatchEffect(_hatchEffect);
             }
+            if ((_parentUnits[_parentIndex] != null))
+            {
+                ParentUnitHatchEffects _parentUnitHatchEffect = _parentUnits[_parentIndex].GetComponent<ParentUnitHatchEffects>();
+                {
+                    if (_parentUnitHatchEffect != null)
+                    {
+                        _parentUnitHatchEffect.AddHatchEffect(_hatchEffect);
+                    }
+                }
+            }
         }
         public void RemoveHatchEffect(GameObject _hatchEffect, int _parentIndex, int _unitIndex, bool _effectAll)
         {
@@ -307,6 +317,16 @@ namespace Rechrysalis.Controller
             if (_hatchEffects.Contains(_hatchEffect))
             {
                 _hatchEffects.Remove(_hatchEffect);
+            }
+            if ((_parentUnits[_parentIndex] != null))
+            {
+                ParentUnitHatchEffects _parentUnitHatchEffect = _parentUnits[_parentIndex].GetComponent<ParentUnitHatchEffects>();
+                {
+                    if (_parentUnitHatchEffect != null)
+                    {
+                        _parentUnitHatchEffect.RemoveHatchEffect(_hatchEffect);
+                    }
+                }
             }
             Destroy(_hatchEffect.gameObject);
         }

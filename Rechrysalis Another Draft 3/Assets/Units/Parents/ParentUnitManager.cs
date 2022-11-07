@@ -243,7 +243,7 @@ namespace Rechrysalis.Unit
             //         _hatchEffectManagersToDamage.Remove(_hatchEffectManager);
             //     }
             // }
-            _pUHE?.RemoveHatchEffect(_hatchEffect);
+            // _pUHE?.RemoveHatchEffect(_hatchEffect);
             foreach (GameObject _unit in _subUnits)
             {
                 _unit.GetComponent<UnitManager>()?.RemoveHatchEffect(_hatchEffect);
@@ -256,7 +256,7 @@ namespace Rechrysalis.Unit
         public void AddHatchEffect (GameObject _hatchEffect)
         {
             // _hatchEffectManagersToDamage.Add(_hatchEffect.GetComponent<HatchEffectManager>());
-            _pUHE?.AddHatchEffect(_hatchEffect);
+            // _pUHE?.AddHatchEffect(_hatchEffect);
             foreach (GameObject _unit in _subUnits)
             {
                 _unit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);

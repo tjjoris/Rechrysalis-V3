@@ -50,10 +50,14 @@ namespace Rechrysalis.Controller
             // {
 
             // Debug.Log($"add (units array length) " + _unitsArray.Length);
+
+
             if ((_parentUnitHatchEffects != null) && (_parentUnitHatchEffects.Length > 0))
             {
                 _parentUnitHatchEffects[_unitIndex].AddHatchEffect(_hatchEffect);
             }
+            
+
             // if ((_freeHatches != null)  && (_freeHatches.Length > 0))
             // {
             //     for (int _arrayIndex = 0; _arrayIndex < _freeHatches.Length; _arrayIndex++)
