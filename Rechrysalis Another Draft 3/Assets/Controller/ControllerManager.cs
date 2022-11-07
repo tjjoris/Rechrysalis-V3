@@ -80,6 +80,7 @@ namespace Rechrysalis.Controller
             SetIsStopped(true);
 
             SubScribeToParentUnits();
+            GetComponent<ControllerHealth>()?.SubscribeToParentUnits(_parentUnits);
             _rechrysalisControllerInitialize?.ActivateInitialUnits();
         }        
         private void OnEnable()

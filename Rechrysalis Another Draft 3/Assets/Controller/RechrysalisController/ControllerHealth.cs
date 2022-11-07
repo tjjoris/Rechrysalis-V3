@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Attacking;
 using Rechrysalis.UI;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.Controller
 {
@@ -12,6 +13,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private float _healthMax;
         [SerializeField] private float _healthCurrent;
         [SerializeField] private ControllerHPBar _controllerHPBar;
+        private GameObject[] _parentUnits;
         private List<GameObject> _allUnits;
 
         public void Initialize(float _healthMax, List<GameObject> _allUnits)
@@ -46,9 +48,32 @@ namespace Rechrysalis.Controller
                 }
             }
         }
+        public void SubscribeToParentUnits(GameObject[] _parentUnits)
+        {
+            this._parentUnits = _parentUnits;
+            if (( _parentUnits != null) && (_parentUnits.Length > 0))
+            {
+                for (int _index = 0; _index < _parentUnits.Length; _index ++)
+                {
+                    _parentUnits[_index].GetComponent<ParentHealth>()._controllerTakeDamage -= TakeDamage;
+                    _parentUnits[_index].GetComponent<ParentHealth>()._controllerTakeDamage += TakeDamage;
+                }
+            }
+        }
+        public void UnsubscribeToParentUnits()
+        {
+            if ((_parentUnits != null) && (_parentUnits.Length > 0))
+            {
+                for (int _index = 0; _index < _parentUnits.Length; _index++)
+                {
+                    _parentUnits[_index].GetComponent<ParentHealth>()._controllerTakeDamage -= TakeDamage;
+                }
+            }
+        }
         private void OnEnable()
         {
-            SubscribeToControllerDamage();
+            // SubscribeToControllerDamage();
+            SubscribeToParentUnits(null);
         }
         private void OnDisable()
         {
