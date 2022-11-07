@@ -12,6 +12,8 @@ namespace Rechrysalis.Unit
         public UnitStatsSO[] UnitSOArray { get { return _unitSOArray; } }
         [SerializeField] private WaveSO[] _waves;
         public WaveSO[] Waves { get {return _waves;}}
+        [SerializeField] private WaveLayout _waveLayout;
+        public WaveLayout WaveLayout {get {return _waveLayout;}}
         
     }
 }

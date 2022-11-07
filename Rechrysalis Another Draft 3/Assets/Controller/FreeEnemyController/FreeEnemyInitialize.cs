@@ -10,7 +10,7 @@ namespace Rechrysalis.Controller
 {
     public class FreeEnemyInitialize : MonoBehaviour
     {
-        [SerializeField] private FreeUnitLayoutSO _freeEnemyCompLayout;
+        // [SerializeField] private FreeUnitLayoutSO _freeEnemyCompLayout;
         [SerializeField] private GameObject _FreeUnitPrefab;
         private int _controllerIndex;
         private ControllerManager _enemyController;
@@ -67,7 +67,8 @@ namespace Rechrysalis.Controller
                     UnitStatsSO _unitStats = _wave.UnitInWave[_unitInWaveIndex];
                     if (_unitStats != null)
                     {
-                        Vector3 _newUnitPos = _freeEnemyCompLayout.UnitPos[0, _unitInWaveIndex];
+                        // Vector3 _newUnitPos = _freeEnemyCompLayout.UnitPos[0, _unitInWaveIndex];
+                        Vector3 _newUnitPos = _freeUnitCompSO.WaveLayout.GetUnitPosInWave(_unitInWaveIndex);
                         _newUnitPos.y = _newUnitPos.y + _enemyController.gameObject.transform.position.y;
                         GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
                         _playerUnitsSO.ParentUnits.Add(newFreeEnemy);
