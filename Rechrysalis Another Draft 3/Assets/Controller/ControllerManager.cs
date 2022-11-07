@@ -85,6 +85,7 @@ namespace Rechrysalis.Controller
         private void OnEnable()
         {
            SubScribeToParentUnits();
+           UnSubscribeToHatchEffects();
         }
         public void SubScribeToParentUnits()
         {
@@ -100,6 +101,11 @@ namespace Rechrysalis.Controller
                 }
             }
         }
+        public void SubscribeToHatchEffect(GameObject _hatchEffect)
+        {
+            _hatchEffect.GetComponent<HatchEffectManager>()._hatchEffectDies -= RemoveHatchEffect;
+            _hatchEffect.GetComponent<HatchEffectManager>()._hatchEffectDies += RemoveHatchEffect;
+        }
         public void SubscribeToHatchEffects()
         {
             if ((_hatchEffects != null) && (_hatchEffects.Count > 0))
@@ -109,6 +115,19 @@ namespace Rechrysalis.Controller
                     if (_hatchEffect != null)
                     {
                         _hatchEffect.GetComponent<HatchEffectManager>()._hatchEffectDies -= RemoveHatchEffect;
+                        _hatchEffect.GetComponent<HatchEffectManager>()._hatchEffectDies += RemoveHatchEffect;
+                    }
+                }
+            }
+        }
+        public void UnSubscribeToHatchEffects()
+        {
+            if ((_hatchEffects != null) && (_hatchEffects.Count > 0))
+            {
+                foreach (GameObject _hatchEffect in _hatchEffects)
+                {
+                    if (_hatchEffect != null)
+                    {
                         _hatchEffect.GetComponent<HatchEffectManager>()._hatchEffectDies -= RemoveHatchEffect;
                     }
                 }
@@ -121,6 +140,7 @@ namespace Rechrysalis.Controller
             {
                 _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect -= AddHatchEffect;
             }
+            UnSubscribeToHatchEffects();
         }
         private void Update() 
         {
@@ -264,6 +284,7 @@ namespace Rechrysalis.Controller
                     }
                 }
                 _hatchEffects.Add(_hatchEffect);
+                SubscribeToHatchEffect(_hatchEffect);
             }
         }
         public void RemoveHatchEffect(GameObject _hatchEffect, int _parentIndex, int _unitIndex, bool _effectAll)

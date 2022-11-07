@@ -123,7 +123,7 @@ namespace Rechrysalis.Background
         {
 
             _tile.SetActive(false);
-            Debug.Log($"remove tile");
+            // Debug.Log($"remove tile");
             if (_activeObjects.Contains(_tile))
             {
                 _activeObjects.Remove(_tile);
