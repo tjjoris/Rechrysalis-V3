@@ -237,20 +237,38 @@ namespace Rechrysalis.Controller
         public void AddHatchEffect(GameObject _hatchEffect, int _parentIndex, int _unitIndex, bool _effectAll)
         {
             {
-            Debug.Log($" add hatch effect for parents" + _parentIndex + "unit " + _unitIndex);
+                // Debug.Log($" add hatch effect for parents" + _parentIndex + "unit " + _unitIndex);
+                for (int _parentLoopIndex = 0; _parentLoopIndex < _parentUnits.Length; _parentLoopIndex++)
+                {
+                    if (_parentLoopIndex == _parentIndex)
+                    {
+                        _parentUnits[_parentLoopIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
+                    }
+                    else if (_effectAll)
+                    {
+                        _parentUnits[_parentLoopIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
+                    }
+                }
+                _hatchEffects.Add(_hatchEffect);
+            }
+        }
+        public void RemoveHatchEffect(GameObject _hatchEffect, int _parentIndex, int _unitIndex, bool _effectAll)
+        {
             for (int _parentLoopIndex = 0; _parentLoopIndex < _parentUnits.Length; _parentLoopIndex++)
             {
                 if (_parentLoopIndex == _parentIndex)
                 {
-                    _parentUnits[_parentLoopIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
+                    _parentUnits[_parentLoopIndex].GetComponent<ParentUnitManager>()?.RemoveHatchEffect(_hatchEffect);
                 }
                 else if (_effectAll)
                 {
-                    _parentUnits[_parentLoopIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
+                    _parentUnits[_parentLoopIndex].GetComponent<ParentUnitManager>()?.RemoveHatchEffect(_hatchEffect);
                 }
             }
-            _hatchEffects.Add(_hatchEffect);
-        }
+            if (_hatchEffects.Contains(_hatchEffect))
+            {
+                _hatchEffects.Remove(_hatchEffect);
+            }
         }
         public void ShowUnitText()
         {
