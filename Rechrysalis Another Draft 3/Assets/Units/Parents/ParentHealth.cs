@@ -36,6 +36,7 @@ namespace Rechrysalis.Unit
             }
             _currentHealth -= _damageToTake;
             _controllerTakeDamage?.Invoke(_damageToTake);
+            CheckIfDead();
         }
         public void SetChrysalis(bool _value)
         {
