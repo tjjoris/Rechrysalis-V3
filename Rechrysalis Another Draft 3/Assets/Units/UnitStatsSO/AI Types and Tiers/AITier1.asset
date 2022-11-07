@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 191532707fea54f3c9e0a215f3f68c3f, type: 3}
-  m_Name: T0
+  m_Name: AITier1
   m_EditorClassIdentifier: 
-  _healthMultiplier: 10
-  _dpsMultiplier: 0
+  _healthMultiplier: 1.1
+  _dpsMultiplier: 1.1
   _range: 5
-  _attackChargeUp: 0.5
-  _attackWindDown: 0.5
+  _attackChargeUp: 1
+  _attackWindDown: 1
   _tier: 0

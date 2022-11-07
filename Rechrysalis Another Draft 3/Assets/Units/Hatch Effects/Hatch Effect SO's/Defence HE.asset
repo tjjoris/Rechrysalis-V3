@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ccba6bd7fa964834a8774e6c551ba65, type: 3}
+  m_Name: Defence HE
+  m_EditorClassIdentifier: 
+  _dpsIncrease:
+  - 0
+  - 0
+  - 0
+  _incomingDamageMultiplier:
+  - 0.8
+  - 0.7
+  - 0.6
+  _rangeIncrease: []
+  _speedDecrease: []
+  _aoeDamage: []
+  _manaMultiplier: []
+  _hpHealed: []
+  _hpRegenPerTick: []
+  _damageLossPerTick:
+  - 5
+  - 0.01
+  - 0.01
+  _healthMax:
+  - 50
+  - 200
+  - 200
+  _affectAll: 010101
+  _hatchEffectName: DPS

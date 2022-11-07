@@ -13,6 +13,8 @@ namespace Rechrysalis.Unit
         private bool _isChrysalis;
         private float _chrysalisDefenceMult = 0.4f;
         private float _enemyControllerHealMult = 0.5f;
+        private UnitManager _currentUnit;
+        public UnitManager CurrentUnit {set {_currentUnit = value;} get {return _currentUnit;}}
         private Die _die;
         public Action<int> _unitDies;
         public Action<float> _controllerTakeDamage;

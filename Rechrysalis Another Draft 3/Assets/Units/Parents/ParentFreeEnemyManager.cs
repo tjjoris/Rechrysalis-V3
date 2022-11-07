@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Attacking;
 using Rechrysalis.Movement;
+// using Rechrysalis.Attacking;
 
 namespace Rechrysalis.Unit
 {
@@ -20,6 +21,7 @@ namespace Rechrysalis.Unit
             GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
             GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[_controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
             GetComponent<ParentClickManager>().Initialize(_controllerIndex);
+            GetComponent<ParentHealth>().CurrentUnit = _unitManager;
         }
         public void Tick (float _timeAmount)
         {

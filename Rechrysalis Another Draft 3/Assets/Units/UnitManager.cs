@@ -35,6 +35,8 @@ namespace Rechrysalis.Unit
         private float _newChargeUp;
         private float _baseWindDown;
         private float _newWindDown;
+        private float _baseIncomindDamageMult = 1;
+        private float _newIncomingDamageMult = 1;
         public bool IsStopped 
         {
             set{
@@ -135,11 +137,14 @@ namespace Rechrysalis.Unit
             _newDPS = _baseDPS;
             _newChargeUp = _baseChargeUp;
             _newWindDown = _baseWindDown;
+            _newIncomingDamageMult = _baseIncomindDamageMult;
             if ((_hatchEffects!= null) && (_hatchEffects.Count > 0))
             {
                 for (int _hatchIndex = 0; _hatchIndex < _hatchEffects.Count; _hatchIndex++)
                 {
-                    _newDPS += _hatchEffects[_hatchIndex].GetComponent<HatchEffectManager>().DPSIncrease;
+                    HatchEffectManager _hatchEffectManager = _hatchEffects[_hatchIndex].GetComponent<HatchEffectManager>();
+                    _newDPS += _hatchEffectManager.DPSIncrease;
+                    _newIncomingDamageMult *= _hatchEffectManager.IncomingDamageMult;
                 }
             }
             if (_newDPS == 0) 
@@ -148,6 +153,10 @@ namespace Rechrysalis.Unit
                 return;
             }
             _attack?.SetDamage(_newDPS / (_newChargeUp + _newWindDown));
+        }
+        public float GetIncomingDamageMultiplier()
+        {
+            return _newIncomingDamageMult;
         }
         public void ShowUnitText()
         {

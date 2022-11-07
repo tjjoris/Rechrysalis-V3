@@ -141,6 +141,7 @@ namespace Rechrysalis.Unit
                     _currentSubUnit = _subChrysalii[_chrysalisIndex];
                     Debug.Log($"activating chrysalis" + _chrysalisIndex);
                     _subChrysalii[_chrysalisIndex].SetActive(true);
+                    _parentHealth.CurrentUnit = _subChrysalii[_chrysalisIndex].GetComponent<UnitManager>();
                     _subChrysalii[_chrysalisIndex].GetComponent<ChrysalisTimer>()?.StartThisChrysalis(_timeToKeep);
                     if (!_theseUnits.ActiveUnits.Contains(_subChrysalii[_chrysalisIndex]))
                     {
@@ -164,6 +165,7 @@ namespace Rechrysalis.Unit
                 {
                     _currentSubUnit = _subUnits[_unitIndex];
                     _subUnits[_unitIndex].SetActive(true);
+                    _parentHealth.CurrentUnit = _subUnits[_unitIndex].GetComponent<UnitManager>();
                     _parentHealth.SetChrysalis(false);
                     UnitManager _unitManager = _subUnits[_unitIndex].GetComponent<UnitManager>();
                     int _tier = _unitManager.UnitStats.TierMultiplier.Tier;
