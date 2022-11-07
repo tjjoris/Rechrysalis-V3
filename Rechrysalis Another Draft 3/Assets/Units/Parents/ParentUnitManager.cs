@@ -168,7 +168,7 @@ namespace Rechrysalis.Unit
                     _parentHealth.CurrentUnit = _subUnits[_unitIndex].GetComponent<UnitManager>();
                     _parentHealth.SetChrysalis(false);
                     UnitManager _unitManager = _subUnits[_unitIndex].GetComponent<UnitManager>();
-                    int _tier = _unitManager.UnitStats.TierMultiplier.Tier;
+                    int _tier = _unitManager.UnitStats.TierMultiplier.Tier - 1;
                     HatchEffectSO _hatchEffectSO = _subHatchEffects[_unitIndex];
                     _subUnits[_unitIndex].GetComponent<UnitManager>()?.RestartUnit();
                     if (!_theseUnits.ActiveUnits.Contains(_subUnits[_indexInSubUnits]))

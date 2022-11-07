@@ -20,10 +20,12 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private IconSetBackGColor _iconSetBackGColour;
         [SerializeField] private TMP_Text _name;
         private UnitStatsSO _unitStats;
-        public UnitStatsSO UnitStats {get {return _unitStats;}}
+        // public UnitStatsSO UnitStats {get {return _unitStats;}}
         private UnitStatsSO _newUnit;
+        public UnitStatsSO NewUnit {get {return _newUnit;}}
         private HatchEffectSO _hatchEffect;
         private HatchEffectSO _newHatchEffect;
+        public HatchEffectSO HatchEffect {get {return _newHatchEffect;}}
         public Action<UnitButtonManager> _unitButtonClicked;
         public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect, int _compPosition, bool _advUnit, UnitStatsSO _emptyUnitSO, int _indexInComp)
         {

@@ -22,8 +22,12 @@ namespace Rechrysalis.CompCustomizer
                 _info.text = "No unit";
                 return;
             }
-            string _textToDisplay = _unitStats.UnitName + "\n" + "tier " + _unitStats.TierMultiplier.Tier.ToString() + "\n" + "range " + _unitStats.BaseRange.ToString();        
+            string _textToDisplay = _unitStats.UnitName + "\n" + "tier " + _unitStats.TierMultiplier.Tier.ToString() + " range " + _unitStats.BaseRange.ToString();                   
             _info.text = _textToDisplay;
+        }
+        public void AddHatchText (HatchEffectSO _hatchEffect)
+        {
+            _info.text = _info.text + "\n" + _hatchEffect.HatchEffectName;
         }
         public void DisplayHatchText(HatchEffectSO _hatchEffect)
         {

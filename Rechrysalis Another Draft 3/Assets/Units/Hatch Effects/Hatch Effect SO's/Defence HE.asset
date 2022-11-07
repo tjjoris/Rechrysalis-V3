@@ -17,7 +17,7 @@ MonoBehaviour:
   - 0
   - 0
   _incomingDamageMultiplier:
-  - 0.8
+  - 0.1
   - 0.7
   - 0.6
   _rangeIncrease: []
@@ -35,4 +35,4 @@ MonoBehaviour:
   - 200
   - 200
   _affectAll: 010101
-  _hatchEffectName: DPS
+  _hatchEffectName: DEF

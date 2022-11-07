@@ -32,7 +32,7 @@ namespace Rechrysalis.HatchEffect
             this._parentIndex = _parentIndex;
             this._unitIndex = _unitIndex;
             this._affectAll = _affectAll;
-            this._tier = _tier -1;
+            this._tier = _tier;
             Debug.Log($"Name ");
             this._hatchEffectSO = _hatchEffectSO;
             _hETimer = GetComponent<HETimer>();
@@ -55,7 +55,7 @@ namespace Rechrysalis.HatchEffect
             }
             if (_hatchEffectSO.IncomingDamageMultiplier.Length > this._tier)
             {
-                _incomingDamageMult = _hatchEffectSO.IncomingDamageMultiplier[this._tier];
+                // _incomingDamageMult = _hatchEffectSO.IncomingDamageMultiplier[this._tier];
             }
         }
         public void SetOffset(int _multiplier)
