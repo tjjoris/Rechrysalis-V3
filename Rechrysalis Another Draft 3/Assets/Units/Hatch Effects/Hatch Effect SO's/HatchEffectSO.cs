@@ -27,7 +27,7 @@ namespace Rechrysalis.HatchEffect
         [SerializeField] private float[] _damageLossPerTick;
         public float[] DamageLossPerTick {get {return _damageLossPerTick;}}
         [SerializeField] private float[] _healthMax;
-        public float[] HealthMax { get { return HealthMax; } }
+        public float[] HealthMax { get { return _healthMax; } }
 
 
         [SerializeField] private string _hatchEffectName;

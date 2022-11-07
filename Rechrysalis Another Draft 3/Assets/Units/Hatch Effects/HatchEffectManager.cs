@@ -28,9 +28,12 @@ namespace Rechrysalis.HatchEffect
             _name.text = _hatchEffectSO.HatchEffectName;
             _hEDisplay = GetComponent<HEDisplay>();
             _hEHealth = GetComponent<HatchEffectHealth>();
+            if (_hatchEffectSO.HealthMax.Length >= _tier)
+            {
             _maxHP = _hatchEffectSO.HealthMax[_tier];
-            _currentHP = _maxHP;
-            _hpDrainPerTick = _hatchEffectSO.DamageLossPerTick[_tier];
+            }
+            // _currentHP = _maxHP;
+            // _hpDrainPerTick = _hatchEffectSO.DamageLossPerTick[_tier];
         }
         public void SetOffset(int _multiplier)
         {
