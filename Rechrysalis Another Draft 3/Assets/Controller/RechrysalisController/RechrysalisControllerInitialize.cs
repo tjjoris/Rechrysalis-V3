@@ -30,6 +30,8 @@ namespace Rechrysalis.Controller
             _theseUnits = _compsAndUnits.PlayerUnits[_controllerIndex];
             _theseUnits.ActiveUnits = new List<GameObject>();
             _theseUnits.ActiveUnits.Clear();
+            _theseUnits.ParentUnits = new List<GameObject>();
+            _theseUnits.ParentUnits.Clear();
             _controllerHatchEffect = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _controllerHatchEffect.InitializeUnitsArray(18);
             ParentUnitHatchEffects[] _parentUnitHatchEffects = new ParentUnitHatchEffects[_unitComp.ParentUnitCount];

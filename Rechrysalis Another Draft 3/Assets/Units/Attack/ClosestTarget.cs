@@ -17,12 +17,12 @@ namespace Rechrysalis.Attacking
         }
         public GameObject GetNearestEnemyInRange()
         {
-            if ((_enemyUnits.ActiveUnits.Count > 0) && (_range != null))
+            if ((_enemyUnits.ParentUnits.Count > 0) && (_range != null))
             {
                 float _rangeOfUnit = _range.GetRange();
                 bool _unitInRange = false;
                 GameObject _closestUnitChecked = null;
-                foreach (GameObject _targetToCheck in _enemyUnits.ActiveUnits)
+                foreach (GameObject _targetToCheck in _enemyUnits.ParentUnits)
                 {
                     float _distToUnitChecking = (_targetToCheck.transform.position - gameObject.transform.position).magnitude;
                     if ((_distToUnitChecking <= _rangeOfUnit))
