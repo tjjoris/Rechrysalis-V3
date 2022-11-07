@@ -24,11 +24,11 @@ MonoBehaviour:
   _hpHealed: []
   _hpRegenPerTick: []
   _damageLossPerTick:
-  - 1
-  - 1
-  - 1
+  - 0.01
+  - 0.01
+  - 0.01
   _healthMax:
-  - 15
-  - 20
-  - 25
+  - 200
+  - 200
+  - 200
   _hatchEffectName: DPS

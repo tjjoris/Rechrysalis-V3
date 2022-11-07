@@ -17,9 +17,11 @@ namespace Rechrysalis.HatchEffect
         private float _maxHP;
         private float _currentHP;
         private float _hpDrainPerTick;
+        private int _tier;
 
         public void Initialize(HatchEffectSO _hatchEffectSO, int _tier)
         {
+            this._tier = _tier -1;
             Debug.Log($"Name ");
             this._hatchEffectSO = _hatchEffectSO;
             _hETimer = GetComponent<HETimer>();
@@ -36,11 +38,11 @@ namespace Rechrysalis.HatchEffect
         }       
         public void Tick(float _timeAmount)
         {
-            _hEHealth?.TakeDamage(_timeAmount * _hpDrainPerTick);
-            if (!_hEHealth.CheckIfAlive())
-            {
-                // Destroy(gameObject);
-            }
+            // _hEHealth?.TakeDamage(_timeAmount * _hpDrainPerTick);
+            // if (!_hEHealth.CheckIfAlive())
+            // {
+            //     // Destroy(gameObject);
+            // }
         } 
     }
 }

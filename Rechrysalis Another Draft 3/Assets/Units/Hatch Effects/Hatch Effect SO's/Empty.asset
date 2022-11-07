@@ -12,4 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccba6bd7fa964834a8774e6c551ba65, type: 3}
   m_Name: Empty
   m_EditorClassIdentifier: 
+  _dpsIncrease: []
+  _incomingDamageMultiplier: []
+  _rangeIncrease: []
+  _speedDecrease: []
+  _aoeDamage: []
+  _manaMultiplier: []
+  _hpHealed: []
+  _hpRegenPerTick: []
+  _damageLossPerTick:
+  - 0.01
+  - 0.01
+  - 0.01
+  _healthMax:
+  - 100
+  - 100
+  - 100
   _hatchEffectName: Empty
