@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Rechrysalis.Attacking;
 
 namespace Rechrysalis.Unit
 {
@@ -12,12 +13,14 @@ namespace Rechrysalis.Unit
         private bool _isChrysalis;
         private float _chrysalisDefenceMult = 0.4f;
         private float _enemyControllerHealMult = 0.5f;
+        private Die _die;
         public Action<int> _unitDies;
         public Action<float> _controllerTakeDamage;
         public Action<float> _enemyControllerHeal;
 
         public void Initialize()
         {
+            _die = GetComponent<Die>();
             // _parentUnitManager = GetComponent<ParentUnitManager>();
         }
 
@@ -47,6 +50,7 @@ namespace Rechrysalis.Unit
             if (_currentHealth <= 0)
             {
                 _unitDies?.Invoke(0);
+                GetComponent<Die>()?.UnitDies();
             }
         }
 
