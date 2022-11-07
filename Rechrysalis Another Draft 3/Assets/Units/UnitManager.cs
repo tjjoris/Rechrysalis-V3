@@ -142,7 +142,12 @@ namespace Rechrysalis.Unit
                     _newDPS += _hatchEffects[_hatchIndex].GetComponent<HatchEffectManager>().DPSIncrease;
                 }
             }
-            // _attack?.SetDamage(_newDPS / (_newChargeUp + _newWindDown));
+            if (_newDPS == 0) 
+            {
+                _attack?.SetDamage(0);
+                return;
+            }
+            _attack?.SetDamage(_newDPS / (_newChargeUp + _newWindDown));
         }
         public void ShowUnitText()
         {

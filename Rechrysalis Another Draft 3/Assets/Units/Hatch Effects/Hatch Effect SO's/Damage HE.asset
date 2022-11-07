@@ -24,7 +24,7 @@ MonoBehaviour:
   _hpHealed: []
   _hpRegenPerTick: []
   _damageLossPerTick:
-  - 0
+  - 10
   - 0.01
   - 0.01
   _healthMax:
