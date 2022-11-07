@@ -14,8 +14,8 @@ namespace Rechrysalis.HatchEffect
         public bool AffectAll {get{return _affectAll;}}
         private HEDisplay _hEDisplay;
         [SerializeField] private TMP_Text _name;
-        private float _maxHP;
-        private float _currentHP;
+        // private float _maxHP;
+        // private float _currentHP;
         private float _hpDrainPerTick;
         private int _tier;
 
@@ -30,9 +30,10 @@ namespace Rechrysalis.HatchEffect
             _hEHealth = GetComponent<HatchEffectHealth>();
             if (_hatchEffectSO.HealthMax.Length >= _tier)
             {
-            _maxHP = _hatchEffectSO.HealthMax[_tier];
+            // _maxHP = _hatchEffectSO.HealthMax[_tier];
+            _hEHealth.Initialize(_hatchEffectSO.HealthMax[_tier]);
             }
-            _currentHP = _maxHP;
+            // _currentHP = _maxHP;
             if (_hatchEffectSO.DamageLossPerTick.Length >= _tier)
             {
             _hpDrainPerTick = _hatchEffectSO.DamageLossPerTick[_tier];
@@ -44,7 +45,7 @@ namespace Rechrysalis.HatchEffect
         }       
         public void Tick(float _timeAmount)
         {
-            // _hEHealth?.TakeDamage(_timeAmount * _hpDrainPerTick);
+            _hEHealth?.TakeDamage(_timeAmount * _hpDrainPerTick);
             // if (!_hEHealth.CheckIfAlive())
             // {
             //     // Destroy(gameObject);
