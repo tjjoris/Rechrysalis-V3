@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2294334004744366797}
   - component: {fileID: 4378128114718766567}
   - component: {fileID: 7721016742656668050}
-  m_Layer: 0
+  - component: {fileID: 8477975428765417811}
+  m_Layer: 7
   m_Name: FreeEnemyParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,6 +86,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3def203b7be44c8bb1693413aaada95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8477975428765417811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8804105779283925579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c62d405f2c9e241b5aecf2054694bcad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8804105778334795660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95,6 +108,10 @@ PrefabInstance:
     - target: {fileID: 2833293522152398769, guid: fc92d36ab971a4db7a70bb0162526b4a, type: 3}
       propertyPath: m_Name
       value: FreeEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833293522152398769, guid: fc92d36ab971a4db7a70bb0162526b4a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8755162302603452497, guid: fc92d36ab971a4db7a70bb0162526b4a, type: 3}
       propertyPath: m_RootOrder

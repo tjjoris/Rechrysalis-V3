@@ -47,6 +47,7 @@ namespace Rechrysalis.Unit
             _rotateParentUnit = GetComponent<RotateParentUnit>();
             _rotateParentUnit?.Initialize(_controllertransform);
             _pUHE = GetComponent<ParentUnitHatchEffects>();
+            GetComponent<ParentClickManager>()?.Initialize(_controllerIndex);
         }
         public void Tick()
         {
