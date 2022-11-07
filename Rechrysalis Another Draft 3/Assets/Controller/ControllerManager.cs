@@ -262,7 +262,7 @@ namespace Rechrysalis.Controller
         {
             if ((_childUnit != -1) && (_parentUnits[_parentUnit] != null))
             {
-                _parentUnits[_parentUnit].GetComponent<ParentUnitManager>()?.ActivateChrysalis(_childUnit);
+                _parentUnits[_parentUnit].GetComponent<ParentUnitManager>()?.UpgradeUnit(_childUnit);
             }
         }
         public void ReserveChrysalis(int _parentIndex, int _childIndex)

@@ -113,6 +113,12 @@ namespace Rechrysalis.Unit
             _parentHealth.SetMaxHealth(_subUnits[0].GetComponent<UnitManager>().UnitStats.HealthMax);
             ActivateUnit(0);            
         }
+        public void UpgradeUnit(int _chrysalisIndex)
+        {
+            if ((_chrysalisIndex == 0) && (_currentSubUnit != _subUnits[0])) return;
+            if (_currentSubUnit == _subChrysalii[_chrysalisIndex]) return;
+            ActivateChrysalis(_chrysalisIndex);
+        }
         public void ActivateChrysalis(int _chrysalisIndex)
         {
             if (_subChrysalii[_chrysalisIndex] == null) return;
