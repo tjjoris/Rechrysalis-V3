@@ -44,5 +44,12 @@ namespace Rechrysalis.Unit
                 _hatchEffects[_index].GetComponent<HEDisplay>().PositionOffset(_index);
             }
         }
+        public void TakeDamage(float _damage)
+        {
+            if ((_hatchEffects.Count > 0) && (_hatchEffects[0] != null))
+            {
+                _hatchEffects[0].GetComponent<HatchEffectManager>().TakeDamage(_damage);
+            }
+        }
     }
 }

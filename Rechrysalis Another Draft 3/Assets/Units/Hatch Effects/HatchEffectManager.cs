@@ -52,12 +52,15 @@ namespace Rechrysalis.HatchEffect
         }       
         public void Tick(float _timeAmount)
         {
-            _hEHealth?.TakeDamage(_timeAmount * _hpDrainPerTick);
+            TakeDamage(_timeAmount * _hpDrainPerTick);
+        } 
+        public void TakeDamage(float _damageAmount)
+        {
+            _hEHealth?.TakeDamage(_damageAmount);
             if (!_hEHealth.CheckIfAlive())
             {
                 _hatchEffectDies?.Invoke(gameObject, _parentIndex, _unitIndex, _affectAll);
-                // Destroy(gameObject);
-            }
-        } 
+            }            
+        }
     }
 }
