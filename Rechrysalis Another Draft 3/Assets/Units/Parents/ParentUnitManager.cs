@@ -116,7 +116,7 @@ namespace Rechrysalis.Unit
         public void ActivateChrysalis(int _chrysalisIndex)
         {
             if (_subChrysalii[_chrysalisIndex] == null) return;
-            if ((_chrysalisIndex == 0) && (_currentSubUnit != _subUnits[0])) return;
+            // if ((_chrysalisIndex == 0) && (_currentSubUnit != _subUnits[0])) return;
             // if (_currentSubUnit != _subChrysalii[_chrysalisIndex])
             {
                 _parentHealth.SetChrysalis(true);
