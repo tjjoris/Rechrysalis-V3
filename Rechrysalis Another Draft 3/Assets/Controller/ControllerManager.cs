@@ -187,7 +187,8 @@ namespace Rechrysalis.Controller
         {
             if (_hatchEffects.Count > 0)
             {
-            foreach (GameObject _hatchEffect in _hatchEffects)
+            // foreach (GameObject _hatchEffect in _hatchEffects)
+            for (int _hatchIndex = 0; _hatchIndex < _hatchEffects.Count; _hatchIndex ++)
             {
                 // HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
                 // if ((_hETimer != null))
@@ -201,9 +202,9 @@ namespace Rechrysalis.Controller
                 //         }
                 //     }
                 // }
-                if (_hatchEffect != null)
+                if (_hatchEffects[_hatchIndex] != null)
                 {
-                    HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
+                    HatchEffectManager _hatchEffectManager = _hatchEffects[_hatchIndex].GetComponent<HatchEffectManager>();
                     _hatchEffectManager?.Tick(_timeAmount);
                 }
             }
