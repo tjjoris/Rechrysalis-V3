@@ -162,7 +162,7 @@ namespace Rechrysalis.Unit
                     {
                         _theseUnits.ActiveUnits.Add(_subUnits[_unitIndex]);
                     }
-                    CreateHatchEffect(_unitManager.HatchEffectPrefab, _unitIndex);
+                    CreateHatchEffect(_unitManager.HatchEffectPrefab, _unitIndex, _unitManager.UnitStats.TierMultiplier.Tier);
                 }
                 DeactivateChrysalis(_indexInSubUnits);    
             }
@@ -193,14 +193,14 @@ namespace Rechrysalis.Unit
                 _theseUnits.ActiveUnits.Remove(_subUnits[_unitIndex]);
             }
         }
-        private void CreateHatchEffect(GameObject _hatchEffectPrefab, int _unitIndex)
+        private void CreateHatchEffect(GameObject _hatchEffectPrefab, int _unitIndex, int _unitTier)
         {
             if ((_hatchEffectPrefab != null) && (_subHatchEffects[_unitIndex] != null))
             {
                 GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
                 HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
                 Debug.Log($"creating hatch effect unit index " +_unitIndex);
-                _hatchEffectManager?.Initialize(_subHatchEffects[_unitIndex]);
+                _hatchEffectManager?.Initialize(_subHatchEffects[_unitIndex], _unitTier);
                 // HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
                 // _hETimer?.Initialize(_unitIndex);
                 // foreach (GameObject _subUnit in _subUnits)

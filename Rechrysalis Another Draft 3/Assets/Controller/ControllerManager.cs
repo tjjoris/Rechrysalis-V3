@@ -127,7 +127,8 @@ namespace Rechrysalis.Controller
                 }
             }
         }
-        public void FixedTick(float _timeAmount) {  
+        public void FixedTick(float _timeAmount)
+        {
             // float _timeAmount = Time.fixedDeltaTime;         
             _mover?.Tick(_timeAmount);
             // if (_playerUnitsSO[_controllerIndex].ActiveUnits.Length > 0)
@@ -143,20 +144,13 @@ namespace Rechrysalis.Controller
             // }
             _unitRingManager?.Tick(_timeAmount);
             TickParentUnits();
-            foreach (GameObject _unit in _allUnits)
-            {
-                if (_unit.activeInHierarchy)
-                {
-                    _unit.GetComponent<UnitManager>().Tick(_timeAmount);
-                }
-            }
-            foreach (GameObject _freeParentUnit in _playerUnitsSO[_controllerIndex].ParentUnits)
-            {
-                if ((_freeParentUnit != null))
-                {
-                    _freeParentUnit.GetComponent<ParentFreeEnemyManager>()?.Tick(_timeAmount);
-                }
-            }
+            TickChildUnits(_timeAmount);
+            TickFreeEnemyParentUnits(_timeAmount);
+            TickHatchEffects(_timeAmount);
+        }
+
+        private void TickHatchEffects(float _timeAmount)
+        {
             foreach (GameObject _hatchEffect in _hatchEffects)
             {
                 HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
@@ -165,7 +159,7 @@ namespace Rechrysalis.Controller
                     _hETimer.Tick(_timeAmount);
                     if (_hETimer.CheckIsExpired())
                     {
-                        foreach(GameObject _parentUnit in _parentUnits)
+                        foreach (GameObject _parentUnit in _parentUnits)
                         {
                             _parentUnit.GetComponent<ParentUnitManager>()?.RemoveHatchEffect(_hatchEffect);
                         }
@@ -173,6 +167,29 @@ namespace Rechrysalis.Controller
                 }
             }
         }
+
+        private void TickFreeEnemyParentUnits(float _timeAmount)
+        {
+            foreach (GameObject _freeParentUnit in _playerUnitsSO[_controllerIndex].ParentUnits)
+            {
+                if ((_freeParentUnit != null))
+                {
+                    _freeParentUnit.GetComponent<ParentFreeEnemyManager>()?.Tick(_timeAmount);
+                }
+            }
+        }
+
+        private void TickChildUnits(float _timeAmount)
+        {
+            foreach (GameObject _unit in _allUnits)
+            {
+                if (_unit.activeInHierarchy)
+                {
+                    _unit.GetComponent<UnitManager>().Tick(_timeAmount);
+                }
+            }
+        }
+
         private void TickParentUnits()
         {
             foreach (GameObject _parentUnit in _parentUnits)
@@ -227,6 +244,7 @@ namespace Rechrysalis.Controller
                     _parentUnits[_parentLoopIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
                 }
             }
+            _hatchEffects.Add(_hatchEffect);
         }
         }
         public void ShowUnitText()
