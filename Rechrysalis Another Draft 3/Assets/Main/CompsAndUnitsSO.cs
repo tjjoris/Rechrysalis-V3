@@ -10,6 +10,8 @@ namespace Rechrysalis
     [CreateAssetMenu(fileName = "CompsAndUnitsSO", menuName ="Main/CompsAndUnitsSO")]
     public class CompsAndUnitsSO : ScriptableObject
     {
+        [SerializeField] private FreeUnitCompSO[] _levels;
+        public FreeUnitCompSO[] Levels {get{return _levels;}}
         [SerializeField] private float _speed;
         public float Speed {get {return _speed;}}
         [SerializeField] private int _level;

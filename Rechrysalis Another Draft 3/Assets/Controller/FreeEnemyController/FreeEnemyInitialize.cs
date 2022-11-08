@@ -57,6 +57,7 @@ namespace Rechrysalis.Controller
         private void CreateWave(int _controllerIndex, ControllerManager _enemyController, CompSO _compSO, PlayerUnitsSO _playerUnitsSO, CompsAndUnitsSO _compsAndUnits, FreeUnitCompSO _freeUnitCompSO, int _waveIndex)
         {
             // if (_compSO.UnitSOArray.Length > 0) {
+            _compsAndUnits.FreeUnitCompSO[_controllerIndex] = _compsAndUnits.Levels[_compsAndUnits.Level];
                 WaveSO _wave = _freeUnitCompSO.Waves[_waveIndex];
             if (_wave.UnitInWave.Length > 0)
             {
@@ -88,6 +89,14 @@ namespace Rechrysalis.Controller
                 }
             }
         }
+        private bool CheckIfLevelDone(int _waveIndex)
+        {
+            if (_waveIndex >= _freeUnitCompSO.Waves.Length)
+            {
+                return true;
+            }
+            return false;
+        }
         private void RestartUnits()
         {
             if (_allUnits.Count > 0) 
@@ -101,8 +110,13 @@ namespace Rechrysalis.Controller
         public void NextWave()
         {
             _waveIndex ++;
-            if (_freeUnitCompSO.Waves.Length >= _waveIndex)
+            // if (_freeUnitCompSO.Waves.Length >= _waveIndex)
             {                
+                Debug.Log($"wave index" + _waveIndex + "waves lenght "+ _freeUnitCompSO.Waves.Length);
+                if (CheckIfLevelDone(_waveIndex))
+                {
+                    return;
+                }                
                 CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);
                 AddNextWaveAction();
             }
