@@ -46,6 +46,7 @@ namespace Rechrysalis.Movement
         // }
         public void SetDirection(Vector2 _direction)
         {
+            // Debug.Log($"direction" + _direction);            
             this._direction = _direction;
         }
         public void Tick(float _deltaTime)
@@ -74,6 +75,10 @@ namespace Rechrysalis.Movement
                 _moveVector.y = _pushBackMovement;
             }
             if (_controllerIndex == 1) {
+            }
+            if ((float.IsNaN(_moveVector.x) || (float.IsNaN(_moveVector.y) || (float.IsNaN(_moveVector.z)))))
+            {
+                _moveVector = Vector3.zero;
             }
             transform.Translate(_moveVector);
         }

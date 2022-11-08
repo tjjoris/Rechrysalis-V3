@@ -25,6 +25,7 @@ namespace Rechrysalis.Unit
             GetComponent<ParentClickManager>().Initialize(_controllerIndex);
             GetComponent<ParentHealth>().CurrentUnit = _unitManager;
             _mover = GetComponent<Mover>();
+            _mover.IsStopped = false;
             _freeApproach = GetComponent<FreeEnemyApproach>();
             _freeApproach?.Initialize(_ownUnits, _unitManager.GetComponent<Range>());
         }

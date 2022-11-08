@@ -22,7 +22,6 @@ namespace Rechrysalis.Unit
         private Attack _attack;
         private ChrysalisTimer _chrysalisTimer;
         private Rechrysalize _rechrysalize;
-        [SerializeField] private bool _isStopped;
         private CompsAndUnitsSO _compsAndUnits;
         private ProjectilesPool _projectilesPool;
         private List<GameObject> _hatchEffects;
@@ -37,6 +36,7 @@ namespace Rechrysalis.Unit
         private float _newWindDown;
         private float _baseIncomindDamageMult = 1;
         private float _newIncomingDamageMult = 1;
+        [SerializeField] private bool _isStopped;
         public bool IsStopped 
         {
             set{
