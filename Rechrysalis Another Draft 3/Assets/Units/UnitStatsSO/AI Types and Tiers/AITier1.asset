@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191532707fea54f3c9e0a215f3f68c3f, type: 3}
   m_Name: AITier1
   m_EditorClassIdentifier: 
-  _healthMultiplier: 1.1
-  _dpsMultiplier: 1.1
+  _healthMultiplier: 1.4
+  _dpsMultiplier: 1.3
   _range: 5
   _attackChargeUp: 1
   _attackWindDown: 1
