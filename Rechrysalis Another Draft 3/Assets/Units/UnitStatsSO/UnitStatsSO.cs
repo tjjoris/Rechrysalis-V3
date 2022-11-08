@@ -41,6 +41,9 @@ namespace Rechrysalis.Unit
        public float HealthMax {get{return _healthMax;}}
        [SerializeField] private float _chrysalisTimerMax;
        public float ChrysalisTimerMax {get {return _chrysalisTimerMax;}}
+       [SerializeField] private float _manaBase = 1;
+       private float _mana;
+       public float Mana {get{return _mana;}}
        [SerializeField] private GameObject _hatchEffectPrefab;
        public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
        [SerializeField] private UnitStatsMultiplierSO _baseMultipler;
@@ -56,6 +59,7 @@ namespace Rechrysalis.Unit
             _attackChargeUp = _origionalBaseAttackChargeUp * _baseMultipler.AttackChargeUp * _typeMultipler.AttackChargeUp * _tierMultiplier.AttackChargeUp;
             _attackWindDown = _origionalBaseAttackWindDown * _baseMultipler.AttackWindDown * _typeMultipler.AttackWindDown * _tierMultiplier.AttackWindDown;
             _baseDamage = _baseDPS / (_attackChargeUp + _attackWindDown);
+            _mana = _manaBase * _baseMultipler.ManaMultiplier * _typeMultipler.ManaMultiplier * _tierMultiplier.ManaMultiplier;
         }
     }
 }
