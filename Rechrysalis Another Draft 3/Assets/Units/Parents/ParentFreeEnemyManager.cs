@@ -12,11 +12,13 @@ namespace Rechrysalis.Unit
         private ParentHealth _parentHealth;
         private FreeEnemyApproach _freeApproach;
         private Mover _mover;
+        private CompsAndUnitsSO _compsAndUnits;
         [SerializeField] private UnitManager _unitManager;
         public UnitManager UnitManager {get {return _unitManager;}}
 
         public void Initialize(int _controllerIndex,UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _unitInWaveIndex, PlayerUnitsSO _ownUnits)
         {
+            this._compsAndUnits = _compsAndUnits;
             _parentHealth = GetComponent<ParentHealth>();
             _unitManager?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);
             _unitManager?.SetUnitName(_unitStats.UnitName);
@@ -26,6 +28,7 @@ namespace Rechrysalis.Unit
             GetComponent<ParentHealth>().CurrentUnit = _unitManager;
             _mover = GetComponent<Mover>();
             _mover.IsStopped = false;
+            _mover?.SetSpeed(_compsAndUnits.Speed);
             _freeApproach = GetComponent<FreeEnemyApproach>();
             _freeApproach?.Initialize(_ownUnits, _unitManager.GetComponent<Range>());
         }

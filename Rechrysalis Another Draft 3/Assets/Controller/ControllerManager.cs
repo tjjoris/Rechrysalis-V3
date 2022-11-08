@@ -56,6 +56,7 @@ namespace Rechrysalis.Controller
             _mover = GetComponent<Mover>();
             if (_mover != null) {
             _mover?.Initialize(_controllerIndex);
+            _mover?.SetSpeed(_compsAndUnits.Speed);
             }
             _click?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
             _touch?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);

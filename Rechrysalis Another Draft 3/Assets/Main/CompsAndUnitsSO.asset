@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9250b78c4dd634eb9989461822611b34, type: 3}
   m_Name: CompsAndUnitsSO
   m_EditorClassIdentifier: 
+  _speed: 0.1
   _level: 1
   _compsSO:
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}

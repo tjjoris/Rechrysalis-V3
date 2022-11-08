@@ -35,6 +35,10 @@ namespace Rechrysalis.Movement
             _minY = _backGScript.MinY;
             _maxY = _backGScript.MaxY;
         }
+        public void SetSpeed(float _speed)
+        {
+            this._speed = _speed;
+        }
         public void ResetMovement()
         {   
             _pushBackMovement = 0;
@@ -76,10 +80,12 @@ namespace Rechrysalis.Movement
             }
             if (_controllerIndex == 1) {
             }
+            Debug.Log($"vector " + _moveVector);
             if ((float.IsNaN(_moveVector.x) || (float.IsNaN(_moveVector.y) || (float.IsNaN(_moveVector.z)))))
             {
                 _moveVector = Vector3.zero;
             }
+            Debug.Log($"direction "+ _direction+" move " + _moveVector);
             transform.Translate(_moveVector);
         }
     }
