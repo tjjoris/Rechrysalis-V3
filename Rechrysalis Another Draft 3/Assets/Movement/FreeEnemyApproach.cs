@@ -25,7 +25,7 @@ namespace Rechrysalis.Unit
         public void Tick()
         {
             Vector3 _approachDirection = Vector3.zero;
-            _targetUnit = _closestTarget.GetNearestEnemyInRange();
+            _targetUnit = _closestTarget.GetNearestEnemy();
             Vector2 _distV2 = (_targetUnit.transform.position - transform.position);
             if (Mathf.Abs(_distV2.magnitude) > _range.GetRange())
             {

@@ -10,6 +10,8 @@ namespace Rechrysalis.Unit
     public class ParentFreeEnemyManager : MonoBehaviour
     {
         private ParentHealth _parentHealth;
+        private FreeEnemyApproach _freeApproach;
+        private Mover _mover;
         [SerializeField] private UnitManager _unitManager;
         public UnitManager UnitManager {get {return _unitManager;}}
 
@@ -22,11 +24,14 @@ namespace Rechrysalis.Unit
             GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[_controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
             GetComponent<ParentClickManager>().Initialize(_controllerIndex);
             GetComponent<ParentHealth>().CurrentUnit = _unitManager;
-            GetComponent<FreeEnemyApproach>()?.Initialize(_ownUnits, _unitManager.GetComponent<Range>());
+            _mover = GetComponent<Mover>();
+            _freeApproach = GetComponent<FreeEnemyApproach>();
+            _freeApproach?.Initialize(_ownUnits, _unitManager.GetComponent<Range>());
         }
         public void Tick (float _timeAmount)
         {
-            GetComponent<Mover>().Tick(_timeAmount);
+            _freeApproach?.Tick();
+            _mover?.Tick(_timeAmount);
         }
     }
 }

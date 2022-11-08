@@ -39,5 +39,27 @@ namespace Rechrysalis.Attacking
             }
             return null;            
         }
+        public GameObject GetNearestEnemy()
+        {
+            GameObject _unit = null;
+            if ((_enemyUnits.ParentUnits.Count > 0))
+            {
+                float _rangeToCompare = 9999;
+                for (int _index = 0; _index < _enemyUnits.ParentUnits.Count; _index ++ )
+                {
+                    if (_unit == null)
+                    {
+                        _unit = _enemyUnits.ParentUnits[_index];
+                    }
+                    float _rangeFound = Mathf.Abs((_enemyUnits.ParentUnits[_index].transform.position - _unit.transform.position).magnitude);
+                    if (_rangeFound < _rangeToCompare)
+                    {
+                        _unit = _enemyUnits.ParentUnits[_index];
+                        _rangeToCompare = _rangeFound;
+                    }
+                }
+            }
+            return _unit;
+        }
     }
 }
