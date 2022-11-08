@@ -55,8 +55,11 @@ namespace Rechrysalis.Controller
             {
                 for (int _index = 0; _index < _parentUnits.Length; _index ++)
                 {
-                    _parentUnits[_index].GetComponent<ParentHealth>()._controllerTakeDamage -= TakeDamage;
-                    _parentUnits[_index].GetComponent<ParentHealth>()._controllerTakeDamage += TakeDamage;
+                    if (_parentUnits[_index] != null)
+                    {
+                        _parentUnits[_index].GetComponent<ParentHealth>()._controllerTakeDamage -= TakeDamage;
+                        _parentUnits[_index].GetComponent<ParentHealth>()._controllerTakeDamage += TakeDamage;
+                    }
                 }
             }
         }

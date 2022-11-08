@@ -93,12 +93,13 @@ namespace Rechrysalis.Controller
         {
             if ((_parentUnits != null) && (_parentUnits.Length > 0))
             {
-                foreach (GameObject _parentUnit in _parentUnits)
+                // foreach (GameObject _parentUnit in _parentUnits)
+                for (int _parentIndex = 0; _parentIndex < _parentUnits.Length; _parentIndex++)                
                 {
-                    if (_parentUnit != null)
+                    if (_parentUnits[_parentIndex] != null)
                     {
-                        _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect -= AddHatchEffect;
-                        _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect += AddHatchEffect;
+                        _parentUnits[_parentIndex].GetComponent<ParentUnitManager>()._addHatchEffect -= AddHatchEffect;
+                        _parentUnits[_parentIndex].GetComponent<ParentUnitManager>()._addHatchEffect += AddHatchEffect;
                     }
                 }
             }
