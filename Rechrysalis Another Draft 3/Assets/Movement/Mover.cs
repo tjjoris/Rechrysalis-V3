@@ -15,8 +15,8 @@ namespace Rechrysalis.Movement
         [SerializeField] private float _maxX;
         [SerializeField] private float _minY;
         [SerializeField] private float _maxY;
-        private float _pushBackMovement;
-        public float PushBackMovement {set{_pushBackMovement = value;}}
+        // private float _pushBackMovement;
+        // public float PushBackMovement {set{_pushBackMovement = value;}}
         [SerializeField] private Vector3 _moveVector;        
         [SerializeField] private Vector2 _direction = Vector2.zero;
         public Vector2 Direction {set{_direction = value;}get {return _direction;}}
@@ -41,7 +41,7 @@ namespace Rechrysalis.Movement
         }
         public void ResetMovement()
         {   
-            _pushBackMovement = 0;
+            // _pushBackMovement = 0;
             _moveVector = Vector2.zero;            
         }
         // public void PushBackMovement(float _y)
@@ -69,15 +69,15 @@ namespace Rechrysalis.Movement
                 //     _y = 0;
                 // }
             }
-            if ((_causesPushBack != null) && (_y > 0)) 
-            {
-                _causesPushBack.PushBack(_y);
-            }                
+            // if ((_causesPushBack != null) && (_y > 0)) 
+            // {
+            //     _causesPushBack.PushBack(_y);
+            // }                
             _moveVector = new Vector3(_x, _y, 0f);            
-            if ((GetComponent<PushBackFromPlayer>() != null) && (_pushBackMovement > 0) && (_moveVector.y < _pushBackMovement))
-            {
-                _moveVector.y = _pushBackMovement;
-            }
+            // if ((GetComponent<PushBackFromPlayer>() != null) && (_pushBackMovement > 0) && (_moveVector.y < _pushBackMovement))
+            // {
+            //     _moveVector.y = _pushBackMovement;
+            // }
             if (_controllerIndex == 1) {
             }
             Debug.Log($"vector " + _moveVector);

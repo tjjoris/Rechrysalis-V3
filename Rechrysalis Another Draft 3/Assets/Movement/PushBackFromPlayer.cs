@@ -46,7 +46,7 @@ namespace Rechrysalis.Controller
             if ((_ySpeed > 0) && (_controllerPos.y >= gameObject.transform.position.y - _pushBackY))
             {
                 // Debug.Log($"called push back" + _ySpeed);
-                GetComponent<Mover>().PushBackMovement = _ySpeed;
+                // GetComponent<Mover>().PushBackMovement = _ySpeed;
             }
         }
     }

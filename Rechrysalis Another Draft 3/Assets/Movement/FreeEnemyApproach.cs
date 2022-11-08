@@ -29,9 +29,12 @@ namespace Rechrysalis.Unit
             Vector2 _distV2 = (_targetUnit.transform.position - transform.position);
             if (Mathf.Abs(_distV2.magnitude) > _range.GetRange())
             {
-                _approachDirection = Vector3.MoveTowards(transform.position, _targetUnit.transform.position, 1);
+                // _approachDirection = Vector3.MoveTowards(transform.position, _targetUnit.transform.position, 1);
+                _approachDirection = (-transform.position + _targetUnit.transform.position);
+                _approachDirection = Vector3.ClampMagnitude(_approachDirection, 1);
             }
             // Vector2 _approachV2 = _approachDirection;
+            Debug.Log($"approach " + _approachDirection);
             GetComponent<Mover>()?.SetDirection(_approachDirection);
         }
     }
