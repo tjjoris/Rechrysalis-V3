@@ -18,7 +18,7 @@ namespace Rechrysalis.CompCustomizer
         {
             _info.text = _initialText;
         }
-        public void DisplayUnitText(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect)
+        public void DisplayText(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect)
         {            
             // if (_unitStats == null)
             // {
@@ -26,6 +26,8 @@ namespace Rechrysalis.CompCustomizer
             //     _info.text = "No unit";
             //     return;
             // }
+            this._hatchEffect = _hatchEffect;
+            this._unitStats = _unitStats;
             string _textToDisplay = StringOfUnitInfo(_unitStats, _hatchEffect);
             _info.text = _textToDisplay;
         }
@@ -44,6 +46,7 @@ namespace Rechrysalis.CompCustomizer
         }
         private string StringOfUnitInfo(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect)
         {
+            Debug.Log($"unit stats " +_unitStats + " hatch effect "+ _hatchEffect);
             float _manaCost = 0;
             string _textToDisplay = "";
             if (_unitStats != null)
@@ -56,14 +59,20 @@ namespace Rechrysalis.CompCustomizer
                 _textToDisplay += _hatchEffect.HatchEffectName;
                 if (_unitStats == null)
                 {
-                    _manaCost = _hatchEffect.ManaMultiplier[0];
+                    if (_hatchEffect.ManaMultiplier.Length > 0)
+                    {
+                        _manaCost = _hatchEffect.ManaMultiplier[0];
+                    }
                 }
                 else 
-                {
-                    _manaCost *= _hatchEffect.ManaMultiplier[_unitStats.TierMultiplier.Tier];
+                {                    
+                    if (_hatchEffect.ManaMultiplier.Length >= _unitStats.TierMultiplier.Tier)
+                    {
+                        _manaCost *= _hatchEffect.ManaMultiplier[_unitStats.TierMultiplier.Tier - 1];
+                    }
                 }
             }
-            _textToDisplay += Mathf.Floor(_manaCost).ToString();
+            _textToDisplay += "\n" + Mathf.Floor(_manaCost).ToString();
             return _textToDisplay;
         }
     }

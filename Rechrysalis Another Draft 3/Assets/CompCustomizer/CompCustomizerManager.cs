@@ -131,11 +131,11 @@ namespace Rechrysalis.CompCustomizer
             _upgradeSelected = _upgradeButtonManager;
             if (_upgradeSelected.UnitStats != null)
             {
-            _displayManager.DisplayUnitText(_upgradeButtonManager.UnitStats);
+            _displayManager.DisplayText(_upgradeButtonManager.UnitStats, null);
             }
             if (_upgradeSelected.HatchEffect != null)
             {
-                _displayManager.DisplayHatchText(_upgradeButtonManager.HatchEffect);
+                _displayManager.DisplayText(null, _upgradeButtonManager.HatchEffect);
             }
             CheckIfCompChanged();
         }
@@ -150,8 +150,8 @@ namespace Rechrysalis.CompCustomizer
         private void DisplayUnitButtonClicked(UnitButtonManager _unitButtonManager)
         {
 
-            _displayManager.DisplayUnitText(_unitButtonManager.NewUnit);
-            _displayManager.AddHatchText(_unitButtonManager.HatchEffect);
+            _displayManager.DisplayText(_unitButtonManager.NewUnit, _unitButtonManager.HatchEffect);
+            // _displayManager.AddHatchText(_unitButtonManager.HatchEffect);
         }
         private void CheckIfCompChanged()
         {
