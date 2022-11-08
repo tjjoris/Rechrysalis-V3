@@ -5,6 +5,8 @@ using Rechrysalis.Unit;
 using Rechrysalis.Movement;
 using Rechrysalis.Attacking;
 using Rechrysalis.HatchEffect;
+using UnityEngine.SceneManagement;
+using Rechrysalis.CompCustomizer;
 
 namespace Rechrysalis.Controller
 {
@@ -19,10 +21,11 @@ namespace Rechrysalis.Controller
         private PlayerUnitsSO _playerUnitsSO;
         private CompsAndUnitsSO _compsAndUnits;
         private FreeUnitCompSO _freeUnitCompSO;
+        private CompCustomizerSO _compCustomizer;
         // private int _controllerIndex;
         private List<GameObject> _allUnits;        
         int _waveIndex;
-        public void Initialize(int _controllerIndex, ControllerManager _enemyController, CompSO _compSO, PlayerUnitsSO _playerUnitsSO, CompsAndUnitsSO _compsAndUnits, FreeUnitCompSO _freeUnitCompSO)        
+        public void Initialize(int _controllerIndex, ControllerManager _enemyController, CompSO _compSO, PlayerUnitsSO _playerUnitsSO, CompsAndUnitsSO _compsAndUnits, FreeUnitCompSO _freeUnitCompSO, CompCustomizerSO _compCustomizer)        
         {
             this._controllerIndex = _controllerIndex;
             this._enemyController = _enemyController;
@@ -30,6 +33,7 @@ namespace Rechrysalis.Controller
             this._playerUnitsSO = _playerUnitsSO;
             this._compsAndUnits = _compsAndUnits;
             this._freeUnitCompSO = _freeUnitCompSO;
+            this._compCustomizer = _compCustomizer;
             _controllerFreeHatch = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _allUnits = new List<GameObject>();
             // this._controllerIndex = _controllerIndex;
@@ -115,12 +119,20 @@ namespace Rechrysalis.Controller
                 Debug.Log($"wave index" + _waveIndex + "waves lenght "+ _freeUnitCompSO.Waves.Length);
                 if (CheckIfLevelDone(_waveIndex))
                 {
+                    
+                    GoToCompCustomizer();
                     return;
                 }                
                 CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);
                 AddNextWaveAction();
             }
         }
+        private void GoToCompCustomizer()
+        {
+            _compsAndUnits.Level ++;
+            _compCustomizer.NumberOfUpgrades = 1;
+            SceneManager.LoadScene(1);
+        }        
         private void OnEnable()
         {
             AddNextWaveAction();

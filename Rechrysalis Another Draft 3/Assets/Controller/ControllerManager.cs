@@ -4,6 +4,7 @@ using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.Movement;
 using Rechrysalis.HatchEffect;
+using Rechrysalis.CompCustomizer;
 
 namespace Rechrysalis.Controller
 {
@@ -30,6 +31,7 @@ namespace Rechrysalis.Controller
         private List<GameObject> _hatchEffects;
         private FreeEnemyInitialize _freeEnemyInitialize;
         private ControllerFreeUnitHatchEffectManager _controllerFreeHatchEffectManager;
+        private CompCustomizerSO _compCustomizer;
         // public bool IsStopped
         // {
         //     set
@@ -43,12 +45,13 @@ namespace Rechrysalis.Controller
         //     }
         // }
 
-        public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits) {
+        public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits, CompCustomizerSO _compCustomizer) {
             this._controllerIndex = _controllerIndex;
             this._playerUnitsSO = _playerUnitsSO;
             this._compSO = _compSO;
             this._enemyController = _enemyController;
             this._compsAndUnits = _compsAndUnits;
+            this._compCustomizer = _compCustomizer;
             
             _allUnits = new List<GameObject>();
             _hatchEffects = new List<GameObject>();
@@ -65,7 +68,7 @@ namespace Rechrysalis.Controller
             _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             if (_freeEnemyInitialize != null)
             {
-            _freeEnemyInitialize.Initialize(_controllerIndex, _enemyController, _compSO, _playerUnitsSO[_controllerIndex], _compsAndUnits, _compsAndUnits.FreeUnitCompSO[_controllerIndex]);
+            _freeEnemyInitialize.Initialize(_controllerIndex, _enemyController, _compSO, _playerUnitsSO[_controllerIndex], _compsAndUnits, _compsAndUnits.FreeUnitCompSO[_controllerIndex], _compCustomizer);
             _allUnits = _freeEnemyInitialize.GetAllUnits();
             }            
             RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();

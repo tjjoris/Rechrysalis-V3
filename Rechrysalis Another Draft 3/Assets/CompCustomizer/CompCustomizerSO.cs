@@ -11,7 +11,7 @@ namespace Rechrysalis.CompCustomizer
     public class CompCustomizerSO : ScriptableObject
     {
         [SerializeField] private int _numberOfUpgrades;
-        public int NumberOfUpgrades {get{return _numberOfUpgrades;}}
+        public int NumberOfUpgrades {get{return _numberOfUpgrades;} set{_numberOfUpgrades = value;}}
         [SerializeField] private int _numberOfAdvUnits;
         public int NumberOfAdvUnits {get{return _numberOfAdvUnits;}}
         [SerializeField] private CompSO _compSO;
