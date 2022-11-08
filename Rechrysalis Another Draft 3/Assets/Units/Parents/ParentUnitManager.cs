@@ -191,7 +191,7 @@ namespace Rechrysalis.Unit
         }
         public void ActivateUnit(int _unitIndex)
         {
-            Debug.Log($"activating");
+            // Debug.Log($"activating");
             for (int _indexInSubUnits=0; _indexInSubUnits<_subUnits.Length; _indexInSubUnits++)
             {
                 if (_indexInSubUnits == _unitIndex)  

@@ -107,6 +107,7 @@ namespace Rechrysalis.Controller
                         _parentManager._addHatchEffect -= AddHatchEffect;
                         _parentManager._addHatchEffect += AddHatchEffect;
                         _parentManager._parentDealsDamage -= DealsDamage;
+                        _parentManager._parentDealsDamage += DealsDamage;
 
                     }
                 }

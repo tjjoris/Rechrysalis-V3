@@ -20,6 +20,7 @@ namespace Rechrysalis.Controller
         }
         public void StartTimer()
         {
+            Debug.Log($"reset timer");
             _manaCooldownTimerCurrent = 0;
         }
         public void Tick(float _timeAmount)

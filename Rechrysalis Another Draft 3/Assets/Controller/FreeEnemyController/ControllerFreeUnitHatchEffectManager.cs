@@ -113,7 +113,7 @@ namespace Rechrysalis.Controller
             // Debug.Log($"subscribe length " + _freeHatches.Length);
             if ((_freeHatches != null) && (_freeHatches.Length > 0))
             {
-                Debug.Log($"free hatches length" + _freeHatches.Length);
+                // Debug.Log($"free hatches length" + _freeHatches.Length);
                 // foreach (FreeUnitHatchEffect _freeUnitHatch in _freeHatches)
                 for (int _hEIndex = 0; _hEIndex < _freeHatches.Length; _hEIndex ++)
                 {
