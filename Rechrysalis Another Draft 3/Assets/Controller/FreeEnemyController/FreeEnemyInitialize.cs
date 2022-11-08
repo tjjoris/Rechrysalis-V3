@@ -76,12 +76,12 @@ namespace Rechrysalis.Controller
                         newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(_enemyController);
                         // UnitManager _unitManager = newFreeEnemy.GetComponent<UnitManager>();
                         // newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);                    
-                        ParentFreeEnemyManager _parentManager = newFreeEnemy.GetComponent<ParentFreeEnemyManager>();
-                        _parentManager?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);
+                        ParentFreeEnemyManager _freeParentManager = newFreeEnemy.GetComponent<ParentFreeEnemyManager>();
+                        _freeParentManager?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, _playerUnitsSO);
                         newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(_unitStats.HealthMax);
                         newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerIndex);
                         _playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
-                        _allUnits.Add(_parentManager.UnitManager.gameObject);
+                        _allUnits.Add(_freeParentManager.UnitManager.gameObject);
                         _controllerFreeHatch?.SetUnitsArray(newFreeEnemy, _unitInWaveIndex);
                         // _unitManager?.RestartUnit();
                     }

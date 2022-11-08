@@ -44,6 +44,10 @@ namespace Rechrysalis.Movement
         // {
         //     _pushBackMovement = _y;
         // }
+        public void SetDirection(Vector2 _direction)
+        {
+            this._direction = _direction;
+        }
         public void Tick(float _deltaTime)
         {
             float _x = 0f;

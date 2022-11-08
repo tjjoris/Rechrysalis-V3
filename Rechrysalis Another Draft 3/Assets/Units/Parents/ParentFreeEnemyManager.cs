@@ -13,7 +13,7 @@ namespace Rechrysalis.Unit
         [SerializeField] private UnitManager _unitManager;
         public UnitManager UnitManager {get {return _unitManager;}}
 
-        public void Initialize(int _controllerIndex,UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _unitInWaveIndex)
+        public void Initialize(int _controllerIndex,UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _unitInWaveIndex, PlayerUnitsSO _ownUnits)
         {
             _parentHealth = GetComponent<ParentHealth>();
             _unitManager?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);
@@ -22,6 +22,7 @@ namespace Rechrysalis.Unit
             GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[_controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
             GetComponent<ParentClickManager>().Initialize(_controllerIndex);
             GetComponent<ParentHealth>().CurrentUnit = _unitManager;
+            GetComponent<FreeEnemyApproach>()?.Initialize(_ownUnits, _unitManager.GetComponent<Range>());
         }
         public void Tick (float _timeAmount)
         {
