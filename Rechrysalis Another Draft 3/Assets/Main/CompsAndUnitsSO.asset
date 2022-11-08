@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CompsAndUnitsSO
   m_EditorClassIdentifier: 
   _speed: 2
-  _level: 1
+  _level: 0
   _compsSO:
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}

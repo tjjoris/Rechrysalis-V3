@@ -27,7 +27,10 @@ namespace Rechrysalis.CompCustomizer
         }
         public void AddHatchText (HatchEffectSO _hatchEffect)
         {
-            _info.text = _info.text + "\n" + _hatchEffect.HatchEffectName;
+            if (_hatchEffect != null)
+            {
+                _info.text = _info.text + "\n" + _hatchEffect.HatchEffectName;
+            }
         }
         public void DisplayHatchText(HatchEffectSO _hatchEffect)
         {

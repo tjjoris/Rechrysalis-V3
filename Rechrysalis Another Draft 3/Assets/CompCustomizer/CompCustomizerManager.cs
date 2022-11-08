@@ -155,6 +155,7 @@ namespace Rechrysalis.CompCustomizer
         {
             if ((_compPositionSelected != null) && (_upgradeSelected != null))
             {
+                Debug.Log($"comp selected & upgrade != null");
                 if (_compPositionSelected.AdvUnit == _upgradeSelected.AdvUnit)                
                 {
                     if (_listOfSetUpgrades.Contains(_upgradeSelected))
