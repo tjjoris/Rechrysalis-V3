@@ -89,7 +89,10 @@ namespace Rechrysalis.Unit
         }
         private void OnEnable()
         {
-            // GetComponent<ProjectilesPool>()._projectileDealsDamage += UnitDealsDamage;
+            if (GetComponent<ProjectilesPool>() != null)
+            {
+                GetComponent<ProjectilesPool>()._projectileDealsDamage += UnitDealsDamage;
+            }
         }
         private void OnDisable()
         {

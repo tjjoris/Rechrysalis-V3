@@ -96,17 +96,17 @@ namespace Rechrysalis.Unit
             _parentHealth = GetComponent<ParentHealth>();
             _parentHealth._unitDies -= ActivateChrysalis;
             _parentHealth._unitDies += ActivateChrysalis;
-            // if ((_subUnits != null) && (_subUnits.Length>0))
-            // {
-            //     for (int _subIndex = 0; _subIndex < _subUnits.Length; _subIndex ++)
-            //     {
-            //         if (_subUnits[_subIndex] != null)
-            //         {
-            //             _subUnits[_subIndex].GetComponent<UnitManager>()._unitDealsDamage -= ParentDealsDamage;
-            //             _subUnits[_subIndex].GetComponent<UnitManager>()._unitDealsDamage += ParentDealsDamage;
-            //         }
-            //     }
-            // }
+            if ((_subUnits != null) && (_subUnits.Length>0))
+            {
+                for (int _subIndex = 0; _subIndex < _subUnits.Length; _subIndex ++)
+                {
+                    if (_subUnits[_subIndex] != null)
+                    {
+                        _subUnits[_subIndex].GetComponent<UnitManager>()._unitDealsDamage -= ParentDealsDamage;
+                        _subUnits[_subIndex].GetComponent<UnitManager>()._unitDealsDamage += ParentDealsDamage;
+                    }
+                }
+            }
         }
         private void OnDisable()
         {
@@ -117,13 +117,13 @@ namespace Rechrysalis.Unit
                     _chrysalis.GetComponent<ChrysalisTimer>()._startUnit -= ActivateUnit;
                 }
             }
-            foreach (GameObject _unit in _subUnits)
-            {
-                if (_unit != null)
-                {
-                    _unit.GetComponent<Rechrysalize>()._startChrysalis -= ActivateChrysalis;
-                }
-            }
+            // foreach (GameObject _unit in _subUnits)
+            // {
+            //     if (_unit != null)
+            //     {
+            //         _unit.GetComponent<Rechrysalize>()._startChrysalis -= ActivateChrysalis;
+            //     }
+            // }
             if ((_subUnits != null) && (_subUnits.Length > 0))
             {
                 for (int _subIndex = 0; _subIndex < _subUnits.Length; _subIndex++)
