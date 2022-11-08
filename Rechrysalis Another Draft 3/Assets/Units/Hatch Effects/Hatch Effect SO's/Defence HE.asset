@@ -23,7 +23,10 @@ MonoBehaviour:
   _rangeIncrease: []
   _speedDecrease: []
   _aoeDamage: []
-  _manaMultiplier: []
+  _manaMultiplier:
+  - 1.3
+  - 1.3
+  - 1.3
   _hpHealed: []
   _hpRegenPerTick: []
   _damageLossPerTick:

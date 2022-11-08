@@ -54,6 +54,10 @@ namespace Rechrysalis.CompCustomizer
                 _textToDisplay +=  _unitStats.UnitName + "\n";
                 _manaCost = _unitStats.Mana;
             }
+            else
+            {
+                _textToDisplay += "\n";
+            }
             if (_hatchEffect != null)
             {
                 _textToDisplay += _hatchEffect.HatchEffectName;
