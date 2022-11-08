@@ -10,32 +10,61 @@ namespace Rechrysalis.CompCustomizer
     public class DisplayManager : MonoBehaviour
     {
         [SerializeField]private TMP_Text _info;
+        private UnitStatsSO _unitStats;
+        private HatchEffectSO _hatchEffect;
+        private float _manaCost;
         private string _initialText = "Pick a unit or hatch effect and apply it to a comp slot twice.  At least one must be a unit.";
         public void Initialize()
         {
             _info.text = _initialText;
         }
-        public void DisplayUnitText(UnitStatsSO _unitStats)
-        {
-            if (_unitStats == null)
-            {
-                _info.text = "No unit";
-                return;
-            }
-            string _textToDisplay = _unitStats.UnitName + "\n" + "tier " + _unitStats.TierMultiplier.Tier.ToString() + " range " + _unitStats.BaseRange.ToString();                   
+        public void DisplayUnitText(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect)
+        {            
+            // if (_unitStats == null)
+            // {
+            //     this._unitStats = _unitStats;
+            //     _info.text = "No unit";
+            //     return;
+            // }
+            string _textToDisplay = StringOfUnitInfo(_unitStats, _hatchEffect);
             _info.text = _textToDisplay;
         }
         public void AddHatchText (HatchEffectSO _hatchEffect)
         {
             if (_hatchEffect != null)
             {
-                _info.text = _info.text + "\n" + _hatchEffect.HatchEffectName;
+                string _textToDisplay = StringOfUnitInfo(_unitStats, _hatchEffect);
+                _info.text = _textToDisplay + "\n" + _hatchEffect.HatchEffectName;
             }
         }
         public void DisplayHatchText(HatchEffectSO _hatchEffect)
         {
             string _textToDisplay = _hatchEffect.HatchEffectName;
             _info.text = _textToDisplay;
+        }
+        private string StringOfUnitInfo(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect)
+        {
+            float _manaCost = 0;
+            string _textToDisplay = "";
+            if (_unitStats != null)
+            {
+                _textToDisplay +=  _unitStats.UnitName + "\n";
+                _manaCost = _unitStats.Mana;
+            }
+            if (_hatchEffect != null)
+            {
+                _textToDisplay += _hatchEffect.HatchEffectName;
+                if (_unitStats == null)
+                {
+                    _manaCost = _hatchEffect.ManaMultiplier[0];
+                }
+                else 
+                {
+                    _manaCost *= _hatchEffect.ManaMultiplier[_unitStats.TierMultiplier.Tier];
+                }
+            }
+            _textToDisplay += Mathf.Floor(_manaCost).ToString();
+            return _textToDisplay;
         }
     }
 }

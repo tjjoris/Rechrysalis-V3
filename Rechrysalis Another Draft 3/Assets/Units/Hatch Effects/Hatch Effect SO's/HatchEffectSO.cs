@@ -19,7 +19,7 @@ namespace Rechrysalis.HatchEffect
         [SerializeField] private float[] _aoeDamage;
         public float[] AoEDamge {get{return _aoeDamage;}}
         [SerializeField] private float[] _manaMultiplier;
-        public float[] ManaMultiplier {get {return _manaMultiplier;}}
+        public float[] ManaMultiplier {get {return _manaMultiplier;}}        
         [SerializeField] private float[] _hpHealed;
         public float[] HPHealed {get {return _hpHealed;}}
         [SerializeField] private float[] _hpRegenPerTick;
