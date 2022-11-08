@@ -38,14 +38,14 @@ namespace Rechrysalis.Attacking
         }
         private void SubscribeToProjectiles()
         {
-        //     if ((_pooledObjects != null) && (_pooledObjects.Count > 0))
-        //     {
-        //         for (int _index =0; _index < _pooledObjects.Count; _index ++)
-        //         {
-        //             _pooledObjects[_index].GetComponent<ProjectileHandler>()._parentUnitDealsDamage -= ProjectilePoolDealsDamage;
-        //             _pooledObjects[_index].GetComponent<ProjectileHandler>()._parentUnitDealsDamage += ProjectilePoolDealsDamage;
-        //         }
-        //     }
+            if ((_pooledObjects != null) && (_pooledObjects.Count > 0))
+            {
+                for (int _index =0; _index < _pooledObjects.Count; _index ++)
+                {
+                    _pooledObjects[_index].GetComponent<ProjectileHandler>()._parentUnitDealsDamage -= ProjectilePoolDealsDamage;
+                    _pooledObjects[_index].GetComponent<ProjectileHandler>()._parentUnitDealsDamage += ProjectilePoolDealsDamage;
+                }
+            }
         }
         private void UnsubscribeToProjectiles()
         {
