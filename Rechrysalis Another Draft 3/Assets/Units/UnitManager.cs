@@ -5,6 +5,7 @@ using TMPro;
 using Rechrysalis.Movement;
 using Rechrysalis.Attacking;
 using Rechrysalis.HatchEffect;
+// using System;
 
 namespace Rechrysalis.Unit
 {
@@ -51,6 +52,7 @@ namespace Rechrysalis.Unit
                     }
                 }
             }
+        public System.Action<float> _unitDealsDamage;
         public void Initialize(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _freeUnitIndex)
         {
             this._controllerIndex = _controllerIndex;
@@ -84,6 +86,21 @@ namespace Rechrysalis.Unit
             _freeHatchScript?.Initialize(_unitStats.HatchEffectPrefab, _freeUnitIndex);
             _unitSpriteHandler.SetSpriteFunction(_unitStats.UnitSprite);
             ReCalculateStatChanges();
+        }
+        private void OnEnable()
+        {
+            // GetComponent<ProjectilesPool>()._projectileDealsDamage += UnitDealsDamage;
+        }
+        private void OnDisable()
+        {
+            if (GetComponent<ProjectilesPool>() != null)
+            {
+                GetComponent<ProjectilesPool>()._projectileDealsDamage -= UnitDealsDamage;
+            }
+        }
+        private void UnitDealsDamage(float _damage)
+        {
+            _unitDealsDamage?.Invoke(_damage);
         }
         public void SetUnitName (string _unitName)
         {

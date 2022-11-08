@@ -24,6 +24,7 @@ namespace Rechrysalis.Unit
         private ParentUnitHatchEffects _pUHE;
         public Action<GameObject, int, int, bool> _addHatchEffect;
         public Action<GameObject, int, bool> _removeHatchEffect;
+        public Action<float> _parentDealsDamage;
 
         private bool _isStopped;
         public bool IsStopped 
@@ -95,6 +96,17 @@ namespace Rechrysalis.Unit
             _parentHealth = GetComponent<ParentHealth>();
             _parentHealth._unitDies -= ActivateChrysalis;
             _parentHealth._unitDies += ActivateChrysalis;
+            // if ((_subUnits != null) && (_subUnits.Length>0))
+            // {
+            //     for (int _subIndex = 0; _subIndex < _subUnits.Length; _subIndex ++)
+            //     {
+            //         if (_subUnits[_subIndex] != null)
+            //         {
+            //             _subUnits[_subIndex].GetComponent<UnitManager>()._unitDealsDamage -= ParentDealsDamage;
+            //             _subUnits[_subIndex].GetComponent<UnitManager>()._unitDealsDamage += ParentDealsDamage;
+            //         }
+            //     }
+            // }
         }
         private void OnDisable()
         {
@@ -105,7 +117,22 @@ namespace Rechrysalis.Unit
             foreach (GameObject _unit in _subUnits)
             {
                 _unit.GetComponent<Rechrysalize>()._startChrysalis -= ActivateChrysalis;
-            }            
+            }
+            if ((_subUnits != null) && (_subUnits.Length > 0))
+            {
+                for (int _subIndex = 0; _subIndex < _subUnits.Length; _subIndex++)
+                {
+                    if (_subUnits[_subIndex] != null)
+                    {
+                        _subUnits[_subIndex].GetComponent<UnitManager>()._unitDealsDamage -= ParentDealsDamage;
+                    }
+                }
+            }      
+        }
+        private void ParentDealsDamage(float _damage)
+        {
+            Debug.Log($"parent deals damage " + _damage);
+            _parentDealsDamage?.Invoke(_damage);
         }
         public void ActivateInitialUnit()
         {
