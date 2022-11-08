@@ -27,6 +27,7 @@ namespace Rechrysalis.Unit
         public Action<GameObject, int, int, bool> _addHatchEffect;
         public Action<GameObject, int, bool> _removeHatchEffect;
         public Action<float> _parentDealsDamage;
+        public Action<float> _subtractMana;
 
         private bool _isStopped;
         public bool IsStopped 
@@ -153,7 +154,16 @@ namespace Rechrysalis.Unit
             if ((_chrysalisIndex == 0) && (_currentSubUnit != _subUnits[0])) return;
             if (_currentSubUnit == _subChrysalii[_chrysalisIndex]) return;
             if (_chrysalisIndex == 0) return;
-            ActivateChrysalis(_chrysalisIndex);
+            if (!CheckIfEnoughMana(_chrysalisIndex)) return;
+                ActivateChrysalis(_chrysalisIndex);            
+        }
+        private bool CheckIfEnoughMana(int _chrysalisIndex)
+        {
+            if ((_subUnits[_chrysalisIndex].GetComponent<UnitManager>().UnitStats.Mana <= _manaAmount))
+            {
+                return true;
+            }
+            return false;
         }
         public void ActivateChrysalis(int _chrysalisIndex)
         {

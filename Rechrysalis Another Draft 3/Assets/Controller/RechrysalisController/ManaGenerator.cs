@@ -13,7 +13,7 @@ namespace Rechrysalis.Controller
         private float _manaCooldownTimerCurrent = 3;
         private float _manaCooldownTimerMax = 2f;
         private float _generateIntervalCurrent;
-        private float _generateIntervalMax = 2f;
+        private float _generateIntervalMax = 0.2f;
         private float _generateAmount = 5;
         private bool _generatingMana;
         private GameObject[] _parentUnits;
