@@ -150,14 +150,14 @@ namespace Rechrysalis.CompCustomizer
         private void DisplayUnitButtonClicked(UnitButtonManager _unitButtonManager)
         {
 
-            _displayManager.DisplayText(_unitButtonManager.NewUnit, _unitButtonManager.HatchEffect);
+            _displayManager.DisplayText(_unitButtonManager.NewUnit, _unitButtonManager.NewHatchEffect);
             // _displayManager.AddHatchText(_unitButtonManager.HatchEffect);
         }
         private void CheckIfCompChanged()
         {
             if ((_compPositionSelected != null) && (_upgradeSelected != null))
             {
-                Debug.Log($"comp selected & upgrade != null");
+                // Debug.Log($"comp selected & upgrade != null");
                 if (_compPositionSelected.AdvUnit == _upgradeSelected.AdvUnit)                
                 {
                     if (_listOfSetUpgrades.Contains(_upgradeSelected))
@@ -180,7 +180,8 @@ namespace Rechrysalis.CompCustomizer
                     {
                         _appliedHatchEffectsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.HatchEffect;
                         _compPositionSelected.ChangeHatchEffect(_upgradeSelected.HatchEffect);
-                    }        
+                    }
+                    DisplayUnitButtonClicked(_compPositionSelected);
                     _listOfSetUpgrades.Add(_upgradeSelected);
                     _compPositionSelected = null;
                     _upgradeSelected = null;
@@ -265,7 +266,7 @@ namespace Rechrysalis.CompCustomizer
                     }
                     if (((_appliedUnitsToComp[_unitIndex] != null) && (_appliedUnitsToComp[_unitIndex].UnitName != "Empty")) || (_appliedHatchEffectsToComp[_unitIndex] != null))
                     {
-                        if (_appliedUnitsToComp[_unitIndex] != null) Debug.Log($" name " + _appliedUnitsToComp[_unitIndex].UnitName + " index " + _unitIndex);                        
+                        // if (_appliedUnitsToComp[_unitIndex] != null) Debug.Log($" name " + _appliedUnitsToComp[_unitIndex].UnitName + " index " + _unitIndex);                        
                         _childUpgradePresent = true;
                     }
                 }
@@ -297,7 +298,7 @@ namespace Rechrysalis.CompCustomizer
                 for (int _childIndex = 0; _childIndex < _compSO.ChildUnitCount; _childIndex ++)
                 {
                     int _compIndex = _parentIndex + _childIndex;
-                    Debug.Log($"comp index " + _compIndex);
+                    // Debug.Log($"comp index " + _compIndex);
             // for (int _compIndex = 0; _compIndex < _appliedUnitsToComp.Length; _compIndex++)
             //{
                     if (_appliedUnitsToComp[_compIndex] == null)
