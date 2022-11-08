@@ -129,6 +129,7 @@ MonoBehaviour:
   _unitStats: {fileID: 0}
   _nameText: {fileID: 5944765683813516378}
   _isStopped: 0
+  _hatchEffectPrefab: {fileID: 0}
 --- !u!114 &3954166826758611184
 MonoBehaviour:
   m_ObjectHideFlags: 0

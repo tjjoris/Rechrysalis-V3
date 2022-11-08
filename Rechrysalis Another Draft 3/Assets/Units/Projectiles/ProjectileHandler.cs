@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.Attacking
 {
@@ -36,7 +37,8 @@ namespace Rechrysalis.Attacking
         if ((_targetUnit.transform.position - gameObject.transform.position).magnitude <= _minDistToDisable)
         {
             gameObject.SetActive(false);
-            Health _targetHealth = _targetUnit.GetComponent<Health>();
+            // Health _targetHealth = _targetUnit.GetComponent<Health>();
+            ParentHealth _targetHealth = _targetUnit.GetComponent<ParentHealth>();
             _targetHealth?.TakeDamage(_parentUnit.GetComponent<Attack>().getDamage());
         }
     }

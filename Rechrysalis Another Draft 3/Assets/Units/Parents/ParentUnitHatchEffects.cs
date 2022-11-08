@@ -15,6 +15,7 @@ namespace Rechrysalis.Unit
             this._subUnits = _subUnits;
             this._subChrysalii =_subchrysalii;
             _hatchEffects = new List<GameObject>();
+            // GetComponent<ParentClickManager>().Initialize(_controllerIndex);
         }
         public void AddHatchEffect(GameObject _hatchEffect)
         {
@@ -41,6 +42,14 @@ namespace Rechrysalis.Unit
             for (int _index = 0; _index < _hatchEffects.Count; _index++)
             {
                 _hatchEffects[_index].GetComponent<HEDisplay>().PositionOffset(_index);
+            }
+        }
+        public void TakeDamage(float _damage)
+        {
+            if ((_hatchEffects.Count > 0) && (_hatchEffects[0] != null))
+            {
+                // Debug.Log($"take damage " + _damage);
+                _hatchEffects[0].GetComponent<HatchEffectManager>().TakeDamage(_damage);
             }
         }
     }

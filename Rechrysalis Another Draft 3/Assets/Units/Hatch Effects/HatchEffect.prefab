@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 3458562561051780538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6041632317738301057}
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
+  m_fontSize: 8
   m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
@@ -181,9 +181,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6041632317738301057}
-  - component: {fileID: 2217491252393193199}
   - component: {fileID: 5162682908650232571}
   - component: {fileID: 1894819527670956384}
+  - component: {fileID: 4948415442075945803}
   m_Layer: 0
   m_Name: HatchEffect
   m_TagString: Untagged
@@ -207,21 +207,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2217491252393193199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4387173649336406545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a0a1667236364721b55197704b05c69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _duration: 0
-  _timeCurrent: 0
-  _allUnits: 0
 --- !u!114 &5162682908650232571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,5 +230,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c56b6aaa70044e8e8ccbffebe48afed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4948415442075945803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4387173649336406545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91a4339d2ccf4aa0b6dc4588eba2bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

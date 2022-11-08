@@ -17,6 +17,10 @@ namespace Rechrysalis.Attacking
         }
         public void RemoveUnitFunction()
         {
+            if (_playerUnits.ParentUnits.Contains(gameObject))
+            {
+                _playerUnits.ParentUnits.Remove(gameObject);
+            }
         if (_playerUnits.ActiveUnits.Contains(gameObject))
             {        
                 _playerUnits.ActiveUnits.Remove(gameObject);

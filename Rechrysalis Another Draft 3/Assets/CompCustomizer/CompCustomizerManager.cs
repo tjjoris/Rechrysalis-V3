@@ -137,11 +137,19 @@ namespace Rechrysalis.CompCustomizer
             }
             CheckIfCompChanged();
         }
-        private void UnitClickedFunction(UnitButtonManager _unitButotnManager)
+        private void UnitClickedFunction(UnitButtonManager _unitButtonManager)
         {
-            _compPositionSelected = _unitButotnManager;
-            _displayManager.DisplayUnitText(_unitButotnManager.UnitStats);
+            _compPositionSelected = _unitButtonManager;
+            // _displayManager.DisplayUnitText(_unitButtonManager.NewUnit);
+            // _displayManager.AddHatchText(_unitButtonManager.HatchEffect);
+            DisplayUnitButtonClicked(_unitButtonManager);
             CheckIfCompChanged();
+        }
+        private void DisplayUnitButtonClicked(UnitButtonManager _unitButtonManager)
+        {
+
+            _displayManager.DisplayUnitText(_unitButtonManager.NewUnit);
+            _displayManager.AddHatchText(_unitButtonManager.HatchEffect);
         }
         private void CheckIfCompChanged()
         {
@@ -193,6 +201,7 @@ namespace Rechrysalis.CompCustomizer
         {
              _appliedUnitsToComp[_compPosition.CompPosition] = _newUnit;
             _compPosition.ChangeUnit(_newUnit);
+            DisplayUnitButtonClicked(_compPosition);
         }
         private void CheckForDuplicateOnCompSlot(UnitButtonManager _compSlot)
         {

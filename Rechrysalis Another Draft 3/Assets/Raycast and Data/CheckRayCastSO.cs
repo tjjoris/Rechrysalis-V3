@@ -57,7 +57,7 @@ namespace Rechrysalis.Controller
                     _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
                     _touchTypeArray[_touchID] = TouchTypeEnum.controller;
                 }
-                if ((UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<UnitManager>().IsEnemy(_controllerIndex)))
+                if ((UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)))
                 {
                     // Debug.Log($"click enemy");
                     _playerTargtList.SetNewTarget(hit.collider.gameObject);
