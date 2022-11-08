@@ -103,8 +103,11 @@ namespace Rechrysalis.Controller
                 {
                     if (_parentUnits[_parentIndex] != null)
                     {
-                        _parentUnits[_parentIndex].GetComponent<ParentUnitManager>()._addHatchEffect -= AddHatchEffect;
-                        _parentUnits[_parentIndex].GetComponent<ParentUnitManager>()._addHatchEffect += AddHatchEffect;
+                        ParentUnitManager _parentManager = _parentUnits[_parentIndex].GetComponent<ParentUnitManager>();
+                        _parentManager._addHatchEffect -= AddHatchEffect;
+                        _parentManager._addHatchEffect += AddHatchEffect;
+                        _parentManager._parentDealsDamage -= DealsDamage;
+
                     }
                 }
             }
@@ -147,6 +150,7 @@ namespace Rechrysalis.Controller
             foreach (GameObject _parentUnit in _parentUnits)
             {
                 _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect -= AddHatchEffect;
+                _parentUnit.GetComponent<ParentUnitManager>()._parentDealsDamage -= DealsDamage;
             }
             UnSubscribeToHatchEffects();
         }
@@ -189,6 +193,7 @@ namespace Rechrysalis.Controller
             TickChildUnits(_timeAmount);
             TickFreeEnemyParentUnits(_timeAmount);
             TickHatchEffects(_timeAmount);
+            _manaGenerator?.Tick(_timeAmount);
         }
 
         private void TickHatchEffects(float _timeAmount)
@@ -250,6 +255,10 @@ namespace Rechrysalis.Controller
                     _parentUnit.GetComponent<RotateParentUnit>()?.Tick();
                 }
             }
+        }
+        private void DealsDamage(float _damage)
+        {
+            _manaGenerator.StartTimer();
         }
         public void SetIsStopped(bool _isStopped)
         {
