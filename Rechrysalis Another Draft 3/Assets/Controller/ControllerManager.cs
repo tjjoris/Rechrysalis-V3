@@ -79,6 +79,7 @@ namespace Rechrysalis.Controller
             _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius);
             _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
             _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
+            _manaGenerator?.Initialize(_parentUnits);
             }
             // Debug.Log($"health " + _compsAndUnits.ControllerHealth[_controllerIndex]);
             GetComponent<ControllerHealth>()?.Initialize(_compsAndUnits.ControllerHealth[_controllerIndex], _allUnits);

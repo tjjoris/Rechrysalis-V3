@@ -22,6 +22,8 @@ namespace Rechrysalis.Unit
         private RotateParentUnit _rotateParentUnit;
         private ParentHealth _parentHealth;
         private ParentUnitHatchEffects _pUHE;
+        private float _manaAmount;
+        public float ManaAmount {set{_manaAmount = value;}}
         public Action<GameObject, int, int, bool> _addHatchEffect;
         public Action<GameObject, int, bool> _removeHatchEffect;
         public Action<float> _parentDealsDamage;
