@@ -996,6 +996,7 @@ MonoBehaviour:
   _compSO:
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
+  _compCustomizer: {fileID: 11400000, guid: 3136fec9482a441c4869125a51a68276, type: 2}
   _projectilesHolder: {fileID: 1295238391}
   _backGroundManager: {fileID: 1949008738}
 --- !u!4 &1448413823

@@ -25,6 +25,7 @@ namespace Rechrysalis.CompCustomizer
         private UnitButtonManager _compPositionSelected;
         private UpgradeButtonManager _upgradeSelected;
         private List<UpgradeButtonManager> _listOfSetUpgrades;
+        private int _beginningNumberOfUpgrades = 2;
         
         public void Initialize(CompSO _compSO, Color _basicColour, Color _advColour, Color _hatchColour, int _level)
         {
@@ -32,6 +33,7 @@ namespace Rechrysalis.CompCustomizer
             if (_level == 0)
             {
                 ResetWholeComp();
+                _compCustomizerSO.NumberOfUpgrades = _beginningNumberOfUpgrades;
             }
             _readyButton.SetActive(false);
             _listOfSetUpgrades = new List<UpgradeButtonManager>();

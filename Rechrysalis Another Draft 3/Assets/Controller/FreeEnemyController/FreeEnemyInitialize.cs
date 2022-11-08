@@ -131,7 +131,7 @@ namespace Rechrysalis.Controller
         {
             _compsAndUnits.Level ++;
             _compCustomizer.NumberOfUpgrades = 1;
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
         }        
         private void OnEnable()
         {
