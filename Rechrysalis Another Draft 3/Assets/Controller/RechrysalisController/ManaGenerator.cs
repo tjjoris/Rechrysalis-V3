@@ -9,7 +9,7 @@ namespace Rechrysalis.Controller
     {
         [SerializeField] private ManaDisplay _manaDisplay;
         private float _manaCurrent;
-        private float _manaCooldownTimerCurrent;
+        private float _manaCooldownTimerCurrent = 3;
         private float _manaCooldownTimerMax = 2f;
         private float _generateIntervalCurrent;
         private float _generateIntervalMax = 2f;
@@ -35,7 +35,7 @@ namespace Rechrysalis.Controller
             {
                 _generatingMana = false;
             }
-            if (_generateIntervalCurrent >= _generateIntervalMax)
+            if ((_generatingMana) && (_generateIntervalCurrent >= _generateIntervalMax))
             {
                 _generateIntervalCurrent = 0;
                 _manaCurrent+= _generateAmount;
