@@ -16,6 +16,7 @@ namespace Rechrysalis.Unit
         public int ControllerIndex {get{return _controllerIndex;}}
         private int _freeUnitIndex;
         [SerializeField] private UnitStatsSO _unitStats;
+        private HatchEffectSO _hatchEffectSO;
         [SerializeField] private TMP_Text _nameText;
         public UnitStatsSO UnitStats {get{return _unitStats;}}
         private Health _health;
@@ -37,6 +38,8 @@ namespace Rechrysalis.Unit
         private float _newWindDown;
         private float _baseIncomindDamageMult = 1;
         private float _newIncomingDamageMult = 1;
+        private float _manaCost;
+        public float ManaCost {get{return _manaCost;}}
         [SerializeField] private bool _isStopped;
         public bool IsStopped 
         {
@@ -53,10 +56,11 @@ namespace Rechrysalis.Unit
                 }
             }
         public System.Action<float> _unitDealsDamage;
-        public void Initialize(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _freeUnitIndex)
+        public void Initialize(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _freeUnitIndex, HatchEffectSO _hatchEffectSO)
         {
             this._controllerIndex = _controllerIndex;
             this._unitStats = _unitStats;
+            this._hatchEffectSO = _hatchEffectSO;
             _unitStats.Initialize();
             _baseDPS = _unitStats.BaseDPS;
             _baseChargeUp = _unitStats.AttackChargeUp;
@@ -85,6 +89,15 @@ namespace Rechrysalis.Unit
             this._freeUnitIndex = _freeUnitIndex;
             _freeHatchScript?.Initialize(_unitStats.HatchEffectPrefab, _freeUnitIndex);
             _unitSpriteHandler.SetSpriteFunction(_unitStats.UnitSprite);
+            float _hatchManaMult = 1;
+            if (_hatchEffectSO != null)
+            {
+                if (_hatchEffectSO.ManaMultiplier.Length >= _unitStats.TierMultiplier.Tier)
+                {
+                    _hatchManaMult = _hatchEffectSO.ManaMultiplier[_unitStats.TierMultiplier.Tier];
+                }
+            }
+            _manaCost = _unitStats.Mana * _hatchManaMult;            
             ReCalculateStatChanges();
         }
         private void OnEnable()

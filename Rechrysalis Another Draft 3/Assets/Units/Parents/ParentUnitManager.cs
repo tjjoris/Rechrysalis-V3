@@ -160,7 +160,7 @@ namespace Rechrysalis.Unit
         }
         private bool CheckIfEnoughMana(int _chrysalisIndex)
         {
-            if ((_subUnits[_chrysalisIndex].GetComponent<UnitManager>().UnitStats.Mana <= _manaAmount))
+            if ((_subUnits[_chrysalisIndex].GetComponent<UnitManager>().ManaCost <= _manaAmount))
             {
                 return true;
             }
@@ -168,7 +168,7 @@ namespace Rechrysalis.Unit
         }
         private void SubtractMana(int _chrysalisIndex)
         {
-            _subtractMana?.Invoke(_subUnits[_chrysalisIndex].GetComponent<UnitManager>().UnitStats.Mana);
+            _subtractMana?.Invoke(_subUnits[_chrysalisIndex].GetComponent<UnitManager>().ManaCost);
         }
         public void ActivateChrysalis(int _chrysalisIndex)
         {
