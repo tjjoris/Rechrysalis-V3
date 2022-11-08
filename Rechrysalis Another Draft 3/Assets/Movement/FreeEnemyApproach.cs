@@ -34,7 +34,7 @@ namespace Rechrysalis.Unit
                 _approachDirection = Vector3.ClampMagnitude(_approachDirection, 1);
             }
             // Vector2 _approachV2 = _approachDirection;
-            Debug.Log($"approach " + _approachDirection);
+            // Debug.Log($"approach " + _approachDirection);
             GetComponent<Mover>()?.SetDirection(_approachDirection);
         }
     }

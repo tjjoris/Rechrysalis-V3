@@ -51,7 +51,10 @@ namespace Rechrysalis.Movement
         public void SetDirection(Vector2 _direction)
         {
             // Debug.Log($"direction" + _direction);            
-            this._direction = _direction;
+            this._direction = Vector2.ClampMagnitude(_direction, 1);            
+            GetComponent<Rigidbody2D>().velocity = this._direction ;
+            if (_controllerIndex == 0)
+            Debug.Log($"velocity " + GetComponent<Rigidbody2D>().velocity);
         }
         public void Tick(float _deltaTime)
         {
@@ -80,13 +83,16 @@ namespace Rechrysalis.Movement
             // }
             if (_controllerIndex == 1) {
             }
-            Debug.Log($"vector " + _moveVector);
+            // Debug.Log($"vector " + _moveVector);
             if ((float.IsNaN(_moveVector.x) || (float.IsNaN(_moveVector.y) || (float.IsNaN(_moveVector.z)))))
             {
                 _moveVector = Vector3.zero;
             }
-            Debug.Log($"direction "+ _direction+" move " + _moveVector);
-            transform.Translate(_moveVector);
+            // Debug.Log($"direction "+ _direction+" move " + _moveVector);
+            // transform.Translate(_moveVector);
+            Vector2 _newPostion = transform.position;
+            _newPostion += (_direction * _deltaTime);
+            // GetComponent<Rigidbody2D>()?.MovePosition(_newPostion);
         }
     }
 }

@@ -55,6 +55,7 @@ namespace Rechrysalis.Controller
                 if (ControllerMouseOver(hit))
                 {
                     _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
+                    _clickInfo.ControlledController.GetComponent<Mover>().SetDirection(Vector2.zero);
                     _touchTypeArray[_touchID] = TouchTypeEnum.controller;
                 }
                 if ((UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)))
@@ -100,9 +101,8 @@ namespace Rechrysalis.Controller
             _clickInfo.FingerIDMove = _touchID;
             Vector2 _direction = _clickInfo.ControlledController.transform.position;
             _direction = _mousePos - _direction;
-            _clickInfo.ControlledController.GetComponent<Mover>().Direction = _direction;
-            // _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = false;
-            // _clickInfo.ControlledController.GetComponent<ControllerManager>().IsStopped = false;
+            // _clickInfo.ControlledController.GetComponent<Mover>().Direction = _direction;
+            _clickInfo.ControlledController.GetComponent<Mover>().SetDirection(_direction);
             _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(false);
         }
 
