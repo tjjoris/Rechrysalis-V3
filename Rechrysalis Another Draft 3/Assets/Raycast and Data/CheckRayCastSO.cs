@@ -50,21 +50,21 @@ namespace Rechrysalis.Controller
             Vector3 _mousePosV3;
             RaycastHit2D hit;
             CreateRayCastFunction(_mousePos, out _mousePosV3, out hit);
-            if (hit)
-            {
-                if (ControllerMouseOver(hit))
+            // if ((hit) && (ControllerMouseOver(hit)))
+            // {
+                if ((hit) && (ControllerMouseOver(hit)))
                 {
                     _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
                     _clickInfo.ControlledController.GetComponent<Mover>().SetDirection(Vector2.zero);
                     _touchTypeArray[_touchID] = TouchTypeEnum.controller;
                 }
-                if ((UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)))
+                else if ((hit) && (UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)))
                 {
                     // Debug.Log($"click enemy");
                     _playerTargtList.SetNewTarget(hit.collider.gameObject);
                     _touchTypeArray[_touchID] = TouchTypeEnum.other;
                 }
-            }
+            // }
             else if (UnitRingMouseOver(_mousePos, _controller.transform.position))
             {
                 int _unitInbounds = checkIfIntUnitBounds(_mousePos);

@@ -51,7 +51,7 @@ namespace Rechrysalis.Movement
         public void SetDirection(Vector2 _direction)
         {
             // Debug.Log($"direction" + _direction);            
-            this._direction = Vector2.ClampMagnitude(_direction, 1);            
+            this._direction = (Vector2.ClampMagnitude(_direction, 1) * _speed);            
             GetComponent<Rigidbody2D>().velocity = this._direction ;
             if (_controllerIndex == 0)
             Debug.Log($"velocity " + GetComponent<Rigidbody2D>().velocity);

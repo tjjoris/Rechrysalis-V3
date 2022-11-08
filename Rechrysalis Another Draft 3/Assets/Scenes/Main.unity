@@ -729,7 +729,7 @@ MonoBehaviour:
   _unitRingManager: {fileID: 2056162103}
   _hilightRingManager: {fileID: 30328080}
   _upgradeRingManager: {fileID: 688441835}
-  _unitRingOuterRadius: 1.14
+  _unitRingOuterRadius: 1.5
 --- !u!114 &1159822627
 MonoBehaviour:
   m_ObjectHideFlags: 0
