@@ -13,7 +13,7 @@ namespace Rechrysalis.Controller
         private float _manaCooldownTimerCurrent = 3;
         private float _manaCooldownTimerMax = 2f;
         private float _generateIntervalCurrent;
-        private float _generateIntervalMax = 0.2f;
+        private float _generateIntervalMax = 0.5f;
         private float _generateAmount = 5;
         private bool _generatingMana;
         private GameObject[] _parentUnits;
@@ -24,6 +24,35 @@ namespace Rechrysalis.Controller
         {
             _manaDisplay.SetManaNumber(_manaCurrent);
             this._parentUnits = _parentUnits;
+            SubscribeToParentUnits();
+        }
+        private void SubscribeToParentUnits()
+        {
+            if ((_parentUnits != null) && (_parentUnits.Length > 0))
+            {
+                for (int _index = 0; _index < _parentUnits.Length; _index++)
+                if (_parentUnits[_index] != null)
+                {
+                    _parentUnits[_index].GetComponent<ParentUnitManager>()._subtractMana -= SubtractMana;
+                    _parentUnits[_index].GetComponent<ParentUnitManager>()._subtractMana += SubtractMana;
+                }
+            }
+        }
+        private void OnEnable()
+        {
+            SubscribeToParentUnits();
+        }
+        private void OnDisable()
+        {
+            if ((_parentUnits != null) && (_parentUnits.Length > 0))
+            {
+                for (int _index = 0; _index < _parentUnits.Length; _index++)
+                    if (_parentUnits[_index] != null)
+                    {
+                        _parentUnits[_index].GetComponent<ParentUnitManager>()._subtractMana -= SubtractMana;
+                    }
+            }
+            
         }
         public void StartTimer()
         {
@@ -63,6 +92,10 @@ namespace Rechrysalis.Controller
                     }
                 }
             }
+        }
+        private void SubtractMana(float _amount)
+        {
+            SetMana(_manaCurrent -= _amount);
         }
     }
 }

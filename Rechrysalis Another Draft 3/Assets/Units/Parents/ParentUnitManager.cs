@@ -155,7 +155,8 @@ namespace Rechrysalis.Unit
             if (_currentSubUnit == _subChrysalii[_chrysalisIndex]) return;
             if (_chrysalisIndex == 0) return;
             if (!CheckIfEnoughMana(_chrysalisIndex)) return;
-                ActivateChrysalis(_chrysalisIndex);            
+            SubtractMana(_chrysalisIndex);
+            ActivateChrysalis(_chrysalisIndex);            
         }
         private bool CheckIfEnoughMana(int _chrysalisIndex)
         {
@@ -164,6 +165,10 @@ namespace Rechrysalis.Unit
                 return true;
             }
             return false;
+        }
+        private void SubtractMana(int _chrysalisIndex)
+        {
+            _subtractMana?.Invoke(_subUnits[_chrysalisIndex].GetComponent<UnitManager>().UnitStats.Mana);
         }
         public void ActivateChrysalis(int _chrysalisIndex)
         {
