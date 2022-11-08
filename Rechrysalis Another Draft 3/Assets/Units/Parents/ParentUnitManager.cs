@@ -150,6 +150,7 @@ namespace Rechrysalis.Unit
         {
             if ((_chrysalisIndex == 0) && (_currentSubUnit != _subUnits[0])) return;
             if (_currentSubUnit == _subChrysalii[_chrysalisIndex]) return;
+            if (_chrysalisIndex == 0) return;
             ActivateChrysalis(_chrysalisIndex);
         }
         public void ActivateChrysalis(int _chrysalisIndex)
