@@ -45,35 +45,39 @@ namespace Rechrysalis.Attacking
                 _attackChargeCurrent = 0;
                 _isWindingDown = false;
             }
-            else if ((_isWindingDown) && (_attackChargeCurrent >= _attackChargeUp) && (_attackChargeCurrent < (_attackWindDown + _attackChargeUp)))
+            // else if ((_isWindingDown) && (_attackChargeCurrent >= _attackChargeUp) && (_attackChargeCurrent < (_attackWindDown + _attackChargeUp)))
+            else if ((_isWindingDown) && (_attackChargeCurrent < (_attackWindDown + _attackChargeUp)))
             {
                 _attackChargeCurrent += _timeAmount;
             }
-            else if ((_attackChargeCurrent >= _attackChargeUp) && (_isStopped) && (!_isWindingDown))
-            {
-                _inRangeByPriority?.CheckPriorityTargetInRange();
-                if (_targetHolder.Target == null)
+            else if ((_targetHolder.Target != null) && (_targetHolder.IsTargetInRange()))        
+            {            
+                if ((_attackChargeCurrent >= _attackChargeUp) && (_isStopped) && (!_isWindingDown))
                 {
-                    _closestTarget.GetNearestEnemyInRange();
-                }
-                if (_targetHolder.Target != null)
-                {
-                    GameObject _projectile = _projectilesPool?.GetPooledObject();
-                    if (_projectile != null) 
+                    _inRangeByPriority?.CheckPriorityTargetInRange();
+                    if (_targetHolder.Target == null)
                     {
-                        // Debug.Log($"shoot projectile");
-                        _projectile.SetActive(true);
-                        _projectile.transform.position = gameObject.transform.position;
-                        // Debug.Log($"position " + _projectile.transform.position);
-                        _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target, _unitStats.ProjectileSpeed);
-                        _isWindingDown = true;                       
+                        _closestTarget.GetNearestEnemyInRange();
+                    }
+                    if (_targetHolder.Target != null)
+                    {
+                        GameObject _projectile = _projectilesPool?.GetPooledObject();
+                        if (_projectile != null) 
+                        {
+                            // Debug.Log($"shoot projectile");
+                            _projectile.SetActive(true);
+                            _projectile.transform.position = gameObject.transform.position;
+                            // Debug.Log($"position " + _projectile.transform.position);
+                            _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target, _unitStats.ProjectileSpeed);
+                            _isWindingDown = true;                       
+                        }
                     }
                 }
+                else if ((_attackChargeCurrent < _attackChargeUp) && (_isStopped))
+                {
+                    _attackChargeCurrent += _timeAmount;                
+                }            
             }
-            else if ((_attackChargeCurrent < _attackChargeUp) && (_isStopped))
-            {
-                _attackChargeCurrent += _timeAmount;                
-            }            
         }
         public void SetDamage(float _damage)
         {

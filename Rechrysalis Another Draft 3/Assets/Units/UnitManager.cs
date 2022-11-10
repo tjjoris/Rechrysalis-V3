@@ -92,9 +92,9 @@ namespace Rechrysalis.Unit
             float _hatchManaMult = 1;
             if (_hatchEffectSO != null)
             {
-                if (_hatchEffectSO.ManaMultiplier.Length >= _unitStats.TierMultiplier.Tier)
+                if (_hatchEffectSO.ManaMultiplier.Length >= _unitStats.TierMultiplier.Tier - 1)
                 {
-                    _hatchManaMult = _hatchEffectSO.ManaMultiplier[_unitStats.TierMultiplier.Tier];
+                    _hatchManaMult = _hatchEffectSO.ManaMultiplier[_unitStats.TierMultiplier.Tier - 1];
                 }
             }
             _manaCost = _unitStats.Mana * _hatchManaMult;            
