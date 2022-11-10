@@ -16,7 +16,7 @@ namespace Rechrysalis.Attacking
 
         public bool IsTargetInRange()
         {
-            if ((_target != null) && (Mathf.Abs((_target.transform.position - transform.position).magnitude) >= _range.GetRange()))
+            if ((_target != null) && (Mathf.Abs((_target.transform.position - transform.position).magnitude) <= _range.GetRange()))
             {
                 return true;
             }
