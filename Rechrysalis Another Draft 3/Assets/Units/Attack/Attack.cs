@@ -19,6 +19,7 @@ namespace Rechrysalis.Attacking
         [SerializeField] private TargetsListSO _targetsList;
         private InRangeByPriority _inRangeByPriority;  
         private ClosestTarget _closestTarget;  
+        private TargetHolder _targetHolder;
 
         public void Initialize(UnitStatsSO _unitStats)
         {   
@@ -29,6 +30,7 @@ namespace Rechrysalis.Attacking
             _projectilesPool = GetComponent<ProjectilesPool>();
             _inRangeByPriority = GetComponent<InRangeByPriority>();
             _closestTarget = GetComponent<ClosestTarget>();
+            _targetHolder = GetComponent<TargetHolder>();
             ResetUnit();
         }
         public void ResetUnit()
@@ -49,12 +51,12 @@ namespace Rechrysalis.Attacking
             }
             else if ((_attackChargeCurrent >= _attackChargeUp) && (_isStopped) && (!_isWindingDown))
             {
-                GameObject _targetUnit = _inRangeByPriority?.CheckPriorityTargetInRange();
-                if (_targetUnit == null)
+                _inRangeByPriority?.CheckPriorityTargetInRange();
+                if (_targetHolder.Target == null)
                 {
-                    _targetUnit = _closestTarget.GetNearestEnemyInRange();
+                    _closestTarget.GetNearestEnemyInRange();
                 }
-                if (_targetUnit != null)
+                if (_targetHolder.Target != null)
                 {
                     GameObject _projectile = _projectilesPool?.GetPooledObject();
                     if (_projectile != null) 
@@ -63,7 +65,7 @@ namespace Rechrysalis.Attacking
                         _projectile.SetActive(true);
                         _projectile.transform.position = gameObject.transform.position;
                         // Debug.Log($"position " + _projectile.transform.position);
-                        _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetUnit, _unitStats.ProjectileSpeed);
+                        _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target, _unitStats.ProjectileSpeed);
                         _isWindingDown = true;                       
                     }
                 }

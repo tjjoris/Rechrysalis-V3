@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 2917284633402678828}
   - component: {fileID: 5222510157847912760}
   - component: {fileID: 1038787276189140182}
+  - component: {fileID: 9167190470719203715}
   m_Layer: 0
   m_Name: Sub Unit
   m_TagString: Untagged
@@ -340,8 +341,8 @@ MonoBehaviour:
   _controllerIndex: 0
   _unitStats: {fileID: 0}
   _nameText: {fileID: 1178424233875251256}
-  _isStopped: 0
   _hatchEffectPrefab: {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}
+  _isStopped: 0
 --- !u!114 &5745213307618876047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,5 +420,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cdf5ee83f97cf4c02ac793aa182da4dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9167190470719203715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6826342493758786654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50e74d30a245480d9c9a431d55f2c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -9,13 +9,15 @@ namespace Rechrysalis.Attacking
     {
         [SerializeField] private PlayerUnitsSO _enemyUnits;
         private Range _range;
+        private TargetHolder _targetHolder;
 
         public void Initialize (PlayerUnitsSO _enemyUnits)
         {
             this._enemyUnits = _enemyUnits;            
             _range = GetComponent<Range>();
+            _targetHolder = GetComponent<TargetHolder>();
         }
-        public GameObject GetNearestEnemyInRange()
+        public void GetNearestEnemyInRange()
         {
             if ((_enemyUnits.ParentUnits.Count > 0) && (_range != null))
             {
@@ -34,12 +36,12 @@ namespace Rechrysalis.Attacking
                 }
                 if (_unitInRange)
                 {
-                    return _closestUnitChecked;
+                    _targetHolder.Target = _closestUnitChecked;
                 }
             }
-            return null;            
+            // return null;            
         }
-        public GameObject GetNearestEnemy()
+        public void GetNearestEnemy()
         {
             GameObject _unit = null;
             if ((_enemyUnits.ParentUnits.Count > 0))
@@ -59,7 +61,7 @@ namespace Rechrysalis.Attacking
                     }
                 }
             }
-            return _unit;
+            _targetHolder.Target = _unit;
         }
     }
 }

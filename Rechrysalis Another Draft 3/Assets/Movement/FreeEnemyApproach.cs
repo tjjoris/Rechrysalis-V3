@@ -11,7 +11,8 @@ namespace Rechrysalis.Unit
         // private float _range;
         private PlayerUnitsSO _ownUnits;
         private ClosestTarget _closestTarget;
-        private GameObject _targetUnit;
+        // private GameObject _targetUnit;
+        private TargetHolder _targetHolder;
         private Range _range;
 
         public void Initialize(PlayerUnitsSO _ownUnits, Range _range)
@@ -20,22 +21,31 @@ namespace Rechrysalis.Unit
             this._ownUnits = _ownUnits;
             this._range = _range;
             this._closestTarget = this._range.GetComponent<ClosestTarget>();
+            _targetHolder = this._range.GetComponent<TargetHolder>();
         }
 
         public void Tick()
         {
             Vector3 _approachDirection = Vector3.zero;
-            _targetUnit = _closestTarget.GetNearestEnemy();
-            Vector2 _distV2 = (_targetUnit.transform.position - transform.position);
-            if (Mathf.Abs(_distV2.magnitude) > _range.GetRange())
+            // _targetUnit = _closestTarget.GetNearestEnemy();
+            if (!_targetHolder.IsTargetInRange())
             {
-                // _approachDirection = Vector3.MoveTowards(transform.position, _targetUnit.transform.position, 1);
-                _approachDirection = (-transform.position + _targetUnit.transform.position);
-                _approachDirection = Vector3.ClampMagnitude(_approachDirection, 1);
+                _closestTarget.GetNearestEnemy();
             }
-            // Vector2 _approachV2 = _approachDirection;
-            // Debug.Log($"approach " + _approachDirection);
-            GetComponent<Mover>()?.SetDirection(_approachDirection);
+            if (_targetHolder.Target != null)
+            {
+                Vector2 _distV2 = (_targetHolder.Target.transform.position - transform.position);
+                // if (Mathf.Abs(_distV2.magnitude) > _range.GetRange())
+                if (!_targetHolder.IsTargetInRange())
+                {
+                    // _approachDirection = Vector3.MoveTowards(transform.position, _targetHolder.Target.transform.position, 1);
+                    _approachDirection = (-transform.position + _targetHolder.Target.transform.position);
+                    _approachDirection = Vector3.ClampMagnitude(_approachDirection, 1);
+                }
+                // Vector2 _approachV2 = _approachDirection;
+                // Debug.Log($"approach " + _approachDirection);
+                GetComponent<Mover>()?.SetDirection(_approachDirection);
+            }
         }
     }
 }
