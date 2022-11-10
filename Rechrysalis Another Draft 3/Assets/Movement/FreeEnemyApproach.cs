@@ -28,10 +28,10 @@ namespace Rechrysalis.Unit
         {
             Vector3 _approachDirection = Vector3.zero;
             // _targetUnit = _closestTarget.GetNearestEnemy();
-            if (!_targetHolder.IsTargetInRange())
-            {
-                _closestTarget.GetNearestEnemy();
-            }
+            // if (!_targetHolder.IsTargetInRange())
+            // {
+            //     _closestTarget.GetNearestEnemy();
+            // }
             if (_targetHolder.Target != null)
             {
                 Vector2 _distV2 = (_targetHolder.Target.transform.position - transform.position);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Attacking;
 using Rechrysalis.Movement;
-// using Rechrysalis.Attacking;
+using Rechrysalis.Attacking;
 
 namespace Rechrysalis.Unit
 {
@@ -12,6 +12,7 @@ namespace Rechrysalis.Unit
         private ParentHealth _parentHealth;
         private FreeEnemyApproach _freeApproach;
         private Mover _mover;
+        private AIAlwaysPreferClosest _aiAlwaysPreferClosest;
         private CompsAndUnitsSO _compsAndUnits;
         [SerializeField] private UnitManager _unitManager;
         public UnitManager UnitManager {get {return _unitManager;}}
@@ -31,9 +32,12 @@ namespace Rechrysalis.Unit
             _mover?.SetSpeed(_compsAndUnits.Speed);
             _freeApproach = GetComponent<FreeEnemyApproach>();
             _freeApproach?.Initialize(_ownUnits, _unitManager.GetComponent<Range>());
+            _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
+            _aiAlwaysPreferClosest.Initialize();
         }
         public void Tick (float _timeAmount)
-        {
+        {   
+            _aiAlwaysPreferClosest.CheckIfTargetInRange();
             _freeApproach?.Tick();
             _mover?.Tick(_timeAmount);
         }

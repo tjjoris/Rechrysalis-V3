@@ -49,19 +49,25 @@ namespace Rechrysalis.Attacking
                 float _rangeToCompare = 9999;
                 for (int _index = 0; _index < _enemyUnits.ParentUnits.Count; _index ++ )
                 {
-                    if (_unit == null)
-                    {
-                        _unit = _enemyUnits.ParentUnits[_index];
-                    }
-                    float _rangeFound = Mathf.Abs((_enemyUnits.ParentUnits[_index].transform.position - _unit.transform.position).magnitude);
-                    if (_rangeFound < _rangeToCompare)
-                    {
-                        _unit = _enemyUnits.ParentUnits[_index];
-                        _rangeToCompare = _rangeFound;
-                    }
+                    CheckIfthisTargetCloser(ref _unit, ref _rangeToCompare, _index);
                 }
             }
             _targetHolder.Target = _unit;
+        }
+
+        private void CheckIfthisTargetCloser(ref GameObject _unit, ref float _rangeToCompare, int _index)
+        {
+            if (_unit == null)
+            {
+                _unit = _enemyUnits.ParentUnits[_index];
+                return;
+            }
+            float _rangeFound = Mathf.Abs((_enemyUnits.ParentUnits[_index].transform.position - gameObject.transform.position).magnitude);
+            if (_rangeFound < _rangeToCompare)
+            {
+                _unit = _enemyUnits.ParentUnits[_index];
+                _rangeToCompare = _rangeFound;
+            }
         }
     }
 }
