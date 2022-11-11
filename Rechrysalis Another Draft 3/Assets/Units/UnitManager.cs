@@ -72,6 +72,7 @@ namespace Rechrysalis.Unit
             _mover = GetComponent<Mover>();
             _attack = GetComponent<Attack>();
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
+            _controllerUnitAttackClosest?.Initialzie();
             if (_attack != null)  _attack.IsStopped = true;
             _attack?.Initialize(_unitStats);
             _health = GetComponent<Health>();
