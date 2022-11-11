@@ -40,9 +40,14 @@ namespace Rechrysalis.Unit
         }
         public void Tick (float _timeAmount)
         {   
+            bool _isRetreating = false;
             _aiAlwaysPreferClosest.CheckIfTargetInRange();
-            _freeEnemyKiteMaxRange?.Tick();
-            _freeApproach?.Tick();
+            if (_freeEnemyKiteMaxRange != null)
+            {
+            _freeEnemyKiteMaxRange.Tick();            
+            _isRetreating = _freeEnemyKiteMaxRange.GetRetreating();
+            }
+            _freeApproach?.Tick(_isRetreating);
             _mover?.Tick(_timeAmount);
         }
     }

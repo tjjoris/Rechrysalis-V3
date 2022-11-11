@@ -13,7 +13,7 @@ namespace Rechrysalis.Unit
         private ClosestTarget _closestTarget;
         // private GameObject _targetUnit;
         private TargetHolder _targetHolder;
-        private Range _range;
+        private Range _range;        
 
         public void Initialize(PlayerUnitsSO _ownUnits, Range _range)
         {
@@ -24,7 +24,7 @@ namespace Rechrysalis.Unit
             _targetHolder = this._range.GetComponent<TargetHolder>();
         }
 
-        public void Tick()
+        public void Tick(bool _isRetreating)
         {
             Vector3 _approachDirection = Vector3.zero;
             // _targetUnit = _closestTarget.GetNearestEnemy();
@@ -32,7 +32,7 @@ namespace Rechrysalis.Unit
             // {
             //     _closestTarget.GetNearestEnemy();
             // }
-            if (_targetHolder.Target != null)
+            if ((_targetHolder.Target != null) && (!_isRetreating))
             {
                 Vector2 _distV2 = (_targetHolder.Target.transform.position - transform.position);
                 // if (Mathf.Abs(_distV2.magnitude) > _range.GetRange())
