@@ -60,11 +60,6 @@ namespace Rechrysalis.Attacking
 
         private void CheckIfthisTargetCloser(ref GameObject _unit, ref float _rangeToCompare, int _index)
         {
-            if (_unit == null)
-            {
-                _unit = _enemyUnits.ParentUnits[_index];
-                return;
-            }
             if (_enemyUnits.ParentUnits[_index].activeInHierarchy)
             {
                 float _rangeFound = Mathf.Abs((_enemyUnits.ParentUnits[_index].transform.position - gameObject.transform.position).magnitude);

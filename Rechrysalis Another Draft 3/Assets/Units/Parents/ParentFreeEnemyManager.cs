@@ -13,6 +13,7 @@ namespace Rechrysalis.Unit
         private FreeEnemyApproach _freeApproach;
         private Mover _mover;
         private AIAlwaysPreferClosest _aiAlwaysPreferClosest;
+        private FreeEnemyKiteMaxRange _freeEnemyKiteMaxRange;
         private CompsAndUnitsSO _compsAndUnits;
         [SerializeField] private UnitManager _unitManager;
         public UnitManager UnitManager {get {return _unitManager;}}
@@ -34,10 +35,13 @@ namespace Rechrysalis.Unit
             _freeApproach?.Initialize(_ownUnits, _unitManager.GetComponent<Range>());
             _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
             _aiAlwaysPreferClosest.Initialize();
+            _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
+            _freeEnemyKiteMaxRange?.Initialize(_unitManager.GetComponent<TargetHolder>());
         }
         public void Tick (float _timeAmount)
         {   
             _aiAlwaysPreferClosest.CheckIfTargetInRange();
+            _freeEnemyKiteMaxRange?.Tick();
             _freeApproach?.Tick();
             _mover?.Tick(_timeAmount);
         }

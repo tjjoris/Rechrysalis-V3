@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8731316875822150724}
   - component: {fileID: 8191118075137061996}
   - component: {fileID: 760855933313962050}
+  - component: {fileID: 819332963118507268}
   m_Layer: 7
   m_Name: FreeEnemyParent
   m_TagString: Untagged
@@ -190,6 +191,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &819332963118507268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8804105779283925579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4adb571427ac4e589bfe8bacd907340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8804105778334795660
 PrefabInstance:
   m_ObjectHideFlags: 0
