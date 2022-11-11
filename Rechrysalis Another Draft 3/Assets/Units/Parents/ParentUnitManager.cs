@@ -305,13 +305,22 @@ namespace Rechrysalis.Unit
             //     }
             // }
             // _pUHE?.RemoveHatchEffect(_hatchEffect);
-            foreach (GameObject _unit in _subUnits)
+            if (_subUnits.Length > 0)
             {
-                _unit.GetComponent<UnitManager>()?.RemoveHatchEffect(_hatchEffect);
-            }
-            foreach (GameObject _chrysalis in _subChrysalii)
-            {
-                _chrysalis.GetComponent<UnitManager>()?.RemoveHatchEffect(_hatchEffect);
+                for (int _childIndex =0; _childIndex < _subUnits.Length; _childIndex ++)
+                {
+                    if (_subUnits[_childIndex] != null)
+                    {                    
+                        _subUnits[_childIndex].GetComponent<UnitManager>()?.RemoveHatchEffect(_hatchEffect);
+                    }                    
+                }
+                for (int _childIndex = 0; _childIndex< _subChrysalii.Length; _childIndex ++)
+                {
+                    if (_subChrysalii[_childIndex] != null)
+                    {
+                         _subChrysalii[_childIndex].GetComponent<UnitManager>()?.RemoveHatchEffect(_hatchEffect);
+                    }
+                }
             }
         }
         public void AddHatchEffect (GameObject _hatchEffect)
