@@ -134,9 +134,19 @@ namespace Rechrysalis.Unit
         {
             // if (gameObject.active == true) 
             // {
+                // bool _isStopped = false;
                 _controllerUnitAttackClosest?.CheckToGetTarget();
-                _mover?.Tick(_timeAmount);
-                _attack?.Tick(_timeAmount);
+                if (_mover != null)
+                {
+                    _mover?.Tick(_timeAmount);
+                    // if ((!_mover.IsStopped) && ())
+                    _isStopped = _mover.IsStopped;
+                }
+                if (_attack != null)
+                {
+                    _attack.IsStopped = _isStopped;
+                    _attack?.Tick(_timeAmount);
+                }
                 // _projectilesPool?.TickProjectiles(_timeAmount);
                 _chrysalisTimer?.Tick(_timeAmount);
             // }
