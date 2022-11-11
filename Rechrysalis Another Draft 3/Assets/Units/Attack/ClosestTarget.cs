@@ -26,12 +26,15 @@ namespace Rechrysalis.Attacking
                 GameObject _closestUnitChecked = null;
                 foreach (GameObject _targetToCheck in _enemyUnits.ParentUnits)
                 {
-                    float _distToUnitChecking = (_targetToCheck.transform.position - gameObject.transform.position).magnitude;
-                    if ((_distToUnitChecking <= _rangeOfUnit))
-                    {   
-                        _unitInRange = true;
-                        _closestUnitChecked = _targetToCheck;
-                        _rangeOfUnit = _distToUnitChecking;
+                    if (_targetToCheck.activeInHierarchy)
+                    {
+                        float _distToUnitChecking = (_targetToCheck.transform.position - gameObject.transform.position).magnitude;
+                        if ((_distToUnitChecking <= _rangeOfUnit))
+                        {   
+                            _unitInRange = true;
+                            _closestUnitChecked = _targetToCheck;
+                            _rangeOfUnit = _distToUnitChecking;
+                        }
                     }
                 }
                 if (_unitInRange)
@@ -62,11 +65,14 @@ namespace Rechrysalis.Attacking
                 _unit = _enemyUnits.ParentUnits[_index];
                 return;
             }
-            float _rangeFound = Mathf.Abs((_enemyUnits.ParentUnits[_index].transform.position - gameObject.transform.position).magnitude);
-            if (_rangeFound < _rangeToCompare)
+            if (_enemyUnits.ParentUnits[_index].activeInHierarchy)
             {
-                _unit = _enemyUnits.ParentUnits[_index];
-                _rangeToCompare = _rangeFound;
+                float _rangeFound = Mathf.Abs((_enemyUnits.ParentUnits[_index].transform.position - gameObject.transform.position).magnitude);
+                if (_rangeFound < _rangeToCompare)
+                {
+                    _unit = _enemyUnits.ParentUnits[_index];
+                    _rangeToCompare = _rangeFound;
+                }
             }
         }
     }
