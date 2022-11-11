@@ -21,6 +21,7 @@ namespace Rechrysalis.Attacking
         private InRangeByPriority _inRangeByPriority;  
         private ClosestTarget _closestTarget;  
         private TargetHolder _targetHolder;
+        private AIAttackChargeUpTimer _aiAttackTimer;
 
         public void Initialize(UnitStatsSO _unitStats)
         {   
@@ -32,6 +33,8 @@ namespace Rechrysalis.Attacking
             _inRangeByPriority = GetComponent<InRangeByPriority>();
             _closestTarget = GetComponent<ClosestTarget>();
             _targetHolder = GetComponent<TargetHolder>();
+            _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
+            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown);
             ResetUnit();
         }
         public void ResetUnit()
@@ -80,7 +83,8 @@ namespace Rechrysalis.Attacking
                 else if ((_isChargingUp) && (_isStopped))
                 {
                     _attackChargeCurrent += _timeAmount;                
-                }            
+                }     
+                _aiAttackTimer?.Tick(_attackChargeCurrent, _isChargingUp, _isWindingDown);       
             }
         }
         private GameObject GetTargetInRange()
