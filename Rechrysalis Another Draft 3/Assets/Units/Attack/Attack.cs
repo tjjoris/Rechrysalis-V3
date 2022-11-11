@@ -14,6 +14,7 @@ namespace Rechrysalis.Attacking
         [SerializeField] private  float _baseDamage;
         private ProjectilesPool _projectilesPool;
         private bool _isWindingDown;
+        private bool _isChargingUp;
         private bool _isStopped;
         public bool IsStopped{set{_isStopped = value;}}
         [SerializeField] private TargetsListSO _targetsList;
@@ -45,39 +46,67 @@ namespace Rechrysalis.Attacking
                 _attackChargeCurrent = 0;
                 _isWindingDown = false;
             }
-            // else if ((_isWindingDown) && (_attackChargeCurrent >= _attackChargeUp) && (_attackChargeCurrent < (_attackWindDown + _attackChargeUp)))
-            else if ((_isWindingDown) && (_attackChargeCurrent < (_attackWindDown + _attackChargeUp)))
+            else if (_isWindingDown)
             {
                 _attackChargeCurrent += _timeAmount;
             }
-            else if ((_targetHolder.Target != null) && (_targetHolder.IsTargetInRange()))        
+            else
             {            
-                if ((_attackChargeCurrent >= _attackChargeUp) && (_isStopped) && (!_isWindingDown))
+                GameObject _tempTarget = null;
+                if ((_isChargingUp) && (_isStopped) && (_attackChargeCurrent >= _attackChargeUp))
                 {
-                    _inRangeByPriority?.CheckPriorityTargetInRange();
-                    // if (_targetHolder.Target == null)
-                    // {
-                    //     _closestTarget.GetNearestEnemyInRange();
-                    // }
-                    if (_targetHolder.Target != null)
+                    _tempTarget = GetTargetInRange();
+                    if (_tempTarget != null)
                     {
                         GameObject _projectile = _projectilesPool?.GetPooledObject();
                         if (_projectile != null) 
                         {
-                            // Debug.Log($"shoot projectile");
                             _projectile.SetActive(true);
                             _projectile.transform.position = gameObject.transform.position;
-                            // Debug.Log($"position " + _projectile.transform.position);
                             _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target, _unitStats.ProjectileSpeed);
                             _isWindingDown = true;                       
                         }
                     }
+                    else 
+                    {
+                        ResetChargeUp();
+                    }
                 }
-                else if ((_attackChargeCurrent < _attackChargeUp) && (_isStopped))
+                else if ((!_isWindingDown) && (!_isChargingUp) && (_isStopped) && (GetTargetInRange() != null))
+                {
+                    _isChargingUp = true;
+                    _attackChargeCurrent += _timeAmount;
+                }
+                else if ((_isChargingUp) && (_isStopped))
                 {
                     _attackChargeCurrent += _timeAmount;                
                 }            
             }
+        }
+        private GameObject GetTargetInRange()
+        {
+            GameObject _tempTarget = _inRangeByPriority?.CheckPriorityTargetInRange();
+            if (_tempTarget == null)
+            {
+                _tempTarget = _targetHolder.Target;
+            }
+            if (_targetHolder.GetThisTargetInRange(_tempTarget))
+            {
+                return _tempTarget;
+            }
+            return null;
+        }
+        public void CheckToResetChargeUp()
+        {
+            if ((!_isWindingDown) && (_isChargingUp))
+            {
+                ResetChargeUp();
+            }
+        }
+        private void ResetChargeUp()
+        {
+            _attackChargeCurrent = 0;
+            _isChargingUp = false;
         }
         public void SetDamage(float _damage)
         {
