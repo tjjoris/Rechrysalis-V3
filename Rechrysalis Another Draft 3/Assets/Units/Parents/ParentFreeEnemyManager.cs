@@ -82,7 +82,7 @@ namespace Rechrysalis.Unit
         }
         private void AICanMove(bool _aiCanMove)
         {
-            Debug.Log($"change can move" + _aiCanMove);
+            // Debug.Log($"change can move" + _aiCanMove);
             this._aiCanMove = _aiCanMove;
         }
         private void ResetChargeUp()

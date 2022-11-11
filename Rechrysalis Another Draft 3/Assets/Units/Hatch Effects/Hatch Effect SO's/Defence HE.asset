@@ -17,9 +17,9 @@ MonoBehaviour:
   - 0
   - 0
   _incomingDamageMultiplier:
-  - 999
-  - 999
-  - 999
+  - 0.8
+  - 0.6
+  - 0.4
   _rangeIncrease: []
   _speedDecrease: []
   _aoeDamage: []
@@ -31,11 +31,11 @@ MonoBehaviour:
   _hpRegenPerTick: []
   _damageLossPerTick:
   - 5
-  - 0.01
-  - 0.01
+  - 5
+  - 5
   _healthMax:
   - 50
-  - 200
-  - 200
+  - 70
+  - 90
   _affectAll: 010101
   _hatchEffectName: DEF

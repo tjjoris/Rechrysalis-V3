@@ -16,18 +16,18 @@ MonoBehaviour:
   _projectileSpeed: 0
   _projectileSprite: {fileID: 21300000, guid: acf2a1d752267428eaf137c494e17c8b, type: 3}
   _unitSprite: {fileID: 21300000, guid: 4fc782e5f10214531818915d37508648, type: 3}
-  _unitName: Empty
+  _unitName: EmptyAdv
   _origionalBaseAttackChargeUp: 1
-  _attackChargeUp: 1
-  _attackWindDown: 1
+  _attackChargeUp: 2.21
+  _attackWindDown: 2.21
   _origionalBaseAttackWindDown: 1
-  _baseDamage: 1
+  _baseDamage: 97.240005
   _origionalBaseDPS: 1
-  _baseDPS: 0
-  _baseRange: 1
+  _baseDPS: 22
+  _baseRange: 5.25
   _origionalBaseHealthMax: 1
   _healthMaxBase: 1
-  _healthMax: 1
+  _healthMax: 22
   _chrysalisTimerMax: 5
   _manaBase: 0.5
   _hatchEffectPrefab: {fileID: 0}
