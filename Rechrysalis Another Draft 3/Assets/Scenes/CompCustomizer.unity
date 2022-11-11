@@ -725,6 +725,7 @@ MonoBehaviour:
   _compCustomizerSO: {fileID: 11400000, guid: 3136fec9482a441c4869125a51a68276, type: 2}
   _readyButton: {fileID: 1645172755}
   _emptyUnitStatsSO: {fileID: 11400000, guid: e260c777035e74f93ad00058c32967d8, type: 2}
+  _emptyAdvancedUnitStatsSO: {fileID: 11400000, guid: b3b782dfb00c04dd3b9959949ed90227, type: 2}
 --- !u!1 &1311290337
 GameObject:
   m_ObjectHideFlags: 0

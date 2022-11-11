@@ -18,6 +18,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         [SerializeField] private GameObject _readyButton;
         [SerializeField] private UnitStatsSO _emptyUnitStatsSO;
+        [SerializeField] private UnitStatsSO _emptyAdvancedUnitStatsSO;
         private UpgradeButtonManager[] _upgradeButtonArray;
         private UnitButtonManager[] _arrayOfUnitButtonManagers;
         private UnitStatsSO[] _appliedUnitsToComp;
@@ -257,7 +258,7 @@ namespace Rechrysalis.CompCustomizer
                         }                    
                         if ((_appliedUnitsToComp[_unitIndex] == null) && (_appliedHatchEffectsToComp[_unitIndex] != null))
                         {
-                            ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], _emptyUnitStatsSO);
+                            ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], _emptyAdvancedUnitStatsSO);
                         }
                     }
                     if ((_childIndex != 0) && (_appliedUnitsToComp[_unitIndex] != null) && (_appliedUnitsToComp[_unitIndex].UnitName == "Empty") && (_appliedHatchEffectsToComp[_unitIndex] == null))

@@ -58,7 +58,7 @@ namespace Rechrysalis.Unit
             _baseRange = _typeMultipler.Range;
             _attackChargeUp = _origionalBaseAttackChargeUp * _baseMultipler.AttackChargeUp * _typeMultipler.AttackChargeUp * _tierMultiplier.AttackChargeUp;
             _attackWindDown = _origionalBaseAttackWindDown * _baseMultipler.AttackWindDown * _typeMultipler.AttackWindDown * _tierMultiplier.AttackWindDown;
-            _baseDamage = _baseDPS / (_attackChargeUp + _attackWindDown);
+            _baseDamage = _baseDPS * (_attackChargeUp + _attackWindDown);
             _mana = _manaBase * _baseMultipler.ManaMultiplier * _typeMultipler.ManaMultiplier * _tierMultiplier.ManaMultiplier;
         }
     }

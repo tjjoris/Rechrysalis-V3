@@ -23,12 +23,13 @@ MonoBehaviour:
   _origionalBaseAttackWindDown: 1
   _baseDamage: 8.411764
   _origionalBaseDPS: 1
-  _baseDPS: 28.6
+  _baseDPS: 1
   _baseRange: 3
   _origionalBaseHealthMax: 1
   _healthMaxBase: 1
   _healthMax: 325
   _chrysalisTimerMax: 5
+  _manaBase: 1
   _hatchEffectPrefab: {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}
   _baseMultipler: {fileID: 11400000, guid: e09e798784a834a31ab1b26bfb160fda, type: 2}
   _typeMultipler: {fileID: 11400000, guid: 95843a30ae5df4e278fb90f53cc2e39e, type: 2}

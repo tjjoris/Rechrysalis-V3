@@ -17,14 +17,19 @@ MonoBehaviour:
   _projectileSprite: {fileID: 21300000, guid: acf2a1d752267428eaf137c494e17c8b, type: 3}
   _unitSprite: {fileID: 21300000, guid: ea1d7140dcbe9463ebd525791ae25d47, type: 3}
   _unitName: Brawler 2
-  _attackChargeUp: 1
-  _attackWindDown: 1
-  _baseDamage: 1
+  _origionalBaseAttackChargeUp: 1
+  _attackChargeUp: 1.7
+  _attackWindDown: 1.7
+  _origionalBaseAttackWindDown: 1
+  _baseDamage: 12.235294
+  _origionalBaseDPS: 1
   _baseDPS: 1
-  _baseRange: 1
+  _baseRange: 3
+  _origionalBaseHealthMax: 1
   _healthMaxBase: 1
-  _healthMax: 1
+  _healthMax: 31.2
   _chrysalisTimerMax: 5
+  _manaBase: 1
   _hatchEffectPrefab: {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}
   _baseMultipler: {fileID: 11400000, guid: e09e798784a834a31ab1b26bfb160fda, type: 2}
   _typeMultipler: {fileID: 11400000, guid: 95843a30ae5df4e278fb90f53cc2e39e, type: 2}
