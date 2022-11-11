@@ -282,7 +282,7 @@ namespace Rechrysalis.CompCustomizer
         {   
             _compSO.UnitSOArray = _appliedUnitsToComp;
             _compSO.HatchEffectSOArray = _appliedHatchEffectsToComp;
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("FreeEnemyLevel");
         }
         private void CheckIfCompIsFullToEnableReady()
         {            
