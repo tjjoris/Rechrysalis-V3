@@ -84,7 +84,7 @@ namespace Rechrysalis.Attacking
                 {
                     _attackChargeCurrent += _timeAmount;                
                 }     
-                _aiAttackTimer?.Tick(_attackChargeCurrent, _isChargingUp, _isWindingDown);       
+                _aiAttackTimer?.Tick(_timeAmount, _isChargingUp, _isWindingDown);       
             }
         }
         private GameObject GetTargetInRange()

@@ -37,32 +37,33 @@ namespace Rechrysalis.Attacking
             _currentEnd = UnityEngine.Random.Range(_endMinus, _endPlus);
             
         }
-        public void Tick(float _chargeCurrent, bool _chargingUp, bool _windingDown)
+        public void Tick(float _timeAmount, bool _chargingUp, bool _windingDown)
         {
+            _aiImperfectionCurrent += _timeAmount;
             if ((!_aiImperfectionChargingUp) && (_windingDown))
             {
-                if (_chargeCurrent >= (_chargeUp + _windDown + _currentStart))
+                if (_aiImperfectionCurrent >= (_chargeUp + _windDown + _currentStart))
                 {
                     SetChargUpTrue();
                 }
             }
             if ((!_aiImperfectionChargingUp) && (_chargingUp))
             {
-                if (_chargeCurrent >= (_currentStart))
+                if (_aiImperfectionCurrent >= (_currentStart))
                 {
                     SetChargUpTrue();
                 }
             }
-            if ((!_aiImperfectionWindingDown) && (_chargingUp))
+            if ((!_aiImperfectionWindingDown) && (!_windingDown))
             {
-                if (_chargeCurrent >= (_chargeUp + _endMinus))
+                if (_aiImperfectionCurrent >= (_chargeUp + _endMinus))
                 {
                     SetWindDownTrue();
                 }
             }
             if ((!_aiImperfectionWindingDown) && (_windingDown))
             {
-                if (_chargeCurrent >= (_endPlus))
+                if (_aiImperfectionCurrent >= (_endPlus))
                 {
                     SetWindDownTrue();
                 }
@@ -78,6 +79,7 @@ namespace Rechrysalis.Attacking
         {
             _aiImperfectionWindingDown = true;
             _aiImperfectionChargingUp = false;
+            _aiImperfectionCurrent = 0;
             SetCurrentStartAndEnd();
             _changeCanMove?.Invoke(true);
         }
