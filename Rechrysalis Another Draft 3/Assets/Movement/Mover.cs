@@ -53,6 +53,7 @@ namespace Rechrysalis.Movement
             // Debug.Log($"direction" + _direction);            
             this._direction = (Vector2.ClampMagnitude(_direction, 1) * _speed);            
             GetComponent<Rigidbody2D>().velocity = this._direction ;
+            SetIsMovingIfMoving(this._direction);
             if (_controllerIndex == 0)
             Debug.Log($"velocity " + GetComponent<Rigidbody2D>().velocity);
         }
@@ -92,7 +93,18 @@ namespace Rechrysalis.Movement
             // transform.Translate(_moveVector);
             Vector2 _newPostion = transform.position;
             _newPostion += (_direction * _deltaTime);
+            // SetIsMovingIfMoving(_direction);
             // GetComponent<Rigidbody2D>()?.MovePosition(_newPostion);
+        }
+        private void SetIsMovingIfMoving(Vector2 _direction)
+        {
+            if (_direction == Vector2.zero)
+            {
+                if (_controllerIndex == 1)                
+                Debug.Log($"direction " + _direction);
+                _isStopped = true;
+            }
+            else _isStopped = false;
         }
     }
 }

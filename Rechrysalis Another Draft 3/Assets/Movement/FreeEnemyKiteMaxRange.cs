@@ -31,7 +31,7 @@ namespace Rechrysalis.Movement
                     _retreating = true;
                 }
                 else {
-                    _mover.SetDirection(Vector2.zero);
+                    // _mover.SetDirection(Vector2.zero);
                     _retreating = false;
                 }
             }

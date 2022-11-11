@@ -41,19 +41,25 @@ namespace Rechrysalis.Unit
         public void Tick (float _timeAmount)
         {   
             bool _isRetreating = false;
-            bool _isStopped = false;
             _aiAlwaysPreferClosest.CheckIfTargetInRange();
             if (_freeEnemyKiteMaxRange != null)
             {
-            _freeEnemyKiteMaxRange.Tick();            
-            _isRetreating = _freeEnemyKiteMaxRange.GetRetreating();
+                _freeEnemyKiteMaxRange.Tick();            
+                _isRetreating = _freeEnemyKiteMaxRange.GetRetreating();
             }
-            _freeApproach?.Tick(_isRetreating);
+            if (_freeApproach != null)
+            {
+                _freeApproach?.Tick(_isRetreating);
+                if ((!_isRetreating) && (!_freeApproach.GetIsApproaching()))
+                {
+                    _mover.SetDirection(Vector2.zero);
+                }
             // if (_mover != null)
             // {
             //     // _mover?.Tick(_timeAmount);
             //     _isStopped = _mover.IsStopped;
             // }
+            }
         }
     }
 }

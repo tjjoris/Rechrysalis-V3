@@ -13,7 +13,8 @@ namespace Rechrysalis.Unit
         private ClosestTarget _closestTarget;
         // private GameObject _targetUnit;
         private TargetHolder _targetHolder;
-        private Range _range;        
+        private Range _range;     
+        private bool _approaching;   
 
         public void Initialize(PlayerUnitsSO _ownUnits, Range _range)
         {
@@ -44,8 +45,14 @@ namespace Rechrysalis.Unit
                 }
                 // Vector2 _approachV2 = _approachDirection;
                 // Debug.Log($"approach " + _approachDirection);
+                Debug.Log($"approach " + _approachDirection);
                 GetComponent<Mover>()?.SetDirection(_approachDirection);
+                _approaching = true;
             }
+        }
+        public bool GetIsApproaching()
+        {
+            return _approaching;
         }
     }
 }
