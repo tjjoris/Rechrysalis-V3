@@ -12,6 +12,7 @@ namespace Rechrysalis.Unit
         private ParentHealth _parentHealth;
         private FreeEnemyApproach _freeApproach;
         private Mover _mover;
+        private Attack _attack;
         private AIAlwaysPreferClosest _aiAlwaysPreferClosest;
         private FreeEnemyKiteMaxRange _freeEnemyKiteMaxRange;
         private CompsAndUnitsSO _compsAndUnits;
@@ -31,12 +32,23 @@ namespace Rechrysalis.Unit
             _mover = GetComponent<Mover>();
             _mover.IsStopped = false;
             _mover?.SetSpeed(_compsAndUnits.Speed);
+            _attack = _unitManager.GetComponent<Attack>();
             _freeApproach = GetComponent<FreeEnemyApproach>();
             _freeApproach?.Initialize(_ownUnits, _unitManager.GetComponent<Range>());
             _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
             _aiAlwaysPreferClosest.Initialize();
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
             _freeEnemyKiteMaxRange?.Initialize(_unitManager.GetComponent<TargetHolder>());
+        }
+        private void OnEnable()
+        {
+            if (_mover != null)
+            _mover._resetChargeUp += ResetChargeUp;
+        }
+        private void OnDisable()
+        {
+            if (_mover != null)
+                _mover._resetChargeUp -= ResetChargeUp;
         }
         public void Tick (float _timeAmount)
         {   
@@ -56,6 +68,10 @@ namespace Rechrysalis.Unit
                 }
             }
             _unitManager.IsStopped = _mover.IsStopped;
+        }
+        private void ResetChargeUp()
+        {
+            _attack?.CheckToResetChargeUp();
         }
     }
 }

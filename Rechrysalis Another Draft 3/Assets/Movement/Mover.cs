@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Controller;
 using Rechrysalis.Background;
+using System;
 
 namespace Rechrysalis.Movement
 {
@@ -24,6 +25,7 @@ namespace Rechrysalis.Movement
         public bool IsStopped {set{_isStopped = value;}get {return _isStopped;}}
         [SerializeField] float _speed;
         private CausesPushBack _causesPushBack;
+        public Action _resetChargeUp;
         public void Initialize(int _controllerIndex)
         {
             _causesPushBack = GetComponent<CausesPushBack>();
@@ -100,9 +102,12 @@ namespace Rechrysalis.Movement
         {
             if (_direction == Vector2.zero)
             {
-                if (_controllerIndex == 1)                
-                Debug.Log($"direction " + _direction);
-                _isStopped = true;
+                if (_controllerIndex == 1)               
+                if (!_isStopped)
+                {
+                    _resetChargeUp?.Invoke();
+                }
+                _isStopped = true;                
             }
             else _isStopped = false;
         }
