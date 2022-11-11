@@ -9,6 +9,8 @@ namespace Rechrysalis.Attacking
         private bool _aiImperfectionChargingUp;
         private bool _aiImperfectionWindingDown;
         private float _aiImperfectionCurrent;
+        private float _largeFlaw = 0.5f;
+        private float _smallFlaw = 0.25f;
         private float _startMinus = -0.3f;
         private float _startPlus = 0.1f;
         private float _endMinus = -0.1f;
@@ -17,6 +19,7 @@ namespace Rechrysalis.Attacking
         private float _windDown;
         private float _currentStart;
         private float _currentEnd;
+        public System.Action<bool> _changeCanMove;
 
         public void Initialize(float _chargeUp, float _windDown)
         {
@@ -26,8 +29,12 @@ namespace Rechrysalis.Attacking
         }
         private void SetCurrentStartAndEnd()
         {            
-            _currentStart = Random.Range(_startMinus, _startPlus);
-            _currentEnd = Random.Range(_endMinus, _endPlus);
+            _startMinus = _largeFlaw;
+            _startPlus = _smallFlaw;
+            _endMinus = _smallFlaw;
+            _endPlus = _largeFlaw;
+            _currentStart = UnityEngine.Random.Range(_startMinus, _startPlus);
+            _currentEnd = UnityEngine.Random.Range(_endMinus, _endPlus);
             
         }
         public void Tick(float _chargeCurrent, bool _chargingUp, bool _windingDown)
@@ -65,12 +72,14 @@ namespace Rechrysalis.Attacking
         {
             _aiImperfectionChargingUp = true;
             _aiImperfectionWindingDown = false;
+            _changeCanMove?.Invoke(false);
         }
         private void SetWindDownTrue()
         {
             _aiImperfectionWindingDown = true;
             _aiImperfectionChargingUp = false;
             SetCurrentStartAndEnd();
+            _changeCanMove?.Invoke(true);
         }
         public bool GetCharginUp()
         {

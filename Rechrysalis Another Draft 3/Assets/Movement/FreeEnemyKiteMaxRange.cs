@@ -19,9 +19,9 @@ namespace Rechrysalis.Movement
             this._targetHolder = _targetHolder;
             _range = this._targetHolder.GetComponent<Range>();
         }
-        public void Tick()
+        public void Tick(bool _aiCanMove)
         {
-            if (_targetHolder.Target != null)
+            if ((_aiCanMove) && (_targetHolder.Target != null))
             {
                 Vector2 _direction = gameObject.transform.position - _targetHolder.Target.transform.position;
                 if ((Mathf.Abs(_direction.magnitude)) < (_range.GetRange() - 0.5f))

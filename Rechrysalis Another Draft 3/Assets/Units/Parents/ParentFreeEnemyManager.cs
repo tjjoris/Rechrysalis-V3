@@ -13,6 +13,8 @@ namespace Rechrysalis.Unit
         private FreeEnemyApproach _freeApproach;
         private Mover _mover;
         private Attack _attack;
+        private AIAttackChargeUpTimer _aiAttackTimer;
+        private bool _aiCanMove = true;
         private AIAlwaysPreferClosest _aiAlwaysPreferClosest;
         private FreeEnemyKiteMaxRange _freeEnemyKiteMaxRange;
         private CompsAndUnitsSO _compsAndUnits;
@@ -33,6 +35,7 @@ namespace Rechrysalis.Unit
             _mover.IsStopped = false;
             _mover?.SetSpeed(_compsAndUnits.Speed);
             _attack = _unitManager.GetComponent<Attack>();
+            _aiAttackTimer = _unitManager.GetComponent<AIAttackChargeUpTimer>();
             _freeApproach = GetComponent<FreeEnemyApproach>();
             _freeApproach?.Initialize(_ownUnits, _unitManager.GetComponent<Range>());
             _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
@@ -46,11 +49,15 @@ namespace Rechrysalis.Unit
             if (GetComponent<Mover>() != null)
             Debug.Log($"subscribe to mover");
             GetComponent<Mover>()._resetChargeUp += ResetChargeUp;
+            if (GetComponent<AIAttackChargeUpTimer>() != null)
+            GetComponent<AIAttackChargeUpTimer>()._changeCanMove += AICanMove;
         }
         private void OnDisable()
         {
             if (_mover != null)
                 _mover._resetChargeUp -= ResetChargeUp;
+            if (GetComponent<AIAttackChargeUpTimer>() != null)
+                GetComponent<AIAttackChargeUpTimer>()._changeCanMove += AICanMove;
         }
         public void Tick (float _timeAmount)
         {   
@@ -58,18 +65,22 @@ namespace Rechrysalis.Unit
             _aiAlwaysPreferClosest.CheckIfTargetInRange();
             if (_freeEnemyKiteMaxRange != null)
             {
-                _freeEnemyKiteMaxRange.Tick();            
+                _freeEnemyKiteMaxRange.Tick(_aiCanMove);            
                 _isRetreating = _freeEnemyKiteMaxRange.GetRetreating();
             }
             if (_freeApproach != null)
             {
-                _freeApproach?.Tick(_isRetreating);
+                _freeApproach?.Tick(_isRetreating, _aiCanMove);
                 if ((!_isRetreating) && (!_freeApproach.GetIsApproaching()))
                 {
                     _mover.SetDirection(Vector2.zero);
                 }
             }
             _unitManager.IsStopped = _mover.IsStopped;
+        }
+        private void AICanMove(bool _aiCanMove)
+        {
+            this._aiCanMove = _aiCanMove;
         }
         private void ResetChargeUp()
         {
