@@ -56,8 +56,8 @@ namespace Rechrysalis.Movement
             this._direction = (Vector2.ClampMagnitude(_direction, 1) * _speed);            
             GetComponent<Rigidbody2D>().velocity = this._direction ;
             SetIsMovingIfMoving(this._direction);
-            if (_controllerIndex == 0)
-            Debug.Log($"velocity " + GetComponent<Rigidbody2D>().velocity);
+            // if (_controllerIndex == 0)
+            // Debug.Log($"velocity " + GetComponent<Rigidbody2D>().velocity);
         }
         public void Tick(float _deltaTime)
         {
@@ -107,8 +107,6 @@ namespace Rechrysalis.Movement
             }
             else
             {
-                if (_controllerIndex == 1)
-                Debug.Log($"direction " + _direction);
                 if (_isStopped)
                 {
                     _resetChargeUp?.Invoke();
