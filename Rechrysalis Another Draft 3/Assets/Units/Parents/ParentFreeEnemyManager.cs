@@ -42,8 +42,10 @@ namespace Rechrysalis.Unit
         }
         private void OnEnable()
         {
-            if (_mover != null)
-            _mover._resetChargeUp += ResetChargeUp;
+            // if (_mover != null)
+            if (GetComponent<Mover>() != null)
+            Debug.Log($"subscribe to mover");
+            GetComponent<Mover>()._resetChargeUp += ResetChargeUp;
         }
         private void OnDisable()
         {
@@ -71,6 +73,7 @@ namespace Rechrysalis.Unit
         }
         private void ResetChargeUp()
         {
+            Debug.Log($" reset to charge up called");
             _attack?.CheckToResetChargeUp();
         }
     }

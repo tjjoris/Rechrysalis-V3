@@ -102,14 +102,19 @@ namespace Rechrysalis.Movement
         {
             if (_direction == Vector2.zero)
             {
-                if (_controllerIndex == 1)               
-                if (!_isStopped)
+                if (_controllerIndex == 1)     
+                _isStopped = true;
+            }
+            else
+            {
+                if (_controllerIndex == 1)
+                Debug.Log($"direction " + _direction);
+                if (_isStopped)
                 {
                     _resetChargeUp?.Invoke();
                 }
-                _isStopped = true;                
+                 _isStopped = false;
             }
-            else _isStopped = false;
         }
     }
 }
