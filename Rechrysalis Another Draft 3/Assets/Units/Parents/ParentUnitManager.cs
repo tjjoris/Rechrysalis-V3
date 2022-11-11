@@ -262,6 +262,7 @@ namespace Rechrysalis.Unit
         }
         private void CreateHatchEffect(GameObject _hatchEffectPrefab, int _unitTier, int _parentIndex, int _unitIndex, bool _affectAll)
         {
+            Debug.Log($""+ _hatchEffectPrefab.name + "tier " + _unitTier + " parent " + _parentIndex + " unit " + _unitIndex);
             if ((_hatchEffectPrefab != null) && (_subHatchEffects[_unitIndex] != null))
             {
                 GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);

@@ -216,6 +216,7 @@ namespace Rechrysalis.CompCustomizer
                 {
                     if (_listOfSetUpgrades[_index].CompUnitSetTo == _compSlot)
                     {
+                        if (((_listOfSetUpgrades[_index].HatchEffect != null) && (_upgradeSelected.HatchEffect != null)) || ((_listOfSetUpgrades[_index].UnitStats != null) && (_upgradeSelected.UnitStats != null)))
                         RemoveUpgrade(_index);
                     }
                 }
