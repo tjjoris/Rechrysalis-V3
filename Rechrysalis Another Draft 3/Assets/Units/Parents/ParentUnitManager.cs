@@ -262,12 +262,12 @@ namespace Rechrysalis.Unit
         }
         private void CreateHatchEffect(GameObject _hatchEffectPrefab, int _unitTier, int _parentIndex, int _unitIndex, bool _affectAll)
         {
-            Debug.Log($""+ _hatchEffectPrefab.name + "tier " + _unitTier + " parent " + _parentIndex + " unit " + _unitIndex);
+            // Debug.Log($""+ _hatchEffectPrefab.name + "tier " + _unitTier + " parent " + _parentIndex + " unit " + _unitIndex);
             if ((_hatchEffectPrefab != null) && (_subHatchEffects[_unitIndex] != null))
             {
                 GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
                 HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
-                Debug.Log($"creating hatch effect unit index " +_unitIndex);
+                // Debug.Log($"creating hatch effect unit index " +_unitIndex);
                 _hatchEffectManager?.Initialize(_subHatchEffects[_unitIndex], _unitTier, _parentIndex, _unitIndex, _affectAll);
                 // HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
                 // _hETimer?.Initialize(_unitIndex);
@@ -279,6 +279,7 @@ namespace Rechrysalis.Unit
                 // {
                 //     _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
                 // }
+                // Debug.Log($"Action Hatch effect " + _hatchEffect.name);
                 _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
             }
         }
@@ -317,14 +318,23 @@ namespace Rechrysalis.Unit
         {
             // _hatchEffectManagersToDamage.Add(_hatchEffect.GetComponent<HatchEffectManager>());
             // _pUHE?.AddHatchEffect(_hatchEffect);
-            foreach (GameObject _unit in _subUnits)
+            if (_subUnits.Length >0)
             {
-                _unit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-            }
-            foreach (GameObject _chrysalis in _subChrysalii)
-            {
-                _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-            }
+                for (int _childIndex = 0; _childIndex < _subUnits.Length; _childIndex ++)
+                {
+                    if (_subUnits[_childIndex] != null)
+                    {
+                        _subUnits[_childIndex].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                    }
+                }
+                for (int _childIndex = 0; _childIndex < _subChrysalii.Length; _childIndex ++)
+                {
+                    if (_subChrysalii[_childIndex] != null)
+                    {
+                        _subChrysalii[_childIndex].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                    }
+                }
+            }        
         }
     }
 }
