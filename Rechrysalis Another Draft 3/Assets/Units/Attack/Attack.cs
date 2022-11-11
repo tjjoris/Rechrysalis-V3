@@ -55,10 +55,10 @@ namespace Rechrysalis.Attacking
                 if ((_attackChargeCurrent >= _attackChargeUp) && (_isStopped) && (!_isWindingDown))
                 {
                     _inRangeByPriority?.CheckPriorityTargetInRange();
-                    if (_targetHolder.Target == null)
-                    {
-                        _closestTarget.GetNearestEnemyInRange();
-                    }
+                    // if (_targetHolder.Target == null)
+                    // {
+                    //     _closestTarget.GetNearestEnemyInRange();
+                    // }
                     if (_targetHolder.Target != null)
                     {
                         GameObject _projectile = _projectilesPool?.GetPooledObject();

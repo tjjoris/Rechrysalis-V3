@@ -22,6 +22,7 @@ namespace Rechrysalis.Unit
         private Health _health;
         private Mover _mover;
         private Attack _attack;
+        private ControllerUnitAttackClosest _controllerUnitAttackClosest;
         private ChrysalisTimer _chrysalisTimer;
         private Rechrysalize _rechrysalize;
         private CompsAndUnitsSO _compsAndUnits;
@@ -70,6 +71,7 @@ namespace Rechrysalis.Unit
             // _nameText.text = _unitStats.UnitName;
             _mover = GetComponent<Mover>();
             _attack = GetComponent<Attack>();
+            _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
             if (_attack != null)  _attack.IsStopped = true;
             _attack?.Initialize(_unitStats);
             _health = GetComponent<Health>();
@@ -131,6 +133,7 @@ namespace Rechrysalis.Unit
         {
             // if (gameObject.active == true) 
             // {
+                _controllerUnitAttackClosest?.CheckToGetTarget();
                 _mover?.Tick(_timeAmount);
                 _attack?.Tick(_timeAmount);
                 // _projectilesPool?.TickProjectiles(_timeAmount);
