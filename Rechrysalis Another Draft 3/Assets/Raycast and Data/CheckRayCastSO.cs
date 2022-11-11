@@ -111,7 +111,7 @@ namespace Rechrysalis.Controller
         private static void CreateRayCastFunction(Vector2 _mousePos, out Vector3 _mousePosV3, out RaycastHit2D hit)
         {
             _mousePosV3 = _mousePos;
-            LayerMask _mask = ~LayerMask.GetMask("PlayerController");
+            LayerMask _mask = LayerMask.GetMask("PlayerController");
             _mask += LayerMask.GetMask("Unit");
             hit = Physics2D.Raycast(_mousePos, Vector2.zero, 2f, _mask);
         }
