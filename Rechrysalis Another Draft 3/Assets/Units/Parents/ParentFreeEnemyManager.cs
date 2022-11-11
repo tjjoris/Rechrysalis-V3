@@ -54,12 +54,8 @@ namespace Rechrysalis.Unit
                 {
                     _mover.SetDirection(Vector2.zero);
                 }
-            // if (_mover != null)
-            // {
-            //     // _mover?.Tick(_timeAmount);
-            //     _isStopped = _mover.IsStopped;
-            // }
             }
+            _unitManager.IsStopped = _mover.IsStopped;
         }
     }
 }
