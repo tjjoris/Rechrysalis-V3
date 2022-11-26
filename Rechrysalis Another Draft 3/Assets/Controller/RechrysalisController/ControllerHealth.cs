@@ -4,6 +4,7 @@ using UnityEngine;
 using Rechrysalis.Attacking;
 using Rechrysalis.UI;
 using Rechrysalis.Unit;
+using System;
 
 namespace Rechrysalis.Controller
 {
@@ -16,6 +17,7 @@ namespace Rechrysalis.Controller
         private ControllerDeathGameOver _controllerDeathGameOver;
         private GameObject[] _parentUnits;
         private List<GameObject> _allUnits;
+        public Action _controllerTakesDamageAction;
 
         public void Initialize(float _healthMax, List<GameObject> _allUnits)
         {
@@ -30,6 +32,7 @@ namespace Rechrysalis.Controller
         {
             _healthCurrent -= _damageAmount;
             _controllerHPBar?.ChangeHPBar(_healthCurrent);
+            _controllerTakesDamageAction?.Invoke();
             _controllerDeathGameOver?.TakeDamage(_healthCurrent);
         }
         public void SubscribeToControllerDamage()        

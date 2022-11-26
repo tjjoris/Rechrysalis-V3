@@ -151,8 +151,11 @@ namespace Rechrysalis.Controller
         {
             foreach (GameObject _parentUnit in _parentUnits)
             {
-                _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect -= AddHatchEffect;
-                _parentUnit.GetComponent<ParentUnitManager>()._parentDealsDamage -= DealsDamage;
+                if (_parentUnit != null)
+                {
+                    _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect -= AddHatchEffect;
+                    _parentUnit.GetComponent<ParentUnitManager>()._parentDealsDamage -= DealsDamage;
+                }
             }
             UnSubscribeToHatchEffects();
         }

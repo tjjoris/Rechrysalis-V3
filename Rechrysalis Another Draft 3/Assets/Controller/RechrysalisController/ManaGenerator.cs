@@ -41,6 +41,8 @@ namespace Rechrysalis.Controller
         private void OnEnable()
         {
             SubscribeToParentUnits();
+            if (GetComponent<ControllerHealth>() != null)
+            GetComponent<ControllerHealth>()._controllerTakesDamageAction += StartTimer;
         }
         private void OnDisable()
         {
@@ -52,6 +54,8 @@ namespace Rechrysalis.Controller
                         _parentUnits[_index].GetComponent<ParentUnitManager>()._subtractMana -= SubtractMana;
                     }
             }
+            if (GetComponent<ControllerHealth>() != null)
+                GetComponent<ControllerHealth>()._controllerTakesDamageAction -= StartTimer;
             
         }
         public void StartTimer()
