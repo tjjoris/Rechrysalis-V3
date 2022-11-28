@@ -251,16 +251,19 @@ namespace Rechrysalis.CompCustomizer
                     {
                         if (_appliedUnitsToComp[(_parentIndex * _compSO.ParentUnitCount)] == null)
                         {
-                            if ((_appliedUnitsToComp[_unitIndex] != null) || (_appliedHatchEffectsToComp[_unitIndex] != null))
+                            if ((_appliedUnitsToComp[_unitIndex] != null))
+                                // if ((_appliedUnitsToComp[_unitIndex] != null) || (_appliedHatchEffectsToComp[_unitIndex] != null))
                             {
                                 Debug.Log($"changed basic to empty because advanced");
-                                ChangeUnit(_arrayOfUnitButtonManagers[_parentIndex * _compSO.ParentUnitCount], _emptyUnitStatsSO);
+                                int _indexInCompCustomizerBasic = GetBasicUnitIndexInCompSO(_appliedUnitsToComp[_unitIndex]);
+                                Debug.Log($"index of unit " + _unitIndex + " index of unitStatsSO " + _indexInCompCustomizerBasic + " unitStatsSO " + _appliedUnitsToComp[_unitIndex].UnitName);
+                                ChangeUnit(_arrayOfUnitButtonManagers[_parentIndex * _compSO.ParentUnitCount], _compCustomizerSO.ArrayOfAvailableBasicUnits[_indexInCompCustomizerBasic]);
                             }
                         }                    
-                        if ((_appliedUnitsToComp[_unitIndex] == null) && (_appliedHatchEffectsToComp[_unitIndex] != null))
-                        {
-                            ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], _emptyAdvancedUnitStatsSO);
-                        }
+                        // if ((_appliedUnitsToComp[_unitIndex] == null) && (_appliedHatchEffectsToComp[_unitIndex] != null))
+                        // {
+                        //     ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], _emptyAdvancedUnitStatsSO);
+                        // }
                     }
                     if ((_childIndex != 0) && (_appliedUnitsToComp[_unitIndex] != null) && (_appliedUnitsToComp[_unitIndex].UnitName == "Empty") && (_appliedHatchEffectsToComp[_unitIndex] == null))
                     {
@@ -279,6 +282,28 @@ namespace Rechrysalis.CompCustomizer
                     ChangeUnit(_arrayOfUnitButtonManagers[_parentIndex * _compSO.ParentUnitCount], null);
                 }
             }
+        }
+        private int GetAdvUnitIndexInCompSO(UnitStatsSO _unitStats)
+        {
+            for (int _index = 0; _index < _compCustomizerSO.ArrayOfAvailableBasicUnits.Length; _index ++)
+            {
+                if (_compCustomizerSO.ArrayOfAvailableBasicUnits[_index] == _unitStats)
+                {
+                    return _index;
+                }                
+            }
+            return -1;
+        }
+        private int GetBasicUnitIndexInCompSO(UnitStatsSO _unitStats)
+        {
+            for (int _index = 0; _index < _compCustomizerSO.T1Adv.Length; _index++)
+            {
+                if (_compCustomizerSO.T1Adv[_index] == _unitStats)
+                {
+                    return _index;
+                }
+            }
+            return -1;
         }
         public void ReadyClicked()
         {   
