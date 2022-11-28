@@ -286,8 +286,9 @@ namespace Rechrysalis.CompCustomizer
                     
                 }
                 // Debug.Log($"child or unit hatch " + _childUpgradePresent + " parent " + _parentIndex);
-                if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount] != null) && (_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_childUpgradePresent == false))                
-                {
+                if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_childUpgradePresent == false))
+                    // if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount] != null) && (_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_childUpgradePresent == false))
+                    {
                     // Debug.Log($"clear unit");
                     ChangeUnit(_arrayOfUnitButtonManagers[_parentIndex * _compSO.ParentUnitCount], null);
                 }

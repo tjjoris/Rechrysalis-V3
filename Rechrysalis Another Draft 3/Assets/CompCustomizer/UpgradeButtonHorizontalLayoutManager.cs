@@ -19,13 +19,14 @@ namespace Rechrysalis.CompCustomizer
 
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
 
-        public void Initialize (CompCustomizerSO _compCustomizerSO, UnitStatsSO _basicUnitNotToPick, UnitStatsSO _advUnitNotToPick, HatchEffectSO _hatchEfectNotToPick, Color _basicColour, Color _advColour, Color _hatchColour, int _parentIndex)
+        public void Initialize (CompCustomizerSO _compCustomizerSO, UnitStatsSO _basicUnitNotToPick, UnitStatsSO _advUnitNotToPick, HatchEffectSO _hatchEfectNotToPick, Color _basicColour, Color _advColour, Color _hatchColour, int _perParentIndex)
         {
             this._compCustomizerSO = _compCustomizerSO;
             CheckTOPickABasicUnit(_basicUnitNotToPick);
             CheckToPickAAdvUnit(_advUnitNotToPick);
             CheckToPickHatchEffect(_hatchEfectNotToPick);
-            _parentIndex *= 3;
+            int _parentIndex = _perParentIndex * 3;
+            Debug.Log($"parent index for horizontal " + _parentIndex);
             _upgradeButtonManagerArray[0].Initialize(_basicUnitSO, null, false, (_parentIndex + 0));
             _upgradeButtonManagerArray[0].SetBackGColour(_basicColour);
             _upgradeButtonManagerArray[1].Initialize(_advUnitSO, null, true, (_parentIndex + 1));

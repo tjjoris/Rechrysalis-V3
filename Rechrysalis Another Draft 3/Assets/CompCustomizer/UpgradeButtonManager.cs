@@ -28,6 +28,7 @@ namespace Rechrysalis.CompCustomizer
         public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect, bool _advUnit, int _indexOfUpgradeButton)
         {
             this._indexOfUpgradeButton = _indexOfUpgradeButton;
+            Debug.Log($"index upgrade button " + this._indexOfUpgradeButton);
             this._advUnit = _advUnit;
             if (_hatchEffect != null)
             {
