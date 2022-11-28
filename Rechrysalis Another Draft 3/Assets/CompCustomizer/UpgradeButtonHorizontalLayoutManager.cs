@@ -60,8 +60,8 @@ namespace Rechrysalis.CompCustomizer
         }
         private UnitStatsSO PickAAdvUnit()
         {
-            int _availableAdvUnitIndex = UnityEngine.Random.Range(0, _compCustomizerSO.ArrayOfAvailableAdvUnits.Length);
-            return _compCustomizerSO.ArrayOfAvailableAdvUnits[_availableAdvUnitIndex];
+            int _availableAdvUnitIndex = UnityEngine.Random.Range(0, _compCustomizerSO.T1Adv.Length);
+            return _compCustomizerSO.T1Adv[_availableAdvUnitIndex];
         }
         private UnitStatsSO CheckTOPickABasicUnit(UnitStatsSO _basicUnitNotToPick)
         {
