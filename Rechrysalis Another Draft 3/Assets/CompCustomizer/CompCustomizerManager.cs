@@ -209,9 +209,12 @@ namespace Rechrysalis.CompCustomizer
         private void RemoveOldAppliedUpgradeToComp(int _index)
         {
             _appliedUnitsToComp[_index] = null;
+            int _indexOfUnitToReset = _indexOfButtonUpgradeAppliedTo[_index];
+            ChangeUnit(_arrayOfUnitButtonManagers[_indexOfUnitToReset], _compSO.UnitSOArray[_indexOfUnitToReset]);
         }
         private void ChangeUnit(UnitButtonManager _compPosition, UnitStatsSO _newUnit)
         {
+            Debug.Log($"change unit index " + _compPosition.IndexInComp + " unit " + _newUnit);
              _appliedUnitsToComp[_compPosition.CompPosition] = _newUnit;
             _compPosition.ChangeUnit(_newUnit);
             DisplayUnitButtonClicked(_compPosition);
@@ -286,10 +289,10 @@ namespace Rechrysalis.CompCustomizer
                     
                 }
                 // Debug.Log($"child or unit hatch " + _childUpgradePresent + " parent " + _parentIndex);
-                if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_childUpgradePresent == false))
-                    // if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount] != null) && (_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_childUpgradePresent == false))
+                // if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_childUpgradePresent == false))
+                    if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount] != null) && (_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_childUpgradePresent == false))
                     {
-                    // Debug.Log($"clear unit");
+                    Debug.Log($"clear basic unit " + _parentIndex * _compSO.ParentUnitCount);                    
                     ChangeUnit(_arrayOfUnitButtonManagers[_parentIndex * _compSO.ParentUnitCount], null);
                 }
             }
