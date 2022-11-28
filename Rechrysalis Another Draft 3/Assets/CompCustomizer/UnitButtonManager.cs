@@ -25,7 +25,7 @@ namespace Rechrysalis.CompCustomizer
         public UnitStatsSO NewUnit {get {return _newUnit;}}
         private HatchEffectSO _hatchEffect;
         private HatchEffectSO _newHatchEffect;
-        public HatchEffectSO HatchEffect {get {return _newHatchEffect;}}
+        public HatchEffectSO NewHatchEffect {get {return _newHatchEffect;}}
         public Action<UnitButtonManager> _unitButtonClicked;
         public void Initialize(UnitStatsSO _unitStats, HatchEffectSO _hatchEffect, int _compPosition, bool _advUnit, UnitStatsSO _emptyUnitSO, int _indexInComp)
         {
@@ -80,7 +80,7 @@ namespace Rechrysalis.CompCustomizer
         }
         public void ClickUnitButton()
         {
-            Debug.Log($"unit clicked");
+            // Debug.Log($"unit clicked");
             _unitButtonClicked?.Invoke(this);
         }
         public void SetBackGColour(Color _colour)

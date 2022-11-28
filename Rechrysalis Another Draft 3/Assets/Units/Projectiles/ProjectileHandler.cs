@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
+using System;
 
 namespace Rechrysalis.Attacking
 {
     public class ProjectileHandler : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private GameObject _parentUnit;
-        public GameObject ParentUnit {get{return _parentUnit;}set{_parentUnit = value;}}
+        [SerializeField] private GameObject _ownerUnit;
+        public GameObject ParentUnit {get{return _ownerUnit;}set{_ownerUnit = value;}}
         [SerializeField] private GameObject _targetUnit;
         // public GameObject TargetUnit {set{_targetUnit = value;} get {return _targetUnit;}}
         [SerializeField] private float _speed;
         public float Speed {set{_speed = value;}get{return _speed;}}
         private float _minDistToDisable = 0.2f;
+        public Action<float> _parentUnitTakesDamage;
+        public Action<float> _parentUnitDealsDamage;
 
     public void Initialize(Sprite _sprite)
     {
@@ -39,7 +42,9 @@ namespace Rechrysalis.Attacking
             gameObject.SetActive(false);
             // Health _targetHealth = _targetUnit.GetComponent<Health>();
             ParentHealth _targetHealth = _targetUnit.GetComponent<ParentHealth>();
-            _targetHealth?.TakeDamage(_parentUnit.GetComponent<Attack>().getDamage());
+                float _damageToDeal =_ownerUnit.GetComponent<Attack>().getDamage();
+            _parentUnitDealsDamage?.Invoke(_damageToDeal);
+            _targetHealth?.TakeDamage(_ownerUnit.GetComponent<Attack>().getDamage());
         }
     }
     }

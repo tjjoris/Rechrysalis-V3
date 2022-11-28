@@ -20,6 +20,7 @@ namespace Rechrysalis.Controller
         private HilightRingManager _hilightRingManager;
         private UpgradeRingManager _upgradeRingManager;
         private float _unitRingOuterRadius;
+        // private float _controllerRadius;
         public enum TouchTypeEnum {nothing, controller, map, friendlyUnit, unitRing, menu, other }
         private TouchTypeEnum[] _touchTypeArray = new TouchTypeEnum[5];
         private int[] _upgradeCountArray;
@@ -30,6 +31,7 @@ namespace Rechrysalis.Controller
         
         public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius)
         {
+            // this._controllerRadius = _controllerRadius;
             this._upgradeRingManager = _upgradeRingManager;
             this._compsAndUnits = _compsAndUnits;
             _playerTargtList = _compsAndUnits.TargetsLists[0];
@@ -50,20 +52,21 @@ namespace Rechrysalis.Controller
             Vector3 _mousePosV3;
             RaycastHit2D hit;
             CreateRayCastFunction(_mousePos, out _mousePosV3, out hit);
-            if (hit)
-            {
-                if (ControllerMouseOver(hit))
+            // if ((hit) && (ControllerMouseOver(hit)))
+            // {
+                if ((hit) && (ControllerMouseOver(hit)))
                 {
                     _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
+                    _clickInfo.ControlledController.GetComponent<Mover>().SetDirection(Vector2.zero);
                     _touchTypeArray[_touchID] = TouchTypeEnum.controller;
                 }
-                if ((UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)))
+                else if ((hit) && (UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)))
                 {
                     // Debug.Log($"click enemy");
                     _playerTargtList.SetNewTarget(hit.collider.gameObject);
                     _touchTypeArray[_touchID] = TouchTypeEnum.other;
                 }
-            }
+            // }
             else if (UnitRingMouseOver(_mousePos, _controller.transform.position))
             {
                 int _unitInbounds = checkIfIntUnitBounds(_mousePos);
@@ -100,23 +103,23 @@ namespace Rechrysalis.Controller
             _clickInfo.FingerIDMove = _touchID;
             Vector2 _direction = _clickInfo.ControlledController.transform.position;
             _direction = _mousePos - _direction;
-            _clickInfo.ControlledController.GetComponent<Mover>().Direction = _direction;
-            // _clickInfo.ControlledController.GetComponent<Mover>().IsStopped = false;
-            // _clickInfo.ControlledController.GetComponent<ControllerManager>().IsStopped = false;
+            // _clickInfo.ControlledController.GetComponent<Mover>().Direction = _direction;
+            _clickInfo.ControlledController.GetComponent<Mover>().SetDirection(_direction);
             _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(false);
         }
 
         private static void CreateRayCastFunction(Vector2 _mousePos, out Vector3 _mousePosV3, out RaycastHit2D hit)
         {
             _mousePosV3 = _mousePos;
-            LayerMask _mask = ~LayerMask.GetMask("PlayerController");
+            LayerMask _mask = LayerMask.GetMask("PlayerController");
             _mask += LayerMask.GetMask("Unit");
-            hit = Physics2D.Raycast(_mousePos, Vector2.zero, _mask);
+            hit = Physics2D.Raycast(_mousePos, Vector2.zero, 2f, _mask);
         }
         private bool ControllerMouseOver(RaycastHit2D _hit)
         {
             if (_hit.collider.gameObject.layer == 6)
             {
+                Debug.Log($"collided " + _hit.collider.gameObject.name);
                 return true;
             }
             else return false;
@@ -137,6 +140,11 @@ namespace Rechrysalis.Controller
         //     }
         //     return false;
         // }
+        private bool InController(Vector2 _mousePos)
+        {
+
+            return false;
+        }
         private bool UnitRingMouseOver(Vector2 _mousePos, Vector2 _controllerPos)
         {
             if ((_mousePos - _controllerPos).magnitude <= _unitRingOuterRadius)
@@ -147,16 +155,22 @@ namespace Rechrysalis.Controller
         }
         public void CheckRayCastMoveFunction(Vector2 _mousePos, int _touchID)
         {
-            LayerMask _mask = ~LayerMask.GetMask("PlayerController");
-            RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, _mask);
+            LayerMask _mask = LayerMask.GetMask("PlayerController");
+            // int _layer = 6;
+            // LayerMask _mask = 1 << _layer;
+            // int _results = 10;
+            RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, 2f, _mask);
             if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
             {
                 if (hit)
                 {
+                    Debug.Log($"hit " + hit.collider.name);
                     _hilightRingManager.ResetToOldAngle();
                 } 
                 else if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
                 {
+                    // Debug.Log($"mouse pos " + _mousePos + " controller " + _controller.transform.position);
+                    // Debug.Log($"calculated angel " + Mathf.Atan2(_mousePos.y - _controller.transform.position.y, _mousePos.x - _controller.transform.position.x) * Mathf.Rad2Deg);
                     _hilightRingManager.SetAngle(RingAngle(_mousePos));
                 }
                 // Debug.Log($"mouse angle " + RingAngle(_mousePos));
@@ -215,13 +229,13 @@ namespace Rechrysalis.Controller
         private int CheckIfInUnitBoundsWithAngle(float _mouseAngleCurrent, int _unitCount, float _angleOffset, float _unitWidthDegrees)
         {
             _mouseAngleCurrent = AnglesMath.LimitAngle(_mouseAngleCurrent - 90);
-            Debug.Log($"mouse angle" + _mouseAngleCurrent + " angle offset " + _angleOffset);
+            // Debug.Log($"mouse angle" + _mouseAngleCurrent + " angle offset " + _angleOffset);
             if (_unitCount > 0)
             {
                 for (int _unitIndex = 0; _unitIndex < _unitCount; _unitIndex++)
                 {
                     float _angleToCompare = AnglesMath.LimitAngle(((360 / _unitCount) * _unitIndex) - -_angleOffset);
-                    Debug.Log($"angle to compare " + _angleToCompare);
+                    // Debug.Log($"angle to compare " + _angleToCompare);
                     float _mouseSubtractAngle = _mouseAngleCurrent - _angleToCompare;
                     if ((Mathf.Abs(_mouseSubtractAngle) < _unitWidthDegrees) || ((Mathf.Abs(_mouseSubtractAngle) > (360 - _unitWidthDegrees))))                    
                     {

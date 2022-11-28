@@ -18,6 +18,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         [SerializeField] private GameObject _readyButton;
         [SerializeField] private UnitStatsSO _emptyUnitStatsSO;
+        [SerializeField] private UnitStatsSO _emptyAdvancedUnitStatsSO;        
         private UpgradeButtonManager[] _upgradeButtonArray;
         private UnitButtonManager[] _arrayOfUnitButtonManagers;
         private UnitStatsSO[] _appliedUnitsToComp;
@@ -25,6 +26,7 @@ namespace Rechrysalis.CompCustomizer
         private UnitButtonManager _compPositionSelected;
         private UpgradeButtonManager _upgradeSelected;
         private List<UpgradeButtonManager> _listOfSetUpgrades;
+        private int _beginningNumberOfUpgrades = 2;
         
         public void Initialize(CompSO _compSO, Color _basicColour, Color _advColour, Color _hatchColour, int _level)
         {
@@ -32,6 +34,7 @@ namespace Rechrysalis.CompCustomizer
             if (_level == 0)
             {
                 ResetWholeComp();
+                _compCustomizerSO.NumberOfUpgrades = _beginningNumberOfUpgrades;
             }
             _readyButton.SetActive(false);
             _listOfSetUpgrades = new List<UpgradeButtonManager>();
@@ -129,11 +132,11 @@ namespace Rechrysalis.CompCustomizer
             _upgradeSelected = _upgradeButtonManager;
             if (_upgradeSelected.UnitStats != null)
             {
-            _displayManager.DisplayUnitText(_upgradeButtonManager.UnitStats);
+            _displayManager.DisplayText(_upgradeButtonManager.UnitStats, null);
             }
             if (_upgradeSelected.HatchEffect != null)
             {
-                _displayManager.DisplayHatchText(_upgradeButtonManager.HatchEffect);
+                _displayManager.DisplayText(null, _upgradeButtonManager.HatchEffect);
             }
             CheckIfCompChanged();
         }
@@ -148,13 +151,14 @@ namespace Rechrysalis.CompCustomizer
         private void DisplayUnitButtonClicked(UnitButtonManager _unitButtonManager)
         {
 
-            _displayManager.DisplayUnitText(_unitButtonManager.NewUnit);
-            _displayManager.AddHatchText(_unitButtonManager.HatchEffect);
+            _displayManager.DisplayText(_unitButtonManager.NewUnit, _unitButtonManager.NewHatchEffect);
+            // _displayManager.AddHatchText(_unitButtonManager.HatchEffect);
         }
         private void CheckIfCompChanged()
         {
             if ((_compPositionSelected != null) && (_upgradeSelected != null))
             {
+                // Debug.Log($"comp selected & upgrade != null");
                 if (_compPositionSelected.AdvUnit == _upgradeSelected.AdvUnit)                
                 {
                     if (_listOfSetUpgrades.Contains(_upgradeSelected))
@@ -177,7 +181,8 @@ namespace Rechrysalis.CompCustomizer
                     {
                         _appliedHatchEffectsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.HatchEffect;
                         _compPositionSelected.ChangeHatchEffect(_upgradeSelected.HatchEffect);
-                    }        
+                    }
+                    DisplayUnitButtonClicked(_compPositionSelected);
                     _listOfSetUpgrades.Add(_upgradeSelected);
                     _compPositionSelected = null;
                     _upgradeSelected = null;
@@ -211,6 +216,7 @@ namespace Rechrysalis.CompCustomizer
                 {
                     if (_listOfSetUpgrades[_index].CompUnitSetTo == _compSlot)
                     {
+                        if (((_listOfSetUpgrades[_index].HatchEffect != null) && (_upgradeSelected.HatchEffect != null)) || ((_listOfSetUpgrades[_index].UnitStats != null) && (_upgradeSelected.UnitStats != null)))
                         RemoveUpgrade(_index);
                     }
                 }
@@ -253,7 +259,7 @@ namespace Rechrysalis.CompCustomizer
                         }                    
                         if ((_appliedUnitsToComp[_unitIndex] == null) && (_appliedHatchEffectsToComp[_unitIndex] != null))
                         {
-                            ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], _emptyUnitStatsSO);
+                            ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], _emptyAdvancedUnitStatsSO);
                         }
                     }
                     if ((_childIndex != 0) && (_appliedUnitsToComp[_unitIndex] != null) && (_appliedUnitsToComp[_unitIndex].UnitName == "Empty") && (_appliedHatchEffectsToComp[_unitIndex] == null))
@@ -262,7 +268,7 @@ namespace Rechrysalis.CompCustomizer
                     }
                     if (((_appliedUnitsToComp[_unitIndex] != null) && (_appliedUnitsToComp[_unitIndex].UnitName != "Empty")) || (_appliedHatchEffectsToComp[_unitIndex] != null))
                     {
-                        if (_appliedUnitsToComp[_unitIndex] != null) Debug.Log($" name " + _appliedUnitsToComp[_unitIndex].UnitName + " index " + _unitIndex);                        
+                        // if (_appliedUnitsToComp[_unitIndex] != null) Debug.Log($" name " + _appliedUnitsToComp[_unitIndex].UnitName + " index " + _unitIndex);                        
                         _childUpgradePresent = true;
                     }
                 }
@@ -278,7 +284,7 @@ namespace Rechrysalis.CompCustomizer
         {   
             _compSO.UnitSOArray = _appliedUnitsToComp;
             _compSO.HatchEffectSOArray = _appliedHatchEffectsToComp;
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("FreeEnemyLevel");
         }
         private void CheckIfCompIsFullToEnableReady()
         {            
@@ -294,7 +300,7 @@ namespace Rechrysalis.CompCustomizer
                 for (int _childIndex = 0; _childIndex < _compSO.ChildUnitCount; _childIndex ++)
                 {
                     int _compIndex = _parentIndex + _childIndex;
-                    Debug.Log($"comp index " + _compIndex);
+                    // Debug.Log($"comp index " + _compIndex);
             // for (int _compIndex = 0; _compIndex < _appliedUnitsToComp.Length; _compIndex++)
             //{
                     if (_appliedUnitsToComp[_compIndex] == null)

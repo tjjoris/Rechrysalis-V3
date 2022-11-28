@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9250b78c4dd634eb9989461822611b34, type: 3}
   m_Name: CompsAndUnitsSO
   m_EditorClassIdentifier: 
-  _level: 1
+  _levels:
+  - {fileID: 11400000, guid: 8ec5c4d26c91a49e0a7fea0097c5e036, type: 2}
+  - {fileID: 11400000, guid: 16a4e4d1d1380451ebd30d16d6a0238c, type: 2}
+  - {fileID: 11400000, guid: 4d564d7d82af74c60ac3ec9072f3dc70, type: 2}
+  - {fileID: 11400000, guid: 36896a1c563ed451e902bbf3e728b5b7, type: 2}
+  _speed: 2
+  _level: 0
   _compsSO:
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
@@ -30,5 +36,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1daf28c3beb2646cb904b5af54346828, type: 2}
   _chrysalis: {fileID: 11400000, guid: 1400a98c8c39341749b54dbd2d0bd166, type: 2}
   _controllerHealth:
-  - 800
+  - 300
   - 100

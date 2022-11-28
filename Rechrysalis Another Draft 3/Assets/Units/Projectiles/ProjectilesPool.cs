@@ -6,16 +6,17 @@ namespace Rechrysalis.Attacking
 {
     public class ProjectilesPool : MonoBehaviour
     {
-        private List<GameObject> pooledObjects;
+        private List<GameObject> _pooledObjects;
         [SerializeField] private GameObject objectToPool;
         private GameObject _projectilesHolderGO;
         private ProjectilesHolder _projectilesHolderScript;
         private int amountToPool;
+        public System.Action<float> _projectileDealsDamage;
 
         public void CreatePool(int amountToPool, float _projectileSpeed, Sprite _projectileSprite)
         {
             this.amountToPool = amountToPool;
-            pooledObjects = new List<GameObject>();
+            _pooledObjects = new List<GameObject>();
             GameObject tmp;
             _projectilesHolderGO = GameMaster.Instance.ReferenceManager.ProjectilesHolder;
             _projectilesHolderScript = _projectilesHolderGO.GetComponent<ProjectilesHolder>();
@@ -31,16 +32,50 @@ namespace Rechrysalis.Attacking
                 // ph.ProjectileDuration = _projectileDuration;
                 // ph.Damage = _damage;
                 ph.ParentUnit = gameObject;
-                pooledObjects.Add(tmp);
+                _pooledObjects.Add(tmp);
             }
+            SubscribeToProjectiles();
+        }
+        private void SubscribeToProjectiles()
+        {
+            if ((_pooledObjects != null) && (_pooledObjects.Count > 0))
+            {
+                for (int _index =0; _index < _pooledObjects.Count; _index ++)
+                {
+                    _pooledObjects[_index].GetComponent<ProjectileHandler>()._parentUnitDealsDamage -= ProjectilePoolDealsDamage;
+                    _pooledObjects[_index].GetComponent<ProjectileHandler>()._parentUnitDealsDamage += ProjectilePoolDealsDamage;
+                }
+            }
+        }
+        private void UnsubscribeToProjectiles()
+        {
+            if ((_pooledObjects != null) && (_pooledObjects.Count > 0))
+            {
+                for (int _index = 0; _index < _pooledObjects.Count; _index++)
+                {
+                    _pooledObjects[_index].GetComponent<ProjectileHandler>()._parentUnitDealsDamage -= ProjectilePoolDealsDamage;
+                }
+            }
+        }
+        private void OnEnable()
+        {
+            SubscribeToProjectiles();
+        }
+        private void OnDisable()
+        {
+            UnsubscribeToProjectiles();
+        }
+        private void ProjectilePoolDealsDamage(float _damage)
+        {
+            _projectileDealsDamage?.Invoke(_damage);
         }
         public GameObject GetPooledObject()
         {
             for (int i = 0; i < amountToPool; i++)
             {
-                if (!pooledObjects[i].activeInHierarchy)
+                if (!_pooledObjects[i].activeInHierarchy)
                 {
-                    return pooledObjects[i];
+                    return _pooledObjects[i];
                 }
             }
             return null;
@@ -48,7 +83,7 @@ namespace Rechrysalis.Attacking
 
         public void TickProjectiles(float _timeAmount)
         {
-            foreach (GameObject _projectile in pooledObjects)
+            foreach (GameObject _projectile in _pooledObjects)
             {
                 if (_projectile.activeInHierarchy)
                 {

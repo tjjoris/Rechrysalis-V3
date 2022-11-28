@@ -5,6 +5,7 @@ using Rechrysalis.Controller;
 using Rechrysalis.Unit;
 using Rechrysalis.Attacking;
 using Rechrysalis.Background;
+using Rechrysalis.CompCustomizer;
 
 namespace Rechrysalis
 {
@@ -13,7 +14,9 @@ namespace Rechrysalis
         [SerializeField] CompsAndUnitsSO _compsAndUnitsSO;        
         [SerializeField] ControllerManager[] _controllerManager;
         [SerializeField] PlayerUnitsSO[] _playerUnitsSO;  
-        [SerializeField] CompSO[] _compSO;   
+        [SerializeField] CompSO[] _compSO;
+
+        [SerializeField] CompCustomizerSO _compCustomizer;
         [SerializeField] ProjectilesHolder _projectilesHolder;
         [SerializeField] BackgroundManager _backGroundManager;
 
@@ -29,7 +32,7 @@ namespace Rechrysalis
                 {
                     if (_controllerManager[i] != null) 
                     {
-                        _controllerManager[i].Initialize(i, _playerUnitsSO, _compSO[i], _controllerManager[GetOppositeController.ReturnOppositeController(i)], _compsAndUnitsSO);
+                        _controllerManager[i].Initialize(i, _playerUnitsSO, _compSO[i], _controllerManager[GetOppositeController.ReturnOppositeController(i)], _compsAndUnitsSO, _compCustomizer);
                     }
                 }
             }

@@ -29,11 +29,11 @@ namespace Rechrysalis.HatchEffect
 
         public void Initialize(HatchEffectSO _hatchEffectSO, int _tier, int _parentIndex, int _unitIndex, bool _affectAll)
         {
+            Debug.Log($"HE Initialize " + _hatchEffectSO.HatchEffectName +  " tier " + _tier);
             this._parentIndex = _parentIndex;
             this._unitIndex = _unitIndex;
             this._affectAll = _affectAll;
             this._tier = _tier;
-            Debug.Log($"Name ");
             this._hatchEffectSO = _hatchEffectSO;
             _hETimer = GetComponent<HETimer>();
             _name.text = _hatchEffectSO.HatchEffectName;

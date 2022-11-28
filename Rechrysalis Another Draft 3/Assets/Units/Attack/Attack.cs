@@ -14,11 +14,14 @@ namespace Rechrysalis.Attacking
         [SerializeField] private  float _baseDamage;
         private ProjectilesPool _projectilesPool;
         private bool _isWindingDown;
+        private bool _isChargingUp;
         private bool _isStopped;
         public bool IsStopped{set{_isStopped = value;}}
         [SerializeField] private TargetsListSO _targetsList;
         private InRangeByPriority _inRangeByPriority;  
         private ClosestTarget _closestTarget;  
+        private TargetHolder _targetHolder;
+        private AIAttackChargeUpTimer _aiAttackTimer;
 
         public void Initialize(UnitStatsSO _unitStats)
         {   
@@ -29,6 +32,9 @@ namespace Rechrysalis.Attacking
             _projectilesPool = GetComponent<ProjectilesPool>();
             _inRangeByPriority = GetComponent<InRangeByPriority>();
             _closestTarget = GetComponent<ClosestTarget>();
+            _targetHolder = GetComponent<TargetHolder>();
+            _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
+            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown);
             ResetUnit();
         }
         public void ResetUnit()
@@ -43,35 +49,68 @@ namespace Rechrysalis.Attacking
                 _attackChargeCurrent = 0;
                 _isWindingDown = false;
             }
-            else if ((_isWindingDown) && (_attackChargeCurrent >= _attackChargeUp) && (_attackChargeCurrent < (_attackWindDown + _attackChargeUp)))
+            else if (_isWindingDown)
             {
                 _attackChargeCurrent += _timeAmount;
             }
-            else if ((_attackChargeCurrent >= _attackChargeUp) && (_isStopped) && (!_isWindingDown))
-            {
-                GameObject _targetUnit = _inRangeByPriority?.CheckPriorityTargetInRange();
-                if (_targetUnit == null)
+            else
+            {            
+                GameObject _tempTarget = null;
+                if ((_isChargingUp) && (_isStopped) && (_attackChargeCurrent >= _attackChargeUp))
                 {
-                    _targetUnit = _closestTarget.GetNearestEnemyInRange();
-                }
-                if (_targetUnit != null)
-                {
-                    GameObject _projectile = _projectilesPool?.GetPooledObject();
-                    if (_projectile != null) 
+                    _tempTarget = GetTargetInRange();
+                    if (_tempTarget != null)
                     {
-                        // Debug.Log($"shoot projectile");
-                        _projectile.SetActive(true);
-                        _projectile.transform.position = gameObject.transform.position;
-                        // Debug.Log($"position " + _projectile.transform.position);
-                        _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetUnit, _unitStats.ProjectileSpeed);
-                        _isWindingDown = true;                       
+                        GameObject _projectile = _projectilesPool?.GetPooledObject();
+                        if (_projectile != null) 
+                        {
+                            _projectile.SetActive(true);
+                            _projectile.transform.position = gameObject.transform.position;
+                            _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target, _unitStats.ProjectileSpeed);
+                            _isWindingDown = true;                       
+                        }
+                    }
+                    else 
+                    {
+                        ResetChargeUp();
                     }
                 }
+                else if ((!_isWindingDown) && (!_isChargingUp) && (_isStopped) && (GetTargetInRange() != null))
+                {
+                    _isChargingUp = true;
+                    _attackChargeCurrent += _timeAmount;
+                }
+                else if ((_isChargingUp) && (_isStopped))
+                {
+                    _attackChargeCurrent += _timeAmount;                
+                }     
+                _aiAttackTimer?.Tick(_timeAmount, _isChargingUp, _isWindingDown);       
             }
-            else if ((_attackChargeCurrent < _attackChargeUp) && (_isStopped))
+        }
+        private GameObject GetTargetInRange()
+        {
+            GameObject _tempTarget = _inRangeByPriority?.CheckPriorityTargetInRange();
+            if (_tempTarget == null)
             {
-                _attackChargeCurrent += _timeAmount;                
-            }            
+                _tempTarget = _targetHolder.Target;
+            }
+            if (_targetHolder.GetThisTargetInRange(_tempTarget))
+            {
+                return _tempTarget;
+            }
+            return null;
+        }
+        public void CheckToResetChargeUp()
+        {
+            if ((!_isWindingDown) && (_isChargingUp))
+            {
+                ResetChargeUp();
+            }
+        }
+        private void ResetChargeUp()
+        {
+            _attackChargeCurrent = 0;
+            _isChargingUp = false;
         }
         public void SetDamage(float _damage)
         {

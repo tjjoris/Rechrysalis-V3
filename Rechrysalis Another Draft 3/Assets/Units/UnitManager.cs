@@ -5,6 +5,7 @@ using TMPro;
 using Rechrysalis.Movement;
 using Rechrysalis.Attacking;
 using Rechrysalis.HatchEffect;
+// using System;
 
 namespace Rechrysalis.Unit
 {
@@ -15,14 +16,15 @@ namespace Rechrysalis.Unit
         public int ControllerIndex {get{return _controllerIndex;}}
         private int _freeUnitIndex;
         [SerializeField] private UnitStatsSO _unitStats;
+        private HatchEffectSO _hatchEffectSO;
         [SerializeField] private TMP_Text _nameText;
         public UnitStatsSO UnitStats {get{return _unitStats;}}
         private Health _health;
         private Mover _mover;
         private Attack _attack;
+        private ControllerUnitAttackClosest _controllerUnitAttackClosest;
         private ChrysalisTimer _chrysalisTimer;
         private Rechrysalize _rechrysalize;
-        [SerializeField] private bool _isStopped;
         private CompsAndUnitsSO _compsAndUnits;
         private ProjectilesPool _projectilesPool;
         private List<GameObject> _hatchEffects;
@@ -37,6 +39,9 @@ namespace Rechrysalis.Unit
         private float _newWindDown;
         private float _baseIncomindDamageMult = 1;
         private float _newIncomingDamageMult = 1;
+        private float _manaCost;
+        public float ManaCost {get{return _manaCost;}}
+        [SerializeField] private bool _isStopped;
         public bool IsStopped 
         {
             set{
@@ -51,10 +56,12 @@ namespace Rechrysalis.Unit
                     }
                 }
             }
-        public void Initialize(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _freeUnitIndex)
+        public System.Action<float> _unitDealsDamage;
+        public void Initialize(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _freeUnitIndex, HatchEffectSO _hatchEffectSO)
         {
             this._controllerIndex = _controllerIndex;
             this._unitStats = _unitStats;
+            this._hatchEffectSO = _hatchEffectSO;
             _unitStats.Initialize();
             _baseDPS = _unitStats.BaseDPS;
             _baseChargeUp = _unitStats.AttackChargeUp;
@@ -64,6 +71,8 @@ namespace Rechrysalis.Unit
             // _nameText.text = _unitStats.UnitName;
             _mover = GetComponent<Mover>();
             _attack = GetComponent<Attack>();
+            _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
+            _controllerUnitAttackClosest?.Initialzie();
             if (_attack != null)  _attack.IsStopped = true;
             _attack?.Initialize(_unitStats);
             _health = GetComponent<Health>();
@@ -83,7 +92,34 @@ namespace Rechrysalis.Unit
             this._freeUnitIndex = _freeUnitIndex;
             _freeHatchScript?.Initialize(_unitStats.HatchEffectPrefab, _freeUnitIndex);
             _unitSpriteHandler.SetSpriteFunction(_unitStats.UnitSprite);
+            float _hatchManaMult = 1;
+            if (_hatchEffectSO != null)
+            {
+                if (_hatchEffectSO.ManaMultiplier.Length >= _unitStats.TierMultiplier.Tier - 1)
+                {
+                    _hatchManaMult = _hatchEffectSO.ManaMultiplier[_unitStats.TierMultiplier.Tier - 1];
+                }
+            }
+            _manaCost = _unitStats.Mana * _hatchManaMult;            
             ReCalculateStatChanges();
+        }
+        private void OnEnable()
+        {
+            if (GetComponent<ProjectilesPool>() != null)
+            {
+                GetComponent<ProjectilesPool>()._projectileDealsDamage += UnitDealsDamage;
+            }
+        }
+        private void OnDisable()
+        {
+            if (GetComponent<ProjectilesPool>() != null)
+            {
+                GetComponent<ProjectilesPool>()._projectileDealsDamage -= UnitDealsDamage;
+            }
+        }
+        private void UnitDealsDamage(float _damage)
+        {
+            _unitDealsDamage?.Invoke(_damage);
         }
         public void SetUnitName (string _unitName)
         {
@@ -98,8 +134,19 @@ namespace Rechrysalis.Unit
         {
             // if (gameObject.active == true) 
             // {
-                _mover?.Tick(_timeAmount);
-                _attack?.Tick(_timeAmount);
+                // bool _isStopped = false;
+                _controllerUnitAttackClosest?.CheckToGetTarget();
+                if (_mover != null)
+                {
+                    _mover?.Tick(_timeAmount);
+                    // if ((!_mover.IsStopped) && ())
+                    _isStopped = _mover.IsStopped;
+                }
+                if (_attack != null)
+                {
+                    _attack.IsStopped = _isStopped;
+                    _attack?.Tick(_timeAmount);
+                }
                 // _projectilesPool?.TickProjectiles(_timeAmount);
                 _chrysalisTimer?.Tick(_timeAmount);
             // }
