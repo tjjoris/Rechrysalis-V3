@@ -18,7 +18,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         [SerializeField] private GameObject _readyButton;
         [SerializeField] private UnitStatsSO _emptyUnitStatsSO;
-        [SerializeField] private UnitStatsSO _emptyAdvancedUnitStatsSO;
+        [SerializeField] private UnitStatsSO _emptyAdvancedUnitStatsSO;        
         private UpgradeButtonManager[] _upgradeButtonArray;
         private UnitButtonManager[] _arrayOfUnitButtonManagers;
         private UnitStatsSO[] _appliedUnitsToComp;

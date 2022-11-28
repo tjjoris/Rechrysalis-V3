@@ -18,6 +18,9 @@ namespace Rechrysalis.CompCustomizer
         public CompSO CompSO {get{return _compSO;}}
         [SerializeField] private UnitStatsSO[] _arrayOfAvailableBasicUnits;
         public UnitStatsSO[] ArrayOfAvailableBasicUnits {get {return _arrayOfAvailableBasicUnits;}}
+        [SerializeField] private UnitStatsSO[] _t1Adv;
+        public UnitStatsSO[] T1Adv { get{ return _t1Adv; } set{ _t1Adv = value; } }
+        
         [SerializeField] private UnitStatsSO[] _arrayOfAvailableAdvUnits;
         public UnitStatsSO[] ArrayOfAvailableAdvUnits {get {return _arrayOfAvailableAdvUnits;}}
          [SerializeField] private HatchEffectSO[] _arrayOfAvailableHatcheffects;
