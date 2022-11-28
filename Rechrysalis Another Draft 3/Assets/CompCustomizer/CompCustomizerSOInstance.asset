@@ -17,9 +17,14 @@ MonoBehaviour:
   _compSO: {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   _arrayOfAvailableBasicUnits:
   - {fileID: 11400000, guid: db3f022e624af490da1ed973efc08e3d, type: 2}
-  - {fileID: 11400000, guid: cbf56b099598945a282fbbcc2a2fc696, type: 2}
   - {fileID: 11400000, guid: bbcc2376878734c429161156a1711320, type: 2}
+  - {fileID: 11400000, guid: cbf56b099598945a282fbbcc2a2fc696, type: 2}
   - {fileID: 11400000, guid: 337f55436f5ae4e5290027845f3353dd, type: 2}
+  _t1Adv:
+  - {fileID: 11400000, guid: 933474abe37604f519a69c6018637d2c, type: 2}
+  - {fileID: 11400000, guid: 03b6e30d012bb4980b779ae16ca499c7, type: 2}
+  - {fileID: 11400000, guid: 5dcf8ec989b724e3cad5e16ab71c379b, type: 2}
+  - {fileID: 11400000, guid: bf38cbdfdd6a94870aea8577a14a4927, type: 2}
   _arrayOfAvailableAdvUnits:
   - {fileID: 11400000, guid: 933474abe37604f519a69c6018637d2c, type: 2}
   - {fileID: 11400000, guid: 884242044544242149e3babb7a271697, type: 2}
