@@ -67,7 +67,7 @@ namespace Rechrysalis.CompCustomizer
             _arrayOfUnitButtonManagers = _compWindowManager.ArrayOfUnitButtonManagers;
             _displayManager.Initialize();
             SubscribeToButtons();
-            CheckToMakeEmptyUnits();
+            // CheckToMakeEmptyUnits();
             CheckIfCompIsFullToEnableReady();
         }        
         private void SetUnitAndHatchArraysToCompSO()
