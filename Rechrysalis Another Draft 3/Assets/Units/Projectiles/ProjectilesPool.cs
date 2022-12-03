@@ -53,7 +53,10 @@ namespace Rechrysalis.Attacking
             {
                 for (int _index = 0; _index < _pooledObjects.Count; _index++)
                 {
-                    _pooledObjects[_index].GetComponent<ProjectileHandler>()._parentUnitDealsDamage -= ProjectilePoolDealsDamage;
+                    if (_pooledObjects[_index] != null)
+                    {
+                        _pooledObjects[_index].GetComponent<ProjectileHandler>()._parentUnitDealsDamage -= ProjectilePoolDealsDamage;
+                    }
                 }
             }
         }
