@@ -6,7 +6,7 @@ using Rechrysalis.HatchEffect;
 using System;
 using TMPro;
 
-namespace Rechrysalis.CompCustomizer
+namespace Rechrysalis.CompCustomizerOld
 {
     public class UpgradeButtonManager : MonoBehaviour
     {

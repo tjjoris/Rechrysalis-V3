@@ -5,7 +5,7 @@ using Rechrysalis.Unit;
 using Rechrysalis.HatchEffect;
 using UnityEngine.SceneManagement;
 
-namespace Rechrysalis.CompCustomizer
+namespace Rechrysalis.CompCustomizerOld
 {
     public class CompCustomizerManager : MonoBehaviour
     {

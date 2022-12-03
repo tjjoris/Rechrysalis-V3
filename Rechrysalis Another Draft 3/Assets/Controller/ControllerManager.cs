@@ -31,7 +31,7 @@ namespace Rechrysalis.Controller
         private List<GameObject> _hatchEffects;
         private FreeEnemyInitialize _freeEnemyInitialize;
         private ControllerFreeUnitHatchEffectManager _controllerFreeHatchEffectManager;
-        private CompCustomizerSO _compCustomizer;
+        // private CompCustomizerSO _compCustomizer;
         private ManaGenerator _manaGenerator;
         // public bool IsStopped
         // {
@@ -52,7 +52,7 @@ namespace Rechrysalis.Controller
             this._compSO = _compSO;
             this._enemyController = _enemyController;
             this._compsAndUnits = _compsAndUnits;
-            this._compCustomizer = _compCustomizer;
+            // this._compCustomizer = _compCustomizer;
             _manaGenerator = GetComponent<ManaGenerator>();
             
             _allUnits = new List<GameObject>();

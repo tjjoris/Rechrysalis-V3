@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Rechrysalis.CompCustomizer;
 using Rechrysalis.Unit;
 
-namespace Rechrysalis
+namespace Rechrysalis.CompCustomizerOld
 {
     public class CompCustomizerMainManager : MonoBehaviour
     {

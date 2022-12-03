@@ -4,7 +4,7 @@ using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.HatchEffect;
 
-namespace Rechrysalis.CompCustomizer
+namespace Rechrysalis.CompCustomizerOld
 {
     public class UpgradeButtonHorizontalLayoutManager : MonoBehaviour
     {
