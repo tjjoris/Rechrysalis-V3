@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Start.unity
     guid: 522f7ec9f1f9f4b2c8489b2bac5d31f9
   - enabled: 1
-    path: Assets/Scenes/CompCustomizer.unity
+    path: Assets/Scenes/CompCustomizerOld.unity
     guid: 29623a4ffc4274e30958c3495e7b6de9
   - enabled: 1
     path: Assets/Scenes/FreeEnemyLevel.unity
