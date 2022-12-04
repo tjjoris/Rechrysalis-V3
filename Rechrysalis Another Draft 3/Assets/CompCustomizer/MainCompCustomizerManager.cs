@@ -16,7 +16,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private CompSO _compSO;
         public CompSO CompSO { get{ return _compSO; } set{ _compSO = value; } }
         
-        private void Awake()
+        private void Start()
         {
             _selectionInitialize.Initialize(_compCustomizerSO);
         }
