@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 7717439491367306788}
   - component: {fileID: 7386102646377955899}
   - component: {fileID: 3468442005927776171}
+  - component: {fileID: 912046841888593337}
   m_Layer: 5
   m_Name: UpgradeButtonPrefab
   m_TagString: Untagged
@@ -271,6 +272,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232e0fc300c154f7fa8ed18a07494af4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &912046841888593337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724834541006074091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2166817a3a98a43e49c580e6b39be0dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitStatsSO: {fileID: 0}
 --- !u!1 &6910437110948255264
 GameObject:
   m_ObjectHideFlags: 0

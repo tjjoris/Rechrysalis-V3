@@ -18,8 +18,9 @@ namespace Rechrysalis.CompCustomizer
         public enum UpgradeType {Basic, Advanced, HatchEffect, error};
         
         
-        public void Initialize()
+        public void Initialize(CompCustomizerSO compCustomizerSO)
         {
+            _compCustomizerSO = compCustomizerSO;        
             _upgradeBasicSelectionCount = _compCustomizerSO.BasicUnitArray.Length;
             _upgradeT1SelectionCount = _compCustomizerSO.AdvancedUnitSelectionT1Array.Length;
             _upgradeHatchEffectCount = _compCustomizerSO.HatchEffectSelectionArray.Length;
