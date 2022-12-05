@@ -6,7 +6,7 @@ namespace Rechrysalis.CompCustomizer
 {
     public class RandomUpgradeSelection : MonoBehaviour
     {
-        private int _randomIndex;
+        private int _randomIndex;        
         private int upgradeSelectionCount;
         public int GetRandomSelection(CompCustomizerSO _compCustomizerSO, int[] _upgradeSelectionIndex, int _upgradeSelectionCount)
         {
@@ -33,6 +33,10 @@ namespace Rechrysalis.CompCustomizer
                     return;
                 }
             }
+        }
+        public int GetRandomIndex()
+        {
+            return _randomIndex;
         }
     }
 }

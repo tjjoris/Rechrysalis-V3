@@ -22,14 +22,21 @@ namespace Rechrysalis.CompCustomizer
             _upgradeButtonIndex = new int[_numberOfUpgrades];
             _compCustomizerSO = compCustomizerSO;
             _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
-            _selectionIndexToSelection?.Initialize(_compCustomizerSO);
-            CreateSelectionButton(0);           
+            _selectionIndexToSelection?.Initialize(_compCustomizerSO);       
         }
         private void CreateSelectionButton(int _index)
         {
             GameObject _selectionButton = Instantiate(_upgradeButtonPrefab, transform);
             _upgradebuttonManager[_index] = _selectionButton.GetComponent<UpgradeButtonManager>();
             _upgradebuttonManager[_index]?.GetRandomSelection(_compCustomizerSO, _upgradeButtonIndex, _selectionIndexToSelection.UpgradeSelctionCount);
+            _upgradeButtonIndex[_index] = _upgradebuttonManager[_index].GetRandomUpgradeSelection().GetRandomIndex();
+        }
+        private void CreateAllSelectionButtons()
+        {
+            for (int _index = 0; _index < _numberOfUpgrades; _index ++)
+            {
+                CreateSelectionButton(_index);
+            }
         }
     }
 }
