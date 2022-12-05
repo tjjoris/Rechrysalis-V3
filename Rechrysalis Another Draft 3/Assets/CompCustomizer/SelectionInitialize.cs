@@ -13,6 +13,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private UpgradeButtonManager[] _upgradebuttonManager;
         public UpgradeButtonManager[] UpgradeButtonManager { get{ return _upgradebuttonManager; } set{ _upgradebuttonManager = value; } }
         [SerializeField] private int[] _upgradeButtonIndex;
+        private SelectionIndexToSelection _selectionIndexToSelection;
         
         
         public void Initialize(CompCustomizerSO compCustomizerSO)
@@ -21,12 +22,14 @@ namespace Rechrysalis.CompCustomizer
             _upgradeButtonIndex = new int[_numberOfUpgrades];
             _compCustomizerSO = compCustomizerSO;
             CreateSelectionButton(0);
-            GetComponent<SelectionIndexToSelection>().Initialize(_compCustomizerSO);
+            _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
+            _selectionIndexToSelection?.Initialize(_compCustomizerSO);                        
         }
         private void CreateSelectionButton(int _index)
         {
             GameObject _selectionButton = Instantiate(_upgradeButtonPrefab, transform);
             _upgradebuttonManager[_index] = _selectionButton.GetComponent<UpgradeButtonManager>();
+            _upgradebuttonManager[_index]?.GetRandomSelection(_compCustomizerSO, _upgradeButtonIndex, _selectionIndexToSelection.UpgradeSelctionCount);
         }
     }
 }

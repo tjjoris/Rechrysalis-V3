@@ -15,7 +15,12 @@ namespace Rechrysalis.CompCustomizer
         public UnitStatsSO UnitStatsSO { get{ return _unitStatsSO; } set{ _unitStatsSO = value; } }
         [SerializeField] private HatchEffectSO _hatchEffectSO;
         public HatchEffectSO HatchEffectSO { get{ return _hatchEffectSO; } set{ _hatchEffectSO = value; } }
+        private RandomUpgradeSelection _randomUpgradeSelection;
         
-        
+        public void GetRandomSelection(CompCustomizerSO _compCustomizerSO, int[] _upgradeSelectionIndex, int _upgradeSelectionCount)
+        {
+            _randomUpgradeSelection = GetComponent<RandomUpgradeSelection>();
+            _randomUpgradeSelection.GetRandomSelection(_compCustomizerSO, _upgradeSelectionIndex, _upgradeSelectionCount);
+        }
     }
 }

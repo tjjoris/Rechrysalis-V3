@@ -11,7 +11,6 @@ namespace Rechrysalis.CompCustomizer
         public int GetRandomSelection(CompCustomizerSO _compCustomizerSO, int[] _upgradeSelectionIndex, int _upgradeSelectionCount)
         {
             upgradeSelectionCount = _upgradeSelectionCount;
-            upgradeSelectionCount = _upgradeSelectionCount;
             GetRandomNumber();
             CheckIfDuplicate(_upgradeSelectionIndex, upgradeSelectionCount);
             return _randomIndex;
