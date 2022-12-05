@@ -32,12 +32,12 @@ namespace Rechrysalis.CompCustomizer
         }
         public void UpgradeFromIndex(int upgradeIndex)
         {
-            if (upgradeIndex <= _upgradeBasicSelectionCount)
+            if (upgradeIndex < _upgradeBasicSelectionCount)
             {
                 _unitStatsSO = _compCustomizerSO.BasicUnitArray[upgradeIndex];
                 _hatchEffectSO = null;
             }
-            else if (upgradeIndex <= (_upgradeBasicSelectionCount + _upgradeT1SelectionCount))
+            else if (upgradeIndex < (_upgradeBasicSelectionCount + _upgradeT1SelectionCount))
             {
                 _unitStatsSO = _compCustomizerSO.AdvancedUnitSelectionT1Array[upgradeIndex - _upgradeBasicSelectionCount];
                 _hatchEffectSO = null;
