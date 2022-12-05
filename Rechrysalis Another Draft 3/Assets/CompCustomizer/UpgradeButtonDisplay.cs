@@ -32,10 +32,11 @@ namespace Rechrysalis.CompCustomizer
         private void DisplayForUnit()
         {
             _body.sprite = _selectionIndexToSelection.GetUnitStatsSO().UnitSprite;
+            _nameText.text = _selectionIndexToSelection.GetUnitStatsSO().UnitName;
         }
         private void DisplayForHatchEffect()
         {
-            
+            _nameText.text = _selectionIndexToSelection.GetHatchEffectSO().HatchEffectName;
         }
     }
 }
