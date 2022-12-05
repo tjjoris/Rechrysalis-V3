@@ -15,6 +15,8 @@ namespace Rechrysalis.CompCustomizer
         private int _upgradeBasicSelectionCount;
         private int _upgradeT1SelectionCount;
         private int _upgradeHatchEffectCount;
+        private UnitStatsSO _unitStatsSO;
+        private HatchEffectSO _hatchEffectSO;
         public enum UpgradeType {Basic, Advanced, HatchEffect, error};
         
         
@@ -26,23 +28,37 @@ namespace Rechrysalis.CompCustomizer
             _upgradeHatchEffectCount = _compCustomizerSO.HatchEffectSelectionArray.Length;
             _upgradeselectionCount = (_upgradeBasicSelectionCount + _upgradeT1SelectionCount + _upgradeHatchEffectCount);
         }
-        public UpgradeType UpgradeFromIndex(ref UnitStatsSO _unitStats, ref HatchEffectSO _hatchEffect, int _upgradeIndex)
+        public UpgradeType UpgradeFromIndex(ref UnitStatsSO unitStats, ref HatchEffectSO hatchEffect, int upgradeIndex)
         {
-            if (_upgradeIndex <= _upgradeBasicSelectionCount)
+            if (upgradeIndex <= _upgradeBasicSelectionCount)
             {
-                _unitStats = _compCustomizerSO.BasicUnitArray[_upgradeIndex];
+                unitStats = _compCustomizerSO.BasicUnitArray[upgradeIndex];
+                _unitStatsSO = unitStats;
+                _hatchEffectSO = null;
                 return UpgradeType.Basic;
             }
-            else if (_upgradeIndex <= (_upgradeBasicSelectionCount + _upgradeT1SelectionCount))
+            else if (upgradeIndex <= (_upgradeBasicSelectionCount + _upgradeT1SelectionCount))
             {
-                _unitStats = _compCustomizerSO.AdvancedUnitSelectionT1Array[_upgradeIndex - _upgradeBasicSelectionCount];
+                unitStats = _compCustomizerSO.AdvancedUnitSelectionT1Array[upgradeIndex - _upgradeBasicSelectionCount];
+                _unitStatsSO = unitStats;
+                _hatchEffectSO = null;
                 return UpgradeType.Advanced;
             }
             else {
-                _hatchEffect = _compCustomizerSO.HatchEffectSelectionArray[_upgradeIndex - _upgradeBasicSelectionCount - _upgradeT1SelectionCount];
+                hatchEffect = _compCustomizerSO.HatchEffectSelectionArray[upgradeIndex - _upgradeBasicSelectionCount - _upgradeT1SelectionCount];
+                _hatchEffectSO = hatchEffect;
+                _unitStatsSO = null;
                 return UpgradeType.HatchEffect;
             }
             return UpgradeType.error;
+        }
+        public UnitStatsSO GetUnitStatsSO()
+        {
+            return _unitStatsSO;
+        }
+        public HatchEffectSO GetHatchEffectSO()
+        {
+            return _hatchEffectSO;
         }
     }
 }
