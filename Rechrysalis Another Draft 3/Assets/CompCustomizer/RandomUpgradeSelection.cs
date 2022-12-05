@@ -13,18 +13,18 @@ namespace Rechrysalis.CompCustomizer
         {
             _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
         }
-        public int GetRandomSelection(CompCustomizerSO _compCustomizerSO, int[] _upgradeSelectionIndex)
+        public int GetRandomSelection(CompCustomizerSO _compCustomizerSO, int[] _upgradeSelectionIndex, int selectionCount)
         {
-            GetRandomNumber();
-            CheckIfDuplicate(_upgradeSelectionIndex, upgradeSelectionCount);
+            GetRandomNumber(selectionCount);
+            CheckIfDuplicate(_upgradeSelectionIndex, selectionCount);
             return _randomIndex;
             
         }
-        private void GetRandomNumber()
+        private void GetRandomNumber(int selectionCount)
         {
-            _randomIndex = Random.Range(0, _selectionIndexToSelection.GetSelectionCount());
+            _randomIndex = Random.Range(0, selectionCount);
         }
-        private void CheckIfDuplicate(int[] _upgradeSelectionIndex, int _upgradeSelectionCount)
+        private void CheckIfDuplicate(int[] _upgradeSelectionIndex, int selectionCount)
         {
             // bool isDuplicate = false;
             for (int i = 0; i < _upgradeSelectionIndex.Length; i++)
@@ -32,8 +32,8 @@ namespace Rechrysalis.CompCustomizer
                 if (_upgradeSelectionIndex[i] == _randomIndex)
                 {
                     // isDuplicate = true;
-                    GetRandomNumber();
-                    CheckIfDuplicate(_upgradeSelectionIndex, _upgradeSelectionCount);
+                    GetRandomNumber(selectionCount);
+                    CheckIfDuplicate(_upgradeSelectionIndex, selectionCount);
                     return;
                 }
             }
