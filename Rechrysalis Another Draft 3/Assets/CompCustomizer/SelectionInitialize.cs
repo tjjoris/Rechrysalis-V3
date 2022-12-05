@@ -22,8 +22,7 @@ namespace Rechrysalis.CompCustomizer
             _upgradebuttonManager = new UpgradeButtonManager[_numberOfUpgrades];
             _upgradeButtonIndex = new int[_numberOfUpgrades];
             _compCustomizerSO = compCustomizerSO;
-            // _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
-            // _selectionIndexToSelection?.Initialize(_compCustomizerSO);  
+            CalculateUpgradeSelectionCount();
             CreateAllSelectionButtons();     
         }
         private void CreateSelectionButton(int index)
