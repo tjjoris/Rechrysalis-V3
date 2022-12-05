@@ -18,10 +18,12 @@ namespace Rechrysalis.CompCustomizer
         private RandomUpgradeSelection _randomUpgradeSelection;
         private SelectionIndexToSelection _selectionIndexToSelection;
         
-        public void Initialize()
+        public void Initialize(CompCustomizerSO _compCustomizerSO)
         {
             _randomUpgradeSelection = GetComponent<RandomUpgradeSelection>();
-            _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();            
+            _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();  
+            _selectionIndexToSelection.Initialize(_compCustomizerSO);
+            _randomUpgradeSelection.Initialize();          
         }
         public void GetRandomSelection(CompCustomizerSO _compCustomizerSO, int[] _upgradeSelectionIndex)
         {
