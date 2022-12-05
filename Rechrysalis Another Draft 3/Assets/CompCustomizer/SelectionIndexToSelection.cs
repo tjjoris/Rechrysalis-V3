@@ -17,16 +17,18 @@ namespace Rechrysalis.CompCustomizer
         private int _upgradeHatchEffectCount;
         private UnitStatsSO _unitStatsSO;
         private HatchEffectSO _hatchEffectSO;
+        private RandomUpgradeSelection _randomUpgradeSelection;
         public enum UpgradeType {Basic, Advanced, HatchEffect, error};
         
         
         public void Initialize(CompCustomizerSO compCustomizerSO)
         {
+            _randomUpgradeSelection = GetComponent<RandomUpgradeSelection>();
             _compCustomizerSO = compCustomizerSO;        
             _upgradeBasicSelectionCount = _compCustomizerSO.BasicUnitArray.Length;
             _upgradeT1SelectionCount = _compCustomizerSO.AdvancedUnitSelectionT1Array.Length;
             _upgradeHatchEffectCount = _compCustomizerSO.HatchEffectSelectionArray.Length;
-            _upgradeselectionCount = (_upgradeBasicSelectionCount + _upgradeT1SelectionCount + _upgradeHatchEffectCount);
+            _upgradeselectionCount = (_upgradeBasicSelectionCount + _upgradeT1SelectionCount + _upgradeHatchEffectCount);            
         }
         public UpgradeType UpgradeFromIndex(ref UnitStatsSO unitStats, ref HatchEffectSO hatchEffect, int upgradeIndex)
         {
@@ -59,6 +61,10 @@ namespace Rechrysalis.CompCustomizer
         public HatchEffectSO GetHatchEffectSO()
         {
             return _hatchEffectSO;
+        }
+        public int GetSelectionCount()
+        {
+            return _upgradeselectionCount;
         }
     }
 }
