@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2593031816076914258}
   - component: {fileID: 1312067296323078985}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 3468442005927776171}
   - component: {fileID: 912046841888593337}
   - component: {fileID: 5573343787697893311}
+  - component: {fileID: 2755015976453737311}
   m_Layer: 5
   m_Name: UpgradeButtonPrefab
   m_TagString: Untagged
@@ -300,7 +301,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _compCustomizerSO: {fileID: 0}
-  _upgradeselectionCount: 0
+--- !u!114 &2755015976453737311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724834541006074091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fd1341a96144e94bce28ea76539174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _body: {fileID: 624583772889353113}
+  _nameText: {fileID: 1312067296323078985}
 --- !u!1 &6910437110948255264
 GameObject:
   m_ObjectHideFlags: 0

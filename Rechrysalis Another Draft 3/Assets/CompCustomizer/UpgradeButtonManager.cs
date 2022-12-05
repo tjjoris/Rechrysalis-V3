@@ -17,18 +17,22 @@ namespace Rechrysalis.CompCustomizer
         public HatchEffectSO HatchEffectSO { get{ return _hatchEffectSO; } set{ _hatchEffectSO = value; } }
         private RandomUpgradeSelection _randomUpgradeSelection;
         private SelectionIndexToSelection _selectionIndexToSelection;
+        private UpgradeButtonDisplay _upgradeButtonDisplay;
         
         public void Initialize(CompCustomizerSO _compCustomizerSO)
         {
             _randomUpgradeSelection = GetComponent<RandomUpgradeSelection>();
-            _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();  
+            _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
+            _upgradeButtonDisplay = GetComponent<UpgradeButtonDisplay>();
             _selectionIndexToSelection.Initialize(_compCustomizerSO);
-            _randomUpgradeSelection.Initialize();          
+            _randomUpgradeSelection.Initialize();   
+            _upgradeButtonDisplay.Initialzie();
         }
         public void GetRandomSelection(CompCustomizerSO compCustomizerSO, int[] upgradeSelectionIndex, int selectionCount)
         {
             _randomUpgradeSelection.GetRandomSelection(compCustomizerSO, upgradeSelectionIndex, selectionCount);
             _selectionIndexToSelection.UpgradeFromIndex(_randomUpgradeSelection.GetRandomIndex());
+            _upgradeButtonDisplay.SetButotnDisplay();
         }
         public RandomUpgradeSelection GetRandomUpgradeSelection()
         {
