@@ -12,24 +12,24 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private int _childIndex;
         public int ChildIndex { get{ return _childIndex; } set{ _childIndex = value; } }
         
-        [SerializeField] private UpgradeTypeClass _upgradeType;
+        [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
         private UpgradeButtonDisplay _upgradeButtonDisplay;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
         public void Initialize(int parentIndex, int childIndex)
         {
             _parentIndex = parentIndex;
             _childIndex = childIndex;
-            _upgradeType = new UpgradeTypeClass();
+            // _upgradeType = new UpgradeTypeClass();
             _upgradeButtonDisplay = GetComponent<UpgradeButtonDisplay>();
         }
 
-        public void SetUpgradeType(UpgradeTypeClass.UpgradeType upgradeType)
+        public void SetUpgradeType(UpgradeTypeClass upgradeTypeClass)
         {
-            _upgradeType.SetUpgradeType(upgradeType);
+            _upgradeTypeClass = upgradeTypeClass;
         }
         public UpgradeTypeClass.UpgradeType GetUpgradeTypeClass()
         {
-            return _upgradeType.GetUpgradeType();
+            return _upgradeTypeClass.GetUpgradeType();
         }
         public UpgradeButtonDisplay GetUpgradeButtonDisplay()
         {

@@ -18,11 +18,16 @@ namespace Rechrysalis.CompCustomizer
             _compUpgradeManagers = new CompUpgradeManager[3];
             for (int i=0; i<3; i++)
             {
+                int upgradeIndexInArray = ((parentIndex * compSO.ChildUnitCount) + i);
                 CreateAndSetupCompButton(compSO, compButtonPrefab, parentIndex, i);
+                if (i == 2)
+                _compUpgradeManagers[i].SetUpgradeType(compSO.HatchEffectSOArray[upgradeIndexInArray].UpgradeTypeClass);
+                else 
+                _compUpgradeManagers[i].SetUpgradeType(compSO.UnitSOArray[upgradeIndexInArray].UpgradeTypeClass);
             }
-            _compUpgradeManagers[0].SetUpgradeType(UpgradeTypeClass.UpgradeType.Basic);            
-            _compUpgradeManagers[1].SetUpgradeType(UpgradeTypeClass.UpgradeType.Advanced);
-            _compUpgradeManagers[2].SetUpgradeType(UpgradeTypeClass.UpgradeType.HatchEffect);
+            // _compUpgradeManagers[0].SetUpgradeType(UpgradeTypeClass.UpgradeType.Basic);            
+            // _compUpgradeManagers[1].SetUpgradeType(UpgradeTypeClass.UpgradeType.Advanced);
+            // _compUpgradeManagers[2].SetUpgradeType(UpgradeTypeClass.UpgradeType.HatchEffect);
             SubscribeToCompButtons();
         }
         private void SubscribeToCompButtons()
