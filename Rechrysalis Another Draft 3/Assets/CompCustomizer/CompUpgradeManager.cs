@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -8,6 +9,7 @@ namespace Rechrysalis.CompCustomizer
     {
         [SerializeField] private UpgradeTypeClass _upgradeType;
         private UpgradeButtonDisplay _upgradeButtonDisplay;
+        public Action<CompUpgradeManager> _onCompUpgradeClicked;
         public void Initialize()
         {
             _upgradeType = new UpgradeTypeClass();
@@ -25,6 +27,10 @@ namespace Rechrysalis.CompCustomizer
         public UpgradeButtonDisplay GetUpgradeButtonDisplay()
         {
             return _upgradeButtonDisplay;
+        }
+        public void CompUpgradeClicked()
+        {
+            _onCompUpgradeClicked?.Invoke(this);
         }
     }
 }
