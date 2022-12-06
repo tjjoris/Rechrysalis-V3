@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Rechrysalis
 {
+    [System.Serializable]
     public class UpgradeTypeClass
         {
             public enum UpgradeType { Basic, Advanced, HatchEffect, Error };

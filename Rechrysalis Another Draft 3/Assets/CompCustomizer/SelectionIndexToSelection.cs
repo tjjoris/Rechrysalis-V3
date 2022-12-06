@@ -19,7 +19,7 @@ namespace Rechrysalis.CompCustomizer
         public enum UpgradeType {Basic, Advanced, HatchEffect, Error};
         private UpgradeType _thisUpgradeType;
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
-        public UpgradeTypeClass UpgradeTypeClassProp {get {return _upgradeTypeClass;} set{_upgradeTypeClass = value;}}
+        // public UpgradeTypeClass UpgradeTypeClassProp {get {return _upgradeTypeClass;} set{_upgradeTypeClass = value;}}
         
         
         public void Initialize(CompCustomizerSO compCustomizerSO)
@@ -66,9 +66,9 @@ namespace Rechrysalis.CompCustomizer
         {
             return _hatchEffectSO;
         }
-        public UpgradeType GetThisUpgradeType()
+        public UpgradeTypeClass.UpgradeType GetThisUpgradeType()
         {
-            return _thisUpgradeType;
+            return _upgradeTypeClass.GetUpgradeType();
         }
     }
 }

@@ -20,11 +20,11 @@ namespace Rechrysalis.CompCustomizer
 
         public void SetButotnDisplay()
         {
-            if ((_selectionIndexToSelection.GetThisUpgradeType() == SelectionIndexToSelection.UpgradeType.Basic) || (_selectionIndexToSelection.GetThisUpgradeType() == SelectionIndexToSelection.UpgradeType.Advanced))
+            if ((_selectionIndexToSelection.GetThisUpgradeType() == UpgradeTypeClass.UpgradeType.Basic) || (_selectionIndexToSelection.GetThisUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced))
             {
                 DisplayForUnit();
             }
-            else if (_selectionIndexToSelection.GetThisUpgradeType() == SelectionIndexToSelection.UpgradeType.HatchEffect)
+            else if (_selectionIndexToSelection.GetThisUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
             {
                 DisplayForHatchEffect();
             }
