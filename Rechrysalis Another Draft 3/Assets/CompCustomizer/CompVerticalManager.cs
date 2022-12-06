@@ -16,19 +16,14 @@ namespace Rechrysalis.CompCustomizer
         {
             _upgradeButtonDisplays = new UpgradeButtonDisplay[3];
             _compUpgradeManagers = new CompUpgradeManager[3];
-            // for (int childIndex = 0; childIndex < 3; childIndex ++)
-            // {
-                CreateCompButton(compSO, compButtonPrefab, parentIndex, 0);
-            SetUpButtonDisplayUnit(compSO, parentIndex, 0);
-            _compUpgradeManagers[0].SetUpgradeType(UpgradeTypeClass.UpgradeType.Basic);
-            CreateCompButton(compSO, compButtonPrefab, parentIndex, 1);
-            SetUpButtonDisplayUnit(compSO, parentIndex, 1);
+            for (int i=0; i<3; i++)
+            {
+                CreateAndSetupCompButton(compSO, compButtonPrefab, parentIndex, i);
+            }
+            _compUpgradeManagers[0].SetUpgradeType(UpgradeTypeClass.UpgradeType.Basic);            
             _compUpgradeManagers[1].SetUpgradeType(UpgradeTypeClass.UpgradeType.Advanced);
-            CreateCompButton(compSO, compButtonPrefab, parentIndex, 2);
-            SetUpButtonDisplayHatchEffect(compSO, parentIndex, 2);
             _compUpgradeManagers[2].SetUpgradeType(UpgradeTypeClass.UpgradeType.HatchEffect);
             SubscribeToCompButtons();
-            // }
         }
         private void SubscribeToCompButtons()
         {
@@ -64,6 +59,12 @@ namespace Rechrysalis.CompCustomizer
         private void CompUpgradeClicked(CompUpgradeManager compUpgradeManager)
         {
             _onCompUpgradeClicked?.Invoke(compUpgradeManager);
+        }
+        private void CreateAndSetupCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex)
+        {
+            CreateCompButton(compSO, compButtonPrefab, parentIndex, childIndex);
+            SetUpButtonDisplayUnit(compSO, parentIndex, childIndex);
+            _compUpgradeManagers[0].Initialize(parentIndex, childIndex);
         }
         private void CreateCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex)
         {

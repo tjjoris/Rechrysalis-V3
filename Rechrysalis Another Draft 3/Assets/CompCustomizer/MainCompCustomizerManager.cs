@@ -76,10 +76,8 @@ namespace Rechrysalis.CompCustomizer
                 // {
                 //     _upgradeTypeClass.SetUnitStatsSO(_upgradeButtonManager.GetSelectionIndexToSelection().GetUnitStatsSO());
                 //     _compUpgradeManager.GetUpgradeButtonDisplay().DisplayForUnit(_upgradeTypeClass.GetUnitStatsSO());
-                if (_upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
-                {
-                    
-                }                
+                
+                // _compInitialize.SetCompUpgradeDisplay()                            
                 // }
             }
         }
