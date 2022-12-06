@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.Unit;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -26,10 +28,15 @@ namespace Rechrysalis.CompCustomizer
         }
         private void CheckIfDuplicate(int[] _upgradeSelectionIndex, int selectionCount)
         {
+            _selectionIndexToSelection.UpgradeFromIndex(_randomIndex);
+            HatchEffectSO hatchEffectSOToCompare = null;
+            UnitStatsSO unitStatsSOToCompare = null;
+            UpgradeTypeClass.UpgradeType upgradeTypeToCompare = UpgradeTypeClass.UpgradeType.Error;
             // bool isDuplicate = false;
             for (int i = 0; i < _upgradeSelectionIndex.Length; i++)
             {
-                if (_upgradeSelectionIndex[i] == _randomIndex)
+                // if (_upgradeSelectionIndex[i] == _randomIndex)
+                if ((_selectionIndexToSelection.GetThisUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect) && (_selectionIndexToSelection.GetHatchEffectSO == _selectionIndexToSelection.GetUpgradeTypeWithoutChanging(_randomIndex )))
                 {
                     // isDuplicate = true;
                     GetRandomNumber(selectionCount);
