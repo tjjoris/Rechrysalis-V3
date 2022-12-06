@@ -7,7 +7,7 @@ namespace Rechrysalis.CompCustomizer
 {
     public class CompVerticalManager : MonoBehaviour
     {
-        private CompUpgradeManager[] _compUpgradeManagers;
+        [SerializeField] private CompUpgradeManager[] _compUpgradeManagers;
         private UpgradeButtonDisplay[] _upgradeButtonDisplays;
 
         public void Initialize(CompSO compSO, int parentIndex, GameObject compButtonPrefab)
@@ -18,16 +18,20 @@ namespace Rechrysalis.CompCustomizer
             // {
                 CreateCompButton(compSO, compButtonPrefab, parentIndex, 0);
             SetUpButtonDisplayUnit(compSO, parentIndex, 0);
+            _compUpgradeManagers[0].SetUpgradeType(UpgradeTypeClass.UpgradeType.Basic);
             CreateCompButton(compSO, compButtonPrefab, parentIndex, 1);
             SetUpButtonDisplayUnit(compSO, parentIndex, 1);
+            _compUpgradeManagers[1].SetUpgradeType(UpgradeTypeClass.UpgradeType.Advanced);
             CreateCompButton(compSO, compButtonPrefab, parentIndex, 2);
             SetUpButtonDisplayHatchEffect(compSO, parentIndex, 2);
+            _compUpgradeManagers[2].SetUpgradeType(UpgradeTypeClass.UpgradeType.HatchEffect);
             // }
         }
         private void CreateCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex)
         {
             GameObject _compButton = Instantiate(compButtonPrefab, transform);
             _upgradeButtonDisplays[childIndex] = _compButton.GetComponent<UpgradeButtonDisplay>();
+            _compUpgradeManagers[childIndex] = _compButton.GetComponent<CompUpgradeManager>();
         }
         private void SetUpButtonDisplayUnit(CompSO compSO, int parentIndex, int childIndex)
         {
