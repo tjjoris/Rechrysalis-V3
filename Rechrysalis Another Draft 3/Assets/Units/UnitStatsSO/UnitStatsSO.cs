@@ -51,6 +51,11 @@ namespace Rechrysalis.Unit
        [SerializeField] private UnitStatsMultiplierSO _tierMultiplier;
        public UnitStatsMultiplierSO TierMultiplier {get {return _tierMultiplier;}}
 
+       
+        private void OnValidate()
+        {
+           Initialize();
+        }
         public void Initialize()
         {
             _healthMax = _origionalBaseHealthMax * _baseMultipler.HealthMultiplier * _typeMultipler.HealthMultiplier * _tierMultiplier.HealthMultiplier;
