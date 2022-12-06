@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
+using System;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -9,6 +10,7 @@ namespace Rechrysalis.CompCustomizer
     {
         [SerializeField] private CompUpgradeManager[] _compUpgradeManagers;
         private UpgradeButtonDisplay[] _upgradeButtonDisplays;
+        public Action<CompUpgradeManager> _onCompUpgradeClicked;
 
         public void Initialize(CompSO compSO, int parentIndex, GameObject compButtonPrefab)
         {
@@ -25,7 +27,43 @@ namespace Rechrysalis.CompCustomizer
             CreateCompButton(compSO, compButtonPrefab, parentIndex, 2);
             SetUpButtonDisplayHatchEffect(compSO, parentIndex, 2);
             _compUpgradeManagers[2].SetUpgradeType(UpgradeTypeClass.UpgradeType.HatchEffect);
+            SubscribeToCompButtons();
             // }
+        }
+        private void SubscribeToCompButtons()
+        {
+            if (_compUpgradeManagers != null)
+            {
+                for (int _index=0; _index<_compUpgradeManagers.Length; _index++)
+                {
+                    if (_compUpgradeManagers[_index] != null)
+                    {
+                        _compUpgradeManagers[_index]._onCompUpgradeClicked -= CompUpgradeClicked;
+                        _compUpgradeManagers[_index]._onCompUpgradeClicked += CompUpgradeClicked;
+                    }
+                }
+            }
+        }
+        private void OnEnable()
+        {
+            SubscribeToCompButtons();
+        }
+        private void OnDisable()
+        {
+            if (_compUpgradeManagers != null)
+            {
+                for (int _index = 0; _index < _compUpgradeManagers.Length; _index++)
+                {
+                    if (_compUpgradeManagers[_index] != null)
+                    {
+                        _compUpgradeManagers[_index]._onCompUpgradeClicked -= CompUpgradeClicked;
+                    }
+                }
+            }
+        }
+        private void CompUpgradeClicked(CompUpgradeManager compUpgradeManager)
+        {
+            _onCompUpgradeClicked?.Invoke(compUpgradeManager);
         }
         private void CreateCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex)
         {

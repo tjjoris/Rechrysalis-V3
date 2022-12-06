@@ -37,6 +37,10 @@ namespace Rechrysalis.CompCustomizer
                 _selectionInitialize._onUpgradeButtonClicked -= SelectorButtonClicked;
                 _selectionInitialize._onUpgradeButtonClicked += SelectorButtonClicked;
             }
+            if (_compInitialize != null)
+            {
+                
+            }
         }
         private void Start()
         {
