@@ -21,6 +21,19 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
         [SerializeField] private int _upgradeIndex;
         
+        private void OnEnable()
+        {
+            SubscribeToButtons();
+        }
+        private void OnDisable()
+        {
+            _selectionInitialize._onUpgradeButtonClicked -= SelectorButtonClicked;
+        }
+        private void SubscribeToButtons()
+        {
+            _selectionInitialize._onUpgradeButtonClicked -= SelectorButtonClicked;
+            _selectionInitialize._onUpgradeButtonClicked += SelectorButtonClicked;
+        }
         private void Start()
         {
             _selectionInitialize.Initialize(_compCustomizerSO);
