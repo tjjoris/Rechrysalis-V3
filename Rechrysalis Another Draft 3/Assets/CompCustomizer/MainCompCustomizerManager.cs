@@ -79,15 +79,9 @@ namespace Rechrysalis.CompCustomizer
                     _upgradeTypeClass = new UpgradeTypeClass();
                 }
                 _upgradeTypeClass = _upgradeButtonManager.GetSelectionIndexToSelection().GetUpgradeTypeClass();
-                // _upgradeTypeClass.SetUpgradeType(_upgradeButtonManager.GetSelectionIndexToSelection().GetThisUpgradeType());
-                // if ((_upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic) || (_upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced))
-                // {
-                //     _upgradeTypeClass.SetUnitStatsSO(_upgradeButtonManager.GetSelectionIndexToSelection().GetUnitStatsSO());
-                //     _compUpgradeManager.GetUpgradeButtonDisplay().DisplayForUnit(_upgradeTypeClass.GetUnitStatsSO());
-                
                 ChangeUnitInComp(_compUpgradeManager.ParentIndex, 0, _upgradeTypeClass);
-                // _compInitialize.SetCompUpgradeDisplay(_compUpgradeManager.ParentIndex, _compUpgradeManager.ChildIndex, _upgradeTypeClass);
-                // }
+                _upgradeButtonManager = null;
+                _compUpgradeManager = null;
             }
         }
         private void ChangeUnitInComp(int parentIndex, int childIndex, UpgradeTypeClass upgradeTypeClass)
