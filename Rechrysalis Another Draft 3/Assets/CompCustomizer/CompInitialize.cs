@@ -11,21 +11,21 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private GameObject _compButtonPrefab;
         [SerializeField] private CompVerticalManager[] _verticalMangers;
 
-        public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, GameObject compButtonPrefab)
+        public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp)
         {
             _compCustomizerSO = compCustomizerSO;  
 
         }
-        private void LoopVerticals(CompSO playerComp, GameObject compButtonPrefab)
+        private void LoopVerticals(CompSO playerComp)
         {
             for (int parentIndex = 0; parentIndex < 3; parentIndex ++)
             {
 
             }
         }
-        private void SetUpEachVertical(CompSO playerComp, GameObject compButtonPrefab, int parentIndex)
+        private void SetUpEachVertical(CompSO playerComp, int parentIndex)
         {
-            _verticalMangers[parentIndex]?.Initialize(playerComp, parentIndex, compButtonPrefab);
+            _verticalMangers[parentIndex]?.Initialize(playerComp, parentIndex, _compButtonPrefab);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;
         public CompsAndUnitsSO CompsAndUnitsSO { get{ return _compsAndUnitsSO; } set{ _compsAndUnitsSO = value; } }
         [SerializeField] private SelectionInitialize _selectionInitialize;
+        [SerializeField] private CompInitialize _compInitialize;
         
         [SerializeField] private CompSO _compSO;
         public CompSO CompSO { get{ return _compSO; } set{ _compSO = value; } }
@@ -19,6 +20,7 @@ namespace Rechrysalis.CompCustomizer
         private void Start()
         {
             _selectionInitialize.Initialize(_compCustomizerSO);
+            _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0]);
         }
     }
 }
