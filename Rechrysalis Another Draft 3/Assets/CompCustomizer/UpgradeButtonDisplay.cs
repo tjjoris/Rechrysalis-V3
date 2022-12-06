@@ -22,21 +22,21 @@ namespace Rechrysalis.CompCustomizer
         {
             if ((_selectionIndexToSelection.GetThisUpgradeType() == UpgradeTypeClass.UpgradeType.Basic) || (_selectionIndexToSelection.GetThisUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced))
             {
-                DisplayForUnit();
+                DisplayForUnit(_selectionIndexToSelection.GetUnitStatsSO());
             }
             else if (_selectionIndexToSelection.GetThisUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
             {
-                DisplayForHatchEffect();
+                DisplayForHatchEffect(_selectionIndexToSelection.GetHatchEffectSO());
             }
         }
-        private void DisplayForUnit()
+        public void DisplayForUnit(UnitStatsSO unitStatsSO)
         {
-            _body.sprite = _selectionIndexToSelection.GetUnitStatsSO().UnitSprite;
-            _nameText.text = _selectionIndexToSelection.GetUnitStatsSO().UnitName;
+            _body.sprite = unitStatsSO.UnitSprite;
+            _nameText.text = unitStatsSO.UnitName;
         }
-        private void DisplayForHatchEffect()
+        public void DisplayForHatchEffect(HatchEffectSO hatchEffectSO)
         {
-            _nameText.text = _selectionIndexToSelection.GetHatchEffectSO().HatchEffectName;
+            _nameText.text = hatchEffectSO.HatchEffectName;
         }
     }
 }
