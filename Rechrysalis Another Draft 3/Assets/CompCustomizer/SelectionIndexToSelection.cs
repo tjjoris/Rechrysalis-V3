@@ -22,6 +22,7 @@ namespace Rechrysalis.CompCustomizer
         
         public void Initialize(CompCustomizerSO compCustomizerSO)
         {
+            _upgradeTypeClass = new UpgradeTypeClass();
             _randomUpgradeSelection = GetComponent<RandomUpgradeSelection>();
             _compCustomizerSO = compCustomizerSO;        
             _upgradeBasicSelectionCount = _compCustomizerSO.BasicUnitArray.Length;
@@ -56,7 +57,6 @@ namespace Rechrysalis.CompCustomizer
         }
         private void SetUpgradeTypeClass(UpgradeTypeClass.UpgradeType upgradeType)
         {
-            _upgradeTypeClass = new UpgradeTypeClass();
             _upgradeTypeClass.SetUpgradeType(upgradeType);
         }
         public UnitStatsSO GetUnitStatsSO()
