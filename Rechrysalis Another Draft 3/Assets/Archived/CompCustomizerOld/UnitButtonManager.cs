@@ -6,7 +6,7 @@ using TMPro;
 using System;
 using Rechrysalis.HatchEffect;
 
-namespace Rechrysalis.CompCustomizer
+namespace Rechrysalis.CompCustomizerOld
 {
     public class UnitButtonManager : MonoBehaviour
     {

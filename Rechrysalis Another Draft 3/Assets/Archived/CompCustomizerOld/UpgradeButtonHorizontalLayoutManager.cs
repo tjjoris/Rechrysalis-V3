@@ -4,7 +4,7 @@ using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.HatchEffect;
 
-namespace Rechrysalis.CompCustomizer
+namespace Rechrysalis.CompCustomizerOld
 {
     public class UpgradeButtonHorizontalLayoutManager : MonoBehaviour
     {
@@ -19,17 +19,19 @@ namespace Rechrysalis.CompCustomizer
 
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
 
-        public void Initialize (CompCustomizerSO _compCustomizerSO, UnitStatsSO _basicUnitNotToPick, UnitStatsSO _advUnitNotToPick, HatchEffectSO _hatchEfectNotToPick, Color _basicColour, Color _advColour, Color _hatchColour)
+        public void Initialize (CompCustomizerSO _compCustomizerSO, UnitStatsSO _basicUnitNotToPick, UnitStatsSO _advUnitNotToPick, HatchEffectSO _hatchEfectNotToPick, Color _basicColour, Color _advColour, Color _hatchColour, int _perParentIndex)
         {
             this._compCustomizerSO = _compCustomizerSO;
             CheckTOPickABasicUnit(_basicUnitNotToPick);
             CheckToPickAAdvUnit(_advUnitNotToPick);
             CheckToPickHatchEffect(_hatchEfectNotToPick);
-            _upgradeButtonManagerArray[0].Initialize(_basicUnitSO, null, false);
+            int _parentIndex = _perParentIndex * 3;
+            Debug.Log($"parent index for horizontal " + _parentIndex);
+            _upgradeButtonManagerArray[0].Initialize(_basicUnitSO, null, false, (_parentIndex + 0));
             _upgradeButtonManagerArray[0].SetBackGColour(_basicColour);
-            _upgradeButtonManagerArray[1].Initialize(_advUnitSO, null, true);
+            _upgradeButtonManagerArray[1].Initialize(_advUnitSO, null, true, (_parentIndex + 1));
             _upgradeButtonManagerArray[1].SetBackGColour(_advColour);
-            _upgradeButtonManagerArray[2].Initialize(null, _hatchEffectSO, true);
+            _upgradeButtonManagerArray[2].Initialize(null, _hatchEffectSO, true, (_parentIndex + 2));
             _upgradeButtonManagerArray[2].SetBackGColour(_hatchColour);
 
         }
@@ -58,8 +60,8 @@ namespace Rechrysalis.CompCustomizer
         }
         private UnitStatsSO PickAAdvUnit()
         {
-            int _availableAdvUnitIndex = UnityEngine.Random.Range(0, _compCustomizerSO.ArrayOfAvailableAdvUnits.Length);
-            return _compCustomizerSO.ArrayOfAvailableAdvUnits[_availableAdvUnitIndex];
+            int _availableAdvUnitIndex = UnityEngine.Random.Range(0, _compCustomizerSO.T1Adv.Length);
+            return _compCustomizerSO.T1Adv[_availableAdvUnitIndex];
         }
         private UnitStatsSO CheckTOPickABasicUnit(UnitStatsSO _basicUnitNotToPick)
         {

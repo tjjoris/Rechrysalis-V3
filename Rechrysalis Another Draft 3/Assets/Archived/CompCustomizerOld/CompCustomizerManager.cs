@@ -5,7 +5,7 @@ using Rechrysalis.Unit;
 using Rechrysalis.HatchEffect;
 using UnityEngine.SceneManagement;
 
-namespace Rechrysalis.CompCustomizer
+namespace Rechrysalis.CompCustomizerOld
 {
     public class CompCustomizerManager : MonoBehaviour
     {
@@ -25,6 +25,7 @@ namespace Rechrysalis.CompCustomizer
         private HatchEffectSO[] _appliedHatchEffectsToComp;
         private UnitButtonManager _compPositionSelected;
         private UpgradeButtonManager _upgradeSelected;
+        private int[] _indexOfButtonUpgradeAppliedTo;
         private List<UpgradeButtonManager> _listOfSetUpgrades;
         private int _beginningNumberOfUpgrades = 2;
         
@@ -44,6 +45,7 @@ namespace Rechrysalis.CompCustomizer
             // _appliedHatchEffectsToComp = _compSO.HatchEffectSOArray;
             SetUnitAndHatchArraysToCompSO();
             _numberOfUpgradesToChoose = _compCustomizerSO.NumberOfUpgrades;
+            _indexOfButtonUpgradeAppliedTo = new int[3 * _numberOfUpgradesToChoose];
             _upgradeButtonArray = new UpgradeButtonManager[3 * _numberOfUpgradesToChoose];
             UnitStatsSO _basicUnitNotToPick = null;
             UnitStatsSO _advUnitNotToPick = null;
@@ -52,7 +54,7 @@ namespace Rechrysalis.CompCustomizer
             {
                 GameObject go = Instantiate (_upgradeButtonHorizontalLayoutGroupPrefab, _upgradeButtonVerticalLayoutGroup.transform);
                 UpgradeButtonHorizontalLayoutManager _horizontalManager = go.GetComponent<UpgradeButtonHorizontalLayoutManager>();
-                _horizontalManager?.Initialize(_compCustomizerSO, _basicUnitNotToPick, _advUnitNotToPick, _hatchEffectNotToPick, _basicColour, _advColour, _hatchColour);
+                _horizontalManager?.Initialize(_compCustomizerSO, _basicUnitNotToPick, _advUnitNotToPick, _hatchEffectNotToPick, _basicColour, _advColour, _hatchColour, _numberOfUpgradesCount);
                 _basicUnitNotToPick = _horizontalManager.BasicUnitSO;
                 _advUnitNotToPick = _horizontalManager.AdvUnitSO;
                 _hatchEffectNotToPick = _horizontalManager.HatchEffectSO;
@@ -65,7 +67,7 @@ namespace Rechrysalis.CompCustomizer
             _arrayOfUnitButtonManagers = _compWindowManager.ArrayOfUnitButtonManagers;
             _displayManager.Initialize();
             SubscribeToButtons();
-            CheckToMakeEmptyUnits();
+            // CheckToMakeEmptyUnits();
             CheckIfCompIsFullToEnableReady();
         }        
         private void SetUnitAndHatchArraysToCompSO()
@@ -175,6 +177,8 @@ namespace Rechrysalis.CompCustomizer
                     {
                         // _appliedUnitsToComp[_compPositionSelected.CompPosition] = _upgradeSelected.UnitStats;
                         // _compPositionSelected.ChangeUnit(_upgradeSelected.UnitStats);
+                        RemoveOldAppliedUpgradeToComp(_indexOfButtonUpgradeAppliedTo[_upgradeSelected.IndexOfUpgradeButton]);
+                        
                         ChangeUnit(_compPositionSelected, _upgradeSelected.UnitStats);
                     }            
                     else if (_upgradeSelected.HatchEffect != null)
@@ -202,8 +206,15 @@ namespace Rechrysalis.CompCustomizer
         //         ChangeUnit(_compPositionSelected, _emptyUnitStatsSO);
         //     }
         // }
+        private void RemoveOldAppliedUpgradeToComp(int _index)
+        {
+            _appliedUnitsToComp[_index] = null;
+            int _indexOfUnitToReset = _indexOfButtonUpgradeAppliedTo[_index];
+            ChangeUnit(_arrayOfUnitButtonManagers[_indexOfUnitToReset], _compSO.UnitSOArray[_indexOfUnitToReset]);
+        }
         private void ChangeUnit(UnitButtonManager _compPosition, UnitStatsSO _newUnit)
         {
+            Debug.Log($"change unit index " + _compPosition.IndexInComp + " unit " + _newUnit);
              _appliedUnitsToComp[_compPosition.CompPosition] = _newUnit;
             _compPosition.ChangeUnit(_newUnit);
             DisplayUnitButtonClicked(_compPosition);
@@ -251,34 +262,62 @@ namespace Rechrysalis.CompCustomizer
                     {
                         if (_appliedUnitsToComp[(_parentIndex * _compSO.ParentUnitCount)] == null)
                         {
-                            if ((_appliedUnitsToComp[_unitIndex] != null) || (_appliedHatchEffectsToComp[_unitIndex] != null))
+                            if ((_appliedUnitsToComp[_unitIndex] != null))
+                                // if ((_appliedUnitsToComp[_unitIndex] != null) || (_appliedHatchEffectsToComp[_unitIndex] != null))
                             {
                                 Debug.Log($"changed basic to empty because advanced");
-                                ChangeUnit(_arrayOfUnitButtonManagers[_parentIndex * _compSO.ParentUnitCount], _emptyUnitStatsSO);
+                                int _indexInCompCustomizerBasic = GetBasicUnitIndexInCompSO(_appliedUnitsToComp[_unitIndex]);
+                                Debug.Log($"index of unit " + _unitIndex + " index of unitStatsSO " + _indexInCompCustomizerBasic + " unitStatsSO " + _appliedUnitsToComp[_unitIndex].UnitName);
+                                ChangeUnit(_arrayOfUnitButtonManagers[_parentIndex * _compSO.ParentUnitCount], _compCustomizerSO.ArrayOfAvailableBasicUnits[_indexInCompCustomizerBasic]);
                             }
                         }                    
-                        if ((_appliedUnitsToComp[_unitIndex] == null) && (_appliedHatchEffectsToComp[_unitIndex] != null))
-                        {
-                            ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], _emptyAdvancedUnitStatsSO);
-                        }
+                        // if ((_appliedUnitsToComp[_unitIndex] == null) && (_appliedHatchEffectsToComp[_unitIndex] != null))
+                        // {
+                        //     ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], _emptyAdvancedUnitStatsSO);
+                        // }
                     }
                     if ((_childIndex != 0) && (_appliedUnitsToComp[_unitIndex] != null) && (_appliedUnitsToComp[_unitIndex].UnitName == "Empty") && (_appliedHatchEffectsToComp[_unitIndex] == null))
                     {
-                        ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], null);
+                        ChangeUnit(_arrayOfUnitButtonManagers[_unitIndex], null);                        
                     }
                     if (((_appliedUnitsToComp[_unitIndex] != null) && (_appliedUnitsToComp[_unitIndex].UnitName != "Empty")) || (_appliedHatchEffectsToComp[_unitIndex] != null))
                     {
                         // if (_appliedUnitsToComp[_unitIndex] != null) Debug.Log($" name " + _appliedUnitsToComp[_unitIndex].UnitName + " index " + _unitIndex);                        
                         _childUpgradePresent = true;
+                        Debug.Log($"child upgrade present parent index " + _parentIndex);
                     }
+                    
                 }
                 // Debug.Log($"child or unit hatch " + _childUpgradePresent + " parent " + _parentIndex);
-                if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount] != null) && (_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_childUpgradePresent == false))                
-                {
-                    // Debug.Log($"clear unit");
+                // if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_childUpgradePresent == false))
+                    if ((_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount] != null) && (_appliedUnitsToComp[_parentIndex * _compSO.ParentUnitCount].UnitName == "Empty") && (_childUpgradePresent == false))
+                    {
+                    Debug.Log($"clear basic unit " + _parentIndex * _compSO.ParentUnitCount);                    
                     ChangeUnit(_arrayOfUnitButtonManagers[_parentIndex * _compSO.ParentUnitCount], null);
                 }
             }
+        }
+        private int GetAdvUnitIndexInCompSO(UnitStatsSO _unitStats)
+        {
+            for (int _index = 0; _index < _compCustomizerSO.ArrayOfAvailableBasicUnits.Length; _index ++)
+            {
+                if (_compCustomizerSO.ArrayOfAvailableBasicUnits[_index] == _unitStats)
+                {
+                    return _index;
+                }                
+            }
+            return -1;
+        }
+        private int GetBasicUnitIndexInCompSO(UnitStatsSO _unitStats)
+        {
+            for (int _index = 0; _index < _compCustomizerSO.T1Adv.Length; _index++)
+            {
+                if (_compCustomizerSO.T1Adv[_index] == _unitStats)
+                {
+                    return _index;
+                }
+            }
+            return -1;
         }
         public void ReadyClicked()
         {   

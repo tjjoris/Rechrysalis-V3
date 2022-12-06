@@ -5,7 +5,7 @@ using TMPro;
 using Rechrysalis.Unit;
 using Rechrysalis.HatchEffect;
 
-namespace Rechrysalis.CompCustomizer
+namespace Rechrysalis.CompCustomizerOld
 {
     public class DisplayManager : MonoBehaviour
     {
