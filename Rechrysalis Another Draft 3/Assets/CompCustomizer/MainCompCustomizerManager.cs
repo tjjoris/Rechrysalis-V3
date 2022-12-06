@@ -16,6 +16,7 @@ namespace Rechrysalis.CompCustomizer
         
         [SerializeField] private CompSO _compSO;
         public CompSO CompSO { get{ return _compSO; } set{ _compSO = value; } }
+        private CompSO _changedComp;
         [SerializeField] private UpgradeButtonManager _upgradeButtonManager;
         [SerializeField] private CompUpgradeManager _compUpgradeManager;
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
@@ -46,8 +47,14 @@ namespace Rechrysalis.CompCustomizer
         }
         private void Start()
         {
+            _compSO = _compsAndUnitsSO.CompsSO[0];
+            ResetChangedComp();
             _selectionInitialize.Initialize(_compCustomizerSO);
             _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0]);
+        }
+        private void ResetChangedComp()
+        {
+            _changedComp = _compSO;
         }
         private void SelectorButtonClicked(UpgradeButtonManager upgradeButtonManager)
         {
@@ -78,9 +85,14 @@ namespace Rechrysalis.CompCustomizer
                 //     _upgradeTypeClass.SetUnitStatsSO(_upgradeButtonManager.GetSelectionIndexToSelection().GetUnitStatsSO());
                 //     _compUpgradeManager.GetUpgradeButtonDisplay().DisplayForUnit(_upgradeTypeClass.GetUnitStatsSO());
                 
-                _compInitialize.SetCompUpgradeDisplay(_compUpgradeManager.ParentIndex, _compUpgradeManager.ChildIndex, _upgradeTypeClass);
+                ChangeUnitInComp(_compUpgradeManager.ParentIndex, 0, _upgradeTypeClass);
+                // _compInitialize.SetCompUpgradeDisplay(_compUpgradeManager.ParentIndex, _compUpgradeManager.ChildIndex, _upgradeTypeClass);
                 // }
             }
+        }
+        private void ChangeUnitInComp(int parentIndex, int childIndex, UpgradeTypeClass upgradeTypeClass)
+        {
+            _compInitialize.SetCompUpgradeDisplay(parentIndex, childIndex, upgradeTypeClass);
         }
     }
 }
