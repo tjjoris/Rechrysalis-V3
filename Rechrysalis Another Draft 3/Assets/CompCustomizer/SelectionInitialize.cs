@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -15,6 +16,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private int[] _upgradeButtonIndex;
         private SelectionIndexToSelection _selectionIndexToSelection;
         private int _upgradeSelectionCount;
+        public Action<UpgradeButtonManager> _onUpgradeButtonClicked;
         
         
         public void Initialize(CompCustomizerSO compCustomizerSO)
@@ -23,7 +25,8 @@ namespace Rechrysalis.CompCustomizer
             _upgradeButtonIndex = new int[_numberOfUpgrades];
             _compCustomizerSO = compCustomizerSO;
             CalculateUpgradeSelectionCount();
-            CreateAllSelectionButtons();     
+            CreateAllSelectionButtons();   
+            SubscribeToUpgradeButtons();  
         }
         private void CreateSelectionButton(int index)
         {
@@ -43,6 +46,39 @@ namespace Rechrysalis.CompCustomizer
         public void CalculateUpgradeSelectionCount()
         {
             _upgradeSelectionCount = _compCustomizerSO.BasicUnitArray.Length + _compCustomizerSO.AdvancedUnitSelectionT1Array.Length + _compCustomizerSO.HatchEffectSelectionArray.Length;
+        }
+        public void OnDisable()
+        {
+            for (int _index=0; _index < _upgradebuttonManager.Length; _index++)
+            {
+                if (_upgradebuttonManager[_index] != null)
+                {
+                    _upgradebuttonManager[_index]._onUpgradeButtonClicked -= UpgradeButtonClicked;
+                }
+            }
+        }
+        public void OnEnable()
+        {
+            SubscribeToUpgradeButtons();
+        }
+        public void SubscribeToUpgradeButtons()
+        {
+            for (int _index = 0; _index < _upgradebuttonManager.Length; _index ++)
+            {
+                if (_upgradebuttonManager[_index] != null)
+                {
+                    SubscribeToUpgradeButton(_upgradebuttonManager[_index]);
+                }
+            }
+        }
+        public void SubscribeToUpgradeButton(UpgradeButtonManager upgradeButtonManager)
+        {
+            upgradeButtonManager._onUpgradeButtonClicked -= UpgradeButtonClicked;
+            upgradeButtonManager._onUpgradeButtonClicked += UpgradeButtonClicked;
+        }
+        public void UpgradeButtonClicked(UpgradeButtonManager upgradeButtonManager)
+        {
+            _onUpgradeButtonClicked?.Invoke(upgradeButtonManager);
         }
     }
 }

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.HatchEffect;
+using System;
 
 namespace Rechrysalis.CompCustomizer
 {
-    [System.Serializable]
-    [CreateAssetMenu(fileName = "UpgradeButtonManager", menuName = "CompCustomizer/UpgradeButtonManager")]
+    // [System.Serializable]
+    // [CreateAssetMenu(fileName = "UpgradeButtonManager", menuName = "CompCustomizer/UpgradeButtonManager")]
 
     public class UpgradeButtonManager : MonoBehaviour
     {
@@ -18,6 +19,7 @@ namespace Rechrysalis.CompCustomizer
         private RandomUpgradeSelection _randomUpgradeSelection;
         private SelectionIndexToSelection _selectionIndexToSelection;
         private UpgradeButtonDisplay _upgradeButtonDisplay;
+        public Action<UpgradeButtonManager> _onUpgradeButtonClicked;
         
         public void Initialize(CompCustomizerSO _compCustomizerSO)
         {
@@ -41,6 +43,10 @@ namespace Rechrysalis.CompCustomizer
         public SelectionIndexToSelection GetSelectionIndexToSelection()
         {
             return _selectionIndexToSelection;
+        }
+        public void ButtonClicked()
+        {
+            _onUpgradeButtonClicked?.Invoke(this);
         }
     }
 }
