@@ -68,13 +68,19 @@ namespace Rechrysalis.CompCustomizer
             if ((_upgradeButtonManager != null) && (_compUpgradeManager != null))
             {
                 if (_upgradeTypeClass == null)
-                _upgradeTypeClass = new UpgradeTypeClass();
-                _upgradeTypeClass.SetUpgradeType(_upgradeButtonManager.GetSelectionIndexToSelection().GetThisUpgradeType());
-                if ((_upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic) || (_upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced))
                 {
-                    _upgradeTypeClass.SetUnitStatsSO(_upgradeButtonManager.GetSelectionIndexToSelection().GetUnitStatsSO());
-                    _compUpgradeManager.GetUpgradeButtonDisplay().DisplayForUnit(_upgradeTypeClass.GetUnitStatsSO());
+                    _upgradeTypeClass = new UpgradeTypeClass();
                 }
+                _upgradeTypeClass.SetUpgradeType(_upgradeButtonManager.GetSelectionIndexToSelection().GetThisUpgradeType());
+                // if ((_upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic) || (_upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced))
+                // {
+                //     _upgradeTypeClass.SetUnitStatsSO(_upgradeButtonManager.GetSelectionIndexToSelection().GetUnitStatsSO());
+                //     _compUpgradeManager.GetUpgradeButtonDisplay().DisplayForUnit(_upgradeTypeClass.GetUnitStatsSO());
+                if (_upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+                {
+                    
+                }                
+                // }
             }
         }
     }

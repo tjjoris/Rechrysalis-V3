@@ -85,5 +85,9 @@ namespace Rechrysalis.CompCustomizer
                 _upgradeButtonDisplays[childIndex].DisplayForHatchEffect(compSO.HatchEffectSOArray[(parentIndex * compSO.ChildUnitCount) + childIndex]);
             }
         }
+        public void SetCompUpgradeDisplay(int childIndex, UpgradeTypeClass upgradeTypeClass)
+        {
+            
+        }
     }
 }

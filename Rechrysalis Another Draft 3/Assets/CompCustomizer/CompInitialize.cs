@@ -65,5 +65,9 @@ namespace Rechrysalis.CompCustomizer
         {
             _verticalMangers[parentIndex]?.Initialize(playerComp, parentIndex, _compButtonPrefab);
         }
+        public void SetCompUpgradeDisplay(int parentIndex, int childIndex, UpgradeTypeClass upgradeTypeClass)
+        {
+            _verticalMangers[parentIndex]?.SetCompUpgradeDisplay(childIndex, upgradeTypeClass);
+        }
     }
 }
