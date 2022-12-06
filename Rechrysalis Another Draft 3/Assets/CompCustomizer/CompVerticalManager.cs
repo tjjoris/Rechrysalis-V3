@@ -64,7 +64,7 @@ namespace Rechrysalis.CompCustomizer
         {
             CreateCompButton(compSO, compButtonPrefab, parentIndex, childIndex);
             SetUpButtonDisplayUnit(compSO, parentIndex, childIndex);
-            _compUpgradeManagers[0].Initialize(parentIndex, childIndex);
+            _compUpgradeManagers[childIndex].Initialize(parentIndex, childIndex);
         }
         private void CreateCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex)
         {
