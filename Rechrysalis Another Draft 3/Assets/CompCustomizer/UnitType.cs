@@ -7,6 +7,8 @@ namespace Rechrysalis.CompCustomizer
     public class UnitTypeClass
     {
         public enum UnitType {Basic, Advanced, HatchEffect, Error};
+        [SerializeField] private UnitType _unitType;
+        public UnitType UnitTypeVar { get{ return _unitType; } set{ _unitType = value; } }
         
     }
 }
