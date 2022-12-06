@@ -14,23 +14,31 @@ namespace Rechrysalis.CompCustomizer
         {
             _upgradeButtonDisplays = new UpgradeButtonDisplay[3];
             _compUpgradeManagers = new CompUpgradeManager[3];
-            for (int childIndex = 0; childIndex < 3; childIndex ++)
-            {
-                CreateCompButton(compButtonPrefab, childIndex);
-            }
+            // for (int childIndex = 0; childIndex < 3; childIndex ++)
+            // {
+                CreateCompButton(compSO, compButtonPrefab, parentIndex, 0);
+            SetUpButtonDisplayUnit(compSO, parentIndex, 0);
+            CreateCompButton(compSO, compButtonPrefab, parentIndex, 1);
+            SetUpButtonDisplayUnit(compSO, parentIndex, 1);
+            CreateCompButton(compSO, compButtonPrefab, parentIndex, 2);
+            SetUpButtonDisplayHatchEffect(compSO, parentIndex, 2);
+            // }
         }
-        private void CreateCompButton(GameObject compButtonPrefab, int childIndex)
+        private void CreateCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex)
         {
             GameObject _compButton = Instantiate(compButtonPrefab, transform);
             _upgradeButtonDisplays[childIndex] = _compButton.GetComponent<UpgradeButtonDisplay>();
         }
-        private void SetUpButtonDisplay(CompSO compSO, UpgradeButtonDisplay upgradeButtonDispaly, int parentIndex, int childIndex)
+        private void SetUpButtonDisplayUnit(CompSO compSO, int parentIndex, int childIndex)
         {
             if (compSO.UnitSOArray[(parentIndex * compSO.ChildUnitCount) + childIndex] != null)
             {
                 _upgradeButtonDisplays[childIndex].DisplayForUnit(compSO.UnitSOArray[(parentIndex * compSO.ChildUnitCount) + childIndex]);
             }
-            else if (compSO.HatchEffectSOArray[(parentIndex * compSO.ChildUnitCount) + childIndex] != null)
+        }
+        private void SetUpButtonDisplayHatchEffect(CompSO compSO, int parentIndex, int childIndex)
+        {
+            if (compSO.HatchEffectSOArray[(parentIndex * compSO.ChildUnitCount) + childIndex] != null)
             {
                 _upgradeButtonDisplays[childIndex].DisplayForHatchEffect(compSO.HatchEffectSOArray[(parentIndex * compSO.ChildUnitCount) + childIndex]);
             }
