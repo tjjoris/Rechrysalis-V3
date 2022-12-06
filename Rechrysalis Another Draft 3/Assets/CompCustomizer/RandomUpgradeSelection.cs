@@ -11,6 +11,7 @@ namespace Rechrysalis.CompCustomizer
         private SelectionIndexToSelection _selectionIndexToSelection;
         private int _randomIndex;        
         private int upgradeSelectionCount;
+        private bool _debugBool = false;
         public void Initialize()
         {
             _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
@@ -25,6 +26,8 @@ namespace Rechrysalis.CompCustomizer
         private void GetRandomNumber(int selectionCount)
         {
             _randomIndex = Random.Range(0, selectionCount);
+            if (_debugBool)
+            Debug.Log($"random number " + _randomIndex);
         }
         private void CheckIfDuplicate(int[] upgradeSelectionIndexArray, int selectionCount)
         {
@@ -68,6 +71,7 @@ namespace Rechrysalis.CompCustomizer
         }
         private void DuplicateFoundGetNew(int selectionCount, int[] upgradeSelectionIndex)
         {
+            if (_debugBool)
             Debug.Log($"duplicate found");
             GetRandomNumber(selectionCount);
             CheckIfDuplicate(upgradeSelectionIndex, selectionCount);
