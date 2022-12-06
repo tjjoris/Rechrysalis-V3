@@ -31,13 +31,17 @@ namespace Rechrysalis.CompCustomizer
         }
         private void SubscribeToButtons()
         {
-            _selectionInitialize._onUpgradeButtonClicked -= SelectorButtonClicked;
-            _selectionInitialize._onUpgradeButtonClicked += SelectorButtonClicked;
+            if (_selectionInitialize != null)
+            {
+                _selectionInitialize._onUpgradeButtonClicked -= SelectorButtonClicked;
+                _selectionInitialize._onUpgradeButtonClicked += SelectorButtonClicked;
+            }
         }
         private void Start()
         {
             _selectionInitialize.Initialize(_compCustomizerSO);
             _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0]);
+            SubscribeToButtons();
         }
         private void SelectorButtonClicked(UpgradeButtonManager upgradeButtonManager)
         {

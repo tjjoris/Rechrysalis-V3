@@ -63,11 +63,14 @@ namespace Rechrysalis.CompCustomizer
         }
         public void SubscribeToUpgradeButtons()
         {
-            for (int _index = 0; _index < _upgradebuttonManager.Length; _index ++)
+            if (_upgradebuttonManager != null)
             {
-                if (_upgradebuttonManager[_index] != null)
+                for (int _index = 0; _index < _upgradebuttonManager.Length; _index ++)
                 {
-                    SubscribeToUpgradeButton(_upgradebuttonManager[_index]);
+                    if (_upgradebuttonManager[_index] != null)
+                    {
+                        SubscribeToUpgradeButton(_upgradebuttonManager[_index]);
+                    }
                 }
             }
         }
