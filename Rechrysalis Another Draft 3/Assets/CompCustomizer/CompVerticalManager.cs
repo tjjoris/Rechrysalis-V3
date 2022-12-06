@@ -87,7 +87,14 @@ namespace Rechrysalis.CompCustomizer
         }
         public void SetCompUpgradeDisplay(int childIndex, UpgradeTypeClass upgradeTypeClass)
         {
-            
+            if ((upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic) || (upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced))            
+            {
+                _upgradeButtonDisplays[childIndex]?.DisplayForUnit(upgradeTypeClass.GetUnitStatsSO());
+            }
+            if (upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
+            {
+                _upgradeButtonDisplays[childIndex]?.DisplayForHatchEffect(upgradeTypeClass.GetHatchEffectSO());
+            }
         }
     }
 }
