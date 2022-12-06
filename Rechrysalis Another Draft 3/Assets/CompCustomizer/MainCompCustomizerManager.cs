@@ -71,13 +71,14 @@ namespace Rechrysalis.CompCustomizer
                 {
                     _upgradeTypeClass = new UpgradeTypeClass();
                 }
-                _upgradeTypeClass.SetUpgradeType(_upgradeButtonManager.GetSelectionIndexToSelection().GetThisUpgradeType());
+                _upgradeTypeClass = _upgradeButtonManager.GetSelectionIndexToSelection().GetUpgradeTypeClass();
+                // _upgradeTypeClass.SetUpgradeType(_upgradeButtonManager.GetSelectionIndexToSelection().GetThisUpgradeType());
                 // if ((_upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic) || (_upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced))
                 // {
                 //     _upgradeTypeClass.SetUnitStatsSO(_upgradeButtonManager.GetSelectionIndexToSelection().GetUnitStatsSO());
                 //     _compUpgradeManager.GetUpgradeButtonDisplay().DisplayForUnit(_upgradeTypeClass.GetUnitStatsSO());
                 
-                // _compInitialize.SetCompUpgradeDisplay()                            
+                _compInitialize.SetCompUpgradeDisplay(_compUpgradeManager.ParentIndex, _compUpgradeManager.ChildIndex, _upgradeTypeClass);
                 // }
             }
         }
