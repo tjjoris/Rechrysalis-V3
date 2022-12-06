@@ -14,13 +14,13 @@ namespace Rechrysalis.CompCustomizer
         public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp)
         {
             _compCustomizerSO = compCustomizerSO;  
-
+            LoopVerticals(playerComp);
         }
         private void LoopVerticals(CompSO playerComp)
         {
             for (int parentIndex = 0; parentIndex < 3; parentIndex ++)
             {
-
+                SetUpEachVertical(playerComp, parentIndex);
             }
         }
         private void SetUpEachVertical(CompSO playerComp, int parentIndex)
