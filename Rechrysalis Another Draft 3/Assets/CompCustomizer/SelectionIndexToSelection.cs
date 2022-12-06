@@ -18,7 +18,8 @@ namespace Rechrysalis.CompCustomizer
         private RandomUpgradeSelection _randomUpgradeSelection;
         public enum UpgradeType {Basic, Advanced, HatchEffect, Error};
         private UpgradeType _thisUpgradeType;
-        [SerializeField] UpgradeTypeClass _upgradeTypeClass;
+        [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
+        public UpgradeTypeClass UpgradeTypeClassProp {get {return _upgradeTypeClass;} set{_upgradeTypeClass = value;}}
         
         
         public void Initialize(CompCustomizerSO compCustomizerSO)
