@@ -159,7 +159,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 247
 --- !u!114 &117628107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +242,7 @@ MonoBehaviour:
   _compCustomizerSO: {fileID: 11400000, guid: 5ca9183df0e6a48208639a14b95217d1, type: 2}
   _compsAndUnitsSO: {fileID: 11400000, guid: abce2c694bba2494b88e77f2ae192b6f, type: 2}
   _selectionInitialize: {fileID: 1909423963}
+  _compInitialize: {fileID: 1228158368}
   _compSO: {fileID: 0}
 --- !u!1 &446762915
 GameObject:
@@ -430,10 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _compButtonPrefab: {fileID: 1858269929011501162, guid: bf20bc1710cf74588a7291cfa3f61b27, type: 3}
-  _verticalGOs:
-  - {fileID: 2092751540}
-  - {fileID: 1287336171}
-  - {fileID: 1948182667}
+  _verticalMangers: []
 --- !u!1001 &1287336169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -534,11 +532,6 @@ PrefabInstance:
 --- !u!224 &1287336170 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6878637215049703428, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
-  m_PrefabInstance: {fileID: 1287336169}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1287336171 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6878637215049703427, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
   m_PrefabInstance: {fileID: 1287336169}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1609774730
@@ -957,11 +950,6 @@ MonoBehaviour:
   _upgradeButtonPrefab: {fileID: 2724834541006074091, guid: c33195cec711e43d3afaa2179dfc2515, type: 3}
   _upgradebuttonManager: []
   _upgradeButtonIndex: 
---- !u!1 &1948182667 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6878637215049703427, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
-  m_PrefabInstance: {fileID: 6878637215250843784}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1948182668 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6878637215049703428, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
@@ -1067,11 +1055,6 @@ PrefabInstance:
 --- !u!224 &2092751539 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6878637215049703428, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
-  m_PrefabInstance: {fileID: 2092751538}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2092751540 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6878637215049703427, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
   m_PrefabInstance: {fileID: 2092751538}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6878637215250843784
