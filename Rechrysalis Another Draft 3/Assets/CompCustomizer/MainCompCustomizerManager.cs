@@ -42,7 +42,6 @@ namespace Rechrysalis.CompCustomizer
         {
             _selectionInitialize.Initialize(_compCustomizerSO);
             _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0]);
-            SubscribeToButtons();
         }
         private void SelectorButtonClicked(UpgradeButtonManager upgradeButtonManager)
         {
