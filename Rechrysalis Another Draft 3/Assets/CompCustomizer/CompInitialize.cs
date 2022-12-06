@@ -47,14 +47,14 @@ namespace Rechrysalis.CompCustomizer
         public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp)
         {
             _compCustomizerSO = compCustomizerSO;  
-            LoopVerticals(playerComp);
+            LoopVerticalsToSetUp(playerComp);
             // SubscribeToVerticalManagers();
         }
         private void CompUpgradeClicked(CompUpgradeManager compUpgradeManager)
         {
             _onCompUpgradeClicked?.Invoke(compUpgradeManager);            
         }
-        private void LoopVerticals(CompSO playerComp)
+        private void LoopVerticalsToSetUp(CompSO playerComp)
         {
             for (int parentIndex = 0; parentIndex < 3; parentIndex ++)
             {

@@ -86,7 +86,7 @@ namespace Rechrysalis.CompCustomizer
         }
         private void ChangeUnitInComp(int parentIndex, int childIndex, UpgradeTypeClass upgradeTypeClass)
         {
-            _compInitialize.SetCompUpgradeDisplay(parentIndex, childIndex, upgradeTypeClass);
+            // _compInitialize.SetCompUpgradeDisplay(parentIndex, childIndex, upgradeTypeClass);
         }
     }
 }
