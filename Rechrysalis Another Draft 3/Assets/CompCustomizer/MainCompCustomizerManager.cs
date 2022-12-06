@@ -20,6 +20,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private CompUpgradeManager _compUpgradeManager;
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
         [SerializeField] private int _upgradeIndex;
+        [SerializeField] private bool _debugBool = true;
         
         private void OnEnable()
         {
@@ -45,6 +46,8 @@ namespace Rechrysalis.CompCustomizer
         }
         private void SelectorButtonClicked(UpgradeButtonManager upgradeButtonManager)
         {
+            if (_debugBool)
+            Debug.Log($"selector button clicked");
             _upgradeButtonManager = upgradeButtonManager;
             CheckIfCompToChange();
         }
