@@ -29,6 +29,7 @@ namespace Rechrysalis.CompCustomizer
         private void OnDisable()
         {
             _selectionInitialize._onUpgradeButtonClicked -= SelectorButtonClicked;
+            _compInitialize._onCompUpgradeClicked -= CompButtonClicked;
         }
         private void SubscribeToButtons()
         {
@@ -39,7 +40,8 @@ namespace Rechrysalis.CompCustomizer
             }
             if (_compInitialize != null)
             {
-                
+                _compInitialize._onCompUpgradeClicked -= CompButtonClicked;
+                _compInitialize._onCompUpgradeClicked += CompButtonClicked;
             }
         }
         private void Start()
@@ -56,6 +58,8 @@ namespace Rechrysalis.CompCustomizer
         }
         private void CompButtonClicked(CompUpgradeManager compUpgradeManager)
         {
+            if (_debugBool)
+            Debug.Log($"comp button clicked");
             _compUpgradeManager = compUpgradeManager;
             CheckIfCompToChange();
         }

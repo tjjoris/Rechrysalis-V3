@@ -48,7 +48,7 @@ namespace Rechrysalis.CompCustomizer
         {
             _compCustomizerSO = compCustomizerSO;  
             LoopVerticals(playerComp);
-            SubscribeToVerticalManagers();
+            // SubscribeToVerticalManagers();
         }
         private void CompUpgradeClicked(CompUpgradeManager compUpgradeManager)
         {
