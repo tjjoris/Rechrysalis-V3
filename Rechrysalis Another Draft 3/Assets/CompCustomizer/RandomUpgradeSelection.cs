@@ -9,6 +9,7 @@ namespace Rechrysalis.CompCustomizer
     public class RandomUpgradeSelection : MonoBehaviour
     {
         private SelectionIndexToSelection _selectionIndexToSelection;
+        private UpgradeTypeClass _upgradeTypeClassToCompare;
         private int _randomIndex;        
         private int upgradeSelectionCount;
         private bool _debugBool = false;
@@ -18,20 +19,22 @@ namespace Rechrysalis.CompCustomizer
         }
         public int GetRandomSelection(CompCustomizerSO compCustomizerSO, int[] upgradeSelectionIndexArray, int selectionCount)
         {
-            GetRandomNumber(selectionCount);
+            GetRandomNumberAndUpgradeClass(selectionCount);
             CheckIfDuplicate(upgradeSelectionIndexArray, selectionCount);
             return _randomIndex;
             
         }
-        private void GetRandomNumber(int selectionCount)
+        private void GetRandomNumberAndUpgradeClass(int selectionCount)
         {
             _randomIndex = Random.Range(0, selectionCount);
             if (_debugBool)
             Debug.Log($"random number " + _randomIndex);
+            _upgradeTypeClassToCompare = _selectionIndexToSelection.GetUpgradeTypeClassFromIndex(_randomIndex);
         }
         private void CheckIfDuplicate(int[] upgradeSelectionIndexArray, int selectionCount)
         {
-            _selectionIndexToSelection.UpgradeFromIndex(_randomIndex);
+            // _selectionIndexToSelection.UpgradeFromIndex(_randomIndex);
+            
             HatchEffectSO hatchEffectSOToCompare = null;
             UnitStatsSO unitStatsSOToCompare = null;
             UpgradeTypeClass.UpgradeType upgradeTypeToCompare = UpgradeTypeClass.UpgradeType.Error;
@@ -42,18 +45,18 @@ namespace Rechrysalis.CompCustomizer
                 // if (_selectionIndexToSelection.GetThisUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect) 
                 // {
                 _selectionIndexToSelection.GetUpgradeTypeWithoutChanging(ref upgradeSelectionIndexArray[i], ref unitStatsSOToCompare, ref hatchEffectSOToCompare, ref upgradeTypeToCompare);
-                if (_selectionIndexToSelection.GetThisUpgradeType() == upgradeTypeToCompare)
+                if (_upgradeTypeClassToCompare.GetUpgradeType() == upgradeTypeToCompare)
                 {
                     if ((upgradeTypeToCompare == UpgradeTypeClass.UpgradeType.Basic) || (upgradeTypeToCompare == UpgradeTypeClass.UpgradeType.Advanced))
                     {
-                        if (unitStatsSOToCompare == _selectionIndexToSelection.GetUnitStatsSO())
+                        if (unitStatsSOToCompare == _upgradeTypeClassToCompare.GetUnitStatsSO())
                         {
                             DuplicateFoundGetNew(selectionCount, upgradeSelectionIndexArray);
                         }
                     }
                     if (upgradeTypeToCompare == UpgradeTypeClass.UpgradeType.HatchEffect)
                     {
-                        if (hatchEffectSOToCompare == _selectionIndexToSelection.GetHatchEffectSO())
+                        if (hatchEffectSOToCompare == _upgradeTypeClassToCompare.GetHatchEffectSO())
                         {
                             DuplicateFoundGetNew(selectionCount, upgradeSelectionIndexArray);
                         }
@@ -73,13 +76,13 @@ namespace Rechrysalis.CompCustomizer
         {
             if (_debugBool)
             Debug.Log($"duplicate found");
-            GetRandomNumber(selectionCount);
+            GetRandomNumberAndUpgradeClass(selectionCount);
             CheckIfDuplicate(upgradeSelectionIndex, selectionCount);
             return;
         }
         public int GetRandomIndex()
         {
-            return _randomIndex;
+            return _randomIndex;            
         }
     }
 }
