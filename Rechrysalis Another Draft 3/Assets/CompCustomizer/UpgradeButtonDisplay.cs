@@ -18,15 +18,15 @@ namespace Rechrysalis.CompCustomizer
             _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
         }
 
-        public void SetButotnDisplay()
+        public void SetButotnDisplay(UpgradeTypeClass upgradeTypeClass)
         {
-            if ((_selectionIndexToSelection.GetThisUpgradeType() == UpgradeTypeClass.UpgradeType.Basic) || (_selectionIndexToSelection.GetThisUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced))
+            if ((upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic) || (upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced))
             {
-                DisplayForUnit(_selectionIndexToSelection.GetUnitStatsSO());
+                DisplayForUnit(upgradeTypeClass.GetUnitStatsSO());
             }
-            else if (_selectionIndexToSelection.GetThisUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
+            else if (upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
             {
-                DisplayForHatchEffect(_selectionIndexToSelection.GetHatchEffectSO());
+                DisplayForHatchEffect(upgradeTypeClass.GetHatchEffectSO());
             }
         }
         public void DisplayForUnit(UnitStatsSO unitStatsSO)
