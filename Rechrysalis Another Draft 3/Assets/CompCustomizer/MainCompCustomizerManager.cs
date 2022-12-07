@@ -78,7 +78,7 @@ namespace Rechrysalis.CompCustomizer
                 {
                     _upgradeTypeClass = new UpgradeTypeClass();
                 }
-                _upgradeTypeClass = _upgradeButtonManager.GetSelectionIndexToSelection().GetUpgradeTypeClass();
+                _upgradeTypeClass = _upgradeButtonManager.UpgradeTypeClass;
                 ChangeUnitInComp(_compUpgradeManager.ParentIndex, 0, _upgradeTypeClass);
                 _upgradeButtonManager = null;
                 _compUpgradeManager = null;

@@ -17,36 +17,50 @@ namespace Rechrysalis.CompCustomizer
         // private HatchEffectSO _hatchEffectSO;
         private RandomUpgradeSelection _randomUpgradeSelection;
         // public enum UpgradeType {Basic, Advanced, HatchEffect, Error};
-        [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
+        // [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
         
         
         public void Initialize(CompCustomizerSO compCustomizerSO)
         {
-            _upgradeTypeClass = new UpgradeTypeClass();
+            // _upgradeTypeClass = new UpgradeTypeClass();
             _randomUpgradeSelection = GetComponent<RandomUpgradeSelection>();
             _compCustomizerSO = compCustomizerSO;        
             _upgradeBasicSelectionCount = _compCustomizerSO.BasicUnitArray.Length;
             _upgradeT1SelectionCount = _compCustomizerSO.AdvancedUnitSelectionT1Array.Length;
             _upgradeHatchEffectCount = _compCustomizerSO.HatchEffectSelectionArray.Length;
         }
-        public void UpgradeFromIndex(int upgradeIndex)
+        // public void UpgradeFromIndex(int upgradeIndex)
+        // {
+        //     if (upgradeIndex < _upgradeBasicSelectionCount)
+        //     {
+        //         _upgradeTypeClass.SetUnitStatsSO(_compCustomizerSO.BasicUnitArray[upgradeIndex]);
+        //         _upgradeTypeClass.SetHatchEffectSO(null);
+        //         SetUpgradeTypeClass(UpgradeTypeClass.UpgradeType.Basic);              
+        //     }
+        //     else if (upgradeIndex < (_upgradeBasicSelectionCount + _upgradeT1SelectionCount))
+        //     {
+        //         _upgradeTypeClass.SetUnitStatsSO(_compCustomizerSO.AdvancedUnitSelectionT1Array[upgradeIndex - _upgradeBasicSelectionCount]);
+        //         _upgradeTypeClass.SetHatchEffectSO(null);
+        //         SetUpgradeTypeClass(UpgradeTypeClass.UpgradeType.Advanced);
+        //     }
+        //     else {
+        //         _upgradeTypeClass.SetUnitStatsSO(null);
+        //         _upgradeTypeClass.SetHatchEffectSO(_compCustomizerSO.HatchEffectSelectionArray[upgradeIndex - _upgradeBasicSelectionCount - _upgradeT1SelectionCount]);
+        //         SetUpgradeTypeClass(UpgradeTypeClass.UpgradeType.HatchEffect);
+        //     }
+        // }
+        public UpgradeTypeClass GetUpgradeTypeClassFromIndex(int index)
         {
-            if (upgradeIndex < _upgradeBasicSelectionCount)
+            if (index < _upgradeBasicSelectionCount)
             {
-                _upgradeTypeClass.SetUnitStatsSO(_compCustomizerSO.BasicUnitArray[upgradeIndex]);
-                _upgradeTypeClass.SetHatchEffectSO(null);
-                SetUpgradeTypeClass(UpgradeTypeClass.UpgradeType.Basic);              
+                return _compCustomizerSO.BasicUnitArray[index].UpgradeTypeClass;
             }
-            else if (upgradeIndex < (_upgradeBasicSelectionCount + _upgradeT1SelectionCount))
+            else if (index < (_upgradeBasicSelectionCount + _upgradeT1SelectionCount))
             {
-                _upgradeTypeClass.SetUnitStatsSO(_compCustomizerSO.AdvancedUnitSelectionT1Array[upgradeIndex - _upgradeBasicSelectionCount]);
-                _upgradeTypeClass.SetHatchEffectSO(null);
-                SetUpgradeTypeClass(UpgradeTypeClass.UpgradeType.Advanced);
+                return _compCustomizerSO.AdvancedUnitSelectionT1Array[index - _upgradeBasicSelectionCount].UpgradeTypeClass;
             }
             else {
-                _upgradeTypeClass.SetUnitStatsSO(null);
-                _upgradeTypeClass.SetHatchEffectSO(_compCustomizerSO.HatchEffectSelectionArray[upgradeIndex - _upgradeBasicSelectionCount - _upgradeT1SelectionCount]);
-                SetUpgradeTypeClass(UpgradeTypeClass.UpgradeType.HatchEffect);
+                return _compCustomizerSO.HatchEffectSelectionArray[index - _upgradeBasicSelectionCount - _upgradeT1SelectionCount].UpgradeTypeClass;
             }
         }
         public void GetUpgradeTypeWithoutChanging(ref int upgradeIndex, ref UnitStatsSO unitStatsSO, ref HatchEffectSO hatchEffectSO, ref UpgradeTypeClass.UpgradeType upgradeType)
@@ -69,25 +83,25 @@ namespace Rechrysalis.CompCustomizer
                 upgradeType = UpgradeTypeClass.UpgradeType.HatchEffect;
             }
         }
-        private void SetUpgradeTypeClass(UpgradeTypeClass.UpgradeType upgradeType)
-        {
-            _upgradeTypeClass.SetUpgradeType(upgradeType);
-        }
-        public UnitStatsSO GetUnitStatsSO()
-        {
-            return _upgradeTypeClass.GetUnitStatsSO();
-        }
-        public HatchEffectSO GetHatchEffectSO()
-        {
-            return _upgradeTypeClass.GetHatchEffectSO();
-        }
-        public UpgradeTypeClass.UpgradeType GetThisUpgradeType()
-        {
-            return _upgradeTypeClass.GetUpgradeType();
-        }
-        public UpgradeTypeClass GetUpgradeTypeClass()
-        {
-            return _upgradeTypeClass;
-        }
+        // private void SetUpgradeTypeClass(UpgradeTypeClass.UpgradeType upgradeType)
+        // {
+        //     _upgradeTypeClass.SetUpgradeType(upgradeType);
+        // }
+        // public UnitStatsSO GetUnitStatsSO()
+        // {
+        //     return _upgradeTypeClass.GetUnitStatsSO();
+        // }
+        // public HatchEffectSO GetHatchEffectSO()
+        // {
+        //     return _upgradeTypeClass.GetHatchEffectSO();
+        // }
+        // public UpgradeTypeClass.UpgradeType GetThisUpgradeType()
+        // {
+        //     return _upgradeTypeClass.GetUpgradeType();
+        // }
+        // public UpgradeTypeClass GetUpgradeTypeClass()
+        // {
+        //     return _upgradeTypeClass;
+        // }
     }
 }

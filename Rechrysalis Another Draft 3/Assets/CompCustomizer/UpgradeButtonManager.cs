@@ -12,6 +12,8 @@ namespace Rechrysalis.CompCustomizer
 
     public class UpgradeButtonManager : MonoBehaviour
     {
+        [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
+        public UpgradeTypeClass UpgradeTypeClass {get {return _upgradeTypeClass;}}
         [SerializeField] private UnitStatsSO _unitStatsSO;
         public UnitStatsSO UnitStatsSO { get{ return _unitStatsSO; } set{ _unitStatsSO = value; } }
         [SerializeField] private HatchEffectSO _hatchEffectSO;
@@ -21,7 +23,7 @@ namespace Rechrysalis.CompCustomizer
         private UpgradeButtonDisplay _upgradeButtonDisplay;
         public Action<UpgradeButtonManager> _onUpgradeButtonClicked;
         
-        public void Initialize(CompCustomizerSO _compCustomizerSO)
+        public void Initialize(CompCustomizerSO _compCustomizerSO, UpgradeTypeClass upgradeTypeClass)
         {
             _randomUpgradeSelection = GetComponent<RandomUpgradeSelection>();
             _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
@@ -29,11 +31,13 @@ namespace Rechrysalis.CompCustomizer
             _selectionIndexToSelection.Initialize(_compCustomizerSO);
             _randomUpgradeSelection.Initialize();   
             _upgradeButtonDisplay.Initialzie();
+            _upgradeTypeClass = upgradeTypeClass;
         }
         public void GetRandomSelection(CompCustomizerSO compCustomizerSO, int[] upgradeSelectionIndex, int selectionCount)
         {
             _randomUpgradeSelection.GetRandomSelection(compCustomizerSO, upgradeSelectionIndex, selectionCount);
-            _selectionIndexToSelection.UpgradeFromIndex(_randomUpgradeSelection.GetRandomIndex());
+            // _selectionIndexToSelection.UpgradeFromIndex(_randomUpgradeSelection.GetRandomIndex());
+            _upgradeTypeClass = _selectionIndexToSelection.GetUpgradeTypeClassFromIndex(_randomUpgradeSelection.GetRandomIndex());
             _upgradeButtonDisplay.SetButotnDisplay();
         }
         public RandomUpgradeSelection GetRandomUpgradeSelection()
