@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace Rechrysalis.CompCustomizer
 {
-    public class CompUpgradeManager : MonoBehaviour
+    public class CompUpgradeManager : MonoBehaviour, IPointerDownHandler
     {
         [SerializeField] private int _parentIndex;
         public int ParentIndex { get{ return _parentIndex; } set{ _parentIndex = value; } }
@@ -20,7 +20,7 @@ namespace Rechrysalis.CompCustomizer
         private bool _upgradeClickedPointerWithin;
         private bool _buttonHeldToMove;
         private bool _pointerWithinButton;
-        public Action<CompUpgradeManager> _onCompUpgradeClicked;
+        public Action<CompUpgradeManager> _onCompUpgradeClicked;    
         public void Initialize(int parentIndex, int childIndex)
         {
             _parentIndex = parentIndex;
@@ -41,6 +41,10 @@ namespace Rechrysalis.CompCustomizer
         {
             return _upgradeButtonDisplay;
         }
+        public void OnPointerDown(PointerEventData pointerData)
+        {
+            CompUpgradeClicked();
+        }
         public void CompUpgradeClicked()
         {
             _upgradeClickedPointerWithin = true;
@@ -56,7 +60,7 @@ namespace Rechrysalis.CompCustomizer
                 if ((_upgradeClickedPointerWithin)&& (_holdTimerCurrent >= _holdTimerMax))
                 {
                     _buttonHeldToMove = true;
-                    
+
                 }
             }            
         }
