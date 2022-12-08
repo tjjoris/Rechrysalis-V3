@@ -15,6 +15,11 @@ namespace Rechrysalis.CompCustomizer
         
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
         private UpgradeButtonDisplay _upgradeButtonDisplay;
+        private float _holdTimerCurrent;
+        private float _holdTimerMax = 2f;
+        private bool _upgradeClickedPointerWithin;
+        private bool _buttonHeldToMove;
+        private bool _pointerWithinButton;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
         public void Initialize(int parentIndex, int childIndex)
         {
@@ -38,7 +43,22 @@ namespace Rechrysalis.CompCustomizer
         }
         public void CompUpgradeClicked()
         {
+            _upgradeClickedPointerWithin = true;
+            _pointerWithinButton = true;
+            _holdTimerCurrent = 0;
             _onCompUpgradeClicked?.Invoke(this);
+        }
+        private void Update()
+        {
+            if (_upgradeClickedPointerWithin && !_buttonHeldToMove) {
+                _holdTimerCurrent += Time.deltaTime;  
+                _upgradeClickedPointerWithin = EventSystem.current.IsPointerOverGameObject();                       
+                if ((_upgradeClickedPointerWithin)&& (_holdTimerCurrent >= _holdTimerMax))
+                {
+                    _buttonHeldToMove = true;
+                    
+                }
+            }            
         }
     }
 }
