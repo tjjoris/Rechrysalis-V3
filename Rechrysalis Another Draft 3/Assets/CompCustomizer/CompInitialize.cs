@@ -44,26 +44,33 @@ namespace Rechrysalis.CompCustomizer
                 }
             }
         }
-        public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp)
+        public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, GameObject movingButtonHolder)
         {
             _compCustomizerSO = compCustomizerSO;  
-            LoopVerticalsToSetUp(playerComp);
+            LoopVerticalsToSetUp(playerComp, movingButtonHolder);
             // SubscribeToVerticalManagers();
         }
         private void CompUpgradeClicked(CompUpgradeManager compUpgradeManager)
         {
             _onCompUpgradeClicked?.Invoke(compUpgradeManager);            
         }
-        private void LoopVerticalsToSetUp(CompSO playerComp)
+        private void LoopVerticalsToSetUp(CompSO playerComp, GameObject movingButtonHolder)
         {
             for (int parentIndex = 0; parentIndex < 3; parentIndex ++)
             {
-                SetUpEachVertical(playerComp, parentIndex);
+                SetUpEachVertical(playerComp, parentIndex, movingButtonHolder);
             }
         }
-        private void SetUpEachVertical(CompSO playerComp, int parentIndex)
+        public void LoopVerticalsToChangeDisplay(CompSO tempComp)
         {
-            _verticalMangers[parentIndex]?.Initialize(playerComp, parentIndex, _compButtonPrefab);
+            for (int parentIndex = 0; parentIndex < 3; parentIndex ++)
+            {
+                // _verticalMangers[parentIndex].
+            }
+        }
+        private void SetUpEachVertical(CompSO playerComp, int parentIndex, GameObject movingButtonHolder)
+        {
+            _verticalMangers[parentIndex]?.Initialize(playerComp, parentIndex, _compButtonPrefab, movingButtonHolder);
         }
         public void SetCompUpgradeDisplay(int parentIndex, int childIndex, UpgradeTypeClass upgradeTypeClass)
         {

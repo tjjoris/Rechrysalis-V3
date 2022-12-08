@@ -22,6 +22,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
         [SerializeField] private int _upgradeIndex;
         [SerializeField] private bool _debugBool = true;
+        [SerializeField] private GameObject _movingButtonHolder;
         
         private void OnEnable()
         {
@@ -50,7 +51,7 @@ namespace Rechrysalis.CompCustomizer
             _compSO = _compsAndUnitsSO.CompsSO[0];
             ResetChangedComp();
             _selectionInitialize.Initialize(_compCustomizerSO);
-            _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0]);
+            _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0], _movingButtonHolder);
         }
         private void ResetChangedComp()
         {

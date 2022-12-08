@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
 using System;
+using UnityEngine.UI;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -12,15 +13,17 @@ namespace Rechrysalis.CompCustomizer
         private UpgradeButtonDisplay[] _upgradeButtonDisplays;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
         [SerializeField] private GameObject _verticalContainer;
+        [SerializeField] private ScrollRect _scrollRect;
 
-        public void Initialize(CompSO compSO, int parentIndex, GameObject compButtonPrefab)
+        public void Initialize(CompSO compSO, int parentIndex, GameObject compButtonPrefab, GameObject movingButtonHolder)
         {
             _upgradeButtonDisplays = new UpgradeButtonDisplay[3];
             _compUpgradeManagers = new CompUpgradeManager[3];
+            _scrollRect = GetComponent<ScrollRect>();
             for (int i=0; i<3; i++)
             {
                 int upgradeIndexInArray = ((parentIndex * compSO.ChildUnitCount) + i);
-                CreateAndSetupCompButton(compSO, compButtonPrefab, parentIndex, i);
+                CreateAndSetupCompButton(compSO, compButtonPrefab, parentIndex, i, movingButtonHolder);
                 if (i == 2)//its a hatch effect
                 _compUpgradeManagers[i].SetUpgradeType(compSO.HatchEffectSOArray[upgradeIndexInArray].UpgradeTypeClass);
                 else 
@@ -38,13 +41,15 @@ namespace Rechrysalis.CompCustomizer
                     {
                         _compUpgradeManagers[_index]._onCompUpgradeClicked -= CompUpgradeClicked;
                         _compUpgradeManagers[_index]._onCompUpgradeClicked += CompUpgradeClicked;
+                        _compUpgradeManagers[_index]._disableVerticalScroll -= DisableScrollRect;
+                        _compUpgradeManagers[_index]._disableVerticalScroll += DisableScrollRect;
                     }
                 }
             }
         }
         private void OnEnable()
         {
-            SubscribeToCompButtons();
+            SubscribeToCompButtons();            
         }
         private void OnDisable()
         {
@@ -55,6 +60,7 @@ namespace Rechrysalis.CompCustomizer
                     if (_compUpgradeManagers[_index] != null)
                     {
                         _compUpgradeManagers[_index]._onCompUpgradeClicked -= CompUpgradeClicked;
+                        _compUpgradeManagers[_index]._disableVerticalScroll -= DisableScrollRect;
                     }
                 }
             }
@@ -63,11 +69,15 @@ namespace Rechrysalis.CompCustomizer
         {
             _onCompUpgradeClicked?.Invoke(compUpgradeManager);
         }
-        private void CreateAndSetupCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex)
+        private void DisableScrollRect()
+        {
+            _scrollRect.enabled = false;
+        }
+        private void CreateAndSetupCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex, GameObject movingButtonHolder)
         {
             CreateCompButton(compSO, compButtonPrefab, parentIndex, childIndex);
             SetUpButtonDisplayUnit(compSO, parentIndex, childIndex);
-            _compUpgradeManagers[childIndex].Initialize(parentIndex, childIndex);
+            _compUpgradeManagers[childIndex].Initialize(parentIndex, childIndex, movingButtonHolder);
         }
         public void LoopChildrenAndSetDisplay(CompSO compSO, int parentIndex)
         {
