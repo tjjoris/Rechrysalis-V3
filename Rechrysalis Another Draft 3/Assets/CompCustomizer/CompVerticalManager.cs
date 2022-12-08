@@ -11,6 +11,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private CompUpgradeManager[] _compUpgradeManagers;
         private UpgradeButtonDisplay[] _upgradeButtonDisplays;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
+        [SerializeField] private GameObject _verticalContainer;
 
         public void Initialize(CompSO compSO, int parentIndex, GameObject compButtonPrefab)
         {
@@ -77,7 +78,7 @@ namespace Rechrysalis.CompCustomizer
         }
         private void CreateCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex)
         {
-            GameObject _compButton = Instantiate(compButtonPrefab, transform);
+            GameObject _compButton = Instantiate(compButtonPrefab, _verticalContainer.transform);
             _upgradeButtonDisplays[childIndex] = _compButton.GetComponent<UpgradeButtonDisplay>();
             _compUpgradeManagers[childIndex] = _compButton.GetComponent<CompUpgradeManager>();
         }
