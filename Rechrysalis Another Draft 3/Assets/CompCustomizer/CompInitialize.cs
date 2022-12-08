@@ -61,6 +61,13 @@ namespace Rechrysalis.CompCustomizer
                 SetUpEachVertical(playerComp, parentIndex, movingButtonHolder);
             }
         }
+        public void EnableScrollRect()
+        {
+            for (int i=0; i<_verticalMangers.Length; i++)
+            {
+                _verticalMangers[i].EnableScrollRect();
+            }
+        }
         public void LoopVerticalsToChangeDisplay(CompSO tempComp)
         {
             for (int parentIndex = 0; parentIndex < 3; parentIndex ++)

@@ -46,6 +46,14 @@ namespace Rechrysalis.CompCustomizer
                 _compInitialize._onCompUpgradeClicked += CompButtonClicked;
             }
         }
+
+        private void Update()
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                _compInitialize.EnableScrollRect();
+            }
+        }
         private void Start()
         {
             _compSO = _compsAndUnitsSO.CompsSO[0];

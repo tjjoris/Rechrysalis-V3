@@ -73,6 +73,10 @@ namespace Rechrysalis.CompCustomizer
         {
             _scrollRect.enabled = false;
         }
+        public void EnableScrollRect()
+            {
+                _scrollRect.enabled = true;
+            }
         private void CreateAndSetupCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex, GameObject movingButtonHolder)
         {
             CreateCompButton(compSO, compButtonPrefab, parentIndex, childIndex);
