@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -17,6 +18,7 @@ namespace Rechrysalis.CompCustomizer
         public Transform ParentAfterDrag { get{ return _parentAfterDrag; } set{ _parentAfterDrag = value; } }
         [SerializeField] private int _siblingIndex;
         public int PositionInSlot { get{ return _siblingIndex; } set{ _siblingIndex = value; } }
+        private Image _image;
         
         
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
@@ -37,6 +39,7 @@ namespace Rechrysalis.CompCustomizer
             _childIndex = childIndex;
             // _upgradeType = new UpgradeTypeClass();
             _upgradeButtonDisplay = GetComponent<UpgradeButtonDisplay>();
+            _image = GetComponent<Image>();
         }
 
         public void SetUpgradeType(UpgradeTypeClass upgradeTypeClass)
@@ -89,10 +92,11 @@ namespace Rechrysalis.CompCustomizer
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            _siblingIndex = transform.GetSiblingIndex();
             _parentAfterDrag = transform.parent;
             transform.SetParent(_movingButtonHolder.transform);
             transform.SetAsLastSibling();
-            _siblingIndex = transform.GetSiblingIndex();
+            _image.raycastTarget = false;
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -102,8 +106,10 @@ namespace Rechrysalis.CompCustomizer
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            Debug.Log($"sibling index " + _siblingIndex);
             transform.SetParent(_parentAfterDrag);
             transform.SetSiblingIndex(_siblingIndex);
+            _image.raycastTarget = true;
         }
     }
 }

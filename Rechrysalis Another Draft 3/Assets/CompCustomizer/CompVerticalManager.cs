@@ -4,10 +4,11 @@ using UnityEngine;
 using Rechrysalis.Unit;
 using System;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Rechrysalis.CompCustomizer
 {
-    public class CompVerticalManager : MonoBehaviour
+    public class CompVerticalManager : MonoBehaviour, IDropHandler
     {
         [SerializeField] private CompUpgradeManager[] _compUpgradeManagers;
         private UpgradeButtonDisplay[] _upgradeButtonDisplays;
@@ -120,6 +121,14 @@ namespace Rechrysalis.CompCustomizer
             {
                 _upgradeButtonDisplays[childIndex]?.DisplayForHatchEffect(upgradeTypeClass.GetHatchEffectSO());
             }
+        }
+
+        public void OnDrop(PointerEventData eventData)
+        {
+            // Debug.Log($"ondrop called");
+            // GameObject dropped = eventData.pointerDrag;
+            // CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
+            // compUpgradeManager.ParentAfterDrag = transform;
         }
     }
 }
