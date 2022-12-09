@@ -6,13 +6,18 @@ using UnityEngine.EventSystems;
 
 namespace Rechrysalis.CompCustomizer
 {
-    public class CompUpgradeManager : MonoBehaviour, IPointerDownHandler, IPointerMoveHandler
+    public class CompUpgradeManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler//, IPointerDownHandler, IPointerMoveHandler
     {
         [SerializeField] private int _parentIndex;
         public int ParentIndex { get{ return _parentIndex; } set{ _parentIndex = value; } }
         [SerializeField] private int _childIndex;
         public int ChildIndex { get{ return _childIndex; } set{ _childIndex = value; } }
         private GameObject _movingButtonHolder;
+        [SerializeField] private Transform _parentAfterDrag;
+        public Transform ParentAfterDrag { get{ return _parentAfterDrag; } set{ _parentAfterDrag = value; } }
+        [SerializeField] private int _siblingIndex;
+        public int PositionInSlot { get{ return _siblingIndex; } set{ _siblingIndex = value; } }
+        
         
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
         private UpgradeButtonDisplay _upgradeButtonDisplay;
@@ -46,15 +51,15 @@ namespace Rechrysalis.CompCustomizer
         {
             return _upgradeButtonDisplay;
         }
-        public void OnPointerMove(PointerEventData pointerData)
-        {
-            if (_buttonHeldToMove)
-            transform.position = Input.mousePosition;
-        }
-        public void OnPointerDown(PointerEventData pointerData)
-        {
-            CompUpgradeClicked();
-        }
+        // public void OnPointerMove(PointerEventData pointerData)
+        // {
+        //     if (_buttonHeldToMove)
+        //     transform.position = Input.mousePosition;
+        // }
+        // public void OnPointerDown(PointerEventData pointerData)
+        // {
+        //     CompUpgradeClicked();
+        // }
         public void CompUpgradeClicked()
         {
             _upgradeClickedPointerWithin = true;
@@ -66,20 +71,39 @@ namespace Rechrysalis.CompCustomizer
         }
         private void Update()
         {
-            if (_upgradeClickedPointerWithin && !_buttonHeldToMove) {
-                _holdTimerCurrent += Time.deltaTime;  
-                // _upgradeClickedPointerWithin = EventSystem.current.IsPointerOverGameObject();                       
-                if (Mathf.Abs(_yPointerStart - Input.mousePosition.y) > _yMaxYDistAllowedToHold)
-                {
-                    _upgradeClickedPointerWithin = false;
-                }
-                if ((_upgradeClickedPointerWithin)&& (_holdTimerCurrent >= _holdTimerMax))
-                {
-                    _buttonHeldToMove = true;
-                    transform.SetParent(_movingButtonHolder.transform);
-                    _disableVerticalScroll?.Invoke();
-                }
-            }            
+            // if (_upgradeClickedPointerWithin && !_buttonHeldToMove) {
+            //     _holdTimerCurrent += Time.deltaTime;  
+            //     // _upgradeClickedPointerWithin = EventSystem.current.IsPointerOverGameObject();                       
+            //     if (Mathf.Abs(_yPointerStart - Input.mousePosition.y) > _yMaxYDistAllowedToHold)
+            //     {
+            //         _upgradeClickedPointerWithin = false;
+            //     }
+            //     if ((_upgradeClickedPointerWithin)&& (_holdTimerCurrent >= _holdTimerMax))
+            //     {
+            //         _buttonHeldToMove = true;
+            //         transform.SetParent(_movingButtonHolder.transform);
+            //         _disableVerticalScroll?.Invoke();
+            //     }
+            // }            
+        }
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            _parentAfterDrag = transform.parent;
+            transform.SetParent(_movingButtonHolder.transform);
+            transform.SetAsLastSibling();
+            _siblingIndex = transform.GetSiblingIndex();
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            transform.position = Input.mousePosition;
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            transform.SetParent(_parentAfterDrag);
+            transform.SetSiblingIndex(_siblingIndex);
         }
     }
 }

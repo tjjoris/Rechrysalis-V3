@@ -18,7 +18,7 @@ namespace Rechrysalis.CompCustomizer
         public CompSO CompSO { get{ return _compSO; } set{ _compSO = value; } }
         private CompSO _changedComp;
         [SerializeField] private UpgradeButtonManager _upgradeButtonManager;
-        [SerializeField] private CompUpgradeManager _compUpgradeManager;
+        [SerializeField] private CompUpgradeManager _compUpgradeManagerBeingDragged;
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
         [SerializeField] private int _upgradeIndex;
         [SerializeField] private bool _debugBool = true;
@@ -76,21 +76,21 @@ namespace Rechrysalis.CompCustomizer
         {
             if (_debugBool)
             Debug.Log($"comp button clicked");
-            _compUpgradeManager = compUpgradeManager;
+            _compUpgradeManagerBeingDragged = compUpgradeManager;
             CheckIfCompToChange();
         }
         private void CheckIfCompToChange()
         {
-            if ((_upgradeButtonManager != null) && (_compUpgradeManager != null))
+            if ((_upgradeButtonManager != null) && (_compUpgradeManagerBeingDragged != null))
             {
                 if (_upgradeTypeClass == null)
                 {
                     _upgradeTypeClass = new UpgradeTypeClass();
                 }
                 _upgradeTypeClass = _upgradeButtonManager.UpgradeTypeClass;
-                ChangeUnitInComp(_compUpgradeManager.ParentIndex, 0, _upgradeTypeClass);
+                ChangeUnitInComp(_compUpgradeManagerBeingDragged.ParentIndex, 0, _upgradeTypeClass);
                 _upgradeButtonManager = null;
-                _compUpgradeManager = null;
+                _compUpgradeManagerBeingDragged = null;
             }
         }
         private void ChangeUnitInComp(int parentIndex, int childIndex, UpgradeTypeClass upgradeTypeClass)
