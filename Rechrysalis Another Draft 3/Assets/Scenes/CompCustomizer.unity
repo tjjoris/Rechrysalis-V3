@@ -253,7 +253,7 @@ MonoBehaviour:
     _hatchEffectSO: {fileID: 0}
   _upgradeIndex: 0
   _debugBool: 1
-  _movingButtonHolder: {fileID: 414014356}
+  _movingButtonHolder: {fileID: 414014357}
 --- !u!1 &414014356
 GameObject:
   m_ObjectHideFlags: 0
