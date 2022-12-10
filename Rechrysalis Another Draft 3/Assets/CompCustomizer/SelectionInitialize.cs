@@ -10,6 +10,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         public CompCustomizerSO CompCustomizerSO { get{ return _compCustomizerSO; } set{ _compCustomizerSO = value; } }
         [SerializeField] private GameObject _upgradeButtonPrefab;
+        private Transform _movingButtonHolder;
         private int _numberOfUpgrades = 3;
         [SerializeField] private UpgradeButtonManager[] _upgradebuttonManager;
         public UpgradeButtonManager[] UpgradeButtonManager { get{ return _upgradebuttonManager; } set{ _upgradebuttonManager = value; } }
@@ -19,22 +20,23 @@ namespace Rechrysalis.CompCustomizer
         public Action<UpgradeButtonManager> _onUpgradeButtonClicked;
         
         
-        public void Initialize(CompCustomizerSO compCustomizerSO)
+        public void Initialize(CompCustomizerSO compCustomizerSO, Transform movingButtonHolder)
         {
+            _movingButtonHolder = movingButtonHolder;
             _upgradebuttonManager = new UpgradeButtonManager[_numberOfUpgrades];
             _upgradeButtonIndex = new int[_numberOfUpgrades];
             _compCustomizerSO = compCustomizerSO;
             CalculateUpgradeSelectionCount();
             CreateAllSelectionButtons();   
-            SubscribeToUpgradeButtons();  
+            // SubscribeToUpgradeButtons();  
         }
         private void CreateSelectionButton(int index)
-        {
+        {            
             GameObject _selectionButton = Instantiate(_upgradeButtonPrefab, transform);
-            _upgradebuttonManager[index] = _selectionButton.GetComponent<UpgradeButtonManager>();
-            _upgradebuttonManager[index]?.Initialize(_compCustomizerSO);
-            _upgradebuttonManager[index]?.GetRandomSelection(_compCustomizerSO, _upgradeButtonIndex, _upgradeSelectionCount);
-            _upgradeButtonIndex[index] = _upgradebuttonManager[index].GetRandomUpgradeSelection().GetRandomIndex();
+            // _upgradebuttonManager[index] = _selectionButton.GetComponent<UpgradeButtonManager>();
+            // _upgradebuttonManager[index]?.Initialize(_compCustomizerSO);
+            // _upgradebuttonManager[index]?.GetRandomSelection(_compCustomizerSO, _upgradeButtonIndex, _upgradeSelectionCount);
+            // _upgradeButtonIndex[index] = _upgradebuttonManager[index].GetRandomUpgradeSelection().GetRandomIndex();
         }
         private void CreateAllSelectionButtons()
         {
@@ -49,17 +51,17 @@ namespace Rechrysalis.CompCustomizer
         }
         public void OnDisable()
         {
-            for (int _index=0; _index < _upgradebuttonManager.Length; _index++)
-            {
-                if (_upgradebuttonManager[_index] != null)
-                {
-                    _upgradebuttonManager[_index]._onUpgradeButtonClicked -= UpgradeButtonClicked;
-                }
-            }
+            // for (int _index=0; _index < _upgradebuttonManager.Length; _index++)
+            // {
+            //     if (_upgradebuttonManager[_index] != null)
+            //     {
+            //         _upgradebuttonManager[_index]._onUpgradeButtonClicked -= UpgradeButtonClicked;
+            //     }
+            // }
         }
         public void OnEnable()
         {
-            SubscribeToUpgradeButtons();
+            // SubscribeToUpgradeButtons();
         }
         public void SubscribeToUpgradeButtons()
         {

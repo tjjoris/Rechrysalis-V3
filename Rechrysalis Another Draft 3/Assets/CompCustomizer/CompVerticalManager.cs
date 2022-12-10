@@ -16,7 +16,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private GameObject _verticalContainer;
         [SerializeField] private ScrollRect _scrollRect;
 
-        public void Initialize(CompSO compSO, int parentIndex, GameObject compButtonPrefab, GameObject movingButtonHolder)
+        public void Initialize(CompSO compSO, int parentIndex, GameObject compButtonPrefab, Transform movingButtonHolder)
         {
             _upgradeButtonDisplays = new UpgradeButtonDisplay[3];
             _compUpgradeManagers = new CompUpgradeManager[3];
@@ -78,7 +78,7 @@ namespace Rechrysalis.CompCustomizer
             {
                 _scrollRect.enabled = true;
             }
-        private void CreateAndSetupCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex, GameObject movingButtonHolder)
+        private void CreateAndSetupCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex, Transform movingButtonHolder)
         {
             CreateCompButton(compSO, compButtonPrefab, parentIndex, childIndex);
             SetUpButtonDisplayUnit(compSO, parentIndex, childIndex);

@@ -13,7 +13,7 @@ namespace Rechrysalis.CompCustomizer
         public int ParentIndex { get{ return _parentIndex; } set{ _parentIndex = value; } }
         [SerializeField] private int _childIndex;
         public int ChildIndex { get{ return _childIndex; } set{ _childIndex = value; } }
-        private GameObject _movingButtonHolder;
+        private Transform _movingButtonHolder;
         [SerializeField] private Transform _parentAfterDrag;
         public Transform ParentAfterDrag { get{ return _parentAfterDrag; } set{ _parentAfterDrag = value; } }
         [SerializeField] private int _siblingIndex;
@@ -32,7 +32,7 @@ namespace Rechrysalis.CompCustomizer
         private float _yMaxYDistAllowedToHold = 15;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;    
         public Action _disableVerticalScroll;
-        public void Initialize(int parentIndex, int childIndex, GameObject movingButtonHolder)
+        public void Initialize(int parentIndex, int childIndex, Transform movingButtonHolder)
         {
             _movingButtonHolder = movingButtonHolder;
             _parentIndex = parentIndex;
@@ -94,7 +94,7 @@ namespace Rechrysalis.CompCustomizer
         {
             _siblingIndex = transform.GetSiblingIndex();
             _parentAfterDrag = transform.parent;
-            transform.SetParent(_movingButtonHolder.transform);
+            transform.SetParent(_movingButtonHolder);
             transform.SetAsLastSibling();
             _image.raycastTarget = false;
         }
