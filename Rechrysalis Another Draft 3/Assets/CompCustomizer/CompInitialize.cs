@@ -8,9 +8,11 @@ namespace Rechrysalis.CompCustomizer
 {
     public class CompInitialize : MonoBehaviour
     {
+        private CompSO _playerComp;
         private CompCustomizerSO _compCustomizerSO;
         [SerializeField] private GameObject _compButtonPrefab;
-        [SerializeField] private CompVerticalManager[] _verticalMangers;
+        private Transform _movingButtonHolder;
+        [SerializeField] private List<CompVerticalManager> _verticalMangers;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
 
         public void OnEnable()
@@ -21,7 +23,7 @@ namespace Rechrysalis.CompCustomizer
         {
             if (_verticalMangers != null)
             {
-                for (int _index = 0; _index < _verticalMangers.Length; _index ++)
+                for (int _index = 0; _index < _verticalMangers.Count; _index ++)
                 {
                     if (_verticalMangers[_index] != null)
                     {
@@ -35,7 +37,7 @@ namespace Rechrysalis.CompCustomizer
         {
             if (_verticalMangers != null)
             {
-                for (int _index = 0; _index < _verticalMangers.Length; _index++)
+                for (int _index = 0; _index < _verticalMangers.Count; _index++)
                 {
                     if (_verticalMangers[_index] != null)
                     {
@@ -46,6 +48,8 @@ namespace Rechrysalis.CompCustomizer
         }
         public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, Transform movingButtonHolder)
         {
+            _movingButtonHolder = movingButtonHolder;
+            _playerComp = playerComp;
             _compCustomizerSO = compCustomizerSO;  
             LoopVerticalsToSetUp(playerComp, movingButtonHolder);
             // SubscribeToVerticalManagers();
@@ -63,7 +67,7 @@ namespace Rechrysalis.CompCustomizer
         }
         public void EnableScrollRect()
         {
-            for (int i=0; i<_verticalMangers.Length; i++)
+            for (int i=0; i<_verticalMangers.Count; i++)
             {
                 _verticalMangers[i].EnableScrollRect();
             }
@@ -75,9 +79,24 @@ namespace Rechrysalis.CompCustomizer
                 // _verticalMangers[parentIndex].
             }
         }
-        private void SetUpEachVertical(CompSO playerComp, int parentIndex, Transform movingButtonHolder)
+        private void SetUpEachVertical(CompSO playerComp, int parentIndex)
         {
-            _verticalMangers[parentIndex]?.Initialize(playerComp, parentIndex, _compButtonPrefab, movingButtonHolder, playerComp.ParentUnitClassList[parentIndex]);
+            if (playerComp.ParentUnitClassList.Count > parentIndex)
+            {
+                Debug.Log($"parent unit class count "+playerComp.ParentUnitClassList.Count);
+                {
+                    _verticalMangers[parentIndex]?.Initialize(playerComp, parentIndex, _compButtonPrefab, _movingButtonHolder, playerComp.ParentUnitClassList[parentIndex]);
+                }
+            }
+        }
+        public void ButtonDroppedInCompMain(CompUpgradeManager compUpgradeManager)
+        {
+            if (((compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)) )
+            {
+                _playerComp.ParentUnitClassList.Add(new ParentUnitClass());
+                _verticalMangers[_playerComp.ParentUnitClassList.Count-1].Initialize(_playerComp, _playerComp.ParentUnitClassList.Count-1, _compButtonPrefab, _movingButtonHolder, _playerComp.ParentUnitClassList[_playerComp.ParentUnitClassList.Count-1]);
+                
+            }
         }
         public void SetCompUpgradeDisplay(int parentIndex, int childIndex, UpgradeTypeClass upgradeTypeClass)
         {

@@ -22,6 +22,7 @@ namespace Rechrysalis.CompCustomizer
 
         public void Initialize(CompSO compSO, int parentIndex, GameObject compButtonPrefab, Transform movingButtonHolder, ParentUnitClass parentUnitClass)
         {
+            if (parentUnitClass != null)        
             _parentUnitClass = parentUnitClass;
             _upgradeButtonDisplays = new UpgradeButtonDisplay[3];
             _compUpgradeManagers = new CompUpgradeManager[3];
