@@ -47,9 +47,13 @@ namespace Rechrysalis.CompCustomizer
         {
             _upgradeTypeClass = upgradeTypeClass;
         }
-        public UpgradeTypeClass.UpgradeType GetUpgradeTypeClass()
+        public UpgradeTypeClass.UpgradeType GetUpgradeType()
         {
             return _upgradeTypeClass.GetUpgradeType();
+        }
+        public UpgradeTypeClass GetUpgradeTypeClass()
+        {
+            return _upgradeTypeClass;
         }
         public UpgradeButtonDisplay GetUpgradeButtonDisplay()
         {

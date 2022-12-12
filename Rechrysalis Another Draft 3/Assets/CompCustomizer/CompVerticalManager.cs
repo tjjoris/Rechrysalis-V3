@@ -5,19 +5,24 @@ using Rechrysalis.Unit;
 using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.CompCustomizer
 {
-    public class CompVerticalManager : MonoBehaviour, IDropHandler
+    public class CompVerticalManager : MonoBehaviour//, IDropHandler
     {
         [SerializeField] private CompUpgradeManager[] _compUpgradeManagers;
         private UpgradeButtonDisplay[] _upgradeButtonDisplays;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
         [SerializeField] private GameObject _verticalContainer;
         [SerializeField] private ScrollRect _scrollRect;
+        [SerializeField] private ParentUnitClass _parentUnitClass;
+        // public ParentUnitClass ParentUnitClass { get{ return _parentUnitClass; } set{ _parentUnitClass = value; } }
+        
 
-        public void Initialize(CompSO compSO, int parentIndex, GameObject compButtonPrefab, Transform movingButtonHolder)
+        public void Initialize(CompSO compSO, int parentIndex, GameObject compButtonPrefab, Transform movingButtonHolder, ParentUnitClass parentUnitClass)
         {
+            _parentUnitClass = parentUnitClass;
             _upgradeButtonDisplays = new UpgradeButtonDisplay[3];
             _compUpgradeManagers = new CompUpgradeManager[3];
             _scrollRect = GetComponent<ScrollRect>();
@@ -123,12 +128,30 @@ namespace Rechrysalis.CompCustomizer
             }
         }
 
-        public void OnDrop(PointerEventData eventData)
+        // public void OnDrop(PointerEventData eventData)
+        // {
+        //     // Debug.Log($"ondrop called");
+        //     // GameObject dropped = eventData.pointerDrag;
+        //     // CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
+        //     // compUpgradeManager.ParentAfterDrag = transform;
+        // }
+        private void ButtonDroppedIntoVertical(CompUpgradeManager compUpgradeManager)
         {
-            // Debug.Log($"ondrop called");
-            // GameObject dropped = eventData.pointerDrag;
-            // CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
-            // compUpgradeManager.ParentAfterDrag = transform;
+            if (compUpgradeManager != null)
+            {
+                if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+                {
+                    _parentUnitClass.SetUTCBasicUnit(compUpgradeManager.GetUpgradeTypeClass());
+                }
+                if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
+                {
+                    _parentUnitClass.SetUTCHatchEffect(compUpgradeManager.GetUpgradeTypeClass());
+                }
+                if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced)
+                {
+                    _parentUnitClass.AddUTCAdvanced(compUpgradeManager.GetUpgradeTypeClass());
+                }
+            }
         }
     }
 }
