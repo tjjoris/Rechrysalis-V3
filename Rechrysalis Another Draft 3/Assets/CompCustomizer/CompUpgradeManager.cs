@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.CompCustomizer
 {

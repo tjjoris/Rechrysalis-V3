@@ -4,7 +4,7 @@ using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.HatchEffect;
 
-namespace Rechrysalis
+namespace Rechrysalis.Unit
 {
     [System.Serializable]
     public class UpgradeTypeClass
