@@ -77,7 +77,7 @@ namespace Rechrysalis.CompCustomizer
         }
         private void SetUpEachVertical(CompSO playerComp, int parentIndex, Transform movingButtonHolder)
         {
-            _verticalMangers[parentIndex]?.Initialize(playerComp, parentIndex, _compButtonPrefab, movingButtonHolder);
+            _verticalMangers[parentIndex]?.Initialize(playerComp, parentIndex, _compButtonPrefab, movingButtonHolder, playerComp.ParentUnitClassList[parentIndex]);
         }
         public void SetCompUpgradeDisplay(int parentIndex, int childIndex, UpgradeTypeClass upgradeTypeClass)
         {

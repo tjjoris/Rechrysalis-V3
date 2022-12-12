@@ -14,7 +14,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private CompUpgradeManager[] _compUpgradeManagers;
         private UpgradeButtonDisplay[] _upgradeButtonDisplays;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
-        [SerializeField] private GameObject _verticalContainer;
+        [SerializeField] private VerticalContainer _verticalContainer;
         [SerializeField] private ScrollRect _scrollRect;
         [SerializeField] private ParentUnitClass _parentUnitClass;
         // public ParentUnitClass ParentUnitClass { get{ return _parentUnitClass; } set{ _parentUnitClass = value; } }
@@ -55,7 +55,8 @@ namespace Rechrysalis.CompCustomizer
         }
         private void OnEnable()
         {
-            SubscribeToCompButtons();            
+            SubscribeToCompButtons();   
+            _verticalContainer._buttonDropped += ButtonDroppedIntoVertical;     
         }
         private void OnDisable()
         {
@@ -70,6 +71,7 @@ namespace Rechrysalis.CompCustomizer
                     }
                 }
             }
+            _verticalContainer._buttonDropped -= ButtonDroppedIntoVertical;
         }
         private void CompUpgradeClicked(CompUpgradeManager compUpgradeManager)
         {
@@ -137,7 +139,7 @@ namespace Rechrysalis.CompCustomizer
         // }
         private void ButtonDroppedIntoVertical(CompUpgradeManager compUpgradeManager)
         {
-            if (compUpgradeManager != null)
+            if ((compUpgradeManager != null))
             {
                 if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
                 {
