@@ -59,6 +59,10 @@ namespace Rechrysalis.CompCustomizer
         {
             return _upgradeButtonDisplay;
         }
+        public void SetDisplay(UpgradeTypeClass upgradeTypeClass)
+        {
+            _upgradeButtonDisplay.SetButotnDisplay(upgradeTypeClass);
+        }
         // public void OnPointerMove(PointerEventData pointerData)
         // {
         //     if (_buttonHeldToMove)

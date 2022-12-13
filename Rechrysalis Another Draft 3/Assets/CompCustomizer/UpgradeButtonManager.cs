@@ -35,9 +35,9 @@ namespace Rechrysalis.CompCustomizer
         }
         public void GetRandomSelection(CompCustomizerSO compCustomizerSO, int[] upgradeSelectionIndex, int selectionCount)
         {
-            _randomUpgradeSelection.GetRandomSelection(compCustomizerSO, upgradeSelectionIndex, selectionCount);
+            _randomUpgradeSelection.GetRandomSelectionOld(compCustomizerSO, upgradeSelectionIndex, selectionCount);
             // _selectionIndexToSelection.UpgradeFromIndex(_randomUpgradeSelection.GetRandomIndex());
-            _upgradeTypeClass = _selectionIndexToSelection.GetUpgradeTypeClassFromIndex(_randomUpgradeSelection.GetRandomIndex());            
+            _upgradeTypeClass = _selectionIndexToSelection.GetUpgradeTypeClassFromIndex(_randomUpgradeSelection.GetRandomIndexOld());            
             _upgradeButtonDisplay.SetButotnDisplay(_upgradeTypeClass);
         }
         public RandomUpgradeSelection GetRandomUpgradeSelection()

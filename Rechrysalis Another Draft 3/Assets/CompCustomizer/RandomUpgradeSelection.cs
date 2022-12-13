@@ -17,21 +17,52 @@ namespace Rechrysalis.CompCustomizer
         {
             _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
         }
-        public int GetRandomSelection(CompCustomizerSO compCustomizerSO, int[] upgradeSelectionIndexArray, int selectionCount)
+        public UpgradeTypeClass GetRandomUpgradeTypeClass(UpgradeTypeClass[] upgradeTypeClassesCurrent, int selectionCount)
         {
-            GetRandomNumberAndUpgradeClass(selectionCount);
-            CheckIfDuplicate(upgradeSelectionIndexArray, selectionCount);
-            return _randomIndex;
-            
+            if (upgradeTypeClassesCurrent != null)
+            {
+                for (int i=0; i<upgradeTypeClassesCurrent.Length; i++)
+                {
+                    UpgradeTypeClass randomUpgradeClass = _selectionIndexToSelection.GetUpgradeTypeClassFromIndex(GetRandomNumber(selectionCount));
+                    CheckIfDuplicates  (upgradeTypeClassesCurrent, randomUpgradeClass, selectionCount);
+                    return randomUpgradeClass;
+                }
+            }
+            return null;
         }
-        private void GetRandomNumberAndUpgradeClass(int selectionCount)
+        private int GetRandomNumber(int selectionCount)
+        {
+            return Random.Range(0, selectionCount);
+        }
+        private void CheckIfDuplicates(UpgradeTypeClass[] upgradeTypeClassesCurrent, UpgradeTypeClass randomUpgradeClass, int selectionCount)
+        {
+            for (int i=0; i<upgradeTypeClassesCurrent.Length; i++)
+            {
+                if (upgradeTypeClassesCurrent[i] != null)
+                {
+                    if (upgradeTypeClassesCurrent[i] == randomUpgradeClass)
+                    {
+                        randomUpgradeClass = _selectionIndexToSelection.GetUpgradeTypeClassFromIndex(GetRandomNumber(selectionCount));
+                        CheckIfDuplicates(upgradeTypeClassesCurrent, randomUpgradeClass, selectionCount);
+                        return;
+                    }
+                }
+            }
+        }
+        public int GetRandomSelectionOld(CompCustomizerSO compCustomizerSO, int[] upgradeSelectionIndexArray, int selectionCount)
+        {
+            GetRandomNumberAndUpgradeClassOld(selectionCount);
+            CheckIfDuplicateOld(upgradeSelectionIndexArray, selectionCount);
+            return _randomIndex;            
+        }
+        private void GetRandomNumberAndUpgradeClassOld(int selectionCount)
         {
             _randomIndex = Random.Range(0, selectionCount);
             if (_debugBool)
             Debug.Log($"random number " + _randomIndex);
             _upgradeTypeClassToCompare = _selectionIndexToSelection.GetUpgradeTypeClassFromIndex(_randomIndex);
         }
-        private void CheckIfDuplicate(int[] upgradeSelectionIndexArray, int selectionCount)
+        private void CheckIfDuplicateOld(int[] upgradeSelectionIndexArray, int selectionCount)
         {
             // _selectionIndexToSelection.UpgradeFromIndex(_randomIndex);
             
@@ -51,14 +82,14 @@ namespace Rechrysalis.CompCustomizer
                     {
                         if (unitStatsSOToCompare == _upgradeTypeClassToCompare.GetUnitStatsSO())
                         {
-                            DuplicateFoundGetNew(selectionCount, upgradeSelectionIndexArray);
+                            DuplicateFoundGetNewOld(selectionCount, upgradeSelectionIndexArray);
                         }
                     }
                     if (upgradeTypeToCompare == UpgradeTypeClass.UpgradeType.HatchEffect)
                     {
                         if (hatchEffectSOToCompare == _upgradeTypeClassToCompare.GetHatchEffectSO())
                         {
-                            DuplicateFoundGetNew(selectionCount, upgradeSelectionIndexArray);
+                            DuplicateFoundGetNewOld(selectionCount, upgradeSelectionIndexArray);
                         }
                     }
                 }
@@ -72,15 +103,15 @@ namespace Rechrysalis.CompCustomizer
                 // }
             }
         }
-        private void DuplicateFoundGetNew(int selectionCount, int[] upgradeSelectionIndex)
+        private void DuplicateFoundGetNewOld(int selectionCount, int[] upgradeSelectionIndex)
         {
             if (_debugBool)
             Debug.Log($"duplicate found");
-            GetRandomNumberAndUpgradeClass(selectionCount);
-            CheckIfDuplicate(upgradeSelectionIndex, selectionCount);
+            GetRandomNumberAndUpgradeClassOld(selectionCount);
+            CheckIfDuplicateOld(upgradeSelectionIndex, selectionCount);
             return;
         }
-        public int GetRandomIndex()
+        public int GetRandomIndexOld()
         {
             return _randomIndex;            
         }
