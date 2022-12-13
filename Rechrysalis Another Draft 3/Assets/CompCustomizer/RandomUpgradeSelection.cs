@@ -24,7 +24,7 @@ namespace Rechrysalis.CompCustomizer
                 for (int i=0; i<upgradeTypeClassesCurrent.Length; i++)
                 {
                     UpgradeTypeClass randomUpgradeClass = _selectionIndexToSelection.GetUpgradeTypeClassFromIndex(GetRandomNumber(selectionCount));
-                    CheckIfDuplicates  (upgradeTypeClassesCurrent, randomUpgradeClass, selectionCount);
+                    CheckIfDuplicates  (upgradeTypeClassesCurrent, ref randomUpgradeClass, selectionCount);
                     return randomUpgradeClass;
                 }
             }
@@ -34,8 +34,9 @@ namespace Rechrysalis.CompCustomizer
         {
             return Random.Range(0, selectionCount);
         }
-        private void CheckIfDuplicates(UpgradeTypeClass[] upgradeTypeClassesCurrent, UpgradeTypeClass randomUpgradeClass, int selectionCount)
+        private void CheckIfDuplicates(UpgradeTypeClass[] upgradeTypeClassesCurrent, ref UpgradeTypeClass randomUpgradeClass, int selectionCount)
         {
+            Debug.Log($"checking duplicates");
             for (int i=0; i<upgradeTypeClassesCurrent.Length; i++)
             {
                 if (upgradeTypeClassesCurrent[i] != null)
@@ -43,7 +44,7 @@ namespace Rechrysalis.CompCustomizer
                     if (upgradeTypeClassesCurrent[i] == randomUpgradeClass)
                     {
                         randomUpgradeClass = _selectionIndexToSelection.GetUpgradeTypeClassFromIndex(GetRandomNumber(selectionCount));
-                        CheckIfDuplicates(upgradeTypeClassesCurrent, randomUpgradeClass, selectionCount);
+                        CheckIfDuplicates(upgradeTypeClassesCurrent, ref randomUpgradeClass, selectionCount);
                         return;
                     }
                 }
