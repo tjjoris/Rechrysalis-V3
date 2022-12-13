@@ -45,7 +45,9 @@ namespace Rechrysalis.CompCustomizer
             GameObject _selectionButton = Instantiate(_upgradeButtonPrefab, transform);
             _compUpgradeManagers[index] = _selectionButton.GetComponent<CompUpgradeManager>();
             _compUpgradeManagers[index].Initialize(-1, -1, _movingButtonHolder);
-            _compUpgradeManagers[index].SetDisplay(_randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount));
+            UpgradeTypeClass _randomUpgradeTypeClass = _randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount);
+            _upgradeTypeClassesToChooseFrom[index] = _randomUpgradeTypeClass;
+            _compUpgradeManagers[index].SetDisplay(_randomUpgradeTypeClass);
             
             // _upgradebuttonManager[index] = _selectionButton.GetComponent<UpgradeButtonManager>();
             // _upgradebuttonManager[index]?.Initialize(_compCustomizerSO);
