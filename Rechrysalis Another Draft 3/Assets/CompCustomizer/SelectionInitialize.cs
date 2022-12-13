@@ -47,6 +47,7 @@ namespace Rechrysalis.CompCustomizer
             _compUpgradeManagers[index].Initialize(-1, -1, _movingButtonHolder);
             UpgradeTypeClass _randomUpgradeTypeClass = _randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount);
             _upgradeTypeClassesToChooseFrom[index] = _randomUpgradeTypeClass;
+            _compUpgradeManagers[index].SetUpgradeTypeClass(_randomUpgradeTypeClass);
             _compUpgradeManagers[index].SetDisplay(_randomUpgradeTypeClass);
             
             // _upgradebuttonManager[index] = _selectionButton.GetComponent<UpgradeButtonManager>();

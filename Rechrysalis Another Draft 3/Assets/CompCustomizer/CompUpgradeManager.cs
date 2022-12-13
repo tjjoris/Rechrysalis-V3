@@ -43,7 +43,7 @@ namespace Rechrysalis.CompCustomizer
             _image = GetComponent<Image>();
         }
 
-        public void SetUpgradeType(UpgradeTypeClass upgradeTypeClass)
+        public void SetUpgradeTypeClass(UpgradeTypeClass upgradeTypeClass)
         {
             _upgradeTypeClass = upgradeTypeClass;
         }

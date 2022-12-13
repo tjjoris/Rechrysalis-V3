@@ -32,9 +32,9 @@ namespace Rechrysalis.CompCustomizer
                 int upgradeIndexInArray = ((parentIndex * compSO.ChildUnitCount) + i);
                 CreateAndSetupCompButton(compSO, compButtonPrefab, parentIndex, i, movingButtonHolder);
                 if (i == 2)//its a hatch effect
-                _compUpgradeManagers[i].SetUpgradeType(compSO.HatchEffectSOArray[upgradeIndexInArray].UpgradeTypeClass);
+                _compUpgradeManagers[i].SetUpgradeTypeClass(compSO.HatchEffectSOArray[upgradeIndexInArray].UpgradeTypeClass);
                 else 
-                _compUpgradeManagers[i].SetUpgradeType(compSO.UnitSOArray[upgradeIndexInArray].UpgradeTypeClass);
+                _compUpgradeManagers[i].SetUpgradeTypeClass(compSO.UnitSOArray[upgradeIndexInArray].UpgradeTypeClass);
             }
             SubscribeToCompButtons();
         }
