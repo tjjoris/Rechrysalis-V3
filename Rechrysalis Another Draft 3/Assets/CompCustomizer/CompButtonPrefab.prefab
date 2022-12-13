@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6528492172286274234}
   - component: {fileID: 1836584034645865282}
   - component: {fileID: 6150873191030968018}
-  - component: {fileID: 792117534950326552}
   m_Layer: 5
   m_Name: CompButtonPrefab
   m_TagString: Untagged
@@ -173,18 +172,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 3797554362170991384}
   _nameText: {fileID: 3327050110484505544}
---- !u!114 &792117534950326552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858269929011501162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 275bfcb375eb24316b28924caeac2174, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2745397915481181483
 GameObject:
   m_ObjectHideFlags: 0

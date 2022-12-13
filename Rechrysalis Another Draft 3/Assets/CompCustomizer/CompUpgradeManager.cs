@@ -40,6 +40,7 @@ namespace Rechrysalis.CompCustomizer
             _childIndex = childIndex;
             // _upgradeType = new UpgradeTypeClass();
             _upgradeButtonDisplay = GetComponent<UpgradeButtonDisplay>();
+            // _upgradeButtonDisplay.Initialzie();
             _image = GetComponent<Image>();
         }
 
