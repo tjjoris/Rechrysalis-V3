@@ -33,6 +33,7 @@ namespace Rechrysalis.CompCustomizer
             _compCustomizerSO = compCustomizerSO;
             _upgradeTypeClassesToChooseFrom = new UpgradeTypeClass[_numberOfUpgrades];
             _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
+            _selectionIndexToSelection.Initialize(compCustomizerSO);
             _randomUpgradeSelection= GetComponent<RandomUpgradeSelection>();
             _randomUpgradeSelection.Initialize();
             CalculateUpgradeSelectionCount();
