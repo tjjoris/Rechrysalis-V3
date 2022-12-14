@@ -8,6 +8,7 @@ namespace Rechrysalis.CompCustomizer
 {
     public class CompInitialize : MonoBehaviour
     {
+        bool debugBool = true;
         private CompSO _playerComp;
         private CompCustomizerSO _compCustomizerSO;
         [SerializeField] private GameObject _compButtonPrefab;
@@ -62,7 +63,7 @@ namespace Rechrysalis.CompCustomizer
         {
             for (int parentIndex = 0; parentIndex < 3; parentIndex ++)
             {
-                SetUpEachVertical(playerComp, parentIndex);
+                SetUpThisVertical(playerComp, parentIndex);
             }
         }
         public void EnableScrollRect()
@@ -79,14 +80,16 @@ namespace Rechrysalis.CompCustomizer
                 // _verticalMangers[parentIndex].
             }
         }
-        private void SetUpEachVertical(CompSO playerComp, int parentIndex)
+        private void SetUpThisVertical(CompSO playerComp, int parentIndex)
         {   
-            _verticalMangers[parentIndex]?.Initialize(playerComp.ParentUnitClassList[parentIndex]);
+            if (debugBool)
+            Debug.Log($"vertical to set up " + parentIndex);
+            _verticalMangers[parentIndex]?.Initialize();
             if (playerComp.ParentUnitClassList.Count > parentIndex)
             {
                 Debug.Log($"parent unit class count "+playerComp.ParentUnitClassList.Count);
                 {
-                    _verticalMangers[parentIndex]?.CreateAndSetUpCompButtons(playerComp, parentIndex, _compButtonPrefab, _movingButtonHolder);
+                    _verticalMangers[parentIndex]?.CreateAndSetUpCompButtons(playerComp, parentIndex, _compButtonPrefab, _movingButtonHolder, playerComp.ParentUnitClassList[parentIndex]);
                 }
             }
         }
@@ -95,7 +98,7 @@ namespace Rechrysalis.CompCustomizer
             if (((compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)) )
             {
                 _playerComp.ParentUnitClassList.Add(new ParentUnitClass());
-                _verticalMangers[_playerComp.ParentUnitClassList.Count-1].CreateAndSetUpCompButtons(_playerComp, _playerComp.ParentUnitClassList.Count-1, _compButtonPrefab, _movingButtonHolder);
+                _verticalMangers[_playerComp.ParentUnitClassList.Count-1].CreateAndSetUpCompButtons(_playerComp, _playerComp.ParentUnitClassList.Count-1, _compButtonPrefab, _movingButtonHolder, _playerComp.ParentUnitClassList[_playerComp.ParentUnitClassList.Count -1]);
 
 
             }

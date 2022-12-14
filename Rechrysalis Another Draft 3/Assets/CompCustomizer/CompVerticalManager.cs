@@ -21,19 +21,21 @@ namespace Rechrysalis.CompCustomizer
         // public ParentUnitClass ParentUnitClass { get{ return _parentUnitClass; } set{ _parentUnitClass = value; } }
         
 
-        public void Initialize(ParentUnitClass parentUnitClass)
+        public void Initialize()
         {
 
             if (debugBool)
                 Debug.Log($"initialize vertical");
-            if (parentUnitClass != null)
-                _parentUnitClass = parentUnitClass;
+            // if (parentUnitClass != null)
+                // _parentUnitClass = parentUnitClass;
             _upgradeButtonDisplays = new UpgradeButtonDisplay[3];
             _compUpgradeManagers = new CompUpgradeManager[3];
             _scrollRect = GetComponent<ScrollRect>();
         }
-        public void CreateAndSetUpCompButtons(CompSO compSO, int parentIndex, GameObject compButtonPrefab, Transform movingButtonHolder)
+        public void CreateAndSetUpCompButtons(CompSO compSO, int parentIndex, GameObject compButtonPrefab, Transform movingButtonHolder, ParentUnitClass parentUnitClass)
         {
+            if (parentUnitClass != null)
+            _parentUnitClass = parentUnitClass;
             for (int i=0; i<3; i++)
             {
                 int upgradeIndexInArray = ((parentIndex * compSO.ChildUnitCount) + i);
