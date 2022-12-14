@@ -11,6 +11,7 @@ namespace Rechrysalis.CompCustomizer
 {
     public class CompVerticalManager : MonoBehaviour//, IDropHandler
     {
+        bool debugBool = true;
         [SerializeField] private CompUpgradeManager[] _compUpgradeManagers;
         private UpgradeButtonDisplay[] _upgradeButtonDisplays;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
@@ -20,13 +21,19 @@ namespace Rechrysalis.CompCustomizer
         // public ParentUnitClass ParentUnitClass { get{ return _parentUnitClass; } set{ _parentUnitClass = value; } }
         
 
-        public void Initialize(CompSO compSO, int parentIndex, GameObject compButtonPrefab, Transform movingButtonHolder, ParentUnitClass parentUnitClass)
+        public void Initialize(ParentUnitClass parentUnitClass)
         {
-            if (parentUnitClass != null)        
-            _parentUnitClass = parentUnitClass;
+
+            if (debugBool)
+                Debug.Log($"initialize vertical");
+            if (parentUnitClass != null)
+                _parentUnitClass = parentUnitClass;
             _upgradeButtonDisplays = new UpgradeButtonDisplay[3];
             _compUpgradeManagers = new CompUpgradeManager[3];
             _scrollRect = GetComponent<ScrollRect>();
+        }
+        public void CreateAndSetUpCompButtons(CompSO compSO, int parentIndex, GameObject compButtonPrefab, Transform movingButtonHolder)
+        {
             for (int i=0; i<3; i++)
             {
                 int upgradeIndexInArray = ((parentIndex * compSO.ChildUnitCount) + i);
