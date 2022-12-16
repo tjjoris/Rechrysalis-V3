@@ -192,8 +192,9 @@ namespace Rechrysalis.CompCustomizer
                 // _compUpgradeManagers.Add(compUpgradeManager);
             }
         }
-        public bool CheckIfAtLeastOneBasic()
+        public int GetNumberOfBasic()
         {
+            int numberOfBasic = 0;
             foreach (Transform upgradeTransform in _verticalContainer.transform)
             {
                 CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
@@ -201,11 +202,11 @@ namespace Rechrysalis.CompCustomizer
                 {
                     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
                     {
-                        return true;
+                        numberOfBasic ++;
                     }
                 }            
             }
-            return false;
+            return numberOfBasic;
             // if (_compUpgradeManagers != null)
             // {
             //     if (_compUpgradeManagers.Count > 0)
@@ -223,6 +224,36 @@ namespace Rechrysalis.CompCustomizer
             //     }
             // }
             // return false;
+        }
+        public int GetNumberOfHatchEffects()
+        {
+            int numberOfHatchEffects = 0;
+            foreach (Transform upgradeTransform in _verticalContainer.transform)
+            {
+                CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
+                if (compUpgradeManager != null)
+                {
+                    if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
+                        numberOfHatchEffects++;
+                }
+            }
+            return numberOfHatchEffects;
+        }
+        public bool IsAtLeastOneAdvUpgrade()
+        {
+            int numberOfAdvUpgrades = 0;
+            foreach (Transform upgradeTransform in _verticalContainer.transform)
+            {
+                CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
+                if (compUpgradeManager != null)
+                {
+                    if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced)
+                        numberOfAdvUpgrades++;
+                }
+            }
+            if (numberOfAdvUpgrades > 0)
+            return true;
+            return false;
         }
         public bool IsNoErrorsInThisUnitUpgrades()
         {

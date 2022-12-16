@@ -115,9 +115,20 @@ namespace Rechrysalis.CompCustomizer
             bool atLeastOneBasic = false;
             for (int i=0; i<_verticalMangers.Count; i++)
             {
-                if (_verticalMangers[i].CheckIfAtLeastOneBasic())
+                int numberOfBasic = _verticalMangers[i].GetNumberOfBasic();
+                int numberOfHatchEffects = _verticalMangers[i].GetNumberOfHatchEffects();
+                bool isAtLeastOneUpgrade = _verticalMangers[i].IsAtLeastOneAdvUpgrade();                
+                if (numberOfBasic == 1)
                 atLeastOneBasic = true;
-                if (!_verticalMangers[i].IsNoErrorsInThisUnitUpgrades())
+                else 
+                {
+                    if ((numberOfHatchEffects > 0) || (isAtLeastOneUpgrade))
+                    {
+                        return false;
+                    }
+                }
+                // if (!_verticalMangers[i].IsNoErrorsInThisUnitUpgrades())
+                if ((numberOfBasic > 1) || (numberOfHatchEffects > 1))
                 return false;
             }
             if (atLeastOneBasic)
