@@ -12,7 +12,7 @@ namespace Rechrysalis.CompCustomizer
     public class CompVerticalManager : MonoBehaviour//, IDropHandler
     {
         bool debugBool = true;
-        [SerializeField] private CompUpgradeManager[] _compUpgradeManagers;
+        [SerializeField] private List<CompUpgradeManager> _compUpgradeManagers;
         private UpgradeButtonDisplay[] _upgradeButtonDisplays;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
         [SerializeField] private VerticalContainer _verticalContainer;
@@ -29,7 +29,7 @@ namespace Rechrysalis.CompCustomizer
             // if (parentUnitClass != null)
                 // _parentUnitClass = parentUnitClass;
             _upgradeButtonDisplays = new UpgradeButtonDisplay[3];
-            _compUpgradeManagers = new CompUpgradeManager[3];
+            // _compUpgradeManagers = new CompUpgradeManager[3];
             _scrollRect = GetComponent<ScrollRect>();
         }
         public void CreateAndSetUpCompButtons(CompSO compSO, int parentIndex, GameObject compButtonPrefab, Transform movingButtonHolder, ParentUnitClass parentUnitClass)
@@ -51,7 +51,7 @@ namespace Rechrysalis.CompCustomizer
         {
             if (_compUpgradeManagers != null)
             {
-                for (int _index=0; _index<_compUpgradeManagers.Length; _index++)
+                for (int _index=0; _index<_compUpgradeManagers.Count; _index++)
                 {
                     if (_compUpgradeManagers[_index] != null)
                     {
@@ -72,7 +72,7 @@ namespace Rechrysalis.CompCustomizer
         {
             if (_compUpgradeManagers != null)
             {
-                for (int _index = 0; _index < _compUpgradeManagers.Length; _index++)
+                for (int _index = 0; _index < _compUpgradeManagers.Count; _index++)
                 {
                     if (_compUpgradeManagers[_index] != null)
                     {
@@ -163,15 +163,16 @@ namespace Rechrysalis.CompCustomizer
                 {
                     _parentUnitClass.AddUTCAdvanced(compUpgradeManager.GetUpgradeTypeClass());
                 }
+                // _compUpgradeManagers.Add(compUpgradeManager);
             }
         }
         public bool CheckIfAtLeastOneBasic()
         {
             if (_compUpgradeManagers != null)
             {
-                if (_compUpgradeManagers.Length > 0)
+                if (_compUpgradeManagers.Count > 0)
                 {
-                    for (int i = 0; i<_compUpgradeManagers.Length; i++)
+                    for (int i = 0; i<_compUpgradeManagers.Count; i++)
                     {
                         if (_compUpgradeManagers[i] != null)
                         {
@@ -189,9 +190,9 @@ namespace Rechrysalis.CompCustomizer
         {
             int numberOfBasic = 0;
             int numberOfHatchEffects = 0;
-            if (_compUpgradeManagers.Length > 0)
+            if (_compUpgradeManagers.Count > 0)
             {
-                for (int i = 0; i< _compUpgradeManagers.Length; i++)
+                for (int i = 0; i< _compUpgradeManagers.Count; i++)
                 {
                     if (_compUpgradeManagers[i] != null)
                     {
