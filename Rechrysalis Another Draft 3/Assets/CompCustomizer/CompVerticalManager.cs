@@ -280,7 +280,7 @@ namespace Rechrysalis.CompCustomizer
         public ParentUnitClass GetParentUnitClass()
         {
             ParentUnitClass parentUnitClassToReturn = new ParentUnitClass(); 
-            // parentUnitClassToReturn.ClearAllUpgrades();
+            parentUnitClassToReturn.ClearAllUpgrades();
             foreach (Transform upgradeTransform in _verticalContainer.transform)
             {
                 CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
@@ -296,7 +296,10 @@ namespace Rechrysalis.CompCustomizer
                     }
                     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced)
                     {
-                        parentUnitClassToReturn.AddUTCAdvanced(compUpgradeManager.GetUpgradeTypeClass());
+                        Debug.Log($"utc type class" +compUpgradeManager.GetUpgradeTypeClass());
+                        Debug.Log($"list length " + parentUnitClassToReturn.AdvancedUpgradesUTCList);
+                        parentUnitClassToReturn.AdvancedUpgradesUTCList.Add(compUpgradeManager.GetUpgradeTypeClass());
+                        // parentUnitClassToReturn.AddUTCAdvanced(compUpgradeManager.GetUpgradeTypeClass());
                     }
                 }
             }

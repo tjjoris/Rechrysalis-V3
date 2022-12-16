@@ -18,6 +18,7 @@ namespace Rechrysalis.Unit
         
         public void ClearAllUpgrades()
         {
+            _advancedUpgradesUTCList = new List<UpgradeTypeClass>();
             _advancedUpgradesUTCList.Clear();
             _utcBasicUnit = null;
             _utcHatchEffect = null;
