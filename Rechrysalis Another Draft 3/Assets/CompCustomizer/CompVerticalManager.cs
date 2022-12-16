@@ -168,44 +168,73 @@ namespace Rechrysalis.CompCustomizer
         }
         public bool CheckIfAtLeastOneBasic()
         {
-            if (_compUpgradeManagers != null)
+            foreach (Transform upgradeTransform in _verticalContainer.transform)
             {
-                if (_compUpgradeManagers.Count > 0)
+                CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
+                if (compUpgradeManager!= null)
                 {
-                    for (int i = 0; i<_compUpgradeManagers.Count; i++)
+                    if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
                     {
-                        if (_compUpgradeManagers[i] != null)
-                        {
-                            if (_compUpgradeManagers[i].GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
-                            {
-                                return true;
-                            }
-                        }
+                        return true;
                     }
-                }
+                }            
             }
             return false;
+            // if (_compUpgradeManagers != null)
+            // {
+            //     if (_compUpgradeManagers.Count > 0)
+            //     {
+            //         for (int i = 0; i<_compUpgradeManagers.Count; i++)
+            //         {
+            //             if (_compUpgradeManagers[i] != null)
+            //             {
+            //                 if (_compUpgradeManagers[i].GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+            //                 {
+            //                     return true;
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+            // return false;
         }
         public bool IsNoErrorsInThisUnitUpgrades()
         {
             int numberOfBasic = 0;
             int numberOfHatchEffects = 0;
-            if (_compUpgradeManagers.Count > 0)
+            foreach (Transform upgradeTransform in _verticalContainer.transform)
             {
-                for (int i = 0; i< _compUpgradeManagers.Count; i++)
+                CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
+                if (compUpgradeManager != null)
                 {
-                    if (_compUpgradeManagers[i] != null)
-                    {
-                        if (_compUpgradeManagers[i].GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
-                        numberOfBasic ++;
-                        if (_compUpgradeManagers[i].GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
-                        numberOfHatchEffects ++;
-                    }
-                }
+                    if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+                    numberOfBasic ++;
+                    if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
+                    numberOfHatchEffects ++;  
+                }                  
                 if ((numberOfBasic > 1) || (numberOfHatchEffects > 1))
                 return true;
-            }
+            }                        
             return false;
+
+                    // int numberOfBasic = 0;
+                    // int numberOfHatchEffects = 0;
+                    // if (_compUpgradeManagers.Count > 0)
+                    // {
+                    //     for (int i = 0; i< _compUpgradeManagers.Count; i++)
+                    //     {
+                    //         if (_compUpgradeManagers[i] != null)
+                    //         {
+                    //             if (_compUpgradeManagers[i].GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+                    //             numberOfBasic ++;
+                    //             if (_compUpgradeManagers[i].GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
+                    //             numberOfHatchEffects ++;
+                    //         }
+                    //     }
+                    //     if ((numberOfBasic > 1) || (numberOfHatchEffects > 1))
+                    //     return true;
+                    // }
+                    // return false;
         }
     }
 }
