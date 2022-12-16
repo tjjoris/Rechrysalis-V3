@@ -32,7 +32,18 @@ namespace Rechrysalis.CompCustomizer
             // _compUpgradeManagers = new CompUpgradeManager[3];
             _scrollRect = GetComponent<ScrollRect>();
         }
-        public void CreateAndSetUpCompButtons(CompSO compSO, int parentIndex, GameObject compButtonPrefab, Transform movingButtonHolder, ParentUnitClass parentUnitClass)
+        public void CreateAndSetUpCompButton(ParentUnitClass parentUnitClass, GameObject compButtonPrefab)
+        {
+            // parentUnitClass
+        }
+        public void CreateCompButton(GameObject compButtonPrefab, UpgradeTypeClass upgradeTypeClass)
+        {
+            GameObject compButtonCreated = Instantiate(compButtonPrefab, _verticalContainer.transform);
+            CompUpgradeManager compUpgradeManager = compButtonCreated.GetComponent<CompUpgradeManager>();
+            compUpgradeManager?.SetUpgradeTypeClass(upgradeTypeClass);
+            compUpgradeManager?.SetDisplay(upgradeTypeClass);
+        }
+        public void CreateAndSetUpCompButtonsOld(CompSO compSO, int parentIndex, GameObject compButtonPrefab, Transform movingButtonHolder, ParentUnitClass parentUnitClass)
         {
             if (parentUnitClass != null)
             _parentUnitClass = parentUnitClass;
@@ -97,7 +108,7 @@ namespace Rechrysalis.CompCustomizer
             }
         private void CreateAndSetupCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex, Transform movingButtonHolder)
         {
-            CreateCompButton(compSO, compButtonPrefab, parentIndex, childIndex);
+            CreateCompButtonOld(compSO, compButtonPrefab, parentIndex, childIndex);
             SetUpButtonDisplayUnit(compSO, parentIndex, childIndex);
             _compUpgradeManagers[childIndex].Initialize(parentIndex, childIndex, movingButtonHolder);
         }
@@ -108,7 +119,7 @@ namespace Rechrysalis.CompCustomizer
                 // SetCompUpgradeDisplay(childIndex, )
             }
         }
-        private void CreateCompButton(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex)
+        private void CreateCompButtonOld(CompSO compSO, GameObject compButtonPrefab, int parentIndex, int childIndex)
         {
             GameObject _compButton = Instantiate(compButtonPrefab, _verticalContainer.transform);
             _upgradeButtonDisplays[childIndex] = _compButton.GetComponent<UpgradeButtonDisplay>();

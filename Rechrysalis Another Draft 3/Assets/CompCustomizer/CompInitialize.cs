@@ -90,7 +90,7 @@ namespace Rechrysalis.CompCustomizer
             {
                 Debug.Log($"parent unit class count "+playerComp.ParentUnitClassList.Count);
                 {
-                    _verticalMangers[parentIndex]?.CreateAndSetUpCompButtons(playerComp, parentIndex, _compButtonPrefab, _movingButtonHolder, playerComp.ParentUnitClassList[parentIndex]);
+                    _verticalMangers[parentIndex]?.CreateAndSetUpCompButtonsOld(playerComp, parentIndex, _compButtonPrefab, _movingButtonHolder, playerComp.ParentUnitClassList[parentIndex]);
                 }
             }
         }
@@ -99,7 +99,7 @@ namespace Rechrysalis.CompCustomizer
             if (((compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)) )
             {
                 _playerComp.ParentUnitClassList.Add(new ParentUnitClass());
-                _verticalMangers[_playerComp.ParentUnitClassList.Count-1].CreateAndSetUpCompButtons(_playerComp, _playerComp.ParentUnitClassList.Count-1, _compButtonPrefab, _movingButtonHolder, _playerComp.ParentUnitClassList[_playerComp.ParentUnitClassList.Count -1]);
+                _verticalMangers[_playerComp.ParentUnitClassList.Count-1].CreateAndSetUpCompButtonsOld(_playerComp, _playerComp.ParentUnitClassList.Count-1, _compButtonPrefab, _movingButtonHolder, _playerComp.ParentUnitClassList[_playerComp.ParentUnitClassList.Count -1]);
 
 
             }
