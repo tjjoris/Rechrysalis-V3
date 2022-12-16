@@ -48,9 +48,9 @@ namespace Rechrysalis.CompCustomizer
         }
         public void CreateCompButton(GameObject compButtonPrefab, UpgradeTypeClass upgradeTypeClass)
         {
-            if ((upgradeTypeClass != null) || (upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Error))
+            if ((upgradeTypeClass != null) && (upgradeTypeClass.GetUpgradeType() != UpgradeTypeClass.UpgradeType.Error))
             {
-                Debug.Log($"creating utc "+ upgradeTypeClass.GetUnitStatsSO().UnitName);
+                // Debug.Log($"creating utc "+ upgradeTypeClass.GetUnitStatsSO().UnitName);
                 GameObject compButtonCreated = Instantiate(compButtonPrefab, _verticalContainer.transform);
                 CompUpgradeManager compUpgradeManager = compButtonCreated.GetComponent<CompUpgradeManager>();
                 compUpgradeManager?.Initialize(_movingButtonHolder);
