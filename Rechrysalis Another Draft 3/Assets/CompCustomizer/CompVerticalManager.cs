@@ -32,9 +32,17 @@ namespace Rechrysalis.CompCustomizer
             // _compUpgradeManagers = new CompUpgradeManager[3];
             _scrollRect = GetComponent<ScrollRect>();
         }
-        public void CreateAndSetUpCompButton(ParentUnitClass parentUnitClass, GameObject compButtonPrefab)
+        public void CreateAndSetUpCompButtons(ParentUnitClass parentUnitClass, GameObject compButtonPrefab)
         {
-            // parentUnitClass
+            CreateCompButton(compButtonPrefab, parentUnitClass.UTCBasicUnit);
+            CreateCompButton(compButtonPrefab, parentUnitClass.UTCHatchEffect);
+            if (parentUnitClass.AdvancedUpgradesUTCList.Count > 0)
+            {
+                for (int i=0; i<parentUnitClass.AdvancedUpgradesUTCList.Count; i++)
+                {
+                    CreateCompButton(compButtonPrefab, parentUnitClass.AdvancedUpgradesUTCList[i]);
+                }
+            }
         }
         public void CreateCompButton(GameObject compButtonPrefab, UpgradeTypeClass upgradeTypeClass)
         {
