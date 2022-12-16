@@ -112,7 +112,7 @@ namespace Rechrysalis.CompCustomizer
         {
             GameObject _compButton = Instantiate(compButtonPrefab, _verticalContainer.transform);
             _upgradeButtonDisplays[childIndex] = _compButton.GetComponent<UpgradeButtonDisplay>();
-            _compUpgradeManagers[childIndex] = _compButton.GetComponent<CompUpgradeManager>();
+            _compUpgradeManagers.Add(_compButton.GetComponent<CompUpgradeManager>());
         }
         private void SetUpButtonDisplayUnit(CompSO compSO, int parentIndex, int childIndex)
         {

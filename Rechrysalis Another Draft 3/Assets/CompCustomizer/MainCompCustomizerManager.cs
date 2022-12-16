@@ -100,13 +100,16 @@ namespace Rechrysalis.CompCustomizer
         public void ContinueClicked()
         {
             if (_compInitialize.CheckIfCanContinue())
-            Debug.Log($"continue");
+            {
+                Debug.Log($"continue");
+                SetComp();
+            }
         }
         private void SetComp()
         {
+            _compSO.ParentUnitClassList.Clear();
             for (int i=0; i<_compInitialize.VerticalManagers.Count; i++)
             {                
-            _compSO.ParentUnitClassList[i].ClearAllUpgrades();
             _compSO.ParentUnitClassList.Add(_compInitialize.VerticalManagers[i].GetParentUnitClass());
             }
         }
