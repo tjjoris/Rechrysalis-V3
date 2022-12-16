@@ -213,9 +213,9 @@ namespace Rechrysalis.CompCustomizer
                     numberOfHatchEffects ++;  
                 }                  
                 if ((numberOfBasic > 1) || (numberOfHatchEffects > 1))
-                return true;
+                return false;
             }                        
-            return false;
+            return true;
 
                     // int numberOfBasic = 0;
                     // int numberOfHatchEffects = 0;
