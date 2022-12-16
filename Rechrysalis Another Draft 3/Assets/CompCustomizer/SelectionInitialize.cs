@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Rechrysalis.Unit;
+// using UnityEngine.EventSystems;
 
 namespace Rechrysalis.CompCustomizer
 {
     public class SelectionInitialize : MonoBehaviour
     {
+        [SerializeField] private SelectionContainer _selectionContainer;
+        private bool debugBool = true;
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         public CompCustomizerSO CompCustomizerSO { get{ return _compCustomizerSO; } set{ _compCustomizerSO = value; } }
         [SerializeField] private GameObject _upgradeButtonPrefab;
@@ -42,7 +45,7 @@ namespace Rechrysalis.CompCustomizer
         }
         private void CreateSelectionButton(int index)
         {            
-            GameObject _selectionButton = Instantiate(_upgradeButtonPrefab, transform);
+            GameObject _selectionButton = Instantiate(_upgradeButtonPrefab, _selectionContainer.transform);
             _compUpgradeManagers[index] = _selectionButton.GetComponent<CompUpgradeManager>();
             _compUpgradeManagers[index].InitializeOld(-1, -1, _movingButtonHolder);
             UpgradeTypeClass _randomUpgradeTypeClass = _randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount);
@@ -102,5 +105,15 @@ namespace Rechrysalis.CompCustomizer
         {
             _onUpgradeButtonClicked?.Invoke(upgradeButtonManager);
         }
+
+        // public void OnDrop(PointerEventData eventData)
+        // {
+        //     if (debugBool)
+        //         Debug.Log($"selection ondrop called");
+        //     GameObject dropped = eventData.pointerDrag;
+        //     CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
+        //     compUpgradeManager.ParentAfterDrag = transform;
+        //     // _buttonDropped?.Invoke(compUpgradeManager);
+        // }
     }
 }

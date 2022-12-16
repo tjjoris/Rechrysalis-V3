@@ -11,7 +11,7 @@ namespace Rechrysalis.CompCustomizer
 {
     public class CompVerticalManager : MonoBehaviour//, IDropHandler
     {
-        bool debugBool = true;
+        bool debugBool = false;
         [SerializeField] private List<CompUpgradeManager> _compUpgradeManagers;
         private UpgradeButtonDisplay[] _upgradeButtonDisplays;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
