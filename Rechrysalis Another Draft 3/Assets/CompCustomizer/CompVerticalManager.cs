@@ -18,7 +18,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private VerticalContainer _verticalContainer;
         [SerializeField] private ScrollRect _scrollRect;
         [SerializeField] private ParentUnitClass _parentUnitClass;
-        // public ParentUnitClass ParentUnitClass { get{ return _parentUnitClass; } set{ _parentUnitClass = value; } }
+        // public ParentUnitClass ParentUnitClass { get{ return _parentUnitClass; } set{ _parentUnitClass = value; } }    
         
 
         public void Initialize()
@@ -235,6 +235,46 @@ namespace Rechrysalis.CompCustomizer
                     //     return true;
                     // }
                     // return false;
+        }
+        // public UpgradeTypeClass GetBasicUpgrade()
+        // {
+        //     foreach (Transform upgradeTransform in _verticalContainer.transform)
+        //     {
+        //         CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
+        //         if (compUpgradeManager != null)
+        //         {
+        //             if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+        //             {
+        //                 return compUpgradeManager.GetUpgradeTypeClass();
+        //             }
+        //         }
+        //     }
+        //     return null;
+        // }
+        public ParentUnitClass GetParentUnitClass()
+        {
+            ParentUnitClass parentUnitClassToReturn = new ParentUnitClass(); 
+            // parentUnitClassToReturn.ClearAllUpgrades();
+            foreach (Transform upgradeTransform in _verticalContainer.transform)
+            {
+                CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
+                if (compUpgradeManager != null)
+                {
+                    if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+                    {
+                        parentUnitClassToReturn.SetUTCBasicUnit(compUpgradeManager.GetUpgradeTypeClass());
+                    }
+                    if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
+                    {
+                        parentUnitClassToReturn.SetUTCHatchEffect(compUpgradeManager.GetUpgradeTypeClass());                        
+                    }
+                    if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced)
+                    {
+                        parentUnitClassToReturn.AddUTCAdvanced(compUpgradeManager.GetUpgradeTypeClass());
+                    }
+                }
+            }
+            return parentUnitClassToReturn;
         }
     }
 }

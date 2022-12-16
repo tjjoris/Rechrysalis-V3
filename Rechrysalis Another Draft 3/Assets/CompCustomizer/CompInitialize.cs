@@ -14,6 +14,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private GameObject _compButtonPrefab;
         private Transform _movingButtonHolder;
         [SerializeField] private List<CompVerticalManager> _verticalMangers;
+        public List<CompVerticalManager> VerticalManagers => _verticalMangers;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
 
         public void OnEnable()
