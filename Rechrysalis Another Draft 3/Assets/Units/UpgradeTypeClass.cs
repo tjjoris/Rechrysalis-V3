@@ -9,7 +9,7 @@ namespace Rechrysalis.Unit
     [System.Serializable]
     public class UpgradeTypeClass
         {
-            public enum UpgradeType { Basic, Advanced, HatchEffect, Error };
+            public enum UpgradeType {Error, Basic, Advanced, HatchEffect};
             [SerializeField] private UpgradeType _upgradeType;
             public UpgradeType UnitTypeVar { get { return _upgradeType; } set { _upgradeType = value; } }
             [SerializeField] private UnitStatsSO _unitStatsSO;
