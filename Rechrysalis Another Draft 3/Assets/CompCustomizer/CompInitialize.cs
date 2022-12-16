@@ -107,5 +107,19 @@ namespace Rechrysalis.CompCustomizer
         {
             _verticalMangers[parentIndex]?.SetCompUpgradeDisplay(childIndex, upgradeTypeClass);
         }
+        public bool CheckIfCanContinue()
+        {
+            bool atLeastOneBasic = false;
+            for (int i=0; i<_verticalMangers.Count; i++)
+            {
+                if (_verticalMangers[i].CheckIfAtLeastOneBasic())
+                atLeastOneBasic = true;
+                if (!_verticalMangers[i].IsNoErrorsInThisUnitUpgrades())
+                return false;
+            }
+            if (atLeastOneBasic)
+            return true;
+            return false;
+        }
     }
 }

@@ -97,5 +97,10 @@ namespace Rechrysalis.CompCustomizer
         {
             // _compInitialize.SetCompUpgradeDisplay(parentIndex, childIndex, upgradeTypeClass);
         }
+        public void ContinueClicked()
+        {
+            if (_compInitialize.CheckIfCanContinue())
+            Debug.Log($"continue");
+        }
     }
 }

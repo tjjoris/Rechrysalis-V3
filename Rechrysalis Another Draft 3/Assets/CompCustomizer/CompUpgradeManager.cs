@@ -10,6 +10,7 @@ namespace Rechrysalis.CompCustomizer
 {
     public class CompUpgradeManager : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler//, IPointerDownHandler, IPointerMoveHandler
     {
+        private bool debugBool = false;
         [SerializeField] private int _parentIndex;
         public int ParentIndex { get{ return _parentIndex; } set{ _parentIndex = value; } }
         [SerializeField] private int _childIndex;
@@ -116,6 +117,7 @@ namespace Rechrysalis.CompCustomizer
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            if (debugBool)
             Debug.Log($"sibling index " + _siblingIndex);
             transform.SetParent(_parentAfterDrag);
             transform.SetSiblingIndex(_siblingIndex);

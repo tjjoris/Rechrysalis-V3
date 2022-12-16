@@ -8,9 +8,11 @@ namespace Rechrysalis.CompCustomizer
 {
     public class VerticalContainer : MonoBehaviour, IDropHandler
     {
+        private bool debugBool = false;
         public Action<CompUpgradeManager> _buttonDropped;
         public void OnDrop(PointerEventData eventData)
         {
+            if (debugBool)
             Debug.Log($"ondrop called");
             GameObject dropped = eventData.pointerDrag;            
             CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();

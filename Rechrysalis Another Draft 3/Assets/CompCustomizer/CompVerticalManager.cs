@@ -165,5 +165,46 @@ namespace Rechrysalis.CompCustomizer
                 }
             }
         }
+        public bool CheckIfAtLeastOneBasic()
+        {
+            if (_compUpgradeManagers != null)
+            {
+                if (_compUpgradeManagers.Length > 0)
+                {
+                    for (int i = 0; i<_compUpgradeManagers.Length; i++)
+                    {
+                        if (_compUpgradeManagers[i] != null)
+                        {
+                            if (_compUpgradeManagers[i].GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        public bool IsNoErrorsInThisUnitUpgrades()
+        {
+            int numberOfBasic = 0;
+            int numberOfHatchEffects = 0;
+            if (_compUpgradeManagers.Length > 0)
+            {
+                for (int i = 0; i< _compUpgradeManagers.Length; i++)
+                {
+                    if (_compUpgradeManagers[i] != null)
+                    {
+                        if (_compUpgradeManagers[i].GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+                        numberOfBasic ++;
+                        if (_compUpgradeManagers[i].GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
+                        numberOfHatchEffects ++;
+                    }
+                }
+                if ((numberOfBasic > 1) || (numberOfHatchEffects > 1))
+                return true;
+            }
+            return false;
+        }
     }
 }
