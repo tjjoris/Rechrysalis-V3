@@ -16,6 +16,7 @@ namespace Rechrysalis.CompCustomizer
         private UpgradeButtonDisplay[] _upgradeButtonDisplays;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
         [SerializeField] private VerticalContainer _verticalContainer;
+        [SerializeField] private VerticalBackGround _verticalBackGround;
         [SerializeField] private ScrollRect _scrollRect;
         private Transform _movingButtonHolder;
         [SerializeField] private ParentUnitClass _parentUnitClass;
@@ -91,11 +92,13 @@ namespace Rechrysalis.CompCustomizer
         }
         private void OnEnable()
         {
+            _verticalBackGround._upgradeDropped += ButtonDroppedIntoVertical;
             SubscribeToCompButtons();   
             _verticalContainer._buttonDropped += ButtonDroppedIntoVertical;     
         }
         private void OnDisable()
         {
+            _verticalBackGround._upgradeDropped -= ButtonDroppedIntoVertical;
             if (_compUpgradeManagers != null)
             {
                 for (int _index = 0; _index < _compUpgradeManagers.Count; _index++)
@@ -327,8 +330,6 @@ namespace Rechrysalis.CompCustomizer
                     }
                     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced)
                     {
-                        Debug.Log($"utc type class" +compUpgradeManager.GetUpgradeTypeClass());
-                        Debug.Log($"list length " + parentUnitClassToReturn.AdvancedUpgradesUTCList);
                         parentUnitClassToReturn.AdvancedUpgradesUTCList.Add(compUpgradeManager.GetUpgradeTypeClass());
                         // parentUnitClassToReturn.AddUTCAdvanced(compUpgradeManager.GetUpgradeTypeClass());
                     }
