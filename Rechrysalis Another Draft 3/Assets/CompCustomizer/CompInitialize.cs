@@ -65,6 +65,7 @@ namespace Rechrysalis.CompCustomizer
             for (int parentIndex = 0; parentIndex < 3; parentIndex ++)
             {
                 SetUpThisVertical(playerComp, parentIndex);
+
             }
         }
         public void EnableScrollRect()
@@ -85,12 +86,13 @@ namespace Rechrysalis.CompCustomizer
         {   
             if (debugBool)
             Debug.Log($"vertical to set up " + parentIndex);
-            _verticalMangers[parentIndex]?.Initialize();
+            _verticalMangers[parentIndex]?.Initialize(_movingButtonHolder);
             if (playerComp.ParentUnitClassList.Count > parentIndex)
             {
                 Debug.Log($"parent unit class count "+playerComp.ParentUnitClassList.Count);
                 {
-                    _verticalMangers[parentIndex]?.CreateAndSetUpCompButtonsOld(playerComp, parentIndex, _compButtonPrefab, _movingButtonHolder, playerComp.ParentUnitClassList[parentIndex]);
+                    // _verticalMangers[parentIndex]?.CreateAndSetUpCompButtonsOld(playerComp, parentIndex, _compButtonPrefab, _movingButtonHolder, playerComp.ParentUnitClassList[parentIndex]);
+                    _verticalMangers[parentIndex]?.CreateAndSetUpCompButtons(playerComp.ParentUnitClassList[parentIndex], _compButtonPrefab);
                 }
             }
         }

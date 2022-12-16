@@ -17,11 +17,12 @@ namespace Rechrysalis.CompCustomizer
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
         [SerializeField] private VerticalContainer _verticalContainer;
         [SerializeField] private ScrollRect _scrollRect;
+        private Transform _movingButtonHolder;
         [SerializeField] private ParentUnitClass _parentUnitClass;
         // public ParentUnitClass ParentUnitClass { get{ return _parentUnitClass; } set{ _parentUnitClass = value; } }    
         
 
-        public void Initialize()
+        public void Initialize(Transform movingButtonHolder)
         {
 
             if (debugBool)
@@ -31,6 +32,7 @@ namespace Rechrysalis.CompCustomizer
             _upgradeButtonDisplays = new UpgradeButtonDisplay[3];
             // _compUpgradeManagers = new CompUpgradeManager[3];
             _scrollRect = GetComponent<ScrollRect>();
+            _movingButtonHolder = movingButtonHolder;
         }
         public void CreateAndSetUpCompButtons(ParentUnitClass parentUnitClass, GameObject compButtonPrefab)
         {
@@ -48,6 +50,7 @@ namespace Rechrysalis.CompCustomizer
         {
             GameObject compButtonCreated = Instantiate(compButtonPrefab, _verticalContainer.transform);
             CompUpgradeManager compUpgradeManager = compButtonCreated.GetComponent<CompUpgradeManager>();
+            compUpgradeManager?.Initialize(_movingButtonHolder);
             compUpgradeManager?.SetUpgradeTypeClass(upgradeTypeClass);
             compUpgradeManager?.SetDisplay(upgradeTypeClass);
         }
@@ -118,7 +121,7 @@ namespace Rechrysalis.CompCustomizer
         {
             CreateCompButtonOld(compSO, compButtonPrefab, parentIndex, childIndex);
             SetUpButtonDisplayUnit(compSO, parentIndex, childIndex);
-            _compUpgradeManagers[childIndex].Initialize(parentIndex, childIndex, movingButtonHolder);
+            _compUpgradeManagers[childIndex].InitializeOld(parentIndex, childIndex, movingButtonHolder);
         }
         public void LoopChildrenAndSetDisplay(CompSO compSO, int parentIndex)
         {

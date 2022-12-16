@@ -34,7 +34,7 @@ namespace Rechrysalis.CompCustomizer
         private float _yMaxYDistAllowedToHold = 15;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;    
         public Action _disableVerticalScroll;
-        public void Initialize(int parentIndex, int childIndex, Transform movingButtonHolder)
+        public void InitializeOld(int parentIndex, int childIndex, Transform movingButtonHolder)
         {
             _movingButtonHolder = movingButtonHolder;
             _parentIndex = parentIndex;
@@ -44,7 +44,13 @@ namespace Rechrysalis.CompCustomizer
             // _upgradeButtonDisplay.Initialzie();
             _image = GetComponent<Image>();
         }
-
+        public void Initialize(Transform movingButtonHolder)
+        {
+            _movingButtonHolder = movingButtonHolder;
+            _upgradeButtonDisplay = GetComponent<UpgradeButtonDisplay>();
+            _upgradeButtonDisplay.Initialzie();
+            _image = GetComponent<Image>();
+        }
         public void SetUpgradeTypeClass(UpgradeTypeClass upgradeTypeClass)
         {
             _upgradeTypeClass = upgradeTypeClass;
