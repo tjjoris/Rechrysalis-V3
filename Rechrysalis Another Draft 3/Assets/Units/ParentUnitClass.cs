@@ -128,7 +128,14 @@ namespace Rechrysalis.Unit
             Debug.Log($"set stats");
             if (_utcBasicUnit != null)
             {
+                _manaCost = _utcBasicUnit.GetUnitStatsSO().Mana;
                 _hpMaxBasic = _utcBasicUnit.GetUnitStatsSO().HealthMaxBasic;
+                _buildTimeBasic = _utcBasicUnit.GetUnitStatsSO().BuildTimeBasic;
+                _rangeBasic = _utcBasicUnit.GetUnitStatsSO().BaseRangeBasic;
+                _dpsBasic = _utcBasicUnit.GetUnitStatsSO().BaseDPSBasic;
+                _attackChargeUpBasic = _utcBasicUnit.GetUnitStatsSO().AttackChargeUpBasic;
+                _attackWindDownBasic = _utcBasicUnit.GetUnitStatsSO().AttackWindDownBasic;
+                _damageBasic = _dpsBasic / (_attackChargeUpBasic + _attackWindDownBasic);
             }
         }
     }
