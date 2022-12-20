@@ -8,6 +8,8 @@ namespace Rechrysalis.Unit
     [CreateAssetMenu (fileName = "AdvUnitModiferSO" , menuName = "Unit/AdvUnitModifierSO")]
     public class AdvUnitModifierSO : ScriptableObject
     {
+        [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
+        public UpgradeTypeClass UpgradeTypeClass => _upgradeTypeClass;
         [SerializeField] private string _upgradeName;
         [SerializeField] private float _currencyCost;
         public float CurrencyCost => _currencyCost;        
@@ -29,5 +31,15 @@ namespace Rechrysalis.Unit
         [SerializeField] private float _hatchEffectMultiplierAdd;
         public float HatchEffectMultiplierAdd => _hatchEffectMultiplierAdd;
 
+        private void OnValidate()
+        {
+            Initialize();
+        }
+        public void Initialize()
+        {
+            _upgradeTypeClass = new UpgradeTypeClass();
+            _upgradeTypeClass.SetAdvUnitModifierSO(this);
+            _upgradeTypeClass.SetUpgradeType(UpgradeTypeClass.UpgradeType.Advanced);
+        }
     }
 }
