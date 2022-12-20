@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cb8c6223c7614439bf8d98a437c4269, type: 3}
-  m_Name: dps1
+  m_Name: dps2
   m_EditorClassIdentifier: 
-  _upgradeName: dps1
-  _currencyCost: 25
-  _manaAdd: 5
+  _upgradeName: dps2
+  _currencyCost: 50
+  _manaAdd: 10
   _buildTimeAdd: 0
   _hpMaxAdd: 0
   _rangeAdd: 0
-  _dpsAdd: 5
+  _dpsAdd: 10
   _attackChargeUpAdd: 0
   _attackWindDownAdd: 0
   _hatchEffectMultiplierAdd: 0
