@@ -63,9 +63,9 @@ namespace Rechrysalis.Unit
             this._unitStats = _unitStats;
             this._hatchEffectSO = _hatchEffectSO;
             _unitStats.Initialize();
-            _baseDPS = _unitStats.BaseDPS;
+            _baseDPS = _unitStats.BaseDPSBasic;
             _baseChargeUp = _unitStats.AttackChargeUpBasic;
-            _baseWindDown = _unitStats.AttackWindDown;
+            _baseWindDown = _unitStats.AttackWindDownBasic;
             this._compsAndUnits = _compsAndUnits;
             GetComponent<ProjectilesPool>()?.CreatePool(_unitStats.AmountToPool, _unitStats.ProjectileSpeed, _unitStats.ProjectileSprite);
             // _nameText.text = _unitStats.UnitName;
