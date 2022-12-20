@@ -40,7 +40,7 @@ namespace Rechrysalis.CompCustomizerOld
                 _body.sprite = _unitStats.UnitSprite;
                 _name.text = _unitStats.UnitName;
                 this._unitStats = _unitStats;
-                _unitStats.Initialize();
+                // _unitStats.Initialize();
             }
         }
         public void ClickUpgradeButton()

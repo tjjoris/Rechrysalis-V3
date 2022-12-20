@@ -9,6 +9,9 @@ namespace Rechrysalis.Unit
     [CreateAssetMenu(fileName ="CompSO", menuName ="Comps/CompSO")]
     public class CompSO : ScriptableObject
     {
+        [SerializeField] private List<ParentUnitClass> _parentUnitClassList;
+        public List<ParentUnitClass> ParentUnitClassList { get{ return _parentUnitClassList; } set{ _parentUnitClassList = value; } }
+        
         [SerializeField] private UnitStatsSO[] _unitSOArray;        
         public UnitStatsSO[] UnitSOArray {get{return _unitSOArray;} set {_unitSOArray = value;}}
         [SerializeField] private HatchEffectSO[] _hatchEffectSOArray;

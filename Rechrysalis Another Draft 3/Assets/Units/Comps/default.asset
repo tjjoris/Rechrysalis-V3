@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3926e171e51a44655954fa6e2b0738af, type: 3}
   m_Name: default
   m_EditorClassIdentifier: 
+  _parentUnitClassList: []
   _unitSOArray:
   - {fileID: 11400000, guid: db3f022e624af490da1ed973efc08e3d, type: 2}
   - {fileID: 11400000, guid: 933474abe37604f519a69c6018637d2c, type: 2}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.HatchEffect
 {
@@ -8,6 +9,9 @@ namespace Rechrysalis.HatchEffect
     [CreateAssetMenu (menuName = "Unit/HatchEffectsSO", fileName = "new Hatch Efect")]
     public class HatchEffectSO : ScriptableObject
     {
+        [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
+        public UpgradeTypeClass UpgradeTypeClass { get{ return _upgradeTypeClass; } set{ _upgradeTypeClass = value; } }
+        
         [SerializeField] private float[] _dpsIncrease;
         public float[] DPSIncrease {get {return _dpsIncrease;}}
         [SerializeField] private float[] _incomingDamageMultiplier;
@@ -34,5 +38,15 @@ namespace Rechrysalis.HatchEffect
 
         [SerializeField] private string _hatchEffectName;
         public string HatchEffectName {get {return _hatchEffectName;}}
+
+        private void OnValidate()
+        {
+            if (_upgradeTypeClass == null)
+            {
+                _upgradeTypeClass = new UpgradeTypeClass();
+            }
+            _upgradeTypeClass.SetUpgradeType(UpgradeTypeClass.UpgradeType.HatchEffect);
+            _upgradeTypeClass.SetHatchEffectSO(this);
+        }
     }
 }

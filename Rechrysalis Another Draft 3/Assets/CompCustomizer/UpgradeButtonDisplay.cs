@@ -18,25 +18,25 @@ namespace Rechrysalis.CompCustomizer
             _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
         }
 
-        public void SetButotnDisplay()
+        public void SetButotnDisplay(UpgradeTypeClass upgradeTypeClass)
         {
-            if ((_selectionIndexToSelection.GetThisUpgradeType() == SelectionIndexToSelection.UpgradeType.Basic) || (_selectionIndexToSelection.GetThisUpgradeType() == SelectionIndexToSelection.UpgradeType.Advanced))
+            if ((upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic) || (upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced))
             {
-                DisplayForUnit();
+                DisplayForUnit(upgradeTypeClass.GetUnitStatsSO());
             }
-            else if (_selectionIndexToSelection.GetThisUpgradeType() == SelectionIndexToSelection.UpgradeType.HatchEffect)
+            else if (upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
             {
-                DisplayForHatchEffect();
+                DisplayForHatchEffect(upgradeTypeClass.GetHatchEffectSO());
             }
         }
-        private void DisplayForUnit()
+        public void DisplayForUnit(UnitStatsSO unitStatsSO)
         {
-            _body.sprite = _selectionIndexToSelection.GetUnitStatsSO().UnitSprite;
-            _nameText.text = _selectionIndexToSelection.GetUnitStatsSO().UnitName;
+            _body.sprite = unitStatsSO.UnitSprite;
+            _nameText.text = unitStatsSO.UnitName;
         }
-        private void DisplayForHatchEffect()
+        public void DisplayForHatchEffect(HatchEffectSO hatchEffectSO)
         {
-            _nameText.text = _selectionIndexToSelection.GetHatchEffectSO().HatchEffectName;
+            _nameText.text = hatchEffectSO.HatchEffectName;
         }
     }
 }

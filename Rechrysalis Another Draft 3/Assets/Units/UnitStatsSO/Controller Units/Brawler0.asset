@@ -23,7 +23,7 @@ MonoBehaviour:
   _origionalBaseAttackWindDown: 1
   _baseDamage: 44.2
   _origionalBaseDPS: 1
-  _baseDPS: 1
+  _baseDPS: 26
   _baseRange: 3
   _origionalBaseHealthMax: 1
   _healthMaxBase: 1

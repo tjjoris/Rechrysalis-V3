@@ -10,6 +10,8 @@ namespace Rechrysalis.Unit
     {
         // [SerializeField] private bool _empty;
         // public bool Empty {get {return _empty;}}
+        [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
+        public UpgradeTypeClass UpgradeTypeClass {get {return _upgradeTypeClass;}}
         [SerializeField] private int _amountToPool;
         public int AmountToPool{get{return _amountToPool;}}
         [SerializeField] private float _projectileSpeed;
@@ -51,6 +53,11 @@ namespace Rechrysalis.Unit
        [SerializeField] private UnitStatsMultiplierSO _tierMultiplier;
        public UnitStatsMultiplierSO TierMultiplier {get {return _tierMultiplier;}}
 
+       
+        private void OnValidate()
+        {
+           Initialize();
+        }
         public void Initialize()
         {
             _healthMax = _origionalBaseHealthMax * _baseMultipler.HealthMultiplier * _typeMultipler.HealthMultiplier * _tierMultiplier.HealthMultiplier;
@@ -60,6 +67,18 @@ namespace Rechrysalis.Unit
             _attackWindDown = _origionalBaseAttackWindDown * _baseMultipler.AttackWindDown * _typeMultipler.AttackWindDown * _tierMultiplier.AttackWindDown;
             _baseDamage = _baseDPS * (_attackChargeUp + _attackWindDown);
             _mana = _manaBase * _baseMultipler.ManaMultiplier * _typeMultipler.ManaMultiplier * _tierMultiplier.ManaMultiplier;
+            if (_upgradeTypeClass == null)
+            {
+                _upgradeTypeClass = new UpgradeTypeClass();
+            }
+            _upgradeTypeClass.SetUnitStatsSO(this);
+            if (_tierMultiplier.Tier == 0)
+            {
+                _upgradeTypeClass.SetUpgradeType(UpgradeTypeClass.UpgradeType.Basic);
+            }
+            else {
+                _upgradeTypeClass.SetUpgradeType(UpgradeTypeClass.UpgradeType.Advanced);
+            }
         }
     }
 }
