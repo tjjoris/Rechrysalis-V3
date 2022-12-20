@@ -16,8 +16,11 @@ namespace Rechrysalis.CompCustomizer
             Debug.Log($"ondrop called");
             GameObject dropped = eventData.pointerDrag;            
             CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
-            compUpgradeManager.ParentAfterDrag = transform;
-            _buttonDropped?.Invoke(compUpgradeManager);
+            if (compUpgradeManager != null)
+            {
+                compUpgradeManager.ParentAfterDrag = transform;
+                _buttonDropped?.Invoke(compUpgradeManager);
+            }
         }
 
     }
