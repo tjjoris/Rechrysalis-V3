@@ -67,6 +67,9 @@ namespace Rechrysalis.Unit
        [SerializeField] private float _chrysalisTimerMax;
        public float ChrysalisTimerMax {get {return _chrysalisTimerMax;}}
        
+       [SerializeField] private AdvUnitModifierSO _advUnitModifierSO;
+       public AdvUnitModifierSO AdvUnitModifierSO => _advUnitModifierSO;
+       
        [SerializeField] private GameObject _hatchEffectPrefab;
        public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
        [SerializeField] private UnitStatsMultiplierSO _baseMultipler;
