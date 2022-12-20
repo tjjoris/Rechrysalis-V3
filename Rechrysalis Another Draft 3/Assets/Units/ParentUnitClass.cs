@@ -56,6 +56,7 @@ namespace Rechrysalis.Unit
             _advancedUpgradesUTCList.Clear();
             _utcBasicUnit = null;
             _utcHatchEffect = null;
+            SetStats();
         }
         public void SetUTCBasicUnit(UpgradeTypeClass utcBasicUnit)
         {
@@ -67,6 +68,7 @@ namespace Rechrysalis.Unit
                 }   
                 _utcBasicUnit = utcBasicUnit;
             }
+            SetStats();
         }
         public UpgradeTypeClass GetReplacedUTCBasicUnit()
         {
@@ -75,6 +77,7 @@ namespace Rechrysalis.Unit
         public void SetUTCReplacedBacsicUnitToNull()
         {
             _replacedUTCBasicUnit = null;
+            SetStats();
         }
         public void SetUTCHatchEffect(UpgradeTypeClass utcHatchEffect)
         {
@@ -85,6 +88,7 @@ namespace Rechrysalis.Unit
                     _replaceUTCHatchEffect = _utcHatchEffect;
                 }
                 _utcHatchEffect = utcHatchEffect;
+                SetStats();
             }
         }
         public UpgradeTypeClass GetReplacedUTCHatchEffect()
@@ -94,6 +98,7 @@ namespace Rechrysalis.Unit
         public void SetUTCReplacedHatchEffectToNull()
         {
             _replaceUTCHatchEffect = null;
+            SetStats();
         }
         public void AddUTCAdvanced(UpgradeTypeClass advancedToAdd)
         {
@@ -101,6 +106,7 @@ namespace Rechrysalis.Unit
             {
                 _advancedUpgradesUTCList.Add(advancedToAdd);
             }
+            SetStats();
         }
         public void RemoveUTCAdvanced(UpgradeTypeClass advancedToRemove)
         {
@@ -110,6 +116,19 @@ namespace Rechrysalis.Unit
                 {                    
                     _advancedUpgradesUTCList.Remove(advancedToRemove);
                 }
+            }
+            SetStats();
+        }
+        private void OnValidate()
+        {
+            SetStats();
+        }
+        public void SetStats()
+        {
+            Debug.Log($"set stats");
+            if (_utcBasicUnit != null)
+            {
+                _hpMaxBasic = _utcBasicUnit.GetUnitStatsSO().HealthMaxBasic;
             }
         }
     }
