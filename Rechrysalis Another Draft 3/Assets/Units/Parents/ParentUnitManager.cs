@@ -146,7 +146,7 @@ namespace Rechrysalis.Unit
         public void ActivateInitialUnit()
         {
             // Debug.Log($"set health" + _subUnits[0].GetComponent<UnitManager>().UnitStats.HealthMax);
-            _parentHealth.SetMaxHealth(_subUnits[0].GetComponent<UnitManager>().UnitStats.HealthMax);
+            _parentHealth.SetMaxHealth(_subUnits[0].GetComponent<UnitManager>().UnitStats.HealthMaxBasic);
             ActivateUnit(0);            
         }
         public void UpgradeUnit(int _chrysalisIndex)
@@ -178,7 +178,7 @@ namespace Rechrysalis.Unit
             {
                 _parentHealth.SetChrysalis(true);
 
-                _parentHealth.SetMaxHealth(_subUnits[_chrysalisIndex].GetComponent<UnitManager>().UnitStats.HealthMax);
+                _parentHealth.SetMaxHealth(_subUnits[_chrysalisIndex].GetComponent<UnitManager>().UnitStats.HealthMaxBasic);
             float _timeToKeep = 0;
             ChrysalisTimer _chrysalisTimer = _currentSubUnit.GetComponent<ChrysalisTimer>();
             if (_chrysalisTimer != null)

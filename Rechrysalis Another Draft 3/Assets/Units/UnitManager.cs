@@ -64,7 +64,7 @@ namespace Rechrysalis.Unit
             this._hatchEffectSO = _hatchEffectSO;
             _unitStats.Initialize();
             _baseDPS = _unitStats.BaseDPS;
-            _baseChargeUp = _unitStats.AttackChargeUp;
+            _baseChargeUp = _unitStats.AttackChargeUpBasic;
             _baseWindDown = _unitStats.AttackWindDown;
             this._compsAndUnits = _compsAndUnits;
             GetComponent<ProjectilesPool>()?.CreatePool(_unitStats.AmountToPool, _unitStats.ProjectileSpeed, _unitStats.ProjectileSprite);
@@ -76,7 +76,7 @@ namespace Rechrysalis.Unit
             if (_attack != null)  _attack.IsStopped = true;
             _attack?.Initialize(_unitStats);
             _health = GetComponent<Health>();
-            _health?.Initialize(_unitStats.HealthMax);
+            _health?.Initialize(_unitStats.HealthMaxBasic);
             GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
             GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[_controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
             GetComponent<Rechrysalize>()?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ChildUnitCount);            
