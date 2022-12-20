@@ -128,7 +128,7 @@ namespace Rechrysalis.CompCustomizer
         {
             CreateCompButtonOld(compSO, compButtonPrefab, parentIndex, childIndex);
             SetUpButtonDisplayUnit(compSO, parentIndex, childIndex);
-            _compUpgradeManagers[childIndex].InitializeOld(parentIndex, childIndex, movingButtonHolder);
+            _compUpgradeManagers[childIndex].InitializeOldStillUsed(parentIndex, childIndex, movingButtonHolder);
         }
         public void LoopChildrenAndSetDisplay(CompSO compSO, int parentIndex)
         {
