@@ -99,12 +99,12 @@ namespace Rechrysalis.CompCustomizer
         }
         public void SubscribeToUpgradeButton(UpgradeButtonManager upgradeButtonManager)
         {
-            upgradeButtonManager._onUpgradeButtonClicked -= UpgradeButtonClicked;
-            upgradeButtonManager._onUpgradeButtonClicked += UpgradeButtonClicked;
+            // upgradeButtonManager._onUpgradeButtonClicked -= UpgradeButtonClicked;
+            // upgradeButtonManager._onUpgradeButtonClicked += UpgradeButtonClicked;
         }
         public void UpgradeButtonClicked(UpgradeButtonManager upgradeButtonManager)
         {
-            _onUpgradeButtonClicked?.Invoke(upgradeButtonManager);
+            // _onUpgradeButtonClicked?.Invoke(upgradeButtonManager);
         }
 
         // public void OnDrop(PointerEventData eventData)

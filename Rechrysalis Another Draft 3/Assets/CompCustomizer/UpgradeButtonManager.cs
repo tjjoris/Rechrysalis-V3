@@ -4,8 +4,9 @@ using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.HatchEffect;
 using System;
+using Rechrysalis.CompCustomizer;
 
-namespace Rechrysalis.CompCustomizer
+namespace Rechrysalis.Archived
 {
     // [System.Serializable]
     // [CreateAssetMenu(fileName = "UpgradeButtonManager", menuName = "CompCustomizer/UpgradeButtonManager")]
@@ -33,13 +34,13 @@ namespace Rechrysalis.CompCustomizer
             _upgradeButtonDisplay.Initialzie();
             // _upgradeTypeClass = upgradeTypeClass;
         }
-        public void GetRandomSelection(CompCustomizerSO compCustomizerSO, int[] upgradeSelectionIndex, int selectionCount)
-        {
-            _randomUpgradeSelection.GetRandomSelectionOld(compCustomizerSO, upgradeSelectionIndex, selectionCount);
-            // _selectionIndexToSelection.UpgradeFromIndex(_randomUpgradeSelection.GetRandomIndex());
-            _upgradeTypeClass = _selectionIndexToSelection.GetUpgradeTypeClassFromIndex(_randomUpgradeSelection.GetRandomIndexOld());            
-            _upgradeButtonDisplay.SetButotnDisplay(_upgradeTypeClass);
-        }
+        // public void GetRandomSelection(CompCustomizerSO compCustomizerSO, int[] upgradeSelectionIndex, int selectionCount)
+        // {
+        //     _randomUpgradeSelection.GetRandomSelectionOld(compCustomizerSO, upgradeSelectionIndex, selectionCount);
+        //     // _selectionIndexToSelection.UpgradeFromIndex(_randomUpgradeSelection.GetRandomIndex());
+        //     _upgradeTypeClass = _selectionIndexToSelection.GetUpgradeTypeClassFromIndex(_randomUpgradeSelection.GetRandomIndexOld());            
+        //     _upgradeButtonDisplay.SetButotnDisplay(_upgradeTypeClass);
+        // }
         public RandomUpgradeSelection GetRandomUpgradeSelection()
         {
             return _randomUpgradeSelection;
