@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
 
-namespace Rechrysalis.CompCustomizer
+namespace Rechrysalis.Archived
 {
     public class UpgradeSelectionCount : MonoBehaviour
     {        
-        public int GetUpgradeSelectionCount(CompCustomizerSO _compCustomizer)
-        {
+        // public int GetUpgradeSelectionCount(CompCustomizerSO _compCustomizer)
+        // {
 
-            return _compCustomizer.BasicUnitArray.Length + _compCustomizer.AdvancedUnitSelectionT1Array.Length + _compCustomizer.HatchEffectSelectionArray.Length;
-        }
+        //     return _compCustomizer.BasicUnitArray.Length + _compCustomizer.AdvancedUnitSelectionT1Array.Length + _compCustomizer.HatchEffectSelectionArray.Length;
+        // }
     }
 }

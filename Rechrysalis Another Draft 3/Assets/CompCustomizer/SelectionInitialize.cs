@@ -16,22 +16,22 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private GameObject _upgradeButtonPrefab;
         private Transform _movingButtonHolder;
         private int _numberOfUpgrades = 3;
-        [SerializeField] private UpgradeButtonManager[] _upgradebuttonManager;
-        public UpgradeButtonManager[] UpgradeButtonManager { get{ return _upgradebuttonManager; } set{ _upgradebuttonManager = value; } }
+        // [SerializeField] private UpgradeButtonManager[] _upgradebuttonManager;
+        // public UpgradeButtonManager[] UpgradeButtonManager { get{ return _upgradebuttonManager; } set{ _upgradebuttonManager = value; } }
         [SerializeField] private CompUpgradeManager[] _compUpgradeManagers;
         [SerializeField] private int[] _upgradeButtonIndex;
         private SelectionIndexToSelection _selectionIndexToSelection;
         private int _upgradeSelectionCount;
         private RandomUpgradeSelection _randomUpgradeSelection;
         private UpgradeTypeClass[] _upgradeTypeClassesToChooseFrom;
-        public Action<UpgradeButtonManager> _onUpgradeButtonClicked;
+        // public Action<UpgradeButtonManager> _onUpgradeButtonClicked;
         
         
         public void Initialize(CompCustomizerSO compCustomizerSO, Transform movingButtonHolder)
         {
             _movingButtonHolder = movingButtonHolder;
             _compUpgradeManagers = new CompUpgradeManager[_numberOfUpgrades];
-            _upgradebuttonManager = new UpgradeButtonManager[_numberOfUpgrades];
+            // _upgradebuttonManager = new UpgradeButtonManager[_numberOfUpgrades];
             _upgradeButtonIndex = new int[_numberOfUpgrades];
             _compCustomizerSO = compCustomizerSO;
             _upgradeTypeClassesToChooseFrom = new UpgradeTypeClass[_numberOfUpgrades];
@@ -84,28 +84,28 @@ namespace Rechrysalis.CompCustomizer
         {
             // SubscribeToUpgradeButtons();
         }
-        public void SubscribeToUpgradeButtons()
-        {
-            if (_upgradebuttonManager != null)
-            {
-                for (int _index = 0; _index < _upgradebuttonManager.Length; _index ++)
-                {
-                    if (_upgradebuttonManager[_index] != null)
-                    {
-                        SubscribeToUpgradeButton(_upgradebuttonManager[_index]);
-                    }
-                }
-            }
-        }
-        public void SubscribeToUpgradeButton(UpgradeButtonManager upgradeButtonManager)
-        {
-            // upgradeButtonManager._onUpgradeButtonClicked -= UpgradeButtonClicked;
-            // upgradeButtonManager._onUpgradeButtonClicked += UpgradeButtonClicked;
-        }
-        public void UpgradeButtonClicked(UpgradeButtonManager upgradeButtonManager)
-        {
-            // _onUpgradeButtonClicked?.Invoke(upgradeButtonManager);
-        }
+        // public void SubscribeToUpgradeButtons()
+        // {
+        //     if (_upgradebuttonManager != null)
+        //     {
+        //         for (int _index = 0; _index < _upgradebuttonManager.Length; _index ++)
+        //         {
+        //             if (_upgradebuttonManager[_index] != null)
+        //             {
+        //                 SubscribeToUpgradeButton(_upgradebuttonManager[_index]);
+        //             }
+        //         }
+        //     }
+        // }
+        // public void SubscribeToUpgradeButton(UpgradeButtonManager upgradeButtonManager)
+        // {
+        //     // upgradeButtonManager._onUpgradeButtonClicked -= UpgradeButtonClicked;
+        //     // upgradeButtonManager._onUpgradeButtonClicked += UpgradeButtonClicked;
+        // }
+        // public void UpgradeButtonClicked(UpgradeButtonManager upgradeButtonManager)
+        // {
+        //     // _onUpgradeButtonClicked?.Invoke(upgradeButtonManager);
+        // }
 
         // public void OnDrop(PointerEventData eventData)
         // {

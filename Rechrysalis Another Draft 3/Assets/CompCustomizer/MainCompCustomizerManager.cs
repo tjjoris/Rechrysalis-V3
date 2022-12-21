@@ -65,13 +65,13 @@ namespace Rechrysalis.CompCustomizer
         {
             // _changedComp = _compSO;
         }
-        private void SelectorButtonClicked(UpgradeButtonManager upgradeButtonManager)
-        {
-            // if (_debugBool)
-            // Debug.Log($"selector button clicked");
-            // _upgradeButtonManager = upgradeButtonManager;
-            // CheckIfCompToChange();
-        }
+        // private void SelectorButtonClicked(UpgradeButtonManager upgradeButtonManager)
+        // {
+        //     // if (_debugBool)
+        //     // Debug.Log($"selector button clicked");
+        //     // _upgradeButtonManager = upgradeButtonManager;
+        //     // CheckIfCompToChange();
+        // }
         private void CompButtonClicked(CompUpgradeManager compUpgradeManager)
         {
             // if (_debugBool)
