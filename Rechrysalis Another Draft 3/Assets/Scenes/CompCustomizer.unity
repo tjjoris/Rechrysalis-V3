@@ -246,13 +246,6 @@ MonoBehaviour:
   _selectionInitialize: {fileID: 1909423963}
   _compInitialize: {fileID: 1228158368}
   _compSO: {fileID: 0}
-  _upgradeButtonManager: {fileID: 0}
-  _compUpgradeManagerBeingDragged: {fileID: 0}
-  _upgradeTypeClass:
-    _upgradeType: 0
-    _unitStatsSO: {fileID: 0}
-    _hatchEffectSO: {fileID: 0}
-  _upgradeIndex: 0
   _debugBool: 1
   _movingButtonHolder: {fileID: 414014357}
 --- !u!1 &130921798
@@ -771,7 +764,6 @@ GameObject:
   - component: {fileID: 1228158366}
   - component: {fileID: 1228158365}
   - component: {fileID: 1228158368}
-  - component: {fileID: 1228158369}
   m_Layer: 5
   m_Name: Comp
   m_TagString: Untagged
@@ -855,19 +847,6 @@ MonoBehaviour:
   - {fileID: 2092751542}
   - {fileID: 1287336173}
   - {fileID: 6878637215250843785}
---- !u!114 &1228158369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228158363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4295f32294b84d4581edc735647455c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _compVerticalManagers: []
 --- !u!1 &1273122378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,7 +1392,6 @@ MonoBehaviour:
   _selectionContainer: {fileID: 452630628}
   _compCustomizerSO: {fileID: 0}
   _upgradeButtonPrefab: {fileID: 1858269929011501162, guid: bf20bc1710cf74588a7291cfa3f61b27, type: 3}
-  _upgradebuttonManager: []
   _compUpgradeManagers: []
   _upgradeButtonIndex: 
 --- !u!114 &1909423964

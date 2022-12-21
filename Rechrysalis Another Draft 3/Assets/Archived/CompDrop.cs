@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
+using Rechrysalis.CompCustomizer;
 
-namespace Rechrysalis.CompCustomizer
+namespace Rechrysalis.Archived
 {
     public class CompDrop : MonoBehaviour, IDropHandler
     {
