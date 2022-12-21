@@ -7,6 +7,7 @@ namespace Rechrysalis.Unit
     [System.Serializable]
     public class ParentUnitClass
     {
+        private bool debugBool = true;
         [SerializeField] private List<UpgradeTypeClass> _advancedUpgradesUTCList;
         public List<UpgradeTypeClass> AdvancedUpgradesUTCList { get{ return _advancedUpgradesUTCList; } set{ _advancedUpgradesUTCList = value; } }
         [SerializeField] private UpgradeTypeClass _utcBasicUnit;
@@ -56,7 +57,9 @@ namespace Rechrysalis.Unit
             _advancedUpgradesUTCList.Clear();
             _utcBasicUnit = null;
             _utcHatchEffect = null;
-            SetBasicStats();
+            if (debugBool)
+            Debug.Log($"clear all stats");
+            SetAllStats();
         }
         public void SetUTCBasicUnit(UpgradeTypeClass utcBasicUnit)
         {
@@ -68,7 +71,9 @@ namespace Rechrysalis.Unit
                 }   
                 _utcBasicUnit = utcBasicUnit;
             }
-            SetBasicStats();
+            if (debugBool)
+            Debug.Log($"SET BASIC UNIT");
+            SetAllStats();
         }
         public UpgradeTypeClass GetReplacedUTCBasicUnit()
         {
@@ -77,7 +82,8 @@ namespace Rechrysalis.Unit
         public void SetUTCReplacedBacsicUnitToNull()
         {
             _replacedUTCBasicUnit = null;
-            SetBasicStats();
+            if (debugBool) Debug.Log($"set replaced basic unit to null");
+            SetAllStats();
         }
         public void SetUTCHatchEffect(UpgradeTypeClass utcHatchEffect)
         {
@@ -88,7 +94,8 @@ namespace Rechrysalis.Unit
                     _replaceUTCHatchEffect = _utcHatchEffect;
                 }
                 _utcHatchEffect = utcHatchEffect;
-                SetBasicStats();
+                if (debugBool) Debug.Log($"set hatch effect");
+                SetAllStats();
             }
         }
         public UpgradeTypeClass GetReplacedUTCHatchEffect()
@@ -98,7 +105,8 @@ namespace Rechrysalis.Unit
         public void SetUTCReplacedHatchEffectToNull()
         {
             _replaceUTCHatchEffect = null;
-            SetBasicStats();
+            if (debugBool) Debug.Log($"replace hatch effect to null");
+            SetAllStats();
         }
         public void AddUTCAdvanced(UpgradeTypeClass advancedToAdd)
         {
@@ -106,7 +114,8 @@ namespace Rechrysalis.Unit
             {
                 _advancedUpgradesUTCList.Add(advancedToAdd);
             }
-            SetBasicStats();
+            if (debugBool) Debug.Log($"add advanced");
+            SetAllStats();
         }
         public void RemoveUTCAdvanced(UpgradeTypeClass advancedToRemove)
         {
@@ -117,9 +126,15 @@ namespace Rechrysalis.Unit
                     _advancedUpgradesUTCList.Remove(advancedToRemove);
                 }
             }
-            SetBasicStats();
+            if (debugBool) Debug.Log($"remove advanced");
+            SetAllStats();
         }
         private void OnValidate()
+        {
+            if (debugBool) Debug.Log($"validate");
+            SetAllStats();
+        }
+        private void SetAllStats()
         {
             if (_utcBasicUnit != null)
             {
@@ -134,7 +149,7 @@ namespace Rechrysalis.Unit
         }
         public void SetBasicStats()
         {
-            Debug.Log($"set stats");
+            Debug.Log($"set stats" + _utcBasicUnit.GetUnitStatsSO().UnitName);
             // if (_utcBasicUnit != null)
             {
                 _manaCost = _utcBasicUnit.GetUnitStatsSO().Mana;
@@ -151,6 +166,7 @@ namespace Rechrysalis.Unit
         {
             if (_utcBasicUnit.GetAdvUnitModifierSO() != null)
             {
+                Debug.Log($"set base adv stats");
                 _manaCost *= _utcBasicUnit.GetAdvUnitModifierSO().ManaMult;
                 _manaCost += _utcBasicUnit.GetAdvUnitModifierSO().ManaAdd;
                 _hpMaxAdvanced = _hpMaxBasic * _utcBasicUnit.GetAdvUnitModifierSO().HPMaxMult;
@@ -179,6 +195,7 @@ namespace Rechrysalis.Unit
                     {
                         if (_advancedUpgradesUTCList[i].GetAdvUnitModifierSO() != null)
                         {
+                            Debug.Log($"set adv upgrade stats for " + i);
                             SetStatsForThisAdvUpgrade(_advancedUpgradesUTCList[i].GetAdvUnitModifierSO());
                         }
                     }

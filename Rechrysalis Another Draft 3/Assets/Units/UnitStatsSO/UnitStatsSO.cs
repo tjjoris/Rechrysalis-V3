@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace Rechrysalis.Unit
 {
@@ -84,6 +85,7 @@ namespace Rechrysalis.Unit
         }
         public void Initialize()
         {
+            Debug.Log($"Initialize");
             _healthMaxBasic = _origionalBaseHealthMaxBasic * _baseMultipler.HealthMultiplier * _typeMultipler.HealthMultiplier * _tierMultiplier.HealthMultiplier;
             _baseDPSBasic = _origionalBaseDPSBasic * _baseMultipler.DPSMultiplier * _typeMultipler.DPSMultiplier * _tierMultiplier.DPSMultiplier;
             _baseRangeBasic = _typeMultipler.Range;
@@ -103,6 +105,11 @@ namespace Rechrysalis.Unit
             else {
                 _upgradeTypeClass.SetUpgradeType(UpgradeTypeClass.UpgradeType.Advanced);
             }
+        }
+        [Button("$Initialize")]
+        private void InitializeButton()
+        {
+            Initialize();
         }
     }
 }
