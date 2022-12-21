@@ -24,36 +24,36 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private bool _debugBool = true;
         [SerializeField] private Transform _movingButtonHolder;
         
-        private void OnEnable()
-        {
-            SubscribeToButtons();
-        }
-        private void OnDisable()
-        {
-            _selectionInitialize._onUpgradeButtonClicked -= SelectorButtonClicked;
-            _compInitialize._onCompUpgradeClicked -= CompButtonClicked;
-        }
-        private void SubscribeToButtons()
-        {
-            if (_selectionInitialize != null)
-            {
-                _selectionInitialize._onUpgradeButtonClicked -= SelectorButtonClicked;
-                _selectionInitialize._onUpgradeButtonClicked += SelectorButtonClicked;
-            }
-            if (_compInitialize != null)
-            {
-                _compInitialize._onCompUpgradeClicked -= CompButtonClicked;
-                _compInitialize._onCompUpgradeClicked += CompButtonClicked;
-            }
-        }
+        // private void OnEnable()
+        // {
+        //     // SubscribeToButtons();
+        // }
+        // private void OnDisable()
+        // {
+        //     // _selectionInitialize._onUpgradeButtonClicked -= SelectorButtonClicked;
+        //     // _compInitialize._onCompUpgradeClicked -= CompButtonClicked;
+        // }
+        // private void SubscribeToButtons()
+        // {
+        //     // if (_selectionInitialize != null)
+        //     // {
+        //     //     _selectionInitialize._onUpgradeButtonClicked -= SelectorButtonClicked;
+        //     //     _selectionInitialize._onUpgradeButtonClicked += SelectorButtonClicked;
+        //     // }
+        //     // if (_compInitialize != null)
+        //     // {
+        //     //     _compInitialize._onCompUpgradeClicked -= CompButtonClicked;
+        //     //     _compInitialize._onCompUpgradeClicked += CompButtonClicked;
+        //     // }
+        // }
 
-        private void Update()
-        {
-            if (Input.GetMouseButtonUp(0))
-            {
-                _compInitialize.EnableScrollRect();
-            }
-        }
+        // private void Update()
+        // {
+        //     if (Input.GetMouseButtonUp(0))
+        //     {
+        //         _compInitialize.EnableScrollRect();
+        //     }
+        // }
         private void Start()
         {
             _compSO = _compsAndUnitsSO.CompsSO[0];
