@@ -16,11 +16,11 @@ namespace Rechrysalis.CompCustomizer
         
         [SerializeField] private CompSO _compSO;
         public CompSO CompSO { get{ return _compSO; } set{ _compSO = value; } }
-        private CompSO _changedComp;
-        [SerializeField] private UpgradeButtonManager _upgradeButtonManager;
-        [SerializeField] private CompUpgradeManager _compUpgradeManagerBeingDragged;
-        [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
-        [SerializeField] private int _upgradeIndex;
+        // private CompSO _changedComp;
+        // [SerializeField] private UpgradeButtonManager _upgradeButtonManager;
+        // [SerializeField] private CompUpgradeManager _compUpgradeManagerBeingDragged;
+        // [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
+        // [SerializeField] private int _upgradeIndex;
         [SerializeField] private bool _debugBool = true;
         [SerializeField] private Transform _movingButtonHolder;
         
@@ -63,35 +63,35 @@ namespace Rechrysalis.CompCustomizer
         }
         private void ResetChangedComp()
         {
-            _changedComp = _compSO;
+            // _changedComp = _compSO;
         }
         private void SelectorButtonClicked(UpgradeButtonManager upgradeButtonManager)
         {
-            if (_debugBool)
-            Debug.Log($"selector button clicked");
-            _upgradeButtonManager = upgradeButtonManager;
-            CheckIfCompToChange();
+            // if (_debugBool)
+            // Debug.Log($"selector button clicked");
+            // _upgradeButtonManager = upgradeButtonManager;
+            // CheckIfCompToChange();
         }
         private void CompButtonClicked(CompUpgradeManager compUpgradeManager)
         {
-            if (_debugBool)
-            Debug.Log($"comp button clicked");
-            _compUpgradeManagerBeingDragged = compUpgradeManager;
-            CheckIfCompToChange();
+            // if (_debugBool)
+            // Debug.Log($"comp button clicked");
+            // _compUpgradeManagerBeingDragged = compUpgradeManager;
+            // CheckIfCompToChange();
         }
         private void CheckIfCompToChange()
         {
-            if ((_upgradeButtonManager != null) && (_compUpgradeManagerBeingDragged != null))
-            {
-                if (_upgradeTypeClass == null)
-                {
-                    _upgradeTypeClass = new UpgradeTypeClass();
-                }
-                _upgradeTypeClass = _upgradeButtonManager.UpgradeTypeClass;
-                ChangeUnitInComp(_compUpgradeManagerBeingDragged.ParentIndex, 0, _upgradeTypeClass);
-                _upgradeButtonManager = null;
-                _compUpgradeManagerBeingDragged = null;
-            }
+            // if ((_upgradeButtonManager != null) && (_compUpgradeManagerBeingDragged != null))
+            // {
+            //     if (_upgradeTypeClass == null)
+            //     {
+            //         _upgradeTypeClass = new UpgradeTypeClass();
+            //     }
+            //     _upgradeTypeClass = _upgradeButtonManager.UpgradeTypeClass;
+            //     ChangeUnitInComp(_compUpgradeManagerBeingDragged.ParentIndex, 0, _upgradeTypeClass);
+            //     _upgradeButtonManager = null;
+            //     _compUpgradeManagerBeingDragged = null;
+            // }
         }
         private void ChangeUnitInComp(int parentIndex, int childIndex, UpgradeTypeClass upgradeTypeClass)
         {
