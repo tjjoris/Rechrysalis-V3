@@ -330,7 +330,8 @@ namespace Rechrysalis.CompCustomizer
                     }
                     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced)
                     {
-                        parentUnitClassToReturn.AdvancedUpgradesUTCList.Add(compUpgradeManager.GetUpgradeTypeClass());
+                        // parentUnitClassToReturn.AdvancedUpgradesUTCList.Add(compUpgradeManager.GetUpgradeTypeClass());
+                        parentUnitClassToReturn.AddUTCAdvanced(compUpgradeManager.GetUpgradeTypeClass());
                         // parentUnitClassToReturn.AddUTCAdvanced(compUpgradeManager.GetUpgradeTypeClass());
                     }
                 }

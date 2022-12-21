@@ -187,14 +187,17 @@ namespace Rechrysalis.Unit
         }
         private void SetAdvWhenAdvUpgrades()
         {
+            if (debugBool) Debug.Log($"_advUpgradesUTCList.Count " + _advancedUpgradesUTCList.Count);
             if (_advancedUpgradesUTCList.Count > 0)
             {
+                
                 for (int i=0; i< _advancedUpgradesUTCList.Count; i++)
                 {
                     if (_advancedUpgradesUTCList[i] != null)
                     {
                         if (_advancedUpgradesUTCList[i].GetAdvUnitModifierSO() != null)
                         {
+                            if (debugBool)
                             Debug.Log($"set adv upgrade stats for " + i);
                             SetStatsForThisAdvUpgrade(_advancedUpgradesUTCList[i].GetAdvUnitModifierSO());
                         }
@@ -211,6 +214,7 @@ namespace Rechrysalis.Unit
             // _buildTimeAdv = _buildTimeBasic * _utcBasicUnit.GetAdvUnitModifierSO().BuildTimeMult;
             _buildTimeAdv += advUnitModifierSO.BuildTimeAdd;
             _rangeAdv = _rangeAdv + advUnitModifierSO.RangeAdd;
+            if (debugBool) Debug.Log($"increase range " + advUnitModifierSO.RangeAdd);
             // _dpsAdv = _dpsBasic * _utcBasicUnit.GetAdvUnitModifierSO().DPSMult;
             _dpsAdv += advUnitModifierSO.DPSAdd;
             // _attackChargeUpAdv = _attackChargeUpBasic * _utcBasicUnit.GetAdvUnitModifierSO().AttackChargeUpMult;
