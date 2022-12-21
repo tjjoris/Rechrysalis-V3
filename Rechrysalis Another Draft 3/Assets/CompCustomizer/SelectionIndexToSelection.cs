@@ -8,7 +8,7 @@ namespace Rechrysalis.CompCustomizer
 {
     public class SelectionIndexToSelection : MonoBehaviour
     {
-        bool debugBool = true;
+        bool debugBool = false;
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         public CompCustomizerSO CompCustomizerSO { get{ return _compCustomizerSO; } set{ _compCustomizerSO = value; } }
         private int _upgradeBasicSelectionCount;

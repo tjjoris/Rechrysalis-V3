@@ -9,6 +9,7 @@ namespace Rechrysalis.Unit
     [CreateAssetMenu(fileName = "NewUnitStats", menuName ="Unit/UnitStatsSO")]
     public class UnitStatsSO : ScriptableObject
     {
+        bool debugBool = false;
         // [SerializeField] private bool _empty;
         // public bool Empty {get {return _empty;}}
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
@@ -85,6 +86,7 @@ namespace Rechrysalis.Unit
         }
         public void Initialize()
         {
+            if (debugBool)
             Debug.Log($"Initialize");
             _healthMaxBasic = _origionalBaseHealthMaxBasic * _baseMultipler.HealthMultiplier * _typeMultipler.HealthMultiplier * _tierMultiplier.HealthMultiplier;
             _baseDPSBasic = _origionalBaseDPSBasic * _baseMultipler.DPSMultiplier * _typeMultipler.DPSMultiplier * _tierMultiplier.DPSMultiplier;

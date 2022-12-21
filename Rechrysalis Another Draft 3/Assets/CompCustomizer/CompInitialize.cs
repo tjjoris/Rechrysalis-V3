@@ -8,7 +8,7 @@ namespace Rechrysalis.CompCustomizer
 {
     public class CompInitialize : MonoBehaviour
     {
-        bool debugBool = true;
+        bool _debugBool = false;
         private CompSO _playerComp;
         private CompCustomizerSO _compCustomizerSO;
         [SerializeField] private GameObject _compButtonPrefab;
@@ -84,11 +84,12 @@ namespace Rechrysalis.CompCustomizer
         }
         private void SetUpThisVertical(CompSO playerComp, int parentIndex)
         {   
-            if (debugBool)
+            if (_debugBool)
             Debug.Log($"vertical to set up " + parentIndex);
             _verticalMangers[parentIndex]?.Initialize(_movingButtonHolder);
             if (playerComp.ParentUnitClassList.Count > parentIndex)
             {
+                if (_debugBool)
                 Debug.Log($"parent unit class count "+playerComp.ParentUnitClassList.Count);
                 {
                     // _verticalMangers[parentIndex]?.CreateAndSetUpCompButtonsOld(playerComp, parentIndex, _compButtonPrefab, _movingButtonHolder, playerComp.ParentUnitClassList[parentIndex]);
