@@ -258,44 +258,44 @@ namespace Rechrysalis.CompCustomizer
             return true;
             return false;
         }
-        public bool IsNoErrorsInThisUnitUpgrades()
-        {
-            int numberOfBasic = 0;
-            int numberOfHatchEffects = 0;
-            foreach (Transform upgradeTransform in _verticalContainer.transform)
-            {
-                CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
-                if (compUpgradeManager != null)
-                {
-                    if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
-                    numberOfBasic ++;
-                    if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
-                    numberOfHatchEffects ++;  
-                }                  
-                if ((numberOfBasic > 1) || (numberOfHatchEffects > 1))
-                return false;
-            }                        
-            return true;
+        // public bool IsNoErrorsInThisUnitUpgrades()
+        // {
+        //     int numberOfBasic = 0;
+        //     int numberOfHatchEffects = 0;
+        //     foreach (Transform upgradeTransform in _verticalContainer.transform)
+        //     {
+        //         CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
+        //         if (compUpgradeManager != null)
+        //         {
+        //             if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+        //             numberOfBasic ++;
+        //             if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
+        //             numberOfHatchEffects ++;  
+        //         }                  
+        //         if ((numberOfBasic > 1) || (numberOfHatchEffects > 1))
+        //         return false;
+        //     }                        
+        //     return true;
 
-                    // int numberOfBasic = 0;
-                    // int numberOfHatchEffects = 0;
-                    // if (_compUpgradeManagers.Count > 0)
-                    // {
-                    //     for (int i = 0; i< _compUpgradeManagers.Count; i++)
-                    //     {
-                    //         if (_compUpgradeManagers[i] != null)
-                    //         {
-                    //             if (_compUpgradeManagers[i].GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
-                    //             numberOfBasic ++;
-                    //             if (_compUpgradeManagers[i].GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
-                    //             numberOfHatchEffects ++;
-                    //         }
-                    //     }
-                    //     if ((numberOfBasic > 1) || (numberOfHatchEffects > 1))
-                    //     return true;
-                    // }
-                    // return false;
-        }
+        //             // int numberOfBasic = 0;
+        //             // int numberOfHatchEffects = 0;
+        //             // if (_compUpgradeManagers.Count > 0)
+        //             // {
+        //             //     for (int i = 0; i< _compUpgradeManagers.Count; i++)
+        //             //     {
+        //             //         if (_compUpgradeManagers[i] != null)
+        //             //         {
+        //             //             if (_compUpgradeManagers[i].GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+        //             //             numberOfBasic ++;
+        //             //             if (_compUpgradeManagers[i].GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
+        //             //             numberOfHatchEffects ++;
+        //             //         }
+        //             //     }
+        //             //     if ((numberOfBasic > 1) || (numberOfHatchEffects > 1))
+        //             //     return true;
+        //             // }
+        //             // return false;
+        // }
         // public UpgradeTypeClass GetBasicUpgrade()
         // {
         //     foreach (Transform upgradeTransform in _verticalContainer.transform)

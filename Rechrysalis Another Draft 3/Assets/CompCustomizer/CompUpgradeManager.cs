@@ -34,16 +34,16 @@ namespace Rechrysalis.CompCustomizer
         private float _yMaxYDistAllowedToHold = 15;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;    
         public Action _disableVerticalScroll;
-        public void InitializeOldStillUsed(int parentIndex, int childIndex, Transform movingButtonHolder)
-        {
-            _movingButtonHolder = movingButtonHolder;
-            _parentIndex = parentIndex;
-            _childIndex = childIndex;
-            // _upgradeType = new UpgradeTypeClass();
-            _upgradeButtonDisplay = GetComponent<UpgradeButtonDisplay>();
-            // _upgradeButtonDisplay.Initialzie();
-            _image = GetComponent<Image>();
-        }
+        // public void InitializeOldStillUsed(int parentIndex, int childIndex, Transform movingButtonHolder)
+        // {
+        //     _movingButtonHolder = movingButtonHolder;
+        //     _parentIndex = parentIndex;
+        //     _childIndex = childIndex;
+        //     // _upgradeType = new UpgradeTypeClass();
+        //     _upgradeButtonDisplay = GetComponent<UpgradeButtonDisplay>();
+        //     // _upgradeButtonDisplay.Initialzie();
+        //     _image = GetComponent<Image>();
+        // }
         public void Initialize(Transform movingButtonHolder)
         {
             _movingButtonHolder = movingButtonHolder;
@@ -82,12 +82,12 @@ namespace Rechrysalis.CompCustomizer
         // }
         public void CompUpgradeClicked()
         {
-            _upgradeClickedPointerWithin = true;
-            _pointerWithinButton = true;
-            _buttonHeldToMove = false;            
-            _holdTimerCurrent = 0;
-            _yPointerStart = Input.mousePosition.y;
-            _onCompUpgradeClicked?.Invoke(this);
+            // _upgradeClickedPointerWithin = true;
+            // _pointerWithinButton = true;
+            // _buttonHeldToMove = false;            
+            // _holdTimerCurrent = 0;
+            // _yPointerStart = Input.mousePosition.y;
+            // _onCompUpgradeClicked?.Invoke(this);
         }
         private void Update()
         {
