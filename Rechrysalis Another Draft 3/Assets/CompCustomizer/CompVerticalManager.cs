@@ -336,6 +336,7 @@ namespace Rechrysalis.CompCustomizer
                     }
                 }
             }
+            parentUnitClassToReturn.SetAllStats();
             return parentUnitClassToReturn;
         }
     }

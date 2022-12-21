@@ -59,7 +59,7 @@ namespace Rechrysalis.Unit
             _utcHatchEffect = null;
             if (debugBool)
             Debug.Log($"clear all stats");
-            SetAllStats();
+            // SetAllStats();
         }
         public void SetUTCBasicUnit(UpgradeTypeClass utcBasicUnit)
         {
@@ -73,7 +73,7 @@ namespace Rechrysalis.Unit
             }
             if (debugBool)
             Debug.Log($"SET BASIC UNIT");
-            SetAllStats();
+            // SetAllStats();
         }
         public UpgradeTypeClass GetReplacedUTCBasicUnit()
         {
@@ -83,7 +83,7 @@ namespace Rechrysalis.Unit
         {
             _replacedUTCBasicUnit = null;
             if (debugBool) Debug.Log($"set replaced basic unit to null");
-            SetAllStats();
+            // SetAllStats();
         }
         public void SetUTCHatchEffect(UpgradeTypeClass utcHatchEffect)
         {
@@ -95,7 +95,7 @@ namespace Rechrysalis.Unit
                 }
                 _utcHatchEffect = utcHatchEffect;
                 if (debugBool) Debug.Log($"set hatch effect");
-                SetAllStats();
+                // SetAllStats();
             }
         }
         public UpgradeTypeClass GetReplacedUTCHatchEffect()
@@ -106,7 +106,7 @@ namespace Rechrysalis.Unit
         {
             _replaceUTCHatchEffect = null;
             if (debugBool) Debug.Log($"replace hatch effect to null");
-            SetAllStats();
+            // SetAllStats();
         }
         public void AddUTCAdvanced(UpgradeTypeClass advancedToAdd)
         {
@@ -115,7 +115,7 @@ namespace Rechrysalis.Unit
                 _advancedUpgradesUTCList.Add(advancedToAdd);
             }
             if (debugBool) Debug.Log($"add advanced");
-            SetAllStats();
+            // SetAllStats();
         }
         public void RemoveUTCAdvanced(UpgradeTypeClass advancedToRemove)
         {
@@ -127,14 +127,14 @@ namespace Rechrysalis.Unit
                 }
             }
             if (debugBool) Debug.Log($"remove advanced");
-            SetAllStats();
+            // SetAllStats();
         }
         private void OnValidate()
         {
             if (debugBool) Debug.Log($"validate");
-            SetAllStats();
+            // SetAllStats();
         }
-        private void SetAllStats()
+        public void SetAllStats()
         {
             if (_utcBasicUnit != null)
             {
