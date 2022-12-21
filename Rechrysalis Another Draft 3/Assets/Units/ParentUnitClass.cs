@@ -122,10 +122,15 @@ namespace Rechrysalis.Unit
         private void OnValidate()
         {
             if (_utcBasicUnit != null)
-            SetBasicStats();
-            SetAdvStats();
-            SetAdvWhenAdvUpgrades();
-            CalculateAdvDamage();
+            {
+                if (_utcBasicUnit.GetUnitStatsSO() != null)
+                {
+                    SetBasicStats();
+                    SetAdvStats();
+                    SetAdvWhenAdvUpgrades();
+                    CalculateAdvDamage();
+                }
+            }
         }
         public void SetBasicStats()
         {
@@ -200,15 +205,24 @@ namespace Rechrysalis.Unit
         }
         private void CalculateAdvDamage()
         {
-            _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
+            if ((_dpsAdv != 0) && (_attackChargeUpAdv != 0) && (_attackWindDownAdv != 0))
+            {
+                _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
+            }
         }
-        private void SetHatchEffect()
+        private void CheckToSetHatchEffect()
         {
             if (_utcHatchEffect != null)
             {
-                _hatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;
-                
+                if (_utcHatchEffect.GetHatchEffectSO() != null)
+                {
+                    _hatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;
+                }             
             }
+        }
+        private void SetHatchEffect()
+        {
+            _hatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;
         }
     }
 }
