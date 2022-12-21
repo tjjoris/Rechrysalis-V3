@@ -7,7 +7,7 @@ namespace Rechrysalis.Unit
     [System.Serializable]
     public class ParentUnitClass
     {
-        private bool debugBool = false;
+        private bool debugBool = true;
         [SerializeField] private List<UpgradeTypeClass> _advancedUpgradesUTCList;
         public List<UpgradeTypeClass> AdvancedUpgradesUTCList { get{ return _advancedUpgradesUTCList; } set{ _advancedUpgradesUTCList = value; } }
         [SerializeField] private UpgradeTypeClass _utcBasicUnit;
@@ -143,6 +143,7 @@ namespace Rechrysalis.Unit
                     SetBasicStats();
                     SetAdvStats();
                     SetAdvWhenAdvUpgrades();
+                    CheckToSetHatchEffect();
                     CalculateAdvDamage();
                 }
             }
@@ -243,7 +244,9 @@ namespace Rechrysalis.Unit
         }
         private void SetHatchEffect()
         {
+            if (debugBool)
             Debug.Log($"set hatch effect");
+            // if (_utcHatchEffect.GetHatchEffectSO() != null)
             _hatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;
         }
     }
