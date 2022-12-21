@@ -8,7 +8,7 @@ namespace Rechrysalis.CompCustomizer
 {
     public class SelectionIndexToSelection : MonoBehaviour
     {
-        bool debugBool = true;
+        bool debugBool = false;
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         public CompCustomizerSO CompCustomizerSO { get{ return _compCustomizerSO; } set{ _compCustomizerSO = value; } }
         private int _upgradeBasicSelectionCount;
@@ -68,23 +68,23 @@ namespace Rechrysalis.CompCustomizer
         }
         public void GetUpgradeTypeWithoutChanging(ref int upgradeIndex, ref UnitStatsSO unitStatsSO, ref HatchEffectSO hatchEffectSO, ref UpgradeTypeClass.UpgradeType upgradeType)
         {
-            if (upgradeIndex < _upgradeBasicSelectionCount)
-            {
-                unitStatsSO = _compCustomizerSO.BasicUnitArray[upgradeIndex];
-                hatchEffectSO = null;
-                upgradeType = UpgradeTypeClass.UpgradeType.Basic;
-            }
-            else if (upgradeIndex < (_upgradeBasicSelectionCount + _upgradeT1SelectionCount))
-            {
-                unitStatsSO = _compCustomizerSO.AdvancedUnitSelectionT1Array[upgradeIndex - _upgradeBasicSelectionCount];
-                hatchEffectSO = null;
-                upgradeType = UpgradeTypeClass.UpgradeType.Advanced;
-            }
-            else {
-                unitStatsSO = null;
-                hatchEffectSO = _compCustomizerSO.HatchEffectSelectionArray[upgradeIndex - _upgradeBasicSelectionCount - _upgradeT1SelectionCount];
-                upgradeType = UpgradeTypeClass.UpgradeType.HatchEffect;
-            }
+            // if (upgradeIndex < _upgradeBasicSelectionCount)
+            // {
+            //     unitStatsSO = _compCustomizerSO.BasicUnitArray[upgradeIndex];
+            //     hatchEffectSO = null;
+            //     upgradeType = UpgradeTypeClass.UpgradeType.Basic;
+            // }
+            // else if (upgradeIndex < (_upgradeBasicSelectionCount + _upgradeT1SelectionCount))
+            // {
+            //     unitStatsSO = _compCustomizerSO.AdvancedUnitSelectionT1Array[upgradeIndex - _upgradeBasicSelectionCount];
+            //     hatchEffectSO = null;
+            //     upgradeType = UpgradeTypeClass.UpgradeType.Advanced;
+            // }
+            // else {
+            //     unitStatsSO = null;
+            //     hatchEffectSO = _compCustomizerSO.HatchEffectSelectionArray[upgradeIndex - _upgradeBasicSelectionCount - _upgradeT1SelectionCount];
+            //     upgradeType = UpgradeTypeClass.UpgradeType.HatchEffect;
+            // }
         }
         // private void SetUpgradeTypeClass(UpgradeTypeClass.UpgradeType upgradeType)
         // {

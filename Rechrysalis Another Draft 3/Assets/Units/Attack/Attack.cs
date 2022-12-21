@@ -26,9 +26,9 @@ namespace Rechrysalis.Attacking
         public void Initialize(UnitStatsSO _unitStats)
         {   
             this._unitStats = _unitStats;
-            _attackChargeUp = _unitStats.AttackChargeUp;
-            _attackWindDown = _unitStats.AttackWindDown;
-            _baseDamage = _unitStats.BaseDamage;
+            _attackChargeUp = _unitStats.AttackChargeUpBasic;
+            _attackWindDown = _unitStats.AttackWindDownBasic;
+            _baseDamage = _unitStats.BaseDamageBasic;
             _projectilesPool = GetComponent<ProjectilesPool>();
             _inRangeByPriority = GetComponent<InRangeByPriority>();
             _closestTarget = GetComponent<ClosestTarget>();

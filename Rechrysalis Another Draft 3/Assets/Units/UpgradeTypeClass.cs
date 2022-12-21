@@ -14,6 +14,7 @@ namespace Rechrysalis.Unit
             public UpgradeType UnitTypeVar { get { return _upgradeType; } set { _upgradeType = value; } }
             [SerializeField] private UnitStatsSO _unitStatsSO;
             [SerializeField] private HatchEffectSO _hatchEffectSO;
+            [SerializeField] private AdvUnitModifierSO _advUnitModifierSO;
 
             public void SetUpgradeType(UpgradeType upgradeType)
             {
@@ -38,6 +39,14 @@ namespace Rechrysalis.Unit
             public HatchEffectSO GetHatchEffectSO()
             {
                 return _hatchEffectSO;
+            }
+            public void SetAdvUnitModifierSO(AdvUnitModifierSO advUnitModifierSO)
+            {
+                _advUnitModifierSO = advUnitModifierSO;
+            }
+            public AdvUnitModifierSO GetAdvUnitModifierSO()
+            {
+                return _advUnitModifierSO;
             }
         }
 }

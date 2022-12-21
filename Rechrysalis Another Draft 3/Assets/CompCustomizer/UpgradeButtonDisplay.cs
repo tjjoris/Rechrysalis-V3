@@ -20,13 +20,17 @@ namespace Rechrysalis.CompCustomizer
 
         public void SetButotnDisplay(UpgradeTypeClass upgradeTypeClass)
         {
-            if ((upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic) || (upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced))
+            if ((upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic))
             {
                 DisplayForUnit(upgradeTypeClass.GetUnitStatsSO());
             }
             else if (upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
             {
                 DisplayForHatchEffect(upgradeTypeClass.GetHatchEffectSO());
+            }
+            else if (upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced)
+            {
+                DisplayForAdvUnit(upgradeTypeClass.GetAdvUnitModifierSO());
             }
         }
         public void DisplayForUnit(UnitStatsSO unitStatsSO)
@@ -37,6 +41,10 @@ namespace Rechrysalis.CompCustomizer
         public void DisplayForHatchEffect(HatchEffectSO hatchEffectSO)
         {
             _nameText.text = hatchEffectSO.HatchEffectName;
+        }
+        public void DisplayForAdvUnit(AdvUnitModifierSO advUnitModifierSO)
+        {
+            _nameText.text = advUnitModifierSO.UpgradeName;
         }
     }
 }

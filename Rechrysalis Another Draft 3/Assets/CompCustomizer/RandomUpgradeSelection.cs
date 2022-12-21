@@ -36,6 +36,7 @@ namespace Rechrysalis.CompCustomizer
         }
         private void CheckIfDuplicates(UpgradeTypeClass[] upgradeTypeClassesCurrent, ref UpgradeTypeClass randomUpgradeClass, int selectionCount)
         {
+            if (_debugBool)
             Debug.Log($"checking duplicates");
             for (int i=0; i<upgradeTypeClassesCurrent.Length; i++)
             {

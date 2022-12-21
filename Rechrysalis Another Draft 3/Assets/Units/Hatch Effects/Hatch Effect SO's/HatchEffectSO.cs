@@ -11,7 +11,10 @@ namespace Rechrysalis.HatchEffect
     {
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
         public UpgradeTypeClass UpgradeTypeClass { get{ return _upgradeTypeClass; } set{ _upgradeTypeClass = value; } }
-        
+        [SerializeField] private GameObject _hatchEffectPrefab;
+        public GameObject HatchEffectPrefab => _hatchEffectPrefab;
+        [SerializeField] private float _currencyCost;
+        public float CurrencyCost => _currencyCost;
         [SerializeField] private float[] _dpsIncrease;
         public float[] DPSIncrease {get {return _dpsIncrease;}}
         [SerializeField] private float[] _incomingDamageMultiplier;

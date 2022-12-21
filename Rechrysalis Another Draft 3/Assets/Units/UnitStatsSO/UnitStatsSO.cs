@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace Rechrysalis.Unit
 {
@@ -8,6 +9,7 @@ namespace Rechrysalis.Unit
     [CreateAssetMenu(fileName = "NewUnitStats", menuName ="Unit/UnitStatsSO")]
     public class UnitStatsSO : ScriptableObject
     {
+        bool debugBool = false;
         // [SerializeField] private bool _empty;
         // public bool Empty {get {return _empty;}}
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
@@ -22,30 +24,54 @@ namespace Rechrysalis.Unit
        public Sprite UnitSprite {get{return _unitSprite;}}
        [SerializeField] private string _unitName;
        public string UnitName {get{return _unitName;}}
+       [SerializeField] private float _currencyCost;
+       public float CurrencyCost => _currencyCost;
+        [SerializeField] private float _manaBase = 1;
+        private float _mana;
+        public float Mana { get { return _mana; } }
+        [SerializeField] private float _origionalBaseHealthMaxBasic = 1;
+        [SerializeField] private float _healthMaxBase;
+        [SerializeField] private float _healthMaxBasic;
+        public float HealthMaxBasic { get { return _healthMaxBasic; } }
+        [SerializeField] private float _heathMaxAdvMult;
+        public float HealthMaxAdvMult => _heathMaxAdvMult;
+        [SerializeField] private float _buildTimeBasic = 1f;
+        public float BuildTimeBasic => _buildTimeBasic;
+        [SerializeField] private float _buildTimeAdvMult = 1;
+        public float BuildTimeAdvMult => _buildTimeAdvMult;
        [SerializeField] private float _origionalBaseAttackChargeUp = 1;
-       [SerializeField] private float _attackChargeUp;
-       public float AttackChargeUp {get{return _attackChargeUp;}}
-       [SerializeField] private float   _attackWindDown;
-       [SerializeField] private float _origionalBaseAttackWindDown = 1;
-       public float AttackWindDown {get {return _attackWindDown;}}
-       [SerializeField] private float _baseDamage;
-       public float BaseDamage {get{return _baseDamage;}}
-       [SerializeField] private float _origionalBaseDPS = 1;
-       [SerializeField] private float _baseDPS;
-       public float BaseDPS {get{return _baseDPS;}}
-       [SerializeField] private float _baseRange;       
-       public float BaseRange {get{return _baseRange;}}
-       [SerializeField] private float _origionalBaseHealthMax = 1;
-       [SerializeField] private float _healthMaxBase;
+       [SerializeField] private float _attackChargeUpBasic;
+       public float AttackChargeUpBasic {get{return _attackChargeUpBasic;}}
+        [SerializeField] private float _attackChargeUpAdvMult;
+        public float AttackChargeUpMult => _attackChargeUpAdvMult;
+        [SerializeField] private float _origionalBaseAttackWindDown = 1;
+       [SerializeField] private float   _attackWindDownBasic;
+       public float AttackWindDownBasic {get {return _attackWindDownBasic;}}
+       [SerializeField] private float _attackWindDownAdvMult;
+       public float AttackWindDownMult => _attackWindDownAdvMult;
+        [SerializeField] private float _origionalBaseDPSBasic = 1;
+        [SerializeField] private float _baseDPSBasic;
+        public float BaseDPSBasic { get { return _baseDPSBasic; } }
+        [SerializeField] private float _baseDPSAdvMult;
+        public float BaseDPSAdvMult => _baseDPSAdvMult;
+       [SerializeField] private float _baseDamageBasic;
+       public float BaseDamageBasic {get{return _baseDamageBasic;}}
+       [SerializeField] private float _baseDamageAdvMult;
+       public float BaseDamageAdvMult => _baseDamageAdvMult;
+       [SerializeField] private float _baseRangeBasic;       
+       public float BaseRangeBasic {get{return _baseRangeBasic;}}
+       [SerializeField] private float _baseRangeAdvMult;
+       public float BaseRangeAdvMult => _baseRangeAdvMult;
+       
     //   [SerializeField] private float _typeHealthMaxMultiplier;
     //    [SerializeField] private float _tierHealthMaxMultipleir;
-       [SerializeField] private float _healthMax;
-       public float HealthMax {get{return _healthMax;}}
+       
        [SerializeField] private float _chrysalisTimerMax;
        public float ChrysalisTimerMax {get {return _chrysalisTimerMax;}}
-       [SerializeField] private float _manaBase = 1;
-       private float _mana;
-       public float Mana {get{return _mana;}}
+       
+       [SerializeField] private AdvUnitModifierSO _advUnitModifierSO;
+       public AdvUnitModifierSO AdvUnitModifierSO => _advUnitModifierSO;
+       
        [SerializeField] private GameObject _hatchEffectPrefab;
        public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
        [SerializeField] private UnitStatsMultiplierSO _baseMultipler;
@@ -60,12 +86,14 @@ namespace Rechrysalis.Unit
         }
         public void Initialize()
         {
-            _healthMax = _origionalBaseHealthMax * _baseMultipler.HealthMultiplier * _typeMultipler.HealthMultiplier * _tierMultiplier.HealthMultiplier;
-            _baseDPS = _origionalBaseDPS * _baseMultipler.DPSMultiplier * _typeMultipler.DPSMultiplier * _tierMultiplier.DPSMultiplier;
-            _baseRange = _typeMultipler.Range;
-            _attackChargeUp = _origionalBaseAttackChargeUp * _baseMultipler.AttackChargeUp * _typeMultipler.AttackChargeUp * _tierMultiplier.AttackChargeUp;
-            _attackWindDown = _origionalBaseAttackWindDown * _baseMultipler.AttackWindDown * _typeMultipler.AttackWindDown * _tierMultiplier.AttackWindDown;
-            _baseDamage = _baseDPS * (_attackChargeUp + _attackWindDown);
+            if (debugBool)
+            Debug.Log($"Initialize");
+            _healthMaxBasic = _origionalBaseHealthMaxBasic * _baseMultipler.HealthMultiplier * _typeMultipler.HealthMultiplier * _tierMultiplier.HealthMultiplier;
+            _baseDPSBasic = _origionalBaseDPSBasic * _baseMultipler.DPSMultiplier * _typeMultipler.DPSMultiplier * _tierMultiplier.DPSMultiplier;
+            _baseRangeBasic = _typeMultipler.Range;
+            _attackChargeUpBasic = _origionalBaseAttackChargeUp * _baseMultipler.AttackChargeUp * _typeMultipler.AttackChargeUp * _tierMultiplier.AttackChargeUp;
+            _attackWindDownBasic = _origionalBaseAttackWindDown * _baseMultipler.AttackWindDown * _typeMultipler.AttackWindDown * _tierMultiplier.AttackWindDown;
+            _baseDamageBasic = _baseDPSBasic * (_attackChargeUpBasic + _attackWindDownBasic);
             _mana = _manaBase * _baseMultipler.ManaMultiplier * _typeMultipler.ManaMultiplier * _tierMultiplier.ManaMultiplier;
             if (_upgradeTypeClass == null)
             {
@@ -79,6 +107,11 @@ namespace Rechrysalis.Unit
             else {
                 _upgradeTypeClass.SetUpgradeType(UpgradeTypeClass.UpgradeType.Advanced);
             }
+        }
+        [Button("$Initialize")]
+        private void InitializeButton()
+        {
+            Initialize();
         }
     }
 }
