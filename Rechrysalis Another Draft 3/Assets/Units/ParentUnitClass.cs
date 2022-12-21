@@ -26,7 +26,7 @@ namespace Rechrysalis.Unit
         public float BuildTimeBasic => _buildTimeBasic;
         [SerializeField] private float _buildTimeAdv;
         public float BuildTimeAdv => _buildTimeAdv;
-        private float _rangeBasic;
+        [SerializeField] private float _rangeBasic;
         public float RangeBasic => _rangeBasic;
         [SerializeField] private float _rangeAdv;
         public float RangeAdv => _rangeAdv;
@@ -164,23 +164,23 @@ namespace Rechrysalis.Unit
         }
         private void SetAdvStats()
         {
-            if (_utcBasicUnit.GetAdvUnitModifierSO() != null)
+            if (_utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO != null)//.GetAdvUnitModifierSO() != null)
             {
                 Debug.Log($"set base adv stats");
-                _manaCost *= _utcBasicUnit.GetAdvUnitModifierSO().ManaMult;
-                _manaCost += _utcBasicUnit.GetAdvUnitModifierSO().ManaAdd;
-                _hpMaxAdvanced = _hpMaxBasic * _utcBasicUnit.GetAdvUnitModifierSO().HPMaxMult;
-                _hpMaxAdvanced += _utcBasicUnit.GetAdvUnitModifierSO().HPMaxAdd;
-                _buildTimeAdv = _buildTimeBasic * _utcBasicUnit.GetAdvUnitModifierSO().BuildTimeMult;
-                _buildTimeAdv += _utcBasicUnit.GetAdvUnitModifierSO().BuildTimeAdd;
-                _rangeAdv = _rangeBasic + _utcBasicUnit.GetAdvUnitModifierSO().RangeAdd;
-                _dpsAdv = _dpsBasic * _utcBasicUnit.GetAdvUnitModifierSO().DPSMult;
-                _dpsAdv += _utcBasicUnit.GetAdvUnitModifierSO().DPSAdd;
-                _attackChargeUpAdv = _attackChargeUpBasic * _utcBasicUnit.GetAdvUnitModifierSO().AttackChargeUpMult;
-                _attackChargeUpAdv += _utcBasicUnit.GetAdvUnitModifierSO().AttackChargeUpAdd;
-                _attackWindDownAdv = _attackWindDownBasic * _utcBasicUnit.GetAdvUnitModifierSO().AttackWindDownMult;
-                _attackWindDownAdv += _utcBasicUnit.GetAdvUnitModifierSO().AttackWindDownAdd;
-                _hatchEffectMult = _utcBasicUnit.GetAdvUnitModifierSO().HatchEffectMultiplierAdd;
+                _manaCost *= _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.ManaMult;
+                _manaCost += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.ManaAdd;
+                _hpMaxAdvanced = _hpMaxBasic * _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.HPMaxMult;
+                _hpMaxAdvanced += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.HPMaxAdd;
+                _buildTimeAdv = _buildTimeBasic * _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.BuildTimeMult;
+                _buildTimeAdv += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.BuildTimeAdd;
+                _rangeAdv = _rangeBasic + _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.RangeAdd;
+                _dpsAdv = _dpsBasic * _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.DPSMult;
+                _dpsAdv += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.DPSAdd;
+                _attackChargeUpAdv = _attackChargeUpBasic * _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.AttackChargeUpMult;
+                _attackChargeUpAdv += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.AttackChargeUpAdd;
+                _attackWindDownAdv = _attackWindDownBasic * _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.AttackWindDownMult;
+                _attackWindDownAdv += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.AttackWindDownAdd;
+                _hatchEffectMult = _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.HatchEffectMultiplierAdd;
                 // _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
 
             }
@@ -239,6 +239,7 @@ namespace Rechrysalis.Unit
         }
         private void SetHatchEffect()
         {
+            Debug.Log($"set hatch effect");
             _hatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;
         }
     }
