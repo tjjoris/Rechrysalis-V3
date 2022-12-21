@@ -12,13 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb8c6223c7614439bf8d98a437c4269, type: 3}
   m_Name: dps1
   m_EditorClassIdentifier: 
+  _upgradeTypeClass:
+    _upgradeType: 2
+    _unitStatsSO: {fileID: 0}
+    _hatchEffectSO: {fileID: 0}
+    _advUnitModifierSO: {fileID: 11400000}
   _upgradeName: dps1
   _currencyCost: 25
   _manaAdd: 5
+  _manaMult: 1
   _buildTimeAdd: 0
+  _buildTimeMult: 1
   _hpMaxAdd: 0
+  _hpMaxMult: 1
   _rangeAdd: 0
   _dpsAdd: 5
+  _dpsMult: 1
   _attackChargeUpAdd: 0
+  _attackChargeUpMult: 1
   _attackWindDownAdd: 0
-  _hatchEffectMultiplierAdd: 0
+  _attackWindDownMult: 1
+  _hatchEffectMultiplierAdd: 0.1

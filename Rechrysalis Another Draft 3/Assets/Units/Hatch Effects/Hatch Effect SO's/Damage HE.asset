@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccba6bd7fa964834a8774e6c551ba65, type: 3}
   m_Name: Damage HE
   m_EditorClassIdentifier: 
+  _upgradeTypeClass:
+    _upgradeType: 3
+    _unitStatsSO: {fileID: 0}
+    _hatchEffectSO: {fileID: 11400000}
+    _advUnitModifierSO: {fileID: 0}
+  _hatchEffectPrefab: {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}
+  _currencyCost: 0
   _dpsIncrease:
   - 20
   - 6
