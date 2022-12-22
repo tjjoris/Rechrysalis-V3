@@ -77,7 +77,10 @@ namespace Rechrysalis.CompCustomizer
 
             }
             if (atLeastOneBasic)
-            return true;
+            {
+                _showCompErrorText.DisableAll();
+                return true;
+            }
             _showCompErrorText.NeedOneBasic();
             return false;
         }

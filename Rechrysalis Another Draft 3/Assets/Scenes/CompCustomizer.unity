@@ -1310,6 +1310,7 @@ MonoBehaviour:
   - {fileID: 2092751542}
   - {fileID: 1287336173}
   - {fileID: 6878637215250843785}
+  _showCompErrorText: {fileID: 124370955}
 --- !u!1 &1273122378
 GameObject:
   m_ObjectHideFlags: 0
