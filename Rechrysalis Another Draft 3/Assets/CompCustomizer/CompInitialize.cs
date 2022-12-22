@@ -56,10 +56,10 @@ namespace Rechrysalis.CompCustomizer
             LoopVerticalsToSetUp(playerComp, movingButtonHolder);
             // SubscribeToVerticalManagers();
         }
-        private void CompUpgradeClicked(CompUpgradeManager compUpgradeManager)
-        {
-            // _onCompUpgradeClicked?.Invoke(compUpgradeManager);            
-        }
+        // private void CompUpgradeClicked(CompUpgradeManager compUpgradeManager)
+        // {
+        //     // _onCompUpgradeClicked?.Invoke(compUpgradeManager);            
+        // }
         private void LoopVerticalsToSetUp(CompSO playerComp, Transform movingButtonHolder)
         {
             for (int parentIndex = 0; parentIndex < 3; parentIndex ++)
@@ -68,13 +68,6 @@ namespace Rechrysalis.CompCustomizer
 
             }
         }
-        // public void EnableScrollRect()
-        // {
-        //     // for (int i=0; i<_verticalMangers.Count; i++)
-        //     // {
-        //     //     _verticalMangers[i].EnableScrollRect();
-        //     // }
-        // }
         private void SetUpThisVertical(CompSO playerComp, int parentIndex)
         {   
             if (_debugBool)
@@ -90,20 +83,6 @@ namespace Rechrysalis.CompCustomizer
                 }
             }
         }
-        // public void ButtonDroppedInCompMain(CompUpgradeManager compUpgradeManager)
-        // {
-        //     // if (((compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)) )
-        //     // {
-        //     //     _playerComp.ParentUnitClassList.Add(new ParentUnitClass());
-        //     //     _verticalMangers[_playerComp.ParentUnitClassList.Count-1].CreateAndSetUpCompButtonsOld(_playerComp, _playerComp.ParentUnitClassList.Count-1, _compButtonPrefab, _movingButtonHolder, _playerComp.ParentUnitClassList[_playerComp.ParentUnitClassList.Count -1]);
-
-
-        //     // }
-        // }
-        // public void SetCompUpgradeDisplay(int parentIndex, int childIndex, UpgradeTypeClass upgradeTypeClass)
-        // {
-        //     // _verticalMangers[parentIndex]?.SetCompUpgradeDisplay(childIndex, upgradeTypeClass);
-        // }
         public bool CheckIfCanContinue()
         {
             bool atLeastOneBasic = false;
