@@ -15,51 +15,13 @@ namespace Rechrysalis.CompCustomizer
         private Transform _movingButtonHolder;
         [SerializeField] private List<CompVerticalManager> _verticalMangers;
         public List<CompVerticalManager> VerticalManagers => _verticalMangers;
-        // public Action<CompUpgradeManager> _onCompUpgradeClicked;
-
-        // public void OnEnable()
-        // {
-        //     // SubscribeToVerticalManagers();
-        // }
-        // public void SubscribeToVerticalManagers()        
-        // {
-        //     // if (_verticalMangers != null)
-        //     // {
-        //     //     for (int _index = 0; _index < _verticalMangers.Count; _index ++)
-        //     //     {
-        //     //         if (_verticalMangers[_index] != null)
-        //     //         {
-        //     //             _verticalMangers[_index]._onCompUpgradeClicked -= CompUpgradeClicked;
-        //     //             _verticalMangers[_index]._onCompUpgradeClicked += CompUpgradeClicked;
-        //     //         }
-        //     //     }
-        //     // }
-        // }
-        // private void OnDisable()
-        // {
-        //     // if (_verticalMangers != null)
-        //     // {
-        //     //     for (int _index = 0; _index < _verticalMangers.Count; _index++)
-        //     //     {
-        //     //         if (_verticalMangers[_index] != null)
-        //     //         {
-        //     //             _verticalMangers[_index]._onCompUpgradeClicked -= CompUpgradeClicked;
-        //     //         }
-        //     //     }
-        //     // }
-        // }
         public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, Transform movingButtonHolder)
         {
             _movingButtonHolder = movingButtonHolder;
             _playerComp = playerComp;
             _compCustomizerSO = compCustomizerSO;  
             LoopVerticalsToSetUp(playerComp, movingButtonHolder);
-            // SubscribeToVerticalManagers();
         }
-        // private void CompUpgradeClicked(CompUpgradeManager compUpgradeManager)
-        // {
-        //     // _onCompUpgradeClicked?.Invoke(compUpgradeManager);            
-        // }
         private void LoopVerticalsToSetUp(CompSO playerComp, Transform movingButtonHolder)
         {
             for (int parentIndex = 0; parentIndex < 3; parentIndex ++)
@@ -100,7 +62,6 @@ namespace Rechrysalis.CompCustomizer
                         return false;
                     }
                 }
-                // if (!_verticalMangers[i].IsNoErrorsInThisUnitUpgrades())
                 if ((numberOfBasic > 1) || (numberOfHatchEffects > 1))
                 return false;
             }
