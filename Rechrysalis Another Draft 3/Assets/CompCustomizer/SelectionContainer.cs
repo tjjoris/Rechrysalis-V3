@@ -15,10 +15,17 @@ namespace Rechrysalis.CompCustomizer
             GameObject dropped = eventData.pointerDrag;
             if (dropped != null)
             {
-                CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
-                compUpgradeManager.ParentAfterDrag = transform;
-                // _buttonDropped?.Invoke(compUpgradeManager);
+                // CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
+                if (dropped.GetComponent<CompUpgradeManager>() != null)
+                {
+                    DropUpgrade(dropped.GetComponent<CompUpgradeManager>());
+                }
             }
+        }
+        private void DropUpgrade(CompUpgradeManager compUpgradeManager)
+        {
+            compUpgradeManager.ParentAfterDrag = transform;
+            // _buttonDropped?.Invoke(compUpgradeManager);
         }
     }
 }
