@@ -15,6 +15,7 @@ namespace Rechrysalis.CompCustomizer
         private Transform _movingButtonHolder;
         [SerializeField] private List<CompVerticalManager> _verticalMangers;
         public List<CompVerticalManager> VerticalManagers => _verticalMangers;
+        [SerializeField] private ShowCompErrorText _showCompErrorText;
         public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, Transform movingButtonHolder)
         {
             _movingButtonHolder = movingButtonHolder;
@@ -59,14 +60,25 @@ namespace Rechrysalis.CompCustomizer
                 {
                     if ((numberOfHatchEffects > 0) || (isAtLeastOneUpgrade))
                     {
+                        _showCompErrorText.UpgradesNeedBasic();
                         return false;
                     }
                 }
-                if ((numberOfBasic > 1) || (numberOfHatchEffects > 1))
-                return false;
+                if (numberOfBasic > 1)
+                {
+                    _showCompErrorText.CanOnlyHaveOneBasic();
+                    return false;
+                }
+                if (numberOfHatchEffects > 1)
+                {
+                    _showCompErrorText.CanOnlyHaveOneHE();
+                    return false;
+                }
+
             }
             if (atLeastOneBasic)
             return true;
+            _showCompErrorText.NeedOneBasic();
             return false;
         }
     }
