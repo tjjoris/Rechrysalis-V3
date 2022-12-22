@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Rechrysalis.CompCustomizer;
 
-namespace Rechrysalis.CompCustomizer
+namespace Rechrysalis.Archived
 {
     public class SelectionContainer : MonoBehaviour, IDropHandler
     {
