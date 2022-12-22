@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
+using Rechrysalis.CompCustomizer;
 
-namespace Rechrysalis.CompCustomizer
+namespace Rechrysalis.Archived
 {
     public class CompDrop : MonoBehaviour, IDropHandler
     {
@@ -23,7 +24,8 @@ namespace Rechrysalis.CompCustomizer
             GameObject dropped = eventData.pointerDrag;
             CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
             compUpgradeManager.ParentAfterDrag = transform;
-            _compInitialize.ButtonDroppedInCompMain(compUpgradeManager);
+            // _compInitialize.ButtonDroppedInCompMain(compUpgradeManager);
+            
             // _droppedInCompMain?.Invoke(compUpgradeManager);
             // DropInComp(CompUpgradeManager);
             
