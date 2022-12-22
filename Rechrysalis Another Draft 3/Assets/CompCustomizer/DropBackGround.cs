@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace Rechrysalis.CompCustomizer
 {
-    public class VerticalBackGround : MonoBehaviour, IDropHandler
+    public class DropBackGround : MonoBehaviour, IDropHandler
     {
         private bool debugBool = false;
         [SerializeField] Transform _transformToDropUpgrade;

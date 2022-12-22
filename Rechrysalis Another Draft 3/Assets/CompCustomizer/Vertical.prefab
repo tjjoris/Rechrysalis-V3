@@ -55,7 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _compUpgradeManagers: []
   _verticalContainer: {fileID: 2523554113126362237}
-  _verticalBackGround: {fileID: 7067769351223876071}
+  _DropBackGround: {fileID: 7067769351223876071}
   _scrollRect: {fileID: 0}
   _parentUnitClass:
     _advancedUpgradesUTCList: []
@@ -63,10 +63,29 @@ MonoBehaviour:
       _upgradeType: 0
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
     _utcHatchEffect:
       _upgradeType: 0
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+    _manaCost: 0
+    _hpMaxBasic: 0
+    _hpMaxAdvanced: 0
+    _buildTimeBasic: 0
+    _buildTimeAdv: 0
+    _rangeBasic: 0
+    _rangeAdv: 0
+    _dpsBasic: 0
+    _dpsAdv: 0
+    _attackChargeUpBasic: 0
+    _attackChargeUpAdv: 0
+    _attackWindDownBasic: 0
+    _attackWindDownAdv: 0
+    _damageBasic: 0
+    _damageAdv: 0
+    _hatchEffectPrefab: {fileID: 0}
+    _hatchEffectMult: 0
 --- !u!114 &1391453581986412399
 MonoBehaviour:
   m_ObjectHideFlags: 0

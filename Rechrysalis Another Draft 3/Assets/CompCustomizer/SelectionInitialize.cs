@@ -9,7 +9,7 @@ namespace Rechrysalis.CompCustomizer
 {
     public class SelectionInitialize : MonoBehaviour
     {
-        [SerializeField] private SelectionContainer _selectionContainer;
+        [SerializeField] private Transform _selectionContainer;
         private bool debugBool = true;
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         public CompCustomizerSO CompCustomizerSO { get{ return _compCustomizerSO; } set{ _compCustomizerSO = value; } }
@@ -45,7 +45,7 @@ namespace Rechrysalis.CompCustomizer
         }
         private void CreateSelectionButton(int index)
         {            
-            GameObject _selectionButton = Instantiate(_upgradeButtonPrefab, _selectionContainer.transform);
+            GameObject _selectionButton = Instantiate(_upgradeButtonPrefab, _selectionContainer);
             _compUpgradeManagers[index] = _selectionButton.GetComponent<CompUpgradeManager>();
             // _compUpgradeManagers[index].InitializeOldStillUsed(-1, -1, _movingButtonHolder);
             _compUpgradeManagers[index].Initialize(_movingButtonHolder);

@@ -16,7 +16,7 @@ namespace Rechrysalis.CompCustomizer
         // private UpgradeButtonDisplay[] _upgradeButtonDisplays;
         public Action<CompUpgradeManager> _onCompUpgradeClicked;
         [SerializeField] private VerticalContainer _verticalContainer;
-        [SerializeField] private VerticalBackGround _verticalBackGround;
+        [SerializeField] private DropBackGround _DropBackGround;
         [SerializeField] private ScrollRect _scrollRect;
         private Transform _movingButtonHolder;
         [SerializeField] private ParentUnitClass _parentUnitClass;

@@ -496,10 +496,10 @@ GameObject:
   m_Component:
   - component: {fileID: 452630626}
   - component: {fileID: 452630627}
-  - component: {fileID: 452630628}
   - component: {fileID: 452630630}
   - component: {fileID: 452630629}
   - component: {fileID: 452630631}
+  - component: {fileID: 452630632}
   m_Layer: 5
   m_Name: SelectionContainer
   m_TagString: Untagged
@@ -553,18 +553,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &452630628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452630625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eca1b67b17f341ddb75e45fc6230b80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &452630629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,6 +605,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &452630632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452630625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d193cedb026410cb9a755f61af97a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transformToDropUpgrade: {fileID: 452630626}
 --- !u!1 &614023069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,7 +1390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01904b1ec1884e18a0cf7f0a7f041df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _selectionContainer: {fileID: 452630628}
+  _selectionContainer: {fileID: 452630626}
   _compCustomizerSO: {fileID: 0}
   _upgradeButtonPrefab: {fileID: 1858269929011501162, guid: bf20bc1710cf74588a7291cfa3f61b27, type: 3}
   _compUpgradeManagers: []
