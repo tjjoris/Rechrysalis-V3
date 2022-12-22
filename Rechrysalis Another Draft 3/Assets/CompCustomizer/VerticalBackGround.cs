@@ -20,9 +20,16 @@ namespace Rechrysalis.CompCustomizer
             if (dropped != null)
             {
                 CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
-                compUpgradeManager.ParentAfterDrag = _transformToDropUpgrade.transform;
-                _upgradeDropped?.Invoke(compUpgradeManager);
+                if (compUpgradeManager != null)
+                {
+                    DropUpgrade(compUpgradeManager);
+                }
             }
+        }
+        private void DropUpgrade(CompUpgradeManager compUpgradeManager)
+        {
+            compUpgradeManager.ParentAfterDrag = _transformToDropUpgrade.transform;
+            _upgradeDropped?.Invoke(compUpgradeManager);
         }
     }
 }

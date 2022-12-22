@@ -74,48 +74,48 @@ namespace Rechrysalis.CompCustomizer
         //     }
         //     SubscribeToCompButtons();
         // }
-        private void SubscribeToCompButtons()
-        {
-            // if (_compUpgradeManagers != null)
-            // {
-            //     for (int _index=0; _index<_compUpgradeManagers.Count; _index++)
-            //     {
-            //         if (_compUpgradeManagers[_index] != null)
-            //         {
-            //             _compUpgradeManagers[_index]._onCompUpgradeClicked -= CompUpgradeClicked;
-            //             _compUpgradeManagers[_index]._onCompUpgradeClicked += CompUpgradeClicked;
-            //             _compUpgradeManagers[_index]._disableVerticalScroll -= DisableScrollRect;
-            //             _compUpgradeManagers[_index]._disableVerticalScroll += DisableScrollRect;
-            //         }
-            //     }
-            // }
-        }
-        private void OnEnable()
-        {
-            // _verticalBackGround._upgradeDropped += ButtonDroppedIntoVertical;
-            // SubscribeToCompButtons();   
-            _verticalContainer._buttonDropped += ButtonDroppedIntoVertical;     
-        }
-        private void OnDisable()
-        {
-            // _verticalBackGround._upgradeDropped -= ButtonDroppedIntoVertical;
-            // if (_compUpgradeManagers != null)
-            // {
-            //     for (int _index = 0; _index < _compUpgradeManagers.Count; _index++)
-            //     {
-            //         if (_compUpgradeManagers[_index] != null)
-            //         {
-            //             _compUpgradeManagers[_index]._onCompUpgradeClicked -= CompUpgradeClicked;
-            //             _compUpgradeManagers[_index]._disableVerticalScroll -= DisableScrollRect;
-            //         }
-            //     }
-            // }
-            _verticalContainer._buttonDropped -= ButtonDroppedIntoVertical;
-        }
-        private void CompUpgradeClicked(CompUpgradeManager compUpgradeManager)
-        {
-            // _onCompUpgradeClicked?.Invoke(compUpgradeManager);
-        }
+        // private void SubscribeToCompButtons()
+        // {
+        //     // if (_compUpgradeManagers != null)
+        //     // {
+        //     //     for (int _index=0; _index<_compUpgradeManagers.Count; _index++)
+        //     //     {
+        //     //         if (_compUpgradeManagers[_index] != null)
+        //     //         {
+        //     //             _compUpgradeManagers[_index]._onCompUpgradeClicked -= CompUpgradeClicked;
+        //     //             _compUpgradeManagers[_index]._onCompUpgradeClicked += CompUpgradeClicked;
+        //     //             _compUpgradeManagers[_index]._disableVerticalScroll -= DisableScrollRect;
+        //     //             _compUpgradeManagers[_index]._disableVerticalScroll += DisableScrollRect;
+        //     //         }
+        //     //     }
+        //     // }
+        // }
+        // private void OnEnable()
+        // {
+        //     // _verticalBackGround._upgradeDropped += ButtonDroppedIntoVertical;
+        //     // SubscribeToCompButtons();   
+        //     _verticalContainer._buttonDropped += ButtonDroppedIntoVertical;     
+        // }
+        // private void OnDisable()
+        // {
+        //     // _verticalBackGround._upgradeDropped -= ButtonDroppedIntoVertical;
+        //     // if (_compUpgradeManagers != null)
+        //     // {
+        //     //     for (int _index = 0; _index < _compUpgradeManagers.Count; _index++)
+        //     //     {
+        //     //         if (_compUpgradeManagers[_index] != null)
+        //     //         {
+        //     //             _compUpgradeManagers[_index]._onCompUpgradeClicked -= CompUpgradeClicked;
+        //     //             _compUpgradeManagers[_index]._disableVerticalScroll -= DisableScrollRect;
+        //     //         }
+        //     //     }
+        //     // }
+        //     _verticalContainer._buttonDropped -= ButtonDroppedIntoVertical;
+        // }
+        // private void CompUpgradeClicked(CompUpgradeManager compUpgradeManager)
+        // {
+        //     // _onCompUpgradeClicked?.Invoke(compUpgradeManager);
+        // }
         private void DisableScrollRect()
         {
             _scrollRect.enabled = false;
@@ -176,25 +176,25 @@ namespace Rechrysalis.CompCustomizer
         //     // CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
         //     // compUpgradeManager.ParentAfterDrag = transform;
         // }
-        private void ButtonDroppedIntoVertical(CompUpgradeManager compUpgradeManager)
-        {
-            // if ((compUpgradeManager != null))
-            // {
-            //     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
-            //     {
-            //         _parentUnitClass.SetUTCBasicUnit(compUpgradeManager.GetUpgradeTypeClass());
-            //     }
-            //     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
-            //     {
-            //         _parentUnitClass.SetUTCHatchEffect(compUpgradeManager.GetUpgradeTypeClass());
-            //     }
-            //     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced)
-            //     {
-            //         _parentUnitClass.AddUTCAdvanced(compUpgradeManager.GetUpgradeTypeClass());
-            //     }
-            //     // _compUpgradeManagers.Add(compUpgradeManager);
-            // }
-        }
+        // private void ButtonDroppedIntoVertical(CompUpgradeManager compUpgradeManager)
+        // {
+        //     // if ((compUpgradeManager != null))
+        //     // {
+        //     //     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+        //     //     {
+        //     //         _parentUnitClass.SetUTCBasicUnit(compUpgradeManager.GetUpgradeTypeClass());
+        //     //     }
+        //     //     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
+        //     //     {
+        //     //         _parentUnitClass.SetUTCHatchEffect(compUpgradeManager.GetUpgradeTypeClass());
+        //     //     }
+        //     //     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced)
+        //     //     {
+        //     //         _parentUnitClass.AddUTCAdvanced(compUpgradeManager.GetUpgradeTypeClass());
+        //     //     }
+        //     //     // _compUpgradeManagers.Add(compUpgradeManager);
+        //     // }
+        // }
         public int GetNumberOfBasic()
         {
             int numberOfBasic = 0;
