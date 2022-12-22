@@ -24,7 +24,8 @@ namespace Rechrysalis.Archived
             GameObject dropped = eventData.pointerDrag;
             CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
             compUpgradeManager.ParentAfterDrag = transform;
-            _compInitialize.ButtonDroppedInCompMain(compUpgradeManager);
+            // _compInitialize.ButtonDroppedInCompMain(compUpgradeManager);
+            
             // _droppedInCompMain?.Invoke(compUpgradeManager);
             // DropInComp(CompUpgradeManager);
             
