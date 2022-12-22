@@ -21,45 +21,8 @@ namespace Rechrysalis.CompCustomizer
         private void Start()
         {
             _compSO = _compsAndUnitsSO.CompsSO[0];
-            // ResetChangedComp();
             _selectionInitialize.Initialize(_compCustomizerSO, _movingButtonHolder.transform);
             _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0], _movingButtonHolder);
-        }
-        // private void ResetChangedComp()
-        // {
-        //     // _changedComp = _compSO;
-        // }
-        // private void SelectorButtonClicked(UpgradeButtonManager upgradeButtonManager)
-        // {
-        //     // if (_debugBool)
-        //     // Debug.Log($"selector button clicked");
-        //     // _upgradeButtonManager = upgradeButtonManager;
-        //     // CheckIfCompToChange();
-        // }
-        // private void CompButtonClicked(CompUpgradeManager compUpgradeManager)
-        // {
-        //     // if (_debugBool)
-        //     // Debug.Log($"comp button clicked");
-        //     // _compUpgradeManagerBeingDragged = compUpgradeManager;
-        //     // CheckIfCompToChange();
-        // }
-        // private void CheckIfCompToChange()
-        // {
-        //     // if ((_upgradeButtonManager != null) && (_compUpgradeManagerBeingDragged != null))
-        //     // {
-        //     //     if (_upgradeTypeClass == null)
-        //     //     {
-        //     //         _upgradeTypeClass = new UpgradeTypeClass();
-        //     //     }
-        //     //     _upgradeTypeClass = _upgradeButtonManager.UpgradeTypeClass;
-        //     //     ChangeUnitInComp(_compUpgradeManagerBeingDragged.ParentIndex, 0, _upgradeTypeClass);
-        //     //     _upgradeButtonManager = null;
-        //     //     _compUpgradeManagerBeingDragged = null;
-        //     // }
-        // }
-        private void ChangeUnitInComp(int parentIndex, int childIndex, UpgradeTypeClass upgradeTypeClass)
-        {
-            // _compInitialize.SetCompUpgradeDisplay(parentIndex, childIndex, upgradeTypeClass);
         }
         public void ContinueClicked()
         {
