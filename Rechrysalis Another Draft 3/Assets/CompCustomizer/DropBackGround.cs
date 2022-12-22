@@ -10,7 +10,6 @@ namespace Rechrysalis.CompCustomizer
     {
         private bool debugBool = false;
         [SerializeField] Transform _transformToDropUpgrade;
-        // public Action<CompUpgradeManager> _upgradeDropped;
 
         public void OnDrop(PointerEventData eventData)
         {
