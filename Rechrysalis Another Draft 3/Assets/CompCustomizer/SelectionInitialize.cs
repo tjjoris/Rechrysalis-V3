@@ -16,15 +16,12 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private GameObject _upgradeButtonPrefab;
         private Transform _movingButtonHolder;
         private int _numberOfUpgrades = 3;
-        // [SerializeField] private UpgradeButtonManager[] _upgradebuttonManager;
-        // public UpgradeButtonManager[] UpgradeButtonManager { get{ return _upgradebuttonManager; } set{ _upgradebuttonManager = value; } }
         [SerializeField] private CompUpgradeManager[] _compUpgradeManagers;
         [SerializeField] private int[] _upgradeButtonIndex;
         private SelectionIndexToSelection _selectionIndexToSelection;
         private int _upgradeSelectionCount;
         private RandomUpgradeSelection _randomUpgradeSelection;
         private UpgradeTypeClass[] _upgradeTypeClassesToChooseFrom;
-        // public Action<UpgradeButtonManager> _onUpgradeButtonClicked;
         
         
         public void Initialize(CompCustomizerSO compCustomizerSO, Transform movingButtonHolder)
@@ -47,17 +44,12 @@ namespace Rechrysalis.CompCustomizer
         {            
             GameObject _selectionButton = Instantiate(_upgradeButtonPrefab, _selectionContainer);
             _compUpgradeManagers[index] = _selectionButton.GetComponent<CompUpgradeManager>();
-            // _compUpgradeManagers[index].InitializeOldStillUsed(-1, -1, _movingButtonHolder);
             _compUpgradeManagers[index].Initialize(_movingButtonHolder);
             UpgradeTypeClass _randomUpgradeTypeClass = _randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount);
             _upgradeTypeClassesToChooseFrom[index] = _randomUpgradeTypeClass;
             _compUpgradeManagers[index].SetUpgradeTypeClass(_randomUpgradeTypeClass);
             _compUpgradeManagers[index].SetDisplay(_randomUpgradeTypeClass);
             
-            // _upgradebuttonManager[index] = _selectionButton.GetComponent<UpgradeButtonManager>();
-            // _upgradebuttonManager[index]?.Initialize(_compCustomizerSO);
-            // _upgradebuttonManager[index]?.GetRandomSelection(_compCustomizerSO, _upgradeButtonIndex, _upgradeSelectionCount);
-            // _upgradeButtonIndex[index] = _upgradebuttonManager[index].GetRandomUpgradeSelection().GetRandomIndex();
         }
         private void CreateAllSelectionButtons()
         {
@@ -70,51 +62,5 @@ namespace Rechrysalis.CompCustomizer
         {
             _upgradeSelectionCount = _compCustomizerSO.BasicUnitArray.Length + _compCustomizerSO.AdvancedUnitSelectionT1Array.Length + _compCustomizerSO.HatchEffectSelectionArray.Length;
         }
-        public void OnDisable()
-        {
-            // for (int _index=0; _index < _upgradebuttonManager.Length; _index++)
-            // {
-            //     if (_upgradebuttonManager[_index] != null)
-            //     {
-            //         _upgradebuttonManager[_index]._onUpgradeButtonClicked -= UpgradeButtonClicked;
-            //     }
-            // }
-        }
-        public void OnEnable()
-        {
-            // SubscribeToUpgradeButtons();
-        }
-        // public void SubscribeToUpgradeButtons()
-        // {
-        //     if (_upgradebuttonManager != null)
-        //     {
-        //         for (int _index = 0; _index < _upgradebuttonManager.Length; _index ++)
-        //         {
-        //             if (_upgradebuttonManager[_index] != null)
-        //             {
-        //                 SubscribeToUpgradeButton(_upgradebuttonManager[_index]);
-        //             }
-        //         }
-        //     }
-        // }
-        // public void SubscribeToUpgradeButton(UpgradeButtonManager upgradeButtonManager)
-        // {
-        //     // upgradeButtonManager._onUpgradeButtonClicked -= UpgradeButtonClicked;
-        //     // upgradeButtonManager._onUpgradeButtonClicked += UpgradeButtonClicked;
-        // }
-        // public void UpgradeButtonClicked(UpgradeButtonManager upgradeButtonManager)
-        // {
-        //     // _onUpgradeButtonClicked?.Invoke(upgradeButtonManager);
-        // }
-
-        // public void OnDrop(PointerEventData eventData)
-        // {
-        //     if (debugBool)
-        //         Debug.Log($"selection ondrop called");
-        //     GameObject dropped = eventData.pointerDrag;
-        //     CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
-        //     compUpgradeManager.ParentAfterDrag = transform;
-        //     // _buttonDropped?.Invoke(compUpgradeManager);
-        // }
     }
 }
