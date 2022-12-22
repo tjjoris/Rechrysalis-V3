@@ -10,26 +10,21 @@ namespace Rechrysalis.CompCustomizer
     {
         private bool debugBool = false;
         [SerializeField] Transform _transformToDropUpgrade;
-        public Action<CompUpgradeManager> _upgradeDropped;
+        // public Action<CompUpgradeManager> _upgradeDropped;
 
         public void OnDrop(PointerEventData eventData)
         {
             if (debugBool)
                 Debug.Log($"ondrop called");
-            GameObject dropped = eventData.pointerDrag;
-            if (dropped != null)
+            CompUpgradeManager compUpgradeManager = eventData.pointerDrag.GetComponent<CompUpgradeManager>();
+            if (compUpgradeManager != null)
             {
-                CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
-                if (compUpgradeManager != null)
-                {
-                    DropUpgrade(compUpgradeManager);
-                }
+                DropUpgrade(compUpgradeManager);
             }
         }
         private void DropUpgrade(CompUpgradeManager compUpgradeManager)
         {
             compUpgradeManager.ParentAfterDrag = _transformToDropUpgrade.transform;
-            _upgradeDropped?.Invoke(compUpgradeManager);
         }
     }
 }

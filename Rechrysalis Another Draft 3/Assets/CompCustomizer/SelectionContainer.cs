@@ -13,14 +13,14 @@ namespace Rechrysalis.CompCustomizer
             if (debugBool)
                 Debug.Log($"selection container ondrop called");
             GameObject dropped = eventData.pointerDrag;
-            if (dropped != null)
-            {
+            // if (dropped != null)
+            // {
                 // CompUpgradeManager compUpgradeManager = dropped.GetComponent<CompUpgradeManager>();
                 if (dropped.GetComponent<CompUpgradeManager>() != null)
                 {
                     DropUpgrade(dropped.GetComponent<CompUpgradeManager>());
                 }
-            }
+            // }
         }
         private void DropUpgrade(CompUpgradeManager compUpgradeManager)
         {
