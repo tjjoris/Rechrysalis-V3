@@ -55,20 +55,19 @@ namespace Rechrysalis.CompCustomizer
                 int numberOfHatchEffects = _verticalMangers[i].GetNumberOfHatchEffects();
                 bool isAtLeastOneUpgrade = _verticalMangers[i].IsAtLeastOneAdvUpgrade();                
                 if (numberOfBasic == 1)
-                atLeastOneBasic = true;
-                else 
                 {
-                    if ((numberOfHatchEffects > 0) || (isAtLeastOneUpgrade))
-                    {
-                        _showCompErrorText.UpgradesNeedBasic();
-                        return false;
-                    }
+                    atLeastOneBasic = true;
                 }
-                if (numberOfBasic > 1)
+                else if (numberOfBasic > 1)
                 {
                     _showCompErrorText.CanOnlyHaveOneBasic();
                     return false;
                 }
+                else if ((numberOfBasic == 0) && (numberOfHatchEffects > 0) || (isAtLeastOneUpgrade))
+                    {
+                        _showCompErrorText.UpgradesNeedBasic();
+                        return false;
+                    }
                 if (numberOfHatchEffects > 1)
                 {
                     _showCompErrorText.CanOnlyHaveOneHE();
