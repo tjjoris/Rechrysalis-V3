@@ -60,7 +60,7 @@ namespace Rechrysalis.Controller
                         {
                             GameObject childUnitGo = Instantiate(_childUnitPrefab, parentUnitGO.transform);
                             UnitStatsSO _unitStats = _unitComp.UnitSOArray[(_parentUnitIndex * 3) + (_childUnitIndex)];
-                            // _unitStats.Initialize();
+                            _unitStats.Initialize();
                             UnitManager _childUnitManager = childUnitGo.GetComponent<UnitManager>();                            
                             childUnitGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _parentUnitIndex, _hatchEffectSOs[_childUnitIndex]);
                             _childUnitManager.SetUnitName(_unitStats.UnitName);
@@ -123,21 +123,23 @@ namespace Rechrysalis.Controller
             }
             return false;
         }
-        private bool CheckIfChildUnitShouldExist(CompSO _comp, int _parentIndex, int _childIndex)
+        private bool CheckIfChildUnitShouldExist(CompSO compSO, int _parentIndex, int _childIndex)
         {
-            int _index = (_parentIndex * _comp.ParentUnitCount) + _childIndex;
-            if (_comp.UnitSOArray[_index] == null)
-            {
-                return false;
-            }
-            if (_comp.UnitSOArray[(_parentIndex * _comp.ParentUnitCount) + _childIndex].UnitName != "Empty")
-            {
-                return true;
-            }
-            if ((_childIndex > 0) && (_comp.HatchEffectSOArray[(_parentIndex * 3) + _childIndex] != null))
-            {
-                return true;
-            }
+            // int _index = (_parentIndex * _comp.ParentUnitCount) + _childIndex;
+            // if (_comp.UnitSOArray[_index] == null)
+            // {
+            //     return false;
+            // }
+            // if (_comp.UnitSOArray[(_parentIndex * _comp.ParentUnitCount) + _childIndex].UnitName != "Empty")
+            // {
+            //     return true;
+            // }
+            // if ((_childIndex > 0) && (_comp.HatchEffectSOArray[(_parentIndex * 3) + _childIndex] != null))
+            // {
+            //     return true;
+            // }
+            // return false;
+            if (compSO.DoesParentExist(_parentIndex)) return true;
             return false;
         }
         public void ActivateInitialUnits()

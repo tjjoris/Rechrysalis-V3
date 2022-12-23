@@ -50,6 +50,12 @@ namespace Rechrysalis.Unit
         public GameObject HatchEffectPrefab => _hatchEffectPrefab;
         [SerializeField] private float _hatchEffectMult;
         public float HatchEffectMult => _hatchEffectMult;
+        [SerializeField] private Sprite _projectileSprite;
+        public Sprite ProjectileSprite => _projectileSprite;
+        [SerializeField] private float _projectileSpeed;
+        public float ProjectileSpeed => _projectileSpeed;
+        [SerializeField] private int _projectileAmountToPool;
+        public int ProjectileAmountToPool => _projectileAmountToPool;
         
         public void ClearAllUpgrades()
         {
