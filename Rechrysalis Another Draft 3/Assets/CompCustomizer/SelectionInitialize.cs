@@ -37,8 +37,27 @@ namespace Rechrysalis.CompCustomizer
             _randomUpgradeSelection= GetComponent<RandomUpgradeSelection>();
             _randomUpgradeSelection.Initialize();
             CalculateUpgradeSelectionCount();
-            if (!IsCompExists(compSO)) Debug.Log($"comp does not exist");
-            CreateAllSelectionButtons();   
+            if (!IsCompExists(compSO)) 
+            {
+                CreateOnlyBasicSelection();
+            }
+            else
+            {
+                CreateAllSelectionButtons();   
+            }
+        }
+        private void CreateOnlyBasicSelection()
+        {
+            for (int i=0; i< _compCustomizerSO.BasicUnitArray.Length; i++)
+            {
+                GameObject _selectionButton = Instantiate(_upgradeButtonPrefab, _selectionContainer);
+                CompUpgradeManager compUpgradeManager = _selectionButton.GetComponent<CompUpgradeManager>();
+                compUpgradeManager.Initialize(_movingButtonHolder);
+                // UpgradeTypeClass _randomUpgradeTypeClass = _randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount);
+                // _upgradeTypeClassesToChooseFrom[index] = _randomUpgradeTypeClass;
+                compUpgradeManager.SetUpgradeTypeClass(_compCustomizerSO.BasicUnitArray[i].UpgradeTypeClass);
+                compUpgradeManager.SetDisplay(_compCustomizerSO.BasicUnitArray[i].UpgradeTypeClass);
+            }
         }
         private void CreateSelectionButton(int index)
         {            
@@ -66,6 +85,18 @@ namespace Rechrysalis.CompCustomizer
         {
             if (compSO == null)
             return false;
+            if (compSO.ParentUnitClassList.Count == 0)
+            return false;
+            bool basicExists = false;
+            for (int i=0; i< compSO.ParentUnitClassList.Count; i++)
+            {
+                if (compSO.ParentUnitClassList[i].UTCBasicUnit.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+                {
+                    basicExists = true;
+                }
+            }
+            if (basicExists)
+            return true;
             return false;
         }
     }
