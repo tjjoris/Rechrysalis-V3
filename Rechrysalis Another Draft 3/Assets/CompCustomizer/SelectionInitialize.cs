@@ -16,7 +16,6 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private GameObject _upgradeButtonPrefab;
         private Transform _movingButtonHolder;
         private int _numberOfUpgrades = 3;
-        [SerializeField] private CompUpgradeManager[] _compUpgradeManagers;
         [SerializeField] private int[] _upgradeButtonIndex;
         private SelectionIndexToSelection _selectionIndexToSelection;
         private int _upgradeSelectionCount;
@@ -24,11 +23,9 @@ namespace Rechrysalis.CompCustomizer
         private UpgradeTypeClass[] _upgradeTypeClassesToChooseFrom;
         
         
-        public void Initialize(CompCustomizerSO compCustomizerSO, Transform movingButtonHolder)
+        public void Initialize(CompCustomizerSO compCustomizerSO, Transform movingButtonHolder, CompSO compSO)
         {
             _movingButtonHolder = movingButtonHolder;
-            _compUpgradeManagers = new CompUpgradeManager[_numberOfUpgrades];
-            // _upgradebuttonManager = new UpgradeButtonManager[_numberOfUpgrades];
             _upgradeButtonIndex = new int[_numberOfUpgrades];
             _compCustomizerSO = compCustomizerSO;
             _upgradeTypeClassesToChooseFrom = new UpgradeTypeClass[_numberOfUpgrades];
@@ -37,18 +34,37 @@ namespace Rechrysalis.CompCustomizer
             _randomUpgradeSelection= GetComponent<RandomUpgradeSelection>();
             _randomUpgradeSelection.Initialize();
             CalculateUpgradeSelectionCount();
-            CreateAllSelectionButtons();   
-            // SubscribeToUpgradeButtons();  
+            if (!IsCompExists(compSO)) 
+            {
+                CreateOnlyBasicSelection();
+            }
+            else
+            {
+                CreateAllSelectionButtons();   
+            }
+        }
+        private void CreateOnlyBasicSelection()
+        {
+            for (int i=0; i< _compCustomizerSO.BasicUnitArray.Length; i++)
+            {
+                GameObject _selectionButton = Instantiate(_upgradeButtonPrefab, _selectionContainer);
+                CompUpgradeManager compUpgradeManager = _selectionButton.GetComponent<CompUpgradeManager>();
+                compUpgradeManager.Initialize(_movingButtonHolder);
+                // UpgradeTypeClass _randomUpgradeTypeClass = _randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount);
+                // _upgradeTypeClassesToChooseFrom[index] = _randomUpgradeTypeClass;
+                compUpgradeManager.SetUpgradeTypeClass(_compCustomizerSO.BasicUnitArray[i].UpgradeTypeClass);
+                compUpgradeManager.SetDisplay(_compCustomizerSO.BasicUnitArray[i].UpgradeTypeClass);
+            }
         }
         private void CreateSelectionButton(int index)
         {            
             GameObject _selectionButton = Instantiate(_upgradeButtonPrefab, _selectionContainer);
-            _compUpgradeManagers[index] = _selectionButton.GetComponent<CompUpgradeManager>();
-            _compUpgradeManagers[index].Initialize(_movingButtonHolder);
+            CompUpgradeManager compUpgradeManager = _selectionButton.GetComponent<CompUpgradeManager>();
+            compUpgradeManager.Initialize(_movingButtonHolder);
             UpgradeTypeClass _randomUpgradeTypeClass = _randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount);
             _upgradeTypeClassesToChooseFrom[index] = _randomUpgradeTypeClass;
-            _compUpgradeManagers[index].SetUpgradeTypeClass(_randomUpgradeTypeClass);
-            _compUpgradeManagers[index].SetDisplay(_randomUpgradeTypeClass);
+            compUpgradeManager.SetUpgradeTypeClass(_randomUpgradeTypeClass);
+            compUpgradeManager.SetDisplay(_randomUpgradeTypeClass);
             
         }
         private void CreateAllSelectionButtons()
@@ -61,6 +77,24 @@ namespace Rechrysalis.CompCustomizer
         public void CalculateUpgradeSelectionCount()
         {
             _upgradeSelectionCount = _compCustomizerSO.BasicUnitArray.Length + _compCustomizerSO.AdvancedUnitSelectionT1Array.Length + _compCustomizerSO.HatchEffectSelectionArray.Length;
+        }
+        private bool IsCompExists(CompSO compSO)
+        {
+            if (compSO == null)
+            return false;
+            if (compSO.ParentUnitClassList.Count == 0)
+            return false;
+            bool basicExists = false;
+            for (int i=0; i< compSO.ParentUnitClassList.Count; i++)
+            {
+                if (compSO.ParentUnitClassList[i].UTCBasicUnit.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+                {
+                    basicExists = true;
+                }
+            }
+            if (basicExists)
+            return true;
+            return false;
         }
     }
 }
