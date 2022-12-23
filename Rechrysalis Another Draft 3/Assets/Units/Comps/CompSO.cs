@@ -30,10 +30,6 @@ namespace Rechrysalis.Unit
             bool basicExists = false;
             for (int i = 0; i < _parentUnitClassList.Count; i++)
             {
-                // if (_parentUnitClassList[i].UTCBasicUnit.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
-                // {
-                //     basicExists = true;
-                // }
                 if (DoesParentExist(i))
                 basicExists = true;
             }
