@@ -24,7 +24,7 @@ namespace Rechrysalis.CompCustomizer
         private UpgradeTypeClass[] _upgradeTypeClassesToChooseFrom;
         
         
-        public void Initialize(CompCustomizerSO compCustomizerSO, Transform movingButtonHolder)
+        public void Initialize(CompCustomizerSO compCustomizerSO, Transform movingButtonHolder, CompSO compSO)
         {
             _movingButtonHolder = movingButtonHolder;
             _compUpgradeManagers = new CompUpgradeManager[_numberOfUpgrades];
@@ -37,8 +37,8 @@ namespace Rechrysalis.CompCustomizer
             _randomUpgradeSelection= GetComponent<RandomUpgradeSelection>();
             _randomUpgradeSelection.Initialize();
             CalculateUpgradeSelectionCount();
+            if (!IsCompExists(compSO)) Debug.Log($"comp does not exist");
             CreateAllSelectionButtons();   
-            // SubscribeToUpgradeButtons();  
         }
         private void CreateSelectionButton(int index)
         {            
@@ -61,6 +61,12 @@ namespace Rechrysalis.CompCustomizer
         public void CalculateUpgradeSelectionCount()
         {
             _upgradeSelectionCount = _compCustomizerSO.BasicUnitArray.Length + _compCustomizerSO.AdvancedUnitSelectionT1Array.Length + _compCustomizerSO.HatchEffectSelectionArray.Length;
+        }
+        private bool IsCompExists(CompSO compSO)
+        {
+            if (compSO == null)
+            return false;
+            return false;
         }
     }
 }
