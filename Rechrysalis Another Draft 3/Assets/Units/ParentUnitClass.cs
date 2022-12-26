@@ -170,6 +170,7 @@ namespace Rechrysalis.Unit
                 _basicUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
                 _basicUnitClass.ProjectileSpeed = _utcBasicUnit.GetUnitStatsSO().ProjectileSpeed;
                 _basicUnitClass.ProjectileSprite = _utcBasicUnit.GetUnitStatsSO().ProjectileSprite;
+                _basicUnitClass.UnitName = _utcBasicUnit.GetUnitStatsSO().UnitName;
                 _basicUnitClass.CalculateDamge();
             }
         }

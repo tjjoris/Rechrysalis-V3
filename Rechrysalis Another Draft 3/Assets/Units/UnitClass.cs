@@ -12,6 +12,8 @@ namespace Rechrysalis
         
         [SerializeField] private float _manaCost;
         public float ManaCost {get => _manaCost; set => _manaCost = value;}
+        [SerializeField] private string _unitName;
+        public string UnitName { get => _unitName; set => _unitName = value; }
         [SerializeField] private float _hpMax;       
         public float HPMax {get => _hpMax; set => _hpMax = value;}
         [SerializeField] private float _buildTime;
