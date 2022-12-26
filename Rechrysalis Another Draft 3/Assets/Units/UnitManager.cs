@@ -12,6 +12,7 @@ namespace Rechrysalis.Unit
     public class UnitManager : MonoBehaviour
     {
         [SerializeField] private UnitClass _unitClass;
+        public UnitClass UnitClass => _unitClass;
         [SerializeField] private ControllerUnitSpriteHandler _unitSpriteHandler;
         [SerializeField] private int _controllerIndex;        
         public int ControllerIndex {get{return _controllerIndex;}}
@@ -85,7 +86,7 @@ namespace Rechrysalis.Unit
             _freeHatchScript = GetComponent<FreeUnitHatchEffect>();
             this._freeUnitIndex = freeUnitIndex;
             _freeHatchScript?.Initialize(unitClass.HatchEffectPrefab, _freeUnitIndex);
-            _unitSpriteHandler.SetSpriteFunction(_unitStats.UnitSprite);
+            _unitSpriteHandler.SetSpriteFunction(unitClass.UnitSprite);
             float _hatchManaMult = 1;
             if (_hatchEffectSO != null)
             {
