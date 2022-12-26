@@ -23,82 +23,88 @@ namespace Rechrysalis.Controller
         private CompSO _unitComp; 
         private float _unitRingOutRadius;
         private float _unitRingAngle = 90f;
-        public void Initialize(int controllerIndex, CompSO _unitComp, CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRingManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius)
+        public void Initialize(int controllerIndex, CompSO unitComp, CompsAndUnitsSO compsAndUnits, UnitRingManager unitRingManager, HilightRingManager hilightRingManager, UpgradeRingManager upgradeRingManager, float unitRingOuterRadius)
         {
             _controllerIndex = controllerIndex;
-            this._unitComp = _unitComp;
+            this._unitComp = unitComp;
             _allUnits = new List<GameObject>();
             _allUnits.Clear();                    
-            _parentUnits = new GameObject[_unitComp.ParentUnitCount];
-            _theseUnits = _compsAndUnits.PlayerUnits[controllerIndex];
+            _parentUnits = new GameObject[unitComp.ParentUnitCount];
+            _theseUnits = compsAndUnits.PlayerUnits[controllerIndex];
             _theseUnits.ActiveUnits = new List<GameObject>();
             _theseUnits.ActiveUnits.Clear();
             _theseUnits.ParentUnits = new List<GameObject>();
             _theseUnits.ParentUnits.Clear();
             _controllerHatchEffect = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _controllerHatchEffect.InitializeUnitsArray(18);
-            ParentUnitHatchEffects[] _parentUnitHatchEffects = new ParentUnitHatchEffects[_unitComp.ParentUnitCount];
+            ParentUnitHatchEffects[] _parentUnitHatchEffects = new ParentUnitHatchEffects[unitComp.ParentUnitCount];
             // foreach (GameObject _unit in _parentUnits)
-            for (int _parentUnitIndex = 0; _parentUnitIndex < _unitComp.ParentUnitCount; _parentUnitIndex++)
+            for (int parentUnitIndex = 0; parentUnitIndex < unitComp.ParentUnitCount; parentUnitIndex++)
             {       
                 // if (CheckIfParentUnitShouldExist(_unitComp, _parentUnitIndex))
 
-                if (_unitComp.DoesParentExist(_parentUnitIndex))
+                if (unitComp.DoesParentExist(parentUnitIndex))
                 {
-                    float _radToOffset = Mathf.Deg2Rad * (((360f / _unitComp.ParentUnitCount) * _parentUnitIndex) + _unitRingAngle);  
+                    float _radToOffset = Mathf.Deg2Rad * (((360f / unitComp.ParentUnitCount) * parentUnitIndex) + _unitRingAngle);  
                     Vector3 _unitOffset = new Vector3 (Mathf.Cos(_radToOffset) * _ringDistFromCentre, Mathf.Sin(_radToOffset) * _ringDistFromCentre, 0f);
                     // Debug.Log($"radtooffset" + _radToOffset + "vector 3 " + _unitOffset);
                     GameObject parentUnitGO = Instantiate(_parentUnitPrefab, _unitRing.transform);
                     _theseUnits.ParentUnits.Add(parentUnitGO);
                     parentUnitGO.transform.localPosition = _unitOffset;
-                    _parentUnits[_parentUnitIndex] = parentUnitGO;
-                    parentUnitGO.name = "Parent Unit " + _parentUnitIndex.ToString();
-                    ParentUnitManager _pum = parentUnitGO.GetComponent<ParentUnitManager>();
-                    HatchEffectSO[] _hatchEffectSOs = SetHatchEffectSOs(_parentUnitIndex);
-                    _pum?.Initialize(controllerIndex, _parentUnitIndex, _unitComp, _compsAndUnits.PlayerUnits[controllerIndex], transform, _hatchEffectSOs);                        
-                    _pum.SubUnits = new GameObject[_unitComp.UpgradeCountArray[_parentUnitIndex]];
-                    _pum.SubChrysalii = new GameObject[_unitComp.UpgradeCountArray[_parentUnitIndex]];
-                    _parentUnitHatchEffects[_parentUnitIndex] = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
-                    for (int _childUnitIndex = 0; _childUnitIndex < _unitComp.UpgradeCountArray[_parentUnitIndex]; _childUnitIndex++)
+                    _parentUnits[parentUnitIndex] = parentUnitGO;
+                    parentUnitGO.name = "Parent Unit " + parentUnitIndex.ToString();
+                    ParentUnitManager pum = parentUnitGO.GetComponent<ParentUnitManager>();
+                    HatchEffectSO[] _hatchEffectSOs = SetHatchEffectSOs(parentUnitIndex);
+                    pum?.Initialize(controllerIndex, parentUnitIndex, unitComp, compsAndUnits.PlayerUnits[controllerIndex], transform, _hatchEffectSOs);                        
+                    pum.SubUnits = new GameObject[unitComp.UpgradeCountArray[parentUnitIndex]];
+                    pum.SubChrysalii = new GameObject[unitComp.UpgradeCountArray[parentUnitIndex]];
+                    _parentUnitHatchEffects[parentUnitIndex] = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
+                    // for (int _childUnitIndex = 0; _childUnitIndex < unitComp.UpgradeCountArray[parentUnitIndex]; _childUnitIndex++)
                     {
-                        if ((_childUnitIndex == 0) || (CheckIfChildUnitShouldExist(_unitComp, _parentUnitIndex, _childUnitIndex)))
+                        // if ((_childUnitIndex == 0) || (CheckIfChildUnitShouldExist(unitComp, parentUnitIndex, _childUnitIndex)))
                         {
-                            GameObject childUnitGo = Instantiate(_childUnitPrefab, parentUnitGO.transform);
-                            UnitStatsSO _unitStats = _unitComp.UnitSOArray[(_parentUnitIndex * 3) + (_childUnitIndex)];
-                            // _unitStats.Initialize();
-                            UnitManager _childUnitManager = childUnitGo.GetComponent<UnitManager>();                            
-                            // childUnitGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, _unitStats, _compsAndUnits, _parentUnitIndex, _hatchEffectSOs[_childUnitIndex]);
-                            UnitClass unitClass = _unitComp.ParentUnitClassList[_parentUnitIndex].BasicUnitClass;
-                            childUnitGo.GetComponent<UnitManager>()?.Initialize(controllerIndex, unitClass, _parentUnitIndex);
-                            _childUnitManager.SetUnitName(unitClass.UnitName);
-                            _pum.SubUnits[_childUnitIndex] = childUnitGo;
-                            childUnitGo.name = $"Child Unit " + _childUnitIndex;
-                            _allUnits.Add(childUnitGo);
-                            _controllerHatchEffect.SetUnitsArray(childUnitGo, ((_parentUnitIndex * 6) + (_childUnitIndex * 2)));
-                            // _theseUnits.ActiveUnits.Add(childUnitGo);
-                            childUnitGo.SetActive(false);
-                            GameObject chrysalisGo = Instantiate(_chrysalisPrefab, parentUnitGO.transform);
-                            chrysalisGo.name = $"Chrysalis " + _childUnitIndex;
-                            // chrysalisGo.GetComponent<ChrysalisManager>()?.Initialize(_unitStats.ChrysalisTimerMax, childUnitGo);
-                            UnitManager _chrysalisManager = chrysalisGo.GetComponent<UnitManager>();
-                            chrysalisGo.GetComponent<UnitManager>()?.InitializeOld(controllerIndex, _compsAndUnits.Chrysalis, _compsAndUnits, _parentUnitIndex, null);
+                            int _childUnitIndex = 0;
+                            UnitClass unitClass = unitComp.ParentUnitClassList[parentUnitIndex].BasicUnitClass;
+                            CreateChildUnitAndChrysalis(unitClass, _childUnitIndex, pum, parentUnitIndex, compsAndUnits);
+                            _childUnitIndex = 1;
+                            unitClass = unitComp.ParentUnitClassList[parentUnitIndex].AdvUnitClass;
+                            CreateChildUnitAndChrysalis(unitClass, _childUnitIndex, pum, parentUnitIndex, compsAndUnits);
+                            // GameObject childUnitGo = Instantiate(_childUnitPrefab, parentUnitGO.transform);
+                            // UnitStatsSO _unitStats = _unitComp.UnitSOArray[(_parentUnitIndex * 3) + (_childUnitIndex)];
+                            // // _unitStats.Initialize();
+                            // UnitManager _childUnitManager = childUnitGo.GetComponent<UnitManager>();                            
+                            // // childUnitGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, _unitStats, _compsAndUnits, _parentUnitIndex, _hatchEffectSOs[_childUnitIndex]);
+                            // UnitClass unitClass = _unitComp.ParentUnitClassList[_parentUnitIndex].BasicUnitClass;
+                            // childUnitGo.GetComponent<UnitManager>()?.Initialize(controllerIndex, unitClass, _parentUnitIndex);
+                            // _childUnitManager.SetUnitName(unitClass.UnitName);
+                            // _pum.SubUnits[_childUnitIndex] = childUnitGo;
+                            // childUnitGo.name = $"Child Unit " + _childUnitIndex;
+                            // _allUnits.Add(childUnitGo);
+                            // _controllerHatchEffect.SetUnitsArray(childUnitGo, ((_parentUnitIndex * 6) + (_childUnitIndex * 2)));
+                            // // _theseUnits.ActiveUnits.Add(childUnitGo);
+                            // childUnitGo.SetActive(false);
+                            // GameObject chrysalisGo = Instantiate(_chrysalisPrefab, parentUnitGO.transform);
+                            // chrysalisGo.name = $"Chrysalis " + _childUnitIndex;
+                            // // chrysalisGo.GetComponent<ChrysalisManager>()?.Initialize(_unitStats.ChrysalisTimerMax, childUnitGo);
+                            // UnitManager _chrysalisManager = chrysalisGo.GetComponent<UnitManager>();
+                            // chrysalisGo.GetComponent<UnitManager>()?.InitializeOld(controllerIndex, _compsAndUnits.Chrysalis, _compsAndUnits, _parentUnitIndex, null);
                             
-                            _chrysalisManager.SetUnitName(_unitStats.UnitName);
-                            chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(_unitStats.ChrysalisTimerMax, _childUnitIndex);
-                            _pum.SubChrysalii[_childUnitIndex] = chrysalisGo;                    
-                            _allUnits.Add(chrysalisGo);
-                            _controllerHatchEffect.SetUnitsArray(chrysalisGo, ((_parentUnitIndex * 6) + (_childUnitIndex * 2) +1));                 
-                            chrysalisGo.SetActive(false);  
+                            // _chrysalisManager.SetUnitName(_unitStats.UnitName);
+                            // chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(_unitStats.ChrysalisTimerMax, _childUnitIndex);
+                            // _pum.SubChrysalii[_childUnitIndex] = chrysalisGo;                    
+                            // _allUnits.Add(chrysalisGo);
+                            // _controllerHatchEffect.SetUnitsArray(chrysalisGo, ((_parentUnitIndex * 6) + (_childUnitIndex * 2) +1));                 
+                            // chrysalisGo.SetActive(false);  
                         }
                     }
                     ParentUnitHatchEffects _pUHE = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
-                    _pUHE?.Initialize(_pum.SubUnits, _pum.SubChrysalii);
-                    _pum.AddChrysalisAndUnitActions();  
+                    _pUHE?.Initialize(pum.SubUnits, pum.SubChrysalii);
+                    pum.AddChrysalisAndUnitActions();  
                 }              
             }
-            _hilightRingManager?.Initialize(_unitRingManager);
-            _unitRingManager?.Initialize(_compsAndUnits.CompsSO[controllerIndex].ParentUnitCount, _parentUnits, _unitRingAngle, _hilightRingManager.transform);  
-            _upgradeRingManager?.Initialize(_unitRingAngle, _unitComp, _ringDistFromCentre, _parentUnits);
+            hilightRingManager?.Initialize(unitRingManager);
+            unitRingManager?.Initialize(compsAndUnits.CompsSO[controllerIndex].ParentUnitCount, _parentUnits, _unitRingAngle, hilightRingManager.transform);  
+            upgradeRingManager?.Initialize(_unitRingAngle, unitComp, _ringDistFromCentre, _parentUnits);
             FreeUnitHatchEffect[] _freeHatches = new FreeUnitHatchEffect[_allUnits.Count];
             for (int _unitCount = 0; _unitCount < _allUnits.Count; _unitCount ++)
             {
@@ -107,33 +113,33 @@ namespace Rechrysalis.Controller
             _controllerHatchEffect?.SetFreeHatches(_freeHatches);
             _controllerHatchEffect?.SetParentUnitHatchEffects(_parentUnitHatchEffects);
             _controllerHatchEffect?.SubscribeToUnits();
-            _upgradeRingManager?.SetActiveUpgradeRing(-1);
+            upgradeRingManager?.SetActiveUpgradeRing(-1);
         }
-        private void CreateChildUnitAndChrysalis(UnitClass unitClass, int childUnitIndex, GameObject parentUnitGO, int parentUnitIndex)
+        private void CreateChildUnitAndChrysalis(UnitClass unitClass, int childUnitIndex, ParentUnitManager pum, int parentUnitIndex, CompsAndUnitsSO compsAndUnits)
         {
-            GameObject childUnitGo = Instantiate(_childUnitPrefab, parentUnitGO.transform);
+            GameObject childUnitGo = Instantiate(_childUnitPrefab, pum.transform);
             UnitStatsSO _unitStats = _unitComp.UnitSOArray[(parentUnitIndex * 3) + (childUnitIndex)];
             // _unitStats.Initialize();
             UnitManager _childUnitManager = childUnitGo.GetComponent<UnitManager>();
             // childUnitGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, _unitStats, _compsAndUnits, _parentUnitIndex, _hatchEffectSOs[_childUnitIndex]);
-            UnitClass unitClass = _unitComp.ParentUnitClassList[parentUnitIndex].BasicUnitClass;
+            // UnitClass unitClass = _unitComp.ParentUnitClassList[parentUnitIndex].BasicUnitClass;
             childUnitGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, unitClass, parentUnitIndex);
             _childUnitManager.SetUnitName(unitClass.UnitName);
-            _pum.SubUnits[childUnitIndex] = childUnitGo;
+            pum.SubUnits[childUnitIndex] = childUnitGo;
             childUnitGo.name = $"Child Unit " + childUnitIndex;
             _allUnits.Add(childUnitGo);
             _controllerHatchEffect.SetUnitsArray(childUnitGo, ((parentUnitIndex * 6) + (childUnitIndex * 2)));
             // _theseUnits.ActiveUnits.Add(childUnitGo);
             childUnitGo.SetActive(false);
-            GameObject chrysalisGo = Instantiate(_chrysalisPrefab, parentUnitGO.transform);
+            GameObject chrysalisGo = Instantiate(_chrysalisPrefab, pum.transform);
             chrysalisGo.name = $"Chrysalis " + childUnitIndex;
             // chrysalisGo.GetComponent<ChrysalisManager>()?.Initialize(_unitStats.ChrysalisTimerMax, childUnitGo);
             UnitManager _chrysalisManager = chrysalisGo.GetComponent<UnitManager>();
-            chrysalisGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, _compsAndUnits.Chrysalis, _compsAndUnits, parentUnitIndex, null);
+            chrysalisGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, compsAndUnits.Chrysalis, compsAndUnits, parentUnitIndex, null);
 
             _chrysalisManager.SetUnitName(_unitStats.UnitName);
             chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(_unitStats.ChrysalisTimerMax, childUnitIndex);
-            _pum.SubChrysalii[childUnitIndex] = chrysalisGo;
+            pum.SubChrysalii[childUnitIndex] = chrysalisGo;
             _allUnits.Add(chrysalisGo);
             _controllerHatchEffect.SetUnitsArray(chrysalisGo, ((parentUnitIndex * 6) + (childUnitIndex * 2) + 1));
             chrysalisGo.SetActive(false);
