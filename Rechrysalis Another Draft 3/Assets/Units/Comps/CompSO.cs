@@ -40,6 +40,8 @@ namespace Rechrysalis.Unit
 
         public bool DoesParentExist(int parentIndex)
         {
+            if (_parentUnitClassList[parentIndex] == null) return false;
+            if (_parentUnitClassList[parentIndex].UTCBasicUnit == null) return false;
             if (_parentUnitClassList[parentIndex].UTCBasicUnit.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
             {
                 return true;

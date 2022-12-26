@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
+using UnityEngine.SceneManagement;
+
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -30,6 +32,7 @@ namespace Rechrysalis.CompCustomizer
             {
                 Debug.Log($"continue");
                 SetComp();
+                SceneManager.LoadScene("FreeEnemyLevel");
             }
         }
         private void SetComp()
