@@ -11,6 +11,7 @@ namespace Rechrysalis.Unit
 {
     public class UnitManager : MonoBehaviour
     {
+        [SerializeField] private UnitClass _unitClass;
         [SerializeField] private ControllerUnitSpriteHandler _unitSpriteHandler;
         [SerializeField] private int _controllerIndex;        
         public int ControllerIndex {get{return _controllerIndex;}}
@@ -57,7 +58,15 @@ namespace Rechrysalis.Unit
                 }
             }
         public System.Action<float> _unitDealsDamage;
-        public void Initialize(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _freeUnitIndex, HatchEffectSO _hatchEffectSO)
+        public void Initialize(int controllerIndex, UnitClass unitClass)
+        {
+            _controllerIndex = controllerIndex;
+            _unitClass = unitClass;
+            // GetComponent<ProjectilesPool>()?.CreatePool(_unitClass)
+            _mover = GetComponent<Mover>();
+            _attack = GetComponent<Attack>();
+        }
+        public void InitializeOld(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _freeUnitIndex, HatchEffectSO _hatchEffectSO)
         {
             this._controllerIndex = _controllerIndex;
             this._unitStats = _unitStats;

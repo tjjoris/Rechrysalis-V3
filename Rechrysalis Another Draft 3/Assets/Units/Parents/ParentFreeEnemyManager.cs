@@ -25,7 +25,7 @@ namespace Rechrysalis.Unit
         {
             this._compsAndUnits = _compsAndUnits;
             _parentHealth = GetComponent<ParentHealth>();
-            _unitManager?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, null);
+            _unitManager?.InitializeOld(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, null);
             _unitManager?.SetUnitName(_unitStats.UnitName);
             GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
             GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[_controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);

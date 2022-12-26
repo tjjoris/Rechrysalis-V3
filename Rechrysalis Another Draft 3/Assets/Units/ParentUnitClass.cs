@@ -167,6 +167,9 @@ namespace Rechrysalis.Unit
                 _basicUnitClass.AttackChargeUp = _utcBasicUnit.GetUnitStatsSO().AttackChargeUpBasic;
                 _basicUnitClass.AttackWindDown = _utcBasicUnit.GetUnitStatsSO().AttackWindDownBasic;
                 _basicUnitClass.UnitSprite = _utcBasicUnit.GetUnitStatsSO().UnitSprite;
+                _basicUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
+                _basicUnitClass.ProjectileSpeed = _utcBasicUnit.GetUnitStatsSO().ProjectileSpeed;
+                _basicUnitClass.ProjectileSprite = _utcBasicUnit.GetUnitStatsSO().ProjectileSprite;
                 _basicUnitClass.CalculateDamge();
             }
         }
@@ -191,6 +194,9 @@ namespace Rechrysalis.Unit
                 _advUnitClass.AttackWindDown += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.AttackWindDownAdd;
                 _advUnitClass.HatchEffectMult = _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.HatchEffectMultiplierAdd;
                 _advUnitClass.UnitSprite = _utcBasicUnit.GetUnitStatsSO().UnitSprite;
+                _advUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
+                _advUnitClass.ProjectileSpeed = _utcBasicUnit.GetUnitStatsSO().ProjectileSpeed;
+                _advUnitClass.ProjectileSprite = _utcBasicUnit.GetUnitStatsSO().ProjectileSprite;
                 // _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
 
             }

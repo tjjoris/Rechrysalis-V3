@@ -39,6 +39,7 @@ namespace Rechrysalis.Controller
             for (int _parentUnitIndex = 0; _parentUnitIndex < _unitComp.ParentUnitCount; _parentUnitIndex++)
             {       
                 // if (CheckIfParentUnitShouldExist(_unitComp, _parentUnitIndex))
+
                 if (_unitComp.DoesParentExist(_parentUnitIndex))
                 {
                     float _radToOffset = Mathf.Deg2Rad * (((360f / _unitComp.ParentUnitCount) * _parentUnitIndex) + _unitRingAngle);  
@@ -63,7 +64,7 @@ namespace Rechrysalis.Controller
                             UnitStatsSO _unitStats = _unitComp.UnitSOArray[(_parentUnitIndex * 3) + (_childUnitIndex)];
                             // _unitStats.Initialize();
                             UnitManager _childUnitManager = childUnitGo.GetComponent<UnitManager>();                            
-                            childUnitGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _parentUnitIndex, _hatchEffectSOs[_childUnitIndex]);
+                            childUnitGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, _unitStats, _compsAndUnits, _parentUnitIndex, _hatchEffectSOs[_childUnitIndex]);
                             _childUnitManager.SetUnitName(_unitStats.UnitName);
                             _pum.SubUnits[_childUnitIndex] = childUnitGo;
                             childUnitGo.name = $"Child Unit " + _childUnitIndex;
@@ -75,7 +76,7 @@ namespace Rechrysalis.Controller
                             chrysalisGo.name = $"Chrysalis " + _childUnitIndex;
                             // chrysalisGo.GetComponent<ChrysalisManager>()?.Initialize(_unitStats.ChrysalisTimerMax, childUnitGo);
                             UnitManager _chrysalisManager = chrysalisGo.GetComponent<UnitManager>();
-                            chrysalisGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _compsAndUnits.Chrysalis, _compsAndUnits, _parentUnitIndex, null);
+                            chrysalisGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, _compsAndUnits.Chrysalis, _compsAndUnits, _parentUnitIndex, null);
                             _chrysalisManager.SetUnitName(_unitStats.UnitName);
                             chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(_unitStats.ChrysalisTimerMax, _childUnitIndex);
                             _pum.SubChrysalii[_childUnitIndex] = chrysalisGo;                    
