@@ -13,6 +13,45 @@ MonoBehaviour:
   m_Name: default
   m_EditorClassIdentifier: 
   _parentUnitClassList:
+  - _advancedUpgradesUTCList:
+    - _upgradeType: 2
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 11400000, guid: ebc761682d1af4e55a53be1d24853a76, type: 2}
+    _utcBasicUnit:
+      _upgradeType: 1
+      _unitStatsSO: {fileID: 11400000, guid: db3f022e624af490da1ed973efc08e3d, type: 2}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+    _utcHatchEffect:
+      _upgradeType: 3
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 11400000, guid: 6c896d1b493b94e7295bd62c25518d7c, type: 2}
+      _advUnitModifierSO: {fileID: 0}
+    _basicUnitClass:
+      _manaCost: 50
+      _hpMax: 26
+      _buildTime: 1
+      _range: 3
+      _dps: 26
+      _attackChargeUp: 0.85
+      _attackWindDown: 0.85
+      _damage: 15.294117
+      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectMult: 0
+      _unitSprite: {fileID: 21300000, guid: e60641893905d4fbc9c695c093b498f4, type: 3}
+    _advUnitClass:
+      _manaCost: 80
+      _hpMax: 28.6
+      _buildTime: 1
+      _range: 3
+      _dps: 33.6
+      _attackChargeUp: 0.85
+      _attackWindDown: 0.85
+      _damage: 19.764704
+      _hatchEffectPrefab: {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}
+      _hatchEffectMult: 1.1
+      _unitSprite: {fileID: 21300000, guid: e60641893905d4fbc9c695c093b498f4, type: 3}
   - _advancedUpgradesUTCList: []
     _utcBasicUnit:
       _upgradeType: 0
@@ -24,23 +63,30 @@ MonoBehaviour:
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
-    _manaCost: 0
-    _hpMaxBasic: 0
-    _hpMaxAdvanced: 0
-    _buildTimeBasic: 0
-    _buildTimeAdv: 0
-    _rangeBasic: 0
-    _rangeAdv: 0
-    _dpsBasic: 0
-    _dpsAdv: 0
-    _attackChargeUpBasic: 0
-    _attackChargeUpAdv: 0
-    _attackWindDownBasic: 0
-    _attackWindDownAdv: 0
-    _damageBasic: 0
-    _damageAdv: 0
-    _hatchEffectPrefab: {fileID: 0}
-    _hatchEffectMult: 0
+    _basicUnitClass:
+      _manaCost: 0
+      _hpMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectMult: 0
+      _unitSprite: {fileID: 0}
+    _advUnitClass:
+      _manaCost: 0
+      _hpMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectMult: 0
+      _unitSprite: {fileID: 0}
   - _advancedUpgradesUTCList: []
     _utcBasicUnit:
       _upgradeType: 0
@@ -52,23 +98,30 @@ MonoBehaviour:
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
-    _manaCost: 0
-    _hpMaxBasic: 0
-    _hpMaxAdvanced: 0
-    _buildTimeBasic: 0
-    _buildTimeAdv: 0
-    _rangeBasic: 0
-    _rangeAdv: 0
-    _dpsBasic: 0
-    _dpsAdv: 0
-    _attackChargeUpBasic: 0
-    _attackChargeUpAdv: 0
-    _attackWindDownBasic: 0
-    _attackWindDownAdv: 0
-    _damageBasic: 0
-    _damageAdv: 0
-    _hatchEffectPrefab: {fileID: 0}
-    _hatchEffectMult: 0
+    _basicUnitClass:
+      _manaCost: 0
+      _hpMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectMult: 0
+      _unitSprite: {fileID: 0}
+    _advUnitClass:
+      _manaCost: 0
+      _hpMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectMult: 0
+      _unitSprite: {fileID: 0}
   _unitSOArray:
   - {fileID: 11400000, guid: db3f022e624af490da1ed973efc08e3d, type: 2}
   - {fileID: 11400000, guid: 933474abe37604f519a69c6018637d2c, type: 2}
