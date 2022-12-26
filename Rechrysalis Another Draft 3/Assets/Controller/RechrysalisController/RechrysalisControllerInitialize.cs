@@ -123,7 +123,7 @@ namespace Rechrysalis.Controller
             UnitManager _childUnitManager = childUnitGo.GetComponent<UnitManager>();
             // childUnitGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, _unitStats, _compsAndUnits, _parentUnitIndex, _hatchEffectSOs[_childUnitIndex]);
             // UnitClass unitClass = _unitComp.ParentUnitClassList[parentUnitIndex].BasicUnitClass;
-            childUnitGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, unitClass, parentUnitIndex);
+            childUnitGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, unitClass, parentUnitIndex, compsAndUnits);
             _childUnitManager.SetUnitName(unitClass.UnitName);
             pum.SubUnits[childUnitIndex] = childUnitGo;
             childUnitGo.name = $"Child Unit " + childUnitIndex;

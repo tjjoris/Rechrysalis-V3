@@ -58,9 +58,11 @@ namespace Rechrysalis.Unit
                 }
             }
         public System.Action<float> _unitDealsDamage;
-        public void Initialize(int controllerIndex, UnitClass unitClass, int freeUnitIndex)
+        public void Initialize(int controllerIndex, UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnits)
         {
             _controllerIndex = controllerIndex;
+            _compsAndUnits = compsAndUnits;
+            Debug.Log($"controller index " + _controllerIndex);
             _unitClass = unitClass;
             // GetComponent<ProjectilesPool>()?.CreatePool(_unitClass)
             _mover = GetComponent<Mover>();
@@ -82,7 +84,7 @@ namespace Rechrysalis.Unit
             _hatchEffects = new List<GameObject>();
             _freeHatchScript = GetComponent<FreeUnitHatchEffect>();
             this._freeUnitIndex = freeUnitIndex;
-            _freeHatchScript?.Initialize(_unitStats.HatchEffectPrefab, _freeUnitIndex);
+            _freeHatchScript?.Initialize(unitClass.HatchEffectPrefab, _freeUnitIndex);
             _unitSpriteHandler.SetSpriteFunction(_unitStats.UnitSprite);
             float _hatchManaMult = 1;
             if (_hatchEffectSO != null)
