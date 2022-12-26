@@ -65,6 +65,13 @@ namespace Rechrysalis.Unit
             // GetComponent<ProjectilesPool>()?.CreatePool(_unitClass)
             _mover = GetComponent<Mover>();
             _attack = GetComponent<Attack>();
+            _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
+            _controllerUnitAttackClosest?.Initialzie();
+            if (_attack != null) _attack.IsStopped = true;
+            _attack.Initialize(_unitClass);
+            _health?.Initialize(_unitClass.HPMax);
+            
+
         }
         public void InitializeOld(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _freeUnitIndex, HatchEffectSO _hatchEffectSO)
         {
