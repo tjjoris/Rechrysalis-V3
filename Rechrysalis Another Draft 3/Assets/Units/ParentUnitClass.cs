@@ -176,7 +176,7 @@ namespace Rechrysalis.Unit
             {
                 Debug.Log($"set base adv stats");
                 _advUnitClass = new UnitClass();
-                _advUnitClass.ManaCost = _basicUnitClass.ManaCost * _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.ManaMult;
+                _advUnitClass.ManaCost = (_utcBasicUnit.GetUnitStatsSO().TypeMultiplier.ManaMultiplier * _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.ManaMult);
                 _advUnitClass.ManaCost += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.ManaAdd;
                 _advUnitClass.HPMax = _basicUnitClass.HPMax * _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.HPMaxMult;
                 _advUnitClass.HPMax += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.HPMaxAdd;
