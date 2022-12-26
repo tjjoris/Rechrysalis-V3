@@ -83,7 +83,7 @@ namespace Rechrysalis.Unit
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
             _controllerUnitAttackClosest?.Initialzie();
             if (_attack != null)  _attack.IsStopped = true;
-            _attack?.Initialize(_unitStats);
+            _attack?.InitializeOld(_unitStats);
             _health = GetComponent<Health>();
             _health?.Initialize(_unitStats.HealthMaxBasic);
             GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
@@ -91,7 +91,7 @@ namespace Rechrysalis.Unit
             GetComponent<Rechrysalize>()?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ChildUnitCount);            
             GetComponent<InRangeByPriority>()?.Initialize(_compsAndUnits.TargetsLists[_controllerIndex]);
             GetComponent<ClosestTarget>()?.Initialize(_compsAndUnits.PlayerUnits[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
-            GetComponent<Range>()?.Initialize(_unitStats);
+            GetComponent<Range>()?.InitializeOld(_unitStats);
             _chrysalisTimer = GetComponent<ChrysalisTimer>();
             _rechrysalize = GetComponent<Rechrysalize>();
             _projectilesPool = GetComponent<ProjectilesPool>();

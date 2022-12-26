@@ -7,6 +7,7 @@ namespace Rechrysalis.Attacking
 {
     public class Attack : MonoBehaviour
     {
+        [SerializeField] private UnitClass _unitClass;
         private UnitStatsSO _unitStats;
         [SerializeField] private float _attackChargeCurrent;
         [SerializeField] private float _attackChargeUp;
@@ -23,7 +24,21 @@ namespace Rechrysalis.Attacking
         private TargetHolder _targetHolder;
         private AIAttackChargeUpTimer _aiAttackTimer;
 
-        public void Initialize(UnitStatsSO _unitStats)
+        public void Initialize(UnitClass unitClass)
+        {
+            _unitClass = unitClass;
+            _attackChargeUp = _unitClass.AttackChargeUp;
+            _attackWindDown = _unitClass.AttackWindDown;
+            _baseDamage = _unitClass.Damamge;
+            _projectilesPool = GetComponent<ProjectilesPool>();
+            _inRangeByPriority = GetComponent<InRangeByPriority>();
+            _closestTarget = GetComponent<ClosestTarget>();
+            _targetHolder = GetComponent<TargetHolder>();
+            _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
+            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown);
+            ResetUnitAttack();
+        }
+        public void InitializeOld(UnitStatsSO _unitStats)
         {   
             this._unitStats = _unitStats;
             _attackChargeUp = _unitStats.AttackChargeUpBasic;
@@ -35,9 +50,9 @@ namespace Rechrysalis.Attacking
             _targetHolder = GetComponent<TargetHolder>();
             _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
             _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown);
-            ResetUnit();
+            ResetUnitAttack();
         }
-        public void ResetUnit()
+        public void ResetUnitAttack()
         {
             _attackChargeCurrent = 0;
             _isWindingDown = false;

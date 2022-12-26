@@ -10,9 +10,13 @@ namespace Rechrysalis.Attacking
     {
         private float _baseRange;
 
-        public void Initialize(UnitStatsSO _unitStats)
+        public void InitializeOld(UnitStatsSO _unitStats)
         {
             _baseRange = _unitStats.BaseRangeBasic;
+        }
+        public void Initialize(float baseRange)
+        {
+            _baseRange = baseRange;
         }
         public float GetRange()
         {
