@@ -244,6 +244,17 @@ namespace Rechrysalis.Unit
             }
             _attack?.ReCalculateDamage(hEIncreaseDamageList);
         }
+        // private void ReCalculateDefenceChanges()
+        // {
+        //     List<HEIncreaseDefence> hEIncreaseDefenceList = new List<HEIncreaseDefence>();
+        //     foreach (GameObject hatchEffect  in _hatchEffects)
+        //     {
+        //         if (hatchEffect.GetComponent<HEIncreaseDefence>() != null)
+        //         {
+        //             hEIncreaseDefenceList.Add(hatchEffect.GetComponent<HEIncreaseDefence>());
+        //         }
+        //     }
+        // }
         private void ReCalculateStatChanges()
         {
             // _newDPS = _baseDPS;

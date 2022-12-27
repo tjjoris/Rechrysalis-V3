@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Rechrysalis.Attacking;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Unit
 {
@@ -11,6 +12,8 @@ namespace Rechrysalis.Unit
         private float _maxHealth;
         private float _currentHealth;
         private bool _isChrysalis;
+        private float _incomingDamageMultbase = 1f;
+        private float _incomingDamageMult = 1f;
         private float _chrysalisDefenceMult = 0.4f;
         private float _enemyControllerHealMult = 0.5f;
         private UnitManager _currentUnit;
@@ -56,6 +59,13 @@ namespace Rechrysalis.Unit
                 GetComponent<Die>()?.UnitDies();
             }
         }
-
+        public void ReCalculateIncomingDamageModifier(List<HEIncreaseDefence> hEIncreaseDefenceList)
+        {
+            foreach (HEIncreaseDefence hatchEffect in hEIncreaseDefenceList)
+            {
+                if (hatchEffect != null)
+                _incomingDamageMult = _incomingDamageMultbase * hatchEffect.GetIncomingDamageMult();
+            }
+        }
     }
 }

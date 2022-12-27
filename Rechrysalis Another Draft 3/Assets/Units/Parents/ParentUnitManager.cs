@@ -342,6 +342,7 @@ namespace Rechrysalis.Unit
                     }
                 }
             }
+            CheckToModifyParentDefencesFromHEChanges(_hatchEffect);
         }
         public void AddHatchEffect (GameObject _hatchEffect)
         {
@@ -363,7 +364,25 @@ namespace Rechrysalis.Unit
                         _subChrysalii[_childIndex].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
                     }
                 }
-            }        
+            }      
+            CheckToModifyParentDefencesFromHEChanges(_hatchEffect);  
+        }
+        private void CheckToModifyParentDefencesFromHEChanges(GameObject hatchEffect)
+        {
+            if (hatchEffect == null) return;
+            if (hatchEffect.GetComponent<HEIncreaseDefence>() == null) return;
+            List<HEIncreaseDefence> hEIncraseDefenceList = new List<HEIncreaseDefence>();
+            foreach(GameObject hatchEffectToLoop in _subUnits[0].GetComponent<UnitManager>().CurrentHatchEffects)
+            {
+                if (hatchEffectToLoop != null)
+                {
+                    if (hatchEffectToLoop.GetComponent<HEIncreaseDefence>() != null)
+                    {
+                        hEIncraseDefenceList.Add(hatchEffectToLoop.GetComponent<HEIncreaseDefence>());
+                    }
+                }
+            }
+            _parentHealth.ReCalculateIncomingDamageModifier(hEIncraseDefenceList);
         }
         public void SetManaText(string manaText)
         {

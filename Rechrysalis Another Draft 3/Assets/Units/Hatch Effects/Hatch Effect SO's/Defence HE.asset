@@ -17,7 +17,7 @@ MonoBehaviour:
     _unitStatsSO: {fileID: 0}
     _hatchEffectSO: {fileID: 11400000}
     _advUnitModifierSO: {fileID: 0}
-  _hatchEffectPrefab: {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}
+  _hatchEffectPrefab: {fileID: 4387173649336406545, guid: 58e63edc2da7644d89cb7292f80eeb8b, type: 3}
   _currencyCost: 0
   _addedManaCost: 15
   _dpsIncrease:

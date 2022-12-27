@@ -184,9 +184,9 @@ GameObject:
   - component: {fileID: 5162682908650232571}
   - component: {fileID: 1894819527670956384}
   - component: {fileID: 4948415442075945803}
-  - component: {fileID: -3631670784294215762}
+  - component: {fileID: 6865683393845899119}
   m_Layer: 0
-  m_Name: HatchEffectDamage
+  m_Name: HatchEffectDefence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _HPMax: 30
---- !u!114 &-3631670784294215762
+--- !u!114 &6865683393845899119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,7 +256,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4387173649336406545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05b5da04c79044d29cd2972315b3ded, type: 3}
+  m_Script: {fileID: 11500000, guid: 8388b984a251b4dad8e9a908050fb56d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageToAddBase: 10
+  _incomingDamageMultBase: 0.66666
+  _incomingDamageMult: 0
