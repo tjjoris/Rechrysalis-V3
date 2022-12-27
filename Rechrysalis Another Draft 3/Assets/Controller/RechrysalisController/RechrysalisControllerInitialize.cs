@@ -56,6 +56,7 @@ namespace Rechrysalis.Controller
                     ParentUnitManager pum = parentUnitGO.GetComponent<ParentUnitManager>();
                     HatchEffectSO[] _hatchEffectSOs = SetHatchEffectSOs(parentUnitIndex);
                     pum?.Initialize(controllerIndex, parentUnitIndex, unitComp, compsAndUnits.PlayerUnits[controllerIndex], transform, _hatchEffectSOs);                        
+                    pum?.SetManaText(unitComp.ParentUnitClassList[parentUnitIndex].AdvUnitClass.ManaCost.ToString());
                     pum.SubUnits = new GameObject[unitComp.UpgradeCountArray[parentUnitIndex]];
                     pum.SubChrysalii = new GameObject[unitComp.UpgradeCountArray[parentUnitIndex]];
                     _parentUnitHatchEffects[parentUnitIndex] = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
@@ -104,7 +105,7 @@ namespace Rechrysalis.Controller
             }
             hilightRingManager?.Initialize(unitRingManager);
             unitRingManager?.Initialize(compsAndUnits.CompsSO[controllerIndex].ParentUnitCount, _parentUnits, _unitRingAngle, hilightRingManager.transform);  
-            upgradeRingManager?.Initialize(_unitRingAngle, unitComp, _ringDistFromCentre, _parentUnits);
+            upgradeRingManager?.Initialize(_unitRingAngle, unitComp, _ringDistFromCentre, _parentUnits, transform);
             FreeUnitHatchEffect[] _freeHatches = new FreeUnitHatchEffect[_allUnits.Count];
             for (int _unitCount = 0; _unitCount < _allUnits.Count; _unitCount ++)
             {

@@ -72,6 +72,7 @@ namespace Rechrysalis.Controller
                 int _unitInbounds = checkIfIntUnitBounds(_mousePos);
                 if ((_unitInbounds != -1) && (_controllerManager.ParentUnits[_unitInbounds] != null))
                 {
+                    _hilightRingManager.SetOldAngle(RingAngle(_mousePos));
                     _unitUpgrading = _unitInbounds;
                     _touchTypeArray[_touchID] = TouchTypeEnum.friendlyUnit;
                     _upgradeRingManager.SetCurrentAngle(_unitRingManager.UnitRingAngle);
@@ -164,16 +165,27 @@ namespace Rechrysalis.Controller
             {
                 if (hit)
                 {
-                    Debug.Log($"hit " + hit.collider.name);
-                    _hilightRingManager.ResetToOldAngle();
+                    // Debug.Log($"hit " + hit.collider.name);
+                    // _hilightRingManager.ResetToOldAngle();
                 } 
                 else if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
                 {
                     // Debug.Log($"mouse pos " + _mousePos + " controller " + _controller.transform.position);
                     // Debug.Log($"calculated angel " + Mathf.Atan2(_mousePos.y - _controller.transform.position.y, _mousePos.x - _controller.transform.position.x) * Mathf.Rad2Deg);
+                    Debug.Log($"set ring angle " + RingAngle(_mousePos));
                     _hilightRingManager.SetAngle(RingAngle(_mousePos));
                 }
                 // Debug.Log($"mouse angle " + RingAngle(_mousePos));
+            }
+            else if (_touchTypeArray[_touchID] == TouchTypeEnum.friendlyUnit)
+            {
+                if (hit);
+                else if (CheckIfSingleUpgradeTrue(RingAngle(_mousePos), (_unitRingManager.UnitRingAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount) + 90f), _unitRingManager.UnitDegreeWidth));
+                else 
+                {
+                    Debug.Log($"set ring angle " + RingAngle(_mousePos));
+                    _hilightRingManager.SetAngle(RingAngle(_mousePos));
+                }
             }
         }
         public void CheckRayCastReleaseFunction(Vector2 _mousePos, int _touchID)
@@ -194,7 +206,12 @@ namespace Rechrysalis.Controller
                     // Debug.Log($" ring angle " + RingAngle(_mousePos) + "unit count " + _upgradeCountArray[_unitUpgrading]);
                     int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
                     // Debug.Log($"upgrade to " + _unitToUpgradeTo);
-                    _controllerManager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
+                    // _controllerManager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
+                    if(CheckIfSingleUpgradeTrue(RingAngle(_mousePos), (_unitRingManager.UnitRingAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount) + 90f), _unitRingManager.UnitDegreeWidth))                            
+                    {
+                        Debug.Log($"upgrade to adv");
+                    _controllerManager.ActivateChrysalis(_unitUpgrading, 1);
+                    }
                 }
                 else 
                 {
@@ -244,6 +261,16 @@ namespace Rechrysalis.Controller
                 }
             }
             return -1;
+        }
+        private bool CheckIfSingleUpgradeTrue(float mouseAngleCurrent, float ringAngleOffset, float unitWidthDegrees)
+        {
+            float angleToCompare = AnglesMath.LimitAngle(ringAngleOffset);
+            float mouseSubtractAngle = mouseAngleCurrent - angleToCompare;
+            if ((Mathf.Abs(mouseSubtractAngle) < unitWidthDegrees) || ((Mathf.Abs(mouseSubtractAngle) > (360 - unitWidthDegrees))))
+            {
+                return true;
+            }
+            return false;
         }
         // private float UnitAngle (int _unitIndex, int _maxUnits)
         // {

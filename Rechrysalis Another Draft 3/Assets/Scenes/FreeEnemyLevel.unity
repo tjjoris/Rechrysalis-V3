@@ -199,7 +199,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1159822624}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &374294102
 CircleCollider2D:
@@ -511,8 +511,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1159822624}
-  m_RootOrder: 4
+  m_Father: {fileID: 2056162102}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &688441835
 MonoBehaviour:
@@ -688,7 +688,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1159822624}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1063868361
 CircleCollider2D:
@@ -883,7 +883,6 @@ Transform:
   - {fileID: 30328079}
   - {fileID: 519420032}
   - {fileID: 561186599}
-  - {fileID: 688441834}
   - {fileID: 374294101}
   - {fileID: 2099061608}
   - {fileID: 1063868360}
@@ -979,6 +978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fdddc522fb8e4d1e80d0b0450dd3b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _controllerIndex: 0
   _parentUnitPrefab: {fileID: 6178309120940175549, guid: 698b84a32e980457eafacf3a1c859666, type: 3}
   _childUnitPrefab: {fileID: 6826342493758786654, guid: 4c302ce45bcef4d9f8fcb6e8224443c6, type: 3}
   _chrysalisPrefab: {fileID: 4275633068800706783, guid: 2a3ae30d2a8c94275a2ff5e26134fd99, type: 3}
@@ -1697,7 +1697,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 688441834}
   m_Father: {fileID: 1159822624}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1745,7 +1746,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1159822624}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2099061609
 BoxCollider2D:
