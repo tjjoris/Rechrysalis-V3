@@ -194,7 +194,13 @@ namespace Rechrysalis.Controller
                     // Debug.Log($" ring angle " + RingAngle(_mousePos) + "unit count " + _upgradeCountArray[_unitUpgrading]);
                     int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
                     // Debug.Log($"upgrade to " + _unitToUpgradeTo);
-                    _controllerManager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
+                    // _controllerManager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
+                    Debug.Log($"mouse angle " + RingAngle(_mousePos) + " unit ring angle " + _unitRingManager.UnitRingAngle);
+                    if(CheckIfSingleUpgradeTrue(RingAngle(_mousePos), (_unitRingManager.UnitRingAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount) + 90f), _unitRingManager.UnitDegreeWidth))                            
+                    {
+                        Debug.Log($"upgrade to adv");
+                    _controllerManager.ActivateChrysalis(_unitUpgrading, 1);
+                    }
                 }
                 else 
                 {
@@ -244,6 +250,16 @@ namespace Rechrysalis.Controller
                 }
             }
             return -1;
+        }
+        private bool CheckIfSingleUpgradeTrue(float mouseAngleCurrent, float ringAngleOffset, float unitWidthDegrees)
+        {
+            float angleToCompare = AnglesMath.LimitAngle(ringAngleOffset);
+            float mouseSubtractAngle = mouseAngleCurrent - angleToCompare;
+            if ((Mathf.Abs(mouseSubtractAngle) < unitWidthDegrees) || ((Mathf.Abs(mouseSubtractAngle) > (360 - unitWidthDegrees))))
+            {
+                return true;
+            }
+            return false;
         }
         // private float UnitAngle (int _unitIndex, int _maxUnits)
         // {
