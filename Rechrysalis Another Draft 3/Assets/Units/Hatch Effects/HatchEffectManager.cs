@@ -27,19 +27,19 @@ namespace Rechrysalis.HatchEffect
         private int _tier;
         public Action<GameObject, int, int, bool> _hatchEffectDies;
 
-        public void Initialize(HatchEffectSO _hatchEffectSO, int _tier, int _parentIndex, int _unitIndex, bool _affectAll, float hatchMult)
+        public void Initialize(HatchEffectSO _hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, float hatchMult)
         {
             Debug.Log($"HE Initialize " + _hatchEffectSO.HatchEffectName +  " tier " + _tier);
             this._parentIndex = _parentIndex;
             this._unitIndex = _unitIndex;
             this._affectAll = _affectAll;
-            this._tier = _tier;
+            // this._tier = _tier;
             this._hatchEffectSO = _hatchEffectSO;
             _hETimer = GetComponent<HETimer>();
             _name.text = _hatchEffectSO.HatchEffectName;
             _hEDisplay = GetComponent<HEDisplay>();
             _hEHealth = GetComponent<HatchEffectHealth>();
-            if (_hatchEffectSO.HealthMax.Length > this._tier)
+            // if (_hatchEffectSO.HealthMax.Length > this._tier)
             {
             // _maxHP = _hatchEffectSO.HealthMax[_tier];
             _hEHealth.Initialize(hatchMult);

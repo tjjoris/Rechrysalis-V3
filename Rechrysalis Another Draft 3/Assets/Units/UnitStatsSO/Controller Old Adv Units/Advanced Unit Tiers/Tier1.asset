@@ -12,24 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1482a46f61544d36ab5e935923d13b0, type: 3}
   m_Name: Tier1
   m_EditorClassIdentifier: 
+  _upgradeTypeClass:
+    _upgradeType: 2
+    _unitStatsSO: {fileID: 11400000}
+    _hatchEffectSO: {fileID: 0}
+    _advUnitModifierSO: {fileID: 0}
   _amountToPool: 2
   _projectileSpeed: 0.1
   _projectileSprite: {fileID: 21300000, guid: acf2a1d752267428eaf137c494e17c8b, type: 3}
   _unitSprite: {fileID: 21300000, guid: ccbb6fd6961e04ebdb2cf722d6911070, type: 3}
   _unitName: Tier 1
-  _origionalBaseAttackChargeUp: 1
-  _attackChargeUp: 1.7
-  _attackWindDown: 1.7
-  _origionalBaseAttackWindDown: 1
-  _baseDamage: 97.240005
-  _origionalBaseDPS: 1
-  _baseDPS: 28.6
-  _baseRange: 3
-  _origionalBaseHealthMax: 1
+  _currencyCost: 0
+  _manaBase: 0.1
+  _origionalBaseHealthMaxBasic: 1
   _healthMaxBase: 1
-  _healthMax: 28.6
+  _healthMaxBasic: 28.6
+  _heathMaxAdvMult: 0
+  _buildTimeBasic: 1
+  _buildTimeAdvMult: 1
+  _origionalBaseAttackChargeUp: 1
+  _attackChargeUpBasic: 1.7
+  _attackChargeUpAdvMult: 0
+  _origionalBaseAttackWindDown: 1
+  _attackWindDownBasic: 1.7
+  _attackWindDownAdvMult: 0
+  _origionalBaseDPSBasic: 1
+  _baseDPSBasic: 28.6
+  _baseDPSAdvMult: 0
+  _baseDamageBasic: 97.240005
+  _baseDamageAdvMult: 0
+  _baseRangeBasic: 3
+  _baseRangeAdvMult: 0
   _chrysalisTimerMax: 5
-  _manaBase: 1
+  _advUnitModifierSO: {fileID: 0}
   _hatchEffectPrefab: {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}
   _baseMultipler: {fileID: 11400000, guid: e09e798784a834a31ab1b26bfb160fda, type: 2}
   _typeMultipler: {fileID: 11400000, guid: 95843a30ae5df4e278fb90f53cc2e39e, type: 2}

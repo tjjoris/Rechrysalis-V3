@@ -6,6 +6,7 @@ namespace Rechrysalis.HatchEffect
 {
     public class HatchEffectHealth : MonoBehaviour
     {
+        bool debugBool = true;
         private float _healthMultMult = 0.5f;
         private float _healthMult;
         [SerializeField] private float _HPMax = 30f;
@@ -13,9 +14,10 @@ namespace Rechrysalis.HatchEffect
 
         public void Initialize(float hatchMult)
         {
+            if (debugBool) Debug.Log($"hatch mult " + hatchMult);
             // if (_healthMax != 0)
             // _healthMax = healthMax;
-            _healthMult = ((hatchMult - 1f) * _healthMultMult) + 1;
+            _healthMult = ((hatchMult - 1f) * _healthMultMult) + 1f;
             _HPMax *= _healthMult;
             _HPCurrent = _HPMax;
         }
