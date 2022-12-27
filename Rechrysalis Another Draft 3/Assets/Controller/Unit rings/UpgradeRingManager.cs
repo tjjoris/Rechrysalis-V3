@@ -12,7 +12,7 @@ namespace Rechrysalis.Controller
         private UpgradeRingForUnitManager[] _upgradeRingForUnit;
         public float CurrentAngle {get{return _currentAngle;}}
 
-        public void Initialize (float _currentAngle, CompSO _compSO, float _ringDistFromCentre, GameObject[] _parentUnits)
+        public void Initialize (float _currentAngle, CompSO _compSO, float _ringDistFromCentre, GameObject[] _parentUnits, Transform controller)
         {
             _upgradeRingForUnit = new UpgradeRingForUnitManager[_compSO.ParentUnitCount];            
             this._currentAngle = _currentAngle;
@@ -34,7 +34,7 @@ namespace Rechrysalis.Controller
                     // }
                     Sprite _upgradeIcons = _compSO.ParentUnitClassList[_parentIndex].AdvUnitClass.UnitSprite;
                     GameObject[] _childUnits= _parentUnits[_parentIndex].GetComponent<ParentUnitManager>().SubUnits;
-                    _upgradeRingForUnit[_parentIndex]?.Initialize(_upgradeIcons, _ringDistFromCentre, _parentIndex, _childUnits);
+                    _upgradeRingForUnit[_parentIndex]?.Initialize(_upgradeIcons, _ringDistFromCentre, _parentIndex, _childUnits, controller);
                 }
             }
         }
