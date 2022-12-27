@@ -27,7 +27,7 @@ namespace Rechrysalis.HatchEffect
         private int _tier;
         public Action<GameObject, int, int, bool> _hatchEffectDies;
 
-        public void Initialize(HatchEffectSO _hatchEffectSO, int _tier, int _parentIndex, int _unitIndex, bool _affectAll)
+        public void Initialize(HatchEffectSO _hatchEffectSO, int _tier, int _parentIndex, int _unitIndex, bool _affectAll, float hatchMult)
         {
             Debug.Log($"HE Initialize " + _hatchEffectSO.HatchEffectName +  " tier " + _tier);
             this._parentIndex = _parentIndex;
@@ -42,7 +42,7 @@ namespace Rechrysalis.HatchEffect
             if (_hatchEffectSO.HealthMax.Length > this._tier)
             {
             // _maxHP = _hatchEffectSO.HealthMax[_tier];
-            _hEHealth.Initialize(_hatchEffectSO.HealthMax[this._tier]);
+            _hEHealth.Initialize(hatchMult);
             }
             // _currentHP = _maxHP;
             if (_hatchEffectSO.DamageLossPerTick.Length > this._tier)
