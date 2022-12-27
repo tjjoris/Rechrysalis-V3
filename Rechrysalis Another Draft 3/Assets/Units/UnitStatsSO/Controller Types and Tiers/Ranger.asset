@@ -17,5 +17,5 @@ MonoBehaviour:
   _range: 4.5
   _attackChargeUp: 1.1
   _attackWindDown: 1.1
-  _manaMultiplier: 50
+  _manaMultiplier: 10
   _tier: 0
