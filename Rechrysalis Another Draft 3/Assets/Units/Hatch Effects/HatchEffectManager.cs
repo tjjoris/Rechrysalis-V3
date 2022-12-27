@@ -40,7 +40,7 @@ namespace Rechrysalis.HatchEffect
             // this._tier = _tier;
             this._hatchEffectSO = _hatchEffectSO;
             _hETimer = GetComponent<HETimer>();
-            _name.text = _hatchEffectSO.HatchEffectName;
+            // _name.text = _hatchEffectSO.HatchEffectName;
             _hEDisplay = GetComponent<HEDisplay>();
             _hEHealth = GetComponent<HatchEffectHealth>();
             // if (_hatchEffectSO.HealthMax.Length > this._tier)
