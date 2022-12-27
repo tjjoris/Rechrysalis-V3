@@ -164,8 +164,8 @@ namespace Rechrysalis.Controller
             {
                 if (hit)
                 {
-                    Debug.Log($"hit " + hit.collider.name);
-                    _hilightRingManager.ResetToOldAngle();
+                    // Debug.Log($"hit " + hit.collider.name);
+                    // _hilightRingManager.ResetToOldAngle();
                 } 
                 else if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
                 {
@@ -174,6 +174,15 @@ namespace Rechrysalis.Controller
                     _hilightRingManager.SetAngle(RingAngle(_mousePos));
                 }
                 // Debug.Log($"mouse angle " + RingAngle(_mousePos));
+            }
+            else if (_touchTypeArray[_touchID] == TouchTypeEnum.friendlyUnit)
+            {
+                if (hit);
+                else if (CheckIfSingleUpgradeTrue(RingAngle(_mousePos), (_unitRingManager.UnitRingAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount) + 90f), _unitRingManager.UnitDegreeWidth));
+                else 
+                {
+                    _hilightRingManager.SetAngle(RingAngle(_mousePos));
+                }
             }
         }
         public void CheckRayCastReleaseFunction(Vector2 _mousePos, int _touchID)
