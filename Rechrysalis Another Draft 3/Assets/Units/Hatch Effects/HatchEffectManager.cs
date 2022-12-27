@@ -25,6 +25,8 @@ namespace Rechrysalis.HatchEffect
         // private float _currentHP;
         private float _hpDrainPerTick;
         private int _tier;
+        [SerializeField] private HEIncreaseDamage _hEIncreaseDamage;
+        public HEIncreaseDamage HEIncreaseDamage => _hEIncreaseDamage;
         public Action<GameObject, int, int, bool> _hatchEffectDies;
 
         public void Initialize(HatchEffectSO _hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, float hatchMult)
@@ -57,6 +59,9 @@ namespace Rechrysalis.HatchEffect
             {
                 _incomingDamageMult = _hatchEffectSO.IncomingDamageMultiplier[this._tier];
             }
+            _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
+            _hEIncreaseDamage?.Initialize(hatchMult);
+
         }
         public void SetOffset(int _multiplier)
         {
