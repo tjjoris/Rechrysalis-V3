@@ -248,7 +248,7 @@ namespace Rechrysalis.Unit
                     // if (_hatchEffectSO != null)
                     if (_unitIndex == 1)
                     {
-                        CreateHatchEffect(_unitManager.HatchEffectPrefab, _parentIndex, _unitIndex, true);
+                        CreateHatchEffect(_parentUnitClass.AdvUnitClass.HatchEffectPrefab, _parentIndex, _unitIndex, true);
                     }
                 }
                 DeactivateChrysalis(_indexInSubUnits);    

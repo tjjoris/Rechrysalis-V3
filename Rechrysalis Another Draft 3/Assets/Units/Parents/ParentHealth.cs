@@ -36,7 +36,8 @@ namespace Rechrysalis.Unit
         }
         public void TakeDamage(float _damage)
         {
-            float _damageToTake = _damage * _currentUnit.GetIncomingDamageMultiplier();            
+            // float _damageToTake = _damage * _currentUnit.GetIncomingDamageMultiplier();            
+            float _damageToTake = _damage * _incomingDamageMult;            
             if (_isChrysalis)
             {
                 _damageToTake *= _chrysalisDefenceMult;
@@ -66,6 +67,7 @@ namespace Rechrysalis.Unit
                 if (hatchEffect != null)
                 _incomingDamageMult = _incomingDamageMultbase * hatchEffect.GetIncomingDamageMult();
             }
+            Debug.Log($"incoming damage mult " + _incomingDamageMult);
         }
     }
 }

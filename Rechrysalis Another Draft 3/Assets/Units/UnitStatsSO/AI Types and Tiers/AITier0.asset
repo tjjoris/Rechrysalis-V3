@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AITier0
   m_EditorClassIdentifier: 
   _healthMultiplier: 1
-  _dpsMultiplier: 1
+  _dpsMultiplier: 10
   _range: 5
   _attackChargeUp: 1
   _attackWindDown: 1

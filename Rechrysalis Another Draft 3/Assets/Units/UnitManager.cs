@@ -29,7 +29,8 @@ namespace Rechrysalis.Unit
         private Rechrysalize _rechrysalize;
         private CompsAndUnitsSO _compsAndUnits;
         private ProjectilesPool _projectilesPool;
-        private List<GameObject> _hatchEffects;
+        private List<GameObject> _currentHatchEffects;
+        public List<GameObject> CurrentHatchEffects => _currentHatchEffects;
         [SerializeField] private GameObject _hatchEffectPrefab;
         public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
         private FreeUnitHatchEffect _freeHatchScript;
@@ -83,7 +84,7 @@ namespace Rechrysalis.Unit
             _rechrysalize = GetComponent<Rechrysalize>();
             _projectilesPool = GetComponent<ProjectilesPool>();
             _projectilesPool?.CreatePool(unitClass.AmountToPool, unitClass.ProjectileSpeed, unitClass.ProjectileSprite);
-            _hatchEffects = new List<GameObject>();
+            _currentHatchEffects = new List<GameObject>();
             _freeHatchScript = GetComponent<FreeUnitHatchEffect>();
             this._freeUnitIndex = freeUnitIndex;
             _freeHatchScript?.Initialize(unitClass.HatchEffectPrefab, _freeUnitIndex);
@@ -128,7 +129,7 @@ namespace Rechrysalis.Unit
             _chrysalisTimer = GetComponent<ChrysalisTimer>();
             _rechrysalize = GetComponent<Rechrysalize>();
             _projectilesPool = GetComponent<ProjectilesPool>();
-            _hatchEffects = new List<GameObject>();
+            _currentHatchEffects = new List<GameObject>();
             // _hatchEffectPrefab = _unitStats.HatchEffectPrefab;
             _freeHatchScript = GetComponent<FreeUnitHatchEffect>();
             this._freeUnitIndex = _freeUnitIndex;
@@ -210,9 +211,9 @@ namespace Rechrysalis.Unit
         }
         public void RemoveHatchEffect(GameObject _hatchEffect)
         {
-            if (_hatchEffects.Contains(_hatchEffect))
+            if (_currentHatchEffects.Contains(_hatchEffect))
             {
-                _hatchEffects.Remove(_hatchEffect);
+                _currentHatchEffects.Remove(_hatchEffect);
             }
             // ReCalculateStatChanges();
             if (_hatchEffect.GetComponent<HEIncreaseDamage>() != null)
@@ -222,9 +223,9 @@ namespace Rechrysalis.Unit
         }
         public void AddHatchEffect(GameObject _hatchEffect)
         {
-            if (!_hatchEffects.Contains(_hatchEffect))
+            if (!_currentHatchEffects.Contains(_hatchEffect))
             {
-                _hatchEffects.Add(_hatchEffect);
+                _currentHatchEffects.Add(_hatchEffect);
             }
             // ReCalculateStatChanges();
             if (_hatchEffect.GetComponent<HEIncreaseDamage>() != null)
@@ -235,7 +236,7 @@ namespace Rechrysalis.Unit
         private void ReCalculateDamageChanges()
         {
             List<HEIncreaseDamage> hEIncreaseDamageList = new List<HEIncreaseDamage>();
-            foreach (GameObject hatchEffect in _hatchEffects)
+            foreach (GameObject hatchEffect in _currentHatchEffects)
             {
                 if (hatchEffect.GetComponent<HEIncreaseDamage>() != null)
                 {
@@ -292,7 +293,7 @@ namespace Rechrysalis.Unit
         }
         public float GetDamage()
         {
-            return _attack.getDamage(_hatchEffects);
+            return _attack.getDamage(_currentHatchEffects);
         }
     }
 }
