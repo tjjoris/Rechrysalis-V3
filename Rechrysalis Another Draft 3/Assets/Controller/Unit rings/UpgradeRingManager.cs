@@ -22,15 +22,17 @@ namespace Rechrysalis.Controller
                 {
                     GameObject go = Instantiate (_upgradeRingForUnitPrefab, transform);
                     _upgradeRingForUnit[_parentIndex] =  go.GetComponent<UpgradeRingForUnitManager>();
-                    Sprite[] _upgradeIcons = new Sprite[_compSO.ChildUnitCount];
-                    for (int _childIndex = 0; _childIndex < _compSO.ChildUnitCount; _childIndex ++)
-                    {
-                        int _upgradeIndex = (_parentIndex * _compSO.ParentUnitCount) + _childIndex;
-                        if (_compSO.UnitSOArray[_upgradeIndex] != null)
-                        {
-                            _upgradeIcons[_childIndex] = _compSO.UnitSOArray[(_parentIndex * 3) + _childIndex].UnitSprite;
-                        }
-                    }
+                    // Sprite[] _upgradeIcons = new Sprite[_compSO.ChildUnitCount];
+                    // for (int _childIndex = 0; _childIndex < _compSO.ChildUnitCount; _childIndex ++)
+                    // {
+                    //     int _upgradeIndex = (_parentIndex * _compSO.ParentUnitCount) + _childIndex;
+                    //     if (_compSO.UnitSOArray[_upgradeIndex] != null)
+                    //     {
+                    //         // _upgradeIcons[_childIndex] = _compSO.UnitSOArray[(_parentIndex * 3) + _childIndex].UnitSprite;
+                    //         // _upgradeIcons = _compSO.ParentUnitClassList[_parentIndex].AdvUnitClass.UnitSprite;
+                    //     }
+                    // }
+                    Sprite _upgradeIcons = _compSO.ParentUnitClassList[_parentIndex].AdvUnitClass.UnitSprite;
                     GameObject[] _childUnits= _parentUnits[_parentIndex].GetComponent<ParentUnitManager>().SubUnits;
                     _upgradeRingForUnit[_parentIndex]?.Initialize(_upgradeIcons, _ringDistFromCentre, _parentIndex, _childUnits);
                 }
