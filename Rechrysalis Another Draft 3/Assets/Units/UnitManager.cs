@@ -97,6 +97,7 @@ namespace Rechrysalis.Unit
                 }
             }
             _manaCost = unitClass.ManaCost;
+            ReCalculateDamageChanges();
         }
         public void InitializeOld(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _freeUnitIndex, HatchEffectSO _hatchEffectSO)
         {
@@ -141,8 +142,11 @@ namespace Rechrysalis.Unit
                     _hatchManaMult = _hatchEffectSO.ManaMultiplier[_unitStats.TierMultiplier.Tier - 1];
                 }
             }
-            _manaCost = _unitStats.Mana * _hatchManaMult;            
-            ReCalculateStatChanges();
+            _manaCost = _unitStats.Mana * _hatchManaMult;
+            // ReCalculateStatChanges();
+            // _attack?.SetDamage(_unitStats.BaseDamageBasic);
+            _attack?.SetDPS(_unitStats.BaseDPSBasic);
+            ReCalculateDamageChanges();
         }
         private void OnEnable()
         {

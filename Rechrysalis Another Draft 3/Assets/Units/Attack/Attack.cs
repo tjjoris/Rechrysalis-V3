@@ -131,9 +131,15 @@ namespace Rechrysalis.Attacking
             _attackChargeCurrent = 0;
             _isChargingUp = false;
         }
-        public void SetDamage(float _damage)
+        public void SetDamage(float damage)
         {
-            _baseDamage = _damage;
+            _baseDamage = damage;
+            _damage = damage;
+        }
+        public void SetDPS(float dps) {
+            {
+                _baseDPS = dps;
+            }
         }
         public void ReCalculateDamage(List<HEIncreaseDamage> hatchEffects)
         {
