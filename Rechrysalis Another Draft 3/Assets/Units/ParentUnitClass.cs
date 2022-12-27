@@ -255,6 +255,7 @@ namespace Rechrysalis.Unit
                 if (_utcHatchEffect.GetHatchEffectSO() != null)
                 {
                     _advUnitClass.HatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;
+                    _advUnitClass.ManaCost += _utcHatchEffect.GetHatchEffectSO().AddedManaCost;
                 }             
             }
         }
