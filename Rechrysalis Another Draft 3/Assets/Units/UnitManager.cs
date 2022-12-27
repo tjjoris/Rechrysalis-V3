@@ -254,5 +254,9 @@ namespace Rechrysalis.Unit
         {
             _nameText.gameObject.SetActive(false);
         }
+        public float GetDamage()
+        {
+            return _attack.getDamage(_hatchEffects);
+        }
     }
 }

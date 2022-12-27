@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Attacking
 {
@@ -13,6 +14,7 @@ namespace Rechrysalis.Attacking
         [SerializeField] private float _attackChargeUp;
         [SerializeField] private float _attackWindDown;
         [SerializeField] private  float _baseDamage;
+        [SerializeField] private float _baseDPS;
         private ProjectilesPool _projectilesPool;
         private bool _isWindingDown;
         private bool _isChargingUp;
@@ -27,6 +29,7 @@ namespace Rechrysalis.Attacking
         public void Initialize(UnitClass unitClass)
         {
             _unitClass = unitClass;
+            _baseDPS = _unitClass.DPS;
             _attackChargeUp = _unitClass.AttackChargeUp;
             _attackWindDown = _unitClass.AttackWindDown;
             _baseDamage = _unitClass.Damamge;
@@ -131,9 +134,18 @@ namespace Rechrysalis.Attacking
         {
             _baseDamage = _damage;
         }
-        public float getDamage()
+        public float getDamage(List<GameObject> hatchEffects)
         {
-            return _baseDamage;
+            float dps = _baseDPS;
+            foreach (GameObject hatchEffect in hatchEffects)
+            {
+                HEIncreaseDamage hEIncreaseDamage = hatchEffect.GetComponent<HEIncreaseDamage>();
+                if (hEIncreaseDamage != null)
+                {
+                    dps += hEIncreaseDamage.GetDamageToAdd();
+                }
+            }
+            return (dps / (_attackChargeUp + _attackWindDown));
         }
     }
 }
