@@ -135,12 +135,12 @@ namespace Rechrysalis.Attacking
         {
             _baseDamage = _damage;
         }
-        public void ReCalculateDamage(List<GameObject> hatchEffects)
+        public void ReCalculateDamage(List<HEIncreaseDamage> hatchEffects)
         {
             float dps = _baseDPS;
-            foreach (GameObject hatchEffect in hatchEffects)
+            foreach (HEIncreaseDamage hEIncreaseDamage in hatchEffects)
             {
-                HEIncreaseDamage hEIncreaseDamage = hatchEffect.GetComponent<HEIncreaseDamage>();
+                // HEIncreaseDamage hEIncreaseDamage = hatchEffect.GetComponent<HEIncreaseDamage>();                
                 if (hEIncreaseDamage != null)
                 {
                     dps += hEIncreaseDamage.GetDamageToAdd();

@@ -238,7 +238,7 @@ namespace Rechrysalis.Unit
                     hEIncreaseDamageList.Add(hatchEffect.GetComponent<HEIncreaseDamage>());
                 }
             }
-            _attack?.ReCalculateDamage(_hatchEffects);
+            _attack?.ReCalculateDamage(hEIncreaseDamageList);
         }
         private void ReCalculateStatChanges()
         {
