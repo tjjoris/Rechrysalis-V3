@@ -19,13 +19,13 @@ namespace Rechrysalis.Attacking
         public Action<float> _parentUnitTakesDamage;
         public Action<float> _parentUnitDealsDamage;
 
-    public void Initialize(Sprite _sprite)
+    public void Initialize(Sprite sprite, float speed)
     {
-        _spriteRenderer.sprite = _sprite;
+        _spriteRenderer.sprite = sprite;
+        _speed = speed;
     }
-    public void TurnOnProjectile (GameObject _targetUnit, float _speed)
+    public void TurnOnProjectile (GameObject _targetUnit)
     {
-        this._speed = _speed;
         this._targetUnit = _targetUnit;
     }
     public void Tick (float _timeAmount)
