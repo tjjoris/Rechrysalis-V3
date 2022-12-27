@@ -42,9 +42,9 @@ namespace Rechrysalis.Attacking
             gameObject.SetActive(false);
             // Health _targetHealth = _targetUnit.GetComponent<Health>();
             ParentHealth _targetHealth = _targetUnit.GetComponent<ParentHealth>();
-                float _damageToDeal =_ownerUnit.GetComponent<Attack>().getDamage();
+                float _damageToDeal =_ownerUnit.GetComponent<UnitManager>().GetDamage();
             _parentUnitDealsDamage?.Invoke(_damageToDeal);
-            _targetHealth?.TakeDamage(_ownerUnit.GetComponent<Attack>().getDamage());
+            _targetHealth?.TakeDamage(_ownerUnit.GetComponent<UnitManager>().GetDamage());
         }
     }
     }

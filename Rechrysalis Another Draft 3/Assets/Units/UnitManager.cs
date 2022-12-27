@@ -210,7 +210,11 @@ namespace Rechrysalis.Unit
             {
                 _hatchEffects.Remove(_hatchEffect);
             }
-            ReCalculateStatChanges();
+            // ReCalculateStatChanges();
+            if (_hatchEffect.GetComponent<HEIncreaseDamage>() != null)
+            {
+                ReCalculateDamageChanges();
+            }
         }
         public void AddHatchEffect(GameObject _hatchEffect)
         {
@@ -218,30 +222,47 @@ namespace Rechrysalis.Unit
             {
                 _hatchEffects.Add(_hatchEffect);
             }
-            ReCalculateStatChanges();
+            // ReCalculateStatChanges();
+            if (_hatchEffect.GetComponent<HEIncreaseDamage>() != null)
+            {
+                ReCalculateDamageChanges();                
+            }
+        }
+        private void ReCalculateDamageChanges()
+        {
+            List<HEIncreaseDamage> hEIncreaseDamageList = new List<HEIncreaseDamage>();
+            foreach (GameObject hatchEffect in _hatchEffects)
+            {
+                if (hatchEffect.GetComponent<HEIncreaseDamage>() != null)
+                {
+                    hEIncreaseDamageList.Add(hatchEffect.GetComponent<HEIncreaseDamage>());
+                }
+            }
+            _attack?.ReCalculateDamage(_hatchEffects);
         }
         private void ReCalculateStatChanges()
         {
-            _newDPS = _baseDPS;
-            _newChargeUp = _baseChargeUp;
-            _newWindDown = _baseWindDown;
-            _newIncomingDamageMult = _baseIncomindDamageMult;
-            if ((_hatchEffects!= null) && (_hatchEffects.Count > 0))
-            {
-                for (int _hatchIndex = 0; _hatchIndex < _hatchEffects.Count; _hatchIndex++)
-                {
-                    HatchEffectManager _hatchEffectManager = _hatchEffects[_hatchIndex].GetComponent<HatchEffectManager>();
-                    _newDPS += _hatchEffectManager.DPSIncrease;
-                    _newIncomingDamageMult *= _hatchEffectManager.IncomingDamageMult;
-                }
-            }
-            if (_newDPS == 0) 
-            {
-                _attack?.SetDamage(0);
-                return;
-            }
-            _attack?.SetDamage(_newDPS / (_newChargeUp + _newWindDown));
+            // _newDPS = _baseDPS;
+            // _newChargeUp = _baseChargeUp;
+            // _newWindDown = _baseWindDown;
+            // _newIncomingDamageMult = _baseIncomindDamageMult;
+            // if ((_hatchEffects!= null) && (_hatchEffects.Count > 0))
+            // {
+            //     for (int _hatchIndex = 0; _hatchIndex < _hatchEffects.Count; _hatchIndex++)
+            //     {
+            //         HatchEffectManager _hatchEffectManager = _hatchEffects[_hatchIndex].GetComponent<HatchEffectManager>();
+            //         _newDPS += _hatchEffectManager.DPSIncrease;
+            //         _newIncomingDamageMult *= _hatchEffectManager.IncomingDamageMult;
+            //     }
+            // }
+            // if (_newDPS == 0) 
+            // {
+            //     _attack?.SetDamage(0);
+            //     return;
+            // }
+            // _attack?.SetDamage(_newDPS / (_newChargeUp + _newWindDown));
         }
+
         public float GetIncomingDamageMultiplier()
         {
             return _newIncomingDamageMult;

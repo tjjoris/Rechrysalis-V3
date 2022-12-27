@@ -145,7 +145,7 @@ namespace Rechrysalis.Unit
         }
         private void ParentDealsDamage(float _damage)
         {
-            Debug.Log($"parent deals damage " + _damage);
+            // Debug.Log($"parent deals damage " + _damage);
             _parentDealsDamage?.Invoke(_damage);
         }
         public void ActivateInitialUnit()
