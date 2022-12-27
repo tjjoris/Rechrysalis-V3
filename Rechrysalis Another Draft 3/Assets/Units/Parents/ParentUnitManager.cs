@@ -4,6 +4,7 @@ using UnityEngine;
 using Rechrysalis.Attacking;
 using Rechrysalis.HatchEffect;
 using System;
+using TMPro;
 
 namespace Rechrysalis.Unit
 {
@@ -28,6 +29,7 @@ namespace Rechrysalis.Unit
         public Action<GameObject, int, bool> _removeHatchEffect;
         public Action<float> _parentDealsDamage;
         public Action<float> _subtractMana;
+        [SerializeField] private TMP_Text _manaText;
 
         private bool _isStopped;
         public bool IsStopped 
@@ -358,6 +360,10 @@ namespace Rechrysalis.Unit
                     }
                 }
             }        
+        }
+        public void SetManaText(string manaText)
+        {
+            _manaText.text = manaText;
         }
     }
 }
