@@ -11,6 +11,8 @@ namespace Rechrysalis.Unit
 {
     public class UnitManager : MonoBehaviour
     {
+        [SerializeField] private UnitClass _unitClass;
+        public UnitClass UnitClass => _unitClass;
         [SerializeField] private ControllerUnitSpriteHandler _unitSpriteHandler;
         [SerializeField] private int _controllerIndex;        
         public int ControllerIndex {get{return _controllerIndex;}}
@@ -57,7 +59,46 @@ namespace Rechrysalis.Unit
                 }
             }
         public System.Action<float> _unitDealsDamage;
-        public void Initialize(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _freeUnitIndex, HatchEffectSO _hatchEffectSO)
+        public void Initialize(int controllerIndex, UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnits)
+        {
+            _controllerIndex = controllerIndex;
+            _compsAndUnits = compsAndUnits;
+            Debug.Log($"controller index " + _controllerIndex);
+            _unitClass = unitClass;
+            // GetComponent<ProjectilesPool>()?.CreatePool(_unitClass)
+            _mover = GetComponent<Mover>();
+            _attack = GetComponent<Attack>();
+            _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
+            _controllerUnitAttackClosest?.Initialzie();
+            if (_attack != null) _attack.IsStopped = true;
+            _attack.Initialize(_unitClass);
+            _health?.Initialize(_unitClass.HPMax);
+            GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
+            GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[_controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
+            GetComponent<Rechrysalize>()?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ChildUnitCount);
+            GetComponent<InRangeByPriority>()?.Initialize(_compsAndUnits.TargetsLists[_controllerIndex]);
+            GetComponent<ClosestTarget>()?.Initialize(_compsAndUnits.PlayerUnits[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
+            GetComponent<Range>()?.Initialize(unitClass.Range);
+            _chrysalisTimer = GetComponent<ChrysalisTimer>();
+            _rechrysalize = GetComponent<Rechrysalize>();
+            _projectilesPool = GetComponent<ProjectilesPool>();
+            _projectilesPool?.CreatePool(unitClass.AmountToPool, unitClass.ProjectileSpeed, unitClass.ProjectileSprite);
+            _hatchEffects = new List<GameObject>();
+            _freeHatchScript = GetComponent<FreeUnitHatchEffect>();
+            this._freeUnitIndex = freeUnitIndex;
+            _freeHatchScript?.Initialize(unitClass.HatchEffectPrefab, _freeUnitIndex);
+            _unitSpriteHandler.SetSpriteFunction(unitClass.UnitSprite);
+            float _hatchManaMult = 1;
+            if (_hatchEffectSO != null)
+            {
+                if (_hatchEffectSO.ManaMultiplier.Length >= _unitStats.TierMultiplier.Tier - 1)
+                {
+                    _hatchManaMult = _hatchEffectSO.ManaMultiplier[_unitStats.TierMultiplier.Tier - 1];
+                }
+            }
+            _manaCost = unitClass.ManaCost;
+        }
+        public void InitializeOld(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _freeUnitIndex, HatchEffectSO _hatchEffectSO)
         {
             this._controllerIndex = _controllerIndex;
             this._unitStats = _unitStats;
@@ -74,7 +115,7 @@ namespace Rechrysalis.Unit
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
             _controllerUnitAttackClosest?.Initialzie();
             if (_attack != null)  _attack.IsStopped = true;
-            _attack?.Initialize(_unitStats);
+            _attack?.InitializeOld(_unitStats);
             _health = GetComponent<Health>();
             _health?.Initialize(_unitStats.HealthMaxBasic);
             GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
@@ -82,7 +123,7 @@ namespace Rechrysalis.Unit
             GetComponent<Rechrysalize>()?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ChildUnitCount);            
             GetComponent<InRangeByPriority>()?.Initialize(_compsAndUnits.TargetsLists[_controllerIndex]);
             GetComponent<ClosestTarget>()?.Initialize(_compsAndUnits.PlayerUnits[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
-            GetComponent<Range>()?.Initialize(_unitStats);
+            GetComponent<Range>()?.InitializeOld(_unitStats);
             _chrysalisTimer = GetComponent<ChrysalisTimer>();
             _rechrysalize = GetComponent<Rechrysalize>();
             _projectilesPool = GetComponent<ProjectilesPool>();

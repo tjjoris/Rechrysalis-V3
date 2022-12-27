@@ -22,5 +22,31 @@ namespace Rechrysalis.Unit
         public int ChildUnitCount {get{return _childUnitCount;}}
         [SerializeField] private int[] _upgradeCountArray;
         public int[] UpgradeCountArray {get {return _upgradeCountArray;}}
+
+        public bool IsCompExists()
+        {
+            if (_parentUnitClassList.Count == 0)
+                return false;
+            bool basicExists = false;
+            for (int i = 0; i < _parentUnitClassList.Count; i++)
+            {
+                if (DoesParentExist(i))
+                basicExists = true;
+            }
+            if (basicExists)
+                return true;
+            return false;
+        }
+
+        public bool DoesParentExist(int parentIndex)
+        {
+            if (_parentUnitClassList[parentIndex] == null) return false;
+            if (_parentUnitClassList[parentIndex].UTCBasicUnit == null) return false;
+            if (_parentUnitClassList[parentIndex].UTCBasicUnit.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

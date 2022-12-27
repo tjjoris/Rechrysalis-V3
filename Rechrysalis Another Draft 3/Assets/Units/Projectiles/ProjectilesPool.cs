@@ -13,7 +13,7 @@ namespace Rechrysalis.Attacking
         private int amountToPool;
         public System.Action<float> _projectileDealsDamage;
 
-        public void CreatePool(int amountToPool, float _projectileSpeed, Sprite _projectileSprite)
+        public void CreatePool(int amountToPool, float projectileSpeed, Sprite projectileSprite)
         {
             this.amountToPool = amountToPool;
             _pooledObjects = new List<GameObject>();
@@ -25,7 +25,7 @@ namespace Rechrysalis.Attacking
                 tmp = Instantiate(objectToPool, _projectilesHolderGO.transform);                
                 ProjectileHandler ph = tmp.GetComponent<ProjectileHandler>();
                 _projectilesHolderScript.ProjectileHandlers.Add(ph);
-                ph.Initialize(_projectileSprite);
+                ph.Initialize(projectileSprite, projectileSpeed);
                 // tmp.GetComponent<SpriteRenderer>().sprite = _projectileSprite;
                 tmp.SetActive(false);
                 // tmp.transform.SetParent(GameMaster.Instance.ReferenceManager.ProjectilesHolder.transform);

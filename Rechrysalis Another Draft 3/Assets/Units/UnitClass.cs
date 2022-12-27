@@ -12,6 +12,8 @@ namespace Rechrysalis
         
         [SerializeField] private float _manaCost;
         public float ManaCost {get => _manaCost; set => _manaCost = value;}
+        [SerializeField] private string _unitName;
+        public string UnitName { get => _unitName; set => _unitName = value; }
         [SerializeField] private float _hpMax;       
         public float HPMax {get => _hpMax; set => _hpMax = value;}
         [SerializeField] private float _buildTime;
@@ -32,6 +34,14 @@ namespace Rechrysalis
         public float HatchEffectMult {get => _hatchEffectMult; set => _hatchEffectMult = value; }
         [SerializeField] private Sprite _unitSprite;
         public Sprite UnitSprite { get => _unitSprite; set => _unitSprite = value; }
+        [SerializeField] private int _amountToPool;
+        public int AmountToPool { get => _amountToPool; set => _amountToPool = value; }
+        [SerializeField] private float _projectileSpeed;
+        public float ProjectileSpeed { get => _projectileSpeed; set => _projectileSpeed = value; }
+        [SerializeField] private Sprite _projectileSprite;
+        public Sprite ProjectileSprite { get => _projectileSprite; set => _projectileSprite = value; }
+        
+        
         
 
         public void CalculateDamge()

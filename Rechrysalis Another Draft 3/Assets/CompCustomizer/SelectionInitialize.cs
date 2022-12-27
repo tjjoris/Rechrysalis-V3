@@ -34,7 +34,7 @@ namespace Rechrysalis.CompCustomizer
             _randomUpgradeSelection= GetComponent<RandomUpgradeSelection>();
             _randomUpgradeSelection.Initialize();
             CalculateUpgradeSelectionCount();
-            if (!IsCompExists(compSO)) 
+            if (!compSO.IsCompExists()) 
             {
                 CreateOnlyBasicSelection();
             }
@@ -77,24 +77,6 @@ namespace Rechrysalis.CompCustomizer
         public void CalculateUpgradeSelectionCount()
         {
             _upgradeSelectionCount = _compCustomizerSO.BasicUnitArray.Length + _compCustomizerSO.AdvancedUnitSelectionT1Array.Length + _compCustomizerSO.HatchEffectSelectionArray.Length;
-        }
-        private bool IsCompExists(CompSO compSO)
-        {
-            if (compSO == null)
-            return false;
-            if (compSO.ParentUnitClassList.Count == 0)
-            return false;
-            bool basicExists = false;
-            for (int i=0; i< compSO.ParentUnitClassList.Count; i++)
-            {
-                if (compSO.ParentUnitClassList[i].UTCBasicUnit.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Basic)
-                {
-                    basicExists = true;
-                }
-            }
-            if (basicExists)
-            return true;
-            return false;
         }
     }
 }
