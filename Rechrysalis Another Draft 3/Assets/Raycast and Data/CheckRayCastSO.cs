@@ -72,6 +72,7 @@ namespace Rechrysalis.Controller
                 int _unitInbounds = checkIfIntUnitBounds(_mousePos);
                 if ((_unitInbounds != -1) && (_controllerManager.ParentUnits[_unitInbounds] != null))
                 {
+                    _hilightRingManager.SetOldAngle(RingAngle(_mousePos));
                     _unitUpgrading = _unitInbounds;
                     _touchTypeArray[_touchID] = TouchTypeEnum.friendlyUnit;
                     _upgradeRingManager.SetCurrentAngle(_unitRingManager.UnitRingAngle);
@@ -171,6 +172,7 @@ namespace Rechrysalis.Controller
                 {
                     // Debug.Log($"mouse pos " + _mousePos + " controller " + _controller.transform.position);
                     // Debug.Log($"calculated angel " + Mathf.Atan2(_mousePos.y - _controller.transform.position.y, _mousePos.x - _controller.transform.position.x) * Mathf.Rad2Deg);
+                    Debug.Log($"set ring angle " + RingAngle(_mousePos));
                     _hilightRingManager.SetAngle(RingAngle(_mousePos));
                 }
                 // Debug.Log($"mouse angle " + RingAngle(_mousePos));
@@ -181,6 +183,7 @@ namespace Rechrysalis.Controller
                 else if (CheckIfSingleUpgradeTrue(RingAngle(_mousePos), (_unitRingManager.UnitRingAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount) + 90f), _unitRingManager.UnitDegreeWidth));
                 else 
                 {
+                    Debug.Log($"set ring angle " + RingAngle(_mousePos));
                     _hilightRingManager.SetAngle(RingAngle(_mousePos));
                 }
             }
