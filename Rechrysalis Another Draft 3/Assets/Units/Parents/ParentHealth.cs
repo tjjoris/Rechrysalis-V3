@@ -62,10 +62,11 @@ namespace Rechrysalis.Unit
         }
         public void ReCalculateIncomingDamageModifier(List<HEIncreaseDefence> hEIncreaseDefenceList)
         {
+            _incomingDamageMult = _incomingDamageMultbase;
             foreach (HEIncreaseDefence hatchEffect in hEIncreaseDefenceList)
             {
                 if (hatchEffect != null)
-                _incomingDamageMult = _incomingDamageMultbase * hatchEffect.GetIncomingDamageMult();
+                _incomingDamageMult *= hatchEffect.GetIncomingDamageMult();
             }
             Debug.Log($"incoming damage mult " + _incomingDamageMult);
         }

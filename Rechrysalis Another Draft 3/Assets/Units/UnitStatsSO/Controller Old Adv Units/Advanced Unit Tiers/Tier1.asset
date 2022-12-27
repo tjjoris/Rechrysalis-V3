@@ -23,7 +23,7 @@ MonoBehaviour:
   _unitSprite: {fileID: 21300000, guid: ccbb6fd6961e04ebdb2cf722d6911070, type: 3}
   _unitName: Tier 1
   _currencyCost: 0
-  _manaBase: 0.1
+  _manaBase: 0
   _origionalBaseHealthMaxBasic: 1
   _healthMaxBase: 1
   _healthMaxBasic: 28.6
