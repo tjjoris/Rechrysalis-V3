@@ -195,7 +195,6 @@ namespace Rechrysalis.Controller
                     int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
                     // Debug.Log($"upgrade to " + _unitToUpgradeTo);
                     // _controllerManager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
-                    Debug.Log($"mouse angle " + RingAngle(_mousePos) + " unit ring angle " + _unitRingManager.UnitRingAngle);
                     if(CheckIfSingleUpgradeTrue(RingAngle(_mousePos), (_unitRingManager.UnitRingAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount) + 90f), _unitRingManager.UnitDegreeWidth))                            
                     {
                         Debug.Log($"upgrade to adv");
