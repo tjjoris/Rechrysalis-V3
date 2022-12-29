@@ -27,7 +27,7 @@ namespace Rechrysalis.Movement
                 if ((Mathf.Abs(_direction.magnitude)) < (_range.GetRange() - 0.5f))
                 {
                     Debug.Log($"retreat");
-                    _mover.SetDirection(_direction);
+                    _mover.SetDirection(Vector2.up);
                     _retreating = true;
                 }
                 else {
