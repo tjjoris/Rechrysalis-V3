@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 191532707fea54f3c9e0a215f3f68c3f, type: 3}
-  m_Name: Brawler
+  m_Name: AITier10
   m_EditorClassIdentifier: 
-  _healthMultiplier: 1.3
-  _dpsMultiplier: 1.3
-  _range: 3
-  _attackChargeUp: 0.6
-  _attackWindDown: 0.6
-  _manaMultiplier: 10
+  _healthMultiplier: 2
+  _dpsMultiplier: 2
+  _range: 5
+  _attackChargeUp: 1
+  _attackWindDown: 1
+  _manaMultiplier: 1
   _tier: 0

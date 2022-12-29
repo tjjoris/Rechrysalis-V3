@@ -27,7 +27,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   _freeUnitCompSO:
   - {fileID: 0}
-  - {fileID: 11400000, guid: 36896a1c563ed451e902bbf3e728b5b7, type: 2}
+  - {fileID: 11400000, guid: a6c19bccc0a8e4a869b8e35cb14ec561, type: 2}
   _controllerManagers:
   - {fileID: 0}
   - {fileID: 0}
