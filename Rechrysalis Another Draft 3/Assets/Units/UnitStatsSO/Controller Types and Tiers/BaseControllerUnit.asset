@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191532707fea54f3c9e0a215f3f68c3f, type: 3}
   m_Name: BaseControllerUnit
   m_EditorClassIdentifier: 
-  _healthMultiplier: 50
+  _healthMultiplier: 20
   _dpsMultiplier: 20
   _range: 5
   _attackChargeUp: 1.7

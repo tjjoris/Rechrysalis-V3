@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62f2ba3170b374a9ea762586c97d2748, type: 3}
-  m_Name: LVL1 WAV2
+  m_Name: WAV1
   m_EditorClassIdentifier: 
   _unitInWave:
   - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
   - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
-  - {fileID: 11400000, guid: cda796199178e42dfb5a99894e2ae88a, type: 2}
+  - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
