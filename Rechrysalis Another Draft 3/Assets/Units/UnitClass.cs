@@ -34,6 +34,8 @@ namespace Rechrysalis
         public float HatchEffectMult {get => _hatchEffectMult; set => _hatchEffectMult = value; }
         [SerializeField] private Sprite _unitSprite;
         public Sprite UnitSprite { get => _unitSprite; set => _unitSprite = value; }
+        [SerializeField] private Sprite _chrysalisSprite;
+        public Sprite ChrysalisSprite { get => _chrysalisSprite; set => _chrysalisSprite = value; }
         [SerializeField] private int _amountToPool;
         public int AmountToPool { get => _amountToPool; set => _amountToPool = value; }
         [SerializeField] private float _projectileSpeed;

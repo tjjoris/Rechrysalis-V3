@@ -88,7 +88,7 @@ namespace Rechrysalis.Unit
             _freeHatchScript = GetComponent<FreeUnitHatchEffect>();
             this._freeUnitIndex = freeUnitIndex;
             _freeHatchScript?.Initialize(unitClass.HatchEffectPrefab, _freeUnitIndex);
-            _unitSpriteHandler.SetSpriteFunction(unitClass.UnitSprite);
+            // _unitSpriteHandler.SetSpriteFunction(unitClass.UnitSprite);
             float _hatchManaMult = 1;
             if (_hatchEffectSO != null)
             {
@@ -99,6 +99,10 @@ namespace Rechrysalis.Unit
             }
             _manaCost = unitClass.ManaCost;
             ReCalculateDamageChanges();
+        }
+        public void SetUnitSPrite(Sprite unitSprite)
+        {
+            _unitSpriteHandler.SetSpriteFunction(unitSprite);
         }
         public void InitializeOld(int _controllerIndex, UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _freeUnitIndex, HatchEffectSO _hatchEffectSO)
         {

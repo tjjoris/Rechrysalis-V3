@@ -125,6 +125,7 @@ namespace Rechrysalis.Controller
             // childUnitGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, _unitStats, _compsAndUnits, _parentUnitIndex, _hatchEffectSOs[_childUnitIndex]);
             // UnitClass unitClass = _unitComp.ParentUnitClassList[parentUnitIndex].BasicUnitClass;
             childUnitGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, unitClass, parentUnitIndex, compsAndUnits);
+            childUnitGo.GetComponent<UnitManager>()?.SetUnitSPrite(unitClass.UnitSprite);
             _childUnitManager.SetUnitName(unitClass.UnitName);
             pum.SubUnits[childUnitIndex] = childUnitGo;
             childUnitGo.name = $"Child Unit " + childUnitIndex;
@@ -137,6 +138,8 @@ namespace Rechrysalis.Controller
             // chrysalisGo.GetComponent<ChrysalisManager>()?.Initialize(_unitStats.ChrysalisTimerMax, childUnitGo);
             UnitManager _chrysalisManager = chrysalisGo.GetComponent<UnitManager>();
             chrysalisGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, compsAndUnits.Chrysalis, compsAndUnits, parentUnitIndex, null);
+            // chrysalisGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, unitClass, parentUnitIndex, compsAndUnits);
+            chrysalisGo.GetComponent<UnitManager>()?.SetUnitSPrite(unitClass.ChrysalisSprite);
 
             _chrysalisManager.SetUnitName(_unitStats.UnitName);
             chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(_unitStats.ChrysalisTimerMax, childUnitIndex);
