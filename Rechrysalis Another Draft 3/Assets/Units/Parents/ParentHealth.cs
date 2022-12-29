@@ -19,6 +19,7 @@ namespace Rechrysalis.Unit
         private UnitManager _currentUnit;
         public UnitManager CurrentUnit {set {_currentUnit = value;} get {return _currentUnit;}}
         private Die _die;
+        [SerializeField] private Transform _hpBarFill;
         public Action<int> _unitDies;
         public Action<float> _controllerTakeDamage;
         public Action<float> _enemyControllerHeal;
@@ -33,6 +34,7 @@ namespace Rechrysalis.Unit
         {
             this._maxHealth = _maxHealth;
             _currentHealth = _maxHealth;
+            UpdateHpBar();
         }
         public void TakeDamage(float _damage)
         {
@@ -44,6 +46,7 @@ namespace Rechrysalis.Unit
                 _enemyControllerHeal?.Invoke(_damage * _enemyControllerHealMult);
             }
             _currentHealth -= _damageToTake;
+            UpdateHpBar();
             _controllerTakeDamage?.Invoke(_damageToTake);
             GetComponent<ParentUnitHatchEffects>()?.TakeDamage(_damage);
             CheckIfDead();
@@ -69,6 +72,11 @@ namespace Rechrysalis.Unit
                 _incomingDamageMult *= hatchEffect.GetIncomingDamageMult();
             }
             Debug.Log($"incoming damage mult " + _incomingDamageMult);
+        }
+        private void UpdateHpBar()
+        {
+            Vector2 hpBarScale = new Vector2 (_currentHealth / _maxHealth, 1f);
+            _hpBarFill.localScale = hpBarScale;
         }
     }
 }
