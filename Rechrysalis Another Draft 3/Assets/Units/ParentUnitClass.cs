@@ -199,6 +199,7 @@ namespace Rechrysalis.Unit
                 _advUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
                 _advUnitClass.ProjectileSpeed = _utcBasicUnit.GetUnitStatsSO().ProjectileSpeed;
                 _advUnitClass.ProjectileSprite = _utcBasicUnit.GetUnitStatsSO().ProjectileSprite;
+                _advUnitClass.UnitName = $"Adv " + _basicUnitClass.UnitName;
                 _advUnitClass.ChrysalisSprite = _utcBasicUnit.GetUnitStatsSO().ChrysalisSprite;
                 // _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
 
