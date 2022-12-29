@@ -75,6 +75,7 @@ namespace Rechrysalis.Unit
         }
         private void UpdateHpBar()
         {
+            Debug.Log($"update hp bar" + _currentHealth / _maxHealth);
             Vector2 hpBarScale = new Vector2 (_currentHealth / _maxHealth, 1f);
             _hpBarFill.localScale = hpBarScale;
         }
