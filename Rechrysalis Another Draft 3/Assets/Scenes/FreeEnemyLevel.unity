@@ -1060,6 +1060,7 @@ MonoBehaviour:
   _healthMax: 0
   _healthCurrent: 0
   _controllerHPBar: {fileID: 1532661379}
+  _controllerHPTokens: {fileID: 787280070}
 --- !u!114 &1159822632
 MonoBehaviour:
   m_ObjectHideFlags: 0
