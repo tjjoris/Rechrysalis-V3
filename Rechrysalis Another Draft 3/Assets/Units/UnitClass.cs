@@ -48,7 +48,7 @@ namespace Rechrysalis
 
         public void CalculateDamge()
         {
-            _damage = _dps / (_attackChargeUp + _attackWindDown);
+            _damage = _dps * (_attackChargeUp + _attackWindDown);
         }
     }
 }

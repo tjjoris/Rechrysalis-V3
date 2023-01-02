@@ -40,6 +40,7 @@ namespace Rechrysalis.Attacking
             _targetHolder = GetComponent<TargetHolder>();
             _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
             _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown);
+            CalculateDamage(_baseDPS);
             ResetUnitAttack();
         }
         public void InitializeOld(UnitStatsSO _unitStats)
@@ -141,7 +142,7 @@ namespace Rechrysalis.Attacking
                 _baseDPS = dps;
             }
         }
-        public void ReCalculateDamage(List<HEIncreaseDamage> hatchEffects)
+        public void ReCalculateDamageWithHE(List<HEIncreaseDamage> hatchEffects)
         {
             float dps = _baseDPS;
             foreach (HEIncreaseDamage hEIncreaseDamage in hatchEffects)
@@ -152,9 +153,15 @@ namespace Rechrysalis.Attacking
                     dps += hEIncreaseDamage.GetDamageToAdd();
                 }
             }
-            _damage = (dps / (_attackChargeUp + _attackWindDown));
+            // _damage = (dps / (_attackChargeUp + _attackWindDown));
+            CalculateDamage(dps);
         }
-        public float getDamage(List<GameObject> hatchEffects)
+        private void CalculateDamage(float dps)
+        {
+            _damage = (dps * (_attackChargeUp + _attackWindDown));
+        }
+        // public float GetDamage(List<GameObject> hatchEffects)
+        public float GetDamage()
         {
             return _damage;
         }

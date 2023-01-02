@@ -9,6 +9,7 @@ namespace Rechrysalis.Unit
 {
     public class ParentHealth : MonoBehaviour
     {
+        bool debugBool = true;
         private float _maxHealth;
         private float _currentHealth;
         private bool _isChrysalis;
@@ -39,15 +40,16 @@ namespace Rechrysalis.Unit
         public void TakeDamage(float _damage)
         {
             // float _damageToTake = _damage * _currentUnit.GetIncomingDamageMultiplier();            
-            float _damageToTake = _damage * _incomingDamageMult;            
+            float damageToTake = _damage * _incomingDamageMult;            
             if (_isChrysalis)
             {
-                _damageToTake *= _chrysalisDefenceMult;
+                damageToTake *= _chrysalisDefenceMult;
                 _enemyControllerHeal?.Invoke(_damage * _enemyControllerHealMult);
             }
-            _currentHealth -= _damageToTake;
+            _currentHealth -= damageToTake;
+            if (debugBool) Debug.Log($"take damage " + damageToTake);
             UpdateHpBar();
-            _controllerTakeDamage?.Invoke(_damageToTake);
+            _controllerTakeDamage?.Invoke(damageToTake);
             GetComponent<ParentUnitHatchEffects>()?.TakeDamage(_damage);
             CheckIfDead();
         }
@@ -75,7 +77,7 @@ namespace Rechrysalis.Unit
         }
         private void UpdateHpBar()
         {
-            Debug.Log($"update hp bar" + _currentHealth / _maxHealth);
+            // Debug.Log($"update hp bar" + _currentHealth / _maxHealth);
             Vector2 hpBarScale = new Vector2 (_currentHealth / _maxHealth, 1f);
             _hpBarFill.localScale = hpBarScale;
         }

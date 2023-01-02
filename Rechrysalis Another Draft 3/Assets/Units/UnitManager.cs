@@ -248,7 +248,7 @@ namespace Rechrysalis.Unit
                     hEIncreaseDamageList.Add(hatchEffect.GetComponent<HEIncreaseDamage>());
                 }
             }
-            _attack?.ReCalculateDamage(hEIncreaseDamageList);
+            _attack?.ReCalculateDamageWithHE(hEIncreaseDamageList);
         }
         // private void ReCalculateDefenceChanges()
         // {
@@ -298,7 +298,7 @@ namespace Rechrysalis.Unit
         }
         public float GetDamage()
         {
-            return _attack.getDamage(_currentHatchEffects);
+            return _attack.GetDamage();
         }
     }
 }
