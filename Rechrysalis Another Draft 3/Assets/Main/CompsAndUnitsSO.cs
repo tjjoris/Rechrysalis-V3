@@ -30,11 +30,16 @@ namespace Rechrysalis
         public UnitStatsSO Chrysalis {get{return _chrysalis;}}
         [SerializeField] private float[] _controllerHealth;
         public float[] ControllerHealth {get{return _controllerHealth;}}
+        [SerializeField] private int _controllerHPTokensCurrent = 3;
+        public int ControllerHPTokensCurrent {get {return _controllerHPTokensCurrent;} set {_controllerHPTokensCurrent = value;}}
+        [SerializeField] private int _controllerHPTokensMax = 3;
+        public int ControllerHPTokensMax => _controllerHPTokensMax;
         // [SerializeField] private List<GameObject> _projectilesList;
         // public List<GameObject> ProjectilesList {set {_projectilesList = value;} get{return _projectilesList;}}
         
         public void Initialize(CompSO[] _compSO, ControllerManager _controllerMangerOne, ControllerManager _ControllerManagerTwo)
         {
+            _controllerHPTokensCurrent = _controllerHPTokensMax;
             
                         this._controllerManagers = new ControllerManager[_compSO.Length];
 

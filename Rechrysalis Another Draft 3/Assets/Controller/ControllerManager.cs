@@ -82,7 +82,7 @@ namespace Rechrysalis.Controller
             _manaGenerator?.Initialize(_parentUnits);
             }
             // Debug.Log($"health " + _compsAndUnits.ControllerHealth[_controllerIndex]);
-            GetComponent<ControllerHealth>()?.Initialize(_compsAndUnits.ControllerHealth[_controllerIndex], _allUnits);
+            GetComponent<ControllerHealth>()?.Initialize(_compsAndUnits.ControllerHealth[_controllerIndex], _allUnits, _compsAndUnits);
             // _unitRingManager?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount);            
             SetIsStopped(true);
 
