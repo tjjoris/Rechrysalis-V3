@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Attacking
 {
@@ -13,6 +14,8 @@ namespace Rechrysalis.Attacking
         [SerializeField] private float _attackChargeUp;
         [SerializeField] private float _attackWindDown;
         [SerializeField] private  float _baseDamage;
+        [SerializeField] private float _damage;
+        [SerializeField] private float _baseDPS;
         private ProjectilesPool _projectilesPool;
         private bool _isWindingDown;
         private bool _isChargingUp;
@@ -27,6 +30,7 @@ namespace Rechrysalis.Attacking
         public void Initialize(UnitClass unitClass)
         {
             _unitClass = unitClass;
+            _baseDPS = _unitClass.DPS;
             _attackChargeUp = _unitClass.AttackChargeUp;
             _attackWindDown = _unitClass.AttackWindDown;
             _baseDamage = _unitClass.Damamge;
@@ -36,6 +40,7 @@ namespace Rechrysalis.Attacking
             _targetHolder = GetComponent<TargetHolder>();
             _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
             _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown);
+            CalculateDamage(_baseDPS);
             ResetUnitAttack();
         }
         public void InitializeOld(UnitStatsSO _unitStats)
@@ -127,13 +132,38 @@ namespace Rechrysalis.Attacking
             _attackChargeCurrent = 0;
             _isChargingUp = false;
         }
-        public void SetDamage(float _damage)
+        public void SetDamage(float damage)
         {
-            _baseDamage = _damage;
+            _baseDamage = damage;
+            _damage = damage;
         }
-        public float getDamage()
+        public void SetDPS(float dps) {
+            {
+                _baseDPS = dps;
+            }
+        }
+        public void ReCalculateDamageWithHE(List<HEIncreaseDamage> hatchEffects)
         {
-            return _baseDamage;
+            float dps = _baseDPS;
+            foreach (HEIncreaseDamage hEIncreaseDamage in hatchEffects)
+            {
+                // HEIncreaseDamage hEIncreaseDamage = hatchEffect.GetComponent<HEIncreaseDamage>();                
+                if (hEIncreaseDamage != null)
+                {
+                    dps += hEIncreaseDamage.GetDamageToAdd();
+                }
+            }
+            // _damage = (dps / (_attackChargeUp + _attackWindDown));
+            CalculateDamage(dps);
+        }
+        private void CalculateDamage(float dps)
+        {
+            _damage = (dps * (_attackChargeUp + _attackWindDown));
+        }
+        // public float GetDamage(List<GameObject> hatchEffects)
+        public float GetDamage()
+        {
+            return _damage;
         }
     }
 }

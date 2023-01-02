@@ -15,6 +15,8 @@ namespace Rechrysalis.HatchEffect
         public GameObject HatchEffectPrefab => _hatchEffectPrefab;
         [SerializeField] private float _currencyCost;
         public float CurrencyCost => _currencyCost;
+        [SerializeField] private float  _addedManaCost;
+        public float  AddedManaCost => _addedManaCost;
         [SerializeField] private float[] _dpsIncrease;
         public float[] DPSIncrease {get {return _dpsIncrease;}}
         [SerializeField] private float[] _incomingDamageMultiplier;

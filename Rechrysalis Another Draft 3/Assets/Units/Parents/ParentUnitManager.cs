@@ -10,6 +10,8 @@ namespace Rechrysalis.Unit
 {
     public class ParentUnitManager : MonoBehaviour
     {
+        [SerializeField] private ParentUnitClass _parentUnitClass;
+        public ParentUnitClass ParentUnitClass => _parentUnitClass;
         private int _parentIndex;
         [SerializeField] private int _controllerIndex;
         [SerializeField] private GameObject[] _subUnits;
@@ -43,7 +45,7 @@ namespace Rechrysalis.Unit
             }
          }
 
-        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO _unitComp, PlayerUnitsSO _theseUnits, Transform _controllertransform, HatchEffectSO[] _subHatchEffects)
+        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO unitComp, PlayerUnitsSO _theseUnits, Transform _controllertransform, HatchEffectSO[] _subHatchEffects)
         {
             // _hatchEffectManagersToDamage = new List<HatchEffectManager>();
             // _hatchEffectManagersToDamage.Clear();
@@ -51,6 +53,7 @@ namespace Rechrysalis.Unit
             this._subHatchEffects = _subHatchEffects;
             this._controllerIndex = _controllerIndex;
             this._theseUnits = _theseUnits;
+            _parentUnitClass = unitComp.ParentUnitClassList[_parentUnitIndex];
             _parentHealth = GetComponent<ParentHealth>();
             // AddChrysalisAndUnitActions();
             _rotateParentUnit = GetComponent<RotateParentUnit>();
@@ -142,7 +145,7 @@ namespace Rechrysalis.Unit
         }
         private void ParentDealsDamage(float _damage)
         {
-            Debug.Log($"parent deals damage " + _damage);
+            // Debug.Log($"parent deals damage " + _damage);
             _parentDealsDamage?.Invoke(_damage);
         }
         public void ActivateInitialUnit()
@@ -242,9 +245,10 @@ namespace Rechrysalis.Unit
                     {
                         _theseUnits.ActiveUnits.Add(_subUnits[_unitIndex]);
                     }
-                    if (_hatchEffectSO != null)
+                    // if (_hatchEffectSO != null)
+                    if (_unitIndex == 1)
                     {
-                        // CreateHatchEffect(_unitManager.HatchEffectPrefab, _tier, _parentIndex, _unitIndex, _hatchEffectSO.AffectAll[_tier]);
+                        CreateHatchEffect(_parentUnitClass.AdvUnitClass.HatchEffectPrefab, _parentIndex, _unitIndex, true);
                     }
                 }
                 DeactivateChrysalis(_indexInSubUnits);    
@@ -276,7 +280,7 @@ namespace Rechrysalis.Unit
                 _theseUnits.ActiveUnits.Remove(_subUnits[_unitIndex]);
             }
         }
-        private void CreateHatchEffect(GameObject _hatchEffectPrefab, int _unitTier, int _parentIndex, int _unitIndex, bool _affectAll)
+        private void CreateHatchEffect(GameObject _hatchEffectPrefab, int _parentIndex, int _unitIndex, bool _affectAll)
         {
             // Debug.Log($""+ _hatchEffectPrefab.name + "tier " + _unitTier + " parent " + _parentIndex + " unit " + _unitIndex);
             if ((_hatchEffectPrefab != null) && (_subHatchEffects[_unitIndex] != null))
@@ -284,7 +288,7 @@ namespace Rechrysalis.Unit
                 GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
                 HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
                 // Debug.Log($"creating hatch effect unit index " +_unitIndex);
-                _hatchEffectManager?.Initialize(_subHatchEffects[_unitIndex], _unitTier, _parentIndex, _unitIndex, _affectAll);
+                _hatchEffectManager?.Initialize(_subHatchEffects[_unitIndex], _parentIndex, _unitIndex, _affectAll, _parentUnitClass.AdvUnitClass.HatchEffectMult);
                 // HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
                 // _hETimer?.Initialize(_unitIndex);
                 // foreach (GameObject _subUnit in _subUnits)
@@ -338,6 +342,7 @@ namespace Rechrysalis.Unit
                     }
                 }
             }
+            CheckToModifyParentDefencesFromHEChanges(_hatchEffect);
         }
         public void AddHatchEffect (GameObject _hatchEffect)
         {
@@ -359,7 +364,25 @@ namespace Rechrysalis.Unit
                         _subChrysalii[_childIndex].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
                     }
                 }
-            }        
+            }      
+            CheckToModifyParentDefencesFromHEChanges(_hatchEffect);  
+        }
+        private void CheckToModifyParentDefencesFromHEChanges(GameObject hatchEffect)
+        {
+            if (hatchEffect == null) return;
+            if (hatchEffect.GetComponent<HEIncreaseDefence>() == null) return;
+            List<HEIncreaseDefence> hEIncraseDefenceList = new List<HEIncreaseDefence>();
+            foreach(GameObject hatchEffectToLoop in _subUnits[0].GetComponent<UnitManager>().CurrentHatchEffects)
+            {
+                if (hatchEffectToLoop != null)
+                {
+                    if (hatchEffectToLoop.GetComponent<HEIncreaseDefence>() != null)
+                    {
+                        hEIncraseDefenceList.Add(hatchEffectToLoop.GetComponent<HEIncreaseDefence>());
+                    }
+                }
+            }
+            _parentHealth.ReCalculateIncomingDamageModifier(hEIncraseDefenceList);
         }
         public void SetManaText(string manaText)
         {

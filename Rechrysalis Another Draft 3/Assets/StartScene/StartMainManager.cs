@@ -14,5 +14,12 @@ namespace Rechrysalis
             _compsAndUnits.Level = 0;
             SceneManager.LoadScene("CompCustomizer");
         }
+        public void NewGameClicked()
+        {
+            _compsAndUnits.Level = 0;
+            _compsAndUnits.CompsSO[0].ParentUnitClassList.Clear();
+            // _compsAndUnits.CompsSO[0].ParentUnitClassList = new List<ParentUnitClass>();
+            SceneManager.LoadScene("CompCustomizer");
+        }
     }
 }

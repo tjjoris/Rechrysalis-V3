@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Rechrysalis.Attacking;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Unit
 {
     public class ParentHealth : MonoBehaviour
     {
+        bool debugBool = true;
         private float _maxHealth;
         private float _currentHealth;
         private bool _isChrysalis;
+        private float _incomingDamageMultbase = 1f;
+        private float _incomingDamageMult = 1f;
         private float _chrysalisDefenceMult = 0.4f;
         private float _enemyControllerHealMult = 0.5f;
         private UnitManager _currentUnit;
         public UnitManager CurrentUnit {set {_currentUnit = value;} get {return _currentUnit;}}
         private Die _die;
+        [SerializeField] private Transform _hpBarFill;
         public Action<int> _unitDies;
         public Action<float> _controllerTakeDamage;
         public Action<float> _enemyControllerHeal;
@@ -30,17 +35,21 @@ namespace Rechrysalis.Unit
         {
             this._maxHealth = _maxHealth;
             _currentHealth = _maxHealth;
+            UpdateHpBar();
         }
         public void TakeDamage(float _damage)
         {
-            float _damageToTake = _damage * _currentUnit.GetIncomingDamageMultiplier();            
+            // float _damageToTake = _damage * _currentUnit.GetIncomingDamageMultiplier();            
+            float damageToTake = _damage * _incomingDamageMult;            
             if (_isChrysalis)
             {
-                _damageToTake *= _chrysalisDefenceMult;
+                damageToTake *= _chrysalisDefenceMult;
                 _enemyControllerHeal?.Invoke(_damage * _enemyControllerHealMult);
             }
-            _currentHealth -= _damageToTake;
-            _controllerTakeDamage?.Invoke(_damageToTake);
+            _currentHealth -= damageToTake;
+            if (debugBool) Debug.Log($"take damage " + damageToTake);
+            UpdateHpBar();
+            _controllerTakeDamage?.Invoke(damageToTake);
             GetComponent<ParentUnitHatchEffects>()?.TakeDamage(_damage);
             CheckIfDead();
         }
@@ -56,6 +65,21 @@ namespace Rechrysalis.Unit
                 GetComponent<Die>()?.UnitDies();
             }
         }
-
+        public void ReCalculateIncomingDamageModifier(List<HEIncreaseDefence> hEIncreaseDefenceList)
+        {
+            _incomingDamageMult = _incomingDamageMultbase;
+            foreach (HEIncreaseDefence hatchEffect in hEIncreaseDefenceList)
+            {
+                if (hatchEffect != null)
+                _incomingDamageMult *= hatchEffect.GetIncomingDamageMult();
+            }
+            Debug.Log($"incoming damage mult " + _incomingDamageMult);
+        }
+        private void UpdateHpBar()
+        {
+            // Debug.Log($"update hp bar" + _currentHealth / _maxHealth);
+            Vector2 hpBarScale = new Vector2 (_currentHealth / _maxHealth, 1f);
+            _hpBarFill.localScale = hpBarScale;
+        }
     }
 }

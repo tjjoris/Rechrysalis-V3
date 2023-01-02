@@ -25,24 +25,28 @@ namespace Rechrysalis.HatchEffect
         // private float _currentHP;
         private float _hpDrainPerTick;
         private int _tier;
+        [SerializeField] private HEIncreaseDamage _hEIncreaseDamage;
+        public HEIncreaseDamage HEIncreaseDamage => _hEIncreaseDamage;
+        [SerializeField] private HEIncreaseDefence _hEIncreaseDefence;
+        public HEIncreaseDefence HEIncreaseDefence => _hEIncreaseDefence;
         public Action<GameObject, int, int, bool> _hatchEffectDies;
 
-        public void Initialize(HatchEffectSO _hatchEffectSO, int _tier, int _parentIndex, int _unitIndex, bool _affectAll)
+        public void Initialize(HatchEffectSO _hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, float hatchMult)
         {
             Debug.Log($"HE Initialize " + _hatchEffectSO.HatchEffectName +  " tier " + _tier);
             this._parentIndex = _parentIndex;
             this._unitIndex = _unitIndex;
             this._affectAll = _affectAll;
-            this._tier = _tier;
+            // this._tier = _tier;
             this._hatchEffectSO = _hatchEffectSO;
             _hETimer = GetComponent<HETimer>();
-            _name.text = _hatchEffectSO.HatchEffectName;
+            // _name.text = _hatchEffectSO.HatchEffectName;
             _hEDisplay = GetComponent<HEDisplay>();
             _hEHealth = GetComponent<HatchEffectHealth>();
-            if (_hatchEffectSO.HealthMax.Length > this._tier)
+            // if (_hatchEffectSO.HealthMax.Length > this._tier)
             {
             // _maxHP = _hatchEffectSO.HealthMax[_tier];
-            _hEHealth.Initialize(_hatchEffectSO.HealthMax[this._tier]);
+            _hEHealth.Initialize(hatchMult);
             }
             // _currentHP = _maxHP;
             if (_hatchEffectSO.DamageLossPerTick.Length > this._tier)
@@ -57,6 +61,11 @@ namespace Rechrysalis.HatchEffect
             {
                 _incomingDamageMult = _hatchEffectSO.IncomingDamageMultiplier[this._tier];
             }
+            _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
+            _hEIncreaseDamage?.Initialize(hatchMult);
+            _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
+            _hEIncreaseDefence?.Initialize(hatchMult);
+
         }
         public void SetOffset(int _multiplier)
         {

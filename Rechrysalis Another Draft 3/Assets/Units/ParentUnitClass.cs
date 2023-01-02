@@ -171,6 +171,7 @@ namespace Rechrysalis.Unit
                 _basicUnitClass.ProjectileSpeed = _utcBasicUnit.GetUnitStatsSO().ProjectileSpeed;
                 _basicUnitClass.ProjectileSprite = _utcBasicUnit.GetUnitStatsSO().ProjectileSprite;
                 _basicUnitClass.UnitName = _utcBasicUnit.GetUnitStatsSO().UnitName;
+                _basicUnitClass.ChrysalisSprite = _utcBasicUnit.GetUnitStatsSO().ChrysalisSprite;
                 _basicUnitClass.CalculateDamge();
             }
         }
@@ -198,6 +199,8 @@ namespace Rechrysalis.Unit
                 _advUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
                 _advUnitClass.ProjectileSpeed = _utcBasicUnit.GetUnitStatsSO().ProjectileSpeed;
                 _advUnitClass.ProjectileSprite = _utcBasicUnit.GetUnitStatsSO().ProjectileSprite;
+                _advUnitClass.UnitName = $"Adv " + _basicUnitClass.UnitName;
+                _advUnitClass.ChrysalisSprite = _utcBasicUnit.GetUnitStatsSO().ChrysalisSprite;
                 // _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
 
             }
@@ -255,6 +258,7 @@ namespace Rechrysalis.Unit
                 if (_utcHatchEffect.GetHatchEffectSO() != null)
                 {
                     _advUnitClass.HatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;
+                    _advUnitClass.ManaCost += _utcHatchEffect.GetHatchEffectSO().AddedManaCost;
                 }             
             }
         }

@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 1894819527670956384}
   - component: {fileID: 4948415442075945803}
   m_Layer: 0
-  m_Name: HatchEffect
+  m_Name: HatchEffect 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

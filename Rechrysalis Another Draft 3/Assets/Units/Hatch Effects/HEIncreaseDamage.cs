@@ -6,30 +6,17 @@ namespace Rechrysalis.HatchEffect
 {
     public class HEIncreaseDamage : MonoBehaviour
     {
-        // [SerializeField] private float _duration;
-        // [SerializeField] private float _timeCurrent;
-        [SerializeField]private float _damageIncrease;
-        [SerializeField] private bool _allUnits;
+        [SerializeField]private float _damageToAddBase = 20f;
+        private float _damageToAdd;
 
-        // public void Tick(float _timeAmount)
-        // {
-        //     _timeCurrent += _timeAmount;
-        // }
-        // public bool CheckIsExpired()
-        // {
-        //     if (_timeCurrent >= _duration)
-        //     {
-        //         return true;
-        //     }
-        //     return false;
-        // }
-        // public void DestroySelf()
-        // {
-        //     Destroy(gameObject);
-        // }
-        public float GetDamageIncrease()
+        public void Initialize(float hatchEffectMult)
         {
-            return _damageIncrease;
+            _damageToAdd = _damageToAddBase * hatchEffectMult;
+        }
+
+        public float GetDamageToAdd()
+        {
+            return _damageToAdd;
         }
     }
 }
