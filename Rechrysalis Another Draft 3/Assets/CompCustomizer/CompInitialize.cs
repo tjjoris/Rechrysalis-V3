@@ -17,29 +17,29 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private List<CompVerticalManager> _verticalMangers;
         public List<CompVerticalManager> VerticalManagers => _verticalMangers;
         [SerializeField] private ShowCompErrorText _showCompErrorText;
-        public Action<CompVerticalManager, CompUpgradeManager> _droppedIntoVertical;
+        // public Action<CompVerticalManager, CompUpgradeManager> _droppedIntoVertical;
         
-        private void OnEnable()
-        {
-            foreach(CompVerticalManager vertical in _verticalMangers)
-            {
-                if (vertical != null)
-                {                    
-                    vertical._vertcialDropped -= DroppedIntoVertical;
-                    vertical._vertcialDropped += DroppedIntoVertical;
-                }
-            }
-        }
-        private void OnDisable()
-        {
-            foreach (CompVerticalManager vertical in _verticalMangers)
-            {
-                if (vertical != null)
-                {
-                    vertical._vertcialDropped -= DroppedIntoVertical;
-                }
-            }
-        }
+        // private void OnEnable()
+        // {
+        //     foreach(CompVerticalManager vertical in _verticalMangers)
+        //     {
+        //         if (vertical != null)
+        //         {                    
+        //             vertical._vertcialDropped -= DroppedIntoVertical;
+        //             vertical._vertcialDropped += DroppedIntoVertical;
+        //         }
+        //     }
+        // }
+        // private void OnDisable()
+        // {
+        //     foreach (CompVerticalManager vertical in _verticalMangers)
+        //     {
+        //         if (vertical != null)
+        //         {
+        //             vertical._vertcialDropped -= DroppedIntoVertical;
+        //         }
+        //     }
+        // }
         public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens)
         {
             _movingButtonHolder = movingButtonHolder;
@@ -47,10 +47,10 @@ namespace Rechrysalis.CompCustomizer
             _compCustomizerSO = compCustomizerSO;  
             LoopVerticalsToSetUp(playerComp, movingButtonHolder, compsAndUnitsSO, controllerHPTokens);
         }
-        private void DroppedIntoVertical(CompVerticalManager compVerticalManager, CompUpgradeManager compUpgradeManager)
-        {
-            _droppedIntoVertical?.Invoke(compVerticalManager, compUpgradeManager);
-        }
+        // private void DroppedIntoVertical(CompVerticalManager compVerticalManager, CompUpgradeManager compUpgradeManager)
+        // {
+        //     _droppedIntoVertical?.Invoke(compVerticalManager, compUpgradeManager);
+        // }
         private void LoopVerticalsToSetUp(CompSO playerComp, Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens)
         {
             for (int parentIndex = 0; parentIndex < 3; parentIndex ++)

@@ -11,7 +11,7 @@ namespace Rechrysalis.CompCustomizer
         private bool debugBool = false;
         [SerializeField] protected Transform _transformToDropUpgrade;
         [SerializeField] protected CompsAndUnitsSO _compsAndUnitsSO;
-        public Action<CompUpgradeManager> _buttonDropped;
+        // public Action<CompUpgradeManager> _buttonDropped;
 
         public void Initialize(CompsAndUnitsSO compsAndUnitsSO)
         {

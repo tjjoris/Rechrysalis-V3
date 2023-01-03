@@ -20,19 +20,19 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private ScrollRect _scrollRect;
         private Transform _movingButtonHolder;
         [SerializeField] private ParentUnitClass _parentUnitClass;
-        public Action<CompVerticalManager, CompUpgradeManager> _vertcialDropped;
+        // public Action<CompVerticalManager, CompUpgradeManager> _vertcialDropped;
         
-        private void OnEnable()
-        {
-            if (_dropBackGround == null) return;
-            _dropBackGround._buttonDropped -= DroppedIntoVertical;
-            _dropBackGround._buttonDropped += DroppedIntoVertical;
-        }
-        private void OnDisable()
-        {
-            if (_dropBackGround == null) return;
-            _dropBackGround._buttonDropped -= DroppedIntoVertical;
-        }
+        // private void OnEnable()
+        // {
+        //     if (_dropBackGround == null) return;
+        //     _dropBackGround._buttonDropped -= DroppedIntoVertical;
+        //     _dropBackGround._buttonDropped += DroppedIntoVertical;
+        // }
+        // private void OnDisable()
+        // {
+        //     if (_dropBackGround == null) return;
+        //     _dropBackGround._buttonDropped -= DroppedIntoVertical;
+        // }
         public void Initialize(Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens)
         {
 
@@ -46,11 +46,11 @@ namespace Rechrysalis.CompCustomizer
             if ((_verticalContainer != null) && (_verticalContainer.GetComponent<DropComp>() != null))
             _verticalContainer.GetComponent<DropComp>().ControllerHPTokens = controllerHPTokens;
         }
-        private void DroppedIntoVertical(CompUpgradeManager compUpgradeManager)
-        {
-            if (debugBool) Debug.Log($"dropped into vertical for comp vertical manager");
-            _vertcialDropped?.Invoke(this, compUpgradeManager);
-        }
+        // private void DroppedIntoVertical(CompUpgradeManager compUpgradeManager)
+        // {
+        //     if (debugBool) Debug.Log($"dropped into vertical for comp vertical manager");
+        //     // _vertcialDropped?.Invoke(this, compUpgradeManager);
+        // }
         public void CreateAndSetUpCompButtons(ParentUnitClass parentUnitClass, GameObject compButtonPrefab)
         {
             CreateCompButton(compButtonPrefab, parentUnitClass.UTCBasicUnit);

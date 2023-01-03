@@ -23,15 +23,15 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private bool _debugBool = true;
         [SerializeField] private Transform _movingButtonHolder;
 
-        private void OnEnable()
-        {
-            _compInitialize._droppedIntoVertical -= ButtonDroppedIntoComp;
-            _compInitialize._droppedIntoVertical += ButtonDroppedIntoComp;
-        }
-        private void OnDisable()
-        {
-            _compInitialize._droppedIntoVertical -= ButtonDroppedIntoComp;
-        }
+        // private void OnEnable()
+        // {
+        //     _compInitialize._droppedIntoVertical -= ButtonDroppedIntoComp;
+        //     _compInitialize._droppedIntoVertical += ButtonDroppedIntoComp;
+        // }
+        // private void OnDisable()
+        // {
+        //     _compInitialize._droppedIntoVertical -= ButtonDroppedIntoComp;
+        // }
         private void Start()
         {
             _compSO = _compsAndUnitsSO.CompsSO[0];
@@ -56,20 +56,20 @@ namespace Rechrysalis.CompCustomizer
             _compSO.ParentUnitClassList.Add(_compInitialize.VerticalManagers[i].GetParentUnitClass());
             }
         }
-        private void ButtonDroppedIntoComp(CompVerticalManager compVerticalManager, CompUpgradeManager compUpgradeManager)        
-        {
-            if (_debugBool)
-                Debug.Log($"button dropped into comp" + compUpgradeManager.GetUpgradeType());
-            if ((compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.SingleHeart) && (_controllerHPTokens.IsMissingTokens()))
-            {
-                _controllerHPTokens.AddTokens(compUpgradeManager.GetUpgradeTypeClass().GetControllerHeartUpgrade().HeartCount);
-                Destroy(compUpgradeManager.gameObject);
-                // if (_compsAndUnitsSO.ControllerHPTokensCurrent < _compsAndUnitsSO.ControllerHPTokensMax)
-                // {
-                //     _compsAndUnitsSO.AddControllerHPTokens(compUpgradeManager.GetUpgradeTypeClass().GetControllerHeartUpgrade().HeartCount);
-                //     Destroy(compUpgradeManager.gameObject);
-                // }
-            }
-        }
+        // private void ButtonDroppedIntoComp(CompVerticalManager compVerticalManager, CompUpgradeManager compUpgradeManager)        
+        // {
+        //     if (_debugBool)
+        //         Debug.Log($"button dropped into comp" + compUpgradeManager.GetUpgradeType());
+        //     if ((compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.SingleHeart) && (_controllerHPTokens.IsMissingTokens()))
+        //     {
+        //         _controllerHPTokens.AddTokens(compUpgradeManager.GetUpgradeTypeClass().GetControllerHeartUpgrade().HeartCount);
+        //         Destroy(compUpgradeManager.gameObject);
+        //         // if (_compsAndUnitsSO.ControllerHPTokensCurrent < _compsAndUnitsSO.ControllerHPTokensMax)
+        //         // {
+        //         //     _compsAndUnitsSO.AddControllerHPTokens(compUpgradeManager.GetUpgradeTypeClass().GetControllerHeartUpgrade().HeartCount);
+        //         //     Destroy(compUpgradeManager.gameObject);
+        //         // }
+        //     }
+        // }
     }
 }
