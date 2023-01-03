@@ -1993,7 +1993,6 @@ MonoBehaviour:
   _selectionContainer: {fileID: 452630626}
   _compCustomizerSO: {fileID: 0}
   _upgradeButtonPrefab: {fileID: 1858269929011501162, guid: bf20bc1710cf74588a7291cfa3f61b27, type: 3}
-  _compUpgradeManagers: []
   _upgradeButtonIndex: 
 --- !u!114 &1909423964
 MonoBehaviour:
