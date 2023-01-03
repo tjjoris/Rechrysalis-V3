@@ -13,7 +13,7 @@ namespace Rechrysalis.CompCustomizer
     {
         bool debugBool = false;
         [SerializeField] private List<CompUpgradeManager> _compUpgradeManagers;
-        [SerializeField] private VerticalContainer _verticalContainer;
+        [SerializeField] private Transform _verticalContainer;
         [SerializeField] private DropBackGround _dropBackGround;
         [SerializeField] private ScrollRect _scrollRect;
         private Transform _movingButtonHolder;
@@ -62,7 +62,7 @@ namespace Rechrysalis.CompCustomizer
             if ((upgradeTypeClass != null) && (upgradeTypeClass.GetUpgradeType() != UpgradeTypeClass.UpgradeType.Error))
             {
                 // Debug.Log($"creating utc "+ upgradeTypeClass.GetUnitStatsSO().UnitName);
-                GameObject compButtonCreated = Instantiate(compButtonPrefab, _verticalContainer.transform);
+                GameObject compButtonCreated = Instantiate(compButtonPrefab, _verticalContainer);
                 CompUpgradeManager compUpgradeManager = compButtonCreated.GetComponent<CompUpgradeManager>();
                 compUpgradeManager?.Initialize(_movingButtonHolder);
                 compUpgradeManager?.SetUpgradeTypeClass(upgradeTypeClass);
@@ -80,7 +80,7 @@ namespace Rechrysalis.CompCustomizer
         public int GetNumberOfBasic()
         {
             int numberOfBasic = 0;
-            foreach (Transform upgradeTransform in _verticalContainer.transform)
+            foreach (Transform upgradeTransform in _verticalContainer)
             {
                 CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
                 if (compUpgradeManager!= null)
@@ -96,7 +96,7 @@ namespace Rechrysalis.CompCustomizer
         public int GetNumberOfHatchEffects()
         {
             int numberOfHatchEffects = 0;
-            foreach (Transform upgradeTransform in _verticalContainer.transform)
+            foreach (Transform upgradeTransform in _verticalContainer)
             {
                 CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
                 if (compUpgradeManager != null)
@@ -110,7 +110,7 @@ namespace Rechrysalis.CompCustomizer
         public bool IsAtLeastOneAdvUpgrade()
         {
             int numberOfAdvUpgrades = 0;
-            foreach (Transform upgradeTransform in _verticalContainer.transform)
+            foreach (Transform upgradeTransform in _verticalContainer)
             {
                 CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
                 if (compUpgradeManager != null)
