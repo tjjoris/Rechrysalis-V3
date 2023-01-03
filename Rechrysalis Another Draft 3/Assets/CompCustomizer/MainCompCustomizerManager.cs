@@ -20,6 +20,16 @@ namespace Rechrysalis.CompCustomizer
         public CompSO CompSO { get{ return _compSO; } set{ _compSO = value; } }
         [SerializeField] private bool _debugBool = true;
         [SerializeField] private Transform _movingButtonHolder;
+
+        private void OnEnable()
+        {
+            _compInitialize._droppedIntoVertical -= ButtonDroppedIntoComp;
+            _compInitialize._droppedIntoVertical += ButtonDroppedIntoComp;
+        }
+        private void OnDisable()
+        {
+            _compInitialize._droppedIntoVertical -= ButtonDroppedIntoComp;
+        }
         private void Start()
         {
             _compSO = _compsAndUnitsSO.CompsSO[0];
@@ -42,6 +52,10 @@ namespace Rechrysalis.CompCustomizer
             {                
             _compSO.ParentUnitClassList.Add(_compInitialize.VerticalManagers[i].GetParentUnitClass());
             }
+        }
+        private void ButtonDroppedIntoComp(CompVerticalManager compVerticalManager)        
+        {
+
         }
     }
 }

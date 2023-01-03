@@ -22,4 +22,4 @@ MonoBehaviour:
     _controllerHeartUpgrade: {fileID: 11400000}
   _heartCount: 3
   _cost: 100
-  _heartName: 
+  _heartName: 3 Life

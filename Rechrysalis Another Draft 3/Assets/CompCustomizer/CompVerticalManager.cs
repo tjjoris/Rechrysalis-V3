@@ -13,12 +13,13 @@ namespace Rechrysalis.CompCustomizer
     {
         bool debugBool = false;
         [SerializeField] private List<CompUpgradeManager> _compUpgradeManagers;
-        public Action<CompUpgradeManager> _onCompUpgradeClicked;
+        // public Action<CompUpgradeManager> _onCompUpgradeClicked;
         [SerializeField] private VerticalContainer _verticalContainer;
         [SerializeField] private DropBackGround _DropBackGround;
         [SerializeField] private ScrollRect _scrollRect;
         private Transform _movingButtonHolder;
         [SerializeField] private ParentUnitClass _parentUnitClass;
+        public Action<CompVerticalManager> _vertcialDropped;
         
 
         public void Initialize(Transform movingButtonHolder)
