@@ -21,13 +21,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 43aecce1091d841f7a1dac2437150c60, type: 2}
   - {fileID: 11400000, guid: a6c19bccc0a8e4a869b8e35cb14ec561, type: 2}
   _speed: 2
-  _level: 0
+  _level: 2
   _compsSO:
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   _freeUnitCompSO:
   - {fileID: 0}
-  - {fileID: 11400000, guid: a6c19bccc0a8e4a869b8e35cb14ec561, type: 2}
+  - {fileID: 11400000, guid: 16a4e4d1d1380451ebd30d16d6a0238c, type: 2}
   _controllerManagers:
   - {fileID: 0}
   - {fileID: 0}
@@ -39,5 +39,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1daf28c3beb2646cb904b5af54346828, type: 2}
   _chrysalis: {fileID: 11400000, guid: 1400a98c8c39341749b54dbd2d0bd166, type: 2}
   _controllerHealth:
-  - 75
-  - 75
+  - 40
+  - 40
+  _controllerHPTokensCurrent: 3
+  _controllerHPTokensMax: 3
