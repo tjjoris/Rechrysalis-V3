@@ -43,6 +43,8 @@ namespace Rechrysalis.CompCustomizer
             _dropBackGround.Initialize(compsAndUnitsSO);
             DropComp dropComp =(DropComp) _dropBackGround;
             if (dropComp != null) dropComp.ControllerHPTokens = controllerHPTokens;
+            if ((_verticalContainer != null) && (_verticalContainer.GetComponent<DropComp>() != null))
+            _verticalContainer.GetComponent<DropComp>().ControllerHPTokens = controllerHPTokens;
         }
         private void DroppedIntoVertical(CompUpgradeManager compUpgradeManager)
         {

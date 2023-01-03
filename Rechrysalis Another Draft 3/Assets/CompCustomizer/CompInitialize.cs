@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
 using System;
-using Rechrysalis.Controller
+using Rechrysalis.Controller;
 
 namespace Rechrysalis.CompCustomizer
 {

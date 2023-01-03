@@ -47,12 +47,13 @@ namespace Rechrysalis.Controller
         }
         public void AddTokens(int count)
         {
+            Debug.Log($"add tokens " + count);
             for (int i = 0; i<count; i++)
             {
                 if (_tokenActiveIndex <= _controllerHPTokens.Length)
                 {
+                    _tokenActiveIndex++;
                     _controllerHPTokens[_tokenActiveIndex].SetActive(true);
-                    _tokenActiveIndex ++;
                 }
             }
             if (_tokenActiveIndex > _tokenMax)
@@ -63,6 +64,7 @@ namespace Rechrysalis.Controller
         }
         public bool IsMissingTokens()
         {
+            Debug.Log($"token index " + _tokenActiveIndex);
             if (_tokenActiveIndex < _tokenMax)
             return true;
             return false;
