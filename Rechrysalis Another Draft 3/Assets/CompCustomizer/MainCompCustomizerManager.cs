@@ -60,9 +60,10 @@ namespace Rechrysalis.CompCustomizer
         {
             if (_debugBool)
                 Debug.Log($"button dropped into comp" + compUpgradeManager.GetUpgradeType());
-            if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.SingleHeart)
+            if ((compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.SingleHeart) && (_controllerHPTokens.IsMissingTokens()))
             {
                 _controllerHPTokens.AddTokens(compUpgradeManager.GetUpgradeTypeClass().GetControllerHeartUpgrade().HeartCount);
+                Destroy(compUpgradeManager.gameObject);
                 // if (_compsAndUnitsSO.ControllerHPTokensCurrent < _compsAndUnitsSO.ControllerHPTokensMax)
                 // {
                 //     _compsAndUnitsSO.AddControllerHPTokens(compUpgradeManager.GetUpgradeTypeClass().GetControllerHeartUpgrade().HeartCount);

@@ -58,6 +58,12 @@ namespace Rechrysalis.Controller
             }
             SetSOTokens();
         }
+        public bool IsMissingTokens()
+        {
+            if (_tokenActiveIndex < _tokenMax)
+            return true;
+            return false;
+        }
         private void SetSOTokens()
         {
             _compsAndUnitsSO.ControllerHPTokensCurrent = _tokenActiveIndex;

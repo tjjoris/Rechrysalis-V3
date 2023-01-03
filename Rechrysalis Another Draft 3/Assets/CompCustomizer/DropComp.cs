@@ -9,9 +9,9 @@ namespace Rechrysalis.CompCustomizer
 
         protected override void DropUpgrade(CompUpgradeManager compUpgradeManager)
         {
-            base.DropUpgrade(compUpgradeManager);
+            // base.DropUpgrade(compUpgradeManager);
             if ((compUpgradeManager.GetUpgradeType() != Unit.UpgradeTypeClass.UpgradeType.SingleHeart) || ((compUpgradeManager.GetUpgradeType() == Unit.UpgradeTypeClass.UpgradeType.SingleHeart) && (_compsAndUnitsSO.ControllerHPTokensCurrent < _compsAndUnitsSO.ControllerHPTokensMax)))
-
+                base.DropUpgrade(compUpgradeManager);
                 _buttonDropped?.Invoke(compUpgradeManager);
         }
     }
