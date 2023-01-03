@@ -37,7 +37,7 @@ namespace Rechrysalis.Unit
             {
                 Vector2 _distV2 = (_targetHolder.Target.transform.position - transform.position);
                 // if (Mathf.Abs(_distV2.magnitude) > _range.GetRange())
-                if (!_targetHolder.IsTargetInRange())
+                if (!_targetHolder.IsTargetMinusDistInRange(0f))
                 {
                     // _approachDirection = Vector3.MoveTowards(transform.position, _targetHolder.Target.transform.position, 1);
                     _approachDirection = (-transform.position + _targetHolder.Target.transform.position);

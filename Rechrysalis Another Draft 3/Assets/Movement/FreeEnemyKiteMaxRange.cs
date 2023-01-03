@@ -23,8 +23,9 @@ namespace Rechrysalis.Movement
         {
             if ((_aiCanMove) && (_targetHolder.Target != null))
             {
-                Vector2 _direction = gameObject.transform.position - _targetHolder.Target.transform.position;
-                if ((Mathf.Abs(_direction.magnitude)) < (_range.GetRange() - 0.5f))
+                // Vector2 _direction = gameObject.transform.position - _targetHolder.Target.transform.position;
+                // if ((Mathf.Abs(_direction.magnitude)) < (_range.GetRange() - 0.5f))
+                if (_targetHolder.IsTargetMinusDistInRange(-0.5f))
                 {
                     // Debug.Log($"retreat");
                     _mover.SetDirection(Vector2.up);

@@ -80,7 +80,7 @@ namespace Rechrysalis.Unit
             GetComponent<Rechrysalize>()?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ChildUnitCount);
             GetComponent<InRangeByPriority>()?.Initialize(_compsAndUnits.TargetsLists[_controllerIndex]);
             GetComponent<ClosestTarget>()?.Initialize(_compsAndUnits.PlayerUnits[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
-            GetComponent<Range>()?.Initialize(unitClass.Range);
+            GetComponent<Range>()?.Initialize(unitClass);
             _chrysalisTimer = GetComponent<ChrysalisTimer>();
             _rechrysalize = GetComponent<Rechrysalize>();
             _projectilesPool = GetComponent<ProjectilesPool>();

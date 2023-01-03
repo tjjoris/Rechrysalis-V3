@@ -18,7 +18,7 @@ namespace Rechrysalis.Movement
         [SerializeField] private float _maxY;
         // private float _pushBackMovement;
         // public float PushBackMovement {set{_pushBackMovement = value;}}
-        private float _retreatSpeedMult = 0.24f;
+        private float _retreatSpeedMult = 0.2f;
         [SerializeField] private Vector3 _moveVector;        
         [SerializeField] private Vector2 _direction = Vector2.zero;
         public Vector2 Direction {set{_direction = value;}get {return _direction;}}
@@ -90,6 +90,7 @@ namespace Rechrysalis.Movement
             ySpeedMult *= Mathf.Abs(_retreatSpeedMult);
             ySpeedMult -= (_retreatSpeedMult * 0.5f);
             ySpeedMult += 1f;
+            Debug.Log($"y speed mult" + ySpeedMult);
             return ySpeedMult;
         }
         public void Tick(float _deltaTime)
