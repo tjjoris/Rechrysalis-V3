@@ -48,8 +48,14 @@ namespace Rechrysalis.Controller
         public void AddTokens(int count)
         {
             for (int i = 0; i<count; i++)
-            _controllerHPTokens[_tokenActiveIndex].SetActive(true);
-            _tokenActiveIndex ++;
+            {
+                _controllerHPTokens[_tokenActiveIndex].SetActive(true);
+                _tokenActiveIndex ++;
+            }
+            if (_tokenActiveIndex > _tokenMax)
+            {
+                _tokenActiveIndex = _tokenMax;
+            }
             SetSOTokens();
         }
         private void SetSOTokens()
