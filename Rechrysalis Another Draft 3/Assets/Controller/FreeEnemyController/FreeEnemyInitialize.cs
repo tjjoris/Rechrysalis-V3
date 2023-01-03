@@ -83,7 +83,7 @@ namespace Rechrysalis.Controller
                         // UnitManager _unitManager = newFreeEnemy.GetComponent<UnitManager>();
                         // newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);                    
                         ParentFreeEnemyManager _freeParentManager = newFreeEnemy.GetComponent<ParentFreeEnemyManager>();
-                        _freeParentManager?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, _playerUnitsSO);
+                        _freeParentManager?.InitializeOld(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, _playerUnitsSO);                        
                         newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(_unitStats.HealthMaxBasic);
                         newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerIndex);
                         _playerUnitsSO.ActiveUnits.Add(newFreeEnemy);

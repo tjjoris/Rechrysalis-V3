@@ -17,7 +17,7 @@ namespace Rechrysalis.Attacking
         }
         public void Initialize(UnitClass unitClass)
         {
-            _rangeDisToAccountForMovement = ((unitClass.AttackChargeUp + unitClass.AttackWindDown) * 0.3f);
+            _rangeDisToAccountForMovement = ((unitClass.AttackChargeUp) * 4f);
             _baseRange = unitClass.Range;
             // _baseRange = baseRange;
         }
