@@ -10,8 +10,13 @@ namespace Rechrysalis.CompCustomizer
     {
         private bool debugBool = false;
         [SerializeField] Transform _transformToDropUpgrade;
+        private CompsAndUnitsSO _compsAndUnitsSO;
         public Action<CompUpgradeManager> _buttonDropped;
 
+        public void Initialize(CompsAndUnitsSO compsAndUnitsSO)
+        {
+            _compsAndUnitsSO = compsAndUnitsSO;
+        }
         public void OnDrop(PointerEventData eventData)
         {
             if (debugBool)
@@ -25,6 +30,7 @@ namespace Rechrysalis.CompCustomizer
         }
         private void DropUpgrade(CompUpgradeManager compUpgradeManager)
         {
+            if ((compUpgradeManager.GetUpgradeType() != Unit.UpgradeTypeClass.UpgradeType.SingleHeart) || ((compUpgradeManager.GetUpgradeType() == Unit.UpgradeTypeClass.UpgradeType.SingleHeart) && (_compsAndUnitsSO.ControllerHPTokensCurrent < _compsAndUnitsSO.ControllerHPTokensMax)))
             compUpgradeManager.ParentAfterDrag = _transformToDropUpgrade.transform;
             _buttonDropped?.Invoke(compUpgradeManager);
         }        

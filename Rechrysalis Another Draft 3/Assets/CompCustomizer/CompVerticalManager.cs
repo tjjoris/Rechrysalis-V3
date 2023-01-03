@@ -31,13 +31,14 @@ namespace Rechrysalis.CompCustomizer
             if (_dropBackGround == null) return;
             _dropBackGround._buttonDropped -= DroppedIntoVertical;
         }
-        public void Initialize(Transform movingButtonHolder)
+        public void Initialize(Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO)
         {
 
             if (debugBool)
                 Debug.Log($"initialize vertical");
             _scrollRect = GetComponent<ScrollRect>();
             _movingButtonHolder = movingButtonHolder;
+            _dropBackGround.Initialize(compsAndUnitsSO);
         }
         private void DroppedIntoVertical(CompUpgradeManager compUpgradeManager)
         {

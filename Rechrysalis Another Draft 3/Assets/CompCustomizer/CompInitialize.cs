@@ -39,30 +39,30 @@ namespace Rechrysalis.CompCustomizer
                 }
             }
         }
-        public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, Transform movingButtonHolder)
+        public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO)
         {
             _movingButtonHolder = movingButtonHolder;
             _playerComp = playerComp;
             _compCustomizerSO = compCustomizerSO;  
-            LoopVerticalsToSetUp(playerComp, movingButtonHolder);
+            LoopVerticalsToSetUp(playerComp, movingButtonHolder, compsAndUnitsSO);
         }
         private void DroppedIntoVertical(CompVerticalManager compVerticalManager, CompUpgradeManager compUpgradeManager)
         {
             _droppedIntoVertical?.Invoke(compVerticalManager, compUpgradeManager);
         }
-        private void LoopVerticalsToSetUp(CompSO playerComp, Transform movingButtonHolder)
+        private void LoopVerticalsToSetUp(CompSO playerComp, Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO)
         {
             for (int parentIndex = 0; parentIndex < 3; parentIndex ++)
             {
-                SetUpThisVertical(playerComp, parentIndex);
+                SetUpThisVertical(playerComp, parentIndex, compsAndUnitsSO);
 
             }
         }
-        private void SetUpThisVertical(CompSO playerComp, int parentIndex)
+        private void SetUpThisVertical(CompSO playerComp, int parentIndex, CompsAndUnitsSO compsAndUnitsSO)
         {   
             if (_debugBool)
             Debug.Log($"vertical to set up " + parentIndex);
-            _verticalMangers[parentIndex]?.Initialize(_movingButtonHolder);
+            _verticalMangers[parentIndex]?.Initialize(_movingButtonHolder, compsAndUnitsSO);
             if (playerComp.ParentUnitClassList.Count > parentIndex)
             {
                 if (_debugBool)

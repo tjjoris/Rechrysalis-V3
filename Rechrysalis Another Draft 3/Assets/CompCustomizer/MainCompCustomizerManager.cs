@@ -34,7 +34,7 @@ namespace Rechrysalis.CompCustomizer
         {
             _compSO = _compsAndUnitsSO.CompsSO[0];
             _selectionInitialize.Initialize(_compCustomizerSO, _movingButtonHolder.transform, _compSO);
-            _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0], _movingButtonHolder);
+            _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0], _movingButtonHolder, _compsAndUnitsSO);
         }
         public void ContinueClicked()
         {
@@ -59,7 +59,11 @@ namespace Rechrysalis.CompCustomizer
                 Debug.Log($"button dropped into comp" + compUpgradeManager.GetUpgradeType());
             if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.SingleHeart)
             {
-                _compsAndUnitsSO.AddControllerHPTokens(compUpgradeManager.GetUpgradeTypeClass().GetControllerHeartUpgrade().HeartCount);
+                if (_compsAndUnitsSO.ControllerHPTokensCurrent < _compsAndUnitsSO.ControllerHPTokensMax)
+                {
+                    _compsAndUnitsSO.AddControllerHPTokens(compUpgradeManager.GetUpgradeTypeClass().GetControllerHeartUpgrade().HeartCount);
+                    Destroy(compUpgradeManager.gameObject);
+                }
             }
         }
     }
