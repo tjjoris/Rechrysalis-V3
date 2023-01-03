@@ -6,11 +6,11 @@ using UnityEngine.EventSystems;
 
 namespace Rechrysalis.CompCustomizer
 {
-    public class DropBackGround : MonoBehaviour, IDropHandler
+    public abstract class DropBackGround : MonoBehaviour, IDropHandler
     {
         private bool debugBool = false;
         [SerializeField] Transform _transformToDropUpgrade;
-        private CompsAndUnitsSO _compsAndUnitsSO;
+        protected CompsAndUnitsSO _compsAndUnitsSO;
         public Action<CompUpgradeManager> _buttonDropped;
 
         public void Initialize(CompsAndUnitsSO compsAndUnitsSO)
@@ -28,11 +28,9 @@ namespace Rechrysalis.CompCustomizer
                 DropUpgrade(compUpgradeManager);
             }
         }
-        private void DropUpgrade(CompUpgradeManager compUpgradeManager)
-        {
-            if ((compUpgradeManager.GetUpgradeType() != Unit.UpgradeTypeClass.UpgradeType.SingleHeart) || ((compUpgradeManager.GetUpgradeType() == Unit.UpgradeTypeClass.UpgradeType.SingleHeart) && (_compsAndUnitsSO.ControllerHPTokensCurrent < _compsAndUnitsSO.ControllerHPTokensMax)))
+        protected virtual void DropUpgrade(CompUpgradeManager compUpgradeManager)
+        {            
             compUpgradeManager.ParentAfterDrag = _transformToDropUpgrade.transform;
-            _buttonDropped?.Invoke(compUpgradeManager);
         }        
     }
 }
