@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _compUpgradeManagers: []
-  _verticalContainer: {fileID: 0}
+  _verticalContainer: {fileID: 5273430123089610198}
   _dropBackGround: {fileID: 8506109587864164356}
   _scrollRect: {fileID: 0}
   _parentUnitClass:

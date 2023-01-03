@@ -49,8 +49,11 @@ namespace Rechrysalis.Controller
         {
             for (int i = 0; i<count; i++)
             {
-                _controllerHPTokens[_tokenActiveIndex].SetActive(true);
-                _tokenActiveIndex ++;
+                if (_tokenActiveIndex <= _controllerHPTokens.Length)
+                {
+                    _controllerHPTokens[_tokenActiveIndex].SetActive(true);
+                    _tokenActiveIndex ++;
+                }
             }
             if (_tokenActiveIndex > _tokenMax)
             {

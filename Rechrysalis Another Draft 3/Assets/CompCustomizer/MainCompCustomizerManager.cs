@@ -36,7 +36,7 @@ namespace Rechrysalis.CompCustomizer
         {
             _compSO = _compsAndUnitsSO.CompsSO[0];
             _selectionInitialize.Initialize(_compCustomizerSO, _movingButtonHolder.transform, _compSO);
-            _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0], _movingButtonHolder, _compsAndUnitsSO);
+            _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0], _movingButtonHolder, _compsAndUnitsSO, _controllerHPTokens);
             _controllerHPTokens.Initialize(_compsAndUnitsSO);
         }
         public void ContinueClicked()

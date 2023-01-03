@@ -6,6 +6,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Rechrysalis.Unit;
+using Rechrysalis.Controller;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -14,6 +15,7 @@ namespace Rechrysalis.CompCustomizer
         bool debugBool = false;
         [SerializeField] private List<CompUpgradeManager> _compUpgradeManagers;
         [SerializeField] private Transform _verticalContainer;
+        public Transform VerticalContainer => _verticalContainer;
         [SerializeField] private DropBackGround _dropBackGround;
         [SerializeField] private ScrollRect _scrollRect;
         private Transform _movingButtonHolder;
@@ -31,7 +33,7 @@ namespace Rechrysalis.CompCustomizer
             if (_dropBackGround == null) return;
             _dropBackGround._buttonDropped -= DroppedIntoVertical;
         }
-        public void Initialize(Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO)
+        public void Initialize(Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens)
         {
 
             if (debugBool)
@@ -39,6 +41,8 @@ namespace Rechrysalis.CompCustomizer
             _scrollRect = GetComponent<ScrollRect>();
             _movingButtonHolder = movingButtonHolder;
             _dropBackGround.Initialize(compsAndUnitsSO);
+            DropComp dropComp =(DropComp) _dropBackGround;
+            if (dropComp != null) dropComp.ControllerHPTokens = controllerHPTokens;
         }
         private void DroppedIntoVertical(CompUpgradeManager compUpgradeManager)
         {

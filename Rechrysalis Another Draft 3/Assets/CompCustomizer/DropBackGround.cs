@@ -10,7 +10,7 @@ namespace Rechrysalis.CompCustomizer
     {
         private bool debugBool = false;
         [SerializeField] protected Transform _transformToDropUpgrade;
-        protected CompsAndUnitsSO _compsAndUnitsSO;
+        [SerializeField] protected CompsAndUnitsSO _compsAndUnitsSO;
         public Action<CompUpgradeManager> _buttonDropped;
 
         public void Initialize(CompsAndUnitsSO compsAndUnitsSO)
@@ -30,6 +30,7 @@ namespace Rechrysalis.CompCustomizer
         }
         protected virtual void DropUpgrade(CompUpgradeManager compUpgradeManager)
         {            
+            Debug.Log($"drop to transform ");
             compUpgradeManager.ParentAfterDrag = _transformToDropUpgrade.transform;
         }        
     }

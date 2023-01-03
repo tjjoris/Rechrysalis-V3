@@ -807,9 +807,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 452630625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28d193cedb026410cb9a755f61af97a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 1465ab0a0923047be8a44e1fa62d9dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transformToDropUpgrade: {fileID: 452630626}
+  _compsAndUnitsSO: {fileID: 0}
 --- !u!1 &614023069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,6 +2274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transformToDropUpgrade: {fileID: 452630626}
+  _compsAndUnitsSO: {fileID: 0}
 --- !u!1001 &2092751538
 PrefabInstance:
   m_ObjectHideFlags: 0

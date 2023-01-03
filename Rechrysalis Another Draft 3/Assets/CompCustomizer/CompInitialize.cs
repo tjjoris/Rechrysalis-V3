@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
 using System;
+using Rechrysalis.Controller
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -39,30 +40,31 @@ namespace Rechrysalis.CompCustomizer
                 }
             }
         }
-        public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO)
+        public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens)
         {
             _movingButtonHolder = movingButtonHolder;
             _playerComp = playerComp;
             _compCustomizerSO = compCustomizerSO;  
-            LoopVerticalsToSetUp(playerComp, movingButtonHolder, compsAndUnitsSO);
+            LoopVerticalsToSetUp(playerComp, movingButtonHolder, compsAndUnitsSO, controllerHPTokens);
         }
         private void DroppedIntoVertical(CompVerticalManager compVerticalManager, CompUpgradeManager compUpgradeManager)
         {
             _droppedIntoVertical?.Invoke(compVerticalManager, compUpgradeManager);
         }
-        private void LoopVerticalsToSetUp(CompSO playerComp, Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO)
+        private void LoopVerticalsToSetUp(CompSO playerComp, Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens)
         {
             for (int parentIndex = 0; parentIndex < 3; parentIndex ++)
             {
-                SetUpThisVertical(playerComp, parentIndex, compsAndUnitsSO);
+                SetUpThisVertical(playerComp, parentIndex, compsAndUnitsSO, controllerHPTokens);
 
             }
         }
-        private void SetUpThisVertical(CompSO playerComp, int parentIndex, CompsAndUnitsSO compsAndUnitsSO)
+        private void SetUpThisVertical(CompSO playerComp, int parentIndex, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens)
         {   
             if (_debugBool)
             Debug.Log($"vertical to set up " + parentIndex);
-            _verticalMangers[parentIndex]?.Initialize(_movingButtonHolder, compsAndUnitsSO);
+            _verticalMangers[parentIndex]?.Initialize(_movingButtonHolder, compsAndUnitsSO, controllerHPTokens);
+            _verticalMangers[parentIndex]?.VerticalContainer.GetComponent<DropBackGround>()?.Initialize(compsAndUnitsSO);
             if (playerComp.ParentUnitClassList.Count > parentIndex)
             {
                 if (_debugBool)
