@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529cbd40e58744708a017c1eb0e54365, type: 3}
   m_Name: 3Heart
   m_EditorClassIdentifier: 
-  _controllerHeartUpgraePrefab: {fileID: 0}
-  _upgradeType: 5
+  _controllerHeartUpgraePrefab: {fileID: 2850146690370097303, guid: b81caea9c4534459a9190012964f0f64, type: 3}
+  _upgradeTypeClass:
+    _upgradeType: 0
+    _unitStatsSO: {fileID: 0}
+    _hatchEffectSO: {fileID: 0}
+    _advUnitModifierSO: {fileID: 0}
   _heartCount: 3
   _cost: 100
