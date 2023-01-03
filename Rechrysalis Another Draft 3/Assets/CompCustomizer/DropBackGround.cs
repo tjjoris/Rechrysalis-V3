@@ -19,6 +19,7 @@ namespace Rechrysalis.CompCustomizer
             CompUpgradeManager compUpgradeManager = eventData.pointerDrag.GetComponent<CompUpgradeManager>();
             if (compUpgradeManager != null)
             {
+                Debug.Log($"the button is " + compUpgradeManager.GetUpgradeTypeClass().GetUpgradeType());
                 DropUpgrade(compUpgradeManager);
             }
         }

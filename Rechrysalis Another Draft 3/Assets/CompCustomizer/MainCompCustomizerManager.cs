@@ -55,7 +55,7 @@ namespace Rechrysalis.CompCustomizer
         }
         private void ButtonDroppedIntoComp(CompVerticalManager compVerticalManager)        
         {
-
+            Debug.Log($"button dropped into comp");
         }
     }
 }

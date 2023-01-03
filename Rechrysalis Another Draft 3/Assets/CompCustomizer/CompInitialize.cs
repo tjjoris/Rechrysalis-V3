@@ -24,7 +24,7 @@ namespace Rechrysalis.CompCustomizer
             foreach(CompVerticalManager vertical in _verticalMangers)
             {
                 if (vertical != null)
-                {
+                {                    
                     vertical._vertcialDropped -= DroppedIntoVertical;
                     vertical._vertcialDropped += DroppedIntoVertical;
                 }
