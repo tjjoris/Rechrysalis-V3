@@ -7,7 +7,7 @@ namespace Rechrysalis.Controller
 {
     public class ControllerDeathGameOver : MonoBehaviour
     {
-        public void TakeDamage (float _currentHP)
+        public void GameOver (float _currentHP)
         {
             if (_currentHP <= 0)
             {

@@ -32,6 +32,10 @@ namespace Rechrysalis.CompCustomizer
             {
                 DisplayForAdvUnit(upgradeTypeClass.GetAdvUnitModifierSO());
             }
+            else if (upgradeTypeClass.GetUpgradeType() == UpgradeTypeClass.UpgradeType.SingleHeart)
+            {
+                DisplayForHeart(upgradeTypeClass.GetControllerHeartUpgrade());
+            }
         }
         public void DisplayForUnit(UnitStatsSO unitStatsSO)
         {
@@ -45,6 +49,11 @@ namespace Rechrysalis.CompCustomizer
         public void DisplayForAdvUnit(AdvUnitModifierSO advUnitModifierSO)
         {
             _nameText.text = advUnitModifierSO.UpgradeName;
+        }
+        public void DisplayForHeart(ControllerHeartUpgrade controllerHeartUpgrade)
+        {
+            _body.sprite = controllerHeartUpgrade.Image;
+            _nameText.text = controllerHeartUpgrade.HeartName;
         }
     }
 }

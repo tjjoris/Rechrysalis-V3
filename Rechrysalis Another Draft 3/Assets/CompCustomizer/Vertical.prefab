@@ -55,7 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _compUpgradeManagers: []
   _verticalContainer: {fileID: 2523554113126362237}
-  _DropBackGround: {fileID: 7067769351223876071}
+  _dropBackGround: {fileID: 8506109587864164356}
   _scrollRect: {fileID: 0}
   _parentUnitClass:
     _advancedUpgradesUTCList: []
@@ -64,28 +64,47 @@ MonoBehaviour:
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
     _utcHatchEffect:
       _upgradeType: 0
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
-    _manaCost: 0
-    _hpMaxBasic: 0
-    _hpMaxAdvanced: 0
-    _buildTimeBasic: 0
-    _buildTimeAdv: 0
-    _rangeBasic: 0
-    _rangeAdv: 0
-    _dpsBasic: 0
-    _dpsAdv: 0
-    _attackChargeUpBasic: 0
-    _attackChargeUpAdv: 0
-    _attackWindDownBasic: 0
-    _attackWindDownAdv: 0
-    _damageBasic: 0
-    _damageAdv: 0
-    _hatchEffectPrefab: {fileID: 0}
-    _hatchEffectMult: 0
+      _controllerHeartUpgrade: {fileID: 0}
+    _basicUnitClass:
+      _manaCost: 0
+      _unitName: 
+      _hpMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectMult: 0
+      _unitSprite: {fileID: 0}
+      _chrysalisSprite: {fileID: 0}
+      _amountToPool: 0
+      _projectileSpeed: 0
+      _projectileSprite: {fileID: 0}
+    _advUnitClass:
+      _manaCost: 0
+      _unitName: 
+      _hpMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectMult: 0
+      _unitSprite: {fileID: 0}
+      _chrysalisSprite: {fileID: 0}
+      _amountToPool: 0
+      _projectileSpeed: 0
+      _projectileSprite: {fileID: 0}
 --- !u!114 &1391453581986412399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +160,7 @@ GameObject:
   - component: {fileID: 8192336197301742347}
   - component: {fileID: 7704949143628429869}
   - component: {fileID: 7523914785411803484}
-  - component: {fileID: 7067769351223876071}
+  - component: {fileID: 8506109587864164356}
   m_Layer: 5
   m_Name: BackGround
   m_TagString: Untagged
@@ -207,7 +226,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7067769351223876071
+--- !u!114 &8506109587864164356
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,7 +235,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7221717942666155244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28d193cedb026410cb9a755f61af97a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 57791429ac68c4658be6b3414c264f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _transformToDropUpgrade: {fileID: 5273430123089610198}

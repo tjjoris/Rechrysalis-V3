@@ -14,6 +14,7 @@ namespace Rechrysalis.CompCustomizer
         private int _upgradeBasicSelectionCount;
         private int _upgradeT1SelectionCount;
         private int _upgradeHatchEffectCount;
+        private int _upgradeHeartsCount;
         private RandomUpgradeSelection _randomUpgradeSelection;
         
         
@@ -24,6 +25,7 @@ namespace Rechrysalis.CompCustomizer
             _upgradeBasicSelectionCount = _compCustomizerSO.BasicUnitArray.Length;
             _upgradeT1SelectionCount = _compCustomizerSO.AdvancedUnitSelectionT1Array.Length;
             _upgradeHatchEffectCount = _compCustomizerSO.HatchEffectSelectionArray.Length;
+            _upgradeHeartsCount = _compCustomizerSO.ControllerHeartUpgrades.Length;
         }
         public UpgradeTypeClass GetUpgradeTypeClassFromIndex(int index)
         {
@@ -37,8 +39,12 @@ namespace Rechrysalis.CompCustomizer
             {
                 return _compCustomizerSO.AdvancedUnitSelectionT1Array[index - _upgradeBasicSelectionCount].UpgradeTypeClass;
             }
-            else {
+            else if (index < (_upgradeBasicSelectionCount + _upgradeT1SelectionCount + _upgradeHatchEffectCount)) {
                 return _compCustomizerSO.HatchEffectSelectionArray[index - _upgradeBasicSelectionCount - _upgradeT1SelectionCount].UpgradeTypeClass;
+            }
+            else 
+            {
+                return _compCustomizerSO.ControllerHeartUpgrades[index - _upgradeBasicSelectionCount - _upgradeT1SelectionCount - _upgradeHatchEffectCount].UpgradeTypeClass;
             }
         }
     }

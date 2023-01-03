@@ -16,26 +16,53 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private List<CompVerticalManager> _verticalMangers;
         public List<CompVerticalManager> VerticalManagers => _verticalMangers;
         [SerializeField] private ShowCompErrorText _showCompErrorText;
-        public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, Transform movingButtonHolder)
+        public Action<CompVerticalManager, CompUpgradeManager> _droppedIntoVertical;
+        
+        private void OnEnable()
+        {
+            foreach(CompVerticalManager vertical in _verticalMangers)
+            {
+                if (vertical != null)
+                {                    
+                    vertical._vertcialDropped -= DroppedIntoVertical;
+                    vertical._vertcialDropped += DroppedIntoVertical;
+                }
+            }
+        }
+        private void OnDisable()
+        {
+            foreach (CompVerticalManager vertical in _verticalMangers)
+            {
+                if (vertical != null)
+                {
+                    vertical._vertcialDropped -= DroppedIntoVertical;
+                }
+            }
+        }
+        public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO)
         {
             _movingButtonHolder = movingButtonHolder;
             _playerComp = playerComp;
             _compCustomizerSO = compCustomizerSO;  
-            LoopVerticalsToSetUp(playerComp, movingButtonHolder);
+            LoopVerticalsToSetUp(playerComp, movingButtonHolder, compsAndUnitsSO);
         }
-        private void LoopVerticalsToSetUp(CompSO playerComp, Transform movingButtonHolder)
+        private void DroppedIntoVertical(CompVerticalManager compVerticalManager, CompUpgradeManager compUpgradeManager)
+        {
+            _droppedIntoVertical?.Invoke(compVerticalManager, compUpgradeManager);
+        }
+        private void LoopVerticalsToSetUp(CompSO playerComp, Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO)
         {
             for (int parentIndex = 0; parentIndex < 3; parentIndex ++)
             {
-                SetUpThisVertical(playerComp, parentIndex);
+                SetUpThisVertical(playerComp, parentIndex, compsAndUnitsSO);
 
             }
         }
-        private void SetUpThisVertical(CompSO playerComp, int parentIndex)
+        private void SetUpThisVertical(CompSO playerComp, int parentIndex, CompsAndUnitsSO compsAndUnitsSO)
         {   
             if (_debugBool)
             Debug.Log($"vertical to set up " + parentIndex);
-            _verticalMangers[parentIndex]?.Initialize(_movingButtonHolder);
+            _verticalMangers[parentIndex]?.Initialize(_movingButtonHolder, compsAndUnitsSO);
             if (playerComp.ParentUnitClassList.Count > parentIndex)
             {
                 if (_debugBool)

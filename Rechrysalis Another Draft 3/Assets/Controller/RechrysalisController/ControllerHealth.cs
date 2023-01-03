@@ -14,26 +14,36 @@ namespace Rechrysalis.Controller
         [SerializeField] private float _healthMax;
         [SerializeField] private float _healthCurrent;
         [SerializeField] private ControllerHPBar _controllerHPBar;
-        private ControllerDeathGameOver _controllerDeathGameOver;
+        [SerializeField] private ControllerHPTokens _controllerHPTokens;
+        // private ControllerDeathGameOver _controllerDeathGameOver;
         private GameObject[] _parentUnits;
         private List<GameObject> _allUnits;
         public Action _controllerTakesDamageAction;
 
-        public void Initialize(float _healthMax, List<GameObject> _allUnits)
+        public void Initialize(float _healthMax, List<GameObject> _allUnits, CompsAndUnitsSO compsAndUnitsSO)
         {
             this._healthMax = _healthMax;
             _healthCurrent = _healthMax;
             this._allUnits = _allUnits;
             _controllerHPBar?.Initialize(_healthMax);
-            _controllerDeathGameOver = GetComponent<ControllerDeathGameOver>();
+            // _controllerDeathGameOver = GetComponent<ControllerDeathGameOver>();
             SubscribeToControllerDamage();
+            _controllerHPTokens.Initialize(compsAndUnitsSO);
         }
         public void TakeDamage(float _damageAmount)
         {
             _healthCurrent -= _damageAmount;
+            CheckIfHealthZero();
             _controllerHPBar?.ChangeHPBar(_healthCurrent);
-            _controllerTakesDamageAction?.Invoke();
-            _controllerDeathGameOver?.TakeDamage(_healthCurrent);
+            _controllerTakesDamageAction?.Invoke();            
+        }
+        private void CheckIfHealthZero()
+        {
+            if (_healthCurrent <= 0)
+            {
+                _controllerHPTokens.RemoveToken();
+                _healthCurrent = _healthMax;
+            }            
         }
         public void SubscribeToControllerDamage()        
         {            

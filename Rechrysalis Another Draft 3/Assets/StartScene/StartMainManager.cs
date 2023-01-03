@@ -18,6 +18,7 @@ namespace Rechrysalis
         {
             _compsAndUnits.Level = 0;
             _compsAndUnits.CompsSO[0].ParentUnitClassList.Clear();
+            _compsAndUnits.ControllerHPTokensCurrent = _compsAndUnits.ControllerHPTokensMax;
             // _compsAndUnits.CompsSO[0].ParentUnitClassList = new List<ParentUnitClass>();
             SceneManager.LoadScene("CompCustomizer");
         }
