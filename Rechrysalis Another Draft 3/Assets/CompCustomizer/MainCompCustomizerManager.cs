@@ -53,9 +53,14 @@ namespace Rechrysalis.CompCustomizer
             _compSO.ParentUnitClassList.Add(_compInitialize.VerticalManagers[i].GetParentUnitClass());
             }
         }
-        private void ButtonDroppedIntoComp(CompVerticalManager compVerticalManager)        
+        private void ButtonDroppedIntoComp(CompVerticalManager compVerticalManager, CompUpgradeManager compUpgradeManager)        
         {
-            Debug.Log($"button dropped into comp");
+            if (_debugBool)
+                Debug.Log($"button dropped into comp" + compUpgradeManager.GetUpgradeType());
+            if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.SingleHeart)
+            {
+                _compsAndUnitsSO.AddControllerHPTokens(compUpgradeManager.GetUpgradeTypeClass().GetControllerHeartUpgrade().HeartCount);
+            }
         }
     }
 }

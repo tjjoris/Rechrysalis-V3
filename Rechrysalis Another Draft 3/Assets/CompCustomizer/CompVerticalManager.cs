@@ -18,7 +18,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private ScrollRect _scrollRect;
         private Transform _movingButtonHolder;
         [SerializeField] private ParentUnitClass _parentUnitClass;
-        public Action<CompVerticalManager> _vertcialDropped;
+        public Action<CompVerticalManager, CompUpgradeManager> _vertcialDropped;
         
         private void OnEnable()
         {
@@ -39,10 +39,10 @@ namespace Rechrysalis.CompCustomizer
             _scrollRect = GetComponent<ScrollRect>();
             _movingButtonHolder = movingButtonHolder;
         }
-        private void DroppedIntoVertical()
+        private void DroppedIntoVertical(CompUpgradeManager compUpgradeManager)
         {
-            Debug.Log($"dropped into vertical for comp vertical manager");
-            _vertcialDropped?.Invoke(this);
+            if (debugBool) Debug.Log($"dropped into vertical for comp vertical manager");
+            _vertcialDropped?.Invoke(this, compUpgradeManager);
         }
         public void CreateAndSetUpCompButtons(ParentUnitClass parentUnitClass, GameObject compButtonPrefab)
         {

@@ -10,7 +10,7 @@ namespace Rechrysalis.CompCustomizer
     {
         private bool debugBool = false;
         [SerializeField] Transform _transformToDropUpgrade;
-        public Action _buttonDropped;
+        public Action<CompUpgradeManager> _buttonDropped;
 
         public void OnDrop(PointerEventData eventData)
         {
@@ -19,14 +19,14 @@ namespace Rechrysalis.CompCustomizer
             CompUpgradeManager compUpgradeManager = eventData.pointerDrag.GetComponent<CompUpgradeManager>();
             if (compUpgradeManager != null)
             {
-                Debug.Log($"the button is " + compUpgradeManager.GetUpgradeTypeClass().GetUpgradeType());
+                if (debugBool)  Debug.Log($"the button is " + compUpgradeManager.GetUpgradeTypeClass().GetUpgradeType());
                 DropUpgrade(compUpgradeManager);
             }
         }
         private void DropUpgrade(CompUpgradeManager compUpgradeManager)
         {
             compUpgradeManager.ParentAfterDrag = _transformToDropUpgrade.transform;
-            _buttonDropped?.Invoke();
+            _buttonDropped?.Invoke(compUpgradeManager);
         }        
     }
 }

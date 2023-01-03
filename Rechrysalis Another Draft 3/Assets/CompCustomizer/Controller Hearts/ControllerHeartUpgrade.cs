@@ -21,5 +21,6 @@ namespace Rechrysalis.CompCustomizer
         public float Cost => _cost;
         [SerializeField] private string _heartName;
         public string HeartName => _heartName;
+
     }
 }

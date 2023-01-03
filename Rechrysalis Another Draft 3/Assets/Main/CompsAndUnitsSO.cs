@@ -44,5 +44,13 @@ namespace Rechrysalis
                         this._controllerManagers = new ControllerManager[_compSO.Length];
 
         }        
+        public void AddControllerHPTokens(int tokensToAdd)
+        {
+            _controllerHPTokensCurrent += tokensToAdd;
+            if (_controllerHPTokensCurrent > _controllerHPTokensMax)
+            {
+                _controllerHPTokensCurrent = _controllerHPTokensMax;
+            }
+        }
     }
 }
