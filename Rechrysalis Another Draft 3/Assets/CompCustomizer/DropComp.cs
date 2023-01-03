@@ -23,6 +23,7 @@ namespace Rechrysalis.CompCustomizer
                 Debug.Log($"add heart");
                 _controllerHPTokens.AddTokens(compUpgradeManager.GetUpgradeTypeClass().GetControllerHeartUpgrade().HeartCount);
                 base.DropUpgrade(compUpgradeManager);
+                Destroy(compUpgradeManager.gameObject);
             }
         }
     }
