@@ -76,6 +76,7 @@ namespace Rechrysalis.Controller
                         Vector3 _newUnitPos = _freeUnitCompSO.WaveLayout.GetUnitPosInWave(_unitInWaveIndex);
                         _newUnitPos.y = _newUnitPos.y + _enemyController.gameObject.transform.position.y;
                         GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
+                        newFreeEnemy.transform.Rotate(new Vector3(0, 0, 180f));
                         _playerUnitsSO.ParentUnits.Add(newFreeEnemy);
                         newFreeEnemy.name = _unitStats.name + " " + _unitInWaveIndex.ToString();
                         newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(_enemyController);

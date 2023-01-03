@@ -26,7 +26,7 @@ namespace Rechrysalis.Movement
                 Vector2 _direction = gameObject.transform.position - _targetHolder.Target.transform.position;
                 if ((Mathf.Abs(_direction.magnitude)) < (_range.GetRange() - 0.5f))
                 {
-                    Debug.Log($"retreat");
+                    // Debug.Log($"retreat");
                     _mover.SetDirection(Vector2.up);
                     _retreating = true;
                 }
