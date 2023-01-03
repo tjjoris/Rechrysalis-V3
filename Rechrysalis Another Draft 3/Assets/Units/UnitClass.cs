@@ -45,10 +45,6 @@ namespace Rechrysalis.Unit
         
         
         
-        public void InitializeFromUnitStatsSO(UnitStatsSO unitStatsSO)
-        {
-            
-        }
         public void CalculateDamge()
         {
             _damage = _dps * (_attackChargeUp + _attackWindDown);
