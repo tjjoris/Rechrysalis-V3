@@ -6,6 +6,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Rechrysalis.Unit;
+using Rechrysalis.Controller;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -13,25 +14,26 @@ namespace Rechrysalis.CompCustomizer
     {
         bool debugBool = false;
         [SerializeField] private List<CompUpgradeManager> _compUpgradeManagers;
-        [SerializeField] private VerticalContainer _verticalContainer;
+        [SerializeField] private Transform _verticalContainer;
+        public Transform VerticalContainer => _verticalContainer;
         [SerializeField] private DropBackGround _dropBackGround;
         [SerializeField] private ScrollRect _scrollRect;
         private Transform _movingButtonHolder;
         [SerializeField] private ParentUnitClass _parentUnitClass;
-        public Action<CompVerticalManager, CompUpgradeManager> _vertcialDropped;
+        // public Action<CompVerticalManager, CompUpgradeManager> _vertcialDropped;
         
-        private void OnEnable()
-        {
-            if (_dropBackGround == null) return;
-            _dropBackGround._buttonDropped -= DroppedIntoVertical;
-            _dropBackGround._buttonDropped += DroppedIntoVertical;
-        }
-        private void OnDisable()
-        {
-            if (_dropBackGround == null) return;
-            _dropBackGround._buttonDropped -= DroppedIntoVertical;
-        }
-        public void Initialize(Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO)
+        // private void OnEnable()
+        // {
+        //     if (_dropBackGround == null) return;
+        //     _dropBackGround._buttonDropped -= DroppedIntoVertical;
+        //     _dropBackGround._buttonDropped += DroppedIntoVertical;
+        // }
+        // private void OnDisable()
+        // {
+        //     if (_dropBackGround == null) return;
+        //     _dropBackGround._buttonDropped -= DroppedIntoVertical;
+        // }
+        public void Initialize(Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens)
         {
 
             if (debugBool)
@@ -39,12 +41,16 @@ namespace Rechrysalis.CompCustomizer
             _scrollRect = GetComponent<ScrollRect>();
             _movingButtonHolder = movingButtonHolder;
             _dropBackGround.Initialize(compsAndUnitsSO);
+            DropComp dropComp =(DropComp) _dropBackGround;
+            if (dropComp != null) dropComp.ControllerHPTokens = controllerHPTokens;
+            if ((_verticalContainer != null) && (_verticalContainer.GetComponent<DropComp>() != null))
+            _verticalContainer.GetComponent<DropComp>().ControllerHPTokens = controllerHPTokens;
         }
-        private void DroppedIntoVertical(CompUpgradeManager compUpgradeManager)
-        {
-            if (debugBool) Debug.Log($"dropped into vertical for comp vertical manager");
-            _vertcialDropped?.Invoke(this, compUpgradeManager);
-        }
+        // private void DroppedIntoVertical(CompUpgradeManager compUpgradeManager)
+        // {
+        //     if (debugBool) Debug.Log($"dropped into vertical for comp vertical manager");
+        //     // _vertcialDropped?.Invoke(this, compUpgradeManager);
+        // }
         public void CreateAndSetUpCompButtons(ParentUnitClass parentUnitClass, GameObject compButtonPrefab)
         {
             CreateCompButton(compButtonPrefab, parentUnitClass.UTCBasicUnit);
@@ -62,7 +68,7 @@ namespace Rechrysalis.CompCustomizer
             if ((upgradeTypeClass != null) && (upgradeTypeClass.GetUpgradeType() != UpgradeTypeClass.UpgradeType.Error))
             {
                 // Debug.Log($"creating utc "+ upgradeTypeClass.GetUnitStatsSO().UnitName);
-                GameObject compButtonCreated = Instantiate(compButtonPrefab, _verticalContainer.transform);
+                GameObject compButtonCreated = Instantiate(compButtonPrefab, _verticalContainer);
                 CompUpgradeManager compUpgradeManager = compButtonCreated.GetComponent<CompUpgradeManager>();
                 compUpgradeManager?.Initialize(_movingButtonHolder);
                 compUpgradeManager?.SetUpgradeTypeClass(upgradeTypeClass);
@@ -80,7 +86,7 @@ namespace Rechrysalis.CompCustomizer
         public int GetNumberOfBasic()
         {
             int numberOfBasic = 0;
-            foreach (Transform upgradeTransform in _verticalContainer.transform)
+            foreach (Transform upgradeTransform in _verticalContainer)
             {
                 CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
                 if (compUpgradeManager!= null)
@@ -96,7 +102,7 @@ namespace Rechrysalis.CompCustomizer
         public int GetNumberOfHatchEffects()
         {
             int numberOfHatchEffects = 0;
-            foreach (Transform upgradeTransform in _verticalContainer.transform)
+            foreach (Transform upgradeTransform in _verticalContainer)
             {
                 CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
                 if (compUpgradeManager != null)
@@ -110,7 +116,7 @@ namespace Rechrysalis.CompCustomizer
         public bool IsAtLeastOneAdvUpgrade()
         {
             int numberOfAdvUpgrades = 0;
-            foreach (Transform upgradeTransform in _verticalContainer.transform)
+            foreach (Transform upgradeTransform in _verticalContainer)
             {
                 CompUpgradeManager compUpgradeManager = upgradeTransform.GetComponent<CompUpgradeManager>();
                 if (compUpgradeManager != null)

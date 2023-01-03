@@ -45,11 +45,11 @@ namespace Rechrysalis.Unit
             {
                 damageToTake *= _chrysalisDefenceMult;
                 _enemyControllerHeal?.Invoke(_damage * _enemyControllerHealMult);
+                _controllerTakeDamage?.Invoke(damageToTake);
             }
             _currentHealth -= damageToTake;
             if (debugBool) Debug.Log($"take damage " + damageToTake);
             UpdateHpBar();
-            _controllerTakeDamage?.Invoke(damageToTake);
             GetComponent<ParentUnitHatchEffects>()?.TakeDamage(_damage);
             CheckIfDead();
         }

@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _compUpgradeManagers: []
-  _verticalContainer: {fileID: 2523554113126362237}
+  _verticalContainer: {fileID: 5273430123089610198}
   _dropBackGround: {fileID: 8506109587864164356}
   _scrollRect: {fileID: 0}
   _parentUnitClass:
@@ -251,8 +251,8 @@ GameObject:
   - component: {fileID: 6149964344963588593}
   - component: {fileID: 8887359539613432463}
   - component: {fileID: 8845566102947111308}
-  - component: {fileID: 2523554113126362237}
   - component: {fileID: 6365158185765351856}
+  - component: {fileID: 2518985821757069683}
   m_Layer: 5
   m_Name: Vertical Container
   m_TagString: Untagged
@@ -344,18 +344,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &2523554113126362237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7324903687312919787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4351452ad4b464bce92c0ea3c781ddac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6365158185765351856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,3 +358,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &2518985821757069683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324903687312919787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57791429ac68c4658be6b3414c264f2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transformToDropUpgrade: {fileID: 5273430123089610198}
