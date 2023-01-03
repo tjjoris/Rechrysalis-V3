@@ -28,9 +28,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 75fc5b7c7c95243d3a3d41c9f9c2e8dc, type: 2}
   - {fileID: 11400000, guid: 75fc5b7c7c95243d3a3d41c9f9c2e8dc, type: 2}
   - {fileID: 11400000, guid: 75fc5b7c7c95243d3a3d41c9f9c2e8dc, type: 2}
-  - {fileID: 11400000, guid: 75fc5b7c7c95243d3a3d41c9f9c2e8dc, type: 2}
-  - {fileID: 11400000, guid: 75fc5b7c7c95243d3a3d41c9f9c2e8dc, type: 2}
-  - {fileID: 11400000, guid: 75fc5b7c7c95243d3a3d41c9f9c2e8dc, type: 2}
+  - {fileID: 11400000, guid: 6dc60c3f3e31a439caed0fc1ab4d2112, type: 2}
+  - {fileID: 11400000, guid: 6dc60c3f3e31a439caed0fc1ab4d2112, type: 2}
   _hatchEffectSelectionArray:
   - {fileID: 11400000, guid: c2ac6c8fc40424eda843552f46aadd13, type: 2}
   - {fileID: 11400000, guid: 6c896d1b493b94e7295bd62c25518d7c, type: 2}

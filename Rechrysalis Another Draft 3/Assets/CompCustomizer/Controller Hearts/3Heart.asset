@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: 3Heart
   m_EditorClassIdentifier: 
   _controllerHeartUpgraePrefab: {fileID: 2850146690370097303, guid: b81caea9c4534459a9190012964f0f64, type: 3}
+  _image: {fileID: 21300000, guid: 86091d084fde141ccb679fbce0b7ab0e, type: 3}
   _upgradeTypeClass:
-    _upgradeType: 0
+    _upgradeType: 4
     _unitStatsSO: {fileID: 0}
     _hatchEffectSO: {fileID: 0}
     _advUnitModifierSO: {fileID: 0}
+    _controllerHeartUpgrade: {fileID: 11400000}
   _heartCount: 3
   _cost: 100
+  _heartName: 

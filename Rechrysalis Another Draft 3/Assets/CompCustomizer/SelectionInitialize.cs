@@ -15,7 +15,7 @@ namespace Rechrysalis.CompCustomizer
         public CompCustomizerSO CompCustomizerSO { get{ return _compCustomizerSO; } set{ _compCustomizerSO = value; } }
         [SerializeField] private GameObject _upgradeButtonPrefab;
         private Transform _movingButtonHolder;
-        private int _numberOfUpgrades = 3;
+        private int _numberOfUpgrades = 4;
         [SerializeField] private int[] _upgradeButtonIndex;
         private SelectionIndexToSelection _selectionIndexToSelection;
         private int _upgradeSelectionCount;
