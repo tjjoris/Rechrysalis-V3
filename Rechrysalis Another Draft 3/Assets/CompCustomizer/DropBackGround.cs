@@ -9,7 +9,7 @@ namespace Rechrysalis.CompCustomizer
     public abstract class DropBackGround : MonoBehaviour, IDropHandler
     {
         private bool debugBool = false;
-        [SerializeField] Transform _transformToDropUpgrade;
+        [SerializeField] protected Transform _transformToDropUpgrade;
         protected CompsAndUnitsSO _compsAndUnitsSO;
         public Action<CompUpgradeManager> _buttonDropped;
 

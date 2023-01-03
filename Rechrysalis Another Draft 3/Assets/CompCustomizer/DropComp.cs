@@ -11,8 +11,11 @@ namespace Rechrysalis.CompCustomizer
         {
             // base.DropUpgrade(compUpgradeManager);
             if ((compUpgradeManager.GetUpgradeType() != Unit.UpgradeTypeClass.UpgradeType.SingleHeart) || ((compUpgradeManager.GetUpgradeType() == Unit.UpgradeTypeClass.UpgradeType.SingleHeart) && (_compsAndUnitsSO.ControllerHPTokensCurrent < _compsAndUnitsSO.ControllerHPTokensMax)))
+            {
                 base.DropUpgrade(compUpgradeManager);
+                // compUpgradeManager.ParentAfterDrag = _transformToDropUpgrade.transform;
                 _buttonDropped?.Invoke(compUpgradeManager);
+            }
         }
     }
 }
