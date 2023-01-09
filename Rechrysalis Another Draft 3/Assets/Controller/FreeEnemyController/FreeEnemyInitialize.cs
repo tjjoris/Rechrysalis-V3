@@ -72,8 +72,8 @@ namespace Rechrysalis.Controller
                     UnitStatsSO _unitStats = _wave.UnitInWave[_unitInWaveIndex];
                     if (_unitStats != null)
                     {
-                        _compSO.ParentUnitClassList.Add(new ParentUnitClass());
-                        ParentUnitClass parentUnitClass = _compSO.ParentUnitClassList[_compSO.ParentUnitClassList.Count];
+                        _wave.ParentUnitClasses.Add(new ParentUnitClass());
+                        ParentUnitClass parentUnitClass = _wave.ParentUnitClasses[_compSO.ParentUnitClassList.Count - 1];
                         parentUnitClass.SetUTCBasicUnit(_unitStats.UpgradeTypeClass);
                         parentUnitClass.SetAllStats();
                         // Vector3 _newUnitPos = _freeEnemyCompLayout.UnitPos[0, _unitInWaveIndex];
