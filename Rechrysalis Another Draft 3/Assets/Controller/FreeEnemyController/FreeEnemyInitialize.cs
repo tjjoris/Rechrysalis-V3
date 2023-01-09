@@ -72,6 +72,10 @@ namespace Rechrysalis.Controller
                     UnitStatsSO _unitStats = _wave.UnitInWave[_unitInWaveIndex];
                     if (_unitStats != null)
                     {
+                        _compSO.ParentUnitClassList.Add(new ParentUnitClass());
+                        ParentUnitClass parentUnitClass = _compSO.ParentUnitClassList[_compSO.ParentUnitClassList.Count];
+                        parentUnitClass.SetUTCBasicUnit(_unitStats.UpgradeTypeClass);
+                        parentUnitClass.SetAllStats();
                         // Vector3 _newUnitPos = _freeEnemyCompLayout.UnitPos[0, _unitInWaveIndex];
                         Vector3 _newUnitPos = _freeUnitCompSO.WaveLayout.GetUnitPosInWave(_unitInWaveIndex);
                         _newUnitPos.y = _newUnitPos.y + _enemyController.gameObject.transform.position.y;
@@ -84,6 +88,7 @@ namespace Rechrysalis.Controller
                         // newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);                    
                         ParentFreeEnemyManager _freeParentManager = newFreeEnemy.GetComponent<ParentFreeEnemyManager>();
                         _freeParentManager?.InitializeOld(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, _playerUnitsSO);                        
+                        _freeParentManager?.Initialize(parentUnitClass.BasicUnitClass, _unitInWaveIndex, _compsAndUnits);
                         newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(_unitStats.HealthMaxBasic);
                         newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerIndex);
                         _playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
