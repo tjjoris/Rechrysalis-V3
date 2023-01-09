@@ -67,15 +67,20 @@ namespace Rechrysalis.Controller
             {
                 _controllerFreeHatch?.InitializeUnitsArray(_wave.UnitInWave.Length);
                 // for (int i = 0; i < _compSO.UnitSOArray.Length; i++)
+                _wave.ParentUnitClasses = new List<ParentUnitClass>();
+                _wave.ParentUnitClasses.Clear();
                 for (int _unitInWaveIndex = 0; _unitInWaveIndex < _freeUnitCompSO.Waves[_waveIndex].UnitInWave.Length; _unitInWaveIndex++)
                 {
                     UnitStatsSO _unitStats = _wave.UnitInWave[_unitInWaveIndex];
                     if (_unitStats != null)
                     {
-                        _wave.ParentUnitClasses.Add(new ParentUnitClass());
-                        ParentUnitClass parentUnitClass = _wave.ParentUnitClasses[_compSO.ParentUnitClassList.Count - 1];
+                        ParentUnitClass parentUnitClass = new ParentUnitClass(); 
+                        parentUnitClass.ClearAllUpgrades();
                         parentUnitClass.SetUTCBasicUnit(_unitStats.UpgradeTypeClass);
                         parentUnitClass.SetAllStats();
+                        _wave.ParentUnitClasses.Add(parentUnitClass);                        
+                        // ParentUnitClass parentUnitClass = _wave.ParentUnitClasses[_compSO.ParentUnitClassList.Count - 1];
+
                         // Vector3 _newUnitPos = _freeEnemyCompLayout.UnitPos[0, _unitInWaveIndex];
                         Vector3 _newUnitPos = _freeUnitCompSO.WaveLayout.GetUnitPosInWave(_unitInWaveIndex);
                         _newUnitPos.y = _newUnitPos.y + _enemyController.gameObject.transform.position.y;
