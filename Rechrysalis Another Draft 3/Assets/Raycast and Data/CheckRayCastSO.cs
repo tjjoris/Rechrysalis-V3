@@ -168,7 +168,7 @@ namespace Rechrysalis.Controller
                     // Debug.Log($"hit " + hit.collider.name);
                     // _hilightRingManager.ResetToOldAngle();
                 } 
-                else if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
+                // else if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
                 {
                     // Debug.Log($"mouse pos " + _mousePos + " controller " + _controller.transform.position);
                     // Debug.Log($"calculated angel " + Mathf.Atan2(_mousePos.y - _controller.transform.position.y, _mousePos.x - _controller.transform.position.x) * Mathf.Rad2Deg);
@@ -213,11 +213,11 @@ namespace Rechrysalis.Controller
                     _controllerManager.ActivateChrysalis(_unitUpgrading, 1);
                     }
                 }
-                else 
-                {
-                    // int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
-                    // _controllerManager.ReserveChrysalis(_unitUpgrading, _unitToUpgradeTo);
-                }
+                // else 
+                // {
+                //     // int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
+                //     // _controllerManager.ReserveChrysalis(_unitUpgrading, _unitToUpgradeTo);
+                // }
                 _upgradeRingManager.SetActiveUpgradeRing(-1);
                 _controllerManager.ShowUnitText();
             }

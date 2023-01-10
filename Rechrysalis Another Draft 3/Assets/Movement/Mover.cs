@@ -9,6 +9,7 @@ namespace Rechrysalis.Movement
 {
     public class Mover : MonoBehaviour
     {
+        private bool _debugBool = false;
         [SerializeField] int _controllerIndex;
         [SerializeField] private GameObject _backG;
         [SerializeField] private float _minX;
@@ -90,6 +91,7 @@ namespace Rechrysalis.Movement
             ySpeedMult *= Mathf.Abs(_retreatSpeedMult);
             ySpeedMult -= (_retreatSpeedMult * 0.5f);
             ySpeedMult += 1f;
+            if (_debugBool)
             Debug.Log($"y speed mult" + ySpeedMult);
             return ySpeedMult;
         }

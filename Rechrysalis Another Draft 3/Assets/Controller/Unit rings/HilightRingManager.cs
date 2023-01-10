@@ -26,7 +26,7 @@ namespace Rechrysalis.Controller
         {
             _unitRingOldAngle = _unitRingManager.UnitRingAngle;
             this._oldAngle = AnglesMath.LimitAngle(_mouseAngle - 90 - _unitRingOldAngle);
-            transform.eulerAngles = new Vector3 (0, 0, _unitRingOldAngle);
+            // transform.eulerAngles = new Vector3 (0, 0, _unitRingOldAngle);
             
         }
         public void ResetToOldAngle()
