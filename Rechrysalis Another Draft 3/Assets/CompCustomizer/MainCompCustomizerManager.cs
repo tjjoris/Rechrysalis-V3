@@ -45,7 +45,10 @@ namespace Rechrysalis.CompCustomizer
             {
                 Debug.Log($"continue");
                 SetComp();
+                // if (_compsAndUnitsSO.Level < _compsAndUnitsSO.Levels.Length)
                 SceneManager.LoadScene("FreeEnemyLevel");
+                // else
+                // SceneManager.LoadScene("Start");
             }
         }
         private void SetComp()

@@ -133,8 +133,16 @@ namespace Rechrysalis.Controller
                 Debug.Log($"wave index" + _waveIndex + "waves lenght "+ _freeUnitCompSO.Waves.Length);
                 if (CheckIfLevelDone(_waveIndex))
                 {
-                    
-                    GoToCompCustomizer();
+
+                    _compsAndUnits.Level++;
+                    if (_compsAndUnits.Level < _compsAndUnits.Levels.Length)
+                    {
+                        GoToCompCustomizer();
+                    }
+                    else 
+                    {
+                        SceneManager.LoadScene("Start");
+                    }
                     return;
                 }                
                 CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);
@@ -143,7 +151,6 @@ namespace Rechrysalis.Controller
         }
         private void GoToCompCustomizer()
         {
-            _compsAndUnits.Level ++;
             _compCustomizer.NumberOfUpgrades = 1;
             SceneManager.LoadScene("CompCustomizer");
         }        
