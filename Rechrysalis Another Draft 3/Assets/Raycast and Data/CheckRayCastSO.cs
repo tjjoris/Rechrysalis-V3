@@ -215,8 +215,8 @@ namespace Rechrysalis.Controller
                 }
                 else 
                 {
-                    int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
-                    _controllerManager.ReserveChrysalis(_unitUpgrading, _unitToUpgradeTo);
+                    // int _unitToUpgradeTo = CheckIfInUnitBoundsWithAngle(RingAngle(_mousePos), _upgradeCountArray[_unitUpgrading], (_upgradeRingManager.CurrentAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount)), _unitRingManager.UnitDegreeWidth);
+                    // _controllerManager.ReserveChrysalis(_unitUpgrading, _unitToUpgradeTo);
                 }
                 _upgradeRingManager.SetActiveUpgradeRing(-1);
                 _controllerManager.ShowUnitText();
