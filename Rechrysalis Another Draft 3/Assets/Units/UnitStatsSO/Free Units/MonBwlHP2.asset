@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1482a46f61544d36ab5e935923d13b0, type: 3}
-  m_Name: MonsterBrawlerHealth2
+  m_Name: MonBwlHP2
   m_EditorClassIdentifier: 
   _upgradeTypeClass:
     _upgradeType: 1
