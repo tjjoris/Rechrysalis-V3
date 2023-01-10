@@ -8,6 +8,7 @@ namespace Rechrysalis.UI
     public class NewGameStatus : MonoBehaviour
     {
         [SerializeField] private TMP_Text _newGameStatusText;
+        [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;
 
         public void YouLost()
         {
@@ -16,6 +17,10 @@ namespace Rechrysalis.UI
         public void YouWon()
         {
             _newGameStatusText.text = $"Congratulations! \n You won!";
+        }
+        public void NewGame()
+        {
+            _newGameStatusText.text = $"New Game";
         }
     }
 }

@@ -17,6 +17,7 @@ MonoBehaviour:
     _unitStatsSO: {fileID: 0}
     _hatchEffectSO: {fileID: 0}
     _advUnitModifierSO: {fileID: 11400000}
+    _controllerHeartUpgrade: {fileID: 0}
   _upgradeName: 
   _currencyCost: 0
   _manaAdd: 25
@@ -29,7 +30,7 @@ MonoBehaviour:
   _dpsAdd: 0
   _dpsMult: 1.1
   _attackChargeUpAdd: 0
-  _attackChargeUpMult: 0.5
+  _attackChargeUpMult: 1
   _attackWindDownAdd: 0
-  _attackWindDownMult: 0.5
+  _attackWindDownMult: 1
   _hatchEffectMultiplierAdd: 1

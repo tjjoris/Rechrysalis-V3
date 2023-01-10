@@ -385,6 +385,7 @@ MonoBehaviour:
   _controllerHPTokens: {fileID: 1717111042}
   _debugBool: 1
   _movingButtonHolder: {fileID: 414014357}
+  _levelDisplay: {fileID: 1197898121}
 --- !u!1 &124370953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,6 +1345,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6974679594234141080, guid: 7a22963889f0b4f9bb6171f227d5d732, type: 3}
   m_PrefabInstance: {fileID: 1197898119}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1197898121 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6974679594234141087, guid: 7a22963889f0b4f9bb6171f227d5d732, type: 3}
+  m_PrefabInstance: {fileID: 1197898119}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efa86b59e8fb84544b490951612b4918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1228158363
 GameObject:
   m_ObjectHideFlags: 0

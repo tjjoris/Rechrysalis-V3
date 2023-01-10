@@ -10,7 +10,7 @@ namespace Rechrysalis
     [CreateAssetMenu(fileName = "CompsAndUnitsSO", menuName ="Main/CompsAndUnitsSO")]
     public class CompsAndUnitsSO : ScriptableObject
     {
-        public enum NewGameStatus {Lost, Won};
+        public enum NewGameStatus {NewGame, Lost, Won};
         [SerializeField] private NewGameStatus _newGameStatusEnum;
         public NewGameStatus NewGameStatusEnum { get => _newGameStatusEnum; set => _newGameStatusEnum = value; }
         

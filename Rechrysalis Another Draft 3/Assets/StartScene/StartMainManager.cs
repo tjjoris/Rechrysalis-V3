@@ -11,6 +11,10 @@ namespace Rechrysalis
     {
         [SerializeField]private CompsAndUnitsSO _compsAndUnits;
         [SerializeField] private NewGameStatus _newGameStatus;
+        private void Start()
+        {
+            SetNewGameStatus();
+        }
         public void StartButtonClicked()
         {
             _compsAndUnits.Level = 0;
@@ -26,7 +30,11 @@ namespace Rechrysalis
         }
         private void SetNewGameStatus()
         {
-            if (_compsAndUnits.NewGameStatusEnum == CompsAndUnitsSO.NewGameStatus.Lost)
+            if (_compsAndUnits.NewGameStatusEnum == CompsAndUnitsSO.NewGameStatus.NewGame)
+            {
+                _newGameStatus.NewGame();
+            }
+            else if (_compsAndUnits.NewGameStatusEnum == CompsAndUnitsSO.NewGameStatus.Lost)
             {
                 _newGameStatus.YouLost();
             }
