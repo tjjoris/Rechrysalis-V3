@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Rechrysalis.Unit;
+using Rechrysalis.UI;
 
 namespace Rechrysalis
 {
     public class StartMainManager : MonoBehaviour
     {
         [SerializeField]private CompsAndUnitsSO _compsAndUnits;
+        [SerializeField] private NewGameStatus _newGameStatus;
         public void StartButtonClicked()
         {
             _compsAndUnits.Level = 0;
@@ -21,6 +23,18 @@ namespace Rechrysalis
             _compsAndUnits.ControllerHPTokensCurrent = _compsAndUnits.ControllerHPTokensMax;
             // _compsAndUnits.CompsSO[0].ParentUnitClassList = new List<ParentUnitClass>();
             SceneManager.LoadScene("CompCustomizer");
+        }
+        private void SetNewGameStatus()
+        {
+            if (_compsAndUnits.NewGameStatusEnum == CompsAndUnitsSO.NewGameStatus.Lost)
+            {
+                _newGameStatus.YouLost();
+            }
+            else if (_compsAndUnits.NewGameStatusEnum == CompsAndUnitsSO.NewGameStatus.Won)
+            {
+               _newGameStatus.YouWon();
+            }
+
         }
     }
 }

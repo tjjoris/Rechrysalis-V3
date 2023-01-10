@@ -141,6 +141,7 @@ namespace Rechrysalis.Controller
                     }
                     else 
                     {
+                        _compsAndUnits.NewGameStatusEnum = CompsAndUnitsSO.NewGameStatus.Won;
                         SceneManager.LoadScene("Start");
                     }
                     return;

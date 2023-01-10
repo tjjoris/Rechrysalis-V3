@@ -6,6 +6,7 @@ using Rechrysalis.Unit;
 using Rechrysalis.Attacking;
 using Rechrysalis.Background;
 using Rechrysalis.CompCustomizer;
+using Rechrysalis.UI;
 
 namespace Rechrysalis
 {
@@ -19,6 +20,7 @@ namespace Rechrysalis
         [SerializeField] CompCustomizerSO _compCustomizer;
         [SerializeField] ProjectilesHolder _projectilesHolder;
         [SerializeField] BackgroundManager _backGroundManager;
+        [SerializeField] private LevelDisplay _levelDisplay;
 
         private void Awake() {
             // _compsAndUnitsSO.CompsSO = _compSO;
@@ -26,6 +28,7 @@ namespace Rechrysalis
             _compsAndUnitsSO.ControllerManagers = _controllerManager;
             GameMaster.GetSingleton().ReferenceManager.CompsAndUnitsSO = _compsAndUnitsSO;
             _projectilesHolder.Initialize();
+            _levelDisplay?.SetLevelText(_compsAndUnitsSO.Level);
             if ((_controllerManager != null) && (_controllerManager.Length > 0))
             {
                 for (int i=0; i<_controllerManager.Length; i++)
