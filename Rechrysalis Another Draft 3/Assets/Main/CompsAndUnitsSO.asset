@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9250b78c4dd634eb9989461822611b34, type: 3}
   m_Name: CompsAndUnitsSO
   m_EditorClassIdentifier: 
-  _newGameStatusEnum: 2
+  _newGameStatusEnum: 0
   _levels:
   - {fileID: 11400000, guid: 8ec5c4d26c91a49e0a7fea0097c5e036, type: 2}
   - {fileID: 11400000, guid: 16a4e4d1d1380451ebd30d16d6a0238c, type: 2}
