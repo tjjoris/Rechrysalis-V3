@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Health6
   m_EditorClassIdentifier: 
   _healthMultiplier: 2.8
-  _dpsMultiplier: 1
+  _dpsMultiplier: 1.18
   _range: 5
   _attackChargeUp: 1
   _attackWindDown: 1

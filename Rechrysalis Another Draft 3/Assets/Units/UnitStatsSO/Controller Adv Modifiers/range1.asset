@@ -20,13 +20,13 @@ MonoBehaviour:
     _controllerHeartUpgrade: {fileID: 0}
   _upgradeName: range1
   _currencyCost: 25
-  _manaAdd: 5
+  _manaAdd: 7
   _manaMult: 1
   _buildTimeAdd: 0
   _buildTimeMult: 1
   _hpMaxAdd: 0
   _hpMaxMult: 1
-  _rangeAdd: 0.5
+  _rangeAdd: 1
   _dpsAdd: 0
   _dpsMult: 1
   _attackChargeUpAdd: 0
