@@ -85,8 +85,8 @@ namespace Rechrysalis.Controller
                         // ParentUnitClass parentUnitClass = _wave.ParentUnitClasses[_compSO.ParentUnitClassList.Count - 1];
 
                         // Vector3 _newUnitPos = _freeEnemyCompLayout.UnitPos[0, _unitInWaveIndex];
-                        Vector3 _newUnitPos = freeUnitCompSO.WaveLayout.GetUnitPosInWave(_unitInWaveIndex);
-                        _newUnitPos.y = _newUnitPos.y + enemyController.gameObject.transform.position.y;
+                        Vector3 _newUnitPos = (freeUnitCompSO.WaveLayout.GetUnitPosInWave(_unitInWaveIndex) + enemyController.gameObject.transform.position);
+                        // _newUnitPos.y = _newUnitPos.y + enemyController.gameObject.transform.position.y;                        
                         GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
                         newFreeEnemy.transform.Rotate(new Vector3(0, 0, 180f));
                         playerUnitsSO.ParentUnits.Add(newFreeEnemy);

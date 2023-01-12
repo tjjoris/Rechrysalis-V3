@@ -107,6 +107,14 @@ namespace Rechrysalis.Movement
             }
             return direction;
         }
+        public void Tick()
+        {
+            // if (_isStopped)
+            // {
+            //     _direction = Vector2.zero;
+            // }
+            GetComponent<Rigidbody2D>().velocity = this._direction;
+        }
         // public void Tick(float _deltaTime)
         // {
         //     float _x = 0f;
