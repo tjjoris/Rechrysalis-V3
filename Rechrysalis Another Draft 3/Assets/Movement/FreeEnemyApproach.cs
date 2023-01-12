@@ -13,12 +13,14 @@ namespace Rechrysalis.Unit
         private ClosestTarget _closestTarget;
         // private GameObject _targetUnit;
         private TargetHolder _targetHolder;
-        private Range _range;     
+        private Range _range;  
+        private Mover _enemyControllerMover;  //this may be a circular dependancy 
         private bool _approaching;   
 
-        public void Initialize(PlayerUnitsSO _ownUnits, Range _range)
+        public void Initialize(PlayerUnitsSO _ownUnits, Range _range, Mover enemyControllerMover)
         {
             // this._range = _range;
+            _enemyControllerMover = enemyControllerMover;
             this._ownUnits = _ownUnits;
             this._range = _range;
             this._closestTarget = this._range.GetComponent<ClosestTarget>();
@@ -38,13 +40,13 @@ namespace Rechrysalis.Unit
             {
                 Vector2 _distV2 = (_targetHolder.Target.transform.position - transform.position);
                 // if (Mathf.Abs(_distV2.magnitude) > _range.GetRange())
-                if ((_approaching) && (!_targetHolder.IsTargetMinusDistInRange(0f)))
+                if ((_enemyControllerMover.Direction.y > 0.5f) && (_approaching) && (!_targetHolder.IsTargetMinusChargeDistMinusDistInRange(0f)))
                 {
                     // _approachDirection = Vector3.MoveTowards(transform.position, _targetHolder.Target.transform.position, 1);
                     _approachDirection = ApproachDirection(_distV2);
                     _approaching = true;
                 }
-                else if ((!_approaching) && (!_targetHolder.IsTargetInRange()))
+                else if ((!_targetHolder.IsTargetInRange()))
                 {
                     _approachDirection = ApproachDirection(_distV2);
                     _approaching = true;

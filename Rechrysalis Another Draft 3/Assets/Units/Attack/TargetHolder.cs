@@ -23,7 +23,7 @@ namespace Rechrysalis.Attacking
             // return false;
             return GetThisTargetInRange(_target);
         }
-        public bool IsTargetMinusDistInRange(float extraAmount)
+        public bool IsTargetMinusChargeDistMinusDistInRange(float extraAmount)
         {            
             if ((_target != null) && (_target.activeInHierarchy) && (((Mathf.Abs((_target.transform.position - transform.position).magnitude) + _range.GetRangeDistToAccountForMovement() + extraAmount) <= _range.GetRange())))
             {
