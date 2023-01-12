@@ -22,7 +22,7 @@ MonoBehaviour:
   _currencyCost: 50
   _manaAdd: 14
   _manaMult: 1
-  _buildTimeAdd: 0
+  _buildTimeAdd: -0.6
   _buildTimeMult: 1
   _hpMaxAdd: 0
   _hpMaxMult: 1
