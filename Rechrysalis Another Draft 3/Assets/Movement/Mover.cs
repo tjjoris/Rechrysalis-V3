@@ -95,6 +95,18 @@ namespace Rechrysalis.Movement
             Debug.Log($"y speed mult" + ySpeedMult);
             return ySpeedMult;
         }
+        private Vector2 LimitXMovement(Vector2 direction)
+        {            
+            if ((direction.x < 0) && (transform.position.x < _minX))
+            {
+                direction.x = 0;
+            }
+            else if ((direction.x > 0) && (transform.position.x > _maxX))
+            {
+                direction.x = 0;
+            }
+            return direction;
+        }
         // public void Tick(float _deltaTime)
         // {
         //     float _x = 0f;
