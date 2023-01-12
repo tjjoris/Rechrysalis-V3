@@ -12,9 +12,11 @@ namespace Rechrysalis.Movement
         private Range _range;
         private Mover _mover;
         private bool _retreating;
+        private Attack _attack;
 
-        public void Initialize(TargetHolder _targetHolder)
+        public void Initialize(TargetHolder _targetHolder, Attack attack)
         {
+            _attack = attack;
             _mover = GetComponent<Mover>();
             this._targetHolder = _targetHolder;
             _range = this._targetHolder.GetComponent<Range>();
@@ -25,7 +27,8 @@ namespace Rechrysalis.Movement
             {
                 // Vector2 _direction = gameObject.transform.position - _targetHolder.Target.transform.position;
                 // if ((Mathf.Abs(_direction.magnitude)) < (_range.GetRange() - 0.5f))
-                if (_targetHolder.IsTargetMinusChargeDistMinusDistInRange(0.5f))
+                if (!(_attack.IsAttackReady()) && (_targetHolder.IsTargetMinusChargeDistMinusDistInRange(0.5f)))
+                // if (_targetHolder.IsTargetInRange())
                 {
                     // Debug.Log($"retreat");
                     _mover.SetDirection(Vector2.up);

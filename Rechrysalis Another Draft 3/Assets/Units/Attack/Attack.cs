@@ -165,5 +165,11 @@ namespace Rechrysalis.Attacking
         {
             return _damage;
         }
+        public bool IsAttackReady()
+        {
+            if ((_attackChargeCurrent >= _attackChargeUp) && (!_isWindingDown))
+            return true;
+            return false;
+        }
     }
 }

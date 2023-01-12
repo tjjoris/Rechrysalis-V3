@@ -44,7 +44,7 @@ namespace Rechrysalis.Unit
             _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
             _aiAlwaysPreferClosest.Initialize();
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
-            _freeEnemyKiteMaxRange?.Initialize(_unitManager.GetComponent<TargetHolder>());
+            _freeEnemyKiteMaxRange?.Initialize(_unitManager.GetComponent<TargetHolder>(), _attack);
         }
         public void Initialize(UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnitSO)
         {
