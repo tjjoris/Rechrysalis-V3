@@ -39,6 +39,8 @@ namespace Rechrysalis.HatchEffect
         public float[] HealthMax { get { return _healthMax; } }
         [SerializeField] private bool[] _affectAll;
         public bool[] AffectAll {get{return _affectAll;}}
+        [SerializeField] private float _buildTimeAdd;
+        public float BuildTimeAdd => _buildTimeAdd;
 
 
         [SerializeField] private string _hatchEffectName;
