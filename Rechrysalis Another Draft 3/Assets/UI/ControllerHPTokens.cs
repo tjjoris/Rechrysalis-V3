@@ -38,6 +38,7 @@ namespace Rechrysalis.Controller
         {
             if (_tokenActiveIndex <= 0)
             {
+                _compsAndUnitsSO.NewGameStatusEnum = CompsAndUnitsSO.NewGameStatus.Lost;
                 SceneManager.LoadScene("Start");
                 // controllerDeathGameOver?.GameOver(_healthCurrent);
             }

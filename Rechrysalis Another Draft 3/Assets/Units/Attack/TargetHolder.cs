@@ -23,6 +23,14 @@ namespace Rechrysalis.Attacking
             // return false;
             return GetThisTargetInRange(_target);
         }
+        public bool IsTargetMinusDistInRange(float extraAmount)
+        {            
+            if ((_target != null) && (_target.activeInHierarchy) && (((Mathf.Abs((_target.transform.position - transform.position).magnitude) + _range.GetRangeDistToAccountForMovement() + extraAmount) <= _range.GetRange())))
+            {
+                return true;
+            }
+            return false;
+        }
         public bool GetThisTargetInRange(GameObject _thisTarget)
         {
             if ((_thisTarget != null) && (_thisTarget.activeInHierarchy) && (Mathf.Abs((_thisTarget.transform.position - transform.position).magnitude) <= _range.GetRange()))

@@ -10,5 +10,8 @@ namespace Rechrysalis.Unit
     {
         [SerializeField] private UnitStatsSO[] _unitInWave;
         public UnitStatsSO[] UnitInWave {get{return _unitInWave;}}
+        [SerializeField] private List<ParentUnitClass> _parentUnitClasses;
+        public List<ParentUnitClass> ParentUnitClasses { get => _parentUnitClasses; set => _parentUnitClasses = value; }
+        
     }
 }

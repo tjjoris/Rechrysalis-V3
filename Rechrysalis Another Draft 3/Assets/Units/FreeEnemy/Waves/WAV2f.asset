@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: WAV2f
   m_EditorClassIdentifier: 
   _unitInWave:
-  - {fileID: 11400000, guid: 4f68c5957dd4147c9b6fe674e847fdb0, type: 2}
-  - {fileID: 11400000, guid: 331410f8e422049b499441c96a6b7c9b, type: 2}
-  - {fileID: 11400000, guid: 6d58ab0fa7bc34865a8ae14f2d6eb199, type: 2}
-  - {fileID: 11400000, guid: 331410f8e422049b499441c96a6b7c9b, type: 2}
+  - {fileID: 11400000, guid: afd6add0df173496c88cf9548e06f7f6, type: 2}
+  - {fileID: 11400000, guid: afd6add0df173496c88cf9548e06f7f6, type: 2}
+  - {fileID: 11400000, guid: afd6add0df173496c88cf9548e06f7f6, type: 2}
+  - {fileID: 11400000, guid: afd6add0df173496c88cf9548e06f7f6, type: 2}
+  _parentUnitClasses: []

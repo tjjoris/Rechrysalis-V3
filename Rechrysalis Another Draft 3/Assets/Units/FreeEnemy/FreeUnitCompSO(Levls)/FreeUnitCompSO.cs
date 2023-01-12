@@ -8,6 +8,9 @@ namespace Rechrysalis.Unit
     [CreateAssetMenu(fileName = "FreeUnitCompSO", menuName = "Comps/FreeUnitCompSO")]
     public class FreeUnitCompSO : ScriptableObject
     {
+        [SerializeField] private List<ParentUnitClass> _parentUnitClasses;
+        public List<ParentUnitClass> ParentUnitClasses { get => _parentUnitClasses; set => _parentUnitClasses = value; }
+        
         [SerializeField] private UnitStatsSO[] _unitSOArray;
         public UnitStatsSO[] UnitSOArray { get { return _unitSOArray; } }
         [SerializeField] private WaveSO[] _waves;

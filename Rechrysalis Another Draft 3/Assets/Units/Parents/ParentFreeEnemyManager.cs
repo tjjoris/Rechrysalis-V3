@@ -9,6 +9,7 @@ namespace Rechrysalis.Unit
 {
     public class ParentFreeEnemyManager : MonoBehaviour
     {
+        private UnitClass _unitClass;
         private ParentHealth _parentHealth;
         private FreeEnemyApproach _freeApproach;
         private Mover _mover;
@@ -20,16 +21,18 @@ namespace Rechrysalis.Unit
         private CompsAndUnitsSO _compsAndUnits;
         [SerializeField] private UnitManager _unitManager;
         public UnitManager UnitManager {get {return _unitManager;}}
+        private int _controllerIndex;
 
-        public void Initialize(int _controllerIndex,UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _unitInWaveIndex, PlayerUnitsSO _ownUnits)
+        public void InitializeOld(int controllerIndex,UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _unitInWaveIndex, PlayerUnitsSO _ownUnits)
         {
             this._compsAndUnits = _compsAndUnits;
+            _controllerIndex = controllerIndex;
             _parentHealth = GetComponent<ParentHealth>();
-            _unitManager?.InitializeOld(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, null);
+            _unitManager?.InitializeOld(controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, null);
             _unitManager?.SetUnitName(_unitStats.UnitName);
-            GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
-            GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[_controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
-            GetComponent<ParentClickManager>().Initialize(_controllerIndex);
+            GetComponent<Die>()?.Initialize(_compsAndUnits, controllerIndex);
+            GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(controllerIndex)]);
+            GetComponent<ParentClickManager>().Initialize(controllerIndex);
             GetComponent<ParentHealth>().CurrentUnit = _unitManager;
             _mover = GetComponent<Mover>();
             _mover.IsStopped = false;
@@ -42,6 +45,12 @@ namespace Rechrysalis.Unit
             _aiAlwaysPreferClosest.Initialize();
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
             _freeEnemyKiteMaxRange?.Initialize(_unitManager.GetComponent<TargetHolder>());
+        }
+        public void Initialize(UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnitSO)
+        {
+            _unitClass = unitClass;
+            _attack.Initialize(unitClass);
+            _unitManager?.Initialize(_controllerIndex, unitClass, freeUnitIndex,  compsAndUnitSO);
         }
         private void OnEnable()
         {

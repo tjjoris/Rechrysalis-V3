@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3c5c9be471b43dc88cdb80504e82e1, type: 3}
   m_Name: Level4
   m_EditorClassIdentifier: 
+  _parentUnitClasses: []
   _unitSOArray:
   - {fileID: 11400000, guid: db3f022e624af490da1ed973efc08e3d, type: 2}
   _waves:
-  - {fileID: 11400000, guid: 3fbb3f9567f7c48399dfe1eb3acd810d, type: 2}
-  - {fileID: 11400000, guid: e4322623e06ab496cbd3c2e6c46c8a70, type: 2}
-  - {fileID: 11400000, guid: 134c02b3443fb4b4bafb14b57bcc0c8b, type: 2}
-  - {fileID: 11400000, guid: d34c700abe20346d0b53419a32e88d7c, type: 2}
+  - {fileID: 11400000, guid: 5942b775afbd3492692e85b99c0f22f4, type: 2}
+  - {fileID: 11400000, guid: 424182f5526364dc7a1b59a809e4fe2b, type: 2}
+  - {fileID: 11400000, guid: 424182f5526364dc7a1b59a809e4fe2b, type: 2}
+  - {fileID: 11400000, guid: 3b457a101092e44cfbde9e18d1a16e6f, type: 2}
   _waveLayout: {fileID: 11400000, guid: 4370c6869de2e4980887798a338b1c97, type: 2}

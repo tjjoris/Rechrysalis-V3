@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: WAV4
   m_EditorClassIdentifier: 
   _unitInWave:
-  - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
-  - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
-  - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
-  - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
-  - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
-  - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
+  - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
+  - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
+  - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
+  - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
+  - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
+  - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
+  _parentUnitClasses: []

@@ -149,7 +149,7 @@ namespace Rechrysalis.Unit
                     SetAdvWhenAdvUpgrades();
                     CheckToSetHatchEffect();
                     // CalculateAdvDamage();
-                    _advUnitClass.CalculateDamge();
+                    _advUnitClass?.CalculateDamge();
                 }
             }
         }

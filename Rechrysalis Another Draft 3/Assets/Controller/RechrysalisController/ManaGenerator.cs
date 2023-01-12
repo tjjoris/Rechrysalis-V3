@@ -14,14 +14,16 @@ namespace Rechrysalis.Controller
         private float _manaCooldownTimerMax = 2f;
         private float _generateIntervalCurrent;
         private float _generateIntervalMax = 0.5f;
-        private float _generateAmount = 5;
+        private float _generateAmount = 1.3f;
         private bool _generatingMana;
+        private float _startingAmount = 25;
         private GameObject[] _parentUnits;
         // private void Start() {
         //     _manaDisplay.SetManaNumber(_manaCurrent);
         // }
         public void Initialize(GameObject[] _parentUnits)
         {
+            _manaCurrent = _startingAmount;
             _manaDisplay.SetManaNumber(_manaCurrent);
             this._parentUnits = _parentUnits;
             SubscribeToParentUnits();

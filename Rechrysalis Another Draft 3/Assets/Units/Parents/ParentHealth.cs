@@ -9,7 +9,7 @@ namespace Rechrysalis.Unit
 {
     public class ParentHealth : MonoBehaviour
     {
-        bool debugBool = true;
+        bool _debugBool = false;
         private float _maxHealth;
         private float _currentHealth;
         private bool _isChrysalis;
@@ -48,7 +48,7 @@ namespace Rechrysalis.Unit
                 _controllerTakeDamage?.Invoke(damageToTake);
             }
             _currentHealth -= damageToTake;
-            if (debugBool) Debug.Log($"take damage " + damageToTake);
+            if (_debugBool) Debug.Log($"take damage " + damageToTake);
             UpdateHpBar();
             GetComponent<ParentUnitHatchEffects>()?.TakeDamage(_damage);
             CheckIfDead();

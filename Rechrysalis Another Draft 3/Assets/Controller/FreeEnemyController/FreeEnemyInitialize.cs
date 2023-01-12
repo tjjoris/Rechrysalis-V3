@@ -24,27 +24,31 @@ namespace Rechrysalis.Controller
         private CompCustomizerSO _compCustomizer;
         // private int _controllerIndex;
         private List<GameObject> _allUnits;        
-        int _waveIndex;
-        public void Initialize(int _controllerIndex, ControllerManager _enemyController, CompSO _compSO, PlayerUnitsSO _playerUnitsSO, CompsAndUnitsSO _compsAndUnits, FreeUnitCompSO _freeUnitCompSO, CompCustomizerSO _compCustomizer)        
+        private int _waveIndex;
+        public void Initialize(int controllerIndex, ControllerManager enemyController, CompSO compSO, PlayerUnitsSO playerUnitsSO, CompsAndUnitsSO compsAndUnits, FreeUnitCompSO freeUnitCompSO, CompCustomizerSO compCustomizer)        
         {
-            this._controllerIndex = _controllerIndex;
-            this._enemyController = _enemyController;
-            this._compSO = _compSO;
-            this._playerUnitsSO = _playerUnitsSO;
-            this._compsAndUnits = _compsAndUnits;
-            this._freeUnitCompSO = _freeUnitCompSO;
-            this._compCustomizer = _compCustomizer;
+            this._controllerIndex = controllerIndex;
+            this._enemyController = enemyController;
+            this._compSO = compSO;
+            this._playerUnitsSO = playerUnitsSO;
+            this._compsAndUnits = compsAndUnits;
+            this._freeUnitCompSO = freeUnitCompSO;
+            this._compCustomizer = compCustomizer;
             _controllerFreeHatch = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _allUnits = new List<GameObject>();
             // this._controllerIndex = _controllerIndex;
-            Debug.Log("size " + _compSO.UnitSOArray.Length.ToString());
-            _playerUnitsSO.InitializePlayerUnitsSize(_compSO.UnitSOArray.Length);
-            if (_freeUnitCompSO.Waves.Length > 0)
+            Debug.Log("size " + compSO.UnitSOArray.Length.ToString());
+            playerUnitsSO.InitializePlayerUnitsSize(compSO.UnitSOArray.Length);
+            // _waveIndex = _compsAndUnits.Level;
+
+            compsAndUnits.FreeUnitCompSO[controllerIndex] = compsAndUnits.Levels[compsAndUnits.Level];
+            _freeUnitCompSO = compsAndUnits.FreeUnitCompSO[controllerIndex];
+            if (freeUnitCompSO.Waves.Length > 0)
             {
                 // for (int _waveIndex = 0; _waveIndex < _freeUnitCompSO.Waves.Length; _waveIndex++)
                 _waveIndex = 0;
                 // {
-                    CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);
+                    CreateWave(controllerIndex, enemyController, compSO, playerUnitsSO, compsAndUnits, _freeUnitCompSO, _waveIndex);
                 // }
             }
             AddNextWaveAction();
@@ -58,34 +62,44 @@ namespace Rechrysalis.Controller
             RestartUnits();
         }
 
-        private void CreateWave(int _controllerIndex, ControllerManager _enemyController, CompSO _compSO, PlayerUnitsSO _playerUnitsSO, CompsAndUnitsSO _compsAndUnits, FreeUnitCompSO _freeUnitCompSO, int _waveIndex)
+        private void CreateWave(int controllerIndex, ControllerManager enemyController, CompSO compSO, PlayerUnitsSO playerUnitsSO, CompsAndUnitsSO compsAndUnits, FreeUnitCompSO freeUnitCompSO, int waveIndex)
         {
             // if (_compSO.UnitSOArray.Length > 0) {
-            _compsAndUnits.FreeUnitCompSO[_controllerIndex] = _compsAndUnits.Levels[_compsAndUnits.Level];
-                WaveSO _wave = _freeUnitCompSO.Waves[_waveIndex];
-            if (_wave.UnitInWave.Length > 0)
+                WaveSO wave = freeUnitCompSO.Waves[waveIndex];
+            if (wave.UnitInWave.Length > 0)
             {
-                _controllerFreeHatch?.InitializeUnitsArray(_wave.UnitInWave.Length);
+                _controllerFreeHatch?.InitializeUnitsArray(wave.UnitInWave.Length);
                 // for (int i = 0; i < _compSO.UnitSOArray.Length; i++)
-                for (int _unitInWaveIndex = 0; _unitInWaveIndex < _freeUnitCompSO.Waves[_waveIndex].UnitInWave.Length; _unitInWaveIndex++)
+                wave.ParentUnitClasses = new List<ParentUnitClass>();
+                wave.ParentUnitClasses.Clear();
+                for (int _unitInWaveIndex = 0; _unitInWaveIndex < freeUnitCompSO.Waves[waveIndex].UnitInWave.Length; _unitInWaveIndex++)
                 {
-                    UnitStatsSO _unitStats = _wave.UnitInWave[_unitInWaveIndex];
+                    UnitStatsSO _unitStats = wave.UnitInWave[_unitInWaveIndex];
                     if (_unitStats != null)
                     {
+                        ParentUnitClass parentUnitClass = new ParentUnitClass(); 
+                        parentUnitClass.ClearAllUpgrades();
+                        parentUnitClass.SetUTCBasicUnit(_unitStats.UpgradeTypeClass);
+                        parentUnitClass.SetAllStats();
+                        // _wave.ParentUnitClasses.Add(parentUnitClass);                        
+                        // ParentUnitClass parentUnitClass = _wave.ParentUnitClasses[_compSO.ParentUnitClassList.Count - 1];
+
                         // Vector3 _newUnitPos = _freeEnemyCompLayout.UnitPos[0, _unitInWaveIndex];
-                        Vector3 _newUnitPos = _freeUnitCompSO.WaveLayout.GetUnitPosInWave(_unitInWaveIndex);
-                        _newUnitPos.y = _newUnitPos.y + _enemyController.gameObject.transform.position.y;
+                        Vector3 _newUnitPos = freeUnitCompSO.WaveLayout.GetUnitPosInWave(_unitInWaveIndex);
+                        _newUnitPos.y = _newUnitPos.y + enemyController.gameObject.transform.position.y;
                         GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
-                        _playerUnitsSO.ParentUnits.Add(newFreeEnemy);
+                        newFreeEnemy.transform.Rotate(new Vector3(0, 0, 180f));
+                        playerUnitsSO.ParentUnits.Add(newFreeEnemy);
                         newFreeEnemy.name = _unitStats.name + " " + _unitInWaveIndex.ToString();
-                        newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(_enemyController);
+                        newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(enemyController);
                         // UnitManager _unitManager = newFreeEnemy.GetComponent<UnitManager>();
                         // newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);                    
                         ParentFreeEnemyManager _freeParentManager = newFreeEnemy.GetComponent<ParentFreeEnemyManager>();
-                        _freeParentManager?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, _playerUnitsSO);
+                        _freeParentManager?.InitializeOld(controllerIndex, _unitStats, compsAndUnits, _unitInWaveIndex, playerUnitsSO);                        
+                        _freeParentManager?.Initialize(parentUnitClass.BasicUnitClass, _unitInWaveIndex, compsAndUnits);
                         newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(_unitStats.HealthMaxBasic);
-                        newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerIndex);
-                        _playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
+                        newFreeEnemy.GetComponent<Mover>()?.Initialize(controllerIndex);
+                        playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
                         _allUnits.Add(_freeParentManager.UnitManager.gameObject);
                         _controllerFreeHatch?.SetUnitsArray(newFreeEnemy, _unitInWaveIndex);
                         // _unitManager?.RestartUnit();
@@ -119,8 +133,17 @@ namespace Rechrysalis.Controller
                 Debug.Log($"wave index" + _waveIndex + "waves lenght "+ _freeUnitCompSO.Waves.Length);
                 if (CheckIfLevelDone(_waveIndex))
                 {
-                    
-                    GoToCompCustomizer();
+
+                    _compsAndUnits.Level++;
+                    if (_compsAndUnits.Level < _compsAndUnits.Levels.Length)
+                    {
+                        GoToCompCustomizer();
+                    }
+                    else 
+                    {
+                        _compsAndUnits.NewGameStatusEnum = CompsAndUnitsSO.NewGameStatus.Won;
+                        SceneManager.LoadScene("Start");
+                    }
                     return;
                 }                
                 CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);
@@ -129,7 +152,6 @@ namespace Rechrysalis.Controller
         }
         private void GoToCompCustomizer()
         {
-            _compsAndUnits.Level ++;
             _compCustomizer.NumberOfUpgrades = 1;
             SceneManager.LoadScene("CompCustomizer");
         }        

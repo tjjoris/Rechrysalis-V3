@@ -10,6 +10,10 @@ namespace Rechrysalis
     [CreateAssetMenu(fileName = "CompsAndUnitsSO", menuName ="Main/CompsAndUnitsSO")]
     public class CompsAndUnitsSO : ScriptableObject
     {
+        public enum NewGameStatus {NewGame, Lost, Won};
+        [SerializeField] private NewGameStatus _newGameStatusEnum;
+        public NewGameStatus NewGameStatusEnum { get => _newGameStatusEnum; set => _newGameStatusEnum = value; }
+        
         [SerializeField] private FreeUnitCompSO[] _levels;
         public FreeUnitCompSO[] Levels {get{return _levels;}}
         [SerializeField] private float _speed;

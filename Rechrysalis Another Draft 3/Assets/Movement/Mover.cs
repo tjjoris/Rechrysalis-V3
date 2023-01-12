@@ -9,6 +9,7 @@ namespace Rechrysalis.Movement
 {
     public class Mover : MonoBehaviour
     {
+        private bool _debugBool = false;
         [SerializeField] int _controllerIndex;
         [SerializeField] private GameObject _backG;
         [SerializeField] private float _minX;
@@ -18,6 +19,7 @@ namespace Rechrysalis.Movement
         [SerializeField] private float _maxY;
         // private float _pushBackMovement;
         // public float PushBackMovement {set{_pushBackMovement = value;}}
+        private float _retreatSpeedMult = 0.15f;
         [SerializeField] private Vector3 _moveVector;        
         [SerializeField] private Vector2 _direction = Vector2.zero;
         public Vector2 Direction {set{_direction = value;}get {return _direction;}}
@@ -50,14 +52,48 @@ namespace Rechrysalis.Movement
         // {
         //     _pushBackMovement = _y;
         // }
-        public void SetDirection(Vector2 _direction)
+        public void SetDirection(Vector2 direction)
         {
             // Debug.Log($"direction" + _direction);            
-            this._direction = (Vector2.ClampMagnitude(_direction, 1) * _speed);            
+            this._direction = (Vector2.ClampMagnitude(direction, 1) * _speed);
+            // Debug.Log($"rotation " + gameObject.transform.eulerAngles.z);            
+                // float ySpeed = (Mathf.Cos(Mathf.Deg2Rad * (gameObject.transform.eulerAngles.z))) * _direction.y;
+                // Debug.Log($"y speed " + ySpeed);
+                // ySpeed *= _retreatSpeedMult;
+                // Debug.Log($"direction y "+ _direction.y);
+                // _direction.y -= Mathf.Abs(ySpeed);
+                // Debug.Log($"direction y speed after " + _direction.y);
+            // _direction = TurnSpeedIntoRetreatRelativeSpeed(_direction);
+            _direction.y *= TurnV2IntoApproachSpeedMult(_direction);
             GetComponent<Rigidbody2D>().velocity = this._direction ;
             SetIsMovingIfMoving(this._direction);
             // if (_controllerIndex == 0)
             // Debug.Log($"velocity " + GetComponent<Rigidbody2D>().velocity);
+        }
+        // private Vector2 TurnSpeedIntoRetreatRelativeSpeed(Vector2 vectorBeforeRetreat)
+        // {
+        //     // Debug.Log($"rotation " + gameObject.transform.eulerAngles.z); 
+        //     float ySpeed = (Mathf.Cos(Mathf.Deg2Rad * (gameObject.transform.eulerAngles.z))) * vectorBeforeRetreat.y;
+        //     // Debug.Log($"angle speed " + Mathf.Cos(Mathf.Deg2Rad * (gameObject.transform.eulerAngles.z)));
+        //     // Debug.Log($"y speed " + ySpeed);
+        //     ySpeed *= _retreatSpeedMult;
+        //     // Debug.Log($"direction y " + _direction.y);
+        //     vectorBeforeRetreat.y -= Mathf.Abs(ySpeed);
+        //     // Debug.Log($"direction y speed after " + _direction.y);
+        //     return vectorBeforeRetreat;
+        // }
+        private float TurnV2IntoApproachSpeedMult(Vector2 vectorBeforeRetreat)
+        {
+            // Debug.Log($"rotation " + gameObject.transform.eulerAngles.z); 
+            float ySpeedMult = (Mathf.Cos(Mathf.Deg2Rad * (gameObject.transform.eulerAngles.z))) * vectorBeforeRetreat.y;
+            // Debug.Log($"angle speed " + Mathf.Cos(Mathf.Deg2Rad * (gameObject.transform.eulerAngles.z)));
+            // Debug.Log($"y speed " + ySpeed);
+            ySpeedMult *= Mathf.Abs(_retreatSpeedMult);
+            ySpeedMult -= (_retreatSpeedMult * 0.5f);
+            ySpeedMult += 1f;
+            if (_debugBool)
+            Debug.Log($"y speed mult" + ySpeedMult);
+            return ySpeedMult;
         }
         public void Tick(float _deltaTime)
         {
@@ -94,6 +130,8 @@ namespace Rechrysalis.Movement
             // Debug.Log($"direction "+ _direction+" move " + _moveVector);
             // transform.Translate(_moveVector);
             Vector2 _newPostion = transform.position;
+            // _direction = TurnSpeedIntoRetreatRelativeSpeed(_direction);
+            _direction.y *= TurnV2IntoApproachSpeedMult(_direction);
             _newPostion += (_direction * _deltaTime);
             // SetIsMovingIfMoving(_direction);
             // GetComponent<Rigidbody2D>()?.MovePosition(_newPostion);

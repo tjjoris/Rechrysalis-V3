@@ -12,7 +12,148 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3926e171e51a44655954fa6e2b0738af, type: 3}
   m_Name: default
   m_EditorClassIdentifier: 
-  _parentUnitClassList: []
+  _parentUnitClassList:
+  - _advancedUpgradesUTCList: []
+    _utcBasicUnit:
+      _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    _utcHatchEffect:
+      _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    _basicUnitClass:
+      _manaCost: 0
+      _unitName: 
+      _hpMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectMult: 0
+      _unitSprite: {fileID: 0}
+      _chrysalisSprite: {fileID: 0}
+      _amountToPool: 0
+      _projectileSpeed: 0
+      _projectileSprite: {fileID: 0}
+    _advUnitClass:
+      _manaCost: 0
+      _unitName: 
+      _hpMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectMult: 0
+      _unitSprite: {fileID: 0}
+      _chrysalisSprite: {fileID: 0}
+      _amountToPool: 0
+      _projectileSpeed: 0
+      _projectileSprite: {fileID: 0}
+  - _advancedUpgradesUTCList: []
+    _utcBasicUnit:
+      _upgradeType: 1
+      _unitStatsSO: {fileID: 11400000, guid: cbf56b099598945a282fbbcc2a2fc696, type: 2}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    _utcHatchEffect:
+      _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    _basicUnitClass:
+      _manaCost: 0
+      _unitName: Ranger 0
+      _hpMax: 48
+      _buildTime: 1
+      _range: 4.5
+      _dps: 24
+      _attackChargeUp: 0.68
+      _attackWindDown: 0.68
+      _damage: 32.64
+      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectMult: 0
+      _unitSprite: {fileID: 21300000, guid: 9863af27155704e44b77693057f52562, type: 3}
+      _chrysalisSprite: {fileID: 21300000, guid: d1965b37883b044bc857f445c6720dce, type: 3}
+      _amountToPool: 2
+      _projectileSpeed: 0.1
+      _projectileSprite: {fileID: 21300000, guid: acf2a1d752267428eaf137c494e17c8b, type: 3}
+    _advUnitClass:
+      _manaCost: 35
+      _unitName: Adv Ranger 0
+      _hpMax: 52.800003
+      _buildTime: 1
+      _range: 4.5
+      _dps: 26.400002
+      _attackChargeUp: 0.34
+      _attackWindDown: 0.34
+      _damage: 17.952002
+      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectMult: 1
+      _unitSprite: {fileID: 21300000, guid: 9863af27155704e44b77693057f52562, type: 3}
+      _chrysalisSprite: {fileID: 21300000, guid: d1965b37883b044bc857f445c6720dce, type: 3}
+      _amountToPool: 2
+      _projectileSpeed: 0.1
+      _projectileSprite: {fileID: 21300000, guid: acf2a1d752267428eaf137c494e17c8b, type: 3}
+  - _advancedUpgradesUTCList: []
+    _utcBasicUnit:
+      _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    _utcHatchEffect:
+      _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    _basicUnitClass:
+      _manaCost: 0
+      _unitName: 
+      _hpMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectMult: 0
+      _unitSprite: {fileID: 0}
+      _chrysalisSprite: {fileID: 0}
+      _amountToPool: 0
+      _projectileSpeed: 0
+      _projectileSprite: {fileID: 0}
+    _advUnitClass:
+      _manaCost: 0
+      _unitName: 
+      _hpMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectMult: 0
+      _unitSprite: {fileID: 0}
+      _chrysalisSprite: {fileID: 0}
+      _amountToPool: 0
+      _projectileSpeed: 0
+      _projectileSprite: {fileID: 0}
   _unitSOArray:
   - {fileID: 11400000, guid: db3f022e624af490da1ed973efc08e3d, type: 2}
   - {fileID: 11400000, guid: 933474abe37604f519a69c6018637d2c, type: 2}

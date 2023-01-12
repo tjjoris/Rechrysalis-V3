@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rechrysalis
+namespace Rechrysalis.Unit
 {
     [System.Serializable]
     public class UnitClass
@@ -45,7 +45,6 @@ namespace Rechrysalis
         
         
         
-
         public void CalculateDamge()
         {
             _damage = _dps * (_attackChargeUp + _attackWindDown);

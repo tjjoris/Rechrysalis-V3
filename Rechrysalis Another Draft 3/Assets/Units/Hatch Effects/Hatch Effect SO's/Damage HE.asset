@@ -17,9 +17,10 @@ MonoBehaviour:
     _unitStatsSO: {fileID: 0}
     _hatchEffectSO: {fileID: 11400000}
     _advUnitModifierSO: {fileID: 0}
+    _controllerHeartUpgrade: {fileID: 0}
   _hatchEffectPrefab: {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}
   _currencyCost: 0
-  _addedManaCost: 10
+  _addedManaCost: 6
   _dpsIncrease:
   - 20
   - 6
@@ -43,4 +44,4 @@ MonoBehaviour:
   - 70
   - 90
   _affectAll: 010101
-  _hatchEffectName: DPS
+  _hatchEffectName: DPS(HE)

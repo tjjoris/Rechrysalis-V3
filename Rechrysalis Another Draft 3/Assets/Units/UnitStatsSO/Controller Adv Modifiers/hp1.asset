@@ -17,13 +17,14 @@ MonoBehaviour:
     _unitStatsSO: {fileID: 0}
     _hatchEffectSO: {fileID: 0}
     _advUnitModifierSO: {fileID: 11400000}
+    _controllerHeartUpgrade: {fileID: 0}
   _upgradeName: hp1
   _currencyCost: 25
-  _manaAdd: 5
+  _manaAdd: 7
   _manaMult: 1
   _buildTimeAdd: 0
   _buildTimeMult: 1
-  _hpMaxAdd: 20
+  _hpMaxAdd: 30
   _hpMaxMult: 1
   _rangeAdd: 0
   _dpsAdd: 0
