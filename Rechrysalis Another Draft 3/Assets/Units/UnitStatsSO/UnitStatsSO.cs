@@ -39,6 +39,7 @@ namespace Rechrysalis.Unit
         public float HealthMaxAdvMult => _heathMaxAdvMult;
         [SerializeField] private float _buildTimeBasic = 1f;
         public float BuildTimeBasic => _buildTimeBasic;
+        [SerializeField] private float _buildTimeBasicBase = 1;
         [SerializeField] private float _buildTimeAdvMult = 1;
         public float BuildTimeAdvMult => _buildTimeAdvMult;
        [SerializeField] private float _origionalBaseAttackChargeUp = 1;
@@ -98,6 +99,7 @@ namespace Rechrysalis.Unit
             _attackWindDownBasic = _origionalBaseAttackWindDown * _baseMultipler.AttackWindDown * _typeMultipler.AttackWindDown * _tierMultiplier.AttackWindDown;
             _baseDamageBasic = _baseDPSBasic * (_attackChargeUpBasic + _attackWindDownBasic);
             _mana = _manaBase * _baseMultipler.ManaMultiplier * _typeMultipler.ManaMultiplier * _tierMultiplier.ManaMultiplier;
+            _buildTimeBasic = _buildTimeBasicBase * _baseMultipler.BuildTimeMultiplier * _typeMultipler.BuildTimeMultiplier * _tierMultiplier.BuildTimeMultiplier;
             if (_upgradeTypeClass == null)
             {
                 _upgradeTypeClass = new UpgradeTypeClass();

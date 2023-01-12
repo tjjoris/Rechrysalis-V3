@@ -142,7 +142,7 @@ namespace Rechrysalis.Controller
             chrysalisGo.GetComponent<UnitManager>()?.SetUnitSPrite(unitClass.ChrysalisSprite);
 
             // _chrysalisManager.SetUnitName(_unitStats.UnitName);
-            chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(_unitStats.ChrysalisTimerMax, childUnitIndex);
+            chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(unitClass.BuildTime, childUnitIndex);
             pum.SubChrysalii[childUnitIndex] = chrysalisGo;
             _allUnits.Add(chrysalisGo);
             _controllerHatchEffect.SetUnitsArray(chrysalisGo, ((parentUnitIndex * 6) + (childUnitIndex * 2) + 1));
