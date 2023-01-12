@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Attacking;
-using Rechrysalis.Movement;
+// using Rechrysalis.Movement;
 
-namespace Rechrysalis.Unit
+namespace Rechrysalis.Movement
 {
     public class FreeEnemyApproach : MonoBehaviour
     {
@@ -15,7 +15,8 @@ namespace Rechrysalis.Unit
         private TargetHolder _targetHolder;
         private Range _range;  
         private Mover _enemyControllerMover;  //this may be a circular dependancy 
-        private bool _approaching;   
+        private bool _approaching;
+        public bool Approaching => _approaching;   
 
         public void Initialize(PlayerUnitsSO _ownUnits, Range _range, Mover enemyControllerMover)
         {

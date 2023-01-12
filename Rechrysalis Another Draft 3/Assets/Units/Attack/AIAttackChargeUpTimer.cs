@@ -9,6 +9,7 @@ namespace Rechrysalis.Attacking
         private bool _aiImperfectionChargingUp;
         private bool _aiImperfectionWindingDown;
         private float _aiImperfectionCurrent;
+        private float _newFlaw = 0.5f;
         private float _largeFlaw = 0.5f;
         private float _smallFlaw = 0.25f;
         private float _startMinus = -0.3f;
@@ -37,7 +38,26 @@ namespace Rechrysalis.Attacking
             _currentEnd = UnityEngine.Random.Range(_endMinus, _endPlus);
             
         }
-        public void Tick(float _timeAmount, bool _chargingUp, bool _windingDown)
+        public void Tick(float timeAmount, bool chargingUp, bool windingDown)
+        {
+            _aiImperfectionCurrent += timeAmount;
+            if (_aiImperfectionCurrent >= _newFlaw)
+            {
+                _aiImperfectionCurrent = 0;
+                _aiImperfectionChargingUp = chargingUp;
+                _aiImperfectionWindingDown = windingDown;
+                if ((windingDown == false) && (chargingUp == true))
+                {
+                    _changeCanMove?.Invoke(false);
+                }
+                else 
+                {
+                    _changeCanMove?.Invoke(true);
+                }
+
+            }
+        }
+        public void TickOld(float _timeAmount, bool _chargingUp, bool _windingDown)
         {
             _aiImperfectionCurrent += _timeAmount;
             if ((!_aiImperfectionChargingUp) && (_windingDown))

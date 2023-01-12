@@ -87,7 +87,8 @@ namespace Rechrysalis.Attacking
                             _projectile.SetActive(true);
                             _projectile.transform.position = gameObject.transform.position;
                             _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target);
-                            _isWindingDown = true;                       
+                            _isWindingDown = true;     
+                            _isChargingUp = false;                  
                         }
                     }
                     else 
@@ -95,7 +96,7 @@ namespace Rechrysalis.Attacking
                         ResetChargeUp();
                     }
                 }
-                else if ((!_isWindingDown) && (!_isChargingUp) && (_isStopped) && (GetTargetInRange() != null))
+                else if ((!_isWindingDown) && (!_isChargingUp))
                 {
                     _isChargingUp = true;
                     _attackChargeCurrent += _timeAmount;

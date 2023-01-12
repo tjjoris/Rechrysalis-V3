@@ -12,31 +12,37 @@ namespace Rechrysalis.Movement
         private Range _range;
         private Mover _mover;
         private bool _retreating;
-        private Attack _attack;
+        // private Attack _attack;
+        private FreeEnemyApproach _freeEnemyApproach;
 
         public void Initialize(TargetHolder _targetHolder, Attack attack)
         {
-            _attack = attack;
+            _freeEnemyApproach = GetComponent<FreeEnemyApproach>();
+            // _attack = attack;
             _mover = GetComponent<Mover>();
             this._targetHolder = _targetHolder;
             _range = this._targetHolder.GetComponent<Range>();
         }
-        public void Tick(bool _aiCanMove)
+        public void Tick(bool aiCanMove)
         {
-            if ((_aiCanMove) && (_targetHolder.Target != null))
+            if (((_freeEnemyApproach != null) && (!_freeEnemyApproach.Approaching)) || (_freeEnemyApproach == null))
             {
-                // Vector2 _direction = gameObject.transform.position - _targetHolder.Target.transform.position;
-                // if ((Mathf.Abs(_direction.magnitude)) < (_range.GetRange() - 0.5f))
-                if (!(_attack.IsAttackReady()) && (_targetHolder.IsTargetMinusChargeDistMinusDistInRange(0.5f)))
-                // if (_targetHolder.IsTargetInRange())
+                if ((_targetHolder.Target != null))
                 {
-                    // Debug.Log($"retreat");
-                    _mover.SetDirection(Vector2.up);
-                    _retreating = true;
-                }
-                else {
-                    // _mover.SetDirection(Vector2.zero);
-                    _retreating = false;
+                    // Vector2 _direction = gameObject.transform.position - _targetHolder.Target.transform.position;
+                    // if ((Mathf.Abs(_direction.magnitude)) < (_range.GetRange() - 0.5f))
+                    if ((aiCanMove) && (_targetHolder.IsTargetMinusChargeDistMinusDistInRange(0.5f)))
+                    // if (_targetHolder.IsTargetInRange())
+                    {
+                        // Debug.Log($"retreat");
+                        _mover.SetDirection(Vector2.up);
+                        _retreating = true;
+                    }
+                    else {
+                        // _mover.SetDirection(Vector2.zero);
+                        _mover.SetDirection(Vector2.zero);
+                        _retreating = false;
+                    }
                 }
             }
         }
