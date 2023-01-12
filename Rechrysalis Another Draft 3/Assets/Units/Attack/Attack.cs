@@ -104,9 +104,9 @@ namespace Rechrysalis.Attacking
                 else if ((_isChargingUp) && (_isStopped))
                 {
                     _attackChargeCurrent += _timeAmount;                
-                }     
-                _aiAttackTimer?.Tick(_timeAmount, _isChargingUp, _isWindingDown);       
+                }
             }
+            _aiAttackTimer?.Tick(_timeAmount, _isChargingUp, _isWindingDown);
         }
         private GameObject GetTargetInRange()
         {
@@ -131,7 +131,7 @@ namespace Rechrysalis.Attacking
         private void ResetChargeUp()
         {
             _attackChargeCurrent = 0;
-            _isChargingUp = false;
+            // _isChargingUp = false;
         }
         public void SetDamage(float damage)
         {
