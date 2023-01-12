@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62f2ba3170b374a9ea762586c97d2748, type: 3}
-  m_Name: WAV3c
+  m_Name: WAV2e
   m_EditorClassIdentifier: 
   _unitInWave:
-  - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
-  - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
-  - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
-  - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
-  - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
+  - {fileID: 11400000, guid: 95c4fe1a4aadd407daa779e6e4e3a4a3, type: 2}
+  - {fileID: 11400000, guid: 95c4fe1a4aadd407daa779e6e4e3a4a3, type: 2}
+  - {fileID: 11400000, guid: 0655bdb7fce124529858749e26a697b7, type: 2}
+  - {fileID: 11400000, guid: 95c4fe1a4aadd407daa779e6e4e3a4a3, type: 2}
   _parentUnitClasses: []

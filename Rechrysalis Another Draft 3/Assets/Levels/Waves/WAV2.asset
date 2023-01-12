@@ -15,6 +15,6 @@ MonoBehaviour:
   _unitInWave:
   - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
   - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
-  - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
+  - {fileID: 11400000, guid: 0655bdb7fce124529858749e26a697b7, type: 2}
   - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
   _parentUnitClasses: []
