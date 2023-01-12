@@ -40,7 +40,7 @@ namespace Rechrysalis.Unit
             _attack = _unitManager.GetComponent<Attack>();
             _aiAttackTimer = _unitManager.GetComponent<AIAttackChargeUpTimer>();
             _freeApproach = GetComponent<FreeEnemyApproach>();
-            _freeApproach?.Initialize(_ownUnits, _unitManager.GetComponent<Range>());
+            _freeApproach?.Initialize(_ownUnits, _unitManager.GetComponent<Range>(), _compsAndUnits.ControllerManagers[GetOppositeController.ReturnOppositeController(_controllerIndex)].GetComponent<Mover>());
             _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
             _aiAlwaysPreferClosest.Initialize();
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
