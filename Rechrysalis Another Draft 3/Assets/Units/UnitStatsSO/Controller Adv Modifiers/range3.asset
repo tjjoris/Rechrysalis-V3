@@ -18,7 +18,7 @@ MonoBehaviour:
     _hatchEffectSO: {fileID: 0}
     _advUnitModifierSO: {fileID: 11400000}
     _controllerHeartUpgrade: {fileID: 0}
-  _upgradeName: range3
+  _upgradeName: +range3
   _currencyCost: 25
   _manaAdd: 21
   _manaMult: 1

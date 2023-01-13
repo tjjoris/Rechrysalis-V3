@@ -18,7 +18,7 @@ MonoBehaviour:
     _hatchEffectSO: {fileID: 0}
     _advUnitModifierSO: {fileID: 11400000}
     _controllerHeartUpgrade: {fileID: 0}
-  _upgradeName: dps2
+  _upgradeName: +dps2
   _currencyCost: 50
   _manaAdd: 14
   _manaMult: 1
