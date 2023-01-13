@@ -36,15 +36,16 @@ namespace Rechrysalis.Controller
         }
         public void RemoveToken()
         {
+            
+            _controllerHPTokens[_tokenActiveIndex].SetActive(false);
+            _tokenActiveIndex --;   
+            SetSOTokens();
             if (_tokenActiveIndex <= 0)
             {
                 _compsAndUnitsSO.NewGameStatusEnum = CompsAndUnitsSO.NewGameStatus.Lost;
                 SceneManager.LoadScene("Start");
                 // controllerDeathGameOver?.GameOver(_healthCurrent);
-            }
-            _controllerHPTokens[_tokenActiveIndex].SetActive(false);
-            _tokenActiveIndex --;   
-            SetSOTokens();         
+            }       
         }
         public void AddTokens(int count)
         {
