@@ -47,4 +47,5 @@ MonoBehaviour:
   - 70
   - 90
   _affectAll: 010101
+  _buildTimeAdd: -0.4
   _hatchEffectName: DEF(HE)

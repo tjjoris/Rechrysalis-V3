@@ -11,6 +11,7 @@ namespace Rechrysalis.Background
         private List<GameObject> _activeObjects;
         // private GameObject _projectilesHolderGO;
         // private ProjectilesHolder _projectilesHolderScript;
+        [SerializeField] private VerticalBoundsYUpdate _verticalBoundsYUpdate;
         private int amountToPool;
         private int _xCount = 4;
         private int _yCount = 7;
@@ -91,6 +92,7 @@ namespace Rechrysalis.Background
                     }
                 }
             }
+            _verticalBoundsYUpdate.UpdateVerticalBoxColliders(Camera.main.transform);
         }
         private void ActivateTile (Vector3 _location)
         {

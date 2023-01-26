@@ -181,7 +181,7 @@ namespace Rechrysalis.Controller
         public void FixedTick(float _timeAmount)
         {
             // float _timeAmount = Time.fixedDeltaTime;         
-            _mover?.Tick(_timeAmount);
+            // _mover?.Tick();
             // if (_playerUnitsSO[_controllerIndex].ActiveUnits.Length > 0)
             // {
             //     foreach (GameObject _unitToTick in _playerUnitsSO[_controllerIndex].ActiveUnits)

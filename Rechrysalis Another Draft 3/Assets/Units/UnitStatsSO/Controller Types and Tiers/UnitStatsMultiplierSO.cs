@@ -22,5 +22,7 @@ namespace Rechrysalis.Unit
         public float ManaMultiplier {get {return _manaMultiplier;}}
         [SerializeField] private int _tier;        
         public int Tier {get {return _tier;}}
+        [SerializeField] private float _buildTimeMultiplier = 1;
+        public float BuildTimeMultiplier => _buildTimeMultiplier;
     }
 }

@@ -13,9 +13,9 @@ TagManager:
   - UI
   - PlayerController
   - Unit
-  - 
-  - 
-  - 
+  - CharacterCollisionBlocker
+  - Character
+  - Wall
   - 
   - 
   - 

@@ -95,47 +95,67 @@ namespace Rechrysalis.Movement
             Debug.Log($"y speed mult" + ySpeedMult);
             return ySpeedMult;
         }
-        public void Tick(float _deltaTime)
-        {
-            float _x = 0f;
-            float _y = 0f;
-            if (!_isStopped){                
-                _x = _direction.x * _speed / _direction.magnitude;
-                _y = _direction.y * _speed / _direction.magnitude;
-                if (((_x <0) && (transform.position.x + _x < _minX)) || ((_x > 0) && (transform.position.x + _x > _maxX)))
-                {
-                    _x = 0; 
-                }
-                // if (((_y <0) && (transform.position.y + _y < _minY)) || ((_y > 0) && (transform.position.y + _y > _maxY)))
-                // {
-                //     _y = 0;
-                // }
-            }
-            // if ((_causesPushBack != null) && (_y > 0)) 
-            // {
-            //     _causesPushBack.PushBack(_y);
-            // }                
-            _moveVector = new Vector3(_x, _y, 0f);            
-            // if ((GetComponent<PushBackFromPlayer>() != null) && (_pushBackMovement > 0) && (_moveVector.y < _pushBackMovement))
-            // {
-            //     _moveVector.y = _pushBackMovement;
-            // }
-            if (_controllerIndex == 1) {
-            }
-            // Debug.Log($"vector " + _moveVector);
-            if ((float.IsNaN(_moveVector.x) || (float.IsNaN(_moveVector.y) || (float.IsNaN(_moveVector.z)))))
+        private Vector2 LimitXMovement(Vector2 direction)
+        {            
+            if ((direction.x < 0) && (transform.position.x < _minX))
             {
-                _moveVector = Vector3.zero;
+                direction.x = 0;
             }
-            // Debug.Log($"direction "+ _direction+" move " + _moveVector);
-            // transform.Translate(_moveVector);
-            Vector2 _newPostion = transform.position;
-            // _direction = TurnSpeedIntoRetreatRelativeSpeed(_direction);
-            _direction.y *= TurnV2IntoApproachSpeedMult(_direction);
-            _newPostion += (_direction * _deltaTime);
-            // SetIsMovingIfMoving(_direction);
-            // GetComponent<Rigidbody2D>()?.MovePosition(_newPostion);
+            else if ((direction.x > 0) && (transform.position.x > _maxX))
+            {
+                direction.x = 0;
+            }
+            return direction;
         }
+        // public void Tick()
+        // {
+        //     // if (_isStopped)
+        //     // {
+        //     //     _direction = Vector2.zero;
+        //     // }
+        //     GetComponent<Rigidbody2D>().velocity = this._direction;
+        // }
+        // public void Tick(float _deltaTime)
+        // {
+        //     float _x = 0f;
+        //     float _y = 0f;
+        //     if (!_isStopped){                
+        //         _x = _direction.x * _speed / _direction.magnitude;
+        //         _y = _direction.y * _speed / _direction.magnitude;
+        //         if (((_x <0) && (transform.position.x + _x < _minX)) || ((_x > 0) && (transform.position.x + _x > _maxX)))
+        //         {
+        //             _x = 0; 
+        //         }
+        //         // if (((_y <0) && (transform.position.y + _y < _minY)) || ((_y > 0) && (transform.position.y + _y > _maxY)))
+        //         // {
+        //         //     _y = 0;
+        //         // }
+        //     }
+        //     // if ((_causesPushBack != null) && (_y > 0)) 
+        //     // {
+        //     //     _causesPushBack.PushBack(_y);
+        //     // }                
+        //     _moveVector = new Vector3(_x, _y, 0f);            
+        //     // if ((GetComponent<PushBackFromPlayer>() != null) && (_pushBackMovement > 0) && (_moveVector.y < _pushBackMovement))
+        //     // {
+        //     //     _moveVector.y = _pushBackMovement;
+        //     // }
+        //     if (_controllerIndex == 1) {
+        //     }
+        //     // Debug.Log($"vector " + _moveVector);
+        //     if ((float.IsNaN(_moveVector.x) || (float.IsNaN(_moveVector.y) || (float.IsNaN(_moveVector.z)))))
+        //     {
+        //         _moveVector = Vector3.zero;
+        //     }
+        //     // Debug.Log($"direction "+ _direction+" move " + _moveVector);
+        //     // transform.Translate(_moveVector);
+        //     Vector2 _newPostion = transform.position;
+        //     // _direction = TurnSpeedIntoRetreatRelativeSpeed(_direction);
+        //     _direction.y *= TurnV2IntoApproachSpeedMult(_direction);
+        //     _newPostion += (_direction * _deltaTime);
+        //     // SetIsMovingIfMoving(_direction);
+        //     // GetComponent<Rigidbody2D>()?.MovePosition(_newPostion);
+        // }
         private void SetIsMovingIfMoving(Vector2 _direction)
         {
             if (_direction == Vector2.zero)

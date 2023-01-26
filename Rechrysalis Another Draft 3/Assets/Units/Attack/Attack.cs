@@ -87,7 +87,8 @@ namespace Rechrysalis.Attacking
                             _projectile.SetActive(true);
                             _projectile.transform.position = gameObject.transform.position;
                             _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target);
-                            _isWindingDown = true;                       
+                            _isWindingDown = true;     
+                            _isChargingUp = false;                  
                         }
                     }
                     else 
@@ -95,7 +96,7 @@ namespace Rechrysalis.Attacking
                         ResetChargeUp();
                     }
                 }
-                else if ((!_isWindingDown) && (!_isChargingUp) && (_isStopped) && (GetTargetInRange() != null))
+                else if ((!_isWindingDown) && (!_isChargingUp))
                 {
                     _isChargingUp = true;
                     _attackChargeCurrent += _timeAmount;
@@ -103,9 +104,9 @@ namespace Rechrysalis.Attacking
                 else if ((_isChargingUp) && (_isStopped))
                 {
                     _attackChargeCurrent += _timeAmount;                
-                }     
-                _aiAttackTimer?.Tick(_timeAmount, _isChargingUp, _isWindingDown);       
+                }
             }
+            _aiAttackTimer?.Tick(_timeAmount, _isChargingUp, _isWindingDown);
         }
         private GameObject GetTargetInRange()
         {
@@ -130,7 +131,7 @@ namespace Rechrysalis.Attacking
         private void ResetChargeUp()
         {
             _attackChargeCurrent = 0;
-            _isChargingUp = false;
+            // _isChargingUp = false;
         }
         public void SetDamage(float damage)
         {
@@ -164,6 +165,12 @@ namespace Rechrysalis.Attacking
         public float GetDamage()
         {
             return _damage;
+        }
+        public bool IsAttackReady()
+        {
+            if ((_attackChargeCurrent >= _attackChargeUp) && (!_isWindingDown))
+            return true;
+            return false;
         }
     }
 }

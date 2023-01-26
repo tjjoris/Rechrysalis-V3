@@ -189,7 +189,7 @@ namespace Rechrysalis.Unit
                 _controllerUnitAttackClosest?.CheckToGetTarget();
                 if (_mover != null)
                 {
-                    _mover?.Tick(_timeAmount);
+                    // _mover?.Tick(_timeAmount);
                     // if ((!_mover.IsStopped) && ())
                     _isStopped = _mover.IsStopped;
                 }

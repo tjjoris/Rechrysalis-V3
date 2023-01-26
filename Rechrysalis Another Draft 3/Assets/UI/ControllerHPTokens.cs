@@ -36,7 +36,8 @@ namespace Rechrysalis.Controller
         }
         public void RemoveToken()
         {
-            if (_tokenActiveIndex <= 0)
+
+            if (_tokenActiveIndex <= -1)
             {
                 _compsAndUnitsSO.NewGameStatusEnum = CompsAndUnitsSO.NewGameStatus.Lost;
                 SceneManager.LoadScene("Start");
@@ -44,7 +45,7 @@ namespace Rechrysalis.Controller
             }
             _controllerHPTokens[_tokenActiveIndex].SetActive(false);
             _tokenActiveIndex --;   
-            SetSOTokens();         
+            SetSOTokens();     
         }
         public void AddTokens(int count)
         {
