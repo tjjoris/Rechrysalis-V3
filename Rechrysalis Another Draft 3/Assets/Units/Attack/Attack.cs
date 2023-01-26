@@ -16,6 +16,8 @@ namespace Rechrysalis.Attacking
         [SerializeField] private  float _baseDamage;
         [SerializeField] private float _damage;
         [SerializeField] private float _baseDPS;
+        [SerializeField] private float _currentDPS;
+        public float CurrentDPS => _currentDPS;
         private ProjectilesPool _projectilesPool;
         private bool _isWindingDown;
         private bool _isChargingUp;
@@ -143,19 +145,23 @@ namespace Rechrysalis.Attacking
                 _baseDPS = dps;
             }
         }
+        public float GetDPS()
+        {
+            return _baseDPS;
+        }
         public void ReCalculateDamageWithHE(List<HEIncreaseDamage> hatchEffects)
         {
-            float dps = _baseDPS;
+            _currentDPS = _baseDPS;
             foreach (HEIncreaseDamage hEIncreaseDamage in hatchEffects)
             {
                 // HEIncreaseDamage hEIncreaseDamage = hatchEffect.GetComponent<HEIncreaseDamage>();                
                 if (hEIncreaseDamage != null)
                 {
-                    dps += hEIncreaseDamage.GetDamageToAdd();
+                    _currentDPS += hEIncreaseDamage.GetDamageToAdd();
                 }
             }
             // _damage = (dps / (_attackChargeUp + _attackWindDown));
-            CalculateDamage(dps);
+            CalculateDamage(_currentDPS);
         }
         private void CalculateDamage(float dps)
         {

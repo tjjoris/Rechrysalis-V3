@@ -25,6 +25,7 @@ namespace Rechrysalis.Unit
         private RotateParentUnit _rotateParentUnit;
         private ParentHealth _parentHealth;
         private ParentUnitHatchEffects _pUHE;
+        private TargetScoreValue _targetScoreValue;
         private float _manaAmount;
         public float ManaAmount {set{_manaAmount = value;}}
         public Action<GameObject, int, int, bool> _addHatchEffect;
@@ -60,6 +61,8 @@ namespace Rechrysalis.Unit
             _rotateParentUnit?.Initialize(_controllertransform);
             _pUHE = GetComponent<ParentUnitHatchEffects>();
             GetComponent<ParentClickManager>()?.Initialize(_controllerIndex);
+            _targetScoreValue = GetComponent<TargetScoreValue>();
+            _targetScoreValue?.Initialize();
         }
         public void Tick()
         {
@@ -211,6 +214,7 @@ namespace Rechrysalis.Unit
                 DeactivateUnit(_unitIndex);
             }
             }
+            _targetScoreValue.SetEgg(true);
         }
         // public void ActivateUnit(int childIndex)
         // {
@@ -253,6 +257,7 @@ namespace Rechrysalis.Unit
                 }
                 DeactivateChrysalis(_indexInSubUnits);    
             }
+            _targetScoreValue.SetCurrentUnit(_currentSubUnit.GetComponent<Attack>());
         }
         private void DeactivateChrysalis(int _chryslisIndex)
         {

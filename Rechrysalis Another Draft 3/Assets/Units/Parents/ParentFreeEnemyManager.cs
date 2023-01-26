@@ -19,6 +19,7 @@ namespace Rechrysalis.Unit
         private AIAlwaysPreferClosest _aiAlwaysPreferClosest;
         private FreeEnemyKiteMaxRange _freeEnemyKiteMaxRange;
         private CompsAndUnitsSO _compsAndUnits;
+        private TargetScoreValue _targetScoreValue;
         [SerializeField] private UnitManager _unitManager;
         public UnitManager UnitManager {get {return _unitManager;}}
         private int _controllerIndex;
@@ -51,6 +52,9 @@ namespace Rechrysalis.Unit
             _unitClass = unitClass;
             _attack.Initialize(unitClass);
             _unitManager?.Initialize(_controllerIndex, unitClass, freeUnitIndex,  compsAndUnitSO);
+            _targetScoreValue = GetComponent<TargetScoreValue>();
+            _targetScoreValue?.Initialize();
+            _targetScoreValue?.SetCurrentUnit(_unitManager.GetComponent<Attack>());
         }
         private void OnEnable()
         {

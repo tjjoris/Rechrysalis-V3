@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8342931345726060697}
   - component: {fileID: 5847198500920146218}
   - component: {fileID: 6179930873798266367}
+  - component: {fileID: 6173028383454830166}
   m_Layer: 0
   m_Name: Parent Unit Prefab
   m_TagString: Untagged
@@ -59,11 +60,13 @@ MonoBehaviour:
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
     _utcHatchEffect:
       _upgradeType: 0
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
     _basicUnitClass:
       _manaCost: 0
       _unitName: 
@@ -188,6 +191,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
+--- !u!114 &6173028383454830166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6178309120940175549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e4133e1866444d6885d8cbc08dfc57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eggValue: 0
+  _hatchEffectValue: 0
+  _dpsValue: 0
 --- !u!1 &8526505655396988532
 GameObject:
   m_ObjectHideFlags: 0
