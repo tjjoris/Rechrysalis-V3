@@ -35,11 +35,14 @@ namespace Rechrysalis.Attacking
         public void SetEgg(bool isEgg)
         {
             _isEgg = isEgg;
+        }
+        private void EggScore()
+        {
             if (_isEgg)
             {
                 _eggValue = 100;
             }
-            else 
+            else
             {
                 _eggValue = 0;
             }
