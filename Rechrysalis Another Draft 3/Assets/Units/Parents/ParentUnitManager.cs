@@ -13,6 +13,7 @@ namespace Rechrysalis.Unit
         [SerializeField] private ParentUnitClass _parentUnitClass;
         public ParentUnitClass ParentUnitClass => _parentUnitClass;
         private int _parentIndex;
+        public int ParentIndex => _parentIndex;
         [SerializeField] private int _controllerIndex;
         [SerializeField] private GameObject[] _subUnits;
         public GameObject[] SubUnits {get {return _subUnits;}set {_subUnits = value;}}
