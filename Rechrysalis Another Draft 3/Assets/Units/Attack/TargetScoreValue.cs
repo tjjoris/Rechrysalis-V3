@@ -35,6 +35,7 @@ namespace Rechrysalis.Attacking
         public void SetEgg(bool isEgg)
         {
             _isEgg = isEgg;
+            EggScore();
         }
         private void EggScore()
         {
@@ -46,6 +47,10 @@ namespace Rechrysalis.Attacking
             {
                 _eggValue = 0;
             }
+        }
+        private void HatchScore()
+        {
+            // if (_parentUnitHatchEffects.);
         }
     }
 }
