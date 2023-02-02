@@ -12,9 +12,11 @@ namespace Rechrysalis.Unit
         [SerializeField] private float _curentFlawedCurrent;
         private bool _debugBool = true;
         private ParentUnitManager _parentUnitManager;
+        private ParentFreeEnemyManager _parentFreeEnemyManager;
         private void Awake()
         {
             _parentUnitManager = GetComponent<ParentUnitManager>();
+            _parentFreeEnemyManager = GetComponent<ParentFreeEnemyManager>();
             SetFlawedMax();
         }
         public void SetFlawedMax()
@@ -39,7 +41,7 @@ namespace Rechrysalis.Unit
         {
             if (_debugBool)
             {
-                Debug.Log($"flawed update " + _parentUnitManager.ParentIndex);
+                // Debug.Log($"flawed update " + _parentFreeEnemyManager.);
             }
         }
     }

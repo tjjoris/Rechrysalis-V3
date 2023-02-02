@@ -22,6 +22,7 @@ namespace Rechrysalis.Unit
         private TargetScoreValue _targetScoreValue;
         [SerializeField] private UnitManager _unitManager;
         public UnitManager UnitManager {get {return _unitManager;}}
+        private AIFlawedUpdate _aiFlawedUpdate;
         private int _controllerIndex;
 
         public void InitializeOld(int controllerIndex,UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _unitInWaveIndex, PlayerUnitsSO _ownUnits)
@@ -29,6 +30,7 @@ namespace Rechrysalis.Unit
             this._compsAndUnits = _compsAndUnits;
             _controllerIndex = controllerIndex;
             _parentHealth = GetComponent<ParentHealth>();
+            _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
             _unitManager?.InitializeOld(controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, null);
             _unitManager?.SetUnitName(_unitStats.UnitName);
             GetComponent<Die>()?.Initialize(_compsAndUnits, controllerIndex);
@@ -76,6 +78,7 @@ namespace Rechrysalis.Unit
         }
         public void Tick (float _timeAmount)
         {   
+            _aiFlawedUpdate?.Tick(_timeAmount);
             bool _isRetreating = false;
             _aiAlwaysPreferClosest.CheckIfTargetInRange();
             if (_freeEnemyKiteMaxRange != null)
