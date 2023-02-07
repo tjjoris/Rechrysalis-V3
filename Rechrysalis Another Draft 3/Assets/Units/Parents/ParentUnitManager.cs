@@ -117,8 +117,8 @@ namespace Rechrysalis.Unit
                 // }
             }
             _parentHealth = GetComponent<ParentHealth>();
-            _parentHealth._unitDies -= ActivateChrysalis;
-            _parentHealth._unitDies += ActivateChrysalis;
+            _parentHealth._unitDies -= _chrysalisActivation.ActivateChrysalis;
+            _parentHealth._unitDies += _chrysalisActivation.ActivateChrysalis;
             if ((_subUnits != null) && (_subUnits.Length>0))
             {
                 for (int _subIndex = 0; _subIndex < _subUnits.Length; _subIndex ++)
@@ -176,7 +176,7 @@ namespace Rechrysalis.Unit
             if (_chrysalisIndex == 0) return;
             if (!CheckIfEnoughMana(_chrysalisIndex)) return;
             SubtractMana(_chrysalisIndex);
-            ActivateChrysalis(_chrysalisIndex);            
+            _chrysalisActivation.ActivateChrysalis(_chrysalisIndex);            
         }
         private bool CheckIfEnoughMana(int _chrysalisIndex)
         {
@@ -190,44 +190,44 @@ namespace Rechrysalis.Unit
         {
             _subtractMana?.Invoke(_subUnits[_chrysalisIndex].GetComponent<UnitManager>().ManaCost);
         }
-        public void ActivateChrysalis(int _chrysalisIndex)
-        {
-            if (_subChrysalii[_chrysalisIndex] == null) return;
-            // if ((_chrysalisIndex == 0) && (_currentSubUnit != _subUnits[0])) return;
-            // if (_currentSubUnit != _subChrysalii[_chrysalisIndex])
-            {
-                _parentHealth.SetChrysalis(true);
+        // public void ActivateChrysalis(int _chrysalisIndex)
+        // {
+        //     if (_subChrysalii[_chrysalisIndex] == null) return;
+        //     // if ((_chrysalisIndex == 0) && (_currentSubUnit != _subUnits[0])) return;
+        //     // if (_currentSubUnit != _subChrysalii[_chrysalisIndex])
+        //     {
+        //         _parentHealth.SetChrysalis(true);
 
-                _parentHealth.SetMaxHealth(_subUnits[_chrysalisIndex].GetComponent<UnitManager>().UnitClass.HPMax);
-            float _timeToKeep = 0;
-            ChrysalisTimer _chrysalisTimer = _currentSubUnit.GetComponent<ChrysalisTimer>();
-            if (_chrysalisTimer != null)
-            {
-                _timeToKeep = _chrysalisTimer.TimerCurrent;
-            }
-            for (int _indexInSubChrysalis=0; _indexInSubChrysalis<_subChrysalii.Length; _indexInSubChrysalis++)
-            {
-                if (_indexInSubChrysalis == _chrysalisIndex)
-                {
-                    _currentSubUnit = _subChrysalii[_chrysalisIndex];
-                    Debug.Log($"activating chrysalis" + _chrysalisIndex);
-                    _subChrysalii[_chrysalisIndex].SetActive(true);
-                    _parentHealth.CurrentUnit = _subChrysalii[_chrysalisIndex].GetComponent<UnitManager>();
-                    _subChrysalii[_chrysalisIndex].GetComponent<ChrysalisTimer>()?.StartThisChrysalis(_timeToKeep);
-                    if (!_theseUnits.ActiveUnits.Contains(_subChrysalii[_chrysalisIndex]))
-                    {
-                        _theseUnits.ActiveUnits.Add(_subChrysalii[_chrysalisIndex]);
-                    }                    
-                }
-                else _chrysalisActivation.DeactivateChrysalis(_indexInSubChrysalis);
-            }
-            for (int _unitIndex = 0; _unitIndex < _subUnits.Length; _unitIndex ++)
-            {
-                DeactivateUnit(_unitIndex);
-            }
-            }
-            _targetScoreValue.SetEgg(true);
-        }
+        //         _parentHealth.SetMaxHealth(_subUnits[_chrysalisIndex].GetComponent<UnitManager>().UnitClass.HPMax);
+        //     float _timeToKeep = 0;
+        //     ChrysalisTimer _chrysalisTimer = _currentSubUnit.GetComponent<ChrysalisTimer>();
+        //     if (_chrysalisTimer != null)
+        //     {
+        //         _timeToKeep = _chrysalisTimer.TimerCurrent;
+        //     }
+        //     for (int _indexInSubChrysalis=0; _indexInSubChrysalis<_subChrysalii.Length; _indexInSubChrysalis++)
+        //     {
+        //         if (_indexInSubChrysalis == _chrysalisIndex)
+        //         {
+        //             _currentSubUnit = _subChrysalii[_chrysalisIndex];
+        //             Debug.Log($"activating chrysalis" + _chrysalisIndex);
+        //             _subChrysalii[_chrysalisIndex].SetActive(true);
+        //             _parentHealth.CurrentUnit = _subChrysalii[_chrysalisIndex].GetComponent<UnitManager>();
+        //             _subChrysalii[_chrysalisIndex].GetComponent<ChrysalisTimer>()?.StartThisChrysalis(_timeToKeep);
+        //             if (!_theseUnits.ActiveUnits.Contains(_subChrysalii[_chrysalisIndex]))
+        //             {
+        //                 _theseUnits.ActiveUnits.Add(_subChrysalii[_chrysalisIndex]);
+        //             }                    
+        //         }
+        //         else _chrysalisActivation.DeactivateChrysalis(_indexInSubChrysalis);
+        //     }
+        //     for (int _unitIndex = 0; _unitIndex < _subUnits.Length; _unitIndex ++)
+        //     {
+        //         DeactivateUnit(_unitIndex);
+        //     }
+        //     }
+        //     _targetScoreValue.SetEgg(true);
+        // }
         // public void ActivateUnit(int childIndex)
         // {
         //     for (int _indexInSubUnits = 0; _indexInSubUnits < _subUnits.Length; _indexInSubUnits++)
@@ -284,7 +284,7 @@ namespace Rechrysalis.Unit
         //         _theseUnits.ActiveUnits.Remove(_subChrysalii[_chryslisIndex]);
         //     }
         // }
-        private void DeactivateUnit(int _unitIndex)
+        public void DeactivateUnit(int _unitIndex)
         {
             if (_subUnits[_unitIndex] != null) {
                 if (_subUnits[_unitIndex].activeInHierarchy == true)
@@ -329,7 +329,7 @@ namespace Rechrysalis.Unit
                 _rechrysalize.SetNextEvolved(_childIndex);
                 return;
             }
-            ActivateChrysalis(_childIndex);
+            _chrysalisActivation.ActivateChrysalis(_childIndex);
         }
         public void RemoveHatchEffect (GameObject _hatchEffect)
         {
