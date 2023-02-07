@@ -49,7 +49,19 @@ namespace Rechrysalis.Unit
             }
             _targetScoreValue.SetCurrentUnit(_parentUnitManager.CurrentSubUnit.GetComponent<Attack>());
         }
-
-        
+        public void DeactivateUnit(int _unitIndex)
+        {
+            if (_parentUnitManager.SubUnits[_unitIndex] != null)
+            {
+                if (_parentUnitManager.SubUnits[_unitIndex].activeInHierarchy == true)
+                {
+                    _parentUnitManager.SubUnits[_unitIndex].SetActive(false);
+                }
+            }
+            if (_parentUnitManager.TheseUnits.ActiveUnits.Contains(_parentUnitManager.SubUnits[_unitIndex]))
+            {
+                _parentUnitManager.TheseUnits.ActiveUnits.Remove(_parentUnitManager.SubUnits[_unitIndex]);
+            }
+        }        
     }
 }

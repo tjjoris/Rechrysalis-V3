@@ -65,7 +65,7 @@ namespace Rechrysalis.Unit
                 }
                 for (int _unitIndex = 0; _unitIndex < _parentUnitManager.SubUnits.Length; _unitIndex++)
                 {
-                    _parentUnitManager.DeactivateUnit(_unitIndex);
+                    _unitActivation.DeactivateUnit(_unitIndex);
                 }
             }
             _targetScoreValue.SetEgg(true);

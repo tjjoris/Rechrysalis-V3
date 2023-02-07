@@ -284,19 +284,19 @@ namespace Rechrysalis.Unit
         //         _theseUnits.ActiveUnits.Remove(_subChrysalii[_chryslisIndex]);
         //     }
         // }
-        public void DeactivateUnit(int _unitIndex)
-        {
-            if (_subUnits[_unitIndex] != null) {
-                if (_subUnits[_unitIndex].activeInHierarchy == true)
-                {
-                    _subUnits[_unitIndex].SetActive(false);
-                }
-            }
-            if (_theseUnits.ActiveUnits.Contains(_subUnits[_unitIndex]))
-            {
-                _theseUnits.ActiveUnits.Remove(_subUnits[_unitIndex]);
-            }
-        }
+        // public void DeactivateUnit(int _unitIndex)
+        // {
+        //     if (_subUnits[_unitIndex] != null) {
+        //         if (_subUnits[_unitIndex].activeInHierarchy == true)
+        //         {
+        //             _subUnits[_unitIndex].SetActive(false);
+        //         }
+        //     }
+        //     if (_theseUnits.ActiveUnits.Contains(_subUnits[_unitIndex]))
+        //     {
+        //         _theseUnits.ActiveUnits.Remove(_subUnits[_unitIndex]);
+        //     }
+        // }
         public void CreateHatchEffect(GameObject _hatchEffectPrefab, int _parentIndex, int _unitIndex, bool _affectAll)
         {
             // Debug.Log($""+ _hatchEffectPrefab.name + "tier " + _unitTier + " parent " + _parentIndex + " unit " + _unitIndex);
