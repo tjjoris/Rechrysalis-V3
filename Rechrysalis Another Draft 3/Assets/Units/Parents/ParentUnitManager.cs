@@ -160,12 +160,12 @@ namespace Rechrysalis.Unit
             // Debug.Log($"parent deals damage " + _damage);
             _parentDealsDamage?.Invoke(_damage);
         }
-        public void ActivateInitialUnit()
-        {
-            // Debug.Log($"set health" + _subUnits[0].GetComponent<UnitManager>().UnitStats.HealthMax);
-            _parentHealth.SetMaxHealth(_subUnits[0].GetComponent<UnitManager>().UnitClass.HPMax);
-            _unitActivation.ActivateUnit(0);            
-        }
+        // public void ActivateInitialUnit()
+        // {
+        //     // Debug.Log($"set health" + _subUnits[0].GetComponent<UnitManager>().UnitStats.HealthMax);
+        //     _parentHealth.SetMaxHealth(_subUnits[0].GetComponent<UnitManager>().UnitClass.HPMax);
+        //     _unitActivation.ActivateUnit(0);            
+        // }
         public void UpgradeUnit(int _chrysalisIndex)
         {
             if ((_chrysalisIndex == 0) && (_currentSubUnit != _subUnits[0])) return;

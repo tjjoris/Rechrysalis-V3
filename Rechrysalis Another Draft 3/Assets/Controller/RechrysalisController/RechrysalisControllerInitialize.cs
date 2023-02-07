@@ -191,11 +191,15 @@ namespace Rechrysalis.Controller
         {
             for (int _parentUnitIndex = 0; _parentUnitIndex < _unitComp.ParentUnitCount; _parentUnitIndex++)
             {
-                if (_parentUnits[_parentUnitIndex] != null){
-                //     ParentUnitManager _parentUnitManager = _parentUnits[_parentUnitIndex].GetComponent<ParentUnitManager>();
-                // _parentUnits[_parentUnitIndex].GetComponent<ParentUnitManager>()?.ActivateUnit(0);
-                // _parentUnits[_parentUnitIndex].GetComponent<ParentHealth>()?.SetMaxHealth(_parentUnitManager.SubUnits[0].GetComponent<UnitManager>().UnitStats.HealthMax);
-                _parentUnits[_parentUnitIndex].GetComponent<ParentUnitManager>().ActivateInitialUnit();
+                ParentUnitManager thisParentUnit = _parentUnits[_parentUnitIndex].GetComponent<ParentUnitManager>();
+                if (thisParentUnit!= null){
+                    //     ParentUnitManager _parentUnitManager = _parentUnits[_parentUnitIndex].GetComponent<ParentUnitManager>();
+                    // _parentUnits[_parentUnitIndex].GetComponent<ParentUnitManager>()?.ActivateUnit(0);
+                    // _parentUnits[_parentUnitIndex].GetComponent<ParentHealth>()?.SetMaxHealth(_parentUnitManager.SubUnits[0].GetComponent<UnitManager>().UnitStats.HealthMax);
+                    
+                    // _parentUnits[_parentUnitIndex].GetComponent<ParentUnitManager>().ActivateInitialUnit();
+                    thisParentUnit.GetComponent<ParentHealth>().SetMaxHealth(thisParentUnit.SubUnits[0].GetComponent<UnitManager>().UnitClass.HPMax);
+                    thisParentUnit.GetComponent<UnitActivation>().ActivateUnit(0);
                 }
             }
         }
