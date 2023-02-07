@@ -11,11 +11,13 @@ namespace Rechrysalis.Unit
         private ParentUnitManager _parentUnitManager;
         private ParentHealth _parentHealth;
         private TargetScoreValue _targetScoreValue;
+        private ChrysalisActivation _chrysalisActivation;
         public void Initialize(ParentUnitManager parentUnitManager)
         {
             _parentUnitManager = parentUnitManager;
             _parentHealth = GetComponent<ParentHealth>();
             _targetScoreValue = GetComponent<TargetScoreValue>();
+            _chrysalisActivation = GetComponent<ChrysalisActivation>();
         }
         
         public void ActivateUnit(int _unitIndex)
@@ -43,9 +45,11 @@ namespace Rechrysalis.Unit
                         _parentUnitManager.CreateHatchEffect(_parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, _unitIndex, true);
                     }
                 }
-                _parentUnitManager.DeactivateChrysalis(_indexInSubUnits);
+                _chrysalisActivation.DeactivateChrysalis(_indexInSubUnits);
             }
             _targetScoreValue.SetCurrentUnit(_parentUnitManager.CurrentSubUnit.GetComponent<Attack>());
         }
+
+        
     }
 }
