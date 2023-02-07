@@ -75,11 +75,13 @@ namespace Rechrysalis.Unit
         {
             _rotateParentUnit?.Tick();
         }
-        /// <summary>
-        /// This function is called when the object becomes enabled and active.
-        /// </summary>
+        private void Awake()
+        {
+            _unitActivation = GetComponent<UnitActivation>();
+        }
         private void OnEnable()
         {
+            // _unitActivation = GetComponent<UnitActivation>();
             AddChrysalisAndUnitActions();
         }
         public void AddChrysalisAndUnitActions()
