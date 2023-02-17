@@ -407,7 +407,10 @@ namespace Rechrysalis.Unit
         }
         public void SetManaText(string manaText)
         {
-            _manaText.text = manaText;
+            if (_manaText != null)
+            {
+                _manaText.text = manaText;
+            }
         }
     }
 }
