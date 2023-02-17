@@ -16,7 +16,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private TouchSO _touch;
         [SerializeField] private GameObject[] _parentUnits;
         public GameObject[] ParentUnits{get{return _parentUnits;} set{_parentUnits = value;}}  
-        private ParentUnitManager[] _parentUnitManagers;
+        [SerializeField] private ParentUnitManager[] _parentUnitManagers;
         public ParentUnitManager[] ParentUnitManagers {get {return _parentUnitManagers;}}
         private List<GameObject> _allUnits;      
         [SerializeField] private PlayerUnitsSO[] _playerUnitsSO;
@@ -48,7 +48,8 @@ namespace Rechrysalis.Controller
         //     }
         // }
 
-        public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits, CompCustomizerSO _compCustomizer) {
+        public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits, CompCustomizerSO _compCustomizer) 
+        {
             this._controllerIndex = _controllerIndex;
             this._playerUnitsSO = _playerUnitsSO;
             this._compSO = _compSO;
@@ -62,8 +63,8 @@ namespace Rechrysalis.Controller
             _allUnits.Clear();
             _mover = GetComponent<Mover>();
             if (_mover != null) {
-            _mover?.Initialize(_controllerIndex);
-            _mover?.SetSpeed(_compsAndUnits.Speed);
+                _mover?.Initialize(_controllerIndex);
+                _mover?.SetSpeed(_compsAndUnits.Speed);
             }
             _click?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
             _touch?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
@@ -72,16 +73,24 @@ namespace Rechrysalis.Controller
             _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             if (_freeEnemyInitialize != null)
             {
-            _freeEnemyInitialize.Initialize(_controllerIndex, _enemyController, _compSO, _playerUnitsSO[_controllerIndex], _compsAndUnits, _compsAndUnits.FreeUnitCompSO[_controllerIndex], _compCustomizer);
-            _allUnits = _freeEnemyInitialize.GetAllUnits();
+                _freeEnemyInitialize.Initialize(_controllerIndex, _enemyController, _compSO, _playerUnitsSO[_controllerIndex], _compsAndUnits, _compsAndUnits.FreeUnitCompSO[_controllerIndex], _compCustomizer);
+                _allUnits = _freeEnemyInitialize.GetAllUnits();
             }            
             RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();
             if (GetComponent<RechrysalisControllerInitialize>() != null)
             {
-            _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius);
-            _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
-            _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
-            _manaGenerator?.Initialize(_parentUnits);
+                _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius);
+                _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
+                _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
+                _parentUnitManagers = new ParentUnitManager[_parentUnits.Length];
+                _manaGenerator?.Initialize(_parentUnits);
+                if ((_parentUnits != null) && (_parentUnits.Length > 0))
+                {
+                    for (int i=0; i<_parentUnits.Length; i++)
+                    {
+                        _parentUnitManagers[i] = _parentUnits[i].GetComponent<ParentUnitManager>();
+                    }
+                }
             }
             // Debug.Log($"health " + _compsAndUnits.ControllerHealth[_controllerIndex]);
             GetComponent<ControllerHealth>()?.Initialize(_compsAndUnits.ControllerHealth[_controllerIndex], _allUnits, _compsAndUnits);

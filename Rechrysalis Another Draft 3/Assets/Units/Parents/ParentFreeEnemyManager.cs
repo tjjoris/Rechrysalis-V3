@@ -94,7 +94,7 @@ namespace Rechrysalis.Unit
                     _mover.SetDirection(Vector2.zero);
                 }
             }
-            _unitManager.IsStopped = _mover.IsStopped;
+            // _unitManager.IsStopped = _mover.IsStopped;
         }
         private void AICanMove(bool _aiCanMove)
         {
