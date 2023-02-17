@@ -4,6 +4,7 @@ using UnityEngine;
 using Rechrysalis.Controller;
 using Rechrysalis.Background;
 using System;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.Movement
 {
@@ -27,9 +28,11 @@ namespace Rechrysalis.Movement
         public bool IsStopped {set{_isStopped = value;}get {return _isStopped;}}
         [SerializeField] float _speed;
         private CausesPushBack _causesPushBack;
+        private ParentUnitManager _parentUnitManager;
         public Action _resetChargeUp;
         public void Initialize(int _controllerIndex)
         {
+            _parentUnitManager = GetComponent<ParentUnitManager>();
             _causesPushBack = GetComponent<CausesPushBack>();
             this._controllerIndex = _controllerIndex;
             _backG = GameMaster.GetSingleton().ReferenceManager.BackG;
@@ -171,6 +174,7 @@ namespace Rechrysalis.Movement
                 }
                  _isStopped = false;
             }
+            if (_parentUnitManager != null) _parentUnitManager.IsStopped = _isStopped;            
         }
     }
 }

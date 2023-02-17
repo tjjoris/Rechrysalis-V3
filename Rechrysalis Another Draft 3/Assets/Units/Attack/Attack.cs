@@ -21,13 +21,14 @@ namespace Rechrysalis.Attacking
         private ProjectilesPool _projectilesPool;
         private bool _isWindingDown;
         private bool _isChargingUp;
-        private bool _isStopped;
-        public bool IsStopped{set{_isStopped = value;}}
+        // private bool _isStopped;
+        // public bool IsStopped{set{_isStopped = value;}}
         [SerializeField] private TargetsListSO _targetsList;
         private InRangeByPriority _inRangeByPriority;  
         private ClosestTarget _closestTarget;  
         private TargetHolder _targetHolder;
         private AIAttackChargeUpTimer _aiAttackTimer;
+        private ParentUnitManager _parentUnitManager;
 
         public void Initialize(UnitClass unitClass)
         {
@@ -42,6 +43,7 @@ namespace Rechrysalis.Attacking
             _targetHolder = GetComponent<TargetHolder>();
             _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
             _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown);
+            _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
             CalculateDamage(_baseDPS);
             ResetUnitAttack();
         }
@@ -78,7 +80,7 @@ namespace Rechrysalis.Attacking
             else
             {            
                 GameObject _tempTarget = null;
-                if ((_isChargingUp) && (_isStopped) && (_attackChargeCurrent >= _attackChargeUp))
+                if ((_isChargingUp) && (_parentUnitManager.IsStopped) && (_attackChargeCurrent >= _attackChargeUp))
                 {
                     _tempTarget = GetTargetInRange();
                     if (_tempTarget != null)
@@ -103,7 +105,7 @@ namespace Rechrysalis.Attacking
                     _isChargingUp = true;
                     _attackChargeCurrent += _timeAmount;
                 }
-                else if ((_isChargingUp) && (_isStopped))
+                else if ((_isChargingUp) && (_parentUnitManager.IsStopped))
                 {
                     _attackChargeCurrent += _timeAmount;                
                 }

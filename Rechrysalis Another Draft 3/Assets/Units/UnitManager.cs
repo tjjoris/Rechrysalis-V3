@@ -34,6 +34,7 @@ namespace Rechrysalis.Unit
         [SerializeField] private GameObject _hatchEffectPrefab;
         public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
         private FreeUnitHatchEffect _freeHatchScript;
+        private ParentUnitManager _parentUnitManager;
         private float _baseDPS;
         private float _newDPS;
         private float _baseChargeUp;
@@ -44,24 +45,25 @@ namespace Rechrysalis.Unit
         private float _newIncomingDamageMult = 1;
         private float _manaCost;
         public float ManaCost {get{return _manaCost;}}
-        [SerializeField] private bool _isStopped;
-        public bool IsStopped 
-        {
-            set{
-                    _isStopped = value;
-                    if (_mover != null)
-                    {
-                    _mover.IsStopped = _isStopped;
-                    }
-                    if (_attack != null)
-                    {
-                    _attack.IsStopped = _isStopped;
-                    }
-                }
-            }
+        // [SerializeField] private bool _isStopped;
+        // public bool IsStopped 
+        // {
+        //     set{
+        //             _isStopped = value;
+        //             if (_mover != null)
+        //             {
+        //             _mover.IsStopped = _isStopped;
+        //             }
+        //             if (_attack != null)
+        //             {
+        //             _attack.IsStopped = _isStopped;
+        //             }
+        //         }
+        //     }
         public System.Action<float> _unitDealsDamage;
         public void Initialize(int controllerIndex, UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnits)
         {
+            _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
             _controllerIndex = controllerIndex;
             _compsAndUnits = compsAndUnits;
             Debug.Log($"controller index " + _controllerIndex);
@@ -71,7 +73,7 @@ namespace Rechrysalis.Unit
             _attack = GetComponent<Attack>();
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
             _controllerUnitAttackClosest?.Initialzie();
-            if (_attack != null) _attack.IsStopped = true;
+            if (_parentUnitManager != null) _parentUnitManager.IsStopped = true;
             _attack?.Initialize(_unitClass);
             _health?.Initialize(_unitClass.HPMax);
             _nameText.text = unitClass.UnitName;
@@ -121,7 +123,7 @@ namespace Rechrysalis.Unit
             _attack = GetComponent<Attack>();
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
             _controllerUnitAttackClosest?.Initialzie();
-            if (_attack != null)  _attack.IsStopped = true;
+            if (_parentUnitManager != null)  _parentUnitManager.IsStopped = true;
             _attack?.InitializeOld(_unitStats);
             _health = GetComponent<Health>();
             _health?.Initialize(_unitStats.HealthMaxBasic);
@@ -191,11 +193,11 @@ namespace Rechrysalis.Unit
                 {
                     // _mover?.Tick(_timeAmount);
                     // if ((!_mover.IsStopped) && ())
-                    _isStopped = _mover.IsStopped;
+                    // _isStopped = _mover.IsStopped;
                 }
                 if (_attack != null)
                 {
-                    _attack.IsStopped = _isStopped;
+                    // _attack.IsStopped = _isStopped;
                     _attack?.Tick(_timeAmount);
                 }
                 // _projectilesPool?.TickProjectiles(_timeAmount);

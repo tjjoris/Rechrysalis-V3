@@ -46,11 +46,12 @@ namespace Rechrysalis.Unit
         {
             set{
                 _isStopped = value;
-                foreach(GameObject _unit in _subUnits)
-                {
-                    _unit.GetComponent<UnitManager>().IsStopped = _isStopped;
-                }
+                // foreach(GameObject _unit in _subUnits)
+                // {
+                //     _unit.GetComponent<UnitManager>().IsStopped = _isStopped;
+                // }
             }
+            get {return _isStopped;}
          }
 
         public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO unitComp, PlayerUnitsSO _theseUnits, Transform _controllertransform, HatchEffectSO[] _subHatchEffects)

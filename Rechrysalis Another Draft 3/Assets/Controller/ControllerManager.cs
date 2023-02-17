@@ -16,6 +16,8 @@ namespace Rechrysalis.Controller
         [SerializeField] private TouchSO _touch;
         [SerializeField] private GameObject[] _parentUnits;
         public GameObject[] ParentUnits{get{return _parentUnits;} set{_parentUnits = value;}}  
+        private ParentUnitManager[] _parentUnitManagers;
+        public ParentUnitManager[] ParentUnitManagers {get {return _parentUnitManagers;}}
         private List<GameObject> _allUnits;      
         [SerializeField] private PlayerUnitsSO[] _playerUnitsSO;
         public PlayerUnitsSO[] PlayerUnitsSO {get{return _playerUnitsSO;} set{_playerUnitsSO = value;}}    
@@ -276,19 +278,26 @@ namespace Rechrysalis.Controller
         {
             _manaGenerator.StartTimer();
         }
-        public void SetIsStopped(bool _isStopped)
+        public void SetIsStopped(bool isStopped)
         {
-            this._isStopped = _isStopped;
+            this._isStopped = isStopped;
             if (_mover != null) {
-            _mover.IsStopped = _isStopped;
+            _mover.IsStopped = isStopped;
             }
             // foreach (GameObject _parentUnit in _parentUnits)
             // {
             //     _parentUnit.GetComponent<ParentUnitManager>().IsStopped = _isStopped;
             // }
-            foreach (GameObject _unit in _allUnits)
+            // foreach (GameObject _unit in _allUnits)
+            // {
+            //     _unit.GetComponent<UnitManager>().IsStopped = isStopped;
+            // }
+            foreach (ParentUnitManager parentUnitManager in _parentUnitManagers)
             {
-                _unit.GetComponent<UnitManager>().IsStopped = _isStopped;
+                if (parentUnitManager != null)
+                {
+                    parentUnitManager.IsStopped = isStopped;
+                }
             }
         }
         public void ActivateChrysalis(int _parentUnit, int _childUnit)
