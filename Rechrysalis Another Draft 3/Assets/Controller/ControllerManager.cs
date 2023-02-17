@@ -88,7 +88,10 @@ namespace Rechrysalis.Controller
                 {
                     for (int i=0; i<_parentUnits.Length; i++)
                     {
-                        _parentUnitManagers[i] = _parentUnits[i].GetComponent<ParentUnitManager>();
+                        if (_parentUnits[i] != null)
+                        {
+                            _parentUnitManagers[i] = _parentUnits[i].GetComponent<ParentUnitManager>();
+                        }
                     }
                 }
             }
