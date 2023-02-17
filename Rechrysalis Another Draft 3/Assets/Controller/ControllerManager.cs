@@ -322,13 +322,13 @@ namespace Rechrysalis.Controller
                 _parentUnits[_parentUnit].GetComponent<UpgradeUnit>()?.UpgradeUnitFunction(_childUnit);
             }
         }
-        public void ReserveChrysalis(int _parentIndex, int _childIndex)
-        {
-            if (_childIndex != -1)
-            {
-                _parentUnits[_parentIndex].GetComponent<ParentUnitManager>()?.ReserveChrysalis(_parentIndex, _childIndex);
-            }
-        }
+        // public void ReserveChrysalis(int _parentIndex, int _childIndex)
+        // {
+        //     if (_childIndex != -1)
+        //     {
+        //         _parentUnits[_parentIndex].GetComponent<ParentUnitManager>()?.ReserveChrysalis(_parentIndex, _childIndex);
+        //     }
+        // }
         public void AddHatchEffect(GameObject _hatchEffect, int _parentIndex, int _unitIndex, bool _effectAll)
         {
             {
