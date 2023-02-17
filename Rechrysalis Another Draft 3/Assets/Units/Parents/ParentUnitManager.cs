@@ -121,8 +121,11 @@ namespace Rechrysalis.Unit
                 // }
             }
             _parentHealth = GetComponent<ParentHealth>();
-            _parentHealth._unitDies -= _chrysalisActivation.ActivateChrysalis;
-            _parentHealth._unitDies += _chrysalisActivation.ActivateChrysalis;
+            if (_chrysalisActivation != null)
+            {
+                _parentHealth._unitDies -= _chrysalisActivation.ActivateChrysalis;
+                _parentHealth._unitDies += _chrysalisActivation.ActivateChrysalis;
+            }
             if ((_subUnits != null) && (_subUnits.Length>0))
             {
                 for (int _subIndex = 0; _subIndex < _subUnits.Length; _subIndex ++)
@@ -151,6 +154,10 @@ namespace Rechrysalis.Unit
             //         _unit.GetComponent<Rechrysalize>()._startChrysalis -= ActivateChrysalis;
             //     }
             // }
+            if (_chrysalisActivation != null)
+            {
+                _parentHealth._unitDies -= _chrysalisActivation.ActivateChrysalis;
+            }
             if ((_subUnits != null) && (_subUnits.Length > 0))
             {
                 for (int _subIndex = 0; _subIndex < _subUnits.Length; _subIndex++)
