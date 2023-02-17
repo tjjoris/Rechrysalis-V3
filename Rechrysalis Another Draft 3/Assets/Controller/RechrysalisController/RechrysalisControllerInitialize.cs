@@ -45,6 +45,7 @@ namespace Rechrysalis.Controller
 
                 if (unitComp.DoesParentExist(parentUnitIndex))
                 {
+                    Debug.Log($"parent exists " + parentUnitIndex);
                     float _radToOffset = Mathf.Deg2Rad * (((360f / unitComp.ParentUnitCount) * parentUnitIndex) + _unitRingAngle);  
                     Vector3 _unitOffset = new Vector3 (Mathf.Cos(_radToOffset) * _ringDistFromCentre, Mathf.Sin(_radToOffset) * _ringDistFromCentre, 0f);
                     // Debug.Log($"radtooffset" + _radToOffset + "vector 3 " + _unitOffset);

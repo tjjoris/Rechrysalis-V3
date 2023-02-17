@@ -304,11 +304,14 @@ namespace Rechrysalis.Controller
             // {
             //     _unit.GetComponent<UnitManager>().IsStopped = isStopped;
             // }
-            foreach (ParentUnitManager parentUnitManager in _parentUnitManagers)
+            if ((ParentUnitManagers != null) && (_parentUnitManagers.Length > 0))
             {
-                if (parentUnitManager != null)
+                foreach (ParentUnitManager parentUnitManager in _parentUnitManagers)
                 {
-                    parentUnitManager.IsStopped = isStopped;
+                    if (parentUnitManager != null)
+                    {
+                        parentUnitManager.IsStopped = isStopped;
+                    }
                 }
             }
         }

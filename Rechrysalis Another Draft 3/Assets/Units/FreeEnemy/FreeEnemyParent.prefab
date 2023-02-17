@@ -93,7 +93,6 @@ GameObject:
   - component: {fileID: 8425826835132901728}
   - component: {fileID: 8613332429590270801}
   - component: {fileID: 5357822587167266545}
-  - component: {fileID: 8966683294772297555}
   m_Layer: 7
   m_Name: FreeEnemyParent
   m_TagString: Untagged
@@ -151,7 +150,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8804105779283925579}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a847ce3e55dd4a8f8a3163a58a52af5, type: 3}
   m_Name: 
@@ -326,70 +325,6 @@ MonoBehaviour:
   _flawedRandomRange: 2
   _currentFlawedMax: 7
   _curentFlawedCurrent: 0
---- !u!114 &8966683294772297555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8804105779283925579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c203c43e799014532b0e9bb0b30707b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _parentUnitClass:
-    _advancedUpgradesUTCList: []
-    _utcBasicUnit:
-      _upgradeType: 0
-      _unitStatsSO: {fileID: 0}
-      _hatchEffectSO: {fileID: 0}
-      _advUnitModifierSO: {fileID: 0}
-      _controllerHeartUpgrade: {fileID: 0}
-    _utcHatchEffect:
-      _upgradeType: 0
-      _unitStatsSO: {fileID: 0}
-      _hatchEffectSO: {fileID: 0}
-      _advUnitModifierSO: {fileID: 0}
-      _controllerHeartUpgrade: {fileID: 0}
-    _basicUnitClass:
-      _manaCost: 0
-      _unitName: 
-      _hpMax: 0
-      _buildTime: 0
-      _range: 0
-      _dps: 0
-      _attackChargeUp: 0
-      _attackWindDown: 0
-      _damage: 0
-      _hatchEffectPrefab: {fileID: 0}
-      _hatchEffectMult: 0
-      _unitSprite: {fileID: 0}
-      _chrysalisSprite: {fileID: 0}
-      _amountToPool: 0
-      _projectileSpeed: 0
-      _projectileSprite: {fileID: 0}
-    _advUnitClass:
-      _manaCost: 0
-      _unitName: 
-      _hpMax: 0
-      _buildTime: 0
-      _range: 0
-      _dps: 0
-      _attackChargeUp: 0
-      _attackWindDown: 0
-      _damage: 0
-      _hatchEffectPrefab: {fileID: 0}
-      _hatchEffectMult: 0
-      _unitSprite: {fileID: 0}
-      _chrysalisSprite: {fileID: 0}
-      _amountToPool: 0
-      _projectileSpeed: 0
-      _projectileSprite: {fileID: 0}
-  _controllerIndex: 0
-  _subUnits: []
-  _subChrysalii: []
-  _manaText: {fileID: 0}
 --- !u!1001 &4018325213903686455
 PrefabInstance:
   m_ObjectHideFlags: 0
