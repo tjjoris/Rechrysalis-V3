@@ -105,8 +105,14 @@ namespace Rechrysalis.Controller
                     if (_parentUnits[_parentIndex] != null)
                     {
                         ParentUnitManager _parentManager = _parentUnits[_parentIndex].GetComponent<ParentUnitManager>();
-                        _parentManager._addHatchEffect -= AddHatchEffect;
-                        _parentManager._addHatchEffect += AddHatchEffect;
+                        // _parentManager._addHatchEffect -= AddHatchEffect;
+                        // _parentManager._addHatchEffect += AddHatchEffect;
+                        ParentUnitHatchEffects parentUnitHatchEffects = _parentManager.GetComponent<ParentUnitHatchEffects>();
+                        if (parentUnitHatchEffects != null)
+                        {
+                            parentUnitHatchEffects._addHatchEffect -= AddHatchEffect;
+                            parentUnitHatchEffects._addHatchEffect += AddHatchEffect;
+                        }
                         _parentManager._parentDealsDamage -= DealsDamage;
                         _parentManager._parentDealsDamage += DealsDamage;
 
@@ -153,7 +159,12 @@ namespace Rechrysalis.Controller
             {
                 if (_parentUnit != null)
                 {
-                    _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect -= AddHatchEffect;
+                    // _parentUnit.GetComponent<ParentUnitManager>()._addHatchEffect -= AddHatchEffect;
+                    ParentUnitHatchEffects parentUnitHatchEffects = _parentUnit.GetComponent<ParentUnitHatchEffects>();
+                    if (parentUnitHatchEffects != null)
+                    {
+                        parentUnitHatchEffects._addHatchEffect -= AddHatchEffect;
+                    }
                     _parentUnit.GetComponent<ParentUnitManager>()._parentDealsDamage -= DealsDamage;
                 }
             }
@@ -284,7 +295,7 @@ namespace Rechrysalis.Controller
         {
             if ((_childUnit != -1) && (_parentUnits[_parentUnit] != null) && (_parentUnits[_parentUnit].GetComponent<ParentUnitManager>().SubUnits[_childUnit] != null))
             {
-                _parentUnits[_parentUnit].GetComponent<ParentUnitManager>()?.UpgradeUnit(_childUnit);
+                _parentUnits[_parentUnit].GetComponent<UpgradeUnit>()?.UpgradeUnitFunction(_childUnit);
             }
         }
         public void ReserveChrysalis(int _parentIndex, int _childIndex)

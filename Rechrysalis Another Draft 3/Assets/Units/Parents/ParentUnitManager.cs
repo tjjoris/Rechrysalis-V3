@@ -31,9 +31,10 @@ namespace Rechrysalis.Unit
         private ParentUnitHatchEffects _pUHE;
         private UnitActivation _unitActivation;
         private ChrysalisActivation _chrysalisActivation;
+        private UpgradeUnit _upgradeUnit;
         private TargetScoreValue _targetScoreValue;
         private float _manaAmount;
-        public float ManaAmount {set{_manaAmount = value;}}
+        public float ManaAmount {set{_manaAmount = value;} get {return _manaAmount;} }
         public Action<GameObject, int, int, bool> _addHatchEffect;
         public Action<GameObject, int, bool> _removeHatchEffect;
         public Action<float> _parentDealsDamage;
@@ -60,6 +61,8 @@ namespace Rechrysalis.Unit
             _unitActivation?.Initialize(this);
             _chrysalisActivation = GetComponent<ChrysalisActivation>();
             _chrysalisActivation?.Initialize(this);
+            _upgradeUnit = GetComponent<UpgradeUnit>();
+            _upgradeUnit?.Initialize(this);
             this._parentIndex = _parentUnitIndex;
             this._subHatchEffects = _subHatchEffects;
             this._controllerIndex = _controllerIndex;
@@ -169,27 +172,27 @@ namespace Rechrysalis.Unit
         //     _parentHealth.SetMaxHealth(_subUnits[0].GetComponent<UnitManager>().UnitClass.HPMax);
         //     _unitActivation.ActivateUnit(0);            
         // }
-        public void UpgradeUnit(int _chrysalisIndex)
-        {
-            if ((_chrysalisIndex == 0) && (_currentSubUnit != _subUnits[0])) return;
-            if (_currentSubUnit == _subChrysalii[_chrysalisIndex]) return;
-            if (_chrysalisIndex == 0) return;
-            if (!CheckIfEnoughMana(_chrysalisIndex)) return;
-            SubtractMana(_chrysalisIndex);
-            _chrysalisActivation.ActivateChrysalis(_chrysalisIndex);            
-        }
-        private bool CheckIfEnoughMana(int _chrysalisIndex)
-        {
-            if ((_subUnits[_chrysalisIndex].GetComponent<UnitManager>().ManaCost <= _manaAmount))
-            {
-                return true;
-            }
-            return false;
-        }
-        private void SubtractMana(int _chrysalisIndex)
-        {
-            _subtractMana?.Invoke(_subUnits[_chrysalisIndex].GetComponent<UnitManager>().ManaCost);
-        }
+        // public void UpgradeUnit(int _chrysalisIndex)
+        // {
+        //     if ((_chrysalisIndex == 0) && (_currentSubUnit != _subUnits[0])) return;
+        //     if (_currentSubUnit == _subChrysalii[_chrysalisIndex]) return;
+        //     if (_chrysalisIndex == 0) return;
+        //     if (!CheckIfEnoughMana(_chrysalisIndex)) return;
+        //     SubtractMana(_chrysalisIndex);
+        //     _chrysalisActivation.ActivateChrysalis(_chrysalisIndex);            
+        // }
+        // private bool CheckIfEnoughMana(int _chrysalisIndex)
+        // {
+        //     if ((_subUnits[_chrysalisIndex].GetComponent<UnitManager>().ManaCost <= _manaAmount))
+        //     {
+        //         return true;
+        //     }
+        //     return false;
+        // }
+        // private void SubtractMana(int _chrysalisIndex)
+        // {
+        //     _subtractMana?.Invoke(_subUnits[_chrysalisIndex].GetComponent<UnitManager>().ManaCost);
+        // }
         // public void ActivateChrysalis(int _chrysalisIndex)
         // {
         //     if (_subChrysalii[_chrysalisIndex] == null) return;
@@ -297,29 +300,29 @@ namespace Rechrysalis.Unit
         //         _theseUnits.ActiveUnits.Remove(_subUnits[_unitIndex]);
         //     }
         // }
-        public void CreateHatchEffect(GameObject _hatchEffectPrefab, int _parentIndex, int _unitIndex, bool _affectAll)
-        {
-            // Debug.Log($""+ _hatchEffectPrefab.name + "tier " + _unitTier + " parent " + _parentIndex + " unit " + _unitIndex);
-            if ((_hatchEffectPrefab != null) && (_subHatchEffects[_unitIndex] != null))
-            {
-                GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
-                HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
-                // Debug.Log($"creating hatch effect unit index " +_unitIndex);
-                _hatchEffectManager?.Initialize(_subHatchEffects[_unitIndex], _parentIndex, _unitIndex, _affectAll, _parentUnitClass.AdvUnitClass.HatchEffectMult);
-                // HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
-                // _hETimer?.Initialize(_unitIndex);
-                // foreach (GameObject _subUnit in _subUnits)
-                // {
-                //     _subUnit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-                // }
-                // foreach (GameObject _chrysalis in _subChrysalii)
-                // {
-                //     _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-                // }
-                // Debug.Log($"Action Hatch effect " + _hatchEffect.name);
-                _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
-            }
-        }
+        // public void CreateHatchEffect(GameObject _hatchEffectPrefab, int _parentIndex, int _unitIndex, bool _affectAll)
+        // {
+        //     // Debug.Log($""+ _hatchEffectPrefab.name + "tier " + _unitTier + " parent " + _parentIndex + " unit " + _unitIndex);
+        //     if ((_hatchEffectPrefab != null) && (_subHatchEffects[_unitIndex] != null))
+        //     {
+        //         GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
+        //         HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
+        //         // Debug.Log($"creating hatch effect unit index " +_unitIndex);
+        //         _hatchEffectManager?.Initialize(_subHatchEffects[_unitIndex], _parentIndex, _unitIndex, _affectAll, _parentUnitClass.AdvUnitClass.HatchEffectMult);
+        //         // HETimer _hETimer = _hatchEffect.GetComponent<HETimer>();
+        //         // _hETimer?.Initialize(_unitIndex);
+        //         // foreach (GameObject _subUnit in _subUnits)
+        //         // {
+        //         //     _subUnit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+        //         // }
+        //         // foreach (GameObject _chrysalis in _subChrysalii)
+        //         // {
+        //         //     _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+        //         // }
+        //         // Debug.Log($"Action Hatch effect " + _hatchEffect.name);
+        //         _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
+        //     }
+        // }
         public void ReserveChrysalis(int _parentIndex, int _childIndex)
         {
             Rechrysalize _rechrysalize = _currentSubUnit.GetComponent<Rechrysalize>();
