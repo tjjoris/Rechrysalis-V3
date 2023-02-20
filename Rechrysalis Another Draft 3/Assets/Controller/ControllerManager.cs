@@ -340,11 +340,11 @@ namespace Rechrysalis.Controller
                         // Debug.Log($"subscribing to hatch effect for parent " + _parentLoopIndex);
                         if (_parentLoopIndex == _parentIndex)
                         {
-                            _parentUnits[_parentLoopIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
+                            _parentUnits[_parentLoopIndex].GetComponent<ParentHatchEffectAddRemove>()?.AddHatchEffect(_hatchEffect);
                         }
                         else if (_effectAll)
                         {
-                            _parentUnits[_parentLoopIndex].GetComponent<ParentUnitManager>()?.AddHatchEffect(_hatchEffect);
+                            _parentUnits[_parentLoopIndex].GetComponent<ParentHatchEffectAddRemove>()?.AddHatchEffect(_hatchEffect);
                         }
                     }
                 }
@@ -370,11 +370,11 @@ namespace Rechrysalis.Controller
                 {
                     if (_parentLoopIndex == _parentIndex)
                     {
-                        _parentUnits[_parentLoopIndex].GetComponent<ParentUnitManager>()?.RemoveHatchEffect(_hatchEffect);
+                        _parentUnits[_parentLoopIndex].GetComponent<ParentHatchEffectAddRemove>()?.RemoveHatchEffect(_hatchEffect);
                     }
                     else if (_effectAll)
                     {
-                        _parentUnits[_parentLoopIndex].GetComponent<ParentUnitManager>()?.RemoveHatchEffect(_hatchEffect);
+                        _parentUnits[_parentLoopIndex].GetComponent<ParentHatchEffectAddRemove>()?.RemoveHatchEffect(_hatchEffect);
                     }
                 }
             }
