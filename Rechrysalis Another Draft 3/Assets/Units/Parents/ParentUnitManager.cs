@@ -331,17 +331,17 @@ namespace Rechrysalis.Unit
         //         _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
         //     }
         // }
-        public void ReserveChrysalis(int _parentIndex, int _childIndex)
-        {
-            Rechrysalize _rechrysalize = _currentSubUnit.GetComponent<Rechrysalize>();
-            if (_rechrysalize!= null)
-            {
-                Debug.Log($"reserve chrysalis");
-                _rechrysalize.SetNextEvolved(_childIndex);
-                return;
-            }
-            _chrysalisActivation.ActivateChrysalis(_childIndex);
-        }
+        // public void ReserveChrysalis(int _parentIndex, int _childIndex)
+        // {
+        //     Rechrysalize _rechrysalize = _currentSubUnit.GetComponent<Rechrysalize>();
+        //     if (_rechrysalize!= null)
+        //     {
+        //         Debug.Log($"reserve chrysalis");
+        //         _rechrysalize.SetNextEvolved(_childIndex);
+        //         return;
+        //     }
+        //     _chrysalisActivation.ActivateChrysalis(_childIndex);
+        // }
         public void RemoveHatchEffect (GameObject _hatchEffect)
         {
             // HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
