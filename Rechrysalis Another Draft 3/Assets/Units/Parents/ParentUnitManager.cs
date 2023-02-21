@@ -18,8 +18,14 @@ namespace Rechrysalis.Unit
         [SerializeField] private GameObject[] _subUnits;
         public GameObject[] SubUnits {get {return _subUnits;}set {_subUnits = value;}}
         [SerializeField] private GameObject[] _subChrysalii;
+        [SerializeField] private List<UnitManager> _childUnitManagers;
+        public List<UnitManager> ChildUnitManagers { get => _childUnitManagers; set => _childUnitManagers = value; }
+        
         public GameObject[] SubChrysalii {get{return _subChrysalii;}set {_subChrysalii = value;}}
         // private List<HatchEffectManager> _hatchEffectManagersToDamage;
+        [SerializeField] private List<UnitManager> _childChrysaliiUnitManagers;
+        public List<UnitManager> ChildChrysaliiUnitManagers { get => _childChrysaliiUnitManagers; set => _childChrysaliiUnitManagers = value; }
+        
         private HatchEffectSO[] _subHatchEffects; 
         public HatchEffectSO[] SubHatchEffects {get { return _subHatchEffects;}}       
         private PlayerUnitsSO _theseUnits;
@@ -57,6 +63,8 @@ namespace Rechrysalis.Unit
 
         public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO unitComp, PlayerUnitsSO _theseUnits, Transform _controllertransform, HatchEffectSO[] _subHatchEffects)
         {
+            _childUnitManagers = new List<UnitManager>();
+            _childChrysaliiUnitManagers = new List<UnitManager>();
             // _hatchEffectManagersToDamage = new List<HatchEffectManager>();
             // _hatchEffectManagersToDamage.Clear();
             _unitActivation = GetComponent<UnitActivation>();
