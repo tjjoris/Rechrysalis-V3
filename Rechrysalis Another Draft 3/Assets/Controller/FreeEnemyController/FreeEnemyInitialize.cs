@@ -23,12 +23,14 @@ namespace Rechrysalis.Controller
         private FreeUnitCompSO _freeUnitCompSO;
         private CompCustomizerSO _compCustomizer;
         private ControllerManager _controllerManager;
+        private UnitClassesFromUnitStats _unitClassesFromUnitStats;
         // private int _controllerIndex;
         private List<GameObject> _allUnits;        
         private int _waveIndex;
         public void Initialize(int controllerIndex, ControllerManager enemyController, CompSO compSO, PlayerUnitsSO playerUnitsSO, CompsAndUnitsSO compsAndUnits, FreeUnitCompSO freeUnitCompSO, CompCustomizerSO compCustomizer)        
         {
             _controllerManager = GetComponent<ControllerManager>();
+            _unitClassesFromUnitStats = GetComponent<UnitClassesFromUnitStats>();
             this._controllerIndex = controllerIndex;
             this._enemyController = enemyController;
             this._compSO = compSO;
@@ -82,7 +84,7 @@ namespace Rechrysalis.Controller
                         ParentUnitClass parentUnitClass = new ParentUnitClass(); 
                         parentUnitClass.ClearAllUpgrades();
                         parentUnitClass.SetUTCBasicUnit(_unitStats.UpgradeTypeClass);
-                        parentUnitClass.SetAllStats();
+                        parentUnitClass.SetAllStats();                        
                         // _wave.ParentUnitClasses.Add(parentUnitClass);                        
                         // ParentUnitClass parentUnitClass = _wave.ParentUnitClasses[_compSO.ParentUnitClassList.Count - 1];
 
@@ -98,6 +100,7 @@ namespace Rechrysalis.Controller
                         // newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);   
                         ParentUnitManager parentUnitManager = newFreeEnemy.GetComponent<ParentUnitManager>();
                         parentUnitManager?.Initialize(_controllerIndex, _unitInWaveIndex, compSO, playerUnitsSO, transform, null);
+                        parentUnitManager.ParentUnitClass = parentUnitClass;
                         _controllerManager.ParentUnitManagers.Add(parentUnitManager);
                         ParentFreeEnemyManager _freeParentManager = newFreeEnemy.GetComponent<ParentFreeEnemyManager>();
                         _freeParentManager?.InitializeOld(controllerIndex, _unitStats, compsAndUnits, _unitInWaveIndex, playerUnitsSO);                        

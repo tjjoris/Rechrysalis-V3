@@ -11,7 +11,7 @@ namespace Rechrysalis.Unit
     public class ParentUnitManager : MonoBehaviour
     {
         [SerializeField] private ParentUnitClass _parentUnitClass;
-        public ParentUnitClass ParentUnitClass => _parentUnitClass;
+        public ParentUnitClass ParentUnitClass {get => _parentUnitClass; set => _parentUnitClass = value; }
         private int _parentIndex;
         public int ParentIndex => _parentIndex;
         [SerializeField] private int _controllerIndex;

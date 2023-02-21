@@ -9,6 +9,7 @@ namespace Rechrysalis.Unit
 {
     public class ParentFreeEnemyManager : MonoBehaviour
     {
+        private ParentUnitManager _parentUnitManager;
         private UnitClass _unitClass;
         private ParentHealth _parentHealth;
         private FreeEnemyApproach _freeApproach;
@@ -27,6 +28,7 @@ namespace Rechrysalis.Unit
 
         public void InitializeOld(int controllerIndex,UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _unitInWaveIndex, PlayerUnitsSO _ownUnits)
         {
+            _parentUnitManager = GetComponent<ParentUnitManager>();
             this._compsAndUnits = _compsAndUnits;
             _controllerIndex = controllerIndex;
             _parentHealth = GetComponent<ParentHealth>();
@@ -48,6 +50,10 @@ namespace Rechrysalis.Unit
             _aiAlwaysPreferClosest.Initialize();
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
             _freeEnemyKiteMaxRange?.Initialize(_unitManager.GetComponent<TargetHolder>(), _attack);
+            // _parentUnitManager.ParentUnitClass = new ParentUnitClass();
+            // _parentUnitManager.ParentUnitClass. = _unitStats;
+            
+
         }
         public void Initialize(UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnitSO)
         {
