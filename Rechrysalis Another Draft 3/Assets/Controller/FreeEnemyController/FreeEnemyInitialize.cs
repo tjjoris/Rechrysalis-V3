@@ -23,14 +23,12 @@ namespace Rechrysalis.Controller
         private FreeUnitCompSO _freeUnitCompSO;
         private CompCustomizerSO _compCustomizer;
         private ControllerManager _controllerManager;
-        private UnitClassesFromUnitStats _unitClassesFromUnitStats;
         // private int _controllerIndex;
         private List<GameObject> _allUnits;        
         private int _waveIndex;
         public void Initialize(int controllerIndex, ControllerManager enemyController, CompSO compSO, PlayerUnitsSO playerUnitsSO, CompsAndUnitsSO compsAndUnits, FreeUnitCompSO freeUnitCompSO, CompCustomizerSO compCustomizer)        
         {
             _controllerManager = GetComponent<ControllerManager>();
-            _unitClassesFromUnitStats = GetComponent<UnitClassesFromUnitStats>();
             this._controllerIndex = controllerIndex;
             this._enemyController = enemyController;
             this._compSO = compSO;
