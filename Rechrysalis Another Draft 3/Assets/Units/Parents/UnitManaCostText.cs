@@ -5,7 +5,7 @@ using TMPro;
 
 namespace Rechrysalis.Unit
 {
-    public class ManaText : MonoBehaviour
+    public class UnitManaCostText : MonoBehaviour
     {
         [SerializeField] private TMP_Text _manaText;
         public void SetManaText(string manaText)
