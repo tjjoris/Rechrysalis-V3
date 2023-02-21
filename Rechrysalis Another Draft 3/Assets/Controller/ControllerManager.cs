@@ -17,7 +17,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private GameObject[] _parentUnits;
         public GameObject[] ParentUnits{get{return _parentUnits;} set{_parentUnits = value;}}  
         [SerializeField] private List<ParentUnitManager> _parentUnitManagers;
-        public List<ParentUnitManager> ParentUnitManagers {get {return _parentUnitManagers;}}
+        public List<ParentUnitManager> ParentUnitManagers {get {return _parentUnitManagers;} set{_parentUnitManagers = value;}}
         private List<GameObject> _allUnits;      
         [SerializeField] private PlayerUnitsSO[] _playerUnitsSO;
         public PlayerUnitsSO[] PlayerUnitsSO {get{return _playerUnitsSO;} set{_playerUnitsSO = value;}}    
@@ -84,16 +84,16 @@ namespace Rechrysalis.Controller
                 _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
                 _parentUnitManagers = new List<ParentUnitManager>();
                 _manaGenerator?.Initialize(_parentUnits);
-                if ((_parentUnits != null) && (_parentUnits.Length > 0))
-                {
-                    for (int i=0; i<_parentUnits.Length; i++)
-                    {
-                        if (_parentUnits[i] != null)
-                        {
-                            _parentUnitManagers[i] = _parentUnits[i].GetComponent<ParentUnitManager>();
-                        }
-                    }
-                }
+                // if ((_parentUnits != null) && (_parentUnits.Length > 0))
+                // {
+                //     for (int i=0; i<_parentUnits.Length; i++)
+                //     {
+                //         if (_parentUnits[i] != null)
+                //         {
+                //             // _parentUnitManagers.Add(_parentUnits[i].GetComponent<ParentUnitManager>());
+                //         }
+                //     }
+                // }
             }
             // Debug.Log($"health " + _compsAndUnits.ControllerHealth[_controllerIndex]);
             GetComponent<ControllerHealth>()?.Initialize(_compsAndUnits.ControllerHealth[_controllerIndex], _allUnits, _compsAndUnits);
