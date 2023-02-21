@@ -40,7 +40,7 @@ namespace Rechrysalis.Unit
         public Action<GameObject, int, bool> _removeHatchEffect;
         public Action<float> _parentDealsDamage;
         public Action<float> _subtractMana;
-        [SerializeField] private TMP_Text _manaText;
+        // [SerializeField] private TMP_Text _manaText;
 
         private bool _isStopped;
         public bool IsStopped 
@@ -415,12 +415,12 @@ namespace Rechrysalis.Unit
         //     }
         //     _parentHealth.ReCalculateIncomingDamageModifier(hEIncraseDefenceList);
         // }
-        public void SetManaText(string manaText)
-        {
-            if (_manaText != null)
-            {
-                _manaText.text = manaText;
-            }
-        }
+        // public void SetManaText(string manaText)
+        // {
+        //     if (_manaText != null)
+        //     {
+        //         _manaText.text = manaText;
+        //     }
+        // }
     }
 }
