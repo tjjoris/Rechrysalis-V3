@@ -16,8 +16,8 @@ namespace Rechrysalis.Controller
         [SerializeField] private TouchSO _touch;
         [SerializeField] private GameObject[] _parentUnits;
         public GameObject[] ParentUnits{get{return _parentUnits;} set{_parentUnits = value;}}  
-        [SerializeField] private ParentUnitManager[] _parentUnitManagers;
-        public ParentUnitManager[] ParentUnitManagers {get {return _parentUnitManagers;}}
+        [SerializeField] private List<ParentUnitManager> _parentUnitManagers;
+        public List<ParentUnitManager> ParentUnitManagers {get {return _parentUnitManagers;}}
         private List<GameObject> _allUnits;      
         [SerializeField] private PlayerUnitsSO[] _playerUnitsSO;
         public PlayerUnitsSO[] PlayerUnitsSO {get{return _playerUnitsSO;} set{_playerUnitsSO = value;}}    
@@ -82,7 +82,7 @@ namespace Rechrysalis.Controller
                 _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius);
                 _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
                 _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
-                _parentUnitManagers = new ParentUnitManager[_parentUnits.Length];
+                _parentUnitManagers = new List<ParentUnitManager>();
                 _manaGenerator?.Initialize(_parentUnits);
                 if ((_parentUnits != null) && (_parentUnits.Length > 0))
                 {
@@ -304,7 +304,7 @@ namespace Rechrysalis.Controller
             // {
             //     _unit.GetComponent<UnitManager>().IsStopped = isStopped;
             // }
-            if ((ParentUnitManagers != null) && (_parentUnitManagers.Length > 0))
+            if ((ParentUnitManagers != null) && (_parentUnitManagers.Count > 0))
             {
                 foreach (ParentUnitManager parentUnitManager in _parentUnitManagers)
                 {
