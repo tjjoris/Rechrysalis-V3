@@ -56,6 +56,7 @@ namespace Rechrysalis.Controller
             this._compSO = _compSO;
             this._enemyController = _enemyController;
             this._compsAndUnits = _compsAndUnits;
+            _parentUnitManagers = new List<ParentUnitManager>();
             // this._compCustomizer = _compCustomizer;
             _manaGenerator = GetComponent<ManaGenerator>();
             
@@ -83,7 +84,6 @@ namespace Rechrysalis.Controller
                 _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius);
                 _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
                 _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
-                _parentUnitManagers = new List<ParentUnitManager>();
                 _manaGenerator?.Initialize(_parentUnits);
                 // if ((_parentUnits != null) && (_parentUnits.Length > 0))
                 // {

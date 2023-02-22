@@ -11,6 +11,7 @@ namespace Rechrysalis.Unit
 {
     public class UnitManager : MonoBehaviour
     {
+        private bool debugBool = true;
         [SerializeField] private UnitClass _unitClass;
         public UnitClass UnitClass => _unitClass;
         [SerializeField] private ControllerUnitSpriteHandler _unitSpriteHandler;
@@ -185,6 +186,7 @@ namespace Rechrysalis.Unit
         }
         public void Tick(float _timeAmount)
         {
+            if (debugBool)   Debug.Log($"tick");
             // if (gameObject.active == true) 
             // {
                 // bool _isStopped = false;
