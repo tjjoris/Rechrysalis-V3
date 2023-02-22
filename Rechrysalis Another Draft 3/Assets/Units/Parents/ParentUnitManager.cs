@@ -98,11 +98,17 @@ namespace Rechrysalis.Unit
         {
             foreach (UnitManager childUnit in _childUnitManagers)
             {
-                childUnit.Tick(timeAmount);
+                if (childUnit.gameObject.activeInHierarchy)
+                {
+                    childUnit.Tick(timeAmount);
+                }
             }
             foreach (UnitManager childChrysalii in _childChrysaliiUnitManagers)
             {
-                childChrysalii.Tick(timeAmount);
+                if (childChrysalii.gameObject.activeInHierarchy)
+                {
+                    childChrysalii.Tick(timeAmount);
+                }
             }
         }
         private void Awake()
