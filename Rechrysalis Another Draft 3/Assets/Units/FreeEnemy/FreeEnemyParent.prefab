@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitManager: {fileID: 6948555136272082086}
+  _basicUnitManager: {fileID: 6948555136272082086}
 --- !u!114 &7721016742656668050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,7 +390,8 @@ MonoBehaviour:
   _controllerIndex: 0
   _subUnits: []
   _subChrysalii: []
-  _manaText: {fileID: 0}
+  _childUnitManagers: []
+  _childChrysaliiUnitManagers: []
 --- !u!1001 &4018325213903686455
 PrefabInstance:
   m_ObjectHideFlags: 0

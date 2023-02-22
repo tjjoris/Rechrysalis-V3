@@ -25,6 +25,8 @@ namespace Rechrysalis.Unit
         public UnitManager UnitManager {get {return _unitManager;}}
         private AIFlawedUpdate _aiFlawedUpdate;
         private int _controllerIndex;
+        [SerializeField] private UnitManager _basicUnitManager;
+        public UnitManager BasicUnitManager {get {return _basicUnitManager;}}
 
         public void InitializeOld(int controllerIndex,UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _unitInWaveIndex, PlayerUnitsSO _ownUnits)
         {
@@ -52,11 +54,12 @@ namespace Rechrysalis.Unit
             _freeEnemyKiteMaxRange?.Initialize(_unitManager.GetComponent<TargetHolder>(), _attack);
             // _parentUnitManager.ParentUnitClass = new ParentUnitClass();
             // _parentUnitManager.ParentUnitClass. = _unitStats;
-            
+
 
         }
         public void Initialize(UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnitSO)
         {
+            _parentUnitManager = GetComponent<ParentUnitManager>();
             _unitClass = unitClass;
             _attack.Initialize(unitClass);
             _unitManager?.Initialize(_controllerIndex, unitClass, freeUnitIndex,  compsAndUnitSO);
