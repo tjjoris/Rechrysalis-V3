@@ -281,7 +281,7 @@ namespace Rechrysalis.Controller
         {
             foreach (ParentUnitManager parentUnitManager in _parentUnitManagers)
             {
-                if (parentUnitManager != null)
+                if ((parentUnitManager != null) && (parentUnitManager.gameObject.activeInHierarchy))
                 {
                     // _parentUnit.GetComponent<RotateParentUnit>()?.Tick();
                     parentUnitManager.Tick(timeAmount);

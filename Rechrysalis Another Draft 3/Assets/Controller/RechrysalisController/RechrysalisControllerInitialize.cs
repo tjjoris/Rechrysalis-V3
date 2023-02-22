@@ -60,7 +60,7 @@ namespace Rechrysalis.Controller
                     ParentUnitManager pum = parentUnitGO.GetComponent<ParentUnitManager>();
                     _controllerManager.ParentUnitManagers.Add(pum);
                     HatchEffectSO[] _hatchEffectSOs = SetHatchEffectSOs(parentUnitIndex);
-                    pum?.Initialize(controllerIndex, parentUnitIndex, unitComp, compsAndUnits.PlayerUnits[controllerIndex], transform, _hatchEffectSOs);                        
+                    pum?.Initialize(controllerIndex, parentUnitIndex, unitComp, compsAndUnits.PlayerUnits[controllerIndex], transform, _hatchEffectSOs, unitComp.ParentUnitClassList[parentUnitIndex]);                        
                     // pum?.SetManaText(unitComp.ParentUnitClassList[parentUnitIndex].AdvUnitClass.ManaCost.ToString());
                     UnitManaCostText manaText = parentUnitGO.GetComponent<UnitManaCostText>();
                     manaText?.SetManaText(unitComp.ParentUnitClassList[parentUnitIndex].AdvUnitClass.ManaCost.ToString());

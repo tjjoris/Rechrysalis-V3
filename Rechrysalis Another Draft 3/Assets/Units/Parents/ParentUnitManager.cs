@@ -61,7 +61,7 @@ namespace Rechrysalis.Unit
             get {return _isStopped;}
          }
 
-        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO unitComp, PlayerUnitsSO _theseUnits, Transform _controllertransform, HatchEffectSO[] _subHatchEffects)
+        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO unitComp, PlayerUnitsSO _theseUnits, Transform _controllertransform, HatchEffectSO[] _subHatchEffects, ParentUnitClass parentUnitClass)
         {
             _childUnitManagers = new List<UnitManager>();
             _childChrysaliiUnitManagers = new List<UnitManager>();
@@ -77,7 +77,8 @@ namespace Rechrysalis.Unit
             this._subHatchEffects = _subHatchEffects;
             this._controllerIndex = _controllerIndex;
             this._theseUnits = _theseUnits;
-            _parentUnitClass = unitComp.ParentUnitClassList[_parentUnitIndex];
+            // _parentUnitClass = unitComp.ParentUnitClassList[_parentUnitIndex];
+            _parentUnitClass = parentUnitClass;
             _parentHealth = GetComponent<ParentHealth>();
             // AddChrysalisAndUnitActions();
             _rotateParentUnit = GetComponent<RotateParentUnit>();
