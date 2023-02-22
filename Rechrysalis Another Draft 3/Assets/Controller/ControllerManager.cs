@@ -15,7 +15,8 @@ namespace Rechrysalis.Controller
         [SerializeField] private Click _click;
         [SerializeField] private TouchSO _touch;
         [SerializeField] private GameObject[] _parentUnits;
-        public GameObject[] ParentUnits{get{return _parentUnits;} set{_parentUnits = value;}}  
+        public GameObject[] ParentUnits{get{return _parentUnits;} set{_parentUnits = value;}} 
+         
         [SerializeField] private List<ParentUnitManager> _parentUnitManagers;
         public List<ParentUnitManager> ParentUnitManagers {get {return _parentUnitManagers;} set{_parentUnitManagers = value;}}
         private List<GameObject> _allUnits;      
@@ -219,8 +220,8 @@ namespace Rechrysalis.Controller
             //     }
             // }
             _unitRingManager?.Tick(_timeAmount);
-            TickParentUnits();
-            TickChildUnits(_timeAmount);
+            TickParentUnits(_timeAmount);
+            // TickChildUnits(_timeAmount);
             TickFreeEnemyParentUnits(_timeAmount);
             TickHatchEffects(_timeAmount);
             _manaGenerator?.Tick(_timeAmount);
@@ -265,24 +266,25 @@ namespace Rechrysalis.Controller
             }
         }
 
-        private void TickChildUnits(float _timeAmount)
-        {
-            foreach (GameObject _unit in _allUnits)
-            {
-                if (_unit.activeInHierarchy)
-                {
-                    _unit.GetComponent<UnitManager>().Tick(_timeAmount);
-                }
-            }
-        }
+        // private void TickChildUnits(float _timeAmount)
+        // {
+        //     foreach (GameObject _unit in _allUnits)
+        //     {
+        //         if (_unit.activeInHierarchy)
+        //         {
+        //             _unit.GetComponent<UnitManager>().Tick(_timeAmount);
+        //         }
+        //     }
+        // }
 
-        private void TickParentUnits()
+        private void TickParentUnits(float timeAmount)
         {
-            foreach (GameObject _parentUnit in _parentUnits)
+            foreach (ParentUnitManager parentUnitManager in _parentUnitManagers)
             {
-                if (_parentUnit != null)
+                if (parentUnitManager != null)
                 {
-                    _parentUnit.GetComponent<RotateParentUnit>()?.Tick();
+                    // _parentUnit.GetComponent<RotateParentUnit>()?.Tick();
+                    parentUnitManager.Tick(timeAmount);
                 }
             }
         }

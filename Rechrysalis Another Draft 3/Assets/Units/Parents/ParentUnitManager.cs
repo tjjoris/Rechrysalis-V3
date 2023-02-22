@@ -89,9 +89,21 @@ namespace Rechrysalis.Unit
             _targetScoreValue = GetComponent<TargetScoreValue>();
             _targetScoreValue?.Initialize();
         }
-        public void Tick()
+        public void Tick(float timeAmount)
         {
             _rotateParentUnit?.Tick();
+            TickChildUnits(timeAmount);
+        }
+        private void TickChildUnits(float timeAmount)
+        {
+            foreach (UnitManager childUnit in _childUnitManagers)
+            {
+                childUnit.Tick(timeAmount);
+            }
+            foreach (UnitManager childChrysalii in _childChrysaliiUnitManagers)
+            {
+                childChrysalii.Tick(timeAmount);
+            }
         }
         private void Awake()
         {
