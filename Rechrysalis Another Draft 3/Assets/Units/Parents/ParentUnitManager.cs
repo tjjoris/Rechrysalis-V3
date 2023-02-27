@@ -101,8 +101,8 @@ namespace Rechrysalis.Unit
             _targetScoreValue = GetComponent<TargetScoreValue>();
             _targetScoreValue?.Initialize();
             _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
-            _aiAlwaysPreferClosest = GetComponent<AIAlwaysPreferClosest>();
-            _aiAlwaysPreferClosest?.Initialize();
+            // _aiAlwaysPreferClosest = GetComponent<AIAlwaysPreferClosest>();
+            // _aiAlwaysPreferClosest?.Initialize();
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
             _freeEnemyKiteMaxRange?.Initialize();
             _freeApproach = GetComponent<FreeEnemyApproach>();
@@ -114,12 +114,14 @@ namespace Rechrysalis.Unit
         public void Tick(float timeAmount)
         {
             _rotateParentUnit?.Tick();
-            _parentFreeEnemyManager?.Tick(timeAmount);
+            // _parentFreeEnemyManager?.Tick(timeAmount);
             TickChildUnits(timeAmount);
         }
         public void AIFlawedUpdateActivated()
         {
+            Debug.Log($"working???");
             bool _isRetreating = false;
+            _aiAlwaysPreferClosest = _currentSubUnit.GetComponent<AIAlwaysPreferClosest>();
             _aiAlwaysPreferClosest?.CheckIfTargetInRange();
             if (_freeEnemyKiteMaxRange != null)
             {

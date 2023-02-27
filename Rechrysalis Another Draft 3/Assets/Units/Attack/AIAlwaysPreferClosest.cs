@@ -9,6 +9,10 @@ namespace Rechrysalis.Attacking
         private TargetHolder _targetHolder;
         private Range _range;
         private ClosestTarget _closestTarget;
+        public void Awake()
+        {
+            Initialize();
+        }
         public void Initialize()
         {
             _targetHolder = GetComponent<TargetHolder>();
