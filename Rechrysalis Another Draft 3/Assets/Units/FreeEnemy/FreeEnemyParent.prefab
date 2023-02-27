@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 819332963118507268}
   - component: {fileID: 8425826835132901728}
   - component: {fileID: 8613332429590270801}
-  - component: {fileID: 5357822587167266545}
   - component: {fileID: -307586530085060294}
   m_Layer: 7
   m_Name: FreeEnemyParent
@@ -311,22 +310,6 @@ MonoBehaviour:
   _eggValue: 0
   _hatchEffectValue: 0
   _dpsValue: 0
---- !u!114 &5357822587167266545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8804105779283925579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89cfa443f2ea746569fe4ac7a022686a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _flawedBaseValue: 1.5
-  _flawedRandomRange: 2
-  _currentFlawedMax: 7
-  _curentFlawedCurrent: 0
 --- !u!114 &-307586530085060294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,6 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f2df00f1c5b437ab562acc726c3e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parentUnitManager: {fileID: 0}
 --- !u!114 &6102143070373441432
 MonoBehaviour:
   m_ObjectHideFlags: 0

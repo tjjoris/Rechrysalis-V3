@@ -11,7 +11,7 @@ namespace Rechrysalis.Unit
 {
     public class UnitManager : MonoBehaviour
     {
-        private bool debugBool = true;
+        private bool debugBool = false;
         [SerializeField] private UnitClass _unitClass;
         public UnitClass UnitClass => _unitClass;
         [SerializeField] private ControllerUnitSpriteHandler _unitSpriteHandler;
