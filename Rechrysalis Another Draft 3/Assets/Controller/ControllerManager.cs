@@ -222,7 +222,7 @@ namespace Rechrysalis.Controller
             _unitRingManager?.Tick(_timeAmount);
             TickParentUnits(_timeAmount);
             // TickChildUnits(_timeAmount);
-            TickFreeEnemyParentUnits(_timeAmount);
+            // TickFreeEnemyParentUnits(_timeAmount);
             TickHatchEffects(_timeAmount);
             _manaGenerator?.Tick(_timeAmount);
         }

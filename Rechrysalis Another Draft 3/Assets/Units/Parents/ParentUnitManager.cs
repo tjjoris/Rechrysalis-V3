@@ -40,6 +40,7 @@ namespace Rechrysalis.Unit
         private ChrysalisActivation _chrysalisActivation;
         private UpgradeUnit _upgradeUnit;
         private TargetScoreValue _targetScoreValue;
+        private ParentFreeEnemyManager _parentFreeEnemyManager;
         private float _manaAmount;
         public float ManaAmount {set{_manaAmount = value;} get {return _manaAmount;} }
         public Action<GameObject, int, int, bool> _addHatchEffect;
@@ -89,10 +90,13 @@ namespace Rechrysalis.Unit
             GetComponent<ParentClickManager>()?.Initialize(_controllerIndex);
             _targetScoreValue = GetComponent<TargetScoreValue>();
             _targetScoreValue?.Initialize();
+            _parentFreeEnemyManager = GetComponent<ParentFreeEnemyManager>();
+            
         }
         public void Tick(float timeAmount)
         {
             _rotateParentUnit?.Tick();
+            _parentFreeEnemyManager?.Tick(timeAmount);
             TickChildUnits(timeAmount);
         }
         private void TickChildUnits(float timeAmount)
