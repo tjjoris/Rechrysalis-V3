@@ -125,9 +125,10 @@ namespace Rechrysalis.Unit
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
             _controllerUnitAttackClosest?.Initialzie();
             if (_parentUnitManager != null)  _parentUnitManager.IsStopped = true;
-            _attack?.InitializeOld(_unitStats);
             _health = GetComponent<Health>();
             _health?.Initialize(_unitStats.HealthMaxBasic);
+            _attack?.Initialize(_unitClass);
+            _attack?.InitializeOld(_unitStats);
             GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
             GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[_controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
             GetComponent<Rechrysalize>()?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ChildUnitCount);            

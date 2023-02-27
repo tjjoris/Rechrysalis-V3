@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.Attacking
 {
     public class AIAttackChargeUpTimer : MonoBehaviour
     {
+        public ParentUnitManager _parentUnitManager;
         private bool _aiImperfectionChargingUp;
         private bool _aiImperfectionWindingDown;
         private float _aiImperfectionCurrent;
@@ -22,7 +24,7 @@ namespace Rechrysalis.Attacking
         private float _currentEnd;
         public System.Action<bool> _changeCanMove;
 
-        public void Initialize(float _chargeUp, float _windDown)
+        public void Initialize(float _chargeUp, float _windDown, ParentUnitManager parentUnitManager)
         {
             this._chargeUp = _chargeUp;
             this._windDown = _windDown;

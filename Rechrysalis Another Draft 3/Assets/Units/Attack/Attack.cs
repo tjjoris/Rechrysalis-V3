@@ -32,6 +32,7 @@ namespace Rechrysalis.Attacking
 
         public void Initialize(UnitClass unitClass)
         {
+            _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
             _unitClass = unitClass;
             _baseDPS = _unitClass.DPS;
             _attackChargeUp = _unitClass.AttackChargeUp;
@@ -42,8 +43,7 @@ namespace Rechrysalis.Attacking
             _closestTarget = GetComponent<ClosestTarget>();
             _targetHolder = GetComponent<TargetHolder>();
             _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
-            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown);
-            _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
+            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown, _parentUnitManager);
             CalculateDamage(_baseDPS);
             ResetUnitAttack();
         }
@@ -58,7 +58,7 @@ namespace Rechrysalis.Attacking
             _closestTarget = GetComponent<ClosestTarget>();
             _targetHolder = GetComponent<TargetHolder>();
             _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
-            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown);
+            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown, _parentUnitManager);
             ResetUnitAttack();
         }
         public void ResetUnitAttack()

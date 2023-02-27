@@ -5,6 +5,7 @@ using Rechrysalis.Controller;
 using Rechrysalis.Background;
 using System;
 using Rechrysalis.Unit;
+using Rechrysalis.Attacking;
 
 namespace Rechrysalis.Movement
 {
@@ -170,7 +171,8 @@ namespace Rechrysalis.Movement
             {
                 if (_isStopped)
                 {
-                    _resetChargeUp?.Invoke();
+                    // _resetChargeUp?.Invoke();
+                    _parentUnitManager.CurrentSubUnit.GetComponent<Attack>().CheckToResetChargeUp();
                 }
                  _isStopped = false;
             }
