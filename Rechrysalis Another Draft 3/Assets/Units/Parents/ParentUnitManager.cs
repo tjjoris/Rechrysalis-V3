@@ -6,6 +6,7 @@ using Rechrysalis.HatchEffect;
 using System;
 using TMPro;
 using Rechrysalis.Movement;
+using Rechrysalis.Controller;
 
 namespace Rechrysalis.Unit
 {
@@ -45,6 +46,11 @@ namespace Rechrysalis.Unit
         private AIFlawedUpdate _aiFlawedUpdate;
         private AIAlwaysPreferClosest _aiAlwaysPreferClosest;
         private FreeEnemyKiteMaxRange _freeEnemyKiteMaxRange;
+        private FreeEnemyApproach _freeApproach;
+        private bool _aiCanMove = true;
+        public bool AICanMove => _aiCanMove;
+        private Mover _parentUnitMover;
+        public Mover ParentUnitMover => _parentUnitMover;
         private float _manaAmount;
         public float ManaAmount {set{_manaAmount = value;} get {return _manaAmount;} }
         public Action<GameObject, int, int, bool> _addHatchEffect;
@@ -99,11 +105,31 @@ namespace Rechrysalis.Unit
             _aiAlwaysPreferClosest?.Initialize();
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
             _freeEnemyKiteMaxRange?.Initialize();
+            _freeApproach = GetComponent<FreeEnemyApproach>();
+            _freeApproach.Initialize(_theseUnits, _controllertransform.GetComponent<ControllerManager>().EnemyController.GetComponent<Mover>());
             _parentFreeEnemyManager = GetComponent<ParentFreeEnemyManager>();
-            
+            _parentUnitMover = GetComponent<Mover>();
+            _parentUnitMover.Initialize(_controllerIndex);
         }
         public void Tick(float timeAmount)
         {
+            _aiFlawedUpdate?.Tick(timeAmount);
+            bool _isRetreating = false;
+            _aiAlwaysPreferClosest.CheckIfTargetInRange();
+            if (_freeEnemyKiteMaxRange != null)
+            {
+                _freeEnemyKiteMaxRange.Tick(_aiCanMove);
+                _isRetreating = _freeEnemyKiteMaxRange.GetRetreating();
+            }
+            if (_freeApproach != null)
+            {
+                _freeApproach?.Tick(_isRetreating, _aiCanMove);
+                if ((!_isRetreating) && (!_freeApproach.GetIsApproaching()))
+                {
+                    _parentUnitMover.SetDirection(Vector2.zero);
+                }
+            }
+
             _rotateParentUnit?.Tick();
             _parentFreeEnemyManager?.Tick(timeAmount);
             TickChildUnits(timeAmount);

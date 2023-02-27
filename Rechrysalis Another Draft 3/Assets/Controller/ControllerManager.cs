@@ -24,6 +24,7 @@ namespace Rechrysalis.Controller
         public PlayerUnitsSO[] PlayerUnitsSO {get{return _playerUnitsSO;} set{_playerUnitsSO = value;}}    
         [SerializeField] private CompSO _compSO;     
         private ControllerManager _enemyController;
+        public ControllerManager EnemyController => _enemyController;
         [SerializeField] private CompsAndUnitsSO _compsAndUnits;
         [SerializeField] private UnitRingManager _unitRingManager;
         [SerializeField] private HilightRingManager _hilightRingManager;
