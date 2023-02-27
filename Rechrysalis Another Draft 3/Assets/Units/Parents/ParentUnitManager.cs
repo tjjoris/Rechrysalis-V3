@@ -113,6 +113,12 @@ namespace Rechrysalis.Unit
         }
         public void Tick(float timeAmount)
         {
+            _rotateParentUnit?.Tick();
+            _parentFreeEnemyManager?.Tick(timeAmount);
+            TickChildUnits(timeAmount);
+        }
+        public void AIFlawedUpdateActivated()
+        {
             bool _isRetreating = false;
             _aiAlwaysPreferClosest?.CheckIfTargetInRange();
             if (_freeEnemyKiteMaxRange != null)
@@ -127,11 +133,7 @@ namespace Rechrysalis.Unit
                 {
                     _parentUnitMover.SetDirection(Vector2.zero);
                 }
-            }
-
-            _rotateParentUnit?.Tick();
-            _parentFreeEnemyManager?.Tick(timeAmount);
-            TickChildUnits(timeAmount);
+            }   
         }
         private void TickChildUnits(float timeAmount)
         {

@@ -230,7 +230,16 @@ namespace Rechrysalis.Controller
             TickHatchEffects(_timeAmount);
             _manaGenerator?.Tick(_timeAmount);
         }
-
+        public void AIFlawedUpdateActivated()
+        {
+            foreach (ParentUnitManager parentUnitManager in _parentUnitManagers)
+            {
+                if ((parentUnitManager != null) && (parentUnitManager.gameObject.activeInHierarchy))
+                {
+                    parentUnitManager.AIFlawedUpdateActivated();
+                }
+            }
+        }
         private void TickHatchEffects(float _timeAmount)
         {
             if (_hatchEffects.Count > 0)

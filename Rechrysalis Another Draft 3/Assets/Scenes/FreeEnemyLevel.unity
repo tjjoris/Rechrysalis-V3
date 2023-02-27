@@ -785,9 +785,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89cfa443f2ea746569fe4ac7a022686a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _flawedBaseValue: 1.5
-  _flawedRandomRange: 2
-  _currentFlawedMax: 7
+  _flawedBaseValue: 0.4
+  _flawedRandomRange: 0.3
+  _currentFlawedMax: 1
   _curentFlawedCurrent: 0
 --- !u!224 &693044507 stripped
 RectTransform:
