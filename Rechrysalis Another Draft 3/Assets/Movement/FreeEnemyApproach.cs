@@ -28,7 +28,7 @@ namespace Rechrysalis.Movement
             _enemyControllerMover = enemyControllerMover;
             this._ownUnits = _ownUnits;
             // this._range = _range;
-            this._closestTarget = this._range.GetComponent<ClosestTarget>();
+            // this._closestTarget = this._range.GetComponent<ClosestTarget>();
             // _targetHolder = this._range.GetComponent<TargetHolder>();
             _mover = GetComponent<Mover>();
         }

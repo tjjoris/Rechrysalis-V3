@@ -115,10 +115,10 @@ namespace Rechrysalis.Unit
         {
             _aiFlawedUpdate?.Tick(timeAmount);
             bool _isRetreating = false;
-            _aiAlwaysPreferClosest.CheckIfTargetInRange();
+            _aiAlwaysPreferClosest?.CheckIfTargetInRange();
             if (_freeEnemyKiteMaxRange != null)
             {
-                _freeEnemyKiteMaxRange.Tick(_aiCanMove);
+                _freeEnemyKiteMaxRange?.Tick(_aiCanMove);
                 _isRetreating = _freeEnemyKiteMaxRange.GetRetreating();
             }
             if (_freeApproach != null)
