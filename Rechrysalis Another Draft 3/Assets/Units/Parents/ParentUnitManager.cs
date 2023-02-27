@@ -5,6 +5,7 @@ using Rechrysalis.Attacking;
 using Rechrysalis.HatchEffect;
 using System;
 using TMPro;
+using Rechrysalis.Movement;
 
 namespace Rechrysalis.Unit
 {
@@ -41,6 +42,9 @@ namespace Rechrysalis.Unit
         private UpgradeUnit _upgradeUnit;
         private TargetScoreValue _targetScoreValue;
         private ParentFreeEnemyManager _parentFreeEnemyManager;
+        private AIFlawedUpdate _aiFlawedUpdate;
+        private AIAlwaysPreferClosest _aiAlwaysPreferClosest;
+        private FreeEnemyKiteMaxRange _freeEnemyKiteMaxRange;
         private float _manaAmount;
         public float ManaAmount {set{_manaAmount = value;} get {return _manaAmount;} }
         public Action<GameObject, int, int, bool> _addHatchEffect;
@@ -90,6 +94,11 @@ namespace Rechrysalis.Unit
             GetComponent<ParentClickManager>()?.Initialize(_controllerIndex);
             _targetScoreValue = GetComponent<TargetScoreValue>();
             _targetScoreValue?.Initialize();
+            _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
+            _aiAlwaysPreferClosest = GetComponent<AIAlwaysPreferClosest>();
+            _aiAlwaysPreferClosest?.Initialize();
+            _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
+            _freeEnemyKiteMaxRange?.Initialize();
             _parentFreeEnemyManager = GetComponent<ParentFreeEnemyManager>();
             
         }
