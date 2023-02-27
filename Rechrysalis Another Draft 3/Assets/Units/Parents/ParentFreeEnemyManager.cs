@@ -63,6 +63,7 @@ namespace Rechrysalis.Unit
             _unitClass = unitClass;
             _attack.Initialize(unitClass);
             _unitManager?.Initialize(_controllerIndex, unitClass, freeUnitIndex,  compsAndUnitSO);
+            _parentUnitManager.CurrentSubUnit = _unitManager.gameObject;
             _targetScoreValue = GetComponent<TargetScoreValue>();
             _targetScoreValue?.Initialize();
             _targetScoreValue?.SetCurrentUnit(_unitManager.GetComponent<Attack>());

@@ -29,7 +29,6 @@ namespace Rechrysalis.Movement
         public void Tick(bool aiCanMove)
         {
             _targetHolder = _parentUnitManager.CurrentSubUnit.GetComponent<TargetHolder>();
-            _mover = _targetHolder.GetComponent<Mover>();
             if (((_freeEnemyApproach != null) && (!_freeEnemyApproach.Approaching)) || (_freeEnemyApproach == null))
             {
                 if ((_targetHolder.Target != null))
