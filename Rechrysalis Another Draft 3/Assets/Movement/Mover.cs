@@ -172,7 +172,7 @@ namespace Rechrysalis.Movement
                 if (_isStopped)
                 {
                     // _resetChargeUp?.Invoke();
-                    _parentUnitManager.CurrentSubUnit.GetComponent<Attack>().CheckToResetChargeUp();
+                    _parentUnitManager?.CurrentSubUnit.GetComponent<Attack>().CheckToResetChargeUp();
                 }
                  _isStopped = false;
             }

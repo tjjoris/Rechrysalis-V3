@@ -26,6 +26,7 @@ namespace Rechrysalis.Attacking
 
         public void Initialize(float _chargeUp, float _windDown, ParentUnitManager parentUnitManager)
         {
+            _parentUnitManager = parentUnitManager;
             this._chargeUp = _chargeUp;
             this._windDown = _windDown;
             SetCurrentStartAndEnd();
