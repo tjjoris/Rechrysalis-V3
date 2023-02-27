@@ -50,11 +50,13 @@ namespace Rechrysalis.Attacking
                 _aiImperfectionWindingDown = windingDown;
                 if ((windingDown == false) && (chargingUp == true))
                 {
-                    _changeCanMove?.Invoke(false);
+                    _parentUnitManager.AICanMove = false;
+                    // _changeCanMove?.Invoke(false);
                 }
                 else 
                 {
-                    _changeCanMove?.Invoke(true);
+                    _parentUnitManager.AICanMove = true;
+                    // _changeCanMove?.Invoke(true);
                 }
 
             }
@@ -95,7 +97,8 @@ namespace Rechrysalis.Attacking
         {
             _aiImperfectionChargingUp = true;
             _aiImperfectionWindingDown = false;
-            _changeCanMove?.Invoke(false);
+            _parentUnitManager.AICanMove = false;
+            // _changeCanMove?.Invoke(false);
         }
         private void SetWindDownTrue()
         {
@@ -103,7 +106,8 @@ namespace Rechrysalis.Attacking
             _aiImperfectionChargingUp = false;
             _aiImperfectionCurrent = 0;
             SetCurrentStartAndEnd();
-            _changeCanMove?.Invoke(true);
+            _parentUnitManager.AICanMove = true;
+            // _changeCanMove?.Invoke(true);
         }
         public bool GetCharginUp()
         {

@@ -48,7 +48,7 @@ namespace Rechrysalis.Unit
         private FreeEnemyKiteMaxRange _freeEnemyKiteMaxRange;
         private FreeEnemyApproach _freeApproach;
         private bool _aiCanMove = true;
-        public bool AICanMove => _aiCanMove;
+        public bool AICanMove {get {return _aiCanMove;} set {_aiCanMove = value;}}
         private Mover _parentUnitMover;
         public Mover ParentUnitMover => _parentUnitMover;
         private float _manaAmount;
@@ -106,10 +106,10 @@ namespace Rechrysalis.Unit
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
             _freeEnemyKiteMaxRange?.Initialize();
             _freeApproach = GetComponent<FreeEnemyApproach>();
-            _freeApproach.Initialize(_theseUnits, _controllertransform.GetComponent<ControllerManager>().EnemyController.GetComponent<Mover>());
+            _freeApproach?.Initialize(_theseUnits, _controllertransform.GetComponent<ControllerManager>().EnemyController.GetComponent<Mover>());
             _parentFreeEnemyManager = GetComponent<ParentFreeEnemyManager>();
             _parentUnitMover = GetComponent<Mover>();
-            _parentUnitMover.Initialize(_controllerIndex);
+            _parentUnitMover?.Initialize(_controllerIndex);
         }
         public void Tick(float timeAmount)
         {
