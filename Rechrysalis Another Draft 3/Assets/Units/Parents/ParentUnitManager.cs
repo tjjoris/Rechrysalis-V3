@@ -113,7 +113,6 @@ namespace Rechrysalis.Unit
         }
         public void Tick(float timeAmount)
         {
-            _aiFlawedUpdate?.Tick(timeAmount);
             bool _isRetreating = false;
             _aiAlwaysPreferClosest?.CheckIfTargetInRange();
             if (_freeEnemyKiteMaxRange != null)

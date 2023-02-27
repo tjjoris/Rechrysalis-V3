@@ -29,6 +29,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private UnitRingManager _unitRingManager;
         [SerializeField] private HilightRingManager _hilightRingManager;
         [SerializeField] private UpgradeRingManager _upgradeRingManager;
+        private AIFlawedUpdate _aiFlawedUpdate;
         [SerializeField] private float _unitRingOuterRadius;
         private Mover _mover;
         private bool _isStopped;
@@ -105,6 +106,7 @@ namespace Rechrysalis.Controller
             SubScribeToParentUnits();
             GetComponent<ControllerHealth>()?.SubscribeToParentUnits(_parentUnits);
             _rechrysalisControllerInitialize?.ActivateInitialUnits();
+            _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
         }        
         private void OnEnable()
         {
@@ -220,6 +222,7 @@ namespace Rechrysalis.Controller
             //         }
             //     }
             // }
+            _aiFlawedUpdate?.Tick(_timeAmount);
             _unitRingManager?.Tick(_timeAmount);
             TickParentUnits(_timeAmount);
             // TickChildUnits(_timeAmount);
@@ -262,7 +265,7 @@ namespace Rechrysalis.Controller
             {
                 if ((_freeParentUnit != null))
                 {
-                    _freeParentUnit.GetComponent<ParentFreeEnemyManager>()?.Tick(_timeAmount);
+                    // _freeParentUnit.GetComponent<ParentFreeEnemyManager>()?.Tick(_timeAmount);
                 }
             }
         }

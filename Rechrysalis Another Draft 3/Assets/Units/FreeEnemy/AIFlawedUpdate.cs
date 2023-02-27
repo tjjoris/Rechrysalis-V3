@@ -41,7 +41,7 @@ namespace Rechrysalis.Unit
         {
             if (_debugBool)
             {
-                // Debug.Log($"flawed update " + _parentFreeEnemyManager.);
+                Debug.Log($"flawed update " );
             }
         }
     }
