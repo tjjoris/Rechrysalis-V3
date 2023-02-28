@@ -246,7 +246,7 @@ namespace Rechrysalis.Controller
             {
                 if ((parentUnitManager != null) && (parentUnitManager.gameObject.activeInHierarchy))
                 {
-                    parentUnitManager.TargetScoreValue.ReCalculateScore();
+                    parentUnitManager.TargetScoreValue.CalculateScoreValue();
                 }
             }
         }

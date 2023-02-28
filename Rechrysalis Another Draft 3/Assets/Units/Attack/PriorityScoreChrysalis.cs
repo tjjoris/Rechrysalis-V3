@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Controller;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.Attacking
 {
@@ -9,10 +10,12 @@ namespace Rechrysalis.Attacking
     {
         private TargetScoreValue _targetScoreValue;
         private ControllerManager _enemyControllerManager;
+        private ParentUnitManager _parentUnitManager;
 
         public void Initialize(ControllerManager controllerManager)
         {
             _enemyControllerManager = controllerManager;
+            _parentUnitManager = GetComponent<ParentUnitManager>();
         }
         private void Awake()
         {
@@ -21,6 +24,10 @@ namespace Rechrysalis.Attacking
 
         public float GenerateScore()
         {
+            if (_parentUnitManager.CurrentSubUnit.GetComponent<ChrysalisManager>() != null)
+            {
+                return 15;
+            }
             return 0;
         }
     }
