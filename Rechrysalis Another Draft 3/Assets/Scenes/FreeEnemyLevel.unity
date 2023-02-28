@@ -701,6 +701,7 @@ GameObject:
   - component: {fileID: 691481331}
   - component: {fileID: 691481332}
   - component: {fileID: 691481333}
+  - component: {fileID: 691481334}
   m_Layer: 0
   m_Name: FreeController
   m_TagString: Untagged
@@ -789,6 +790,18 @@ MonoBehaviour:
   _flawedRandomRange: 0.3
   _currentFlawedMax: 5
   _curentFlawedCurrent: 0
+--- !u!114 &691481334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691481327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129d4c3719e824df3b93c14cf8585817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &693044507 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6974679594234141080, guid: 7a22963889f0b4f9bb6171f227d5d732, type: 3}
@@ -1140,6 +1153,7 @@ GameObject:
   - component: {fileID: 1159822634}
   - component: {fileID: 1159822635}
   - component: {fileID: 1159822636}
+  - component: {fileID: 1159822637}
   m_Layer: 9
   m_Name: Controller
   m_TagString: Untagged
@@ -1355,6 +1369,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterCollider: {fileID: 1159822628}
   _characterBlockerCollider: {fileID: 1457545407}
+--- !u!114 &1159822637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159822623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129d4c3719e824df3b93c14cf8585817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1177779209
 GameObject:
   m_ObjectHideFlags: 0

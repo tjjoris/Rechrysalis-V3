@@ -5,12 +5,13 @@ using Rechrysalis.Unit;
 using Rechrysalis.Movement;
 using Rechrysalis.HatchEffect;
 using Rechrysalis.CompCustomizer;
+using Rechrysalis.Attacking;
 
 namespace Rechrysalis.Controller
 {
     public class ControllerManager : MonoBehaviour
     {
-        [SerializeField] private int _controllerIndex;
+        [SerializeField] private int _controllerIndex;        
         [SerializeField] private CheckRayCastSO _checkRayCast;
         [SerializeField] private Click _click;
         [SerializeField] private TouchSO _touch;
@@ -36,6 +37,7 @@ namespace Rechrysalis.Controller
         private List<GameObject> _hatchEffects;
         private FreeEnemyInitialize _freeEnemyInitialize;
         private ControllerFreeUnitHatchEffectManager _controllerFreeHatchEffectManager;
+        private TargetScoreRanking _targetScoreRanking;
         // private CompCustomizerSO _compCustomizer;
         private ManaGenerator _manaGenerator;
         // public bool IsStopped
@@ -108,6 +110,8 @@ namespace Rechrysalis.Controller
             _rechrysalisControllerInitialize?.ActivateInitialUnits();
             _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
             _aiFlawedUpdate?.Initialize();
+            _targetScoreRanking = GetComponent<TargetScoreRanking>();
+            _targetScoreRanking?.Initialize(_enemyController);
         }        
         private void OnEnable()
         {
@@ -250,6 +254,7 @@ namespace Rechrysalis.Controller
                     parentUnitManager.TargetScoreValue.CalculateScoreValue();
                 }
             }
+            _targetScoreRanking.RankScores();
         }
         private void TickHatchEffects(float _timeAmount)
         {

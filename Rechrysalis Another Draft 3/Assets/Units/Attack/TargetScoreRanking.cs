@@ -24,8 +24,7 @@ namespace Rechrysalis.Attacking
             {
                 if ((parentUnit != null) && (parentUnit.gameObject.activeInHierarchy))
                 {
-                    
-                    
+                    AddToScoreRank(parentUnit);                    
                 }
             }
         }
