@@ -12,16 +12,19 @@ namespace Rechrysalis.Attacking
         private ControllerManager _enemyControllerManager;
         private List<ParentUnitManager> _scoresRanked;
         public List<ParentUnitManager> ScoresRanked => _scoresRanked;
+        private TargetsListSO _targetsListSO;
 
-        public void Initialize(ControllerManager enemyControllerManager)
+        public void Initialize(ControllerManager enemyControllerManager, TargetsListSO targetsListSO)
         {
             _controllerManager = GetComponent<ControllerManager>();
             _enemyControllerManager = enemyControllerManager;
+            _targetsListSO = targetsListSO;
         }
         public void RankScores()
         {
             _scoresRanked = new List<ParentUnitManager>();
             _scoresRanked.Clear();
+            _targetsListSO.Targets.Clear();
             foreach (ParentUnitManager parentUnit in _controllerManager.ParentUnitManagers)
             {
                 if ((parentUnit != null) && (parentUnit.gameObject.activeInHierarchy))
@@ -43,6 +46,7 @@ namespace Rechrysalis.Attacking
             //     }
             // }
             _scoresRanked.Add(parentUnitManager);
+            _targetsListSO.Targets.Add(parentUnitManager.gameObject);
         }
     }
 }

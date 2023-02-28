@@ -9,23 +9,27 @@ namespace Rechrysalis.Attacking
     {
         private TargetScoreRanking _targetScoreRanking;
         private TargetHolder _targetHolder;
+        private TargetsListSO _targetsListSO;
 
-        public void Initialize(TargetScoreRanking targetScoreRanking)
+        public void Initialize(TargetScoreRanking targetScoreRanking, TargetsListSO targetsListSO)
         {
             _targetScoreRanking = targetScoreRanking;
             _targetHolder = GetComponent<TargetHolder>();
+            _targetsListSO = targetsListSO;
         }
         public void SetTargetByScore()
         {
             foreach (ParentUnitManager parentUnitManager in _targetScoreRanking.ScoresRanked)
             {
-                if ((parentUnitManager != null) && (parentUnitManager.gameObject.activeInHierarchy))
-                {
-                    // if (_targetHolder.GetThisTargetInRange(parentUnitManager.gameObject))
-                    {
-                        _targetHolder.Target = parentUnitManager.gameObject;
-                    }
-                }
+                if ((_targetsListSO.Targets[0] != null) && (_targetsListSO.Targets[0].activeInHierarchy))
+                _targetHolder.Target = _targetsListSO.Targets[0];
+                // if ((parentUnitManager != null) && (parentUnitManager.gameObject.activeInHierarchy))
+                // {
+                //     // if (_targetHolder.GetThisTargetInRange(parentUnitManager.gameObject))
+                //     {
+                //         _targetHolder.Target = parentUnitManager.gameObject;
+                //     }
+                // }
             }
         }
 

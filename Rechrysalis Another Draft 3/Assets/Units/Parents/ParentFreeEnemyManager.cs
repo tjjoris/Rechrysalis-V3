@@ -90,7 +90,6 @@ namespace Rechrysalis.Unit
         {   
             _aiFlawedUpdate?.Tick(_timeAmount);
             bool _isRetreating = false;
-            _aiAlwaysPreferClosest.CheckIfTargetInRange();
             if (_freeEnemyKiteMaxRange != null)
             {
                 _freeEnemyKiteMaxRange.Tick(_aiCanMove);            
@@ -104,6 +103,8 @@ namespace Rechrysalis.Unit
                     _mover.SetDirection(Vector2.zero);
                 }
             }
+
+            _aiAlwaysPreferClosest?.CheckIfTargetInRange();
             // _unitManager.IsStopped = _mover.IsStopped;
         }
         private void AICanMove(bool _aiCanMove)

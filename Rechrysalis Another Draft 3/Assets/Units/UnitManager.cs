@@ -107,7 +107,7 @@ namespace Rechrysalis.Unit
             }
             _manaCost = unitClass.ManaCost;
             _targetPrioratizeByScore = GetComponent<TargetPrioratizeByScore>();
-            _targetPrioratizeByScore?.Initialize(_enemyControllerManager.GetComponent<TargetScoreRanking>());
+            _targetPrioratizeByScore?.Initialize(_enemyControllerManager.GetComponent<TargetScoreRanking>(), compsAndUnits.TargetsLists[_controllerIndex]);
             ReCalculateDamageChanges();
         }
         public void SetUnitSPrite(Sprite unitSprite)
