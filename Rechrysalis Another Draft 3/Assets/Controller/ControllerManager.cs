@@ -111,7 +111,7 @@ namespace Rechrysalis.Controller
             _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
             _aiFlawedUpdate?.Initialize();
             _targetScoreRanking = GetComponent<TargetScoreRanking>();
-            _targetScoreRanking?.Initialize(_enemyController, _compsAndUnits.TargetsLists[_controllerIndex]);
+            _targetScoreRanking?.Initialize(_enemyController, _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
         }        
         private void OnEnable()
         {

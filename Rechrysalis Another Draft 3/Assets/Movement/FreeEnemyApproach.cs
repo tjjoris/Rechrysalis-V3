@@ -20,6 +20,7 @@ namespace Rechrysalis.Movement
         private bool _approaching;
         public bool Approaching => _approaching;   
         private Mover _mover;
+        private TargetPrioratizeByScore _targetPrioratizeByScore;
 
         public void Initialize(PlayerUnitsSO _ownUnits, Mover enemyControllerMover)
         {
@@ -37,6 +38,20 @@ namespace Rechrysalis.Movement
         {
             _range = _parentUnitManager.CurrentSubUnit.GetComponent<Range>();
             _targetHolder = _range.GetComponent<TargetHolder>();
+            _targetPrioratizeByScore = _range.GetComponent<TargetPrioratizeByScore>();
+            GameObject focusTarget = null;
+            if (_targetPrioratizeByScore != null)
+            {                
+                focusTarget = _targetPrioratizeByScore.GetFocusTarget();
+                if ((focusTarget != null))
+                {
+                    _targetHolder.Target = focusTarget;
+                }
+            }
+            if (focusTarget == null)
+            {
+                focusTarget = _targetHolder.Target;
+            }
             if (!_isRetreating)
             {
                 Vector3 _approachDirection = Vector3.zero;

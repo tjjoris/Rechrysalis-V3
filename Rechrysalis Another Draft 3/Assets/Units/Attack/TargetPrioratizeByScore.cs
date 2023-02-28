@@ -32,6 +32,14 @@ namespace Rechrysalis.Attacking
                 // }
             }
         }
+        public GameObject GetFocusTarget()
+        {
+            if ((_targetsListSO.Targets[0] != null) && (_targetsListSO.Targets[0].activeInHierarchy))
+            {
+                return _targetsListSO.Targets[0];
+            }
+            return null;
+        }
 
     }
 }
