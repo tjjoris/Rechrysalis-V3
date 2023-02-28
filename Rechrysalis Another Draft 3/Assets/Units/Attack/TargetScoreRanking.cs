@@ -8,19 +8,21 @@ namespace Rechrysalis.Attacking
 {
     public class TargetScoreRanking : MonoBehaviour
     {
+        private ControllerManager _controllerManager;
         private ControllerManager _enemyControllerManager;
         private List<ParentUnitManager> _scoresRanked;
         public List<ParentUnitManager> ScoresRanked => _scoresRanked;
 
         public void Initialize(ControllerManager enemyControllerManager)
         {
+            _controllerManager = GetComponent<ControllerManager>();
             _enemyControllerManager = enemyControllerManager;
         }
         public void RankScores()
         {
             _scoresRanked = new List<ParentUnitManager>();
             _scoresRanked.Clear();
-            foreach (ParentUnitManager parentUnit in _enemyControllerManager.ParentUnitManagers)
+            foreach (ParentUnitManager parentUnit in _controllerManager.ParentUnitManagers)
             {
                 if ((parentUnit != null) && (parentUnit.gameObject.activeInHierarchy))
                 {
