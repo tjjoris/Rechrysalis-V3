@@ -12,6 +12,10 @@ namespace Rechrysalis.Unit
 {
     public class ParentUnitManager : MonoBehaviour
     {
+        private ControllerManager _controllerManager;
+        public ControllerManager ControllerManager => _controllerManager;
+        private ControllerManager _enemyControllerManager;
+        public ControllerManager EnemyControllerManager => _enemyControllerManager;
         [SerializeField] private ParentUnitClass _parentUnitClass;
         public ParentUnitClass ParentUnitClass {get => _parentUnitClass; set => _parentUnitClass = value; }
         private int _parentIndex;
@@ -47,6 +51,7 @@ namespace Rechrysalis.Unit
         private AIAlwaysPreferClosest _aiAlwaysPreferClosest;
         private FreeEnemyKiteMaxRange _freeEnemyKiteMaxRange;
         private FreeEnemyApproach _freeApproach;
+        private PriorityScoreChrysalis _priorityScoreChrysalis;
         private bool _aiCanMove = true;
         public bool AICanMove {get {return _aiCanMove;} set {_aiCanMove = value;}}
         private Mover _parentUnitMover;
@@ -72,8 +77,10 @@ namespace Rechrysalis.Unit
             get {return _isStopped;}
          }
 
-        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO unitComp, PlayerUnitsSO _theseUnits, Transform _controllertransform, HatchEffectSO[] _subHatchEffects, ParentUnitClass parentUnitClass)
+        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO unitComp, PlayerUnitsSO _theseUnits, Transform controllertransform, HatchEffectSO[] _subHatchEffects, ParentUnitClass parentUnitClass)
         {
+            _controllerManager = controllertransform.GetComponent<ControllerManager>();
+            _enemyControllerManager = _controllerManager.EnemyController;
             _childUnitManagers = new List<UnitManager>();
             _childChrysaliiUnitManagers = new List<UnitManager>();
             // _hatchEffectManagersToDamage = new List<HatchEffectManager>();
@@ -93,7 +100,7 @@ namespace Rechrysalis.Unit
             _parentHealth = GetComponent<ParentHealth>();
             // AddChrysalisAndUnitActions();
             _rotateParentUnit = GetComponent<RotateParentUnit>();
-            _rotateParentUnit?.Initialize(_controllertransform);
+            _rotateParentUnit?.Initialize(controllertransform);
             _pUHE = GetComponent<ParentUnitHatchEffects>();
             _parentHatchEffectAddRemove = GetComponent<ParentHatchEffectAddRemove>();
             _parentHatchEffectAddRemove?.Initialzie(this);
@@ -106,10 +113,12 @@ namespace Rechrysalis.Unit
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
             _freeEnemyKiteMaxRange?.Initialize();
             _freeApproach = GetComponent<FreeEnemyApproach>();
-            _freeApproach?.Initialize(_theseUnits, _controllertransform.GetComponent<ControllerManager>().EnemyController.GetComponent<Mover>());
+            _freeApproach?.Initialize(_theseUnits, _enemyControllerManager.GetComponent<Mover>());
             _parentFreeEnemyManager = GetComponent<ParentFreeEnemyManager>();
             _parentUnitMover = GetComponent<Mover>();
             _parentUnitMover?.Initialize(_controllerIndex);
+            _priorityScoreChrysalis = GetComponent<PriorityScoreChrysalis>();
+            _priorityScoreChrysalis?.Initialize(_enemyControllerManager);
         }
         public void Tick(float timeAmount)
         {
