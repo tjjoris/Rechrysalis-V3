@@ -82,6 +82,8 @@ namespace Rechrysalis.Unit
        public UnitStatsMultiplierSO TypeMultiplier => _typeMultipler;
        [SerializeField] private UnitStatsMultiplierSO _tierMultiplier;
        public UnitStatsMultiplierSO TierMultiplier {get {return _tierMultiplier;}}
+       [SerializeField] private bool _aiFocusFire;
+       public bool AIFocusFire => _aiFocusFire;
 
        
         private void OnValidate()

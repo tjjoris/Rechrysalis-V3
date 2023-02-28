@@ -109,6 +109,17 @@ namespace Rechrysalis.Controller
                         playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
                         _allUnits.Add(_freeParentManager.UnitManager.gameObject);
                         _controllerFreeHatch?.SetUnitsArray(newFreeEnemy, _unitInWaveIndex);
+                        if ((!_unitStats.AIFocusFire))
+                        {
+                            foreach (UnitManager childUnit in parentUnitManager.ChildUnitManagers)
+                            {
+                                if ((childUnit != null) && (childUnit.GetComponent<TargetPrioratizeByScore>() != null))
+                                {
+                                    Destroy(childUnit.GetComponent<TargetPrioratizeByScore>());
+                                }
+
+                            }
+                        }
                         // _unitManager?.RestartUnit();
                     }
                 }
