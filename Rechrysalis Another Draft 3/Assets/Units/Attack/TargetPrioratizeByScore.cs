@@ -21,7 +21,7 @@ namespace Rechrysalis.Attacking
             {
                 if ((parentUnitManager != null) && (parentUnitManager.gameObject.activeInHierarchy))
                 {
-                    if (_targetHolder.GetThisTargetInRange(parentUnitManager.gameObject))
+                    // if (_targetHolder.GetThisTargetInRange(parentUnitManager.gameObject))
                     {
                         _targetHolder.Target = parentUnitManager.gameObject;
                     }
