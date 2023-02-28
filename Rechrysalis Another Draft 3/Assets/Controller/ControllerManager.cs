@@ -107,6 +107,7 @@ namespace Rechrysalis.Controller
             GetComponent<ControllerHealth>()?.SubscribeToParentUnits(_parentUnits);
             _rechrysalisControllerInitialize?.ActivateInitialUnits();
             _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
+            _aiFlawedUpdate?.Initialize();
         }        
         private void OnEnable()
         {

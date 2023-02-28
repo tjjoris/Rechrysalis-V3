@@ -16,7 +16,7 @@ namespace Rechrysalis.Unit
         
         private bool _debugBool = true;
         private ParentFreeEnemyManager _parentFreeEnemyManager;
-        private void Awake()
+        public void Initialize()
         {
             _controllerManager = GetComponent<ControllerManager>();
             _enemyControllerManager = _controllerManager.EnemyController;
