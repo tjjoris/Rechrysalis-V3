@@ -5,12 +5,14 @@ using TMPro;
 using Rechrysalis.Movement;
 using Rechrysalis.Attacking;
 using Rechrysalis.HatchEffect;
+using Rechrysalis.Controller;
 // using System;
 
 namespace Rechrysalis.Unit
 {
     public class UnitManager : MonoBehaviour
     {
+        private ControllerManager _enemyControllerManager;
         private bool debugBool = false;
         [SerializeField] private UnitClass _unitClass;
         public UnitClass UnitClass => _unitClass;
@@ -36,6 +38,7 @@ namespace Rechrysalis.Unit
         public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
         private FreeUnitHatchEffect _freeHatchScript;
         private ParentUnitManager _parentUnitManager;
+        private TargetPrioratizeByScore _targetPrioratizeByScore;
         private float _baseDPS;
         private float _newDPS;
         private float _baseChargeUp;
@@ -67,6 +70,7 @@ namespace Rechrysalis.Unit
             _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
             _controllerIndex = controllerIndex;
             _compsAndUnits = compsAndUnits;
+            _enemyControllerManager = _compsAndUnits.ControllerManagers[GetOppositeController.ReturnOppositeController(controllerIndex)];
             Debug.Log($"controller index " + _controllerIndex);
             _unitClass = unitClass;
             // GetComponent<ProjectilesPool>()?.CreatePool(_unitClass)
@@ -102,6 +106,8 @@ namespace Rechrysalis.Unit
                 }
             }
             _manaCost = unitClass.ManaCost;
+            _targetPrioratizeByScore = GetComponent<TargetPrioratizeByScore>();
+            _targetPrioratizeByScore?.Initialize(_enemyControllerManager.GetComponent<TargetScoreRanking>());
             ReCalculateDamageChanges();
         }
         public void SetUnitSPrite(Sprite unitSprite)

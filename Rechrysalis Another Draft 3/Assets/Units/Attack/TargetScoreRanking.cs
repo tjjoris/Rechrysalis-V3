@@ -4,12 +4,13 @@ using UnityEngine;
 using Rechrysalis.Controller;
 using Rechrysalis.Unit;
 
-namespace Rechrysalis.attacking
+namespace Rechrysalis.Attacking
 {
     public class TargetScoreRanking : MonoBehaviour
     {
         private ControllerManager _enemyControllerManager;
         private List<ParentUnitManager> _scoresRanked;
+        public List<ParentUnitManager> ScoresRanked => _scoresRanked;
 
         public void Initialize(ControllerManager enemyControllerManager)
         {

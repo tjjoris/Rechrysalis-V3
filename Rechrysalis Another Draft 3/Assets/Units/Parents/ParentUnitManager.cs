@@ -130,6 +130,8 @@ namespace Rechrysalis.Unit
         public void AIFlawedUpdateActivated()
         {
             Debug.Log($"working???");
+            TargetPrioratizeByScore targetPrioratizeByScore = _currentSubUnit.GetComponent<TargetPrioratizeByScore>();
+            targetPrioratizeByScore?.SetTargetByScore();
             bool _isRetreating = false;
             _aiAlwaysPreferClosest = _currentSubUnit.GetComponent<AIAlwaysPreferClosest>();
             _aiAlwaysPreferClosest?.CheckIfTargetInRange();
