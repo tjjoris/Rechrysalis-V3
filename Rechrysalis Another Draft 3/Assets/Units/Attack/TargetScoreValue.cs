@@ -7,6 +7,9 @@ namespace Rechrysalis.Attacking
 {
     public class TargetScoreValue : MonoBehaviour
     {
+        [SerializeField] private float _currentScoreValue;
+        public float CurrentScoreValue { get => _currentScoreValue; set => _currentScoreValue = value; }
+        
         [SerializeField] private bool _isEgg;
         [SerializeField] private float _eggValue;
         public float EggValue { get => _eggValue; set => _eggValue = value; }

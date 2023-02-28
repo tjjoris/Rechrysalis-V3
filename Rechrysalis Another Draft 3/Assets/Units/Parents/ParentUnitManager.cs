@@ -46,6 +46,7 @@ namespace Rechrysalis.Unit
         private ChrysalisActivation _chrysalisActivation;
         private UpgradeUnit _upgradeUnit;
         private TargetScoreValue _targetScoreValue;
+        public TargetScoreValue TargetScoreValue => _targetScoreValue;
         private ParentFreeEnemyManager _parentFreeEnemyManager;
         private AIFlawedUpdate _aiFlawedUpdate;
         private AIAlwaysPreferClosest _aiAlwaysPreferClosest;
