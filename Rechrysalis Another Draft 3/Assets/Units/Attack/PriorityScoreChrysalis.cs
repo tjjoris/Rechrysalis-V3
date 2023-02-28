@@ -19,9 +19,9 @@ namespace Rechrysalis.Attacking
             _targetScoreValue = GetComponent<TargetScoreValue>();
         }
 
-        public void GenerateScore()
+        public float GenerateScore()
         {
-
+            return 0;
         }
     }
 }

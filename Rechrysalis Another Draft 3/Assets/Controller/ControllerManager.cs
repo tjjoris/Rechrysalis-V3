@@ -240,6 +240,16 @@ namespace Rechrysalis.Controller
                 }
             }
         }
+        public void CalculateUnitScores()
+        {
+            foreach (ParentUnitManager parentUnitManager in _parentUnitManagers)
+            {
+                if ((parentUnitManager != null) && (parentUnitManager.gameObject.activeInHierarchy))
+                {
+                    parentUnitManager.TargetScoreValue.ReCalculateScore();
+                }
+            }
+        }
         private void TickHatchEffects(float _timeAmount)
         {
             if (_hatchEffects.Count > 0)
