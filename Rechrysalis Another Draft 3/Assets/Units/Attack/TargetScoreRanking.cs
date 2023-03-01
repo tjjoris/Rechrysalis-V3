@@ -32,6 +32,7 @@ namespace Rechrysalis.Attacking
                     AddToScoreRank(parentUnit);                    
                 }
             }
+            _scoresRanked.Sort();
         }
         private void AddToScoreRank(ParentUnitManager parentUnitManager)
         {
@@ -47,6 +48,18 @@ namespace Rechrysalis.Attacking
             // }
             _scoresRanked.Add(parentUnitManager);
             _targetsListSO.Targets.Add(parentUnitManager.gameObject);
+        }
+        private int SortFunc(ParentUnitManager a, ParentUnitManager b) 
+        {
+            if (a.TargetScoreValue.CurrentScoreValue > b.TargetScoreValue.CurrentScoreValue)
+            {
+                return 1;
+            }
+            if (a.TargetScoreValue.CurrentScoreValue < b.TargetScoreValue.CurrentScoreValue)
+            {
+                return -1;
+            }
+            return 0;
         }
     }
 }
