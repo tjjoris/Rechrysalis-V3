@@ -9,6 +9,7 @@ namespace Rechrysalis.Unit
 {
     public class ParentFreeEnemyManager : MonoBehaviour
     {
+        private ParentUnitManager _parentUnitManager;
         private UnitClass _unitClass;
         private ParentHealth _parentHealth;
         private FreeEnemyApproach _freeApproach;
@@ -19,15 +20,21 @@ namespace Rechrysalis.Unit
         private AIAlwaysPreferClosest _aiAlwaysPreferClosest;
         private FreeEnemyKiteMaxRange _freeEnemyKiteMaxRange;
         private CompsAndUnitsSO _compsAndUnits;
+        private TargetScoreValue _targetScoreValue;
         [SerializeField] private UnitManager _unitManager;
         public UnitManager UnitManager {get {return _unitManager;}}
+        private AIFlawedUpdate _aiFlawedUpdate;
         private int _controllerIndex;
+        [SerializeField] private UnitManager _basicUnitManager;
+        public UnitManager BasicUnitManager {get {return _basicUnitManager;}}
 
         public void InitializeOld(int controllerIndex,UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _unitInWaveIndex, PlayerUnitsSO _ownUnits)
         {
+            _parentUnitManager = GetComponent<ParentUnitManager>();
             this._compsAndUnits = _compsAndUnits;
             _controllerIndex = controllerIndex;
             _parentHealth = GetComponent<ParentHealth>();
+            _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
             _unitManager?.InitializeOld(controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, null);
             _unitManager?.SetUnitName(_unitStats.UnitName);
             GetComponent<Die>()?.Initialize(_compsAndUnits, controllerIndex);
@@ -40,17 +47,26 @@ namespace Rechrysalis.Unit
             _attack = _unitManager.GetComponent<Attack>();
             _aiAttackTimer = _unitManager.GetComponent<AIAttackChargeUpTimer>();
             _freeApproach = GetComponent<FreeEnemyApproach>();
-            _freeApproach?.Initialize(_ownUnits, _unitManager.GetComponent<Range>(), _compsAndUnits.ControllerManagers[GetOppositeController.ReturnOppositeController(_controllerIndex)].GetComponent<Mover>());
+            _freeApproach?.Initialize(_ownUnits, _compsAndUnits.ControllerManagers[GetOppositeController.ReturnOppositeController(_controllerIndex)].GetComponent<Mover>());
             _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
             _aiAlwaysPreferClosest.Initialize();
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
-            _freeEnemyKiteMaxRange?.Initialize(_unitManager.GetComponent<TargetHolder>(), _attack);
+            _freeEnemyKiteMaxRange?.Initialize();
+            // _parentUnitManager.ParentUnitClass = new ParentUnitClass();
+            // _parentUnitManager.ParentUnitClass. = _unitStats;
+
+
         }
         public void Initialize(UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnitSO)
         {
+            _parentUnitManager = GetComponent<ParentUnitManager>();
             _unitClass = unitClass;
             _attack.Initialize(unitClass);
             _unitManager?.Initialize(_controllerIndex, unitClass, freeUnitIndex,  compsAndUnitSO);
+            _parentUnitManager.CurrentSubUnit = _unitManager.gameObject;
+            _targetScoreValue = GetComponent<TargetScoreValue>();
+            _targetScoreValue?.Initialize();
+            _targetScoreValue?.SetCurrentUnit(_unitManager.GetComponent<Attack>());
         }
         private void OnEnable()
         {
@@ -72,8 +88,8 @@ namespace Rechrysalis.Unit
         }
         public void Tick (float _timeAmount)
         {   
+            _aiFlawedUpdate?.Tick(_timeAmount);
             bool _isRetreating = false;
-            _aiAlwaysPreferClosest.CheckIfTargetInRange();
             if (_freeEnemyKiteMaxRange != null)
             {
                 _freeEnemyKiteMaxRange.Tick(_aiCanMove);            
@@ -87,7 +103,9 @@ namespace Rechrysalis.Unit
                     _mover.SetDirection(Vector2.zero);
                 }
             }
-            _unitManager.IsStopped = _mover.IsStopped;
+
+            _aiAlwaysPreferClosest?.CheckIfTargetInRange();
+            // _unitManager.IsStopped = _mover.IsStopped;
         }
         private void AICanMove(bool _aiCanMove)
         {

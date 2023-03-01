@@ -12,5 +12,9 @@ namespace Rechrysalis.Unit
             _spriteRenderer.sprite = _sprite;
             
         }
+        public void TintSpriteRed ()
+        {
+            _spriteRenderer.color = Color.red;
+        }
     }
 }

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.Attacking
 {
     public class AIAttackChargeUpTimer : MonoBehaviour
     {
+        public ParentUnitManager _parentUnitManager;
         private bool _aiImperfectionChargingUp;
         private bool _aiImperfectionWindingDown;
         private float _aiImperfectionCurrent;
@@ -22,8 +24,9 @@ namespace Rechrysalis.Attacking
         private float _currentEnd;
         public System.Action<bool> _changeCanMove;
 
-        public void Initialize(float _chargeUp, float _windDown)
+        public void Initialize(float _chargeUp, float _windDown, ParentUnitManager parentUnitManager)
         {
+            _parentUnitManager = parentUnitManager;
             this._chargeUp = _chargeUp;
             this._windDown = _windDown;
             SetCurrentStartAndEnd();
@@ -48,11 +51,13 @@ namespace Rechrysalis.Attacking
                 _aiImperfectionWindingDown = windingDown;
                 if ((windingDown == false) && (chargingUp == true))
                 {
-                    _changeCanMove?.Invoke(false);
+                    _parentUnitManager.AICanMove = false;
+                    // _changeCanMove?.Invoke(false);
                 }
                 else 
                 {
-                    _changeCanMove?.Invoke(true);
+                    _parentUnitManager.AICanMove = true;
+                    // _changeCanMove?.Invoke(true);
                 }
 
             }
@@ -93,7 +98,8 @@ namespace Rechrysalis.Attacking
         {
             _aiImperfectionChargingUp = true;
             _aiImperfectionWindingDown = false;
-            _changeCanMove?.Invoke(false);
+            _parentUnitManager.AICanMove = false;
+            // _changeCanMove?.Invoke(false);
         }
         private void SetWindDownTrue()
         {
@@ -101,7 +107,8 @@ namespace Rechrysalis.Attacking
             _aiImperfectionChargingUp = false;
             _aiImperfectionCurrent = 0;
             SetCurrentStartAndEnd();
-            _changeCanMove?.Invoke(true);
+            _parentUnitManager.AICanMove = true;
+            // _changeCanMove?.Invoke(true);
         }
         public bool GetCharginUp()
         {

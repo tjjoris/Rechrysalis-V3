@@ -5,15 +5,19 @@ using TMPro;
 using Rechrysalis.Movement;
 using Rechrysalis.Attacking;
 using Rechrysalis.HatchEffect;
+using Rechrysalis.Controller;
 // using System;
 
 namespace Rechrysalis.Unit
 {
     public class UnitManager : MonoBehaviour
     {
+        private ControllerManager _enemyControllerManager;
+        private bool debugBool = false;
         [SerializeField] private UnitClass _unitClass;
         public UnitClass UnitClass => _unitClass;
         [SerializeField] private ControllerUnitSpriteHandler _unitSpriteHandler;
+        public ControllerUnitSpriteHandler ControllerUnitSpriteHandler => _unitSpriteHandler;
         [SerializeField] private int _controllerIndex;        
         public int ControllerIndex {get{return _controllerIndex;}}
         private int _freeUnitIndex;
@@ -34,6 +38,8 @@ namespace Rechrysalis.Unit
         [SerializeField] private GameObject _hatchEffectPrefab;
         public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
         private FreeUnitHatchEffect _freeHatchScript;
+        private ParentUnitManager _parentUnitManager;
+        private TargetPrioratizeByScore _targetPrioratizeByScore;
         private float _baseDPS;
         private float _newDPS;
         private float _baseChargeUp;
@@ -44,26 +50,28 @@ namespace Rechrysalis.Unit
         private float _newIncomingDamageMult = 1;
         private float _manaCost;
         public float ManaCost {get{return _manaCost;}}
-        [SerializeField] private bool _isStopped;
-        public bool IsStopped 
-        {
-            set{
-                    _isStopped = value;
-                    if (_mover != null)
-                    {
-                    _mover.IsStopped = _isStopped;
-                    }
-                    if (_attack != null)
-                    {
-                    _attack.IsStopped = _isStopped;
-                    }
-                }
-            }
+        // [SerializeField] private bool _isStopped;
+        // public bool IsStopped 
+        // {
+        //     set{
+        //             _isStopped = value;
+        //             if (_mover != null)
+        //             {
+        //             _mover.IsStopped = _isStopped;
+        //             }
+        //             if (_attack != null)
+        //             {
+        //             _attack.IsStopped = _isStopped;
+        //             }
+        //         }
+        //     }
         public System.Action<float> _unitDealsDamage;
         public void Initialize(int controllerIndex, UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnits)
         {
+            _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
             _controllerIndex = controllerIndex;
             _compsAndUnits = compsAndUnits;
+            _enemyControllerManager = _compsAndUnits.ControllerManagers[GetOppositeController.ReturnOppositeController(controllerIndex)];
             Debug.Log($"controller index " + _controllerIndex);
             _unitClass = unitClass;
             // GetComponent<ProjectilesPool>()?.CreatePool(_unitClass)
@@ -71,7 +79,7 @@ namespace Rechrysalis.Unit
             _attack = GetComponent<Attack>();
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
             _controllerUnitAttackClosest?.Initialzie();
-            if (_attack != null) _attack.IsStopped = true;
+            if (_parentUnitManager != null) _parentUnitManager.IsStopped = true;
             _attack?.Initialize(_unitClass);
             _health?.Initialize(_unitClass.HPMax);
             _nameText.text = unitClass.UnitName;
@@ -99,6 +107,8 @@ namespace Rechrysalis.Unit
                 }
             }
             _manaCost = unitClass.ManaCost;
+            _targetPrioratizeByScore = GetComponent<TargetPrioratizeByScore>();
+            _targetPrioratizeByScore?.Initialize(_enemyControllerManager.GetComponent<TargetScoreRanking>(), compsAndUnits.TargetsLists[_controllerIndex]);
             ReCalculateDamageChanges();
         }
         public void SetUnitSPrite(Sprite unitSprite)
@@ -121,10 +131,11 @@ namespace Rechrysalis.Unit
             _attack = GetComponent<Attack>();
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
             _controllerUnitAttackClosest?.Initialzie();
-            if (_attack != null)  _attack.IsStopped = true;
-            _attack?.InitializeOld(_unitStats);
+            if (_parentUnitManager != null)  _parentUnitManager.IsStopped = true;
             _health = GetComponent<Health>();
             _health?.Initialize(_unitStats.HealthMaxBasic);
+            _attack?.Initialize(_unitClass);
+            _attack?.InitializeOld(_unitStats);
             GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
             GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[_controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
             GetComponent<Rechrysalize>()?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ChildUnitCount);            
@@ -183,6 +194,7 @@ namespace Rechrysalis.Unit
         }
         public void Tick(float _timeAmount)
         {
+            if (debugBool)   Debug.Log($"tick");
             // if (gameObject.active == true) 
             // {
                 // bool _isStopped = false;
@@ -191,11 +203,11 @@ namespace Rechrysalis.Unit
                 {
                     // _mover?.Tick(_timeAmount);
                     // if ((!_mover.IsStopped) && ())
-                    _isStopped = _mover.IsStopped;
+                    // _isStopped = _mover.IsStopped;
                 }
                 if (_attack != null)
                 {
-                    _attack.IsStopped = _isStopped;
+                    // _attack.IsStopped = _isStopped;
                     _attack?.Tick(_timeAmount);
                 }
                 // _projectilesPool?.TickProjectiles(_timeAmount);

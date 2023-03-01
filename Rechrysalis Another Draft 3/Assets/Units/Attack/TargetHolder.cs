@@ -6,7 +6,10 @@ namespace Rechrysalis.Attacking
 {
     public class TargetHolder : MonoBehaviour
     {
-        private GameObject _target;
+        // [SerializeField] private GameObject _focusTarget;
+        // public GameObject FocusTarget { get => _focusTarget; set => _focusTarget = value; }
+        
+        [SerializeField] private GameObject _target;
         public GameObject Target {set {_target = value;} get {return _target;}}
         private Range _range;
         

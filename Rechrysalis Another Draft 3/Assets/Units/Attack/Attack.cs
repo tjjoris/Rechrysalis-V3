@@ -16,19 +16,23 @@ namespace Rechrysalis.Attacking
         [SerializeField] private  float _baseDamage;
         [SerializeField] private float _damage;
         [SerializeField] private float _baseDPS;
+        [SerializeField] private float _currentDPS;
+        public float CurrentDPS => _currentDPS;
         private ProjectilesPool _projectilesPool;
         private bool _isWindingDown;
         private bool _isChargingUp;
-        private bool _isStopped;
-        public bool IsStopped{set{_isStopped = value;}}
+        // private bool _isStopped;
+        // public bool IsStopped{set{_isStopped = value;}}
         [SerializeField] private TargetsListSO _targetsList;
         private InRangeByPriority _inRangeByPriority;  
         private ClosestTarget _closestTarget;  
         private TargetHolder _targetHolder;
         private AIAttackChargeUpTimer _aiAttackTimer;
+        private ParentUnitManager _parentUnitManager;
 
         public void Initialize(UnitClass unitClass)
         {
+            _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
             _unitClass = unitClass;
             _baseDPS = _unitClass.DPS;
             _attackChargeUp = _unitClass.AttackChargeUp;
@@ -39,7 +43,7 @@ namespace Rechrysalis.Attacking
             _closestTarget = GetComponent<ClosestTarget>();
             _targetHolder = GetComponent<TargetHolder>();
             _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
-            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown);
+            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown, _parentUnitManager);
             CalculateDamage(_baseDPS);
             ResetUnitAttack();
         }
@@ -54,7 +58,7 @@ namespace Rechrysalis.Attacking
             _closestTarget = GetComponent<ClosestTarget>();
             _targetHolder = GetComponent<TargetHolder>();
             _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
-            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown);
+            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown, _parentUnitManager);
             ResetUnitAttack();
         }
         public void ResetUnitAttack()
@@ -76,7 +80,7 @@ namespace Rechrysalis.Attacking
             else
             {            
                 GameObject _tempTarget = null;
-                if ((_isChargingUp) && (_isStopped) && (_attackChargeCurrent >= _attackChargeUp))
+                if ((_isChargingUp) && (_parentUnitManager.IsStopped) && (_attackChargeCurrent >= _attackChargeUp))
                 {
                     _tempTarget = GetTargetInRange();
                     if (_tempTarget != null)
@@ -101,7 +105,7 @@ namespace Rechrysalis.Attacking
                     _isChargingUp = true;
                     _attackChargeCurrent += _timeAmount;
                 }
-                else if ((_isChargingUp) && (_isStopped))
+                else if ((_isChargingUp) && (_parentUnitManager.IsStopped))
                 {
                     _attackChargeCurrent += _timeAmount;                
                 }
@@ -143,19 +147,23 @@ namespace Rechrysalis.Attacking
                 _baseDPS = dps;
             }
         }
+        public float GetDPS()
+        {
+            return _baseDPS;
+        }
         public void ReCalculateDamageWithHE(List<HEIncreaseDamage> hatchEffects)
         {
-            float dps = _baseDPS;
+            _currentDPS = _baseDPS;
             foreach (HEIncreaseDamage hEIncreaseDamage in hatchEffects)
             {
                 // HEIncreaseDamage hEIncreaseDamage = hatchEffect.GetComponent<HEIncreaseDamage>();                
                 if (hEIncreaseDamage != null)
                 {
-                    dps += hEIncreaseDamage.GetDamageToAdd();
+                    _currentDPS += hEIncreaseDamage.GetDamageToAdd();
                 }
             }
             // _damage = (dps / (_attackChargeUp + _attackWindDown));
-            CalculateDamage(dps);
+            CalculateDamage(_currentDPS);
         }
         private void CalculateDamage(float dps)
         {

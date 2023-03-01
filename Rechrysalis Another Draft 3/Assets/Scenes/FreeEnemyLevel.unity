@@ -700,6 +700,8 @@ GameObject:
   - component: {fileID: 691481330}
   - component: {fileID: 691481331}
   - component: {fileID: 691481332}
+  - component: {fileID: 691481333}
+  - component: {fileID: 691481334}
   m_Layer: 0
   m_Name: FreeController
   m_TagString: Untagged
@@ -752,6 +754,7 @@ MonoBehaviour:
   _click: {fileID: 0}
   _touch: {fileID: 0}
   _parentUnits: []
+  _parentUnitManagers: []
   _playerUnitsSO: []
   _compSO: {fileID: 0}
   _compsAndUnits: {fileID: 0}
@@ -769,6 +772,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a367366431bbe454e85116b3fd190810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &691481333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691481327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89cfa443f2ea746569fe4ac7a022686a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flawedBaseValue: 0.35
+  _flawedRandomRange: 0.3
+  _currentFlawedMax: 5
+  _curentFlawedCurrent: 0
+--- !u!114 &691481334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691481327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129d4c3719e824df3b93c14cf8585817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &693044507 stripped
@@ -1122,6 +1153,7 @@ GameObject:
   - component: {fileID: 1159822634}
   - component: {fileID: 1159822635}
   - component: {fileID: 1159822636}
+  - component: {fileID: 1159822637}
   m_Layer: 9
   m_Name: Controller
   m_TagString: Untagged
@@ -1170,6 +1202,7 @@ MonoBehaviour:
   _touch: {fileID: 11400000, guid: 87a4f46d393ad4191b399aa2156c091e, type: 2}
   _parentUnits:
   - {fileID: 0}
+  _parentUnitManagers: []
   _playerUnitsSO:
   - {fileID: 0}
   - {fileID: 0}
@@ -1336,6 +1369,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterCollider: {fileID: 1159822628}
   _characterBlockerCollider: {fileID: 1457545407}
+--- !u!114 &1159822637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159822623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129d4c3719e824df3b93c14cf8585817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1177779209
 GameObject:
   m_ObjectHideFlags: 0

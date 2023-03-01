@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitInWave:
   - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
-  - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
+  - {fileID: 11400000, guid: 23d7f2465c2c642c5b9a50d6ab666ea4, type: 2}
   - {fileID: 11400000, guid: 0655bdb7fce124529858749e26a697b7, type: 2}
   - {fileID: 11400000, guid: b623607e1e33044b0a4e78f4d30bce7d, type: 2}
   _parentUnitClasses: []

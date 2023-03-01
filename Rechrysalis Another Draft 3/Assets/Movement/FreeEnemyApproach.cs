@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Attacking;
 // using Rechrysalis.Movement;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.Movement
 {
     public class FreeEnemyApproach : MonoBehaviour
     {
         // private float _range;
+        private ParentUnitManager _parentUnitManager;
         private PlayerUnitsSO _ownUnits;
         private ClosestTarget _closestTarget;
         // private GameObject _targetUnit;
@@ -18,20 +20,38 @@ namespace Rechrysalis.Movement
         private bool _approaching;
         public bool Approaching => _approaching;   
         private Mover _mover;
+        private TargetPrioratizeByScore _targetPrioratizeByScore;
 
-        public void Initialize(PlayerUnitsSO _ownUnits, Range _range, Mover enemyControllerMover)
+        public void Initialize(PlayerUnitsSO _ownUnits, Mover enemyControllerMover)
         {
+            _parentUnitManager = GetComponent<ParentUnitManager>();
             // this._range = _range;
             _enemyControllerMover = enemyControllerMover;
             this._ownUnits = _ownUnits;
-            this._range = _range;
-            this._closestTarget = this._range.GetComponent<ClosestTarget>();
-            _targetHolder = this._range.GetComponent<TargetHolder>();
+            // this._range = _range;
+            // this._closestTarget = this._range.GetComponent<ClosestTarget>();
+            // _targetHolder = this._range.GetComponent<TargetHolder>();
             _mover = GetComponent<Mover>();
         }
 
         public void Tick(bool _isRetreating, bool _aiCanMove)
         {
+            _range = _parentUnitManager.CurrentSubUnit.GetComponent<Range>();
+            _targetHolder = _range.GetComponent<TargetHolder>();
+            _targetPrioratizeByScore = _range.GetComponent<TargetPrioratizeByScore>();
+            GameObject focusTarget = null;
+            if (_targetPrioratizeByScore != null)
+            {                
+                focusTarget = _targetPrioratizeByScore.GetFocusTarget();
+                if ((focusTarget != null))
+                {
+                    _targetHolder.Target = focusTarget;
+                }
+            }
+            if (focusTarget == null)
+            {
+                focusTarget = _targetHolder.Target;
+            }
             if (!_isRetreating)
             {
                 Vector3 _approachDirection = Vector3.zero;

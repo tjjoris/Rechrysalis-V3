@@ -35,8 +35,14 @@ namespace Rechrysalis.Controller
                 for (int _index = 0; _index < _parentUnits.Length; _index++)
                 if (_parentUnits[_index] != null)
                 {
-                    _parentUnits[_index].GetComponent<ParentUnitManager>()._subtractMana -= SubtractMana;
-                    _parentUnits[_index].GetComponent<ParentUnitManager>()._subtractMana += SubtractMana;
+                    // _parentUnits[_index].GetComponent<ParentUnitManager>()._subtractMana -= SubtractMana;
+                    // _parentUnits[_index].GetComponent<ParentUnitManager>()._subtractMana += SubtractMana;
+                    UpgradeUnit upgradeUnit = _parentUnits[_index].GetComponent<UpgradeUnit>();
+                    if (upgradeUnit != null)
+                    {
+                        upgradeUnit._subtractMana -= SubtractMana;
+                        upgradeUnit._subtractMana += SubtractMana;
+                    }
                 }
             }
         }
@@ -53,7 +59,13 @@ namespace Rechrysalis.Controller
                 for (int _index = 0; _index < _parentUnits.Length; _index++)
                     if (_parentUnits[_index] != null)
                     {
-                        _parentUnits[_index].GetComponent<ParentUnitManager>()._subtractMana -= SubtractMana;
+                        // _parentUnits[_index].GetComponent<ParentUnitManager>()._subtractMana -= SubtractMana;
+
+                        UpgradeUnit upgradeUnit = _parentUnits[_index].GetComponent<UpgradeUnit>();
+                        if (upgradeUnit != null)
+                        {
+                            upgradeUnit._subtractMana -= SubtractMana;
+                        }
                     }
             }
             if (GetComponent<ControllerHealth>() != null)
