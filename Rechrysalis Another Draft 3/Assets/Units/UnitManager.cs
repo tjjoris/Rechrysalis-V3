@@ -17,6 +17,7 @@ namespace Rechrysalis.Unit
         [SerializeField] private UnitClass _unitClass;
         public UnitClass UnitClass => _unitClass;
         [SerializeField] private ControllerUnitSpriteHandler _unitSpriteHandler;
+        public ControllerUnitSpriteHandler ControllerUnitSpriteHandler => _unitSpriteHandler;
         [SerializeField] private int _controllerIndex;        
         public int ControllerIndex {get{return _controllerIndex;}}
         private int _freeUnitIndex;

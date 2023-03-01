@@ -79,17 +79,17 @@ namespace Rechrysalis.Controller
                     UnitStatsSO _unitStats = wave.UnitInWave[_unitInWaveIndex];
                     if (_unitStats != null)
                     {
-                        ParentUnitClass parentUnitClass = new ParentUnitClass(); 
+                        ParentUnitClass parentUnitClass = new ParentUnitClass();
                         parentUnitClass.ClearAllUpgrades();
                         parentUnitClass.SetUTCBasicUnit(_unitStats.UpgradeTypeClass);
-                        parentUnitClass.SetAllStats();                        
+                        parentUnitClass.SetAllStats();
                         // _wave.ParentUnitClasses.Add(parentUnitClass);                        
                         // ParentUnitClass parentUnitClass = _wave.ParentUnitClasses[_compSO.ParentUnitClassList.Count - 1];
 
                         // Vector3 _newUnitPos = _freeEnemyCompLayout.UnitPos[0, _unitInWaveIndex];
                         Vector3 _newUnitPos = (freeUnitCompSO.WaveLayout.GetUnitPosInWave(_unitInWaveIndex) + enemyController.gameObject.transform.position);
                         // _newUnitPos.y = _newUnitPos.y + enemyController.gameObject.transform.position.y;                        
-                        GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);            
+                        GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
                         newFreeEnemy.transform.Rotate(new Vector3(0, 0, 180f));
                         playerUnitsSO.ParentUnits.Add(newFreeEnemy);
                         newFreeEnemy.name = _unitStats.name + " " + _unitInWaveIndex.ToString();
@@ -101,7 +101,7 @@ namespace Rechrysalis.Controller
                         parentUnitManager.ParentUnitClass = parentUnitClass;
                         _controllerManager.ParentUnitManagers.Add(parentUnitManager);
                         ParentFreeEnemyManager _freeParentManager = newFreeEnemy.GetComponent<ParentFreeEnemyManager>();
-                        _freeParentManager?.InitializeOld(controllerIndex, _unitStats, compsAndUnits, _unitInWaveIndex, playerUnitsSO);                        
+                        _freeParentManager?.InitializeOld(controllerIndex, _unitStats, compsAndUnits, _unitInWaveIndex, playerUnitsSO);
                         _freeParentManager?.Initialize(parentUnitClass.BasicUnitClass, _unitInWaveIndex, compsAndUnits);
                         parentUnitManager.ChildUnitManagers.Add(_freeParentManager.BasicUnitManager);
                         newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(_unitStats.HealthMaxBasic);
@@ -109,22 +109,36 @@ namespace Rechrysalis.Controller
                         playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
                         _allUnits.Add(_freeParentManager.UnitManager.gameObject);
                         _controllerFreeHatch?.SetUnitsArray(newFreeEnemy, _unitInWaveIndex);
-                        if ((!_unitStats.AIFocusFire))
-                        {
-                            foreach (UnitManager childUnit in parentUnitManager.ChildUnitManagers)
-                            {
-                                if ((childUnit != null) && (childUnit.GetComponent<TargetPrioratizeByScore>() != null))
-                                {
-                                    Destroy(childUnit.GetComponent<TargetPrioratizeByScore>());
-                                }
-
-                            }
-                        }
+                        AIFocusFireOnInitialzie(_unitStats, parentUnitManager);
                         // _unitManager?.RestartUnit();
                     }
                 }
             }
         }
+
+        private static void AIFocusFireOnInitialzie(UnitStatsSO _unitStats, ParentUnitManager parentUnitManager)
+        {
+           
+            foreach (UnitManager childUnit in parentUnitManager.ChildUnitManagers)
+            {
+                if (childUnit != null)
+                {
+                    if ((!_unitStats.AIFocusFire))
+                    {
+                        if ((childUnit.GetComponent<TargetPrioratizeByScore>() != null))
+                        {
+                            Destroy(childUnit.GetComponent<TargetPrioratizeByScore>());
+                        }
+                    }
+                    else 
+                    {
+                        childUnit.ControllerUnitSpriteHandler.TintSpriteRed();
+                        //this unit has focus fire, and already starts with the focus fire component.
+                    }
+                }
+            }       
+        }
+
         private bool CheckIfLevelDone(int _waveIndex)
         {
             if (_waveIndex >= _freeUnitCompSO.Waves.Length)
