@@ -22,6 +22,7 @@ namespace Rechrysalis.Attacking
         private Attack _currentUnitAttack;
         private PriorityScoreChrysalis _priorityScoreChrysalis;
         private PriorityScoreDPS _priorityScoreDPS;
+        private PriorityScoreHatchEffect _priorityScoreHatchEffect;
         
         public void Initialize()
         {
@@ -29,6 +30,7 @@ namespace Rechrysalis.Attacking
             _parentHealth = GetComponent<ParentHealth>();
             _priorityScoreChrysalis = GetComponent<PriorityScoreChrysalis>();
             _priorityScoreDPS = GetComponent<PriorityScoreDPS>();
+            _priorityScoreHatchEffect = GetComponent<PriorityScoreHatchEffect>();
         }
         public void SetCurrentUnit(Attack attack)
         {
@@ -69,6 +71,10 @@ namespace Rechrysalis.Attacking
             if (_priorityScoreDPS != null)
             {
                 _currentScoreValue += _priorityScoreDPS.GenerateScore();                
+            }
+            if (_priorityScoreHatchEffect != null)
+            {
+                _currentScoreValue += _priorityScoreHatchEffect.GenerateScore();
             }
         }
     }

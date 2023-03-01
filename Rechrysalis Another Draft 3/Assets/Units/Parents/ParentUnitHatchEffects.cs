@@ -10,6 +10,7 @@ namespace Rechrysalis.Unit
     {
         private ParentUnitManager _parentUnitManager;
         private List<GameObject> _hatchEffects;
+        public List<GameObject> HatchEffects => _hatchEffects;
         private GameObject[] _subUnits;
         private GameObject[] _subChrysalii;
         public Action<GameObject, int, int, bool> _addHatchEffect;
