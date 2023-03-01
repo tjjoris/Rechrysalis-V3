@@ -35,6 +35,7 @@ namespace Rechrysalis.Attacking
             if ((_scoresRanked != null) && (_scoresRanked.Count > 0))
             {
                 _scoresRanked.Sort(SortFunc);
+                _targetsListSO.Targets.Sort(SortFuncAsGO);
             }
         }
         private void AddToScoreRank(ParentUnitManager parentUnitManager)
@@ -61,6 +62,23 @@ namespace Rechrysalis.Attacking
             if (a.TargetScoreValue.CurrentScoreValue < b.TargetScoreValue.CurrentScoreValue)
             {
                 return 1;
+            }
+            return 0;
+        }
+        private int SortFuncAsGO(GameObject a, GameObject b)
+        {
+            ParentUnitManager puma = a.GetComponent<ParentUnitManager>();
+            ParentUnitManager pumb = b.GetComponent<ParentUnitManager>();
+            if ((puma != null) && (pumb != null))
+            {
+                if (puma.TargetScoreValue.CurrentScoreValue > pumb.TargetScoreValue.CurrentScoreValue)
+                {
+                    return -1;
+                }
+                if (puma.TargetScoreValue.CurrentScoreValue < pumb.TargetScoreValue.CurrentScoreValue)
+                {
+                    return 1;
+                }
             }
             return 0;
         }
