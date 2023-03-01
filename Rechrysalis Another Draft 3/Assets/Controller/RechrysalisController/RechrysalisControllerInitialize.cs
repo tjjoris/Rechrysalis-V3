@@ -9,6 +9,7 @@ namespace Rechrysalis.Controller
     public class RechrysalisControllerInitialize : MonoBehaviour
     {
         private ControllerManager _controllerManager;
+        private ManaGenerator _manaGenerator;
         [SerializeField] private int _controllerIndex;
         public int ControllerIndex { get => _controllerIndex; set => _controllerIndex = value; }
         [SerializeField] private GameObject _parentUnitPrefab;
@@ -27,6 +28,7 @@ namespace Rechrysalis.Controller
         public void Initialize(int controllerIndex, CompSO unitComp, CompsAndUnitsSO compsAndUnits, UnitRingManager unitRingManager, HilightRingManager hilightRingManager, UpgradeRingManager upgradeRingManager, float unitRingOuterRadius)
         {
            _controllerManager = GetComponent<ControllerManager>(); 
+           _manaGenerator = GetComponent<ManaGenerator>();
             _controllerIndex = controllerIndex;
             this._unitComp = unitComp;
             _allUnits = new List<GameObject>();
@@ -122,6 +124,7 @@ namespace Rechrysalis.Controller
             _controllerHatchEffect?.SetParentUnitHatchEffects(_parentUnitHatchEffects);
             _controllerHatchEffect?.SubscribeToUnits();
             upgradeRingManager?.SetActiveUpgradeRing(-1);
+            AddToStartingMana(unitComp);
         }
         private void CreateChildUnitAndChrysalis(UnitClass unitClass, int childUnitIndex, ParentUnitManager pum, int parentUnitIndex, CompsAndUnitsSO compsAndUnits)
         {
@@ -211,6 +214,24 @@ namespace Rechrysalis.Controller
                         // _parentUnits[_parentUnitIndex].GetComponent<ParentUnitManager>().ActivateInitialUnit();
                         thisParentUnit.GetComponent<ParentHealth>().SetMaxHealth(thisParentUnit.SubUnits[0].GetComponent<UnitManager>().UnitClass.HPMax);
                         thisParentUnit.GetComponent<UnitActivation>().ActivateUnit(0);
+                    }
+                }
+            }
+        }
+        private void AddToStartingMana(CompSO compSO)
+        {
+            foreach (ParentUnitClass parentUnitClass in compSO.ParentUnitClassList)
+            {
+                if (parentUnitClass != null)
+                {
+                    if (parentUnitClass.AdvancedUpgradesUTCList.Count > 0)
+                    {                    
+                        _manaGenerator.AddToStartingMana(parentUnitClass.AdvancedUpgradesUTCList.Count);
+
+                    }
+                    if (parentUnitClass.UTCHatchEffect != null)
+                    {
+                        _manaGenerator.AddToStartingMana(1);
                     }
                 }
             }

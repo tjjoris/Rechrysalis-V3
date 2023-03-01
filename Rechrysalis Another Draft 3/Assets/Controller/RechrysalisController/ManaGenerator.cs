@@ -16,6 +16,8 @@ namespace Rechrysalis.Controller
         private float _generateIntervalMax = 0.5f;
         private float _generateAmount = 1.3f;
         private bool _generatingMana;
+        private float _baseStartingAmount = 25;
+        private float _startingAmountMult = 15;
         private float _startingAmount = 25;
         private GameObject[] _parentUnits;
         // private void Start() {
@@ -71,6 +73,10 @@ namespace Rechrysalis.Controller
             if (GetComponent<ControllerHealth>() != null)
                 GetComponent<ControllerHealth>()._controllerTakesDamageAction -= StartTimer;
             
+        }
+        public void AddToStartingMana(float multiplier)
+        {
+            _startingAmount += (multiplier * _startingAmountMult);
         }
         public void StartTimer()
         {
