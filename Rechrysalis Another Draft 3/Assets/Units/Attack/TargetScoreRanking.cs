@@ -32,7 +32,10 @@ namespace Rechrysalis.Attacking
                     AddToScoreRank(parentUnit);                    
                 }
             }
-            _scoresRanked.Sort();
+            if ((_scoresRanked != null) && (_scoresRanked.Count > 0))
+            {
+                _scoresRanked.Sort();
+            }
         }
         private void AddToScoreRank(ParentUnitManager parentUnitManager)
         {
