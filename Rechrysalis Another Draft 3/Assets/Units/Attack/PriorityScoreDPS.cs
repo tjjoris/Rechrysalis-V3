@@ -23,7 +23,7 @@ namespace Rechrysalis.Attacking
             Attack attack = _parentUnitManager.CurrentSubUnit.GetComponent<Attack>();
             if (attack != null)
             {                                
-                return attack.GetDPS() * 10f;
+                return attack.GetDPS();
             }
             return 0;
         }
