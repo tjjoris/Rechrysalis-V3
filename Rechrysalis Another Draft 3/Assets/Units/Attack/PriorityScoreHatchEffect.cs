@@ -23,13 +23,16 @@ namespace Rechrysalis.Attacking
         }
         public float GenerateScore()
         {
-            GameObject hatchEffect = _parentUnitHatchEffects.HatchEffects[0];
-            if (hatchEffect != null)
+            if ((_parentUnitHatchEffects != null) && (_parentUnitHatchEffects.HatchEffects.Count > 0))
             {
-                HatchEffectManager hatchEffectManager = hatchEffect.GetComponent<HatchEffectManager>();
-                if (hatchEffectManager != null)
+                GameObject hatchEffect = _parentUnitHatchEffects.HatchEffects[0];
+                if (hatchEffect != null)
                 {
-                    return hatchEffectManager.HatchMult * 50f;
+                    HatchEffectManager hatchEffectManager = hatchEffect.GetComponent<HatchEffectManager>();
+                    if (hatchEffectManager != null)
+                    {
+                        return hatchEffectManager.HatchMult * 50f;
+                    }
                 }
             }
             return 0;
