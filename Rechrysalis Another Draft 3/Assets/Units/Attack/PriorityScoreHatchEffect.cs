@@ -31,7 +31,7 @@ namespace Rechrysalis.Attacking
                     HatchEffectManager hatchEffectManager = hatchEffect.GetComponent<HatchEffectManager>();
                     if (hatchEffectManager != null)
                     {
-                        return hatchEffectManager.HatchMult * 50f;
+                        return hatchEffectManager.HatchMult * 15f;
                     }
                 }
             }
