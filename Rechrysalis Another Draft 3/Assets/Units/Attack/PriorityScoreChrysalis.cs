@@ -26,9 +26,9 @@ namespace Rechrysalis.Attacking
         {
             if (_parentUnitManager.CurrentSubUnit.GetComponent<ChrysalisManager>() != null)
             {
-                return 15;
+                return 100;
             }
-            return _parentUnitManager.ParentHealth.GetHealthMissingRatio() * 15f;
+            return _parentUnitManager.ParentHealth.GetHealthMissingRatio() * 100f;
         }
     }
 }
