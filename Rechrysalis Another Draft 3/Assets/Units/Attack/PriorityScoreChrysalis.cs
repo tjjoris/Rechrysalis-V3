@@ -28,7 +28,7 @@ namespace Rechrysalis.Attacking
             {
                 return 15;
             }
-            return 0;
+            return _parentUnitManager.ParentHealth.GetHealthMissingRatio() * 15f;
         }
     }
 }

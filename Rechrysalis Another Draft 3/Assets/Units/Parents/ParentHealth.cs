@@ -12,6 +12,7 @@ namespace Rechrysalis.Unit
         bool _debugBool = false;
         private float _maxHealth;
         private float _currentHealth;
+        public float CurrentHealth => _currentHealth;
         private bool _isChrysalis;
         private float _incomingDamageMultbase = 1f;
         private float _incomingDamageMult = 1f;
@@ -83,6 +84,14 @@ namespace Rechrysalis.Unit
             // Debug.Log($"update hp bar" + _currentHealth / _maxHealth);
             Vector2 hpBarScale = new Vector2 (_currentHealth / _maxHealth, 1f);
             _hpBarFill.localScale = hpBarScale;
+        }
+        public float GetHealthRatio()
+        {
+            return (_currentHealth / _maxHealth);
+        }
+        public float GetHealthMissingRatio()
+        {
+            return ((_maxHealth - _currentHealth) / _maxHealth);
         }
     }
 }

@@ -40,6 +40,7 @@ namespace Rechrysalis.Unit
         public GameObject CurrentSubUnit {get { return _currentSubUnit;} set { _currentSubUnit = value;} }
         private RotateParentUnit _rotateParentUnit;
         private ParentHealth _parentHealth;
+        public ParentHealth ParentHealth => _parentHealth;
         private ParentUnitHatchEffects _pUHE;
         private ParentHatchEffectAddRemove _parentHatchEffectAddRemove;
         private UnitActivation _unitActivation;
@@ -98,7 +99,7 @@ namespace Rechrysalis.Unit
             this._theseUnits = _theseUnits;
             // _parentUnitClass = unitComp.ParentUnitClassList[_parentUnitIndex];
             _parentUnitClass = parentUnitClass;
-            _parentHealth = GetComponent<ParentHealth>();
+            _parentHealth = GetComponent<ParentHealth>();            
             // AddChrysalisAndUnitActions();
             _rotateParentUnit = GetComponent<RotateParentUnit>();
             _rotateParentUnit?.Initialize(controllertransform);
