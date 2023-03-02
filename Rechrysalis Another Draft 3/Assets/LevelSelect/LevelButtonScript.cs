@@ -1,21 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
+using Rechrysalis;
 
 namespace Rechrysalis.LevelSelect
 {
     public class LevelButtonScript : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;
+        private int _levelForThisButton;
+        [SerializeField] private TMP_Text _buttonName;
+        public void SetLevelForThisButton(int level)
         {
-        
-        }
+            _levelForThisButton = level;
 
-        // Update is called once per frame
-        void Update()
+        }
+        public void LevelButtonClicked()
         {
-        
+            _compsAndUnitsSO.Level = _levelForThisButton;
+            SceneManager.LoadScene("FreeEnemyLevel");
         }
     }
 }
