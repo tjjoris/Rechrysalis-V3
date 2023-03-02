@@ -17,6 +17,7 @@ namespace Rechrysalis.HatchEffect
         }
         public void AddHatchEffect(GameObject _hatchEffect)
         {
+            Debug.Log($"parent unit add hatch effect called");
             // _hatchEffectManagersToDamage.Add(_hatchEffect.GetComponent<HatchEffectManager>());
             // _pUHE?.AddHatchEffect(_hatchEffect);
             if (_parentUnitManager.SubUnits.Length > 0)
@@ -25,6 +26,7 @@ namespace Rechrysalis.HatchEffect
                 {
                     if (_parentUnitManager.SubUnits[_childIndex] != null)
                     {
+                        Debug.Log($"add hatch effect to child");
                         _parentUnitManager.SubUnits[_childIndex].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
                     }
                 }

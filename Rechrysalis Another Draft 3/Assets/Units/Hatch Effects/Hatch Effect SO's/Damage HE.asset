@@ -22,7 +22,7 @@ MonoBehaviour:
   _currencyCost: 0
   _addedManaCost: 6
   _dpsIncrease:
-  - 20
+  - 50
   - 6
   - 9
   _incomingDamageMultiplier: []
