@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Start.unity
     guid: 522f7ec9f1f9f4b2c8489b2bac5d31f9
   - enabled: 1
+    path: Assets/Scenes/CustomCustomizer.unity
+    guid: d1081c33c736c4359b5513249659c9be
+  - enabled: 1
     path: Assets/Scenes/CompCustomizer.unity
     guid: 73c5b1efc23874f18a4af5ba4cc3a4a1
   - enabled: 1
