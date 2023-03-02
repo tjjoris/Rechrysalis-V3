@@ -19,17 +19,17 @@ namespace Rechrysalis.CompCustomizer
             categoryCount += _compCustomizerSO.BasicUnitArray.Length;
             if ((_compCustomizerSO.AdvancedUnitSelectionT1Array.Length > (index - categoryCount)) && (_compCustomizerSO.AdvancedUnitSelectionT1Array[index - categoryCount] != null))
             {
-                return _compCustomizerSO.AdvancedUnitSelectionT1Array[index + categoryCount].UpgradeTypeClass;
+                return _compCustomizerSO.AdvancedUnitSelectionT1Array[index - categoryCount].UpgradeTypeClass;
             }
             categoryCount += _compCustomizerSO.AdvancedUnitSelectionT1Array.Length;
             if ((_compCustomizerSO.HatchEffectSelectionArray.Length > (index - categoryCount)) && (_compCustomizerSO.HatchEffectSelectionArray[index - categoryCount] != null))
             {
-                return _compCustomizerSO.HatchEffectSelectionArray[index + categoryCount].UpgradeTypeClass;
+                return _compCustomizerSO.HatchEffectSelectionArray[index - categoryCount].UpgradeTypeClass;
             }
             categoryCount += _compCustomizerSO.HatchEffectSelectionArray.Length;
             if ((_compCustomizerSO.ControllerHeartUpgrades.Length > (index - categoryCount)) && (_compCustomizerSO.ControllerHeartUpgrades[index - categoryCount] != null))
             {
-                return  _compCustomizerSO.ControllerHeartUpgrades[index + categoryCount].UpgradeTypeClass;
+                return  _compCustomizerSO.ControllerHeartUpgrades[index - categoryCount].UpgradeTypeClass;
             }
             return null;
         }
