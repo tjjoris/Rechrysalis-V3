@@ -12,7 +12,7 @@ namespace Rechrysalis.CompCustomizer
         public UpgradeTypeClass GetUpgradeTypeClassFromAllUpgrades(int index)
         {
             int categoryCount = 0;
-            if (_compCustomizerSO.BasicUnitArray[index] != null)
+            if ((_compCustomizerSO.BasicUnitArray.Length > (index)) && (_compCustomizerSO.BasicUnitArray[index] != null))
             {
                 return _compCustomizerSO.BasicUnitArray[index].UpgradeTypeClass;
             }
