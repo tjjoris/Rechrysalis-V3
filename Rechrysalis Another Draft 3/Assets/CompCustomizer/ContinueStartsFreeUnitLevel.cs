@@ -7,11 +7,10 @@ namespace Rechrysalis.CompCustomizer
 {
     public class ContinueStartsFreeUnitLevel : MonoBehaviour
 
+    {
+        public void ContinueClicked()
         {
-            public void ContinueClicked()
-            {
-                SceneManager.LoadScene("FreeEnemyLevel");
-            }
+            SceneManager.LoadScene("FreeEnemyLevel");
         }
     }
 }
