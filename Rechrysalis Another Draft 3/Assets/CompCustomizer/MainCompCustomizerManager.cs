@@ -24,6 +24,8 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private bool _debugBool = true;
         [SerializeField] private Transform _movingButtonHolder;
         [SerializeField] private LevelDisplay _levelDisplay;
+        private ContinueReturnsToStart _continueReturnsToStart;
+        private ContinueStartsFreeUnitLevel _continueStartsFreeUnitLevel;
 
         // private void OnEnable()
         // {
@@ -34,6 +36,11 @@ namespace Rechrysalis.CompCustomizer
         // {
         //     _compInitialize._droppedIntoVertical -= ButtonDroppedIntoComp;
         // }
+        private void Awake()
+        {
+            _continueReturnsToStart = GetComponent<ContinueReturnsToStart>();
+            _continueStartsFreeUnitLevel = GetComponent<ContinueStartsFreeUnitLevel>();
+        }
         private void Start()
         {
             _compSO = _compsAndUnitsSO.CompsSO[0];
@@ -49,9 +56,15 @@ namespace Rechrysalis.CompCustomizer
                 Debug.Log($"continue");
                 SetComp();
                 // if (_compsAndUnitsSO.Level < _compsAndUnitsSO.Levels.Length)
-                SceneManager.LoadScene("FreeEnemyLevel");
+                // SceneManager.LoadScene("FreeEnemyLevel");
                 // else
                 // SceneManager.LoadScene("Start");
+                if (_continueStartsFreeUnitLevel != null)
+                {                    
+                    _continueStartsFreeUnitLevel?.ContinueClicked();
+                    return;
+                }
+                    _continueReturnsToStart?.ContinueClicked();
             }
         }
         private void SetComp()
