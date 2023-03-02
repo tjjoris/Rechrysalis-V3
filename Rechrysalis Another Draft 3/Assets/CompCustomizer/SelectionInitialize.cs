@@ -31,7 +31,7 @@ namespace Rechrysalis.CompCustomizer
             _movingButtonHolder = movingButtonHolder;
             _upgradeButtonIndex = new int[_numberOfUpgrades];
             _compCustomizerSO = compCustomizerSO;
-            // _upgradeTypeClassesToChooseFrom = new UpgradeTypeClass[_numberOfUpgrades];
+            _upgradeTypeClassesToChooseFrom = new List<UpgradeTypeClass>();
             _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
             _selectionIndexToSelection.Initialize(compCustomizerSO);
             _randomUpgradeSelection= GetComponent<RandomUpgradeSelection>();
@@ -88,6 +88,7 @@ namespace Rechrysalis.CompCustomizer
             for (int index = 0; index < _numberOfUpgrades; index ++)
             {
                 UpgradeTypeClass _randomUpgradeTypeClass = _randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount);
+                Debug.Log($"random upgrade class " + _randomUpgradeTypeClass.GetUpgradeType());
                 CreateSelectionButton(index, _randomUpgradeTypeClass);
             }
         }
