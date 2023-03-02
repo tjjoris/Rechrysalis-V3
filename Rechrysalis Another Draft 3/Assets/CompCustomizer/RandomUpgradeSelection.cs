@@ -12,23 +12,24 @@ namespace Rechrysalis.CompCustomizer
         private UpgradeTypeClass _upgradeTypeClassToCompare;
         private int _randomIndex;        
         private int upgradeSelectionCount;
-        private bool _debugBool = false;
+        private bool _debugBool = true;
         public void Initialize()
         {
             _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
         }
         public UpgradeTypeClass GetRandomUpgradeTypeClass(List<UpgradeTypeClass> upgradeTypeClassesCurrent, int selectionCount)
         {
+            UpgradeTypeClass randomUpgradeClass = _selectionIndexToSelection.GetUpgradeTypeClassFromIndex(GetRandomNumber(selectionCount));
             if (upgradeTypeClassesCurrent != null)
             {
                 for (int i=0; i<upgradeTypeClassesCurrent.Count; i++)
                 {
-                    UpgradeTypeClass randomUpgradeClass = _selectionIndexToSelection.GetUpgradeTypeClassFromIndex(GetRandomNumber(selectionCount));
+                    
                     CheckIfDuplicates  (upgradeTypeClassesCurrent, ref randomUpgradeClass, selectionCount);
                     return randomUpgradeClass;
                 }
             }
-            return null;
+            return randomUpgradeClass;
         }
         private int GetRandomNumber(int selectionCount)
         {

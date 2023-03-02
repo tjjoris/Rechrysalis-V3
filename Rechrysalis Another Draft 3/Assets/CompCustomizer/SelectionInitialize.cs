@@ -88,6 +88,7 @@ namespace Rechrysalis.CompCustomizer
             for (int index = 0; index < _numberOfUpgrades; index ++)
             {
                 UpgradeTypeClass _randomUpgradeTypeClass = _randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount);
+                Debug.Log($"random upgrade type class " + _randomUpgradeTypeClass.GetUpgradeType());
                 CreateSelectionButton(index, _randomUpgradeTypeClass);
             }
         }
