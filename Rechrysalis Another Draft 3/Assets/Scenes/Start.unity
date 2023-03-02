@@ -1418,7 +1418,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 379322980}
         m_TargetAssemblyTypeName: Rechrysalis.StartMainManager, Assembly-CSharp
-        m_MethodName: StartButtonClicked
+        m_MethodName: CustomCompClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

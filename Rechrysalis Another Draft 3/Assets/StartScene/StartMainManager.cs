@@ -28,6 +28,10 @@ namespace Rechrysalis
             // _compsAndUnits.CompsSO[0].ParentUnitClassList = new List<ParentUnitClass>();
             SceneManager.LoadScene("CompCustomizer");
         }
+        public void CustomCompClicked()
+        {
+            SceneManager.LoadScene("CustomCustomizer");
+        }
         private void SetNewGameStatus()
         {
             if (_compsAndUnits.NewGameStatusEnum == CompsAndUnitsSO.NewGameStatus.NewGame)
