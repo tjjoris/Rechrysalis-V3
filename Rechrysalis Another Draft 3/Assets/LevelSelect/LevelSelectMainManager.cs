@@ -1,21 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis;
 
 namespace Rechrysalis.LevelSelect
 {
     public class LevelSelectMainManager : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;
+        [SerializeField] private GameObject _levelButtonPrefab;
+        [SerializeField] private Transform _levelButtonContainer;
 
-        // Update is called once per frame
-        void Update()
+        private void Start()
         {
-        
+            if (_compsAndUnitsSO.Levels.Length > 0)
+            {
+                for (int i=0; i< _compsAndUnitsSO.Levels.Length; i++)
+                {
+                    CreateLevelButton(i);
+                }
+            }
+        }
+        private void CreateLevelButton(int level)
+        {
+            GameObject go = Instantiate (_levelButtonPrefab, _levelButtonContainer);
+            go.GetComponent<LevelButtonScript>().SetLevelForThisButton(level);
         }
     }
 }
