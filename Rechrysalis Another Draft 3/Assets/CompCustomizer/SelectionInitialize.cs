@@ -20,7 +20,7 @@ namespace Rechrysalis.CompCustomizer
         private SelectionIndexToSelection _selectionIndexToSelection;
         private int _upgradeSelectionCount;
         private RandomUpgradeSelection _randomUpgradeSelection;
-        private UpgradeTypeClass[] _upgradeTypeClassesToChooseFrom;
+        private List<UpgradeTypeClass> _upgradeTypeClassesToChooseFrom = new List<UpgradeTypeClass>();
         private AddAllToSelection _addAllToSelection;
         
         
@@ -30,7 +30,7 @@ namespace Rechrysalis.CompCustomizer
             _movingButtonHolder = movingButtonHolder;
             _upgradeButtonIndex = new int[_numberOfUpgrades];
             _compCustomizerSO = compCustomizerSO;
-            _upgradeTypeClassesToChooseFrom = new UpgradeTypeClass[_numberOfUpgrades];
+            // _upgradeTypeClassesToChooseFrom = new UpgradeTypeClass[_numberOfUpgrades];
             _selectionIndexToSelection = GetComponent<SelectionIndexToSelection>();
             _selectionIndexToSelection.Initialize(compCustomizerSO);
             _randomUpgradeSelection= GetComponent<RandomUpgradeSelection>();
@@ -73,7 +73,7 @@ namespace Rechrysalis.CompCustomizer
             CompUpgradeManager compUpgradeManager = _selectionButton.GetComponent<CompUpgradeManager>();
             compUpgradeManager.Initialize(_movingButtonHolder);
             // UpgradeTypeClass _randomUpgradeTypeClass = _randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount);            
-            _upgradeTypeClassesToChooseFrom[index] = upgradeTypeClass;
+            _upgradeTypeClassesToChooseFrom.Add(upgradeTypeClass);
             compUpgradeManager.SetUpgradeTypeClass(upgradeTypeClass);
             compUpgradeManager.SetDisplay(upgradeTypeClass);
             
