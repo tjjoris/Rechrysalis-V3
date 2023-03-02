@@ -21,10 +21,12 @@ namespace Rechrysalis.CompCustomizer
         private int _upgradeSelectionCount;
         private RandomUpgradeSelection _randomUpgradeSelection;
         private UpgradeTypeClass[] _upgradeTypeClassesToChooseFrom;
+        private AddAllToSelection _addAllToSelection;
         
         
         public void Initialize(CompCustomizerSO compCustomizerSO, Transform movingButtonHolder, CompSO compSO)
         {
+            _addAllToSelection = GetComponent<AddAllToSelection>();
             _movingButtonHolder = movingButtonHolder;
             _upgradeButtonIndex = new int[_numberOfUpgrades];
             _compCustomizerSO = compCustomizerSO;
@@ -34,7 +36,15 @@ namespace Rechrysalis.CompCustomizer
             _randomUpgradeSelection= GetComponent<RandomUpgradeSelection>();
             _randomUpgradeSelection.Initialize();
             CalculateUpgradeSelectionCount();
-            if (!compSO.IsCompExists()) 
+            if (_addAllToSelection != null)
+            {
+                for (int i = 0; i < _upgradeSelectionCount; i++)
+                {
+                    UpgradeTypeClass upgradeTypeClass = _addAllToSelection.GetUpgradeTypeClassFromAllUpgrades(i);
+                    CreateSelectionButton(i, upgradeTypeClass);
+                }
+            }
+            else if (!compSO.IsCompExists()) 
             {
                 CreateOnlyBasicSelection();
             }
@@ -56,22 +66,24 @@ namespace Rechrysalis.CompCustomizer
                 compUpgradeManager.SetDisplay(_compCustomizerSO.BasicUnitArray[i].UpgradeTypeClass);
             }
         }
-        private void CreateSelectionButton(int index)
+       
+        private void CreateSelectionButton(int index, UpgradeTypeClass upgradeTypeClass)
         {            
             GameObject _selectionButton = Instantiate(_upgradeButtonPrefab, _selectionContainer);
             CompUpgradeManager compUpgradeManager = _selectionButton.GetComponent<CompUpgradeManager>();
             compUpgradeManager.Initialize(_movingButtonHolder);
-            UpgradeTypeClass _randomUpgradeTypeClass = _randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount);
-            _upgradeTypeClassesToChooseFrom[index] = _randomUpgradeTypeClass;
-            compUpgradeManager.SetUpgradeTypeClass(_randomUpgradeTypeClass);
-            compUpgradeManager.SetDisplay(_randomUpgradeTypeClass);
+            // UpgradeTypeClass _randomUpgradeTypeClass = _randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount);            
+            _upgradeTypeClassesToChooseFrom[index] = upgradeTypeClass;
+            compUpgradeManager.SetUpgradeTypeClass(upgradeTypeClass);
+            compUpgradeManager.SetDisplay(upgradeTypeClass);
             
         }
         private void CreateAllSelectionButtons()
         {
-            for (int _index = 0; _index < _numberOfUpgrades; _index ++)
+            for (int index = 0; index < _numberOfUpgrades; index ++)
             {
-                CreateSelectionButton(_index);
+                UpgradeTypeClass _randomUpgradeTypeClass = _randomUpgradeSelection.GetRandomUpgradeTypeClass(_upgradeTypeClassesToChooseFrom, _upgradeSelectionCount);
+                CreateSelectionButton(index, _randomUpgradeTypeClass);
             }
         }
         public void CalculateUpgradeSelectionCount()
