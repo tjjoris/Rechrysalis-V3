@@ -15,10 +15,10 @@ namespace Rechrysalis
         {
             SetNewGameStatus();
         }
-        public void StartButtonClicked()
+        public void LevelSelect()
         {
             _compsAndUnits.Level = 0;
-            SceneManager.LoadScene("CompCustomizer");
+            SceneManager.LoadScene("LevelSelect");
         }
         public void NewGameClicked()
         {
