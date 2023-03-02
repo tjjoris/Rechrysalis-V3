@@ -22,6 +22,7 @@ namespace Rechrysalis.CompCustomizer
         private RandomUpgradeSelection _randomUpgradeSelection;
         private List<UpgradeTypeClass> _upgradeTypeClassesToChooseFrom = new List<UpgradeTypeClass>();
         private AddAllToSelection _addAllToSelection;
+        private CheckForUTCDuplicates _checkForDuplicates;
         
         
         public void Initialize(CompCustomizerSO compCustomizerSO, Transform movingButtonHolder, CompSO compSO)
@@ -35,13 +36,17 @@ namespace Rechrysalis.CompCustomizer
             _selectionIndexToSelection.Initialize(compCustomizerSO);
             _randomUpgradeSelection= GetComponent<RandomUpgradeSelection>();
             _randomUpgradeSelection.Initialize();
+            _checkForDuplicates = GetComponent<CheckForUTCDuplicates>();
             CalculateUpgradeSelectionCount();
             if (_addAllToSelection != null)
             {
                 for (int i = 0; i < _upgradeSelectionCount; i++)
                 {
                     UpgradeTypeClass upgradeTypeClass = _addAllToSelection.GetUpgradeTypeClassFromAllUpgrades(i);
+                    if (!_checkForDuplicates.IsDupliatesFunc(_upgradeTypeClassesToChooseFrom, upgradeTypeClass))
+                    {
                     CreateSelectionButton(i, upgradeTypeClass);
+                    }
                 }
             }
             else if (!compSO.IsCompExists()) 
