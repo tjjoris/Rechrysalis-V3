@@ -15,6 +15,9 @@ namespace Rechrysalis.LevelSelect
         public void SetLevelForThisButton(int level)
         {
             _levelForThisButton = level;
+            Debug.Log($"level " + level);
+            int levelNumber = level + 0;
+            _buttonName.text = $"Level " + levelNumber;
 
         }
         public void LevelButtonClicked()
