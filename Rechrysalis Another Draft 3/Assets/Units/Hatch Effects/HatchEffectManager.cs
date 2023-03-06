@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.HatchEffect
 {
@@ -31,10 +32,12 @@ namespace Rechrysalis.HatchEffect
         public HEIncreaseDamage HEIncreaseDamage => _hEIncreaseDamage;
         [SerializeField] private HEIncreaseDefence _hEIncreaseDefence;
         public HEIncreaseDefence HEIncreaseDefence => _hEIncreaseDefence;
+        [SerializeField] private UnitClass _unitClass;
         public Action<GameObject, int, int, bool> _hatchEffectDies;
 
-        public void Initialize(HatchEffectSO _hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, float hatchMult)
+        public void Initialize(HatchEffectSO _hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass)
         {
+            _unitClass = advUnitClass;
             Debug.Log($"HE Initialize " + _hatchEffectSO.HatchEffectName +  " tier " + _tier);
             this._parentIndex = _parentIndex;
             this._unitIndex = _unitIndex;
@@ -48,8 +51,8 @@ namespace Rechrysalis.HatchEffect
             // if (_hatchEffectSO.HealthMax.Length > this._tier)
             {
             // _maxHP = _hatchEffectSO.HealthMax[_tier];
-            _hatchMult = hatchMult;
-            _hEHealth.Initialize(hatchMult);
+            _hatchMult = advUnitClass.HatchEffectMult;
+            _hEHealth.Initialize(_hatchMult);
             }
             // _currentHP = _maxHP;
             if (_hatchEffectSO.DamageLossPerTick.Length > this._tier)
@@ -65,9 +68,9 @@ namespace Rechrysalis.HatchEffect
                 _incomingDamageMult = _hatchEffectSO.IncomingDamageMultiplier[this._tier];
             }
             _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
-            _hEIncreaseDamage?.Initialize(hatchMult);
+            _hEIncreaseDamage?.Initialize(_hatchMult);
             _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
-            _hEIncreaseDefence?.Initialize(hatchMult);
+            _hEIncreaseDefence?.Initialize(_hatchMult);
 
         }
         public void SetOffset(int _multiplier)
