@@ -27,7 +27,7 @@ MonoBehaviour:
   _hpMaxAdd: 0
   _hpMaxMult: 1
   _rangeAdd: 1
-  _dpsAdd: 0
+  _dpsAdd: 2
   _dpsMult: 1
   _attackChargeUpAdd: 0
   _attackChargeUpMult: 1
