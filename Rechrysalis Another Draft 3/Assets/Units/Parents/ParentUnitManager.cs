@@ -12,6 +12,7 @@ namespace Rechrysalis.Unit
 {
     public class ParentUnitManager : MonoBehaviour
     {
+        private bool _debugBool = false;
         private ControllerManager _controllerManager;
         public ControllerManager ControllerManager => _controllerManager;
         private ControllerManager _enemyControllerManager;
@@ -130,7 +131,10 @@ namespace Rechrysalis.Unit
         }
         public void AIFlawedUpdateActivated()
         {
-            Debug.Log($"working???");
+            if (_debugBool)
+            {
+                Debug.Log($"working???");
+            }
             TargetPrioratizeByScore targetPrioratizeByScore = _currentSubUnit.GetComponent<TargetPrioratizeByScore>();
             targetPrioratizeByScore?.SetTargetByScore();
             bool _isRetreating = false;

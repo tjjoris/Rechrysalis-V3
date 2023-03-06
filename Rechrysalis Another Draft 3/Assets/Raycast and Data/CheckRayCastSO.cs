@@ -176,7 +176,10 @@ namespace Rechrysalis.Controller
                 {
                     // Debug.Log($"mouse pos " + _mousePos + " controller " + _controller.transform.position);
                     // Debug.Log($"calculated angel " + Mathf.Atan2(_mousePos.y - _controller.transform.position.y, _mousePos.x - _controller.transform.position.x) * Mathf.Rad2Deg);
-                    Debug.Log($"set ring angle " + RingAngle(_mousePos));
+                    if (_debugBool)
+                    {
+                        Debug.Log($"set ring angle " + RingAngle(_mousePos));
+                    }
                     _hilightRingManager.SetAngle(RingAngle(_mousePos));
                 }
                 // Debug.Log($"mouse angle " + RingAngle(_mousePos));

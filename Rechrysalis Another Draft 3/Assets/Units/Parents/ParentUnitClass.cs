@@ -7,7 +7,7 @@ namespace Rechrysalis.Unit
     [System.Serializable]
     public class ParentUnitClass
     {
-        private bool debugBool = true;
+        private bool _debugBool = false;
         [SerializeField] private List<UpgradeTypeClass> _advancedUpgradesUTCList;
         public List<UpgradeTypeClass> AdvancedUpgradesUTCList { get{ return _advancedUpgradesUTCList; } set{ _advancedUpgradesUTCList = value; } }
         [SerializeField] private UpgradeTypeClass _utcBasicUnit;
@@ -61,7 +61,7 @@ namespace Rechrysalis.Unit
             _advancedUpgradesUTCList.Clear();
             _utcBasicUnit = null;
             _utcHatchEffect = null;
-            if (debugBool)
+            if (_debugBool)
             Debug.Log($"clear all stats");
             // SetAllStats();
         }
@@ -75,7 +75,7 @@ namespace Rechrysalis.Unit
                 }   
                 _utcBasicUnit = utcBasicUnit;
             }
-            if (debugBool)
+            if (_debugBool)
             Debug.Log($"SET BASIC UNIT");
             // SetAllStats();
         }
@@ -86,7 +86,7 @@ namespace Rechrysalis.Unit
         public void SetUTCReplacedBacsicUnitToNull()
         {
             _replacedUTCBasicUnit = null;
-            if (debugBool) Debug.Log($"set replaced basic unit to null");
+            if (_debugBool) Debug.Log($"set replaced basic unit to null");
             // SetAllStats();
         }
         public void SetUTCHatchEffect(UpgradeTypeClass utcHatchEffect)
@@ -98,7 +98,7 @@ namespace Rechrysalis.Unit
                     _replaceUTCHatchEffect = _utcHatchEffect;
                 }
                 _utcHatchEffect = utcHatchEffect;
-                if (debugBool) Debug.Log($"set hatch effect");
+                if (_debugBool) Debug.Log($"set hatch effect");
                 // SetAllStats();
             }
         }
@@ -109,7 +109,7 @@ namespace Rechrysalis.Unit
         public void SetUTCReplacedHatchEffectToNull()
         {
             _replaceUTCHatchEffect = null;
-            if (debugBool) Debug.Log($"replace hatch effect to null");
+            if (_debugBool) Debug.Log($"replace hatch effect to null");
             // SetAllStats();
         }
         public void AddUTCAdvanced(UpgradeTypeClass advancedToAdd)
@@ -118,7 +118,7 @@ namespace Rechrysalis.Unit
             {
                 _advancedUpgradesUTCList.Add(advancedToAdd);
             }
-            if (debugBool) Debug.Log($"add advanced");
+            if (_debugBool) Debug.Log($"add advanced");
             // SetAllStats();
         }
         public void RemoveUTCAdvanced(UpgradeTypeClass advancedToRemove)
@@ -130,12 +130,12 @@ namespace Rechrysalis.Unit
                     _advancedUpgradesUTCList.Remove(advancedToRemove);
                 }
             }
-            if (debugBool) Debug.Log($"remove advanced");
+            if (_debugBool) Debug.Log($"remove advanced");
             // SetAllStats();
         }
         private void OnValidate()
         {
-            if (debugBool) Debug.Log($"validate");
+            if (_debugBool) Debug.Log($"validate");
             // SetAllStats();
         }
         public void SetAllStats()
@@ -155,7 +155,10 @@ namespace Rechrysalis.Unit
         }
         public void SetBasicClass()
         {
-            Debug.Log($"set stats" + _utcBasicUnit.GetUnitStatsSO().UnitName);
+            if (_debugBool)
+            {
+                Debug.Log($"set stats" + _utcBasicUnit.GetUnitStatsSO().UnitName);
+            }
             // if (_utcBasicUnit != null)
             {
                 _basicUnitClass = new UnitClass();
@@ -179,7 +182,10 @@ namespace Rechrysalis.Unit
         {
             if (_utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO != null)//.GetAdvUnitModifierSO() != null)
             {
-                Debug.Log($"set base adv stats");
+                if (_debugBool)
+                {
+                    Debug.Log($"set base adv stats");
+                }
                 _advUnitClass = new UnitClass();
                 _advUnitClass.ManaCost = (_utcBasicUnit.GetUnitStatsSO().TypeMultiplier.ManaMultiplier * _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.ManaMult);
                 _advUnitClass.ManaCost += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.ManaAdd;
@@ -207,7 +213,7 @@ namespace Rechrysalis.Unit
         }
         private void SetAdvWhenAdvUpgrades()
         {
-            if (debugBool) Debug.Log($"_advUpgradesUTCList.Count " + _advancedUpgradesUTCList.Count);
+            if (_debugBool) Debug.Log($"_advUpgradesUTCList.Count " + _advancedUpgradesUTCList.Count);
             if (_advancedUpgradesUTCList.Count > 0)
             {
                 
@@ -217,7 +223,7 @@ namespace Rechrysalis.Unit
                     {
                         if (_advancedUpgradesUTCList[i].GetAdvUnitModifierSO() != null)
                         {
-                            if (debugBool)
+                            if (_debugBool)
                             Debug.Log($"set adv upgrade stats for " + i);
                             SetStatsForThisAdvUpgrade(_advancedUpgradesUTCList[i].GetAdvUnitModifierSO());
                         }
@@ -234,7 +240,7 @@ namespace Rechrysalis.Unit
             // _buildTimeAdv = _buildTimeBasic * _utcBasicUnit.GetAdvUnitModifierSO().BuildTimeMult;
             _advUnitClass.BuildTime += advUnitModifierSO.BuildTimeAdd;
             _advUnitClass.Range = _advUnitClass.Range + advUnitModifierSO.RangeAdd;
-            if (debugBool) Debug.Log($"increase range " + advUnitModifierSO.RangeAdd);
+            if (_debugBool) Debug.Log($"increase range " + advUnitModifierSO.RangeAdd);
             // _dpsAdv = _dpsBasic * _utcBasicUnit.GetAdvUnitModifierSO().DPSMult;
             _advUnitClass.DPS += advUnitModifierSO.DPSAdd;
             // _attackChargeUpAdv = _attackChargeUpBasic * _utcBasicUnit.GetAdvUnitModifierSO().AttackChargeUpMult;
@@ -266,7 +272,7 @@ namespace Rechrysalis.Unit
         }
         private void SetHatchEffect()
         {
-            if (debugBool)
+            if (_debugBool)
             Debug.Log($"set hatch effect");
             // if (_utcHatchEffect.GetHatchEffectSO() != null)
             _advUnitClass.HatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;

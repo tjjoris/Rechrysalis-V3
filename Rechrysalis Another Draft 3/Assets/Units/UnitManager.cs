@@ -13,7 +13,7 @@ namespace Rechrysalis.Unit
     public class UnitManager : MonoBehaviour
     {
         private ControllerManager _enemyControllerManager;
-        private bool debugBool = false;
+        private bool _debugBool = false;
         [SerializeField] private UnitClass _unitClass;
         public UnitClass UnitClass => _unitClass;
         [SerializeField] private ControllerUnitSpriteHandler _unitSpriteHandler;
@@ -72,7 +72,10 @@ namespace Rechrysalis.Unit
             _controllerIndex = controllerIndex;
             _compsAndUnits = compsAndUnits;
             _enemyControllerManager = _compsAndUnits.ControllerManagers[GetOppositeController.ReturnOppositeController(controllerIndex)];
-            Debug.Log($"controller index " + _controllerIndex);
+            if (_debugBool)
+            {
+                Debug.Log($"controller index " + _controllerIndex);
+            }
             _unitClass = unitClass;
             // GetComponent<ProjectilesPool>()?.CreatePool(_unitClass)
             _mover = GetComponent<Mover>();
@@ -194,7 +197,7 @@ namespace Rechrysalis.Unit
         }
         public void Tick(float _timeAmount)
         {
-            if (debugBool)   Debug.Log($"tick");
+            if (_debugBool)   Debug.Log($"tick");
             // if (gameObject.active == true) 
             // {
                 // bool _isStopped = false;

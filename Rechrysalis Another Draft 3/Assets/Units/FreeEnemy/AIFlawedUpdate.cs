@@ -7,6 +7,7 @@ namespace Rechrysalis.Unit
 {
     public class AIFlawedUpdate : MonoBehaviour
     {
+        private bool _debugBool = false;
         private ControllerManager _controllerManager;
         private ControllerManager _enemyControllerManager;
         [SerializeField] private float _flawedBaseValue = 1.5f;
@@ -14,7 +15,6 @@ namespace Rechrysalis.Unit
         [SerializeField] private float _currentFlawedMax = 7;
         [SerializeField] private float _curentFlawedCurrent;
         
-        private bool _debugBool = true;
         private ParentFreeEnemyManager _parentFreeEnemyManager;
         public void Initialize()
         {
@@ -46,9 +46,10 @@ namespace Rechrysalis.Unit
             if (_debugBool)
             {
                 Debug.Log($"flawed update " );
-                _enemyControllerManager.CalculateUnitScores();
-                _controllerManager.AIFlawedUpdateActivated();
             }
+            _enemyControllerManager.CalculateUnitScores();
+            _controllerManager.AIFlawedUpdateActivated();
+            
         }
     }
 }

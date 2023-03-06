@@ -9,6 +9,7 @@ namespace Rechrysalis.Unit
 {
     public class ParentFreeEnemyManager : MonoBehaviour
     {
+        private bool _debugBool = false;
         private ParentUnitManager _parentUnitManager;
         private UnitClass _unitClass;
         private ParentHealth _parentHealth;
@@ -75,7 +76,10 @@ namespace Rechrysalis.Unit
             GetComponent<Mover>()._resetChargeUp += ResetChargeUp;
             if (_unitManager.GetComponent<AIAttackChargeUpTimer>() != null)
             {
-                Debug.Log($"subscribe to ai attack timer");
+                if (_debugBool)
+                {
+                    Debug.Log($"subscribe to ai attack timer");
+                }
             _unitManager.GetComponent<AIAttackChargeUpTimer>()._changeCanMove += AICanMove;
             }
         }
