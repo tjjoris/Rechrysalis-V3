@@ -23,6 +23,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bdc3065cf9ac24563a3f286d7ec71c90, type: 2}
   - {fileID: 11400000, guid: 1d381f187b86b4c38a9c3e8698025f13, type: 2}
   - {fileID: 11400000, guid: 5a68d622fa62b4f5686ced9fb8f27bdf, type: 2}
+  - {fileID: 11400000, guid: 92e8f30b7168348c285102996bb356e3, type: 2}
   _controllerHeartUpgrades:
   - {fileID: 11400000, guid: 75fc5b7c7c95243d3a3d41c9f9c2e8dc, type: 2}
   - {fileID: 11400000, guid: 75fc5b7c7c95243d3a3d41c9f9c2e8dc, type: 2}

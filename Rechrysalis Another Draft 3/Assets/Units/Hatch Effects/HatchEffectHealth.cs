@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.Unit;
 
 namespace Rechrysalis.HatchEffect
 {
@@ -11,14 +12,16 @@ namespace Rechrysalis.HatchEffect
         private float _healthMult;
         [SerializeField] private float _HPMax = 30f;
         private float _HPCurrent;
+        // [SerializeField] private float _durationToHealthMult = 1;
 
-        public void Initialize(float hatchMult)
+        public void Initialize(float hatchMult, UnitClass advUnit)
         {
             if (debugBool) Debug.Log($"hatch mult " + hatchMult);
             // if (_healthMax != 0)
             // _healthMax = healthMax;
             _healthMult = ((hatchMult - 1f) * _healthMultMult) + 1f;
             _HPMax *= _healthMult;
+            _HPMax += advUnit.HatchEffectDurationAdd;
             _HPCurrent = _HPMax;
         }
         public void TakeDamage(float _damageAmount)

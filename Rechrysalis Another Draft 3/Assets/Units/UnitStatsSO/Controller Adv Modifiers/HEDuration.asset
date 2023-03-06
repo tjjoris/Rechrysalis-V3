@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cb8c6223c7614439bf8d98a437c4269, type: 3}
+  m_Name: HEDuration
+  m_EditorClassIdentifier: 
+  _upgradeTypeClass:
+    _upgradeType: 2
+    _unitStatsSO: {fileID: 0}
+    _hatchEffectSO: {fileID: 0}
+    _advUnitModifierSO: {fileID: 11400000}
+    _controllerHeartUpgrade: {fileID: 0}
+  _upgradeName: HEDuration
+  _currencyCost: 25
+  _manaAdd: 7
+  _manaMult: 1
+  _buildTimeAdd: -0.4
+  _buildTimeMult: 1
+  _hpMaxAdd: 0
+  _hpMaxMult: 1
+  _rangeAdd: 0
+  _dpsAdd: 2
+  _dpsMult: 1
+  _attackChargeUpAdd: 0
+  _attackChargeUpMult: 1
+  _attackWindDownAdd: 0
+  _attackWindDownMult: 1
+  _hatchEffectMultiplierAdd: -0.3
+  _hatchEffectDurationAdd: 300

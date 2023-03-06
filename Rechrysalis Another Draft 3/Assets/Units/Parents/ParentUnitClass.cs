@@ -242,6 +242,7 @@ namespace Rechrysalis.Unit
             // _attackWindDownAdv = _attackWindDownBasic * _utcBasicUnit.GetAdvUnitModifierSO().AttackWindDownMult;
             _advUnitClass.AttackWindDown += advUnitModifierSO.AttackWindDownAdd;
             _advUnitClass.HatchEffectMult += advUnitModifierSO.HatchEffectMultiplierAdd;
+            _advUnitClass.HatchEffectDurationAdd += advUnitModifierSO.HatchEffectDurationAdd;
             // _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
         }
         // private void CalculateAdvDamage()

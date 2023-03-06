@@ -22,6 +22,7 @@ namespace Rechrysalis.HatchEffect
         public float IncomingDamageMult {get{return _incomingDamageMult;}}
         [SerializeField] private float _hatchMult;
         public float HatchMult => _hatchMult;
+        [SerializeField] private float _hatchDurationMult;
         private HEDisplay _hEDisplay;
         [SerializeField] private TMP_Text _name;
         // private float _maxHP;
@@ -52,7 +53,8 @@ namespace Rechrysalis.HatchEffect
             {
             // _maxHP = _hatchEffectSO.HealthMax[_tier];
             _hatchMult = advUnitClass.HatchEffectMult;
-            _hEHealth.Initialize(_hatchMult);
+            _hatchDurationMult = advUnitClass.HatchEffectDurationAdd;
+            _hEHealth.Initialize(_hatchMult, advUnitClass);
             }
             // _currentHP = _maxHP;
             if (_hatchEffectSO.DamageLossPerTick.Length > this._tier)
