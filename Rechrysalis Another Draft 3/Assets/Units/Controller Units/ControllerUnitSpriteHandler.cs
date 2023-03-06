@@ -16,5 +16,9 @@ namespace Rechrysalis.Unit
         {
             _spriteRenderer.color = Color.red;
         }
+        public void TintSpriteMagenta()
+        {
+            _spriteRenderer.color = Color.magenta;
+        }
     }
 }

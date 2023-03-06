@@ -110,6 +110,10 @@ namespace Rechrysalis.Controller
                     ParentUnitHatchEffects _pUHE = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
                     _pUHE?.Initialize(pum.SubUnits, pum.SubChrysalii);
                     pum.AddChrysalisAndUnitActions();  
+                    foreach (UnitManager chrysaliiUnitManagerToTint in pum.ChildChrysaliiUnitManagers)
+                    {
+                        chrysaliiUnitManagerToTint?.ControllerUnitSpriteHandler?.TintSpriteMagenta();
+                    }
                 }              
             }
             hilightRingManager?.Initialize(unitRingManager);
@@ -150,6 +154,7 @@ namespace Rechrysalis.Controller
             UnitManager _chrysalisManager = chrysalisGo.GetComponent<UnitManager>();
             pum.ChildChrysaliiUnitManagers.Add(_chrysalisManager);
             // chrysalisGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, compsAndUnits.Chrysalis, compsAndUnits, parentUnitIndex, null);
+            // UnitManager chrysalisUnitManager = chrysalisGo.GetComponent<UnitManager>();
             chrysalisGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, unitClass, parentUnitIndex, compsAndUnits);
             chrysalisGo.GetComponent<UnitManager>()?.SetUnitSPrite(unitClass.ChrysalisSprite);
 
