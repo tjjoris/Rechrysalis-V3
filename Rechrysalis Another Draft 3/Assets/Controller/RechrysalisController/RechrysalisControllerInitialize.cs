@@ -75,10 +75,10 @@ namespace Rechrysalis.Controller
                         {
                             int _childUnitIndex = 0;
                             UnitClass unitClass = unitComp.ParentUnitClassList[parentUnitIndex].BasicUnitClass;
-                            CreateChildUnitAndChrysalis(unitClass, _childUnitIndex, pum, parentUnitIndex, compsAndUnits);
+                            CreateChildUnitAndChrysalis(unitClass, _childUnitIndex, pum, parentUnitIndex, compsAndUnits, false);
                             _childUnitIndex = 1;
                             unitClass = unitComp.ParentUnitClassList[parentUnitIndex].AdvUnitClass;
-                            CreateChildUnitAndChrysalis(unitClass, _childUnitIndex, pum, parentUnitIndex, compsAndUnits);
+                            CreateChildUnitAndChrysalis(unitClass, _childUnitIndex, pum, parentUnitIndex, compsAndUnits, true);
                             // GameObject childUnitGo = Instantiate(_childUnitPrefab, parentUnitGO.transform);
                             // UnitStatsSO _unitStats = _unitComp.UnitSOArray[(_parentUnitIndex * 3) + (_childUnitIndex)];
                             // // _unitStats.Initialize();
@@ -109,11 +109,7 @@ namespace Rechrysalis.Controller
                     }
                     ParentUnitHatchEffects _pUHE = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
                     _pUHE?.Initialize(pum.SubUnits, pum.SubChrysalii);
-                    pum.AddChrysalisAndUnitActions();  
-                    foreach (UnitManager chrysaliiUnitManagerToTint in pum.ChildChrysaliiUnitManagers)
-                    {
-                        chrysaliiUnitManagerToTint?.ControllerUnitSpriteHandler?.TintSpriteMagenta();
-                    }
+                    pum.AddChrysalisAndUnitActions();                      
                 }              
             }
             hilightRingManager?.Initialize(unitRingManager);
@@ -130,7 +126,7 @@ namespace Rechrysalis.Controller
             upgradeRingManager?.SetActiveUpgradeRing(-1);
             AddToStartingMana(unitComp);
         }
-        private void CreateChildUnitAndChrysalis(UnitClass unitClass, int childUnitIndex, ParentUnitManager pum, int parentUnitIndex, CompsAndUnitsSO compsAndUnits)
+        private void CreateChildUnitAndChrysalis(UnitClass unitClass, int childUnitIndex, ParentUnitManager pum, int parentUnitIndex, CompsAndUnitsSO compsAndUnits, bool isAdvUnit)
         {
             GameObject childUnitGo = Instantiate(_childUnitPrefab, pum.transform);
             UnitStatsSO _unitStats = _unitComp.UnitSOArray[(parentUnitIndex * 3) + (childUnitIndex)];
@@ -154,16 +150,19 @@ namespace Rechrysalis.Controller
             UnitManager _chrysalisManager = chrysalisGo.GetComponent<UnitManager>();
             pum.ChildChrysaliiUnitManagers.Add(_chrysalisManager);
             // chrysalisGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, compsAndUnits.Chrysalis, compsAndUnits, parentUnitIndex, null);
-            // UnitManager chrysalisUnitManager = chrysalisGo.GetComponent<UnitManager>();
+            UnitManager chrysalisUnitManager = chrysalisGo.GetComponent<UnitManager>();
             chrysalisGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, unitClass, parentUnitIndex, compsAndUnits);
-            chrysalisGo.GetComponent<UnitManager>()?.SetUnitSPrite(unitClass.ChrysalisSprite);
-
+            chrysalisGo.GetComponent<UnitManager>()?.SetUnitSPrite(unitClass.ChrysalisSprite);            
             // _chrysalisManager.SetUnitName(_unitStats.UnitName);
             chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(unitClass.BuildTime, childUnitIndex);
             pum.SubChrysalii[childUnitIndex] = chrysalisGo;
             _allUnits.Add(chrysalisGo);
             _controllerHatchEffect.SetUnitsArray(chrysalisGo, ((parentUnitIndex * 6) + (childUnitIndex * 2) + 1));
             chrysalisGo.SetActive(false);
+            if (isAdvUnit)
+            {
+                chrysalisUnitManager?.ControllerUnitSpriteHandler?.TintSpriteMagenta();
+            }
         }
         private HatchEffectSO[] SetHatchEffectSOs (int _parentUnitIndex)
         {
