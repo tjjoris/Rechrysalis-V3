@@ -30,8 +30,8 @@ MonoBehaviour:
   _dpsAdd: 2
   _dpsMult: 1
   _attackChargeUpAdd: 0
-  _attackChargeUpMult: 1.25
+  _attackChargeUpMult: 1
   _attackWindDownAdd: 0
   _attackWindDownMult: 1
-  _hatchEffectMultiplierAdd: -0.3
+  _hatchEffectMultiplierAdd: 0.25
   _hatchEffectDurationAdd: 0
