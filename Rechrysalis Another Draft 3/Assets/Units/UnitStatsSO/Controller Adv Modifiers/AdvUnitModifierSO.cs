@@ -42,6 +42,11 @@ namespace Rechrysalis.Unit
         public float AttackWindDownMult => _attackWindDownMult;
         [SerializeField] private float _hatchEffectMultiplierAdd;
         public float HatchEffectMultiplierAdd => _hatchEffectMultiplierAdd;
+        // [SerializeField] private float _hatchEffectMultiplierMult;
+        // public float HatchEffectMultiplierMult => _hatchEffectMultiplierMult;
+        [SerializeField] private float _hatchEffectDurationAdd;
+        public float HatchEffectDurationAdd => _hatchEffectDurationAdd;
+
 
         private void OnValidate()
         {

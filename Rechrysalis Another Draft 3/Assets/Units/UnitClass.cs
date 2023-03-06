@@ -32,6 +32,8 @@ namespace Rechrysalis.Unit
         public GameObject HatchEffectPrefab {get => _hatchEffectPrefab; set => _hatchEffectPrefab = value; }
         [SerializeField] private float _hatchEffectMult;
         public float HatchEffectMult {get => _hatchEffectMult; set => _hatchEffectMult = value; }
+        [SerializeField] private float _hatchEffectDurationAdd;
+        public float HatchEffectDurationAdd { get => _hatchEffectDurationAdd; set => _hatchEffectDurationAdd = value; }        
         [SerializeField] private Sprite _unitSprite;
         public Sprite UnitSprite { get => _unitSprite; set => _unitSprite = value; }
         [SerializeField] private Sprite _chrysalisSprite;
