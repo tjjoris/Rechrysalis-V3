@@ -7,6 +7,7 @@ namespace Rechrysalis.Unit
 {
     public class ChrysalisActivation : MonoBehaviour
     {
+        private bool _debugBool = false;
         private ParentUnitManager _parentUnitManager;
         private UnitActivation _unitActivation;
         private ParentHealth _parentHealth;
@@ -52,7 +53,10 @@ namespace Rechrysalis.Unit
                     if (_indexInSubChrysalis == _chrysalisIndex)
                     {
                         _parentUnitManager.CurrentSubUnit = _parentUnitManager.SubChrysalii[_chrysalisIndex];
-                        Debug.Log($"activating chrysalis" + _chrysalisIndex);
+                        if (_debugBool)
+                        {
+                            Debug.Log($"activating chrysalis" + _chrysalisIndex);
+                        }
                         _parentUnitManager.SubChrysalii[_chrysalisIndex].SetActive(true);
                         _parentHealth.CurrentUnit = _parentUnitManager.SubChrysalii[_chrysalisIndex].GetComponent<UnitManager>();
                         _parentUnitManager.SubChrysalii[_chrysalisIndex].GetComponent<ChrysalisTimer>()?.StartThisChrysalis(_timeToKeep);

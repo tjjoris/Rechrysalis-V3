@@ -58,8 +58,8 @@ namespace Rechrysalis.Unit
         public bool AICanMove {get {return _aiCanMove;} set {_aiCanMove = value;}}
         private Mover _parentUnitMover;
         public Mover ParentUnitMover => _parentUnitMover;
-        private float _manaAmount;
-        public float ManaAmount {set{_manaAmount = value;} get {return _manaAmount;} }
+        // private float _manaAmount;
+        // public float ManaAmount {set{_manaAmount = value;} get {return _manaAmount;} }
         public Action<GameObject, int, int, bool> _addHatchEffect;
         public Action<GameObject, int, bool> _removeHatchEffect;
         public Action<float> _parentDealsDamage;
@@ -92,7 +92,7 @@ namespace Rechrysalis.Unit
             _chrysalisActivation = GetComponent<ChrysalisActivation>();
             _chrysalisActivation?.Initialize(this);
             _upgradeUnit = GetComponent<UpgradeUnit>();
-            _upgradeUnit?.Initialize(this);
+            _upgradeUnit?.Initialize(this, _controllerManager.GetComponent<ManaGenerator>());
             this._parentIndex = _parentUnitIndex;
             this._subHatchEffects = _subHatchEffects;
             this._controllerIndex = _controllerIndex;

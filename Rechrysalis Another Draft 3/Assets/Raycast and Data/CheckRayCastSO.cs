@@ -10,6 +10,7 @@ namespace Rechrysalis.Controller
     [CreateAssetMenu(fileName = "CheckRayCastInstance", menuName = "Controller/Click/CheckRayCast")]
     public class CheckRayCastSO : ScriptableObject
     {
+        private bool _debugBool = false;
         [SerializeField] private CompsAndUnitsSO _compsAndUnits;
         private TargetsListSO _playerTargtList;
         [SerializeField] private ClickInfo _clickInfo;
@@ -78,7 +79,10 @@ namespace Rechrysalis.Controller
                     _upgradeRingManager.SetCurrentAngle(_unitRingManager.UnitRingAngle);
                     _upgradeRingManager.SetActiveUpgradeRing(_unitInbounds);
                     _controllerManager.HideUnitText();
-                    Debug.Log($"friendly unit " + _unitInbounds);
+                    if (_debugBool)
+                    {
+                        Debug.Log($"friendly unit " + _unitInbounds);
+                    }
                 }
                 else 
                 {
@@ -209,7 +213,10 @@ namespace Rechrysalis.Controller
                     // _controllerManager.ActivateChrysalis(_unitUpgrading, _unitToUpgradeTo);
                     if(CheckIfSingleUpgradeTrue(RingAngle(_mousePos), (_unitRingManager.UnitRingAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount) + 90f), _unitRingManager.UnitDegreeWidth))                            
                     {
-                        Debug.Log($"upgrade to adv");
+                        if (_debugBool)
+                        {
+                            Debug.Log($"upgrade to adv");
+                        }
                     _controllerManager.ActivateChrysalis(_unitUpgrading, 1);
                     }
                 }

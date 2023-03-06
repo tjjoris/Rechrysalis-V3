@@ -6,6 +6,7 @@ namespace Rechrysalis.Movement
 {
     public class BlockCharacterCollision : MonoBehaviour
     {
+        private bool _deubBool = false;
         [SerializeField] private CircleCollider2D _characterCollider;
         [SerializeField] private CircleCollider2D _characterBlockerCollider;
 
@@ -15,7 +16,10 @@ namespace Rechrysalis.Movement
         }
         private void OnEnable()
         {
-            Debug.Log($"collision ignoring enabled");
+            if (_deubBool)
+            {
+                Debug.Log($"collision ignoring enabled");
+            }
             Physics2D.IgnoreCollision(_characterCollider, _characterBlockerCollider, true);
         }
         // private void Update()

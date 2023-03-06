@@ -9,13 +9,17 @@ namespace Rechrysalis.LevelSelect
 {
     public class LevelButtonScript : MonoBehaviour
     {
+        private bool _deubBool = false;
         [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;
         private int _levelForThisButton;
         [SerializeField] private TMP_Text _buttonName;
         public void SetLevelForThisButton(int level)
         {
             _levelForThisButton = level;
-            Debug.Log($"level " + level);
+            if (_deubBool)
+            {
+                Debug.Log($"level " + level);
+            }
             int levelNumber = level + 0;
             _buttonName.text = $"Level " + levelNumber;
 

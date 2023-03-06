@@ -10,6 +10,7 @@ namespace Rechrysalis.Controller
     {
         [SerializeField] private ManaDisplay _manaDisplay;
         private float _manaCurrent;
+        public float ManaCurrent => _manaCurrent;
         private float _manaCooldownTimerCurrent = 3;
         private float _manaCooldownTimerMax = 2f;
         private float _generateIntervalCurrent;
@@ -106,16 +107,16 @@ namespace Rechrysalis.Controller
         private void SetMana(float _amount)
         {
             _manaCurrent = _amount;
-            if ((_parentUnits != null) && (_parentUnits.Length > 0))
-            {
-                for (int _index=0; _index < _parentUnits.Length; _index++)
-                {
-                    if (_parentUnits[_index] != null)
-                    {
-                        _parentUnits[_index].GetComponent<ParentUnitManager>().ManaAmount = _amount;
-                    }
-                }
-            }
+            // if ((_parentUnits != null) && (_parentUnits.Length > 0))
+            // {
+            //     for (int _index=0; _index < _parentUnits.Length; _index++)
+            //     {
+            //         if (_parentUnits[_index] != null)
+            //         {
+            //             _parentUnits[_index].GetComponent<ParentUnitManager>().ManaAmount = _amount;
+            //         }
+            //     }
+            // }
         }
         private void SubtractMana(float _amount)
         {
