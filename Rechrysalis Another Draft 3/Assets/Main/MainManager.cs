@@ -12,6 +12,9 @@ namespace Rechrysalis
 {
     public class MainManager : MonoBehaviour
     {
+        [SerializeField] private bool _paused;
+        public bool Paused { get => _paused; set => _paused = value; }
+        
         [SerializeField] CompsAndUnitsSO _compsAndUnitsSO;        
         [SerializeField] ControllerManager[] _controllerManager;
         [SerializeField] PlayerUnitsSO[] _playerUnitsSO;  
@@ -44,9 +47,12 @@ namespace Rechrysalis
 
         private void FixedUpdate()
         {
-            _backGroundManager.Tick();
-            ResetTick();
-            Tick();
+            if (!_paused)
+            {
+                _backGroundManager.Tick();
+                ResetTick();
+                Tick();
+            }
         }
         private void ResetTick()
         {
