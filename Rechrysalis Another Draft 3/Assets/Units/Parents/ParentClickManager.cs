@@ -6,6 +6,7 @@ namespace Rechrysalis.Unit
 {
     public class ParentClickManager : MonoBehaviour
     {
+        private bool _debugBool = false;
         private int _controllerIndex;
         public int ControllerIndex {get {return _controllerIndex;}}
         public void Initialize (int _controllerIndex)
@@ -14,7 +15,10 @@ namespace Rechrysalis.Unit
         }
         public bool IsEnemy(int _sourceControllerIndex)
         {
-            Debug.Log($"check if enemy " + _sourceControllerIndex);
+            if (_debugBool)
+            {
+                Debug.Log($"check if enemy " + _sourceControllerIndex);
+            }
             if (_controllerIndex != _sourceControllerIndex)
             {
                 return true;

@@ -124,7 +124,10 @@ namespace Rechrysalis.Controller
         {
             if (_hit.collider.gameObject.layer == 6)
             {
-                Debug.Log($"collided " + _hit.collider.gameObject.name);
+                if (_debugBool)
+                {
+                    Debug.Log($"collided " + _hit.collider.gameObject.name);
+                }
                 return true;
             }
             else return false;
@@ -190,7 +193,10 @@ namespace Rechrysalis.Controller
                 else if (CheckIfSingleUpgradeTrue(RingAngle(_mousePos), (_unitRingManager.UnitRingAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount) + 90f), _unitRingManager.UnitDegreeWidth));
                 else 
                 {
-                    Debug.Log($"set ring angle " + RingAngle(_mousePos));
+                    if (_debugBool)
+                    {
+                        Debug.Log($"set ring angle " + RingAngle(_mousePos));
+                    }
                     _hilightRingManager.SetAngle(RingAngle(_mousePos));
                 }
             }

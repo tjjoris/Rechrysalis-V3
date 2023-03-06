@@ -8,6 +8,7 @@ namespace Rechrysalis.Attacking
 {
     public class Die : MonoBehaviour
     {
+        private bool _debugBool = false;
         private PlayerUnitsSO _playerUnits;
         private TargetsListSO _targetsList;
         private RemoveUnit _removeUnit;
@@ -36,7 +37,10 @@ namespace Rechrysalis.Attacking
             _removeUnit.RemoveUnitFunction();
             if (_compsAndUnitsSO.PlayerUnits[_controllerIndex].ActiveUnits.Count <= 0)
             {
-                Debug.Log($"next wave");
+                if (_debugBool)
+                {
+                    Debug.Log($"next wave");
+                }
                 _spawnWaveAction?.Invoke();
             }
         }

@@ -12,7 +12,7 @@ namespace Rechrysalis.Controller
 {
     public class FreeEnemyInitialize : MonoBehaviour
     {
-        private bool _debugLog  = false;
+        private bool _debugBool  = false;
         // [SerializeField] private FreeUnitLayoutSO _freeEnemyCompLayout;
         [SerializeField] private GameObject _FreeUnitPrefab;
         private int _controllerIndex;
@@ -40,7 +40,7 @@ namespace Rechrysalis.Controller
             _controllerFreeHatch = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _allUnits = new List<GameObject>();
             // this._controllerIndex = _controllerIndex;
-            if (_debugLog)
+            if (_debugBool)
             {
                 Debug.Log("unit SO array size " + compSO.UnitSOArray.Length.ToString());
             }
@@ -166,7 +166,10 @@ namespace Rechrysalis.Controller
             _waveIndex ++;
             // if (_freeUnitCompSO.Waves.Length >= _waveIndex)
             {                
-                Debug.Log($"wave index" + _waveIndex + "waves lenght "+ _freeUnitCompSO.Waves.Length);
+                if (_debugBool)
+                {
+                    Debug.Log($"wave index" + _waveIndex + "waves lenght "+ _freeUnitCompSO.Waves.Length);
+                }
                 if (CheckIfLevelDone(_waveIndex))
                 {
 
