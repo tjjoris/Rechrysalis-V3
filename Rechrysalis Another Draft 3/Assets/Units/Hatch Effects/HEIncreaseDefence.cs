@@ -11,7 +11,7 @@ namespace Rechrysalis.HatchEffect
 
         public void Initialize(float hatchEffectMult)
         {
-            _incomingDamageMult = _incomingDamageMultBase / hatchEffectMult;
+            _incomingDamageMult =  _incomingDamageMultBase * hatchEffectMult;
         }
         public float GetIncomingDamageMult()
         {

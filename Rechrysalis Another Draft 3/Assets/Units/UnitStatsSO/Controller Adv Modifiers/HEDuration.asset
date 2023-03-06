@@ -34,4 +34,4 @@ MonoBehaviour:
   _attackWindDownAdd: 0
   _attackWindDownMult: 1
   _hatchEffectMultiplierAdd: -0.3
-  _hatchEffectDurationAdd: 300
+  _hatchEffectDurationAdd: 100

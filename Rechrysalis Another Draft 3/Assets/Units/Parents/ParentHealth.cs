@@ -14,8 +14,8 @@ namespace Rechrysalis.Unit
         private float _currentHealth;
         public float CurrentHealth => _currentHealth;
         private bool _isChrysalis;
-        private float _incomingDamageMultbase = 1f;
-        private float _incomingDamageMult = 1f;
+        private float _incomingDamageMultbase = 0f;
+        private float _incomingDamageMult = 0f;
         private float _chrysalisDefenceMult = 0.4f;
         private float _enemyControllerHealMult = 0.5f;
         private UnitManager _currentUnit;
@@ -41,10 +41,10 @@ namespace Rechrysalis.Unit
         public void TakeDamage(float _damage)
         {
             // float _damageToTake = _damage * _currentUnit.GetIncomingDamageMultiplier();            
-            float damageToTake = _damage * _incomingDamageMult;            
+            float damageToTake = _damage * (1 - _incomingDamageMult);            
             if (_isChrysalis)
             {
-                damageToTake *= _chrysalisDefenceMult;
+                damageToTake *= (_chrysalisDefenceMult);
                 _enemyControllerHeal?.Invoke(_damage * _enemyControllerHealMult);
                 _controllerTakeDamage?.Invoke(damageToTake);
             }
@@ -75,7 +75,7 @@ namespace Rechrysalis.Unit
             foreach (HEIncreaseDefence hatchEffect in hEIncreaseDefenceList)
             {
                 if (hatchEffect != null)
-                _incomingDamageMult *= hatchEffect.GetIncomingDamageMult();
+                _incomingDamageMult += hatchEffect.GetIncomingDamageMult();
             }
             Debug.Log($"incoming damage mult " + _incomingDamageMult);
         }
