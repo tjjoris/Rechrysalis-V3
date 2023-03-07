@@ -12,12 +12,12 @@ namespace Rechrysalis
         public SpriteRenderer FillSprite => _fillSprite;
         [SerializeField] private Transform _fillTransform;
         public Transform FillTransform => _fillTransform;
-        [SerializeField] private Color _chrysalisBackG = new Color(0.66f, 0.88f, 0.66f);
-        [SerializeField] private Color _chrysalisFill = new Color(0.4f, 0.6f, 0.6f);
-        [SerializeField] private Color _chargeUpBackG = new Color(0.74f, 0.76f, 0.8f);
-        [SerializeField] private Color _chargeUpFill = new Color(0.44f, 0.46f, 0.6f);
-        [SerializeField] private Color _windDownBackG = new Color(0.8f, 0.8f, 0.4f);
-        [SerializeField] private Color _windDownFill = new Color (0.55f, 0.55f, 0.28f);
+        private Color _chrysalisBackG = new Color(0.66f, 0.88f, 0.66f, 1f);
+        private Color _chrysalisFill = new Color(0.4f, 0.6f, 0.6f, 1f);
+        private Color _chargeUpBackG = new Color(0.74f, 0.76f, 0.8f, 1f);
+        private Color _chargeUpFill = new Color(0.44f, 0.46f, 0.6f, 1f);
+        private Color _windDownBackG = new Color(0.8f, 0.8f, 0.4f, 1f);
+        private Color _windDownFill = new Color (0.55f, 0.55f, 0.28f, 1f);
 
         public void StrechFillByValue(float fillValue)
         {
