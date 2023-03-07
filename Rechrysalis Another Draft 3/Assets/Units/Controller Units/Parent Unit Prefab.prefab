@@ -334,12 +334,6 @@ MonoBehaviour:
   _backGSprite: {fileID: 6778500408042411300}
   _fillSprite: {fileID: 4824100114993928293}
   _fillTransform: {fileID: 6589158823588355800}
-  _chrysalisBackG: {r: 0.6114721, g: 0.7452737, b: 0.8584906, a: 0}
-  _chrysalisFill: {r: 0, g: 0, b: 0, a: 0}
-  _chargeUpBackG: {r: 0, g: 0, b: 0, a: 0}
-  _chargeUpFill: {r: 0, g: 0, b: 0, a: 0}
-  _windDownBackG: {r: 0, g: 0, b: 0, a: 0}
-  _windDownFill: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8526505655396988532
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4601075838786983412, guid: b1505540bf4014525baf056048d167d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.66
       objectReference: {fileID: 0}
     - target: {fileID: 4601075838786983412, guid: b1505540bf4014525baf056048d167d2, type: 3}
       propertyPath: m_LocalRotation.w
