@@ -29,10 +29,14 @@ namespace Rechrysalis.Attacking
         private TargetHolder _targetHolder;
         private AIAttackChargeUpTimer _aiAttackTimer;
         private ParentUnitManager _parentUnitManager;
+        private ProgressBarManager _progressBarManager;
 
-        public void Initialize(UnitClass unitClass)
+
+        public void Initialize(UnitClass unitClass, ParentUnitManager parentUnitManager)
         {
-            _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
+            // _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
+            _parentUnitManager = parentUnitManager;
+            _progressBarManager = GetComponent<ProgressBarManager>();
             _unitClass = unitClass;
             _baseDPS = _unitClass.DPS;
             _attackChargeUp = _unitClass.AttackChargeUp;

@@ -83,7 +83,7 @@ namespace Rechrysalis.Unit
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
             _controllerUnitAttackClosest?.Initialzie();
             if (_parentUnitManager != null) _parentUnitManager.IsStopped = true;
-            _attack?.Initialize(_unitClass);
+            _attack?.Initialize(_unitClass, _parentUnitManager);
             _health?.Initialize(_unitClass.HPMax);
             _nameText.text = unitClass.UnitName;
             GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
@@ -137,7 +137,7 @@ namespace Rechrysalis.Unit
             if (_parentUnitManager != null)  _parentUnitManager.IsStopped = true;
             _health = GetComponent<Health>();
             _health?.Initialize(_unitStats.HealthMaxBasic);
-            _attack?.Initialize(_unitClass);
+            // _attack?.Initialize(_unitClass);
             _attack?.InitializeOld(_unitStats);
             GetComponent<Die>()?.Initialize(_compsAndUnits, _controllerIndex);
             GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[_controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
