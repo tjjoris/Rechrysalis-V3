@@ -60,6 +60,7 @@ namespace Rechrysalis.Unit
         }
         public void Initialize(UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnitSO, int controllerIndex)
         {
+            _controllerIndex = controllerIndex;
             _parentUnitManager = GetComponent<ParentUnitManager>();
             _unitClass = unitClass;
             // _attack.Initialize(unitClass);
@@ -87,7 +88,7 @@ namespace Rechrysalis.Unit
             _freeApproach = GetComponent<FreeEnemyApproach>();
             _freeApproach?.Initialize(compsAndUnitSO.PlayerUnits[_controllerIndex], _compsAndUnits.ControllerManagers[GetOppositeController.ReturnOppositeController(_controllerIndex)].GetComponent<Mover>());
             _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
-            _aiAlwaysPreferClosest.Initialize();
+            _aiAlwaysPreferClosest?.Initialize();
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
             _freeEnemyKiteMaxRange?.Initialize();
         }
