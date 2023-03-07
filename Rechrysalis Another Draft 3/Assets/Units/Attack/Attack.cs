@@ -36,6 +36,7 @@ namespace Rechrysalis.Attacking
         {
             // _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
             _parentUnitManager = parentUnitManager;
+            _progressBarManager = _parentUnitManager.GetComponent<ProgressBarManager>();
             _progressBarManager = GetComponent<ProgressBarManager>();
             _unitClass = unitClass;
             _baseDPS = _unitClass.DPS;
@@ -115,6 +116,7 @@ namespace Rechrysalis.Attacking
                 }
             }
             _aiAttackTimer?.Tick(_timeAmount, _isChargingUp, _isWindingDown);
+            CalculateProgressAndDisplay();
         }
         private GameObject GetTargetInRange()
         {
@@ -183,6 +185,23 @@ namespace Rechrysalis.Attacking
             if ((_attackChargeCurrent >= _attackChargeUp) && (!_isWindingDown))
             return true;
             return false;
+        }
+        private void CalculateProgressAndDisplay()
+        {
+            if (_progressBarManager != null)
+            {
+                float progressPercent = 0;
+                if (!_isWindingDown)
+                {
+                    progressPercent = _attackChargeCurrent / _attackChargeUp;
+                }
+                else 
+                {
+                    progressPercent = _attackChargeCurrent / _attackWindDown + _attackChargeUp;
+                }
+                _progressBarManager.StrechFillByValue(progressPercent);
+            }
+
         }
     }
 }
