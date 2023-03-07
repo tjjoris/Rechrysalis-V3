@@ -13,6 +13,7 @@ namespace Rechrysalis.Unit
         private TargetScoreValue _targetScoreValue;
         private ChrysalisActivation _chrysalisActivation;
         private ParentUnitHatchEffects _parentUnitHatchEffects;
+        private ProgressBarManager _progressBarManager;
         public void Initialize(ParentUnitManager parentUnitManager)
         {
             _parentUnitManager = parentUnitManager;
@@ -20,6 +21,7 @@ namespace Rechrysalis.Unit
             _targetScoreValue = GetComponent<TargetScoreValue>();
             _chrysalisActivation = GetComponent<ChrysalisActivation>();
             _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
+            _progressBarManager = GetComponent<ProgressBarManager>();
         }
         
         public void ActivateUnit(int _unitIndex)
@@ -46,6 +48,7 @@ namespace Rechrysalis.Unit
                     {
                         _parentUnitHatchEffects.CreateHatchEffect(_parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, _unitIndex, true);
                     }
+                    _progressBarManager?.TintChargeUp();
                 }
                 _chrysalisActivation.DeactivateChrysalis(_indexInSubUnits);
             }

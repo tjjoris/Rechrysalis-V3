@@ -96,7 +96,8 @@ namespace Rechrysalis.Attacking
                             _projectile.transform.position = gameObject.transform.position;
                             _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target);
                             _isWindingDown = true;     
-                            _isChargingUp = false;                
+                            _isChargingUp = false;   
+                            _progressBarManager?.TintWindDown();             
                         }
                     }
                     // else 
@@ -108,6 +109,7 @@ namespace Rechrysalis.Attacking
                 {
                     _isChargingUp = true;
                     _attackChargeCurrent += _timeAmount;
+                    _progressBarManager?.TintChargeUp();
                 }
                 else if ((_isChargingUp) && (_parentUnitManager.IsStopped))
                 {

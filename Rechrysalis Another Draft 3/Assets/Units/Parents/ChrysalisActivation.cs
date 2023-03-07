@@ -12,12 +12,14 @@ namespace Rechrysalis.Unit
         private UnitActivation _unitActivation;
         private ParentHealth _parentHealth;
         private TargetScoreValue _targetScoreValue;
+        private ProgressBarManager _progressBarManager;
         public void Initialize(ParentUnitManager parentUnitManager)
         {
             _parentUnitManager = parentUnitManager;
             _unitActivation = GetComponent<UnitActivation>();
             _parentHealth = GetComponent<ParentHealth>();
             _targetScoreValue = GetComponent<TargetScoreValue>();
+            _progressBarManager = GetComponent<ProgressBarManager>();
         }
         public void DeactivateChrysalis(int _chryslisIndex)
         {
@@ -71,6 +73,7 @@ namespace Rechrysalis.Unit
                 {
                     _unitActivation.DeactivateUnit(_unitIndex);
                 }
+                _progressBarManager?.TintChrysalis();
             }
             _targetScoreValue.SetEgg(true);
         }
