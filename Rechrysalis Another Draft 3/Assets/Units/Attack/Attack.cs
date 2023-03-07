@@ -81,40 +81,37 @@ namespace Rechrysalis.Attacking
             {
                 _attackChargeCurrent += _timeAmount;
             }
-            else
-            {            
+            else if((_isChargingUp) && (_parentUnitManager.IsStopped) && (_attackChargeCurrent >= _attackChargeUp))
+            {          
                 GameObject _tempTarget = null;
-                if ((_isChargingUp) && (_parentUnitManager.IsStopped) && (_attackChargeCurrent >= _attackChargeUp))
+                _tempTarget = GetTargetInRange();
+                if (_tempTarget != null)
                 {
-                    _tempTarget = GetTargetInRange();
-                    if (_tempTarget != null)
+                    GameObject _projectile = _projectilesPool?.GetPooledObject();
+                    if (_projectile != null) 
                     {
-                        GameObject _projectile = _projectilesPool?.GetPooledObject();
-                        if (_projectile != null) 
-                        {
-                            _projectile.SetActive(true);
-                            _projectile.transform.position = gameObject.transform.position;
-                            _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target);
-                            _isWindingDown = true;     
-                            _isChargingUp = false;   
-                            _progressBarManager?.TintWindDown();             
-                        }
+                        _projectile.SetActive(true);
+                        _projectile.transform.position = gameObject.transform.position;
+                        _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target);
+                        _isWindingDown = true;     
+                        _isChargingUp = false;   
+                        _progressBarManager?.TintWindDown();             
                     }
-                    // else 
-                    // {
-                    //     // ResetChargeUp();
-                    // }
                 }
-                else if ((!_isWindingDown) && (!_isChargingUp))
-                {
-                    _isChargingUp = true;
-                    _attackChargeCurrent += _timeAmount;
-                    _progressBarManager?.TintChargeUp();
-                }
-                else if ((_isChargingUp) && (_parentUnitManager.IsStopped))
-                {
-                    _attackChargeCurrent += _timeAmount;                
-                }
+                // else 
+                // {
+                //     // ResetChargeUp();
+                // }
+            }
+            else if ((!_isWindingDown) && (!_isChargingUp))
+            {
+                _isChargingUp = true;
+                _attackChargeCurrent += _timeAmount;
+                _progressBarManager?.TintChargeUp();
+            }
+            else if ((_isChargingUp) && (_parentUnitManager.IsStopped))
+            {
+                _attackChargeCurrent += _timeAmount;                
             }
             _aiAttackTimer?.Tick(_timeAmount, _isChargingUp, _isWindingDown);
             CalculateProgressAndDisplay();
@@ -198,7 +195,7 @@ namespace Rechrysalis.Attacking
                 }
                 else 
                 {
-                    progressPercent = _attackChargeCurrent / (_attackWindDown + _attackChargeUp);
+                    progressPercent = (_attackChargeCurrent - _attackChargeUp) / (_attackWindDown);
                 }
                 _progressBarManager.StrechFillByValue(progressPercent);
             }
