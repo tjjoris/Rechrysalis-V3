@@ -99,10 +99,10 @@ namespace Rechrysalis.Attacking
                             _isChargingUp = false;                
                         }
                     }
-                    else 
-                    {
-                        // ResetChargeUp();
-                    }
+                    // else 
+                    // {
+                    //     // ResetChargeUp();
+                    // }
                 }
                 else if ((!_isWindingDown) && (!_isChargingUp))
                 {
@@ -196,7 +196,7 @@ namespace Rechrysalis.Attacking
                 }
                 else 
                 {
-                    progressPercent = _attackChargeCurrent / _attackWindDown + _attackChargeUp;
+                    progressPercent = _attackChargeCurrent / (_attackWindDown + _attackChargeUp);
                 }
                 _progressBarManager.StrechFillByValue(progressPercent);
             }
