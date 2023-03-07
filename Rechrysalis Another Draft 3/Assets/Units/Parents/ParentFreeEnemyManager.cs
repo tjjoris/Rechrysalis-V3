@@ -58,7 +58,7 @@ namespace Rechrysalis.Unit
 
 
         }
-        public void Initialize(UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnitSO)
+        public void Initialize(UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnitSO, int controllerIndex)
         {
             _parentUnitManager = GetComponent<ParentUnitManager>();
             _unitClass = unitClass;
@@ -68,6 +68,28 @@ namespace Rechrysalis.Unit
             _targetScoreValue = GetComponent<TargetScoreValue>();
             _targetScoreValue?.Initialize();
             _targetScoreValue?.SetCurrentUnit(_unitManager.GetComponent<Attack>());
+
+            this._compsAndUnits = compsAndUnitSO;
+            _controllerIndex = controllerIndex;
+            _parentHealth = GetComponent<ParentHealth>();
+            _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
+            // _unitManager?.InitializeOld(controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, null);
+            _unitManager?.SetUnitName(unitClass.UnitName);
+            GetComponent<Die>()?.Initialize(_compsAndUnits, controllerIndex);
+            GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(controllerIndex)]);
+            GetComponent<ParentClickManager>()?.Initialize(controllerIndex);
+            GetComponent<ParentHealth>().CurrentUnit = _unitManager;
+            _mover = GetComponent<Mover>();
+            _mover.IsStopped = false;
+            _mover?.SetSpeed(_compsAndUnits.Speed);
+            _attack = _unitManager.GetComponent<Attack>();
+            _aiAttackTimer = _unitManager.GetComponent<AIAttackChargeUpTimer>();
+            _freeApproach = GetComponent<FreeEnemyApproach>();
+            _freeApproach?.Initialize(compsAndUnitSO.PlayerUnits[_controllerIndex], _compsAndUnits.ControllerManagers[GetOppositeController.ReturnOppositeController(_controllerIndex)].GetComponent<Mover>());
+            _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
+            _aiAlwaysPreferClosest.Initialize();
+            _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
+            _freeEnemyKiteMaxRange?.Initialize();
         }
         private void OnEnable()
         {
