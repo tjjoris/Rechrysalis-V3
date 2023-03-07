@@ -37,7 +37,6 @@ namespace Rechrysalis.Attacking
             // _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
             _parentUnitManager = parentUnitManager;
             _progressBarManager = _parentUnitManager.GetComponent<ProgressBarManager>();
-            _progressBarManager = GetComponent<ProgressBarManager>();
             _unitClass = unitClass;
             _baseDPS = _unitClass.DPS;
             _attackChargeUp = _unitClass.AttackChargeUp;
@@ -73,12 +72,12 @@ namespace Rechrysalis.Attacking
         }
         public void Tick(float _timeAmount)
         {
-            if (_attackChargeCurrent >= _attackWindDown + _attackChargeUp) 
+            if ((!_isChargingUp) && (_attackChargeCurrent >= _attackWindDown + _attackChargeUp)) 
             {
                 _attackChargeCurrent = 0;
                 _isWindingDown = false;
             }
-            else if (_isWindingDown)
+            else if ((_isWindingDown))
             {
                 _attackChargeCurrent += _timeAmount;
             }
@@ -97,12 +96,12 @@ namespace Rechrysalis.Attacking
                             _projectile.transform.position = gameObject.transform.position;
                             _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target);
                             _isWindingDown = true;     
-                            _isChargingUp = false;                  
+                            _isChargingUp = false;                
                         }
                     }
                     else 
                     {
-                        ResetChargeUp();
+                        // ResetChargeUp();
                     }
                 }
                 else if ((!_isWindingDown) && (!_isChargingUp))
