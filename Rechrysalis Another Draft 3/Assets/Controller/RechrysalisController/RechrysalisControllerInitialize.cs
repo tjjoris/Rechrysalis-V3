@@ -11,6 +11,7 @@ namespace Rechrysalis.Controller
         private bool _debugBool;
         private ControllerManager _controllerManager;
         private HilightRingManager _hilightRingManager;
+        private HilightRingParentCreator _hilightRingParentCreator;
         private ManaGenerator _manaGenerator;
         [SerializeField] private int _controllerIndex;
         public int ControllerIndex { get => _controllerIndex; set => _controllerIndex = value; }
@@ -31,6 +32,7 @@ namespace Rechrysalis.Controller
         {
            _controllerManager = GetComponent<ControllerManager>(); 
            _hilightRingManager = _controllerManager.HilightRingManager;
+           _hilightRingParentCreator = _controllerManager.HilightRingManager.GetComponent<HilightRingParentCreator>();
            _manaGenerator = GetComponent<ManaGenerator>();
             _controllerIndex = controllerIndex;
             this._unitComp = unitComp;
@@ -57,12 +59,13 @@ namespace Rechrysalis.Controller
                     {
                         Debug.Log($"parent exists " + parentUnitIndex);
                     }
-                    float _radToOffset = Mathf.Deg2Rad * (((360f / unitComp.ParentUnitCount) * parentUnitIndex) + _unitRingAngle);  
-                    Vector3 _unitOffset = new Vector3 (Mathf.Cos(_radToOffset) * _ringDistFromCentre, Mathf.Sin(_radToOffset) * _ringDistFromCentre, 0f);
+                    Vector2 unitOffset = AnglesMath.GetOffsetPosForParentInRing(parentUnitIndex, unitComp.ParentUnitCount, _unitRingAngle, _ringDistFromCentre);
+                    // float _radToOffset = Mathf.Deg2Rad * (((360f / unitComp.ParentUnitCount) * parentUnitIndex) + _unitRingAngle);  
+                    // Vector3 _unitOffset = new Vector3 (Mathf.Cos(_radToOffset) * _ringDistFromCentre, Mathf.Sin(_radToOffset) * _ringDistFromCentre, 0f);
                     // Debug.Log($"radtooffset" + _radToOffset + "vector 3 " + _unitOffset);
                     GameObject parentUnitGO = Instantiate(_parentUnitPrefab, _unitRing.transform);
                     _theseUnits.ParentUnits.Add(parentUnitGO);
-                    parentUnitGO.transform.localPosition = _unitOffset;
+                    parentUnitGO.transform.localPosition = unitOffset;
                     _parentUnits[parentUnitIndex] = parentUnitGO;
                     parentUnitGO.name = "Parent Unit " + parentUnitIndex.ToString();
                     ParentUnitManager pum = parentUnitGO.GetComponent<ParentUnitManager>();
@@ -116,7 +119,7 @@ namespace Rechrysalis.Controller
                     ParentUnitHatchEffects _pUHE = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
                     _pUHE?.Initialize(pum.SubUnits, pum.SubChrysalii);
                     pum.AddChrysalisAndUnitActions();   
-                    _hilightRingManager.CreateHilightRingParent(parentUnitIndex, unitComp.ParentUnitCount);                   
+                    _hilightRingParentCreator?.CreateHilightRingParent(parentUnitIndex, unitComp.ParentUnitCount, unitOffset);                   
                 }              
             }
             hilightRingManager?.Initialize(unitRingManager);

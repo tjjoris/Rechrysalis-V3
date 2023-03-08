@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 30328079}
   - component: {fileID: 30328080}
+  - component: {fileID: 30328081}
   m_Layer: 0
   m_Name: HilightRing
   m_TagString: Untagged
@@ -168,6 +169,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df163de850ac7427c95e94822a75f693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hilightRingParentCreator: {fileID: 0}
+--- !u!114 &30328081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30328078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a531400ff914833bdf33b0bfb8ccae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lastCreatedHilightRingParent: {fileID: 0}
+  _hilightRingParentContainer: {fileID: 0}
+  _hilightRingParentPrefab: {fileID: 7619674072711939062, guid: e6bfc507499ac4859a79309f18e3d9fa, type: 3}
 --- !u!1 &133236573
 GameObject:
   m_ObjectHideFlags: 0

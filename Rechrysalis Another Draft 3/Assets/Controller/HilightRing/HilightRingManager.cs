@@ -9,11 +9,14 @@ namespace Rechrysalis.Controller
         private float _oldAngle;
         private float _unitRingOldAngle;
         private UnitRingManager _unitRingManager;
+        [SerializeField] private HilightRingParentCreator _hilightRingParentCreator;
         
 
         public void Initialize(UnitRingManager _unitRingManager)
         {
-            this._unitRingManager = _unitRingManager;            
+            this._unitRingManager = _unitRingManager;   
+            _hilightRingParentCreator = GetComponent<HilightRingParentCreator>(); 
+            _hilightRingParentCreator?.Initialize(transform);        
         }
         public void SetAngle(float _angle)
         {
@@ -35,9 +38,9 @@ namespace Rechrysalis.Controller
             transform.eulerAngles = new Vector3(0, 0, _unitRingOldAngle);
             // _unitRingManager.SetTargetAngle(_oldAngle);
         }
-        public void CreateHilightRingParent(int index, int maxParents)
-        {
-
-        }
+        // public void CreateHilightRingParent(int index, int maxParents, Vector2 parentUnitOffset)
+        // {
+        //     _hilightRingParentCreator?.CreateHilightRingParent(index, maxParents, parentUnitOffset);
+        // }
     }
 }

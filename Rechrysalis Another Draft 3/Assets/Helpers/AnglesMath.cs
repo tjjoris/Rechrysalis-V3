@@ -68,5 +68,11 @@ namespace Rechrysalis
             Vector2 _unitOffset = new Vector2(Mathf.Cos(_radToOffset) * _distFromCentre, Mathf.Sin(_radToOffset) * _distFromCentre);
             return _unitOffset;
         }
+        public static Vector2 GetOffsetPosForParentInRing(float parentUnitIndex, float parentUnitCount, float unitRingAngle, float ringDistFromCentre)
+        {
+            float _radToOffset = Mathf.Deg2Rad * (((360f / parentUnitCount) * parentUnitIndex) + unitRingAngle);
+            Vector2 unitOffset = new Vector3(Mathf.Cos(_radToOffset) * ringDistFromCentre, Mathf.Sin(_radToOffset) * ringDistFromCentre);
+            return unitOffset;
+        }
     }
 }
