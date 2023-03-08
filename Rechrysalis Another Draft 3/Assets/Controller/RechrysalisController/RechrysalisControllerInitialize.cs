@@ -64,9 +64,11 @@ namespace Rechrysalis.Controller
                     // float _radToOffset = Mathf.Deg2Rad * (((360f / unitComp.ParentUnitCount) * parentUnitIndex) + _unitRingAngle);  
                     // Vector3 _unitOffset = new Vector3 (Mathf.Cos(_radToOffset) * _ringDistFromCentre, Mathf.Sin(_radToOffset) * _ringDistFromCentre, 0f);
                     // Debug.Log($"radtooffset" + _radToOffset + "vector 3 " + _unitOffset);
-                    GameObject parentUnitGO = Instantiate(_parentUnitPrefab, _unitRing.transform);
+                    Vector3 goPosition = unitOffset;
+                    goPosition += _unitRing.transform.position;
+                    GameObject parentUnitGO = Instantiate(_parentUnitPrefab, goPosition, Quaternion.identity, _unitRing.transform);
                     _theseUnits.ParentUnits.Add(parentUnitGO);
-                    parentUnitGO.transform.localPosition = unitOffset;
+                    // parentUnitGO.transform.localPosition = unitOffset;
                     _parentUnits[parentUnitIndex] = parentUnitGO;
                     parentUnitGO.name = "Parent Unit " + parentUnitIndex.ToString();
                     ParentUnitManager pum = parentUnitGO.GetComponent<ParentUnitManager>();
