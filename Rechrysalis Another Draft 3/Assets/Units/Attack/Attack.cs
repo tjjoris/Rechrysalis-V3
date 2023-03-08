@@ -72,16 +72,20 @@ namespace Rechrysalis.Attacking
         }
         public void Tick(float _timeAmount)
         {
-            if ((!_isChargingUp) && (_attackChargeCurrent >= _attackWindDown + _attackChargeUp)) 
+            //if chargecurrent > winddown + charge up { set charge to 0 }
+            if ((_attackChargeCurrent >= _attackWindDown + _attackChargeUp)) 
             {
                 _attackChargeCurrent = 0;
                 _isWindingDown = false;
+                _progressBarManager.TintChargeUp();
             }
-            else if ((_isWindingDown))
+            //if not winding down && stopped & charge < charge up { build charge }
+            else if ((!_isWindingDown) && (_parentUnitManager.IsStopped) && (_attackChargeCurrent < _attackChargeUp))
             {
                 _attackChargeCurrent += _timeAmount;
             }
-            else if((_isChargingUp) && (_parentUnitManager.IsStopped) && (_attackChargeCurrent >= _attackChargeUp))
+            //if not winding down & stopped { attack }
+            else if((!_isWindingDown) && (_parentUnitManager.IsStopped))
             {          
                 GameObject _tempTarget = null;
                 _tempTarget = GetTargetInRange();
@@ -98,22 +102,20 @@ namespace Rechrysalis.Attacking
                         _progressBarManager?.TintWindDown();             
                     }
                 }
-                // else 
-                // {
-                //     // ResetChargeUp();
-                // }
             }
-            else if ((_parentUnitManager.IsStopped) && (!_isWindingDown) && (!_isChargingUp))
+            //if winding down { build charge }
+            else if ((_isWindingDown))
             {
-                _isChargingUp = true;
                 _attackChargeCurrent += _timeAmount;
-                _progressBarManager?.TintChargeUp();
             }
-            else if ((_isChargingUp) && (_parentUnitManager.IsStopped))
-            {
-                _attackChargeCurrent += _timeAmount;                
-            }
-            else if ((!_parentUnitManager.IsStopped) && (_isChargingUp))
+            // //if 
+            // else if ((!_isWindingDown) && (!_isChargingUp))
+            // {
+            //     _attackChargeCurrent += _timeAmount;
+            //     _progressBarManager?.TintChargeUp();
+            // }
+            //if moving and not winding down { set charge to 0 }
+            else if ((!_parentUnitManager.IsStopped) && (!_isWindingDown))
             {
                 _isChargingUp = false;
                 _attackChargeCurrent = 0f;
