@@ -124,7 +124,7 @@ namespace Rechrysalis.Controller
                     pum.AddChrysalisAndUnitActions();   
                     _hilightRingParentCreator?.CreateHilightRingParent(parentUnitIndex, unitComp.ParentUnitCount, unitOffset);                   
                     // _controllerManager?.HilightRingParentManagers.Add(_hilightRingParentCreator?.GetLastCreatedHilightRingParentManager());
-                    pum.HilightRingParentManager = _hilightRingParentCreator?.GetLastCreatedHilightRingParentManager();
+                    pum.HilightRingParentManager = _hilightRingParentCreator?.GetLastCreatedHilightRingParentManager();                    
                 }              
             }
 
