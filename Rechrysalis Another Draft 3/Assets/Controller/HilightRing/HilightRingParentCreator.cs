@@ -6,6 +6,7 @@ namespace Rechrysalis.Controller
 {
     public class HilightRingParentCreator : MonoBehaviour
     {
+        private bool _debugBool = true;
         [SerializeField] private HilightRingParentManager _lastCreatedHilightRingParent;
         public HilightRingParentManager LastCreatedHilightRingParent => _lastCreatedHilightRingParent;
 
@@ -18,6 +19,10 @@ namespace Rechrysalis.Controller
         }
         public void CreateHilightRingParent(int index, int parentCount, Vector2 parentUnitOffset)
         {
+            if (_debugBool)
+            {
+                Debug.Log($"create hilight parent");
+            }
             GameObject go = Instantiate(_hilightRingParentPrefab, _hilightRingParentContainer);
             _lastCreatedHilightRingParent = go.GetComponent<HilightRingParentManager>();
         }
