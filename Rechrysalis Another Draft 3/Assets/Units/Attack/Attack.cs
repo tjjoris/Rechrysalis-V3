@@ -20,6 +20,7 @@ namespace Rechrysalis.Attacking
         public float CurrentDPS => _currentDPS;
         private ProjectilesPool _projectilesPool;
         private bool _isWindingDown;
+        public bool IsWindingDown => _isWindingDown;
         // private bool _isChargingUp;
         // private bool _isStopped;
         // public bool IsStopped{set{_isStopped = value;}}
