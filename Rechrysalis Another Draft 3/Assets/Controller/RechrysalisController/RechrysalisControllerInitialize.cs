@@ -123,6 +123,8 @@ namespace Rechrysalis.Controller
                     _pUHE?.Initialize(pum.SubUnits, pum.SubChrysalii);
                     pum.AddChrysalisAndUnitActions();   
                     _hilightRingParentCreator?.CreateHilightRingParent(parentUnitIndex, unitComp.ParentUnitCount, unitOffset);                   
+                    // _controllerManager?.HilightRingParentManagers.Add(_hilightRingParentCreator?.GetLastCreatedHilightRingParentManager());
+                    pum.HilightRingParentManager = _hilightRingParentCreator?.GetLastCreatedHilightRingParentManager();
                 }              
             }
 

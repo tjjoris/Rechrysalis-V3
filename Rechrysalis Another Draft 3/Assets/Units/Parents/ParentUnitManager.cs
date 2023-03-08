@@ -63,6 +63,9 @@ namespace Rechrysalis.Unit
         // public float ManaAmount {set{_manaAmount = value;} get {return _manaAmount;} }
         [SerializeField] private ProgressBarManager _progressBarManager;
         public ProgressBarManager ProgressBarManager => _progressBarManager;
+        [SerializeField] private HilightRingParentManager _hilightRingParentManager;
+        public HilightRingParentManager HilightRingParentManager { get => _hilightRingParentManager; set => _hilightRingParentManager = value; }
+        
         public Action<GameObject, int, int, bool> _addHatchEffect;
         public Action<GameObject, int, bool> _removeHatchEffect;
         public Action<float> _parentDealsDamage;

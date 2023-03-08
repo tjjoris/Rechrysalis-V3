@@ -31,6 +31,9 @@ namespace Rechrysalis.Controller
         [SerializeField] private UnitRingManager _unitRingManager;
         [SerializeField] private HilightRingManager _hilightRingManager;
         public HilightRingManager HilightRingManager => _hilightRingManager;
+        // [SerializeField] private List<HilightRingParentManager> _hilightRingParentManagers = new List<HilightRingParentManager>();
+        // public List<HilightRingParentManager> HilightRingParentManagers { get => _hilightRingParentManagers; set => _hilightRingParentManagers = value; }
+        
         [SerializeField] private UpgradeRingManager _upgradeRingManager;
         private AIFlawedUpdate _aiFlawedUpdate;
         [SerializeField] private float _unitRingOuterRadius;
