@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48169825a1764f99beb1a8eb5b565ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hilightRingUnitManagers: []
+  _hilightRingChryslisManagers: []
+  _hilightRingUnitPrefab: {fileID: 6776537011289476421, guid: 69bb487df07e34d1bb26e37ee4f68731, type: 3}

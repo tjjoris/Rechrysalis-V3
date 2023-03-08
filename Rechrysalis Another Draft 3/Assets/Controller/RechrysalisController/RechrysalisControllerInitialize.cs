@@ -12,6 +12,7 @@ namespace Rechrysalis.Controller
         private ControllerManager _controllerManager;
         private HilightRingManager _hilightRingManager;
         private HilightRingParentCreator _hilightRingParentCreator;
+        private HilightRingParentManager _hilightRingParentManager;
         private ManaGenerator _manaGenerator;
         [SerializeField] private int _controllerIndex;
         public int ControllerIndex { get => _controllerIndex; set => _controllerIndex = value; }
@@ -74,7 +75,9 @@ namespace Rechrysalis.Controller
                     ParentUnitManager pum = parentUnitGO.GetComponent<ParentUnitManager>();
                     _controllerManager.ParentUnitManagers.Add(pum);
                     HatchEffectSO[] _hatchEffectSOs = SetHatchEffectSOs(parentUnitIndex);
-                    pum?.Initialize(controllerIndex, parentUnitIndex, unitComp, compsAndUnits.PlayerUnits[controllerIndex], transform, _hatchEffectSOs, unitComp.ParentUnitClassList[parentUnitIndex]);                        
+                    pum?.Initialize(controllerIndex, parentUnitIndex, unitComp, compsAndUnits.PlayerUnits[controllerIndex], transform, _hatchEffectSOs, unitComp.ParentUnitClassList[parentUnitIndex]);
+                    _hilightRingParentCreator?.CreateHilightRingParent(parentUnitIndex, unitComp.ParentUnitCount, unitOffset);
+                    pum.HilightRingParentManager = _hilightRingParentCreator?.GetLastCreatedHilightRingParentManager();
                     // pum?.SetManaText(unitComp.ParentUnitClassList[parentUnitIndex].AdvUnitClass.ManaCost.ToString());
                     UnitManaCostText manaText = parentUnitGO.GetComponent<UnitManaCostText>();
                     manaText?.SetManaText(unitComp.ParentUnitClassList[parentUnitIndex].AdvUnitClass.ManaCost.ToString());
@@ -122,9 +125,6 @@ namespace Rechrysalis.Controller
                     ParentUnitHatchEffects _pUHE = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
                     _pUHE?.Initialize(pum.SubUnits, pum.SubChrysalii);
                     pum.AddChrysalisAndUnitActions();   
-                    _hilightRingParentCreator?.CreateHilightRingParent(parentUnitIndex, unitComp.ParentUnitCount, unitOffset);                   
-                    // _controllerManager?.HilightRingParentManagers.Add(_hilightRingParentCreator?.GetLastCreatedHilightRingParentManager());
-                    pum.HilightRingParentManager = _hilightRingParentCreator?.GetLastCreatedHilightRingParentManager();                    
                 }              
             }
 
@@ -159,6 +159,7 @@ namespace Rechrysalis.Controller
             _controllerHatchEffect.SetUnitsArray(childUnitGo, ((parentUnitIndex * 6) + (childUnitIndex * 2)));
             // _theseUnits.ActiveUnits.Add(childUnitGo);
             childUnitGo.SetActive(false);
+            pum.HilightRingParentManager.CreateHilightRingUnit(unitClass.UnitSprite);
             GameObject chrysalisGo = Instantiate(_chrysalisPrefab, pum.transform);
             chrysalisGo.name = $"Chrysalis " + childUnitIndex;
             // chrysalisGo.GetComponent<ChrysalisManager>()?.Initialize(_unitStats.ChrysalisTimerMax, childUnitGo);
@@ -174,6 +175,7 @@ namespace Rechrysalis.Controller
             _allUnits.Add(chrysalisGo);
             _controllerHatchEffect.SetUnitsArray(chrysalisGo, ((parentUnitIndex * 6) + (childUnitIndex * 2) + 1));
             chrysalisGo.SetActive(false);
+            pum.HilightRingParentManager.CreateHilightRingChrysalis(unitClass.ChrysalisSprite);
             if (isAdvUnit)
             {
                 chrysalisUnitManager?.ControllerUnitSpriteHandler?.TintSpriteMagenta();
