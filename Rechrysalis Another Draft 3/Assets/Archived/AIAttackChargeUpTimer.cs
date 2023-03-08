@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
 
-namespace Rechrysalis.Attacking
+namespace Rechrysalis.Archived
 {
     public class AIAttackChargeUpTimer : MonoBehaviour
     {
