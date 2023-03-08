@@ -95,8 +95,8 @@ namespace Rechrysalis.Unit
         private void OnEnable()
         {
             // if (_mover != null)
-            if (GetComponent<Mover>() != null)
-            GetComponent<Mover>()._resetChargeUp += ResetChargeUp;
+            // if (GetComponent<Mover>() != null)
+            // GetComponent<Mover>()._resetChargeUp += ResetChargeUp;
             if (_unitManager.GetComponent<AIAttackChargeUpTimer>() != null)
             {
                 if (_debugBool)
@@ -108,8 +108,8 @@ namespace Rechrysalis.Unit
         }
         private void OnDisable()
         {
-            if (_mover != null)
-                _mover._resetChargeUp -= ResetChargeUp;
+            // if (_mover != null)
+            //     _mover._resetChargeUp -= ResetChargeUp;
             if (GetComponent<AIAttackChargeUpTimer>() != null)
                 GetComponent<AIAttackChargeUpTimer>()._changeCanMove += AICanMove;
         }
@@ -139,10 +139,10 @@ namespace Rechrysalis.Unit
             // Debug.Log($"change can move" + _aiCanMove);
             this._aiCanMove = _aiCanMove;
         }
-        private void ResetChargeUp()
-        {
-            // Debug.Log($" reset to charge up called");
-            _attack?.CheckToResetChargeUp();
-        }
+        // private void ResetChargeUp()
+        // {
+        //     // Debug.Log($" reset to charge up called");
+        //     _attack?.CheckToResetChargeUp();
+        // }
     }
 }

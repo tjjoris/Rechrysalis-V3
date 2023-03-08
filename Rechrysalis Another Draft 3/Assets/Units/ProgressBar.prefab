@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 2035189600538505963}
   - component: {fileID: 5371077973544394711}
   m_Layer: 0
-  m_Name: FillSprite
+  m_Name: BackGSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

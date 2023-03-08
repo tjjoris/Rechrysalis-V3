@@ -136,18 +136,18 @@ namespace Rechrysalis.Attacking
             }
             return null;
         }
-        public void CheckToResetChargeUp()
-        {
-            if ((!_isWindingDown) && (_isChargingUp))
-            {
-                ResetChargeUp();
-            }
-        }
-        private void ResetChargeUp()
-        {
-            _attackChargeCurrent = 0;
-            // _isChargingUp = false;
-        }
+        // public void CheckToResetChargeUp()
+        // {
+        //     if ((!_isWindingDown) && (_isChargingUp))
+        //     {
+        //         ResetChargeUp();
+        //     }
+        // }
+        // private void ResetChargeUp()
+        // {
+        //     _attackChargeCurrent = 0;
+        //     // _isChargingUp = false;
+        // }
         public void SetDamage(float damage)
         {
             _baseDamage = damage;

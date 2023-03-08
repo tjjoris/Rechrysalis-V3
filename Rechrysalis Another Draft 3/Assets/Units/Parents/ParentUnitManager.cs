@@ -69,7 +69,7 @@ namespace Rechrysalis.Unit
         public Action<float> _subtractMana;
         // [SerializeField] private TMP_Text _manaText;
 
-        private bool _isStopped;
+        [SerializeField] private bool _isStopped;
         public bool IsStopped 
         {
             set{
