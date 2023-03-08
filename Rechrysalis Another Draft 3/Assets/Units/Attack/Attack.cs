@@ -103,7 +103,7 @@ namespace Rechrysalis.Attacking
                 //     // ResetChargeUp();
                 // }
             }
-            else if ((!_isWindingDown) && (!_isChargingUp))
+            else if ((_parentUnitManager.IsStopped) && (!_isWindingDown) && (!_isChargingUp))
             {
                 _isChargingUp = true;
                 _attackChargeCurrent += _timeAmount;
@@ -112,6 +112,11 @@ namespace Rechrysalis.Attacking
             else if ((_isChargingUp) && (_parentUnitManager.IsStopped))
             {
                 _attackChargeCurrent += _timeAmount;                
+            }
+            else if ((!_parentUnitManager.IsStopped) && (_isChargingUp))
+            {
+                _isChargingUp = false;
+                _attackChargeCurrent = 0f;
             }
             _aiAttackTimer?.Tick(_timeAmount, _isChargingUp, _isWindingDown);
             CalculateProgressAndDisplay();
