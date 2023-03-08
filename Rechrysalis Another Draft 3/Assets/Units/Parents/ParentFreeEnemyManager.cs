@@ -16,7 +16,7 @@ namespace Rechrysalis.Unit
         private FreeEnemyApproach _freeApproach;
         private Mover _mover;
         private Attack _attack;
-        private AIAttackChargeUpTimer _aiAttackTimer;
+        // private AIAttackChargeUpTimer _aiAttackTimer;
         private bool _aiCanMove = true;
         private AIAlwaysPreferClosest _aiAlwaysPreferClosest;
         private FreeEnemyKiteMaxRange _freeEnemyKiteMaxRange;
@@ -46,7 +46,7 @@ namespace Rechrysalis.Unit
             _mover.IsStopped = false;
             _mover?.SetSpeed(_compsAndUnits.Speed);
             _attack = _unitManager.GetComponent<Attack>();
-            _aiAttackTimer = _unitManager.GetComponent<AIAttackChargeUpTimer>();
+            // _aiAttackTimer = _unitManager.GetComponent<AIAttackChargeUpTimer>();
             _freeApproach = GetComponent<FreeEnemyApproach>();
             _freeApproach?.Initialize(_ownUnits, _compsAndUnits.ControllerManagers[GetOppositeController.ReturnOppositeController(_controllerIndex)].GetComponent<Mover>());
             _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
@@ -84,7 +84,7 @@ namespace Rechrysalis.Unit
             _mover.IsStopped = false;
             _mover?.SetSpeed(_compsAndUnits.Speed);
             _attack = _unitManager.GetComponent<Attack>();
-            _aiAttackTimer = _unitManager.GetComponent<AIAttackChargeUpTimer>();
+            // _aiAttackTimer = _unitManager.GetComponent<AIAttackChargeUpTimer>();
             _freeApproach = GetComponent<FreeEnemyApproach>();
             _freeApproach?.Initialize(compsAndUnitSO.PlayerUnits[_controllerIndex], _compsAndUnits.ControllerManagers[GetOppositeController.ReturnOppositeController(_controllerIndex)].GetComponent<Mover>());
             _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
@@ -92,27 +92,27 @@ namespace Rechrysalis.Unit
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
             _freeEnemyKiteMaxRange?.Initialize();
         }
-        private void OnEnable()
-        {
-            // if (_mover != null)
-            // if (GetComponent<Mover>() != null)
-            // GetComponent<Mover>()._resetChargeUp += ResetChargeUp;
-            if (_unitManager.GetComponent<AIAttackChargeUpTimer>() != null)
-            {
-                if (_debugBool)
-                {
-                    Debug.Log($"subscribe to ai attack timer");
-                }
-            _unitManager.GetComponent<AIAttackChargeUpTimer>()._changeCanMove += AICanMove;
-            }
-        }
-        private void OnDisable()
-        {
-            // if (_mover != null)
-            //     _mover._resetChargeUp -= ResetChargeUp;
-            if (GetComponent<AIAttackChargeUpTimer>() != null)
-                GetComponent<AIAttackChargeUpTimer>()._changeCanMove += AICanMove;
-        }
+        // private void OnEnable()
+        // {
+        //     // if (_mover != null)
+        //     // if (GetComponent<Mover>() != null)
+        //     // GetComponent<Mover>()._resetChargeUp += ResetChargeUp;
+        //     if (_unitManager.GetComponent<AIAttackChargeUpTimer>() != null)
+        //     {
+        //         if (_debugBool)
+        //         {
+        //             Debug.Log($"subscribe to ai attack timer");
+        //         }
+        //     // _unitManager.GetComponent<AIAttackChargeUpTimer>()._changeCanMove += AICanMove;
+        //     }
+        // }
+        // private void OnDisable()
+        // {
+        //     // if (_mover != null)
+        //     //     _mover._resetChargeUp -= ResetChargeUp;
+        //     if (GetComponent<AIAttackChargeUpTimer>() != null)
+        //         GetComponent<AIAttackChargeUpTimer>()._changeCanMove += AICanMove;
+        // }
         public void Tick (float _timeAmount)
         {   
             _aiFlawedUpdate?.Tick(_timeAmount);

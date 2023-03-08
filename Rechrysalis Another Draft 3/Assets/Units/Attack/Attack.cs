@@ -27,7 +27,7 @@ namespace Rechrysalis.Attacking
         private InRangeByPriority _inRangeByPriority;  
         private ClosestTarget _closestTarget;  
         private TargetHolder _targetHolder;
-        private AIAttackChargeUpTimer _aiAttackTimer;
+        // private AIAttackChargeUpTimer _aiAttackTimer;
         private ParentUnitManager _parentUnitManager;
         private ProgressBarManager _progressBarManager;
 
@@ -46,8 +46,8 @@ namespace Rechrysalis.Attacking
             _inRangeByPriority = GetComponent<InRangeByPriority>();
             _closestTarget = GetComponent<ClosestTarget>();
             _targetHolder = GetComponent<TargetHolder>();
-            _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
-            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown, _parentUnitManager);
+            // _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
+            // _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown, _parentUnitManager);
             CalculateDamage(_baseDPS);
             ResetUnitAttack();
         }
@@ -61,8 +61,8 @@ namespace Rechrysalis.Attacking
             _inRangeByPriority = GetComponent<InRangeByPriority>();
             _closestTarget = GetComponent<ClosestTarget>();
             _targetHolder = GetComponent<TargetHolder>();
-            _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
-            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown, _parentUnitManager);
+            // _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
+            // _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown, _parentUnitManager);
             ResetUnitAttack();
         }
         public void ResetUnitAttack()
