@@ -20,7 +20,7 @@ namespace Rechrysalis.Attacking
         public float CurrentDPS => _currentDPS;
         private ProjectilesPool _projectilesPool;
         private bool _isWindingDown;
-        private bool _isChargingUp;
+        // private bool _isChargingUp;
         // private bool _isStopped;
         // public bool IsStopped{set{_isStopped = value;}}
         [SerializeField] private TargetsListSO _targetsList;
@@ -98,7 +98,7 @@ namespace Rechrysalis.Attacking
                         _projectile.transform.position = gameObject.transform.position;
                         _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target);
                         _isWindingDown = true;     
-                        _isChargingUp = false;   
+                        // _isChargingUp = false;   
                         _progressBarManager?.TintWindDown();             
                     }
                 }
@@ -117,10 +117,10 @@ namespace Rechrysalis.Attacking
             //if moving and not winding down { set charge to 0 }
             else if ((!_parentUnitManager.IsStopped) && (!_isWindingDown))
             {
-                _isChargingUp = false;
+                // _isChargingUp = false;
                 _attackChargeCurrent = 0f;
             }
-            _aiAttackTimer?.Tick(_timeAmount, _isChargingUp, _isWindingDown);
+            // _aiAttackTimer?.Tick(_timeAmount, _isWindingDown);
             CalculateProgressAndDisplay();
         }
         private GameObject GetTargetInRange()
