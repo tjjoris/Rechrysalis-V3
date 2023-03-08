@@ -23,7 +23,9 @@ namespace Rechrysalis.Controller
             {
                 Debug.Log($"create hilight parent");
             }
-            GameObject go = Instantiate(_hilightRingParentPrefab, _hilightRingParentContainer);
+            Vector3 goPosition = parentUnitOffset;
+            goPosition += _hilightRingParentContainer.position;
+            GameObject go = Instantiate(_hilightRingParentPrefab, goPosition, Quaternion.identity, _hilightRingParentContainer);
             _lastCreatedHilightRingParent = go.GetComponent<HilightRingParentManager>();
         }
         public HilightRingParentManager GetLastCreatedHilightRingParentManager()
