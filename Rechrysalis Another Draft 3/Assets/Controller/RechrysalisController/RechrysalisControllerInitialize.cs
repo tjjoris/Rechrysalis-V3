@@ -10,6 +10,7 @@ namespace Rechrysalis.Controller
     {
         private bool _debugBool;
         private ControllerManager _controllerManager;
+        private HilightRingManager _hilightRingManager;
         private ManaGenerator _manaGenerator;
         [SerializeField] private int _controllerIndex;
         public int ControllerIndex { get => _controllerIndex; set => _controllerIndex = value; }
@@ -29,6 +30,7 @@ namespace Rechrysalis.Controller
         public void Initialize(int controllerIndex, CompSO unitComp, CompsAndUnitsSO compsAndUnits, UnitRingManager unitRingManager, HilightRingManager hilightRingManager, UpgradeRingManager upgradeRingManager, float unitRingOuterRadius)
         {
            _controllerManager = GetComponent<ControllerManager>(); 
+           _hilightRingManager = _controllerManager.HilightRingManager;
            _manaGenerator = GetComponent<ManaGenerator>();
             _controllerIndex = controllerIndex;
             this._unitComp = unitComp;
@@ -113,7 +115,8 @@ namespace Rechrysalis.Controller
                     }
                     ParentUnitHatchEffects _pUHE = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
                     _pUHE?.Initialize(pum.SubUnits, pum.SubChrysalii);
-                    pum.AddChrysalisAndUnitActions();                      
+                    pum.AddChrysalisAndUnitActions();   
+                    _hilightRingManager.CreateHilightRingParent(parentUnitIndex, unitComp.ParentUnitCount);                   
                 }              
             }
             hilightRingManager?.Initialize(unitRingManager);

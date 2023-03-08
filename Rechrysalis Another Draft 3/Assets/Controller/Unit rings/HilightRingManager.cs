@@ -9,6 +9,7 @@ namespace Rechrysalis.Controller
         private float _oldAngle;
         private float _unitRingOldAngle;
         private UnitRingManager _unitRingManager;
+        
 
         public void Initialize(UnitRingManager _unitRingManager)
         {
@@ -34,9 +35,9 @@ namespace Rechrysalis.Controller
             transform.eulerAngles = new Vector3(0, 0, _unitRingOldAngle);
             // _unitRingManager.SetTargetAngle(_oldAngle);
         }
-        // public void Tick()
-        // {
+        public void CreateHilightRingParent(int index, int maxParents)
+        {
 
-        // }
+        }
     }
 }

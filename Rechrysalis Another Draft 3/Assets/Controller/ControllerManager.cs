@@ -30,6 +30,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private CompsAndUnitsSO _compsAndUnits;
         [SerializeField] private UnitRingManager _unitRingManager;
         [SerializeField] private HilightRingManager _hilightRingManager;
+        public HilightRingManager HilightRingManager => _hilightRingManager;
         [SerializeField] private UpgradeRingManager _upgradeRingManager;
         private AIFlawedUpdate _aiFlawedUpdate;
         [SerializeField] private float _unitRingOuterRadius;
