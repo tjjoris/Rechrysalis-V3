@@ -61,13 +61,18 @@ namespace Rechrysalis.Unit
         public Mover ParentUnitMover => _parentUnitMover;
         // private float _manaAmount;
         // public float ManaAmount {set{_manaAmount = value;} get {return _manaAmount;} }
+        [SerializeField] private ProgressBarManager _progressBarManager;
+        public ProgressBarManager ProgressBarManager => _progressBarManager;
+        [SerializeField] private HilightRingParentManager _hilightRingParentManager;
+        public HilightRingParentManager HilightRingParentManager { get => _hilightRingParentManager; set => _hilightRingParentManager = value; }
+        
         public Action<GameObject, int, int, bool> _addHatchEffect;
         public Action<GameObject, int, bool> _removeHatchEffect;
         public Action<float> _parentDealsDamage;
         public Action<float> _subtractMana;
         // [SerializeField] private TMP_Text _manaText;
 
-        private bool _isStopped;
+        [SerializeField] private bool _isStopped;
         public bool IsStopped 
         {
             set{
@@ -122,6 +127,7 @@ namespace Rechrysalis.Unit
             _parentUnitMover?.Initialize(_controllerIndex);
             _priorityScoreChrysalis = GetComponent<PriorityScoreChrysalis>();
             _priorityScoreChrysalis?.Initialize(_enemyControllerManager);
+            _progressBarManager = GetComponent<ProgressBarManager>();
         }
         public void Tick(float timeAmount)
         {

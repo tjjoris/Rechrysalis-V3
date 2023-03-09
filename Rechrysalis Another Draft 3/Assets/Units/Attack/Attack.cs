@@ -20,19 +20,24 @@ namespace Rechrysalis.Attacking
         public float CurrentDPS => _currentDPS;
         private ProjectilesPool _projectilesPool;
         private bool _isWindingDown;
-        private bool _isChargingUp;
+        public bool IsWindingDown => _isWindingDown;
+        // private bool _isChargingUp;
         // private bool _isStopped;
         // public bool IsStopped{set{_isStopped = value;}}
         [SerializeField] private TargetsListSO _targetsList;
         private InRangeByPriority _inRangeByPriority;  
         private ClosestTarget _closestTarget;  
         private TargetHolder _targetHolder;
-        private AIAttackChargeUpTimer _aiAttackTimer;
+        // private AIAttackChargeUpTimer _aiAttackTimer;
         private ParentUnitManager _parentUnitManager;
+        private ProgressBarManager _progressBarManager;
 
-        public void Initialize(UnitClass unitClass)
+
+        public void Initialize(UnitClass unitClass, ParentUnitManager parentUnitManager)
         {
-            _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
+            // _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
+            _parentUnitManager = parentUnitManager;
+            _progressBarManager = _parentUnitManager.GetComponent<ProgressBarManager>();
             _unitClass = unitClass;
             _baseDPS = _unitClass.DPS;
             _attackChargeUp = _unitClass.AttackChargeUp;
@@ -42,8 +47,8 @@ namespace Rechrysalis.Attacking
             _inRangeByPriority = GetComponent<InRangeByPriority>();
             _closestTarget = GetComponent<ClosestTarget>();
             _targetHolder = GetComponent<TargetHolder>();
-            _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
-            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown, _parentUnitManager);
+            // _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
+            // _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown, _parentUnitManager);
             CalculateDamage(_baseDPS);
             ResetUnitAttack();
         }
@@ -57,8 +62,8 @@ namespace Rechrysalis.Attacking
             _inRangeByPriority = GetComponent<InRangeByPriority>();
             _closestTarget = GetComponent<ClosestTarget>();
             _targetHolder = GetComponent<TargetHolder>();
-            _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
-            _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown, _parentUnitManager);
+            // _aiAttackTimer = GetComponent<AIAttackChargeUpTimer>();
+            // _aiAttackTimer?.Initialize(_attackChargeUp, _attackWindDown, _parentUnitManager);
             ResetUnitAttack();
         }
         public void ResetUnitAttack()
@@ -68,49 +73,56 @@ namespace Rechrysalis.Attacking
         }
         public void Tick(float _timeAmount)
         {
-            if (_attackChargeCurrent >= _attackWindDown + _attackChargeUp) 
+            //if chargecurrent > winddown + charge up { set charge to 0 }
+            if ((_attackChargeCurrent >= _attackWindDown + _attackChargeUp)) 
             {
                 _attackChargeCurrent = 0;
                 _isWindingDown = false;
+                _progressBarManager.TintChargeUp();
             }
-            else if (_isWindingDown)
+            //if not winding down && stopped & charge < charge up { build charge }
+            else if ((!_isWindingDown) && (_parentUnitManager.IsStopped) && (_attackChargeCurrent < _attackChargeUp))
             {
                 _attackChargeCurrent += _timeAmount;
             }
-            else
-            {            
+            //if not winding down & stopped { attack }
+            else if((!_isWindingDown) && (_parentUnitManager.IsStopped))
+            {          
                 GameObject _tempTarget = null;
-                if ((_isChargingUp) && (_parentUnitManager.IsStopped) && (_attackChargeCurrent >= _attackChargeUp))
+                _tempTarget = GetTargetInRange();
+                if (_tempTarget != null)
                 {
-                    _tempTarget = GetTargetInRange();
-                    if (_tempTarget != null)
+                    GameObject _projectile = _projectilesPool?.GetPooledObject();
+                    if (_projectile != null) 
                     {
-                        GameObject _projectile = _projectilesPool?.GetPooledObject();
-                        if (_projectile != null) 
-                        {
-                            _projectile.SetActive(true);
-                            _projectile.transform.position = gameObject.transform.position;
-                            _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target);
-                            _isWindingDown = true;     
-                            _isChargingUp = false;                  
-                        }
+                        _projectile.SetActive(true);
+                        _projectile.transform.position = gameObject.transform.position;
+                        _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target);
+                        _isWindingDown = true;     
+                        // _isChargingUp = false;   
+                        _progressBarManager?.TintWindDown();             
                     }
-                    else 
-                    {
-                        ResetChargeUp();
-                    }
-                }
-                else if ((!_isWindingDown) && (!_isChargingUp))
-                {
-                    _isChargingUp = true;
-                    _attackChargeCurrent += _timeAmount;
-                }
-                else if ((_isChargingUp) && (_parentUnitManager.IsStopped))
-                {
-                    _attackChargeCurrent += _timeAmount;                
                 }
             }
-            _aiAttackTimer?.Tick(_timeAmount, _isChargingUp, _isWindingDown);
+            //if winding down { build charge }
+            else if ((_isWindingDown))
+            {
+                _attackChargeCurrent += _timeAmount;
+            }
+            // //if 
+            // else if ((!_isWindingDown) && (!_isChargingUp))
+            // {
+            //     _attackChargeCurrent += _timeAmount;
+            //     _progressBarManager?.TintChargeUp();
+            // }
+            //if moving and not winding down { set charge to 0 }
+            else if ((!_parentUnitManager.IsStopped) && (!_isWindingDown))
+            {
+                // _isChargingUp = false;
+                _attackChargeCurrent = 0f;
+            }
+            // _aiAttackTimer?.Tick(_timeAmount, _isWindingDown);
+            CalculateProgressAndDisplay();
         }
         private GameObject GetTargetInRange()
         {
@@ -125,18 +137,18 @@ namespace Rechrysalis.Attacking
             }
             return null;
         }
-        public void CheckToResetChargeUp()
-        {
-            if ((!_isWindingDown) && (_isChargingUp))
-            {
-                ResetChargeUp();
-            }
-        }
-        private void ResetChargeUp()
-        {
-            _attackChargeCurrent = 0;
-            // _isChargingUp = false;
-        }
+        // public void CheckToResetChargeUp()
+        // {
+        //     if ((!_isWindingDown) && (_isChargingUp))
+        //     {
+        //         ResetChargeUp();
+        //     }
+        // }
+        // private void ResetChargeUp()
+        // {
+        //     _attackChargeCurrent = 0;
+        //     // _isChargingUp = false;
+        // }
         public void SetDamage(float damage)
         {
             _baseDamage = damage;
@@ -179,6 +191,23 @@ namespace Rechrysalis.Attacking
             if ((_attackChargeCurrent >= _attackChargeUp) && (!_isWindingDown))
             return true;
             return false;
+        }
+        private void CalculateProgressAndDisplay()
+        {
+            if (_progressBarManager != null)
+            {
+                float progressPercent = 0;
+                if (!_isWindingDown)
+                {
+                    progressPercent = _attackChargeCurrent / _attackChargeUp;
+                }
+                else 
+                {
+                    progressPercent = (_attackChargeCurrent - _attackChargeUp) / (_attackWindDown);
+                }
+                _progressBarManager.StrechFillByValue(progressPercent);
+            }
+
         }
     }
 }

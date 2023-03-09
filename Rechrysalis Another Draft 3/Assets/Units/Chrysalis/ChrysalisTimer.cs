@@ -12,16 +12,19 @@ namespace Rechrysalis.Unit
         public float TimerCurrent {set {_timerCurrent = value;} get {return _timerCurrent;}}
         private  int _nextUnitBuilding;
         private int _subUnitCount;
+        private ProgressBarManager _progressBarManager;
         public Action<int> _startUnit;
 
-        public void Initialize (float _timerMax, int _nextUnitBuilding)
+        public void Initialize (float _timerMax, int _nextUnitBuilding, ProgressBarManager progressBarManager)
         {
+            _progressBarManager= progressBarManager;
             this._timerMax = _timerMax;
             this._nextUnitBuilding = _nextUnitBuilding;
         }
         public void StartThisChrysalis(float _timeToKeep)
         {
-            _timerCurrent = 0 + _timeToKeep;            
+            _timerCurrent = 0 + _timeToKeep;     
+            CalculateProgressAndStrech();       
         }
         public void Tick (float _timeAmount)
         {
@@ -30,6 +33,7 @@ namespace Rechrysalis.Unit
             {
                 _startUnit?.Invoke(_nextUnitBuilding);
             }
+            CalculateProgressAndStrech();
         }
         public void SetNextUnit(int _nextUnitBuilding)
         {
@@ -37,6 +41,11 @@ namespace Rechrysalis.Unit
             {
                 this._nextUnitBuilding = _nextUnitBuilding;
             }
+        }
+        private void CalculateProgressAndStrech()
+        {
+            float timePercent = _timerCurrent / _timerMax;
+            _progressBarManager.StrechFillByValue(timePercent);
         }
     }
 }

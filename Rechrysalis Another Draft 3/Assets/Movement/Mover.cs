@@ -169,11 +169,11 @@ namespace Rechrysalis.Movement
             }
             else
             {
-                if (_isStopped)
-                {
-                    // _resetChargeUp?.Invoke();
-                    _parentUnitManager?.CurrentSubUnit.GetComponent<Attack>().CheckToResetChargeUp();
-                }
+                // if (_isStopped)
+                // {
+                //     // _resetChargeUp?.Invoke();
+                //     // _parentUnitManager?.CurrentSubUnit.GetComponent<Attack>().CheckToResetChargeUp();
+                // }
                  _isStopped = false;
             }
             if (_parentUnitManager != null) _parentUnitManager.IsStopped = _isStopped;            
