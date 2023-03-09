@@ -15,7 +15,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private float _healthCurrent;
         [SerializeField] private ControllerHPBar _controllerHPBar;
         [SerializeField] private ControllerHPTokens _controllerHPTokens;
-        // private ControllerDeathGameOver _controllerDeathGameOver;
+        [SerializeField] private ControllerHit _controllerHit;
         private GameObject[] _parentUnits;
         private List<GameObject> _allUnits;
         public Action _controllerTakesDamageAction;
@@ -29,13 +29,15 @@ namespace Rechrysalis.Controller
             // _controllerDeathGameOver = GetComponent<ControllerDeathGameOver>();
             SubscribeToControllerDamage();
             _controllerHPTokens.Initialize(compsAndUnitsSO);
+            _controllerHit = GetComponent<ControllerHit>();
         }
         public void TakeDamage(float _damageAmount)
         {
             _healthCurrent -= _damageAmount;
             CheckIfHealthZero();
             _controllerHPBar?.ChangeHPBar(_healthCurrent);
-            _controllerTakesDamageAction?.Invoke();            
+            _controllerTakesDamageAction?.Invoke();     
+            _controllerHit.ControllerIsHit();       
         }
         private void CheckIfHealthZero()
         {
