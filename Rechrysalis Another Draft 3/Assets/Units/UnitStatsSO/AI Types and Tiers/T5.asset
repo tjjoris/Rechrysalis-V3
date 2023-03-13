@@ -19,3 +19,5 @@ MonoBehaviour:
   _attackWindDown: 1
   _manaMultiplier: 1
   _tier: 0
+  _buildTimeMultiplier: 1
+  _projectileSpeed: 1

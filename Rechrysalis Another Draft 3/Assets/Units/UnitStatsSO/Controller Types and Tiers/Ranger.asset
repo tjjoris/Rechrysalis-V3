@@ -20,3 +20,4 @@ MonoBehaviour:
   _manaMultiplier: 10
   _tier: 0
   _buildTimeMultiplier: 1
+  _projectileSpeed: 1
