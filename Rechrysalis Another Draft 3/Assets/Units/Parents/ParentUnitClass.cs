@@ -162,16 +162,16 @@ namespace Rechrysalis.Unit
             // if (_utcBasicUnit != null)
             {
                 _basicUnitClass = new UnitClass();
-                _basicUnitClass.ManaCost = _utcBasicUnit.GetUnitStatsSO().Mana;
-                _basicUnitClass.HPMax = _utcBasicUnit.GetUnitStatsSO().HealthMaxBasic;
-                _basicUnitClass.BuildTime = _utcBasicUnit.GetUnitStatsSO().BuildTimeBasic;
-                _basicUnitClass.Range = _utcBasicUnit.GetUnitStatsSO().BaseRangeBasic;
-                _basicUnitClass.DPS = _utcBasicUnit.GetUnitStatsSO().BaseDPSBasic;
-                _basicUnitClass.AttackChargeUp = _utcBasicUnit.GetUnitStatsSO().AttackChargeUpBasic;
-                _basicUnitClass.AttackWindDown = _utcBasicUnit.GetUnitStatsSO().AttackWindDownBasic;
+                _basicUnitClass.ManaCost = _utcBasicUnit.GetUnitStatsSO().Mana * _utcBasicUnit.GetUnitStatsSO().Mana;
+                _basicUnitClass.HPMax = _utcBasicUnit.GetUnitStatsSO().HealthMaxBasic * _utcBasicUnit.GetUnitStatsSO().HealthMaxBasic;
+                _basicUnitClass.BuildTime = _utcBasicUnit.GetUnitStatsSO().BuildTimeBasic * _utcBasicUnit.GetUnitStatsSO().BaseMultiplier.BuildTimeMultiplier;
+                _basicUnitClass.Range = _utcBasicUnit.GetUnitStatsSO().BaseRangeBasic * _utcBasicUnit.GetUnitStatsSO().BaseRangeBasic;
+                _basicUnitClass.DPS = _utcBasicUnit.GetUnitStatsSO().BaseDPSBasic * _utcBasicUnit.GetUnitStatsSO().BaseDPSBasic;
+                _basicUnitClass.AttackChargeUp = _utcBasicUnit.GetUnitStatsSO().AttackChargeUpBasic * _utcBasicUnit.GetUnitStatsSO().AttackChargeUpBasic;
+                _basicUnitClass.AttackWindDown = _utcBasicUnit.GetUnitStatsSO().AttackWindDownBasic * _utcBasicUnit.GetUnitStatsSO().AttackWindDownBasic;
                 _basicUnitClass.UnitSprite = _utcBasicUnit.GetUnitStatsSO().UnitSprite;
                 _basicUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
-                _basicUnitClass.ProjectileSpeed = _utcBasicUnit.GetUnitStatsSO().ProjectileSpeed;
+                _basicUnitClass.ProjectileSpeed = _utcBasicUnit.GetUnitStatsSO().ProjectileSpeed * _utcBasicUnit.GetUnitStatsSO().ProjectileSpeed;
                 _basicUnitClass.ProjectileSprite = _utcBasicUnit.GetUnitStatsSO().ProjectileSprite;
                 _basicUnitClass.UnitName = _utcBasicUnit.GetUnitStatsSO().UnitName;
                 _basicUnitClass.ChrysalisSprite = _utcBasicUnit.GetUnitStatsSO().ChrysalisSprite;

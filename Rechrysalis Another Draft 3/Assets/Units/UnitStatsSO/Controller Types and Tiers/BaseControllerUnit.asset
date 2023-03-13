@@ -19,4 +19,4 @@ MonoBehaviour:
   _attackWindDown: 1.7
   _manaMultiplier: 1
   _tier: 0
-  _buildTimeMultiplier: 1
+  _buildTimeMultiplier: 6

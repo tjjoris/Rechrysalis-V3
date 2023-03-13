@@ -78,6 +78,7 @@ namespace Rechrysalis.Unit
        [SerializeField] private GameObject _hatchEffectPrefab;
        public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
        [SerializeField] private UnitStatsMultiplierSO _baseMultipler;
+       public UnitStatsMultiplierSO BaseMultiplier => _baseMultipler;
        [SerializeField] private UnitStatsMultiplierSO _typeMultipler;
        public UnitStatsMultiplierSO TypeMultiplier => _typeMultipler;
        [SerializeField] private UnitStatsMultiplierSO _tierMultiplier;
