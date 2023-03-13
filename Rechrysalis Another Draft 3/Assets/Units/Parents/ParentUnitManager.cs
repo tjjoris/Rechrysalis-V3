@@ -133,7 +133,7 @@ namespace Rechrysalis.Unit
         }
         public void Tick(float timeAmount)
         {
-            _rotateParentUnit?.Tick();
+            // _rotateParentUnit?.Tick();
             // _parentFreeEnemyManager?.Tick(timeAmount);
             TickChildUnits(timeAmount);
         }

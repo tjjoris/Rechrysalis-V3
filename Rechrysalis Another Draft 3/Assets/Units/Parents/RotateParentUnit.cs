@@ -11,6 +11,10 @@ namespace Rechrysalis.Unit
         {
             this._controllerTransform = _controllerTranfsorm;
         }
+        private void Update()
+        {
+            Tick();
+        }
         public void Tick()
         {
             if (transform.rotation != _controllerTransform.transform.rotation)
