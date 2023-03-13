@@ -24,5 +24,7 @@ namespace Rechrysalis.Unit
         public int Tier {get {return _tier;}}
         [SerializeField] private float _buildTimeMultiplier = 1;
         public float BuildTimeMultiplier => _buildTimeMultiplier;
+        [SerializeField] private float _projectileSpeed;
+        public float ProjectileSpeed => _projectileSpeed;
     }
 }

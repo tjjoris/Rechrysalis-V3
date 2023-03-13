@@ -161,17 +161,19 @@ namespace Rechrysalis.Unit
             }
             // if (_utcBasicUnit != null)
             {
+                UnitStatsMultiplierSO baseMultiplierSO = _utcBasicUnit.GetUnitStatsSO().BaseMultiplier;
+                UnitStatsMultiplierSO typeMultipler = _utcBasicUnit.GetUnitStatsSO().TypeMultiplier;
                 _basicUnitClass = new UnitClass();
-                _basicUnitClass.ManaCost = _utcBasicUnit.GetUnitStatsSO().Mana * _utcBasicUnit.GetUnitStatsSO().BaseMultiplier.ManaMultiplier;
-                _basicUnitClass.HPMax = _utcBasicUnit.GetUnitStatsSO().HealthMaxBasic * _utcBasicUnit.GetUnitStatsSO().BaseMultiplier.HealthMultiplier;
-                _basicUnitClass.BuildTime = _utcBasicUnit.GetUnitStatsSO().BuildTimeBasic * _utcBasicUnit.GetUnitStatsSO().BaseMultiplier.BuildTimeMultiplier;
-                _basicUnitClass.Range = _utcBasicUnit.GetUnitStatsSO().BaseRangeBasic * _utcBasicUnit.GetUnitStatsSO().BaseMultiplier.Range;
-                _basicUnitClass.DPS = _utcBasicUnit.GetUnitStatsSO().BaseDPSBasic * _utcBasicUnit.GetUnitStatsSO().BaseMultiplier.DPSMultiplier;
-                _basicUnitClass.AttackChargeUp = _utcBasicUnit.GetUnitStatsSO().AttackChargeUpBasic * _utcBasicUnit.GetUnitStatsSO().BaseMultiplier.AttackChargeUp;
-                _basicUnitClass.AttackWindDown = _utcBasicUnit.GetUnitStatsSO().AttackWindDownBasic * _utcBasicUnit.GetUnitStatsSO().BaseMultiplier.AttackWindDown;
+                _basicUnitClass.ManaCost = baseMultiplierSO.ManaMultiplier * typeMultipler.ManaMultiplier;
+                _basicUnitClass.HPMax = baseMultiplierSO.HealthMultiplier * typeMultipler.HealthMultiplier;
+                _basicUnitClass.BuildTime = baseMultiplierSO.BuildTimeMultiplier * typeMultipler.BuildTimeMultiplier;
+                _basicUnitClass.Range = baseMultiplierSO.Range * typeMultipler.Range;
+                _basicUnitClass.DPS = baseMultiplierSO.DPSMultiplier * typeMultipler.DPSMultiplier;
+                _basicUnitClass.AttackChargeUp = baseMultiplierSO.AttackChargeUp * typeMultipler.AttackChargeUp;
+                _basicUnitClass.AttackWindDown = baseMultiplierSO.AttackWindDown * typeMultipler.AttackWindDown;
                 _basicUnitClass.UnitSprite = _utcBasicUnit.GetUnitStatsSO().UnitSprite;
                 _basicUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
-                _basicUnitClass.ProjectileSpeed = _utcBasicUnit.GetUnitStatsSO().ProjectileSpeed;
+                _basicUnitClass.ProjectileSpeed = baseMultiplierSO.ProjectileSpeed * typeMultipler.ProjectileSpeed;
                 _basicUnitClass.ProjectileSprite = _utcBasicUnit.GetUnitStatsSO().ProjectileSprite;
                 _basicUnitClass.UnitName = _utcBasicUnit.GetUnitStatsSO().UnitName;
                 _basicUnitClass.ChrysalisSprite = _utcBasicUnit.GetUnitStatsSO().ChrysalisSprite;
