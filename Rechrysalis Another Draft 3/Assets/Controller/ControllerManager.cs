@@ -21,6 +21,9 @@ namespace Rechrysalis.Controller
          
         [SerializeField] private List<ParentUnitManager> _parentUnitManagers;
         public List<ParentUnitManager> ParentUnitManagers {get {return _parentUnitManagers;} set{_parentUnitManagers = value;}}
+        [SerializeField] private List<Mover> _parentUnitMovers = new List<Mover>();
+        public List<Mover> ParentUnitMovers { get => _parentUnitMovers; set => _parentUnitMovers = value; }
+        
         private List<GameObject> _allUnits;      
         [SerializeField] private PlayerUnitsSO[] _playerUnitsSO;
         public PlayerUnitsSO[] PlayerUnitsSO {get{return _playerUnitsSO;} set{_playerUnitsSO = value;}}    
@@ -446,6 +449,17 @@ namespace Rechrysalis.Controller
             for (int _unitIndex = 0; _unitIndex < _allUnits.Count; _unitIndex++)
             {
                 _allUnits[_unitIndex].GetComponent<UnitManager>().HideUnitText();
+            }
+        }
+        public void PauseUnPause(bool pauseBool)
+        {
+            _mover?.PauseUnPause(pauseBool);
+            foreach (Mover parentUnitMover in _parentUnitMovers)
+            {
+                if (parentUnitMover != null)
+                {
+                    parentUnitMover.PauseUnPause(pauseBool);
+                }
             }
         }
     }

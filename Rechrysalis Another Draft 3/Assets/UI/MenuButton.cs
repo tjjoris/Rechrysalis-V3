@@ -13,13 +13,13 @@ namespace Rechrysalis.UI
         {
             if (_menu.activeInHierarchy)
             {
-                Time.timeScale = 1;
+                // Time.timeScale = 1;
                 _mainManager.Paused = false;
                 _menu.SetActive(false);                
             }
             else
             {
-                Time.timeScale = 0;
+                // Time.timeScale = 0;
                 _mainManager.Paused = true;
                 _menu.SetActive(true);
             }

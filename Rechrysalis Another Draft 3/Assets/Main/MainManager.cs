@@ -13,7 +13,10 @@ namespace Rechrysalis
     public class MainManager : MonoBehaviour
     {
         [SerializeField] private bool _paused;
-        public bool Paused { get => _paused; set => _paused = value; }
+        public bool Paused { get {return _paused;} set {
+            _paused = value;
+            PauseUnPause(value);
+        }}
         
         [SerializeField] CompsAndUnitsSO _compsAndUnitsSO;        
         [SerializeField] ControllerManager[] _controllerManager;
@@ -81,6 +84,16 @@ namespace Rechrysalis
                 }
             }
             _projectilesHolder?.Tick(_timeAmount);
+        }
+        private void PauseUnPause(bool pauseBool)
+        {
+            foreach (ControllerManager controllerManager in _controllerManager)
+            {
+                if (controllerManager != null)
+                {
+                    controllerManager.PauseUnPause(pauseBool);
+                }
+            }
         }
     }
 }

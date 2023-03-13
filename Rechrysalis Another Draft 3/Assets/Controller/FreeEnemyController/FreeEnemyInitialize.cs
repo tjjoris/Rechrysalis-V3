@@ -104,6 +104,11 @@ namespace Rechrysalis.Controller
                         parentUnitManager?.Initialize(_controllerIndex, _unitInWaveIndex, compSO, playerUnitsSO, transform, null, parentUnitClass);
                         parentUnitManager.ParentUnitClass = parentUnitClass;
                         _controllerManager.ParentUnitManagers.Add(parentUnitManager);
+                        Mover parentUnitMover = GetComponent<Mover>();
+                        if (parentUnitMover != null)
+                        {
+                            _controllerManager.ParentUnitMovers.Add(parentUnitMover);
+                        }
                         ParentFreeEnemyManager _freeParentManager = newFreeEnemy.GetComponent<ParentFreeEnemyManager>();
                         // _freeParentManager?.InitializeOld(controllerIndex, _unitStats, compsAndUnits, _unitInWaveIndex, playerUnitsSO);
                         _freeParentManager?.Initialize(parentUnitClass.BasicUnitClass, _unitInWaveIndex, compsAndUnits, _controllerIndex);

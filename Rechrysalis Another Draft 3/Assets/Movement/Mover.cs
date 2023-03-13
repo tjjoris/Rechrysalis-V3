@@ -24,12 +24,14 @@ namespace Rechrysalis.Movement
         private float _retreatSpeedMult = 0.15f;
         [SerializeField] private Vector3 _moveVector;        
         [SerializeField] private Vector2 _direction = Vector2.zero;
+        [SerializeField] private Vector2 _directionWhilePaused = Vector2.zero;
         public Vector2 Direction {set{_direction = value;}get {return _direction;}}
         [SerializeField] bool _isStopped = true;
         public bool IsStopped {set{_isStopped = value;}get {return _isStopped;}}
         [SerializeField] float _speed;
         private CausesPushBack _causesPushBack;
         private ParentUnitManager _parentUnitManager;
+        private Rigidbody2D _rb2d;
         public Action _resetChargeUp;
         public void Initialize(int _controllerIndex)
         {
@@ -42,6 +44,7 @@ namespace Rechrysalis.Movement
             _maxX = _backGScript.MaxX;
             _minY = _backGScript.MinY;
             _maxY = _backGScript.MaxY;
+            _rb2d = GetComponent<Rigidbody2D>();
         }
         public void SetSpeed(float _speed)
         {
@@ -69,7 +72,7 @@ namespace Rechrysalis.Movement
                 // Debug.Log($"direction y speed after " + _direction.y);
             // _direction = TurnSpeedIntoRetreatRelativeSpeed(_direction);
             _direction.y *= TurnV2IntoApproachSpeedMult(_direction);
-            GetComponent<Rigidbody2D>().velocity = this._direction ;
+            _rb2d.velocity = this._direction ;
             SetIsMovingIfMoving(this._direction);
             // if (_controllerIndex == 0)
             // Debug.Log($"velocity " + GetComponent<Rigidbody2D>().velocity);
@@ -86,6 +89,18 @@ namespace Rechrysalis.Movement
         //     // Debug.Log($"direction y speed after " + _direction.y);
         //     return vectorBeforeRetreat;
         // }
+        public void PauseUnPause(bool pauseBool)
+        {
+            if (pauseBool)
+            {
+                _direction = _rb2d.velocity;
+                _rb2d.velocity = Vector2.zero;
+            }
+            else 
+            {
+                _rb2d.velocity = _direction;
+            }
+        }
         private float TurnV2IntoApproachSpeedMult(Vector2 vectorBeforeRetreat)
         {
             // Debug.Log($"rotation " + gameObject.transform.eulerAngles.z); 
