@@ -45,7 +45,9 @@ namespace Rechrysalis.Unit
         private ParentUnitHatchEffects _pUHE;
         private ParentHatchEffectAddRemove _parentHatchEffectAddRemove;
         private UnitActivation _unitActivation;
+        public UnitActivation UnitActivation => _unitActivation;
         private ChrysalisActivation _chrysalisActivation;
+        public ChrysalisActivation ChrysalilsActivation => _chrysalisActivation;
         private UpgradeUnit _upgradeUnit;
         private TargetScoreValue _targetScoreValue;
         public TargetScoreValue TargetScoreValue => _targetScoreValue;

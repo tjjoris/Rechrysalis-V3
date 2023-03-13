@@ -78,6 +78,8 @@ namespace Rechrysalis.Controller
                     pum?.Initialize(controllerIndex, parentUnitIndex, unitComp, compsAndUnits.PlayerUnits[controllerIndex], transform, _hatchEffectSOs, unitComp.ParentUnitClassList[parentUnitIndex]);
                     _hilightRingParentCreator?.CreateHilightRingParent(parentUnitIndex, unitComp.ParentUnitCount, unitOffset);
                     pum.HilightRingParentManager = _hilightRingParentCreator?.GetLastCreatedHilightRingParentManager();
+                    pum.UnitActivation.HilightRingParentManager = pum.HilightRingParentManager;
+                    pum.ChrysalilsActivation.HilightRingParentManager = pum.HilightRingParentManager;
                     // pum?.SetManaText(unitComp.ParentUnitClassList[parentUnitIndex].AdvUnitClass.ManaCost.ToString());
                     UnitManaCostText manaText = parentUnitGO.GetComponent<UnitManaCostText>();
                     manaText?.SetManaText(unitComp.ParentUnitClassList[parentUnitIndex].AdvUnitClass.ManaCost.ToString());

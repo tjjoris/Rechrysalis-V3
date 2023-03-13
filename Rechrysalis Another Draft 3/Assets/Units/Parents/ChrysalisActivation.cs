@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Attacking;
+using Rechrysalis.Controller;
 
 namespace Rechrysalis.Unit
 {
@@ -13,6 +14,10 @@ namespace Rechrysalis.Unit
         private ParentHealth _parentHealth;
         private TargetScoreValue _targetScoreValue;
         private ProgressBarManager _progressBarManager;
+        [SerializeField] private HilightRingParentManager _hilightRingParentManager;
+        public HilightRingParentManager HilightRingParentManager { get => _hilightRingParentManager; set => _hilightRingParentManager = value; }
+        
+        
         public void Initialize(ParentUnitManager parentUnitManager)
         {
             _parentUnitManager = parentUnitManager;

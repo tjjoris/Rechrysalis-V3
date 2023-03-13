@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.HatchEffect;
 using Rechrysalis.Attacking;
+using Rechrysalis.Controller;
 
 namespace Rechrysalis.Unit
 {
@@ -14,6 +15,8 @@ namespace Rechrysalis.Unit
         private ChrysalisActivation _chrysalisActivation;
         private ParentUnitHatchEffects _parentUnitHatchEffects;
         private ProgressBarManager _progressBarManager;
+        private HilightRingParentManager _hilightRingParentManager;
+        public HilightRingParentManager HilightRingParentManager {get { return _hilightRingParentManager;} set {_hilightRingParentManager = value;}}
         public void Initialize(ParentUnitManager parentUnitManager)
         {
             _parentUnitManager = parentUnitManager;
