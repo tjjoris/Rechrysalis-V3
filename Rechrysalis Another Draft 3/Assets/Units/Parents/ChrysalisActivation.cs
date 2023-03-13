@@ -42,6 +42,10 @@ namespace Rechrysalis.Unit
         }
         public void ActivateChrysalis(int chrysalisIndex)
         {
+            if (_parentUnitManager.CurrentSubUnit == null)
+            {
+                _parentUnitManager.CurrentSubUnit = _parentUnitManager.SubChrysalii[chrysalisIndex];
+            }
             if (_parentUnitManager.SubChrysalii[chrysalisIndex] == null) return;
             // if ((_chrysalisIndex == 0) && (_parentUnitManager.CurrentSubUnit != _parentUnitManager._subUnits[0])) return;
             // if (_parentUnitManager.CurrentSubUnit != _parentUnitManager.SubChrysalii[_chrysalisIndex])

@@ -236,8 +236,9 @@ namespace Rechrysalis.Controller
                         // _parentUnits[_parentUnitIndex].GetComponent<ParentHealth>()?.SetMaxHealth(_parentUnitManager.SubUnits[0].GetComponent<UnitManager>().UnitStats.HealthMax);
                         
                         // _parentUnits[_parentUnitIndex].GetComponent<ParentUnitManager>().ActivateInitialUnit();
-                        thisParentUnit.GetComponent<ParentHealth>().SetMaxHealth(thisParentUnit.SubUnits[0].GetComponent<UnitManager>().UnitClass.HPMax);
-                        thisParentUnit.GetComponent<UnitActivation>().ActivateUnit(0);
+                        // thisParentUnit.GetComponent<ParentHealth>().SetMaxHealth(thisParentUnit.SubUnits[0].GetComponent<UnitManager>().UnitClass.HPMax);
+                        // thisParentUnit.GetComponent<UnitActivation>().ActivateUnit(0);
+                        thisParentUnit.GetComponent<ChrysalisActivation>().ActivateChrysalis(0);
                     }
                 }
             }

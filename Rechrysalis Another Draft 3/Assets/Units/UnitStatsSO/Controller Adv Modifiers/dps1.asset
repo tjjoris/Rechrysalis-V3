@@ -24,7 +24,7 @@ MonoBehaviour:
   _manaMult: 1
   _buildTimeAdd: -0.4
   _buildTimeMult: 1
-  _hpMaxAdd: 0
+  _hpMaxAdd: 5
   _hpMaxMult: 1
   _rangeAdd: 0
   _dpsAdd: 9
@@ -34,3 +34,4 @@ MonoBehaviour:
   _attackWindDownAdd: 0
   _attackWindDownMult: 1
   _hatchEffectMultiplierAdd: 0
+  _hatchEffectDurationAdd: 0

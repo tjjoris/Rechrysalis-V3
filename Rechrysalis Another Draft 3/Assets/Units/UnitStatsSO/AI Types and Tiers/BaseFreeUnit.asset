@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191532707fea54f3c9e0a215f3f68c3f, type: 3}
   m_Name: BaseFreeUnit
   m_EditorClassIdentifier: 
-  _healthMultiplier: 3.4
-  _dpsMultiplier: 1
+  _healthMultiplier: 34
+  _dpsMultiplier: 2.5
   _range: 1
   _attackChargeUp: 0.5
   _attackWindDown: 1.7
