@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: BaseControllerUnit
   m_EditorClassIdentifier: 
   _healthMultiplier: 40
-  _dpsMultiplier: 20
-  _range: 5
+  _dpsMultiplier: 1
+  _range: 1
   _attackChargeUp: 0.8
   _attackWindDown: 1.7
   _manaMultiplier: 1
   _tier: 0
   _buildTimeMultiplier: 6
-  _projectileSpeed: 1
+  _projectileSpeed: 0.1

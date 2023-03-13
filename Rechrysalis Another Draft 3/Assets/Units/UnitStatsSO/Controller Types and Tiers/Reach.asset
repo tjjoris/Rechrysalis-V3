@@ -15,8 +15,8 @@ MonoBehaviour:
   _healthMultiplier: 1.1
   _dpsMultiplier: 1.1
   _range: 3.75
-  _attackChargeUp: 1
-  _attackWindDown: 1
+  _attackChargeUp: 0.7
+  _attackWindDown: 0.9
   _manaMultiplier: 10
   _tier: 0
   _buildTimeMultiplier: 1
