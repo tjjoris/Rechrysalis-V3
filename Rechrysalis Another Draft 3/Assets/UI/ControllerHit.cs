@@ -14,7 +14,7 @@ namespace Rechrysalis.UI
             _controllerHitGO.SetActive(true);
             _mainManager.Paused = true;
             // Time.timeScale = 0;
-            ControllerHitTimer();
+            StartCoroutine(ControllerHitTimer());
         }
         IEnumerator ControllerHitTimer()
         {
