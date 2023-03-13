@@ -27,35 +27,36 @@ namespace Rechrysalis.Unit
             _progressBarManager = GetComponent<ProgressBarManager>();
         }
         
-        public void ActivateUnit(int _unitIndex)
+        public void ActivateUnit(int unitIndex)
         {
             // Debug.Log($"activating");
             for (int _indexInSubUnits = 0; _indexInSubUnits < _parentUnitManager.SubUnits.Length; _indexInSubUnits++)
             {
-                if (_indexInSubUnits == _unitIndex)
+                if (_indexInSubUnits == unitIndex)
                 {
-                    _parentUnitManager.CurrentSubUnit = _parentUnitManager.SubUnits[_unitIndex];
-                    _parentUnitManager.SubUnits[_unitIndex].SetActive(true);
-                    _parentHealth.CurrentUnit = _parentUnitManager.SubUnits[_unitIndex].GetComponent<UnitManager>();
+                    _parentUnitManager.CurrentSubUnit = _parentUnitManager.SubUnits[unitIndex];
+                    _parentUnitManager.SubUnits[unitIndex].SetActive(true);
+                    _parentHealth.CurrentUnit = _parentUnitManager.SubUnits[unitIndex].GetComponent<UnitManager>();
                     _parentHealth.SetChrysalis(false);
-                    UnitManager _unitManager = _parentUnitManager.SubUnits[_unitIndex].GetComponent<UnitManager>();
+                    UnitManager _unitManager = _parentUnitManager.SubUnits[unitIndex].GetComponent<UnitManager>();
                     // int _tier = _unitManager.UnitStats.TierMultiplier.Tier - 1;
-                    HatchEffectSO _hatchEffectSO = _parentUnitManager.SubHatchEffects[_unitIndex];
-                    _parentUnitManager.SubUnits[_unitIndex].GetComponent<UnitManager>()?.RestartUnit();
+                    HatchEffectSO _hatchEffectSO = _parentUnitManager.SubHatchEffects[unitIndex];
+                    _parentUnitManager.SubUnits[unitIndex].GetComponent<UnitManager>()?.RestartUnit();
                     if (!_parentUnitManager.TheseUnits.ActiveUnits.Contains(_parentUnitManager.SubUnits[_indexInSubUnits]))
                     {
-                        _parentUnitManager.TheseUnits.ActiveUnits.Add(_parentUnitManager.SubUnits[_unitIndex]);
+                        _parentUnitManager.TheseUnits.ActiveUnits.Add(_parentUnitManager.SubUnits[unitIndex]);
                     }
                     // if (_hatchEffectSO != null)
-                    if (_unitIndex == 1)
+                    if (unitIndex == 1)
                     {
-                        _parentUnitHatchEffects.CreateHatchEffect(_parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, _unitIndex, true);
+                        _parentUnitHatchEffects.CreateHatchEffect(_parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitIndex, true);
                     }
                     _progressBarManager?.TintChargeUp();
                 }
                 _chrysalisActivation.DeactivateChrysalis(_indexInSubUnits);
             }
             _targetScoreValue.SetCurrentUnit(_parentUnitManager.CurrentSubUnit.GetComponent<Attack>());
+            _hilightRingParentManager.ActivateUnit(unitIndex);
         }
         public void DeactivateUnit(int _unitIndex)
         {
