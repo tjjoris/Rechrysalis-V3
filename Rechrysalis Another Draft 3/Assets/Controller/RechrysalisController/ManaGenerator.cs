@@ -19,7 +19,7 @@ namespace Rechrysalis.Controller
         private bool _generatingMana;
         private float _baseStartingAmount = 35;
         private float _startingAmountMult = 15;
-        private float _startingAmount = 25;
+        private float _startingAmount = 35;
         private GameObject[] _parentUnits;
         // private void Start() {
         //     _manaDisplay.SetManaNumber(_manaCurrent);
@@ -74,6 +74,10 @@ namespace Rechrysalis.Controller
             if (GetComponent<ControllerHealth>() != null)
                 GetComponent<ControllerHealth>()._controllerTakesDamageAction -= StartTimer;
             
+        }
+        public void InitializeManaAmount()
+        {
+            _startingAmount = _baseStartingAmount;
         }
         public void AddToStartingMana(float multiplier)
         {

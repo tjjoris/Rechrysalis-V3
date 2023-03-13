@@ -71,7 +71,7 @@ namespace Rechrysalis.Controller
             _parentUnitManagers = new List<ParentUnitManager>();
             // this._compCustomizer = _compCustomizer;
             _manaGenerator = GetComponent<ManaGenerator>();
-            
+            _manaGenerator?.InitializeManaAmount();
             _allUnits = new List<GameObject>();
             _hatchEffects = new List<GameObject>();
             _allUnits.Clear();
