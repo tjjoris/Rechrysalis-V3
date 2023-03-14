@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.Movement;
+using Rechrysalis.CameraControl;
 
 namespace Rechrysalis.Controller
 {
@@ -17,6 +18,7 @@ namespace Rechrysalis.Controller
         public ClickInfo ClickInfo {set {_clickInfo = value;} get{return _clickInfo;}}
         private GameObject _controller;
         private float _ringSize;
+        private float _controllerRadius = 1f;
         private UnitRingManager _unitRingManager;
         private HilightRingManager _hilightRingManager;
         private UpgradeRingManager _upgradeRingManager;
@@ -27,6 +29,8 @@ namespace Rechrysalis.Controller
         private int[] _upgradeCountArray;
         private int _unitUpgrading;
         private ControllerManager _controllerManager;
+        [SerializeField] private TransitionTargetingCamera _transitionTargetingCamera;
+        
         private int _controllerIndex = 0;
 
         
@@ -168,13 +172,13 @@ namespace Rechrysalis.Controller
             // LayerMask _mask = 1 << _layer;
             // int _results = 10;
             RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, 2f, _mask);
-            if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
+
+            if ((_touchTypeArray[_touchID] == TouchTypeEnum.controller) && (_mousePos.y < _controller.transform.position.y - _controllerRadius))
             {
-                if (hit)
-                {
-                    // Debug.Log($"hit " + hit.collider.name);
-                    // _hilightRingManager.ResetToOldAngle();
-                } 
+                _transitionTargetingCamera.TransitionToTargeting();
+            }
+            else if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
+            {
                 // else if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
                 {
                     // Debug.Log($"mouse pos " + _mousePos + " controller " + _controller.transform.position);

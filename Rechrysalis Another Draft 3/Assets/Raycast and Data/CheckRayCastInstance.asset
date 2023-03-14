@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553c101bc42e94bac813e0abe3e478a7, type: 3}
   m_Name: CheckRayCastInstance
   m_EditorClassIdentifier: 
+  _compsAndUnits: {fileID: 11400000, guid: abce2c694bba2494b88e77f2ae192b6f, type: 2}
   _clickInfo: {fileID: 0}
+  _transitionTargetingCamera: {fileID: 0}
