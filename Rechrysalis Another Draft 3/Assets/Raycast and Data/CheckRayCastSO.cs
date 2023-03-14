@@ -18,14 +18,14 @@ namespace Rechrysalis.Controller
         public ClickInfo ClickInfo {set {_clickInfo = value;} get{return _clickInfo;}}
         private GameObject _controller;
         private float _ringSize;
-        private float _controllerRadius = 1f;
+        private float _controllerRadius = 0.5f;
         private UnitRingManager _unitRingManager;
         private HilightRingManager _hilightRingManager;
         private UpgradeRingManager _upgradeRingManager;
         private float _unitRingOuterRadius;
         // private float _controllerRadius;
         public enum TouchTypeEnum {nothing, controller, map, friendlyUnit, unitRing, menu, other }
-        private TouchTypeEnum[] _touchTypeArray = new TouchTypeEnum[5];
+        [SerializeField]private TouchTypeEnum[] _touchTypeArray = new TouchTypeEnum[5];
         private int[] _upgradeCountArray;
         private int _unitUpgrading;
         private ControllerManager _controllerManager;
@@ -37,6 +37,7 @@ namespace Rechrysalis.Controller
         public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius)
         {
             // this._controllerRadius = _controllerRadius;
+            _transitionTargetingCamera = Camera.main.GetComponent<TransitionTargetingCamera>();
             this._upgradeRingManager = _upgradeRingManager;
             this._compsAndUnits = _compsAndUnits;
             _playerTargtList = _compsAndUnits.TargetsLists[0];

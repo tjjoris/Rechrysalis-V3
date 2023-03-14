@@ -91,7 +91,10 @@ namespace Rechrysalis.Movement
         // }
         public void PauseUnPause(bool pauseBool)
         {
-            Debug.Log($"pauseUnpause" + pauseBool);
+            if (_debugBool)
+            {
+                Debug.Log($"pauseUnpause" + pauseBool);
+            }
             if (pauseBool)
             {
                 _direction = _rb2d.velocity;

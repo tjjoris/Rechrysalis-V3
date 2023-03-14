@@ -32,7 +32,15 @@ namespace Rechrysalis.Controller
                 if (t.phase == TouchPhase.Began)
                 {
                     _checkRayCast.CheckRayCastDownFunction(Camera.main.ScreenToWorldPoint(t.position), t.fingerId);
-                }                
+                }   
+                else if ((t.phase == TouchPhase.Moved) || (t.phase == TouchPhase.Stationary))             
+                {
+                    _checkRayCast.CheckRayCastMoveFunction(Camera.main.ScreenToWorldPoint(t.position), t.fingerId);                    
+                }
+                else if (t.phase == TouchPhase.Ended)
+                {
+                    _checkRayCast.CheckRayCastReleaseFunction(Camera.main.ScreenToWorldPoint(t.position), t.fingerId);
+                }
                 i++;
             }
         }
