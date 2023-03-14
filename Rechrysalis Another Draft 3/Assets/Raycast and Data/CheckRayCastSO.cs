@@ -53,6 +53,13 @@ namespace Rechrysalis.Controller
             }
             _controllerManager = _clickInfo.ControlledController.GetComponent<ControllerManager>();            
         }
+        private void ResetAllTouchType()
+        {
+            for (int i=0; i< _touchTypeArray.Length; i++)
+            {
+                _touchTypeArray[i] = TouchTypeEnum.nothing;
+            }
+        }
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {
             Vector3 _mousePosV3;
@@ -177,6 +184,7 @@ namespace Rechrysalis.Controller
             if ((_touchTypeArray[_touchID] == TouchTypeEnum.controller) && (_mousePos.y < _controller.transform.position.y - _controllerRadius))
             {
                 _transitionTargetingCamera.TransitionToTargeting();
+                ResetAllTouchType();
             }
             else if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
             {
