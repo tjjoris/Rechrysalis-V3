@@ -13,6 +13,7 @@ namespace Rechrysalis.CameraControl
         [SerializeField] private Transform _controllerCameraTransform;
         [SerializeField] private bool _inTargetMode;
         [SerializeField] private ControllerManager _enemyControllerManager;
+        [SerializeField] private MainManager _mainManager;
         public bool InTargetMode => _inTargetMode;
         private bool _debugBool = true;
         public void TransitionToTargeting()
@@ -21,7 +22,7 @@ namespace Rechrysalis.CameraControl
             {
                 Debug.Log($"transition to targeting");
             }
-            // List<Vector2> enemyPosList = new List<Vector2>();
+            _mainManager.Paused = true;
             float xSum = 0;
             float ySum = 0;
             float count = 0;
@@ -29,7 +30,6 @@ namespace Rechrysalis.CameraControl
             {
                 if (_enemyControllerManager.ParentUnitManagers[i] != null)
                 {
-                    // enemyPosList.Add(_enemyControllerManager.ParentUnitManagers[i].transform.position);
                     xSum += _enemyControllerManager.ParentUnitManagers[i].transform.position.x;
                     ySum += _enemyControllerManager.ParentUnitManagers[i].transform.position.y;
                     count ++;
@@ -49,6 +49,7 @@ namespace Rechrysalis.CameraControl
             {
                 Debug.Log($"transtion to controller");                
             }
+            _mainManager.Paused = false;
             transform.position = _controllerCameraTransform.position;
             transform.parent = _controllerCameraTransform;
             _inTargetMode = false;

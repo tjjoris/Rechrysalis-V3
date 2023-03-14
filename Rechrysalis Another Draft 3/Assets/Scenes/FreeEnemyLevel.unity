@@ -2098,6 +2098,7 @@ MonoBehaviour:
   _controllerCameraTransform: {fileID: 1776846677}
   _inTargetMode: 0
   _enemyControllerManager: {fileID: 691481331}
+  _mainManager: {fileID: 1448413822}
 --- !u!1 &1282761965
 GameObject:
   m_ObjectHideFlags: 0
