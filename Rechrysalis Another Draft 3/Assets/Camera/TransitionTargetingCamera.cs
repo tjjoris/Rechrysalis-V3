@@ -28,7 +28,7 @@ namespace Rechrysalis.CameraControl
             float count = 0;
             for (int i=0; i<_enemyControllerManager.ParentUnitManagers.Count; i++)
             {
-                if (_enemyControllerManager.ParentUnitManagers[i] != null)
+                if (_enemyControllerManager.ParentUnitManagers[i].gameObject.activeInHierarchy)
                 {
                     xSum += _enemyControllerManager.ParentUnitManagers[i].transform.position.x;
                     ySum += _enemyControllerManager.ParentUnitManagers[i].transform.position.y;

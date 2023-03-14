@@ -187,7 +187,7 @@ namespace Rechrysalis.Controller
             // LayerMask _mask = 1 << _layer;
             // int _results = 10;
             RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, 2f, _mask);
-            if (_transitionTargetingCamera.InTargetMode)
+            if ((_transitionTargetingCamera.InTargetMode) && (_touchTypeArray[_touchID] == TouchTypeEnum.other))
             {
                 if (_mousePos.y > _touchPosDown[_touchID].y + _controllerRadius)
                 {
