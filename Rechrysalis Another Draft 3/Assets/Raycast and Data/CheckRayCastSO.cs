@@ -26,6 +26,7 @@ namespace Rechrysalis.Controller
         // private float _controllerRadius;
         public enum TouchTypeEnum {nothing, controller, map, friendlyUnit, unitRing, menu, other }
         [SerializeField]private TouchTypeEnum[] _touchTypeArray = new TouchTypeEnum[5];
+        [SerializeField] private Vector2[] _touchPosDown = new Vector2[5];
         private int[] _upgradeCountArray;
         private int _unitUpgrading;
         private ControllerManager _controllerManager;
@@ -34,10 +35,9 @@ namespace Rechrysalis.Controller
         private int _controllerIndex = 0;
 
         
-        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius)
+        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius, TransitionTargetingCamera transitionTargetingCamera)
         {
-            // this._controllerRadius = _controllerRadius;
-            _transitionTargetingCamera = Camera.main.GetComponent<TransitionTargetingCamera>();
+            _transitionTargetingCamera = transitionTargetingCamera;
             this._upgradeRingManager = _upgradeRingManager;
             this._compsAndUnits = _compsAndUnits;
             _playerTargtList = _compsAndUnits.TargetsLists[0];
@@ -67,7 +67,11 @@ namespace Rechrysalis.Controller
             CreateRayCastFunction(_mousePos, out _mousePosV3, out hit);
             // if ((hit) && (ControllerMouseOver(hit)))
             // {
-                if ((hit) && (ControllerMouseOver(hit)))
+                if (_transitionTargetingCamera.InTargetMode)
+                {
+                    _touchPosDown[_touchID] = _mousePos;
+                }
+                if ((!_transitionTargetingCamera.InTargetMode) && (hit) && (ControllerMouseOver(hit)))
                 {
                     // _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
                     // _clickInfo.ControlledController.GetComponent<Mover>().SetDirection(Vector2.zero);
@@ -80,7 +84,7 @@ namespace Rechrysalis.Controller
                     _touchTypeArray[_touchID] = TouchTypeEnum.other;
                 }
             // }
-            else if (UnitRingMouseOver(_mousePos, _controller.transform.position))
+            else if ((!_transitionTargetingCamera.InTargetMode) && (UnitRingMouseOver(_mousePos, _controller.transform.position)))
             {
                 int _unitInbounds = checkIfIntUnitBounds(_mousePos);
                 if ((_unitInbounds != -1) && (_controllerManager.ParentUnits[_unitInbounds] != null))
@@ -96,22 +100,25 @@ namespace Rechrysalis.Controller
                         Debug.Log($"friendly unit " + _unitInbounds);
                     }
                 }
-                else 
+                else if (!_transitionTargetingCamera.InTargetMode)
                 {
                     _hilightRingManager.SetOldAngle(RingAngle(_mousePos));
                     _touchTypeArray[_touchID] = TouchTypeEnum.unitRing;
                     _hilightRingManager.gameObject.SetActive(true);
                 }
+                else 
+                {
+                    _touchTypeArray[_touchID] = TouchTypeEnum.other;
+                }
             }
-            else if (false)
-            {
-                //menu clicked
-                _touchTypeArray[_touchID] = TouchTypeEnum.other;
-            }
-            else
+            else if(!_transitionTargetingCamera.InTargetMode)
             {//map clicked
                 MapClicked(_mousePos, _touchID);
                 _touchTypeArray[_touchID] = TouchTypeEnum.map;
+            }
+            else 
+            {
+                _touchTypeArray[_touchID] = TouchTypeEnum.other;
             }
         }
 
@@ -180,8 +187,14 @@ namespace Rechrysalis.Controller
             // LayerMask _mask = 1 << _layer;
             // int _results = 10;
             RaycastHit2D hit = Physics2D.Raycast(_mousePos, Vector2.zero, 2f, _mask);
-
-            if ((_touchTypeArray[_touchID] == TouchTypeEnum.controller) && (_mousePos.y < _controller.transform.position.y - _controllerRadius))
+            if (_transitionTargetingCamera.InTargetMode)
+            {
+                if (_mousePos.y > _touchPosDown[_touchID].y + _controllerRadius)
+                {
+                    _transitionTargetingCamera.TransitionToController();
+                }
+            }
+            else if ((_touchTypeArray[_touchID] == TouchTypeEnum.controller) && (_mousePos.y < _controller.transform.position.y - _controllerRadius))
             {
                 _transitionTargetingCamera.TransitionToTargeting();
                 ResetAllTouchType();

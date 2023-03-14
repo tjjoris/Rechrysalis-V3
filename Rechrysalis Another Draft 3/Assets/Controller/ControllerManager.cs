@@ -6,6 +6,7 @@ using Rechrysalis.Movement;
 using Rechrysalis.HatchEffect;
 using Rechrysalis.CompCustomizer;
 using Rechrysalis.Attacking;
+using Rechrysalis.CameraControl;
 
 namespace Rechrysalis.Controller
 {
@@ -48,6 +49,7 @@ namespace Rechrysalis.Controller
         private TargetScoreRanking _targetScoreRanking;
         // private CompCustomizerSO _compCustomizer;
         private ManaGenerator _manaGenerator;
+        [SerializeField] private TransitionTargetingCamera _transitionTargetingCamera;
         // public bool IsStopped
         // {
         //     set
@@ -82,7 +84,7 @@ namespace Rechrysalis.Controller
             }
             _click?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
             _touch?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
-            _checkRayCast?.Initialize(_compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius);
+            _checkRayCast?.Initialize(_compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius, _transitionTargetingCamera);
             _controllerFreeHatchEffectManager = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             if (_freeEnemyInitialize != null)
