@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BaseFreeUnit
   m_EditorClassIdentifier: 
   _healthMultiplier: 34
-  _dpsMultiplier: 2.5
+  _dpsMultiplier: 4.1
   _range: 1
   _attackChargeUp: 0.5
   _attackWindDown: 1.7

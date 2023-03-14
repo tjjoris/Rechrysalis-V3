@@ -57,6 +57,7 @@ namespace Rechrysalis.Unit
             }
             _targetScoreValue.SetCurrentUnit(_parentUnitManager.CurrentSubUnit.GetComponent<Attack>());
             _hilightRingParentManager.ActivateUnit(unitIndex);
+            _parentUnitManager.CurrentSubUnit?.GetComponent<Attack>()?.ResetUnitAttack();
         }
         public void DeactivateUnit(int _unitIndex)
         {
