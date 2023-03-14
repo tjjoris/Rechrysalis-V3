@@ -9,8 +9,10 @@ namespace Rechrysalis.CameraControl
     public class TransitionTargetingCamera : MonoBehaviour
     {
         [SerializeField] private CameraFollowGOManager _cameraFollowGOManager;
+        [SerializeField] private Transform _cameraFollowerParentTransform;
         [SerializeField] private Transform _controllerCameraTransform;
         [SerializeField] private bool _inTargetMode;
+        [SerializeField] private ControllerManager _enemyControllerManager;
         public bool InTargetMode => _inTargetMode;
         private bool _debugBool = true;
         public void TransitionToTargeting()
@@ -19,6 +21,24 @@ namespace Rechrysalis.CameraControl
             {
                 Debug.Log($"transition to targeting");
             }
+            // List<Vector2> enemyPosList = new List<Vector2>();
+            float xSum = 0;
+            float ySum = 0;
+            float count = 0;
+            for (int i=0; i<_enemyControllerManager.ParentUnitManagers.Count; i++)
+            {
+                if (_enemyControllerManager.ParentUnitManagers[i] != null)
+                {
+                    // enemyPosList.Add(_enemyControllerManager.ParentUnitManagers[i].transform.position);
+                    xSum += _enemyControllerManager.ParentUnitManagers[i].transform.position.x;
+                    ySum += _enemyControllerManager.ParentUnitManagers[i].transform.position.y;
+                    count ++;
+                }
+            }
+            xSum /= count;
+            ySum /= count;
+            Vector2 cameraFollowPos = new Vector2(xSum, ySum);
+            _cameraFollowerParentTransform.position = cameraFollowPos;
             transform.position = _cameraFollowGOManager.transform.position;
             transform.parent = _cameraFollowGOManager.transform;
             _inTargetMode = true;
