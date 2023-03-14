@@ -57,8 +57,8 @@ namespace Rechrysalis.Controller
             // {
                 if ((hit) && (ControllerMouseOver(hit)))
                 {
-                    _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
-                    _clickInfo.ControlledController.GetComponent<Mover>().SetDirection(Vector2.zero);
+                    // _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
+                    // _clickInfo.ControlledController.GetComponent<Mover>().SetDirection(Vector2.zero);
                     _touchTypeArray[_touchID] = TouchTypeEnum.controller;
                 }
                 else if ((hit) && (UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)))
@@ -208,7 +208,12 @@ namespace Rechrysalis.Controller
             RaycastHit2D hit;
             CreateRayCastFunction(_mousePos, out _mousePosV3, out hit);
             // Debug.Log($"hit" + hit.collider.name);
-            // Debug.Log($"controller pos " + _controller.transform.position); 
+            // Debug.Log($"controller pos " + _controller.transform.position);
+            if ((hit) && (ControllerMouseOver(hit)) && (_touchTypeArray[_touchID] == TouchTypeEnum.controller))
+            {
+                _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
+                _clickInfo.ControlledController.GetComponent<Mover>().SetDirection(Vector2.zero);
+            } 
             if (_touchTypeArray[_touchID] == TouchTypeEnum.friendlyUnit)
             {      
                 // Debug.Log($"mouse pos" + _mousePos);
