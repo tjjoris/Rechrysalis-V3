@@ -72,13 +72,13 @@ namespace Rechrysalis.Unit
         public System.Action<float> _unitDealsDamage;
         public void Initialize(ControllerManager controllerManager, int controllerIndex, UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnits, bool isChrysalis)
         {
+            _controllerManager = controllerManager;
+            _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
             Mover mover = _controllerManager.GetComponent<Mover>();
             if (_parentUnitManager.GetComponent<Mover>() != null)
             {
                 mover = _parentUnitManager.GetComponent<Mover>();
             }
-            _controllerManager = controllerManager;
-            _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
             _controllerIndex = controllerIndex;
             _compsAndUnits = compsAndUnits;
             _enemyControllerManager = _compsAndUnits.ControllerManagers[GetOppositeController.ReturnOppositeController(controllerIndex)];
@@ -249,6 +249,7 @@ namespace Rechrysalis.Unit
                 // _projectilesPool?.TickProjectiles(_timeAmount);
                 _chrysalisTimer?.Tick(timeAmount);
                 _moveSpeedAddManager?.Tick(timeAmount);
+                _siegeManager?.Tick(timeAmount);
             // }
         }
         public bool IsEnemy(int _controllerIndex)

@@ -62,6 +62,7 @@ namespace Rechrysalis.Movement
         public void AddSiegeInt(int intToAdd)
         {
             _siegeInt += intToAdd;
+            SetDirection(_direction);
         }
         public void ResetMovement()
         {   
@@ -72,22 +73,24 @@ namespace Rechrysalis.Movement
         // {
         //     _pushBackMovement = _y;
         // }
-        public void SetDirection(Vector2 direction)
+        public void SetDirection(Vector2 directionInput)
         {
-            direction.Normalize();          
-            float ySpeedMult = TurnV2IntoApproachSpeedMult(direction);
+            Vector2 directionToSet = Vector2.zero;
+            directionInput.Normalize();          
             if (_siegeInt <= 0)
             {
-                _direction = direction * _speedVaried;
+                float ySpeedMult = TurnV2IntoApproachSpeedMult(directionInput);
+                _direction = directionInput * _speedVaried;
+                _direction.y = _direction.y * ySpeedMult;
+                directionToSet = _direction;
             }
             else {
-                _direction = Vector2.zero;
+                directionToSet = Vector2.zero;
             }
-            _direction.y = _direction.y * ySpeedMult;
-            _rb2d.velocity = this._direction ;
+            _rb2d.velocity = directionToSet ;
             if (_debugBool)
             {
-                Debug.Log($"speed " +_direction.magnitude + " controller " + _controllerIndex);
+                Debug.Log($"speed " +directionToSet.magnitude + " controller " + _controllerIndex);
             }
             SetIsMovingIfMoving(this._direction);
         }
