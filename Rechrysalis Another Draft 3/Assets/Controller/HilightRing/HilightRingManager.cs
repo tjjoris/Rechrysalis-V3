@@ -18,6 +18,11 @@ namespace Rechrysalis.Controller
             _hilightRingParentCreator = GetComponent<HilightRingParentCreator>(); 
             _hilightRingParentCreator?.Initialize(transform);        
         }
+        public void SetAngleToUnitRing()
+        {
+            float _newAngle = AnglesMath.LimitAngle((_unitRingManager.UnitRingAngle));
+            transform.eulerAngles = new Vector3 (0, 0, _newAngle);
+        }
         public void SetAngle(float _angle)
         {
             float _newAngle = AnglesMath.LimitAngle((_angle - 90 - _oldAngle) );

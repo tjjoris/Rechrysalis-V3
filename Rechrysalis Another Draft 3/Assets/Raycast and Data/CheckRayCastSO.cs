@@ -199,6 +199,10 @@ namespace Rechrysalis.Controller
                 _transitionTargetingCamera.TransitionToTargeting();
                 ResetAllTouchType();
             }
+            else if (((_touchTypeArray[_touchID] == TouchTypeEnum.friendlyUnit) || (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)) && (hit))
+            {
+                _hilightRingManager.SetAngleToUnitRing();
+            }
             else if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
             {
                 // else if (_touchTypeArray[_touchID] == TouchTypeEnum.unitRing)
