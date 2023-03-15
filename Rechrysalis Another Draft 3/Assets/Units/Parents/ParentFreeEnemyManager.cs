@@ -46,7 +46,7 @@ namespace Rechrysalis.Unit
             GetComponent<ParentHealth>().CurrentUnit = _unitManager;
             _mover = GetComponent<Mover>();
             _mover.IsStopped = false;
-            _mover?.SetSpeed(_compsAndUnits.Speed);
+            _mover?.SetBaseSpeed(_compsAndUnits.Speed);
             _attack = _unitManager.GetComponent<Attack>();
             // _aiAttackTimer = _unitManager.GetComponent<AIAttackChargeUpTimer>();
             _freeApproach = GetComponent<FreeEnemyApproach>();
@@ -85,7 +85,7 @@ namespace Rechrysalis.Unit
             GetComponent<ParentHealth>().CurrentUnit = _unitManager;
             _mover = GetComponent<Mover>();
             _mover.IsStopped = false;
-            _mover?.SetSpeed(_compsAndUnits.Speed);
+            _mover?.SetBaseSpeed(_compsAndUnits.Speed);
             _attack = _unitManager.GetComponent<Attack>();
             // _aiAttackTimer = _unitManager.GetComponent<AIAttackChargeUpTimer>();
             _freeApproach = GetComponent<FreeEnemyApproach>();

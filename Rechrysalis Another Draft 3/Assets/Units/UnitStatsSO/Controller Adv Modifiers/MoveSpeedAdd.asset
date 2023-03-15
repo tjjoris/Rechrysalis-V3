@@ -36,4 +36,4 @@ MonoBehaviour:
   _hatchEffectMultiplierAdd: 0
   _hatchEffectDurationAdd: 0
   _sacrificeControllerAmount: 0
-  _moveSpeedAdd: 1
+  _moveSpeedAdd: 2

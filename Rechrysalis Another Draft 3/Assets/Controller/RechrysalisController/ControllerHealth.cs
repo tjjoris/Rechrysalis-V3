@@ -11,7 +11,7 @@ namespace Rechrysalis.Controller
 
     public class ControllerHealth : MonoBehaviour
     {
-        private bool _debugBool = true;
+        private bool _debugBool = false;
         [SerializeField] private float _healthMax;
         [SerializeField] private float _healthCurrent;
         [SerializeField] private ControllerHPBar _controllerHPBar;

@@ -24,11 +24,13 @@ namespace Rechrysalis.Movement
         private float _retreatSpeedMult = 0.15f;
         [SerializeField] private Vector3 _moveVector;        
         [SerializeField] private Vector2 _direction = Vector2.zero;
-        [SerializeField] private Vector2 _directionWhilePaused = Vector2.zero;
         public Vector2 Direction {set{_direction = value;}get {return _direction;}}
+        [SerializeField] private Vector2 _directionBase;
+        [SerializeField] private Vector2 _directionWhilePaused = Vector2.zero;
         [SerializeField] bool _isStopped = true;
         public bool IsStopped {set{_isStopped = value;}get {return _isStopped;}}
-        [SerializeField] float _speed;
+        [SerializeField] private float _baseSpeed;
+        [SerializeField] private float _speed;
         private CausesPushBack _causesPushBack;
         private ParentUnitManager _parentUnitManager;
         private Rigidbody2D _rb2d;
@@ -46,9 +48,15 @@ namespace Rechrysalis.Movement
             _maxY = _backGScript.MaxY;
             _rb2d = GetComponent<Rigidbody2D>();
         }
-        public void SetSpeed(float _speed)
+        public void SetBaseSpeed(float baseSpeed)
         {
-            this._speed = _speed;
+            this._baseSpeed = baseSpeed;
+            _speed = _baseSpeed;
+        }
+        public void AddSpeed(float speedToAdd)
+        {
+            _speed += speedToAdd;
+            SetDirection(_direction);
         }
         public void ResetMovement()
         {   
@@ -61,8 +69,13 @@ namespace Rechrysalis.Movement
         // }
         public void SetDirection(Vector2 direction)
         {
-            // Debug.Log($"direction" + _direction);            
+            if (_debugBool)
+            {
+                Debug.Log($"set direction" + _direction);  
+            }
+            direction.Normalize();          
             this._direction = (Vector2.ClampMagnitude(direction, 1) * _speed);
+            _direction = direction * _speed;
             // Debug.Log($"rotation " + gameObject.transform.eulerAngles.z);            
                 // float ySpeed = (Mathf.Cos(Mathf.Deg2Rad * (gameObject.transform.eulerAngles.z))) * _direction.y;
                 // Debug.Log($"y speed " + ySpeed);
