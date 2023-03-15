@@ -30,7 +30,8 @@ namespace Rechrysalis.Movement
         [SerializeField] bool _isStopped = true;
         public bool IsStopped {set{_isStopped = value;}get {return _isStopped;}}
         [SerializeField] private float _baseSpeed;
-        [SerializeField] private float _speed;
+        [SerializeField] private float _speedVaried;
+        [SerializeField] private int _siegeInt;
         private CausesPushBack _causesPushBack;
         private ParentUnitManager _parentUnitManager;
         private Rigidbody2D _rb2d;
@@ -51,12 +52,16 @@ namespace Rechrysalis.Movement
         public void SetBaseSpeed(float baseSpeed)
         {
             this._baseSpeed = baseSpeed;
-            _speed = _baseSpeed;
+            _speedVaried = _baseSpeed;
         }
         public void AddSpeed(float speedToAdd)
         {
-            _speed += speedToAdd;
+            _speedVaried += speedToAdd;
             SetDirection(_direction);
+        }
+        public void AddSiegeInt(int intToAdd)
+        {
+            _siegeInt += intToAdd;
         }
         public void ResetMovement()
         {   
@@ -71,7 +76,13 @@ namespace Rechrysalis.Movement
         {
             direction.Normalize();          
             float ySpeedMult = TurnV2IntoApproachSpeedMult(direction);
-            _direction = direction * _speed;
+            if (_siegeInt <= 0)
+            {
+                _direction = direction * _speedVaried;
+            }
+            else {
+                _direction = Vector2.zero;
+            }
             _direction.y = _direction.y * ySpeedMult;
             _rb2d.velocity = this._direction ;
             if (_debugBool)
