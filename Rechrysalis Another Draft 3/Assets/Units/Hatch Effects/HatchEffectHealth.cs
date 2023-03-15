@@ -7,7 +7,7 @@ namespace Rechrysalis.HatchEffect
 {
     public class HatchEffectHealth : MonoBehaviour
     {
-        bool debugBool = true;
+        bool debugBool = false;
         private float _healthMultMult = 0.5f;
         private float _healthMult;
         [SerializeField] private float _HPMax = 30f;

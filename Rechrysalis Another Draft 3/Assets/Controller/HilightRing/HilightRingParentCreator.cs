@@ -6,7 +6,7 @@ namespace Rechrysalis.Controller
 {
     public class HilightRingParentCreator : MonoBehaviour
     {
-        private bool _debugBool = true;
+        private bool _debugBool = false;
         [SerializeField] private HilightRingParentManager _lastCreatedHilightRingParent;
         public HilightRingParentManager LastCreatedHilightRingParent => _lastCreatedHilightRingParent;
 

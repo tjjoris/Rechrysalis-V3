@@ -8,7 +8,7 @@ namespace Rechrysalis.CompCustomizer
 {
     public abstract class DropBackGround : MonoBehaviour, IDropHandler
     {
-        private bool debugBool = false;
+        private bool _debugBool = false;
         [SerializeField] protected Transform _transformToDropUpgrade;
         [SerializeField] protected CompsAndUnitsSO _compsAndUnitsSO;
         // public Action<CompUpgradeManager> _buttonDropped;
@@ -19,18 +19,21 @@ namespace Rechrysalis.CompCustomizer
         }
         public void OnDrop(PointerEventData eventData)
         {
-            if (debugBool)
+            if (_debugBool)
                 Debug.Log($"ondrop called");
             CompUpgradeManager compUpgradeManager = eventData.pointerDrag.GetComponent<CompUpgradeManager>();
             if (compUpgradeManager != null)
             {
-                if (debugBool)  Debug.Log($"the button is " + compUpgradeManager.GetUpgradeTypeClass().GetUpgradeType());
+                if (_debugBool)  Debug.Log($"the button is " + compUpgradeManager.GetUpgradeTypeClass().GetUpgradeType());
                 DropUpgrade(compUpgradeManager);
             }
         }
         protected virtual void DropUpgrade(CompUpgradeManager compUpgradeManager)
         {            
-            Debug.Log($"drop to transform ");
+            if (_debugBool)
+            {
+                Debug.Log($"drop to transform ");
+            }
             compUpgradeManager.ParentAfterDrag = _transformToDropUpgrade.transform;
         }        
     }

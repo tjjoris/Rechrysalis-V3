@@ -8,6 +8,7 @@ namespace Rechrysalis.CameraControl
     
     public class TransitionTargetingCamera : MonoBehaviour
     {
+        private bool _debugBool = false;
         [SerializeField] private CameraFollowGOManager _cameraFollowGOManager;
         [SerializeField] private Transform _cameraFollowerParentTransform;
         [SerializeField] private Transform _controllerCameraTransform;
@@ -15,7 +16,6 @@ namespace Rechrysalis.CameraControl
         [SerializeField] private ControllerManager _enemyControllerManager;
         [SerializeField] private MainManager _mainManager;
         public bool InTargetMode => _inTargetMode;
-        private bool _debugBool = true;
         public void TransitionToTargeting()
         {
             if (_debugBool)

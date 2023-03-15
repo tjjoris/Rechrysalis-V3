@@ -12,7 +12,7 @@ namespace Rechrysalis.Controller
 {
     public class ControllerManager : MonoBehaviour
     {
-        private bool _debugLog = false;
+        private bool _debugBool = false;
         [SerializeField] private int _controllerIndex;        
         [SerializeField] private CheckRayCastSO _checkRayCast;
         [SerializeField] private Click _click;
@@ -358,7 +358,7 @@ namespace Rechrysalis.Controller
         }
         public void ActivateChrysalis(int _parentUnit, int _childUnit)
         {
-            if (_debugLog)
+            if (_debugBool)
             {
                 Debug.Log($"controller activate chrysalis " + _parentUnit);
             }
@@ -377,7 +377,10 @@ namespace Rechrysalis.Controller
         public void AddHatchEffect(GameObject _hatchEffect, int _parentIndex, int _unitIndex, bool _effectAll)
         {
             {
-                Debug.Log($" add hatch effect " + _hatchEffect.name + " for parents" + _parentIndex + "unit " + _unitIndex);
+                if (_debugBool)
+                {
+                    Debug.Log($" add hatch effect " + _hatchEffect.name + " for parents" + _parentIndex + "unit " + _unitIndex);
+                }
                 for (int _parentLoopIndex = 0; _parentLoopIndex < _parentUnits.Length; _parentLoopIndex++)
                 {
                     if (_parentUnits[_parentLoopIndex] != null)

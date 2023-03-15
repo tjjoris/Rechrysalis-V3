@@ -11,6 +11,7 @@ namespace Rechrysalis.CompCustomizer
 {
     public class MainCompCustomizerManager : MonoBehaviour
     {
+        private bool _debugBool = false;
         [SerializeField] private CompCustomizerSO _compCustomizerSO;
         public CompCustomizerSO CompCustomizerSO { get{ return _compCustomizerSO; } set{ _compCustomizerSO = value; } }
         [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;
@@ -21,7 +22,6 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private CompSO _compSO;
         [SerializeField] private ControllerHPTokens _controllerHPTokens;
         public CompSO CompSO { get{ return _compSO; } set{ _compSO = value; } }
-        [SerializeField] private bool _debugBool = true;
         [SerializeField] private Transform _movingButtonHolder;
         [SerializeField] private LevelDisplay _levelDisplay;
         private ContinueReturnsToStart _continueReturnsToStart;
@@ -53,7 +53,10 @@ namespace Rechrysalis.CompCustomizer
         {
             if (_compInitialize.CheckIfCanContinue())
             {
-                Debug.Log($"continue");
+                if (_debugBool)
+                {
+                    Debug.Log($"continue");
+                }
                 SetComp();
                 // if (_compsAndUnitsSO.Level < _compsAndUnitsSO.Levels.Length)
                 // SceneManager.LoadScene("FreeEnemyLevel");

@@ -9,6 +9,7 @@ namespace Rechrysalis.HatchEffect
 {
     public class HatchEffectManager : MonoBehaviour
     {
+        private bool _debugBool = false;
         private int _parentIndex;
         private int _unitIndex;
         private HatchEffectSO _hatchEffectSO;
@@ -39,7 +40,10 @@ namespace Rechrysalis.HatchEffect
         public void Initialize(HatchEffectSO _hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass)
         {
             _unitClass = advUnitClass;
-            Debug.Log($"HE Initialize " + _hatchEffectSO.HatchEffectName +  " tier " + _tier);
+            if (_debugBool)
+            {
+                Debug.Log($"HE Initialize " + _hatchEffectSO.HatchEffectName +  " tier " + _tier);
+            }
             this._parentIndex = _parentIndex;
             this._unitIndex = _unitIndex;
             this._affectAll = _affectAll;
