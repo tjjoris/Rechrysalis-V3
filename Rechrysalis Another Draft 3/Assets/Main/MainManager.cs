@@ -47,6 +47,7 @@ namespace Rechrysalis
                 }
             }
             _backGroundManager?.Initialize();
+            UpdatePreferances();
         }
 
         private void FixedUpdate()

@@ -10,6 +10,10 @@ namespace Rechrysalis.UI
         [SerializeField] private Toggle _toggle;
         [SerializeField] private PlayerPrefsInteract _playerPrefsInteract;
 
+        private void Start()
+        {
+            _toggle.isOn = _playerPrefsInteract.GetTargetDuringTargetMode();
+        }
         public void TogglePressed()
         {
             _playerPrefsInteract.SetTargetDuringTargetMode(_toggle.isOn);
