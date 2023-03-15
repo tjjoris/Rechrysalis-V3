@@ -11,6 +11,7 @@ namespace Rechrysalis.Movement
 {
     public class Mover : MonoBehaviour
     {
+        private MainManager _mainManager;
         private bool _debugBool = true;
         [SerializeField] int _controllerIndex;
         [SerializeField] private GameObject _backG;
@@ -37,8 +38,9 @@ namespace Rechrysalis.Movement
         private Rigidbody2D _rb2d;
         public Rigidbody2D RB2D => _rb2d;
         public Action _resetChargeUp;
-        public void Initialize(int _controllerIndex)
+        public void Initialize(int _controllerIndex, MainManager mainManager)
         {
+            _mainManager = mainManager;
             _parentUnitManager = GetComponent<ParentUnitManager>();
             _causesPushBack = GetComponent<CausesPushBack>();
             this._controllerIndex = _controllerIndex;
@@ -78,7 +80,7 @@ namespace Rechrysalis.Movement
         {
             Vector2 directionToSet = Vector2.zero;
             directionInput.Normalize();          
-            if (_siegeInt <= 0)
+            if ((_siegeInt <= 0) && (!_mainManager.Paused))
             {
                 float ySpeedMult = TurnV2IntoApproachSpeedMult(directionInput);
                 _direction = directionInput * _speedVaried;

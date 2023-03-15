@@ -29,7 +29,7 @@ namespace Rechrysalis.Controller
         private CompSO _unitComp; 
         private float _unitRingOutRadius;
         private float _unitRingAngle = 90f;
-        public void Initialize(int controllerIndex, CompSO unitComp, CompsAndUnitsSO compsAndUnits, UnitRingManager unitRingManager, HilightRingManager hilightRingManager, UpgradeRingManager upgradeRingManager, float unitRingOuterRadius)
+        public void Initialize(int controllerIndex, CompSO unitComp, CompsAndUnitsSO compsAndUnits, UnitRingManager unitRingManager, HilightRingManager hilightRingManager, UpgradeRingManager upgradeRingManager, float unitRingOuterRadius, MainManager mainManager)
         {
            _controllerManager = GetComponent<ControllerManager>(); 
            _hilightRingManager = _controllerManager.HilightRingManager;
@@ -75,7 +75,7 @@ namespace Rechrysalis.Controller
                     ParentUnitManager pum = parentUnitGO.GetComponent<ParentUnitManager>();
                     _controllerManager.ParentUnitManagers.Add(pum);
                     HatchEffectSO[] _hatchEffectSOs = SetHatchEffectSOs(parentUnitIndex);
-                    pum?.Initialize(controllerIndex, parentUnitIndex, unitComp, compsAndUnits.PlayerUnits[controllerIndex], transform, _hatchEffectSOs, unitComp.ParentUnitClassList[parentUnitIndex]);
+                    pum?.Initialize(controllerIndex, parentUnitIndex, unitComp, compsAndUnits.PlayerUnits[controllerIndex], transform, _hatchEffectSOs, unitComp.ParentUnitClassList[parentUnitIndex], mainManager);
                     _hilightRingParentCreator?.CreateHilightRingParent(parentUnitIndex, unitComp.ParentUnitCount, unitOffset);
                     pum.HilightRingParentManager = _hilightRingParentCreator?.GetLastCreatedHilightRingParentManager();
                     pum.HilightRingParentManager.GetComponent<RotateParentUnit>()?.Initialize(_controllerManager.transform);

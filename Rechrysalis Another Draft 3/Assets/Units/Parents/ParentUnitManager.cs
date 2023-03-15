@@ -87,7 +87,7 @@ namespace Rechrysalis.Unit
             get {return _isStopped;}
          }
 
-        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO unitComp, PlayerUnitsSO _theseUnits, Transform controllertransform, HatchEffectSO[] _subHatchEffects, ParentUnitClass parentUnitClass)
+        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO unitComp, PlayerUnitsSO _theseUnits, Transform controllertransform, HatchEffectSO[] _subHatchEffects, ParentUnitClass parentUnitClass, MainManager mainManager)
         {
             _controllerManager = controllertransform.GetComponent<ControllerManager>();
             _enemyControllerManager = _controllerManager.EnemyController;
@@ -126,7 +126,7 @@ namespace Rechrysalis.Unit
             _freeApproach?.Initialize(_theseUnits, _enemyControllerManager.GetComponent<Mover>());
             _parentFreeEnemyManager = GetComponent<ParentFreeEnemyManager>();
             _parentUnitMover = GetComponent<Mover>();
-            _parentUnitMover?.Initialize(_controllerIndex);
+            _parentUnitMover?.Initialize(_controllerIndex, mainManager);
             _priorityScoreChrysalis = GetComponent<PriorityScoreChrysalis>();
             _priorityScoreChrysalis?.Initialize(_enemyControllerManager);
             _progressBarManager = GetComponent<ProgressBarManager>();

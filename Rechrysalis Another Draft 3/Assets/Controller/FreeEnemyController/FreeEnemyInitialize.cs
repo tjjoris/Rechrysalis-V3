@@ -13,6 +13,7 @@ namespace Rechrysalis.Controller
     public class FreeEnemyInitialize : MonoBehaviour
     {
         private bool _debugBool  = false;
+        private MainManager _mainManager;
         // [SerializeField] private FreeUnitLayoutSO _freeEnemyCompLayout;
         [SerializeField] private GameObject _FreeUnitPrefab;
         private int _controllerIndex;
@@ -27,8 +28,9 @@ namespace Rechrysalis.Controller
         // private int _controllerIndex;
         private List<GameObject> _allUnits;        
         private int _waveIndex;
-        public void Initialize(int controllerIndex, ControllerManager enemyController, CompSO compSO, PlayerUnitsSO playerUnitsSO, CompsAndUnitsSO compsAndUnits, FreeUnitCompSO freeUnitCompSO, CompCustomizerSO compCustomizer)        
+        public void Initialize(int controllerIndex, ControllerManager enemyController, CompSO compSO, PlayerUnitsSO playerUnitsSO, CompsAndUnitsSO compsAndUnits, FreeUnitCompSO freeUnitCompSO, CompCustomizerSO compCustomizer, MainManager mainManager)        
         {
+            _mainManager = mainManager;
             _controllerManager = GetComponent<ControllerManager>();
             this._controllerIndex = controllerIndex;
             this._enemyController = enemyController;
@@ -101,7 +103,7 @@ namespace Rechrysalis.Controller
                         // UnitManager _unitManager = newFreeEnemy.GetComponent<UnitManager>();
                         // newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);   
                         ParentUnitManager parentUnitManager = newFreeEnemy.GetComponent<ParentUnitManager>();
-                        parentUnitManager?.Initialize(_controllerIndex, _unitInWaveIndex, compSO, playerUnitsSO, transform, null, parentUnitClass);
+                        parentUnitManager?.Initialize(_controllerIndex, _unitInWaveIndex, compSO, playerUnitsSO, transform, null, parentUnitClass, _mainManager);
                         parentUnitManager.ParentUnitClass = parentUnitClass;
                         _controllerManager.ParentUnitManagers.Add(parentUnitManager);
                         Mover parentUnitMover = parentUnitManager.GetComponent<Mover>();
@@ -114,7 +116,7 @@ namespace Rechrysalis.Controller
                         _freeParentManager?.Initialize(_controllerManager, parentUnitClass.BasicUnitClass, _unitInWaveIndex, compsAndUnits, _controllerIndex);
                         parentUnitManager.ChildUnitManagers.Add(_freeParentManager.BasicUnitManager);
                         newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(_unitStats.HealthMaxBasic);
-                        newFreeEnemy.GetComponent<Mover>()?.Initialize(controllerIndex);
+                        newFreeEnemy.GetComponent<Mover>()?.Initialize(controllerIndex, _mainManager);
                         playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
                         _allUnits.Add(_freeParentManager.UnitManager.gameObject);
                         _controllerFreeHatch?.SetUnitsArray(newFreeEnemy, _unitInWaveIndex);

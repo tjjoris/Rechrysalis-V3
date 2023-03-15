@@ -27,6 +27,7 @@ namespace Rechrysalis
         [SerializeField] ProjectilesHolder _projectilesHolder;
         [SerializeField] BackgroundManager _backGroundManager;
         [SerializeField] private LevelDisplay _levelDisplay;
+        [SerializeField] private PlayerPrefsInteract _playerPrefsInteract;
 
         private void Awake() {
             // _compsAndUnitsSO.CompsSO = _compSO;
@@ -41,7 +42,7 @@ namespace Rechrysalis
                 {
                     if (_controllerManager[i] != null) 
                     {
-                        _controllerManager[i].Initialize(i, _playerUnitsSO, _compSO[i], _controllerManager[GetOppositeController.ReturnOppositeController(i)], _compsAndUnitsSO, _compCustomizer);
+                        _controllerManager[i].Initialize(i, _playerUnitsSO, _compSO[i], _controllerManager[GetOppositeController.ReturnOppositeController(i)], _compsAndUnitsSO, _compCustomizer, this);
                     }
                 }
             }
@@ -92,6 +93,27 @@ namespace Rechrysalis
                 if (controllerManager != null)
                 {
                     controllerManager.PauseUnPause(pauseBool);
+                }
+            }
+        }
+        private void OnEnable()
+        {
+            _playerPrefsInteract._changePlayerPrefs += UpdatePreferances;
+        }
+        private void OnDisable()
+        {
+            _playerPrefsInteract._changePlayerPrefs -= UpdatePreferances;
+        }
+        private void UpdatePreferances()
+        {
+            foreach (ControllerManager controllerManager in _controllerManager)
+            {
+                if (controllerManager != null)
+                {
+                    if (controllerManager.CheckRayCast != null)
+                    {
+                        controllerManager.CheckRayCast.TargetDuringTargetMode = _playerPrefsInteract.GetTargetDuringTargetMode();
+                    }
                 }
             }
         }

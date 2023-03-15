@@ -15,6 +15,7 @@ namespace Rechrysalis.Controller
         private bool _debugBool = false;
         [SerializeField] private int _controllerIndex;        
         [SerializeField] private CheckRayCastSO _checkRayCast;
+        public CheckRayCastSO CheckRayCast => _checkRayCast;
         [SerializeField] private Click _click;
         [SerializeField] private TouchSO _touch;
         [SerializeField] private GameObject[] _parentUnits;
@@ -63,7 +64,7 @@ namespace Rechrysalis.Controller
         //     }
         // }
 
-        public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits, CompCustomizerSO _compCustomizer) 
+        public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits, CompCustomizerSO _compCustomizer, MainManager mainManager) 
         {
             this._controllerIndex = _controllerIndex;
             this._playerUnitsSO = _playerUnitsSO;
@@ -79,7 +80,7 @@ namespace Rechrysalis.Controller
             _allUnits.Clear();
             _mover = GetComponent<Mover>();
             if (_mover != null) {
-                _mover?.Initialize(_controllerIndex);
+                _mover?.Initialize(_controllerIndex, mainManager);
                 _mover?.SetBaseSpeed(_compsAndUnits.Speed);
             }
             _click?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
@@ -95,7 +96,7 @@ namespace Rechrysalis.Controller
             RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();
             if (GetComponent<RechrysalisControllerInitialize>() != null)
             {
-                _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius);
+                _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius, mainManager);
                 _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
                 _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
                 _manaGenerator?.Initialize(_parentUnits);

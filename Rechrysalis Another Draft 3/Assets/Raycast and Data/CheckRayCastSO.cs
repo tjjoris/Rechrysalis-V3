@@ -31,6 +31,9 @@ namespace Rechrysalis.Controller
         private int _unitUpgrading;
         private ControllerManager _controllerManager;
         [SerializeField] private TransitionTargetingCamera _transitionTargetingCamera;
+        [SerializeField] private bool _targetDuringTargetMode;
+        public bool TargetDuringTargetMode { get => _targetDuringTargetMode; set => _targetDuringTargetMode = value; }
+        
         
         private int _controllerIndex = 0;
 
