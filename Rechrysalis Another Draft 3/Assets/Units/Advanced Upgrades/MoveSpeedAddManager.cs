@@ -10,7 +10,7 @@ namespace Rechrysalis.AdvancedUpgrade
         private bool _debugBool = true;
         private Mover _mover;
         private float _moveSpeedAdd;
-        private float _timeToWait = 2f;
+        private float _timeToWait = 4f;
         [SerializeField] private float _timeCurrent = 0;
         [SerializeField] private bool _hasBeenDeactivated = false;
         public void Initialize(Mover mover, float moveSpeedAdd)
