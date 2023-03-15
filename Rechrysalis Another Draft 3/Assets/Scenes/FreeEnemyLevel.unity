@@ -2549,6 +2549,7 @@ MonoBehaviour:
   _projectilesHolder: {fileID: 1295238391}
   _backGroundManager: {fileID: 1949008738}
   _levelDisplay: {fileID: 6974679593843350660}
+  _playerPrefsInteract: {fileID: 1448413824}
 --- !u!4 &1448413823
 Transform:
   m_ObjectHideFlags: 0
@@ -2932,7 +2933,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1784010865}
+        m_TargetAssemblyTypeName: Rechrysalis.UI.TargetDuringTargetModeToggle, Assembly-CSharp
+        m_MethodName: TogglePressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!114 &1784010865
 MonoBehaviour:
@@ -2946,8 +2959,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbcc74de01bb4f77b5da6dc038f9c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toggle: {fileID: 0}
-  _playerPrefsInteract: {fileID: 0}
+  _toggle: {fileID: 1784010864}
+  _playerPrefsInteract: {fileID: 1448413824}
 --- !u!1 &1857028575
 GameObject:
   m_ObjectHideFlags: 0

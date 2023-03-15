@@ -113,6 +113,7 @@ namespace Rechrysalis
                     if (controllerManager.CheckRayCast != null)
                     {
                         controllerManager.CheckRayCast.TargetDuringTargetMode = _playerPrefsInteract.GetTargetDuringTargetMode();
+                        Debug.Log($"set target during target mode" + _playerPrefsInteract.GetTargetDuringTargetMode());
                     }
                 }
             }
