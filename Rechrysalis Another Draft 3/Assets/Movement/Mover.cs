@@ -35,6 +35,7 @@ namespace Rechrysalis.Movement
         private CausesPushBack _causesPushBack;
         private ParentUnitManager _parentUnitManager;
         private Rigidbody2D _rb2d;
+        public Rigidbody2D RB2D => _rb2d;
         public Action _resetChargeUp;
         public void Initialize(int _controllerIndex)
         {
