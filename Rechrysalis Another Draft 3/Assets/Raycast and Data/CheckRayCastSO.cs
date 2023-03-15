@@ -4,6 +4,7 @@ using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.Movement;
 using Rechrysalis.CameraControl;
+using Rechrysalis.UI;
 
 namespace Rechrysalis.Controller
 {
@@ -12,6 +13,7 @@ namespace Rechrysalis.Controller
     public class CheckRayCastSO : ScriptableObject
     {
         private bool _debugBool = false;
+        private MainManager _mainManager;
         [SerializeField] private CompsAndUnitsSO _compsAndUnits;
         private TargetsListSO _playerTargtList;
         [SerializeField] private ClickInfo _clickInfo;
@@ -31,15 +33,17 @@ namespace Rechrysalis.Controller
         private int _unitUpgrading;
         private ControllerManager _controllerManager;
         [SerializeField] private TransitionTargetingCamera _transitionTargetingCamera;
-        [SerializeField] private bool _targetDuringTargetMode;
-        public bool TargetDuringTargetMode { get => _targetDuringTargetMode; set => _targetDuringTargetMode = value; }
-        
+        // [SerializeField] private bool _targetDuringTargetMode;
+        // public bool TargetDuringTargetMode { get => _targetDuringTargetMode; set => _targetDuringTargetMode = value; }
+        [SerializeField] private PlayerPrefsInteract _plyaerPrefsInteract;
         
         private int _controllerIndex = 0;
 
         
-        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius, TransitionTargetingCamera transitionTargetingCamera)
+        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius, TransitionTargetingCamera transitionTargetingCamera, MainManager mainManager)
         {
+            _mainManager = mainManager;
+            _plyaerPrefsInteract = _mainManager.PlayerPrefsInteract;
             _transitionTargetingCamera = transitionTargetingCamera;
             this._upgradeRingManager = _upgradeRingManager;
             this._compsAndUnits = _compsAndUnits;
@@ -80,14 +84,14 @@ namespace Rechrysalis.Controller
                     // _clickInfo.ControlledController.GetComponent<Mover>().SetDirection(Vector2.zero);
                     _touchTypeArray[_touchID] = TouchTypeEnum.controller;
                 }
-                else if ((hit) && (UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)))
+                else if ((hit) && (UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)) && ((!_plyaerPrefsInteract.GetTargetOnlyDuringTargetMode()) || (_transitionTargetingCamera.InTargetMode)))
                 {
                     // Debug.Log($"click enemy");
                     _playerTargtList.SetNewTarget(hit.collider.gameObject);
                     _touchTypeArray[_touchID] = TouchTypeEnum.other;
                 }
             // }
-            else if ((!_transitionTargetingCamera.InTargetMode) && (UnitRingMouseOver(_mousePos, _controller.transform.position)))
+            else if ((_transitionTargetingCamera.InTargetMode) && (UnitRingMouseOver(_mousePos, _controller.transform.position)))
             {
                 int _unitInbounds = checkIfIntUnitBounds(_mousePos);
                 if ((_unitInbounds != -1) && (_controllerManager.ParentUnits[_unitInbounds] != null))

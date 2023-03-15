@@ -28,6 +28,7 @@ namespace Rechrysalis
         [SerializeField] BackgroundManager _backGroundManager;
         [SerializeField] private LevelDisplay _levelDisplay;
         [SerializeField] private PlayerPrefsInteract _playerPrefsInteract;
+        public PlayerPrefsInteract PlayerPrefsInteract => _playerPrefsInteract;
 
         private void Awake() {
             // _compsAndUnitsSO.CompsSO = _compSO;
@@ -113,8 +114,7 @@ namespace Rechrysalis
                 {
                     if (controllerManager.CheckRayCast != null)
                     {
-                        controllerManager.CheckRayCast.TargetDuringTargetMode = _playerPrefsInteract.GetTargetDuringTargetMode();
-                        Debug.Log($"set target during target mode" + _playerPrefsInteract.GetTargetDuringTargetMode());
+                        Debug.Log($"set target during target mode" + _playerPrefsInteract.GetTargetOnlyDuringTargetMode());
                     }
                 }
             }

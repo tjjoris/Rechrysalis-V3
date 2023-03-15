@@ -20,7 +20,7 @@ namespace Rechrysalis.UI
             PlayerPrefs.SetInt(TARGETDURINGTARGETMODE, number);
             _changePlayerPrefs?.Invoke();
         }
-        public bool GetTargetDuringTargetMode()
+        public bool GetTargetOnlyDuringTargetMode()
         {
             if (PlayerPrefs.GetInt(TARGETDURINGTARGETMODE) == 1)
             {

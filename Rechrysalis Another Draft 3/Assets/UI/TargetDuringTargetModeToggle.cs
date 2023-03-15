@@ -12,7 +12,7 @@ namespace Rechrysalis.UI
 
         private void Start()
         {
-            _toggle.isOn = _playerPrefsInteract.GetTargetDuringTargetMode();
+            _toggle.isOn = _playerPrefsInteract.GetTargetOnlyDuringTargetMode();
         }
         public void TogglePressed()
         {
