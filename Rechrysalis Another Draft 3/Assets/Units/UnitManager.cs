@@ -42,6 +42,7 @@ namespace Rechrysalis.Unit
         private FreeUnitHatchEffect _freeHatchScript;
         private ParentUnitManager _parentUnitManager;
         private TargetPrioratizeByScore _targetPrioratizeByScore;
+        private MoveSpeedAddManager _moveSpeedAddManager;
         private float _baseDPS;
         private float _newDPS;
         private float _baseChargeUp;
@@ -126,13 +127,13 @@ namespace Rechrysalis.Unit
                 if (_unitClass.MoveSpeedAdd > 0)
                 {
                     gameObject.AddComponent<MoveSpeedAddManager>();
-                    MoveSpeedAddManager moveSpeedAddManager = GetComponent<MoveSpeedAddManager>();
+                    _moveSpeedAddManager = GetComponent<MoveSpeedAddManager>();
                     Mover mover = _controllerManager.GetComponent<Mover>();
                     if (_parentUnitManager.GetComponent<Mover>() != null)
                     {
                         mover = _parentUnitManager.GetComponent<Mover>();
                     }
-                    moveSpeedAddManager?.Initialize(mover, _unitClass.MoveSpeedAdd);
+                    _moveSpeedAddManager?.Initialize(mover, _unitClass.MoveSpeedAdd);
                 }
             }
             ReCalculateDamageChanges();
@@ -218,7 +219,7 @@ namespace Rechrysalis.Unit
             _health?.RestartUnit();
             // _freeHatchScript?.TriggerHatchEffect();
         }
-        public void Tick(float _timeAmount)
+        public void Tick(float timeAmount)
         {
             if (_debugBool)   Debug.Log($"tick");
             // if (gameObject.active == true) 
@@ -234,10 +235,11 @@ namespace Rechrysalis.Unit
                 if (_attack != null)
                 {
                     // _attack.IsStopped = _isStopped;
-                    _attack?.Tick(_timeAmount);
+                    _attack?.Tick(timeAmount);
                 }
                 // _projectilesPool?.TickProjectiles(_timeAmount);
-                _chrysalisTimer?.Tick(_timeAmount);
+                _chrysalisTimer?.Tick(timeAmount);
+                _moveSpeedAddManager?.Tick(timeAmount);
             // }
         }
         public bool IsEnemy(int _controllerIndex)

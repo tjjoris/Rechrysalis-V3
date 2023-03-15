@@ -11,6 +11,8 @@ namespace Rechrysalis.AdvancedUpgrade
         private Mover _mover;
         private float _moveSpeedAdd;
         private float _timeToWait = 2f;
+        [SerializeField] private float _timeCurrent = 0;
+        [SerializeField] private bool _hasBeenDeactivated = false;
         public void Initialize(Mover mover, float moveSpeedAdd)
         {
             _mover = mover;
@@ -23,7 +25,8 @@ namespace Rechrysalis.AdvancedUpgrade
                 Debug.Log($"increase move speed");
             }
             _mover.AddSpeed(_moveSpeedAdd);
-            StartCoroutine(RemoveSpeed());
+            _timeCurrent = 0;
+            _hasBeenDeactivated = false;
         }
         public void OnDisable()
         {
@@ -31,12 +34,26 @@ namespace Rechrysalis.AdvancedUpgrade
             {
                 Debug.Log($"decrease Move Speed");
             }
+            if (!_hasBeenDeactivated)
+            {
+                _mover.AddSpeed(-_moveSpeedAdd);
+            }
+        }
+        private void RemoveSpeed()
+        {
+            _hasBeenDeactivated = true;
             _mover.AddSpeed(-_moveSpeedAdd);
         }
-        IEnumerator RemoveSpeed()
+        public void Tick(float timeAmount)
         {
-            yield return new WaitForSeconds (_timeToWait);
-            Destroy(this);
+            if (!_hasBeenDeactivated)
+            {
+                _timeCurrent += timeAmount;
+                if (_timeCurrent >= _timeToWait)
+                {
+                    RemoveSpeed();
+                }
+            }
         }
     }
 }
