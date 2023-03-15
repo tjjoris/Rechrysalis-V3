@@ -210,6 +210,7 @@ namespace Rechrysalis.Unit
                 _advUnitClass.UnitName = $"Adv " + _basicUnitClass.UnitName;
                 _advUnitClass.ChrysalisSprite = _utcBasicUnit.GetUnitStatsSO().ChrysalisSprite;
                 _advUnitClass.SacrificeControllerAmount = _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.SacrificeControllerAmount;
+                _advUnitClass.MoveSpeedAdd = _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.MoveSpeedAdd;
                 // _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
 
             }
@@ -253,6 +254,7 @@ namespace Rechrysalis.Unit
             _advUnitClass.HatchEffectMult += advUnitModifierSO.HatchEffectMultiplierAdd;
             _advUnitClass.HatchEffectDurationAdd += advUnitModifierSO.HatchEffectDurationAdd;
             _advUnitClass.SacrificeControllerAmount += advUnitModifierSO.SacrificeControllerAmount;
+            _advUnitClass.MoveSpeedAdd += advUnitModifierSO.MoveSpeedAdd;
             // _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
         }
         // private void CalculateAdvDamage()

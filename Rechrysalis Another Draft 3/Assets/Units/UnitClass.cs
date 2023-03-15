@@ -44,6 +44,8 @@ namespace Rechrysalis.Unit
         public float ProjectileSpeed { get => _projectileSpeed; set => _projectileSpeed = value; }
         [SerializeField] private float _sacrificeControllerAmount;
         public float SacrificeControllerAmount { get => _sacrificeControllerAmount; set => _sacrificeControllerAmount = value; }
+        [SerializeField] private float _moveSpeedAdd;
+        public float MoveSpeedAdd { get => _moveSpeedAdd; set => _moveSpeedAdd = value; }
         [SerializeField] private Sprite _projectileSprite;
         public Sprite ProjectileSprite { get => _projectileSprite; set => _projectileSprite = value; }
         

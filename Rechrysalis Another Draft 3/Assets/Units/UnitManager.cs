@@ -115,11 +115,25 @@ namespace Rechrysalis.Unit
             _manaCost = unitClass.ManaCost;
             _targetPrioratizeByScore = GetComponent<TargetPrioratizeByScore>();
             _targetPrioratizeByScore?.Initialize(_enemyControllerManager.GetComponent<TargetScoreRanking>(), compsAndUnits.TargetsLists[_controllerIndex]);
-            if ((!isChrysalis) && (_unitClass.SacrificeControllerAmount > 0))
+            if (!isChrysalis)
             {
-                gameObject.AddComponent<SacrificeManager>();
-                SacrificeManager sacrificeManager = GetComponent<SacrificeManager>();
-                sacrificeManager?.Initialize(_controllerManager.GetComponent<ControllerHealth>(), _unitClass.SacrificeControllerAmount);
+                if (_unitClass.SacrificeControllerAmount > 0)
+                {
+                    gameObject.AddComponent<SacrificeManager>();
+                    SacrificeManager sacrificeManager = GetComponent<SacrificeManager>();
+                    sacrificeManager?.Initialize(_controllerManager.GetComponent<ControllerHealth>(), _unitClass.SacrificeControllerAmount);
+                }
+                if (_unitClass.MoveSpeedAdd > 0)
+                {
+                    gameObject.AddComponent<MoveSpeedAddManager>();
+                    MoveSpeedAddManager moveSpeedAddManager = GetComponent<MoveSpeedAddManager>();
+                    Mover mover = _controllerManager.GetComponent<Mover>();
+                    if (_parentUnitManager.GetComponent<Mover>() != null)
+                    {
+                        mover = _parentUnitManager.GetComponent<Mover>();
+                    }
+                    moveSpeedAddManager?.Initialize(mover, _unitClass.MoveSpeedAdd);
+                }
             }
             ReCalculateDamageChanges();
         }

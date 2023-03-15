@@ -48,6 +48,8 @@ namespace Rechrysalis.Unit
         public float HatchEffectDurationAdd => _hatchEffectDurationAdd;
         [SerializeField] private float _sacrificeControllerAmount = 0;
         public float SacrificeControllerAmount => _sacrificeControllerAmount;
+        [SerializeField] private float _moveSpeedAdd = 0;
+        public float MoveSpeedAdd => _moveSpeedAdd;
 
 
         private void OnValidate()
