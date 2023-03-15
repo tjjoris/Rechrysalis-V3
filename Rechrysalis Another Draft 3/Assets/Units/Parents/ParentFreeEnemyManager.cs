@@ -4,11 +4,13 @@ using UnityEngine;
 using Rechrysalis.Attacking;
 using Rechrysalis.Movement;
 using Rechrysalis.Attacking;
+using Rechrysalis.Controller;
 
 namespace Rechrysalis.Unit
 {
     public class ParentFreeEnemyManager : MonoBehaviour
     {
+        private ControllerManager _controllerManager;
         private bool _debugBool = false;
         private ParentUnitManager _parentUnitManager;
         private UnitClass _unitClass;
@@ -58,13 +60,14 @@ namespace Rechrysalis.Unit
 
 
         }
-        public void Initialize(UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnitSO, int controllerIndex)
+        public void Initialize(ControllerManager controllerManager, UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnitSO, int controllerIndex)
         {
+            _controllerManager = controllerManager;
             _controllerIndex = controllerIndex;
             _parentUnitManager = GetComponent<ParentUnitManager>();
             _unitClass = unitClass;
             // _attack.Initialize(unitClass);
-            _unitManager?.Initialize(_controllerIndex, unitClass, freeUnitIndex,  compsAndUnitSO);
+            _unitManager?.Initialize(controllerManager, _controllerIndex, unitClass, freeUnitIndex,  compsAndUnitSO, false);
             _parentUnitManager.CurrentSubUnit = _unitManager.gameObject;
             _targetScoreValue = GetComponent<TargetScoreValue>();
             _targetScoreValue?.Initialize();

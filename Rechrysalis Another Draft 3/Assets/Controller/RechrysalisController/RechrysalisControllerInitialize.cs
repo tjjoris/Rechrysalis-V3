@@ -147,13 +147,14 @@ namespace Rechrysalis.Controller
         private void CreateChildUnitAndChrysalis(UnitClass unitClass, int childUnitIndex, ParentUnitManager pum, int parentUnitIndex, CompsAndUnitsSO compsAndUnits, bool isAdvUnit)
         {
             GameObject childUnitGo = Instantiate(_childUnitPrefab, pum.transform);
+            childUnitGo.SetActive(false);
             UnitStatsSO _unitStats = _unitComp.UnitSOArray[(parentUnitIndex * 3) + (childUnitIndex)];
             // _unitStats.Initialize();
             UnitManager _childUnitManager = childUnitGo.GetComponent<UnitManager>();
             pum.ChildUnitManagers.Add(_childUnitManager);
             // childUnitGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, _unitStats, _compsAndUnits, _parentUnitIndex, _hatchEffectSOs[_childUnitIndex]);
             // UnitClass unitClass = _unitComp.ParentUnitClassList[parentUnitIndex].BasicUnitClass;
-            childUnitGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, unitClass, parentUnitIndex, compsAndUnits);
+            childUnitGo.GetComponent<UnitManager>()?.Initialize(_controllerManager, _controllerIndex, unitClass, parentUnitIndex, compsAndUnits, false);
             childUnitGo.GetComponent<UnitManager>()?.SetUnitSPrite(unitClass.UnitSprite);
             _childUnitManager.SetUnitName(unitClass.UnitName);
             pum.SubUnits[childUnitIndex] = childUnitGo;
@@ -164,20 +165,20 @@ namespace Rechrysalis.Controller
             childUnitGo.SetActive(false);
             pum.HilightRingParentManager.CreateHilightRingUnit(unitClass.UnitSprite);
             GameObject chrysalisGo = Instantiate(_chrysalisPrefab, pum.transform);
+            chrysalisGo.SetActive(false);
             chrysalisGo.name = $"Chrysalis " + childUnitIndex;
             // chrysalisGo.GetComponent<ChrysalisManager>()?.Initialize(_unitStats.ChrysalisTimerMax, childUnitGo);
             UnitManager _chrysalisManager = chrysalisGo.GetComponent<UnitManager>();
             pum.ChildChrysaliiUnitManagers.Add(_chrysalisManager);
             // chrysalisGo.GetComponent<UnitManager>()?.InitializeOld(_controllerIndex, compsAndUnits.Chrysalis, compsAndUnits, parentUnitIndex, null);
             UnitManager chrysalisUnitManager = chrysalisGo.GetComponent<UnitManager>();
-            chrysalisGo.GetComponent<UnitManager>()?.Initialize(_controllerIndex, unitClass, parentUnitIndex, compsAndUnits);
+            chrysalisGo.GetComponent<UnitManager>()?.Initialize(_controllerManager, _controllerIndex, unitClass, parentUnitIndex, compsAndUnits, true);
             chrysalisGo.GetComponent<UnitManager>()?.SetUnitSPrite(unitClass.ChrysalisSprite);            
             // _chrysalisManager.SetUnitName(_unitStats.UnitName);
             chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(unitClass.BuildTime, childUnitIndex, pum.GetComponent<ProgressBarManager>());
             pum.SubChrysalii[childUnitIndex] = chrysalisGo;
             _allUnits.Add(chrysalisGo);
             _controllerHatchEffect.SetUnitsArray(chrysalisGo, ((parentUnitIndex * 6) + (childUnitIndex * 2) + 1));
-            chrysalisGo.SetActive(false);
             pum.HilightRingParentManager.CreateHilightRingChrysalis(unitClass.ChrysalisSprite);
             if (isAdvUnit)
             {

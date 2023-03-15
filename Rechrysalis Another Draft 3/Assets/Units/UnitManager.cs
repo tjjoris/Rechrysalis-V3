@@ -6,12 +6,14 @@ using Rechrysalis.Movement;
 using Rechrysalis.Attacking;
 using Rechrysalis.HatchEffect;
 using Rechrysalis.Controller;
+using Rechrysalis.AdvancedUpgrade;
 // using System;
 
 namespace Rechrysalis.Unit
 {
     public class UnitManager : MonoBehaviour
     {
+        private ControllerManager _controllerManager;
         private ControllerManager _enemyControllerManager;
         private bool _debugBool = false;
         [SerializeField] private UnitClass _unitClass;
@@ -66,8 +68,9 @@ namespace Rechrysalis.Unit
         //         }
         //     }
         public System.Action<float> _unitDealsDamage;
-        public void Initialize(int controllerIndex, UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnits)
+        public void Initialize(ControllerManager controllerManager, int controllerIndex, UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnits, bool isChrysalis)
         {
+            _controllerManager = controllerManager;
             _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
             _controllerIndex = controllerIndex;
             _compsAndUnits = compsAndUnits;
@@ -112,6 +115,12 @@ namespace Rechrysalis.Unit
             _manaCost = unitClass.ManaCost;
             _targetPrioratizeByScore = GetComponent<TargetPrioratizeByScore>();
             _targetPrioratizeByScore?.Initialize(_enemyControllerManager.GetComponent<TargetScoreRanking>(), compsAndUnits.TargetsLists[_controllerIndex]);
+            if ((!isChrysalis) && (_unitClass.SacrificeControllerAmount > 0))
+            {
+                gameObject.AddComponent<SacrificeManager>();
+                SacrificeManager sacrificeManager = GetComponent<SacrificeManager>();
+                sacrificeManager?.Initialize(_controllerManager.GetComponent<ControllerHealth>(), _unitClass.SacrificeControllerAmount);
+            }
             ReCalculateDamageChanges();
         }
         public void SetUnitSPrite(Sprite unitSprite)

@@ -11,6 +11,7 @@ namespace Rechrysalis.Controller
 
     public class ControllerHealth : MonoBehaviour
     {
+        private bool _debugBool = true;
         [SerializeField] private float _healthMax;
         [SerializeField] private float _healthCurrent;
         [SerializeField] private ControllerHPBar _controllerHPBar;
@@ -33,6 +34,10 @@ namespace Rechrysalis.Controller
         }
         public void TakeDamage(float _damageAmount)
         {
+            if (_debugBool)
+            {
+                Debug.Log($"controller take damage " + _damageAmount);
+            }
             _healthCurrent -= _damageAmount;
             CheckIfHealthZero();
             _controllerHPBar?.ChangeHPBar(_healthCurrent);
