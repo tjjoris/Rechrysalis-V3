@@ -50,6 +50,8 @@ namespace Rechrysalis.Unit
         public float SacrificeControllerAmount => _sacrificeControllerAmount;
         [SerializeField] private float _moveSpeedAdd = 0;
         public float MoveSpeedAdd => _moveSpeedAdd;
+        [SerializeField] private float _siegeDuration = 0;
+        public float SiegeDuration => _siegeDuration;
 
 
         private void OnValidate()

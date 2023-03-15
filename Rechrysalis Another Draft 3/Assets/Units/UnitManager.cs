@@ -43,6 +43,7 @@ namespace Rechrysalis.Unit
         private ParentUnitManager _parentUnitManager;
         private TargetPrioratizeByScore _targetPrioratizeByScore;
         private MoveSpeedAddManager _moveSpeedAddManager;
+        private SiegeManager _siegeManager;
         private float _baseDPS;
         private float _newDPS;
         private float _baseChargeUp;
@@ -71,6 +72,11 @@ namespace Rechrysalis.Unit
         public System.Action<float> _unitDealsDamage;
         public void Initialize(ControllerManager controllerManager, int controllerIndex, UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnits, bool isChrysalis)
         {
+            Mover mover = _controllerManager.GetComponent<Mover>();
+            if (_parentUnitManager.GetComponent<Mover>() != null)
+            {
+                mover = _parentUnitManager.GetComponent<Mover>();
+            }
             _controllerManager = controllerManager;
             _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
             _controllerIndex = controllerIndex;
@@ -128,12 +134,15 @@ namespace Rechrysalis.Unit
                 {
                     gameObject.AddComponent<MoveSpeedAddManager>();
                     _moveSpeedAddManager = GetComponent<MoveSpeedAddManager>();
-                    Mover mover = _controllerManager.GetComponent<Mover>();
-                    if (_parentUnitManager.GetComponent<Mover>() != null)
-                    {
-                        mover = _parentUnitManager.GetComponent<Mover>();
-                    }
+                    
                     _moveSpeedAddManager?.Initialize(mover, _unitClass.MoveSpeedAdd);
+                }
+                if (_unitClass.SiegeDuration > 0)
+                {
+                    gameObject.AddComponent<SiegeManager>();
+                    _siegeManager = GetComponent<SiegeManager>();
+                    _siegeManager?.Initialize(mover);
+                    _siegeManager?.AddToSiegeDuration(_unitClass.SiegeDuration);
                 }
             }
             ReCalculateDamageChanges();
