@@ -216,7 +216,7 @@ namespace Rechrysalis.Controller
             else if (_touchTypeArray[_touchID] == TouchTypeEnum.friendlyUnit)
             {
                 if (hit);
-                else if (CheckIfSingleUpgradeTrue(RingAngle(_mousePos), (_unitRingManager.UnitRingAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount) + 90f), _unitRingManager.UnitDegreeWidth));
+                else if ((UnitRingMouseOver(_mousePos, _controller.transform.position)) && (CheckIfSingleUpgradeTrue(RingAngle(_mousePos), (_unitRingManager.UnitRingAngle + AnglesMath.UnitAngle(_unitUpgrading, _compsAndUnits.CompsSO[0].ParentUnitCount) + 90f), _unitRingManager.UnitDegreeWidth)));
                 else 
                 {
                     if (_debugBool)
