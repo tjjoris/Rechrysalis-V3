@@ -30,10 +30,6 @@ namespace Rechrysalis.AdvancedUpgrade
         }
         public void OnDisable()
         {
-            if (_debugBool)
-            {
-                Debug.Log($"decrease Move Speed");
-            }
             if (!_hasBeenDeactivated)
             {
                 _mover.AddSpeed(-_moveSpeedAdd);
@@ -41,6 +37,10 @@ namespace Rechrysalis.AdvancedUpgrade
         }
         private void RemoveSpeed()
         {
+            if (_debugBool)
+            {
+                Debug.Log($"decrease Move Speed");
+            }
             _hasBeenDeactivated = true;
             _mover.AddSpeed(-_moveSpeedAdd);
         }
