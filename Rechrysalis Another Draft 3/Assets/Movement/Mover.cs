@@ -21,7 +21,7 @@ namespace Rechrysalis.Movement
         [SerializeField] private float _maxY;
         // private float _pushBackMovement;
         // public float PushBackMovement {set{_pushBackMovement = value;}}
-        private float _retreatSpeedMult = 0.15f;
+        private float _approachSpeedMult = 0.15f;
         [SerializeField] private Vector3 _moveVector;        
         [SerializeField] private Vector2 _direction = Vector2.zero;
         public Vector2 Direction {set{_direction = value;}get {return _direction;}}
@@ -74,8 +74,10 @@ namespace Rechrysalis.Movement
                 Debug.Log($"set direction" + _direction);  
             }
             direction.Normalize();          
-            this._direction = (Vector2.ClampMagnitude(direction, 1) * _speed);
+            float ySpeedMult = TurnV2IntoApproachSpeedMult(direction);
+            // this._direction = (Vector2.ClampMagnitude(direction, 1) * _speed);
             _direction = direction * _speed;
+            _direction.y = _direction.y * ySpeedMult;
             // Debug.Log($"rotation " + gameObject.transform.eulerAngles.z);            
                 // float ySpeed = (Mathf.Cos(Mathf.Deg2Rad * (gameObject.transform.eulerAngles.z))) * _direction.y;
                 // Debug.Log($"y speed " + ySpeed);
@@ -84,7 +86,8 @@ namespace Rechrysalis.Movement
                 // _direction.y -= Mathf.Abs(ySpeed);
                 // Debug.Log($"direction y speed after " + _direction.y);
             // _direction = TurnSpeedIntoRetreatRelativeSpeed(_direction);
-            _direction.y *= TurnV2IntoApproachSpeedMult(_direction);
+
+            // _direction.y *= TurnV2IntoApproachSpeedMult(_direction);
             _rb2d.velocity = this._direction ;
             SetIsMovingIfMoving(this._direction);
             // if (_controllerIndex == 0)
@@ -121,14 +124,29 @@ namespace Rechrysalis.Movement
         private float TurnV2IntoApproachSpeedMult(Vector2 vectorBeforeRetreat)
         {
             // Debug.Log($"rotation " + gameObject.transform.eulerAngles.z); 
-            float ySpeedMult = (Mathf.Cos(Mathf.Deg2Rad * (gameObject.transform.eulerAngles.z))) * vectorBeforeRetreat.y;
-            // Debug.Log($"angle speed " + Mathf.Cos(Mathf.Deg2Rad * (gameObject.transform.eulerAngles.z)));
+            // float ySpeedMult = (Mathf.Cos(Mathf.Deg2Rad * (gameObject.transform.eulerAngles.z))) * vectorBeforeRetreat.y;
+            // Debug.Log($"y speed mult " + ySpeedMult);
+            // Debug.Log($"angle " + gameObject.transform.eulerAngles.z + " controller " + _controllerIndex);
+            // Debug.Log($"angle " + Mathf.Cos(Mathf.Deg2Rad * (gameObject.transform.eulerAngles.z)));
             // Debug.Log($"y speed " + ySpeed);
-            ySpeedMult *= Mathf.Abs(_retreatSpeedMult);
-            ySpeedMult -= (_retreatSpeedMult * 0.5f);
-            ySpeedMult += 1f;
-            if (_debugBool)
-            Debug.Log($"y speed mult" + ySpeedMult);
+            // ySpeedMult *= Mathf.Abs(_retreatSpeedMult);
+            // Debug.Log($"y speed mult * itself abs" + ySpeedMult);
+            // ySpeedMult -= (_retreatSpeedMult * 0.5f);
+            // Debug.Log($"y speed mult - retreat speed mult * 0.5 " + ySpeedMult);
+            // ySpeedMult += 1f;
+            // if (_debugBool)
+            // Debug.Log($"y speed mult" + ySpeedMult);
+            // return ySpeedMult;
+            float ySpeedMult = Mathf.Cos(Mathf.Deg2Rad * (gameObject.transform.eulerAngles.z));
+            ySpeedMult = 1 / ySpeedMult * Mathf.Abs(ySpeedMult);
+            ySpeedMult *= vectorBeforeRetreat.y;
+            // float ySpeedMult = Mathf.Cos(Mathf.Deg2Rad * (gameObject.transform.eulerAngles.z)) + vectorBeforeRetreat.y;
+            if (_controllerIndex == 1) Debug.Log($"y speed mult flat " + ySpeedMult);
+            ySpeedMult *= _approachSpeedMult;
+            ySpeedMult = 1 + ySpeedMult;
+            if (_controllerIndex == 1) Debug.Log($"y speed mult " + ySpeedMult + " controller " + _controllerIndex);
+            // Debug.Log($"y speed mult " + ySpeedMult);
+
             return ySpeedMult;
         }
         private Vector2 LimitXMovement(Vector2 direction)
