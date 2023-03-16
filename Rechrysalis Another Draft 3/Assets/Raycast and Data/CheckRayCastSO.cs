@@ -129,15 +129,18 @@ namespace Rechrysalis.Controller
                     _touchTypeArray[_touchID] = TouchTypeEnum.other;
                 }
             }
-            else if (!_transitionTargetingCamera.InTargetMode)
+            else
             {//map clicked
-                MapClicked(_mousePos, _touchID);
+                if (!_transitionTargetingCamera.InTargetMode)
+                {
+                    MapClicked(_mousePos, _touchID);
+                }
                 _touchTypeArray[_touchID] = TouchTypeEnum.map;
             }
-            else
-            {
-                _touchTypeArray[_touchID] = TouchTypeEnum.other;
-            }
+            // else
+            // {
+            //     _touchTypeArray[_touchID] = TouchTypeEnum.other;
+            // }
         }
 
         private bool CheckIfInteractingWithInteractableUI()
@@ -228,7 +231,11 @@ namespace Rechrysalis.Controller
             //         _transitionTargetingCamera.TransitionToController();
             //     }
             // }
-            if ((_touchTypeArray[_touchID] == TouchTypeEnum.controller) && (_mousePos.y < _controller.transform.position.y - _controllerRadius))
+            if ((_transitionTargetingCamera.InTargetMode) && (_touchTypeArray[_touchID] == TouchTypeEnum.map))
+            {
+                Debug.Log($"scroll target camera.");
+            }
+            else if ((_touchTypeArray[_touchID] == TouchTypeEnum.controller) && (_mousePos.y < _controller.transform.position.y - _controllerRadius))
             {
                 _transitionTargetingCamera.TransitionToTargeting();
                 ResetAllTouchType();
