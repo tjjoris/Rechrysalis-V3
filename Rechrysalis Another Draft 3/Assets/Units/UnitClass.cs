@@ -28,8 +28,8 @@ namespace Rechrysalis.Unit
         public float AttackWindDown {get => _attackWindDown; set => _attackWindDown = value; }
         [SerializeField] private float _damage;
         public float Damamge {get => _damage; set => _damage = value; }
-        [SerializeField] private GameObject _hatchEffectPrefab;
-        public GameObject HatchEffectPrefab {get => _hatchEffectPrefab; set => _hatchEffectPrefab = value; }
+        [SerializeField] private List<GameObject> _hatchEffectPrefab = new List<GameObject>();
+        public List<GameObject> HatchEffectPrefab {get => _hatchEffectPrefab; set => _hatchEffectPrefab = value; }
         [SerializeField] private float _hatchEffectMult;
         public float HatchEffectMult {get => _hatchEffectMult; set => _hatchEffectMult = value; }
         [SerializeField] private float _hatchEffectDurationAdd;

@@ -12,10 +12,10 @@ namespace Rechrysalis.Unit
         public List<UpgradeTypeClass> AdvancedUpgradesUTCList { get{ return _advancedUpgradesUTCList; } set{ _advancedUpgradesUTCList = value; } }
         [SerializeField] private UpgradeTypeClass _utcBasicUnit;
         public UpgradeTypeClass UTCBasicUnit { get{ return _utcBasicUnit; } set{ _utcBasicUnit = value; } }
-        [SerializeField] private UpgradeTypeClass _utcHatchEffect;
-        public UpgradeTypeClass UTCHatchEffect { get{ return _utcHatchEffect; } set{ _utcHatchEffect = value; } }
+        [SerializeField] private List<UpgradeTypeClass> _utcHatchEffect = new List<UpgradeTypeClass>();
+        public List<UpgradeTypeClass> UTCHatchEffect { get{ return _utcHatchEffect; } set{ _utcHatchEffect = value; } }
         private UpgradeTypeClass _replacedUTCBasicUnit;
-        private UpgradeTypeClass _replaceUTCHatchEffect;
+        // private UpgradeTypeClass _replaceUTCHatchEffect;
         [SerializeField] private UnitClass _basicUnitClass;
         public UnitClass BasicUnitClass => _basicUnitClass;
         [SerializeField] private UnitClass _advUnitClass;
@@ -93,25 +93,25 @@ namespace Rechrysalis.Unit
         {
             if (utcHatchEffect != null)
             {
-                if (_utcHatchEffect != null)
-                {
-                    _replaceUTCHatchEffect = _utcHatchEffect;
-                }
-                _utcHatchEffect = utcHatchEffect;
+                // if (_utcHatchEffect != null)
+                // {
+                //     _replaceUTCHatchEffect = _utcHatchEffect;
+                // }
+                _utcHatchEffect.Add(utcHatchEffect);
                 if (_debugBool) Debug.Log($"set hatch effect");
                 // SetAllStats();
             }
         }
-        public UpgradeTypeClass GetReplacedUTCHatchEffect()
-        {
-            return _replaceUTCHatchEffect;
-        }
-        public void SetUTCReplacedHatchEffectToNull()
-        {
-            _replaceUTCHatchEffect = null;
-            if (_debugBool) Debug.Log($"replace hatch effect to null");
-            // SetAllStats();
-        }
+        // public UpgradeTypeClass GetReplacedUTCHatchEffect()
+        // {
+        //     return _replaceUTCHatchEffect;
+        // }
+        // public void SetUTCReplacedHatchEffectToNull()
+        // {
+        //     _replaceUTCHatchEffect = null;
+        //     if (_debugBool) Debug.Log($"replace hatch effect to null");
+        //     // SetAllStats();
+        // }
         public void AddUTCAdvanced(UpgradeTypeClass advancedToAdd)
         {
             if (advancedToAdd != null)
@@ -272,20 +272,29 @@ namespace Rechrysalis.Unit
         {
             if (_utcHatchEffect != null)
             {
-                if (_utcHatchEffect.GetHatchEffectSO() != null)
+                foreach (UpgradeTypeClass hatchEffect in _utcHatchEffect)
                 {
-                    _advUnitClass.HatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;
-                    _advUnitClass.ManaCost += _utcHatchEffect.GetHatchEffectSO().AddedManaCost;
-                    _advUnitClass.BuildTime += _utcHatchEffect.GetHatchEffectSO().BuildTimeAdd;
-                }             
+                    if ((hatchEffect != null) && (hatchEffect.GetHatchEffectSO() != null))
+                    {
+                        _advUnitClass.HatchEffectPrefab.Add(hatchEffect.GetHatchEffectSO().HatchEffectPrefab);
+                        _advUnitClass.ManaCost += hatchEffect.GetHatchEffectSO().AddedManaCost;
+                        _advUnitClass.BuildTime += hatchEffect.GetHatchEffectSO().BuildTimeAdd;
+                    }
+                }
+                // if (_utcHatchEffect.GetHatchEffectSO() != null)
+                // {
+                //     _advUnitClass.HatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;
+                //     _advUnitClass.ManaCost += _utcHatchEffect.GetHatchEffectSO().AddedManaCost;
+                //     _advUnitClass.BuildTime += _utcHatchEffect.GetHatchEffectSO().BuildTimeAdd;
+                // }             
             }
         }
-        private void SetHatchEffect()
-        {
-            if (_debugBool)
-            Debug.Log($"set hatch effect");
-            // if (_utcHatchEffect.GetHatchEffectSO() != null)
-            _advUnitClass.HatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;
-        }
+        // private void SetHatchEffect()
+        // {
+        //     if (_debugBool)
+        //     Debug.Log($"set hatch effect");
+        //     // if (_utcHatchEffect.GetHatchEffectSO() != null)
+        //     _advUnitClass.HatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;
+        // }
     }
 }
