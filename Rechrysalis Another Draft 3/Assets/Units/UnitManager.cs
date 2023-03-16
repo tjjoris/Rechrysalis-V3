@@ -109,8 +109,7 @@ namespace Rechrysalis.Unit
             _currentHatchEffects = new List<GameObject>();
             _freeHatchScript = GetComponent<FreeUnitHatchEffect>();
             this._freeUnitIndex = freeUnitIndex;
-            _freeHatchScript?.Initialize(unitClass.HatchEffectPrefab, _freeUnitIndex);
-            // _unitSpriteHandler.SetSpriteFunction(unitClass.UnitSprite);
+            // _freeHatchScript?.Initialize(unitClass.HatchEffectPrefab, _freeUnitIndex);
             float _hatchManaMult = 1;
             if (_hatchEffectSO != null)
             {

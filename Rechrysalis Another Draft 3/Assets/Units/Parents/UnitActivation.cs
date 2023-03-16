@@ -49,7 +49,16 @@ namespace Rechrysalis.Unit
                     // if (_hatchEffectSO != null)
                     if (unitIndex == 1)
                     {
-                        _parentUnitHatchEffects.CreateHatchEffect(_parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitIndex, true);
+                        if (_parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectPrefab.Count > 0)
+                        {
+                            foreach (GameObject hatchEffectPrefab in _parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectPrefab)
+                            {
+                                if (hatchEffectPrefab != null)
+                                {
+                                    _parentUnitHatchEffects.CreateHatchEffect(hatchEffectPrefab, _parentUnitManager.ParentIndex, unitIndex, true);
+                                }
+                            }
+                        }
                     }
                     _progressBarManager?.TintChargeUp();
                 }
