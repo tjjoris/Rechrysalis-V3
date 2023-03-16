@@ -1358,7 +1358,7 @@ GameObject:
   - component: {fileID: 859817187}
   - component: {fileID: 859817186}
   - component: {fileID: 859817189}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: MenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1632,7 +1632,7 @@ GameObject:
   - component: {fileID: 1061587473}
   - component: {fileID: 1061587475}
   - component: {fileID: 1061587474}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2534,6 +2534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227754fb773cf4025b4c4b089d3f09e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeStopped: 0
   _paused: 0
   _compsAndUnitsSO: {fileID: 11400000, guid: abce2c694bba2494b88e77f2ae192b6f, type: 2}
   _controllerManager:
@@ -2551,6 +2552,7 @@ MonoBehaviour:
   _levelDisplay: {fileID: 6974679593843350660}
   _playerPrefsInteract: {fileID: 1448413824}
   _graphicRaycaster: {fileID: 1857028576}
+  _eventSystem: {fileID: 0}
 --- !u!4 &1448413823
 Transform:
   m_ObjectHideFlags: 0

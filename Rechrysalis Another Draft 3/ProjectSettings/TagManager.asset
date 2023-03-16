@@ -16,7 +16,7 @@ TagManager:
   - CharacterCollisionBlocker
   - Character
   - Wall
-  - 
+  - InteractableUI
   - 
   - 
   - 
