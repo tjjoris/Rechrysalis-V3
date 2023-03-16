@@ -37,7 +37,7 @@ namespace Rechrysalis.HatchEffect
         [SerializeField] private UnitClass _unitClass;
         public Action<GameObject, int, int, bool> _hatchEffectDies;
 
-        public void Initialize(HatchEffectSO _hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass)
+        public void Initialize(HatchEffectSO _hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass, float hpMax)
         {
             _unitClass = advUnitClass;
             if (_debugBool)
@@ -58,7 +58,7 @@ namespace Rechrysalis.HatchEffect
             // _maxHP = _hatchEffectSO.HealthMax[_tier];
             _hatchMult = advUnitClass.HatchEffectMult;
             _hatchDurationMult = advUnitClass.HatchEffectDurationAdd;
-            _hEHealth.Initialize(_hatchMult, advUnitClass);
+            _hEHealth.Initialize(_hatchMult, advUnitClass, hpMax);
             }
             // _currentHP = _maxHP;
             if (_hatchEffectSO.DamageLossPerTick.Length > this._tier)

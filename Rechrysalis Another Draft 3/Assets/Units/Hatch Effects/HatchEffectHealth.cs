@@ -14,11 +14,12 @@ namespace Rechrysalis.HatchEffect
         private float _HPCurrent;
         // [SerializeField] private float _durationToHealthMult = 1;
 
-        public void Initialize(float hatchMult, UnitClass advUnit)
+        public void Initialize(float hatchMult, UnitClass advUnit, float hpMax)
         {
             if (debugBool) Debug.Log($"hatch mult " + hatchMult);
             // if (_healthMax != 0)
             // _healthMax = healthMax;
+            _HPMax = hpMax;
             _healthMult = ((hatchMult - 1f) * _healthMultMult) + 1f;
             _HPMax *= _healthMult;
             _HPMax += advUnit.HatchEffectDurationAdd;

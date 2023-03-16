@@ -23,13 +23,13 @@ namespace Rechrysalis.Unit
             // GetComponent<ParentClickManager>().Initialize(_controllerIndex);
         }
 
-        public void CreateHatchEffect(GameObject _hatchEffectPrefab, int _parentIndex, int _unitIndex, bool _affectAll)
+        public void CreateHatchEffect(GameObject _hatchEffectPrefab, int _parentIndex, int _unitIndex, bool _affectAll, float hpMax)
         {
             if ((_hatchEffectPrefab != null) && (_parentUnitManager.SubHatchEffects[_unitIndex] != null))
             {
                 GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
                 HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
-                _hatchEffectManager?.Initialize(_parentUnitManager.SubHatchEffects[_unitIndex], _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass);
+                _hatchEffectManager?.Initialize(_parentUnitManager.SubHatchEffects[_unitIndex], _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass, hpMax);
                 _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
             }
         }
