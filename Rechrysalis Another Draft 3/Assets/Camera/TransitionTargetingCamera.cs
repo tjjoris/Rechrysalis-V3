@@ -8,13 +8,14 @@ namespace Rechrysalis.CameraControl
     
     public class TransitionTargetingCamera : MonoBehaviour
     {
-        private bool _debugBool = false;
+        private bool _debugBool = true;
         [SerializeField] private CameraFollowGOManager _cameraFollowGOManager;
         [SerializeField] private Transform _cameraFollowerParentTransform;
         [SerializeField] private Transform _controllerCameraTransform;
         [SerializeField] private bool _inTargetMode;
         [SerializeField] private ControllerManager _enemyControllerManager;
         [SerializeField] private MainManager _mainManager;
+        [SerializeField] private GameObject _returnToControllerButton;
         public bool InTargetMode => _inTargetMode;
         public void TransitionToTargeting()
         {
@@ -42,6 +43,7 @@ namespace Rechrysalis.CameraControl
             transform.position = _cameraFollowGOManager.transform.position;
             transform.parent = _cameraFollowGOManager.transform;
             _inTargetMode = true;
+            _returnToControllerButton.SetActive(true);
         }
         public void TransitionToController()
         {
@@ -53,6 +55,7 @@ namespace Rechrysalis.CameraControl
             transform.position = _controllerCameraTransform.position;
             transform.parent = _controllerCameraTransform;
             _inTargetMode = false;
+            _returnToControllerButton.SetActive(false);
         }
     }
 }
