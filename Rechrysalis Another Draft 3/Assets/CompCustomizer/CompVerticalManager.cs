@@ -54,7 +54,16 @@ namespace Rechrysalis.CompCustomizer
         public void CreateAndSetUpCompButtons(ParentUnitClass parentUnitClass, GameObject compButtonPrefab)
         {
             CreateCompButton(compButtonPrefab, parentUnitClass.UTCBasicUnit);
-            CreateCompButton(compButtonPrefab, parentUnitClass.UTCHatchEffect);
+            if ((parentUnitClass.UTCHatchEffect != null) && (parentUnitClass.UTCHatchEffect.Count > 0))
+            {
+                foreach (UpgradeTypeClass hatchEffect in parentUnitClass.UTCHatchEffect)
+                {
+                    if (hatchEffect != null)
+                    {
+                        CreateCompButton(compButtonPrefab, hatchEffect);
+                    }
+                }
+            }
             if (parentUnitClass.AdvancedUpgradesUTCList.Count > 0)
             {
                 for (int i=0; i<parentUnitClass.AdvancedUpgradesUTCList.Count; i++)
@@ -144,6 +153,7 @@ namespace Rechrysalis.CompCustomizer
                     }
                     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
                     {
+                        Debug.Log($"add hatch effect " +compUpgradeManager.gameObject.name);
                         parentUnitClassToReturn.SetUTCHatchEffect(compUpgradeManager.GetUpgradeTypeClass());                        
                     }
                     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced)

@@ -59,9 +59,10 @@ namespace Rechrysalis.Unit
         {
             _advancedUpgradesUTCList = new List<UpgradeTypeClass>();
             _advancedUpgradesUTCList.Clear();
+            _utcHatchEffect = new List<UpgradeTypeClass>();
             _utcBasicUnit = null;
-            _utcHatchEffect = null;
-            if (_debugBool)
+            // _utcHatchEffect = null;
+            // if (_debugBool)
             Debug.Log($"clear all stats");
             // SetAllStats();
         }
