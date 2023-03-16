@@ -5,6 +5,8 @@ using Rechrysalis.Unit;
 using Rechrysalis.Movement;
 using Rechrysalis.CameraControl;
 using Rechrysalis.UI;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Rechrysalis.Controller
 {
@@ -36,13 +38,17 @@ namespace Rechrysalis.Controller
         // [SerializeField] private bool _targetDuringTargetMode;
         // public bool TargetDuringTargetMode { get => _targetDuringTargetMode; set => _targetDuringTargetMode = value; }
         [SerializeField] private PlayerPrefsInteract _plyaerPrefsInteract;
+        [SerializeField] private GraphicRaycaster _graphicsRaycaster;
+        [SerializeField] private EventSystem _eventSystem;
         
         private int _controllerIndex = 0;
 
         
-        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius, TransitionTargetingCamera transitionTargetingCamera, MainManager mainManager)
+        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius, TransitionTargetingCamera transitionTargetingCamera, MainManager mainManager, GraphicRaycaster graphicRaycaster)
         {
+            _graphicsRaycaster = graphicRaycaster;
             _mainManager = mainManager;
+            _eventSystem = _mainManager.EventSystem;
             _plyaerPrefsInteract = _mainManager.PlayerPrefsInteract;
             _transitionTargetingCamera = transitionTargetingCamera;
             this._upgradeRingManager = _upgradeRingManager;
@@ -74,22 +80,23 @@ namespace Rechrysalis.Controller
             CreateRayCastFunction(_mousePos, out _mousePosV3, out hit);
             // if ((hit) && (ControllerMouseOver(hit)))
             // {
-                if (_transitionTargetingCamera.InTargetMode)
-                {
-                    _touchPosDown[_touchID] = _mousePos;
-                }
-                if ((!_transitionTargetingCamera.InTargetMode) && (hit) && (ControllerMouseOver(hit)))
-                {
-                    // _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
-                    // _clickInfo.ControlledController.GetComponent<Mover>().SetDirection(Vector2.zero);
-                    _touchTypeArray[_touchID] = TouchTypeEnum.controller;
-                }
-                else if ((hit) && (UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)) && ((!_plyaerPrefsInteract.GetTargetOnlyDuringTargetMode()) || (_transitionTargetingCamera.InTargetMode)))
-                {
-                    // Debug.Log($"click enemy");
-                    _playerTargtList.SetNewTarget(hit.collider.gameObject);
-                    _touchTypeArray[_touchID] = TouchTypeEnum.other;
-                }
+            if (_transitionTargetingCamera.InTargetMode)
+            {
+                _touchPosDown[_touchID] = _mousePos;
+            }
+            if (CheckIfInteractingWithInteractableUI());
+            else if ((!_transitionTargetingCamera.InTargetMode) && (hit) && (ControllerMouseOver(hit)))
+            {
+                // _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
+                // _clickInfo.ControlledController.GetComponent<Mover>().SetDirection(Vector2.zero);
+                _touchTypeArray[_touchID] = TouchTypeEnum.controller;
+            }
+            else if ((hit) && (UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)) && ((!_plyaerPrefsInteract.GetTargetOnlyDuringTargetMode()) || (_transitionTargetingCamera.InTargetMode)))
+            {
+                // Debug.Log($"click enemy");
+                _playerTargtList.SetNewTarget(hit.collider.gameObject);
+                _touchTypeArray[_touchID] = TouchTypeEnum.other;
+            }
             // }
             else if ((_transitionTargetingCamera.InTargetMode) && (UnitRingMouseOver(_mousePos, _controller.transform.position)))
             {
@@ -113,20 +120,36 @@ namespace Rechrysalis.Controller
                     _touchTypeArray[_touchID] = TouchTypeEnum.unitRing;
                     _hilightRingManager.gameObject.SetActive(true);
                 }
-                else 
+                else
                 {
                     _touchTypeArray[_touchID] = TouchTypeEnum.other;
                 }
             }
-            else if(!_transitionTargetingCamera.InTargetMode)
+            else if (!_transitionTargetingCamera.InTargetMode)
             {//map clicked
                 MapClicked(_mousePos, _touchID);
                 _touchTypeArray[_touchID] = TouchTypeEnum.map;
             }
-            else 
+            else
             {
                 _touchTypeArray[_touchID] = TouchTypeEnum.other;
             }
+        }
+
+        private bool CheckIfInteractingWithInteractableUI()
+        {
+            List<RaycastResult> graphicResults = new List<RaycastResult>();
+            PointerEventData _pointerEventData = new PointerEventData(_eventSystem);
+            _pointerEventData.position = Input.mousePosition;
+            _graphicsRaycaster.Raycast(_pointerEventData, graphicResults);
+            foreach (RaycastResult result in graphicResults)
+            {
+                if (result.gameObject.layer == 11)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void MapClicked(Vector2 _mousePos, int _touchID)

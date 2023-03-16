@@ -7,6 +7,8 @@ using Rechrysalis.Attacking;
 using Rechrysalis.Background;
 using Rechrysalis.CompCustomizer;
 using Rechrysalis.UI;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Rechrysalis
 {
@@ -28,6 +30,9 @@ namespace Rechrysalis
         [SerializeField] BackgroundManager _backGroundManager;
         [SerializeField] private LevelDisplay _levelDisplay;
         [SerializeField] private PlayerPrefsInteract _playerPrefsInteract;
+        [SerializeField] private GraphicRaycaster _graphicRaycaster;
+        [SerializeField] private EventSystem _eventSystem;
+        public EventSystem EventSystem => _eventSystem;
         public PlayerPrefsInteract PlayerPrefsInteract => _playerPrefsInteract;
 
         private void Awake() {
@@ -43,7 +48,7 @@ namespace Rechrysalis
                 {
                     if (_controllerManager[i] != null) 
                     {
-                        _controllerManager[i].Initialize(i, _playerUnitsSO, _compSO[i], _controllerManager[GetOppositeController.ReturnOppositeController(i)], _compsAndUnitsSO, _compCustomizer, this);
+                        _controllerManager[i].Initialize(i, _playerUnitsSO, _compSO[i], _controllerManager[GetOppositeController.ReturnOppositeController(i)], _compsAndUnitsSO, _compCustomizer, this, _graphicRaycaster);
                     }
                 }
             }

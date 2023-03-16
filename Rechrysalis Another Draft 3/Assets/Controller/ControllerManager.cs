@@ -7,6 +7,7 @@ using Rechrysalis.HatchEffect;
 using Rechrysalis.CompCustomizer;
 using Rechrysalis.Attacking;
 using Rechrysalis.CameraControl;
+using UnityEngine.UI;
 
 namespace Rechrysalis.Controller
 {
@@ -64,7 +65,7 @@ namespace Rechrysalis.Controller
         //     }
         // }
 
-        public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits, CompCustomizerSO _compCustomizer, MainManager mainManager) 
+        public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits, CompCustomizerSO _compCustomizer, MainManager mainManager, GraphicRaycaster graphicRaycaster) 
         {
             this._controllerIndex = _controllerIndex;
             this._playerUnitsSO = _playerUnitsSO;
@@ -85,7 +86,7 @@ namespace Rechrysalis.Controller
             }
             _click?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
             _touch?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
-            _checkRayCast?.Initialize(_compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius, _transitionTargetingCamera, mainManager);
+            _checkRayCast?.Initialize(_compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius, _transitionTargetingCamera, mainManager, graphicRaycaster);
             _controllerFreeHatchEffectManager = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             if (_freeEnemyInitialize != null)

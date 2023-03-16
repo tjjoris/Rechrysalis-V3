@@ -12,7 +12,7 @@ namespace Rechrysalis.Movement
     public class Mover : MonoBehaviour
     {
         private MainManager _mainManager;
-        private bool _debugBool = true;
+        private bool _debugBool = false;
         [SerializeField] int _controllerIndex;
         [SerializeField] private GameObject _backG;
         [SerializeField] private float _minX;
@@ -92,7 +92,7 @@ namespace Rechrysalis.Movement
             }
             _rb2d.velocity = directionToSet ;
             if (_debugBool)
-            {
+            {                
                 Debug.Log($"speed " +directionToSet.magnitude + " controller " + _controllerIndex);
             }
             SetIsMovingIfMoving(this._direction);
