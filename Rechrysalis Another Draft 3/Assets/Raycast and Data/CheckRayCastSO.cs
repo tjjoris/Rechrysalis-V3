@@ -102,7 +102,7 @@ namespace Rechrysalis.Controller
                 _touchTypeArray[_touchID] = TouchTypeEnum.other;
             }
             // }
-            else if ((_transitionTargetingCamera.InTargetMode) && (UnitRingMouseOver(_mousePos, _controller.transform.position)))
+            else if ((!_transitionTargetingCamera.InTargetMode) && (UnitRingMouseOver(_mousePos, _controller.transform.position)))
             {
                 int _unitInbounds = checkIfIntUnitBounds(_mousePos);
                 if ((_unitInbounds != -1) && (_controllerManager.ParentUnits[_unitInbounds] != null))
