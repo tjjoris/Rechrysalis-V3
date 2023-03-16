@@ -3011,6 +3011,7 @@ MonoBehaviour:
   _playerPrefsInteract: {fileID: 1448413824}
   _graphicRaycaster: {fileID: 1857028576}
   _eventSystem: {fileID: 0}
+  _cameraScrollTransform: {fileID: 433741824}
 --- !u!4 &1448413823
 Transform:
   m_ObjectHideFlags: 0
