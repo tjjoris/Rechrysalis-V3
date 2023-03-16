@@ -32,14 +32,14 @@ namespace Rechrysalis.Controller
         {
             if ((Input.GetMouseButton(0)) && (_mouseButtonDown))
             {
-                _checkRayCast.CheckRayCastMoveFunction(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0);
+                _checkRayCast.CheckRayCastMoveFunction(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0, Input.mousePosition);
             }
         }
         private void CheckIfMouseDown() {
             if ((Input.GetMouseButtonDown(0)) && (!_mouseButtonDown))
             {
             // Debug.Log("check");
-            _checkRayCast.CheckRayCastDownFunction(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0);
+            _checkRayCast.CheckRayCastDownFunction(Camera.main.ScreenToWorldPoint(Input.mousePosition), 0, Input.mousePosition);
             _mouseButtonDown = true;
             }
         }

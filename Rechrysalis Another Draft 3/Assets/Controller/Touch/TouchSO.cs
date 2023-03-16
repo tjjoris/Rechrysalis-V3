@@ -31,11 +31,11 @@ namespace Rechrysalis.Controller
                 Touch t = Input.GetTouch(i);
                 if (t.phase == TouchPhase.Began)
                 {
-                    _checkRayCast.CheckRayCastDownFunction(Camera.main.ScreenToWorldPoint(t.position), t.fingerId);
+                    _checkRayCast.CheckRayCastDownFunction(Camera.main.ScreenToWorldPoint(t.position), t.fingerId, t.position);
                 }   
                 else if ((t.phase == TouchPhase.Moved) || (t.phase == TouchPhase.Stationary))             
                 {
-                    _checkRayCast.CheckRayCastMoveFunction(Camera.main.ScreenToWorldPoint(t.position), t.fingerId);                    
+                    _checkRayCast.CheckRayCastMoveFunction(Camera.main.ScreenToWorldPoint(t.position), t.fingerId, t.position);                    
                 }
                 else if (t.phase == TouchPhase.Ended)
                 {

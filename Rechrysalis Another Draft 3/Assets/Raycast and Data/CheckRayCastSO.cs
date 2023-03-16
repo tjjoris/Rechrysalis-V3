@@ -31,6 +31,8 @@ namespace Rechrysalis.Controller
         public enum TouchTypeEnum {nothing, controller, map, friendlyUnit, unitRing, menu, other }
         [SerializeField]private TouchTypeEnum[] _touchTypeArray = new TouchTypeEnum[5];
         [SerializeField] private Vector2[] _touchPosDown = new Vector2[5];
+        [SerializeField] private Vector2[] _touchPosDownRaw = new Vector2[5];
+        [SerializeField] private Vector2[] _touchPosLast = new Vector2[5];
         private int[] _upgradeCountArray;
         private int _unitUpgrading;
         private ControllerManager _controllerManager;
@@ -75,7 +77,7 @@ namespace Rechrysalis.Controller
                 _touchTypeArray[i] = TouchTypeEnum.nothing;
             }
         }
-        public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
+        public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID, Vector2 mousePosRaw)
         {
             if (_mainManager.Paused)
             {
@@ -139,7 +141,8 @@ namespace Rechrysalis.Controller
                 }
                 else 
                 {
-                    _touchPosDown[_touchID] = _mousePos;
+                    // _touchPosDownRaw[_touchID] = mousePosRaw;
+                    _touchPosLast[_touchID] = _mousePos;
                 }
                 _touchTypeArray[_touchID] = TouchTypeEnum.map;
             }
@@ -223,7 +226,7 @@ namespace Rechrysalis.Controller
             }
             return false;
         }
-        public void CheckRayCastMoveFunction(Vector2 _mousePos, int _touchID)
+        public void CheckRayCastMoveFunction(Vector2 _mousePos, int _touchID, Vector2 mousePosRaw)
         {
             LayerMask _mask = LayerMask.GetMask("PlayerController");
             // int _layer = 6;
@@ -239,7 +242,13 @@ namespace Rechrysalis.Controller
             // }
             if ((_transitionTargetingCamera.InTargetMode) && (_touchTypeArray[_touchID] == TouchTypeEnum.map))
             {
-                _cameraGOScroll.localPosition = _touchPosDown[_touchID] - _mousePos;
+                Debug.Log($"touch pos " + _touchPosDown[_touchID] + " mouse pos " + _mousePos);
+                // Vector2 newPos = (_touchPosDownRaw[_touchID] / 5.4f) - (mousePosRaw / 5.4f);
+                Vector2 newPos = _touchPosLast[_touchID] - _mousePos;
+                _touchPosLast[_touchID] = _mousePos + newPos;
+                Vector2 cameraScrollLocalPos = _cameraGOScroll.localPosition;
+                newPos += cameraScrollLocalPos;
+                _cameraGOScroll.localPosition = newPos;
             }
             else if ((_touchTypeArray[_touchID] == TouchTypeEnum.controller) && (_mousePos.y < _controller.transform.position.y - _controllerRadius))
             {
