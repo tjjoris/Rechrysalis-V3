@@ -110,7 +110,10 @@ namespace Rechrysalis.Movement
             }
             else 
             {
-                _rb2d.velocity = _direction;
+                if (!_mainManager.TimeStopped)
+                {
+                    _rb2d.velocity = _direction;
+                }
             }
         }
         private float TurnV2IntoApproachSpeedMult(Vector2 vectorBeforeRetreat)
