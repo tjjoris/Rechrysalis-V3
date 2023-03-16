@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Unit
 {
@@ -277,13 +278,21 @@ namespace Rechrysalis.Unit
                 {
                     if ((hatchEffect != null) && (hatchEffect.GetHatchEffectSO() != null))
                     {
-                        if (CheckIfDuplicateHatchEffect(hatchEffect))
+                        HatchEffectClass duplicateHatchEffectClass = CheckIfDuplicateHatchEffect(hatchEffect);
+                        if (duplicateHatchEffectClass != null)
                         {
-                            
+                            duplicateHatchEffectClass.HatchEffectHealth += hatchEffect.GetHatchEffectSO().HealthMax[0];
                         }
-                        _advUnitClass.HatchEffectPrefab.Add(hatchEffect.GetHatchEffectSO().HatchEffectPrefab);
-                        _advUnitClass.ManaCost += hatchEffect.GetHatchEffectSO().AddedManaCost;
-                        _advUnitClass.BuildTime += hatchEffect.GetHatchEffectSO().BuildTimeAdd;
+                        else 
+                        {                        
+                            HatchEffectClass hatchEffectClass = new HatchEffectClass();
+                            hatchEffectClass.HatchEffectPrefab = hatchEffect.GetHatchEffectSO().HatchEffectPrefab;
+                            hatchEffectClass.HatchEffectHealth = hatchEffect.GetHatchEffectSO().HealthMax[0];
+                            _advUnitClass.HatchEffectClasses.Add(hatchEffectClass);
+                            _advUnitClass.HatchEffectPrefab.Add(hatchEffect.GetHatchEffectSO().HatchEffectPrefab);
+                            _advUnitClass.ManaCost += hatchEffect.GetHatchEffectSO().AddedManaCost;
+                            _advUnitClass.BuildTime += hatchEffect.GetHatchEffectSO().BuildTimeAdd;
+                        }
                     }
                 }
                 // if (_utcHatchEffect.GetHatchEffectSO() != null)
@@ -294,22 +303,22 @@ namespace Rechrysalis.Unit
                 // }             
             }
         }
-        private bool CheckIfDuplicateHatchEffect(UpgradeTypeClass hatchEffect)
+        private HatchEffectClass CheckIfDuplicateHatchEffect(UpgradeTypeClass hatchEffect)
         {
-            if ((_advUnitClass.HatchEffectPrefab != null) && (_advUnitClass.HatchEffectPrefab.Count > 0))
+            if ((_advUnitClass.HatchEffectClasses != null) && (_advUnitClass.HatchEffectPrefab.Count > 0))
             {
-                foreach (GameObject hatchEffectPrefab in _advUnitClass.HatchEffectPrefab)
+                foreach (HatchEffectClass hatchEffectClass in _advUnitClass.HatchEffectClasses)
                 {
-                    if (hatchEffectPrefab != null)
+                    if (hatchEffectClass != null)
                     {
-                        if (hatchEffectPrefab == hatchEffect.GetHatchEffectSO().HatchEffectPrefab)
+                        if (hatchEffectClass.HatchEffectPrefab == hatchEffect.GetHatchEffectSO().HatchEffectPrefab)
                         {
-                            return true;
+                            return hatchEffectClass;
                         }
                     }
                 }
             }
-            return false;
+            return null;
         }
         // private void SetHatchEffect()
         // {

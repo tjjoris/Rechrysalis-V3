@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Unit
 {
@@ -30,6 +31,9 @@ namespace Rechrysalis.Unit
         public float Damamge {get => _damage; set => _damage = value; }
         [SerializeField] private List<GameObject> _hatchEffectPrefab = new List<GameObject>();
         public List<GameObject> HatchEffectPrefab {get => _hatchEffectPrefab; set => _hatchEffectPrefab = value; }
+        [SerializeField] private List<HatchEffectClass> _hatchEffectClasses = new List<HatchEffectClass>();
+        public List<HatchEffectClass> HatchEffectClasses { get => _hatchEffectClasses; set => _hatchEffectClasses = value; }
+        
         [SerializeField] private float _hatchEffectMult;
         public float HatchEffectMult {get => _hatchEffectMult; set => _hatchEffectMult = value; }
         [SerializeField] private float _hatchEffectDurationAdd;
