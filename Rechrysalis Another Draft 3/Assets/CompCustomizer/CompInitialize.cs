@@ -97,11 +97,11 @@ namespace Rechrysalis.CompCustomizer
                         _showCompErrorText.UpgradesNeedBasic();
                         return false;
                     }
-                if (numberOfHatchEffects > 1)
-                {
-                    _showCompErrorText.CanOnlyHaveOneHE();
-                    return false;
-                }
+                // if (numberOfHatchEffects > 1)
+                // {
+                //     _showCompErrorText.CanOnlyHaveOneHE();
+                //     return false;
+                // }
 
             }
             if (atLeastOneBasic)
