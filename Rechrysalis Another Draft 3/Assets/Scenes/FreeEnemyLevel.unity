@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 433741824}
   - component: {fileID: 433741823}
   m_Layer: 0
-  m_Name: CameraFollowGO
+  m_Name: TargetCameraScroll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3011,7 +3011,7 @@ MonoBehaviour:
   _playerPrefsInteract: {fileID: 1448413824}
   _graphicRaycaster: {fileID: 1857028576}
   _eventSystem: {fileID: 0}
-  _cameraScrollTransform: {fileID: 433741824}
+  _targetCameraScrollTransform: {fileID: 433741824}
 --- !u!4 &1448413823
 Transform:
   m_ObjectHideFlags: 0

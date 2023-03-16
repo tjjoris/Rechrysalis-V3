@@ -26,11 +26,13 @@ namespace Rechrysalis.Controller
         private CompCustomizerSO _compCustomizer;
         private ControllerManager _controllerManager;
         // private int _controllerIndex;
-        private List<GameObject> _allUnits;        
+        private List<GameObject> _allUnits;       
+        private Transform _targetCameraScrollTransform;
         private int _waveIndex;
         public void Initialize(int controllerIndex, ControllerManager enemyController, CompSO compSO, PlayerUnitsSO playerUnitsSO, CompsAndUnitsSO compsAndUnits, FreeUnitCompSO freeUnitCompSO, CompCustomizerSO compCustomizer, MainManager mainManager)        
         {
             _mainManager = mainManager;
+            _targetCameraScrollTransform = _mainManager.TargetCameraScrollTransform;
             _controllerManager = GetComponent<ControllerManager>();
             this._controllerIndex = controllerIndex;
             this._enemyController = enemyController;
@@ -76,6 +78,7 @@ namespace Rechrysalis.Controller
                 WaveSO wave = freeUnitCompSO.Waves[waveIndex];
             if (wave.UnitInWave.Length > 0)
             {
+                _targetCameraScrollTransform.localPosition = Vector2.zero;
                 _controllerFreeHatch?.InitializeUnitsArray(wave.UnitInWave.Length);
                 // for (int i = 0; i < _compSO.UnitSOArray.Length; i++)
                 wave.ParentUnitClasses = new List<ParentUnitClass>();
