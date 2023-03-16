@@ -37,6 +37,7 @@ namespace Rechrysalis
         [SerializeField] private PlayerPrefsInteract _playerPrefsInteract;
         [SerializeField] private GraphicRaycaster _graphicRaycaster;
         [SerializeField] private EventSystem _eventSystem;
+        [SerializeField] private Transform _cameraScrollTransform;
         public EventSystem EventSystem => _eventSystem;
         public PlayerPrefsInteract PlayerPrefsInteract => _playerPrefsInteract;
 
@@ -53,7 +54,7 @@ namespace Rechrysalis
                 {
                     if (_controllerManager[i] != null) 
                     {
-                        _controllerManager[i].Initialize(i, _playerUnitsSO, _compSO[i], _controllerManager[GetOppositeController.ReturnOppositeController(i)], _compsAndUnitsSO, _compCustomizer, this, _graphicRaycaster);
+                        _controllerManager[i].Initialize(i, _playerUnitsSO, _compSO[i], _controllerManager[GetOppositeController.ReturnOppositeController(i)], _compsAndUnitsSO, _compCustomizer, this, _graphicRaycaster, _cameraScrollTransform);
                     }
                 }
             }

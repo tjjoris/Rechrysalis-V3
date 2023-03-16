@@ -40,12 +40,14 @@ namespace Rechrysalis.Controller
         [SerializeField] private PlayerPrefsInteract _plyaerPrefsInteract;
         [SerializeField] private GraphicRaycaster _graphicsRaycaster;
         [SerializeField] private EventSystem _eventSystem;
+        [SerializeField] private Transform _cameraGOScroll;
         
         private int _controllerIndex = 0;
 
         
-        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius, TransitionTargetingCamera transitionTargetingCamera, MainManager mainManager, GraphicRaycaster graphicRaycaster)
+        public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius, TransitionTargetingCamera transitionTargetingCamera, MainManager mainManager, GraphicRaycaster graphicRaycaster, Transform cameraGOScroll)
         {
+            _cameraGOScroll = cameraGOScroll;
             _graphicsRaycaster = graphicRaycaster;
             _mainManager = mainManager;
             _eventSystem = _mainManager.EventSystem;
@@ -134,6 +136,10 @@ namespace Rechrysalis.Controller
                 if (!_transitionTargetingCamera.InTargetMode)
                 {
                     MapClicked(_mousePos, _touchID);
+                }
+                else 
+                {
+                    _touchPosDown[_touchID] = _mousePos;
                 }
                 _touchTypeArray[_touchID] = TouchTypeEnum.map;
             }
@@ -233,7 +239,7 @@ namespace Rechrysalis.Controller
             // }
             if ((_transitionTargetingCamera.InTargetMode) && (_touchTypeArray[_touchID] == TouchTypeEnum.map))
             {
-                Debug.Log($"scroll target camera.");
+                _cameraGOScroll.localPosition = _touchPosDown[_touchID] - _mousePos;
             }
             else if ((_touchTypeArray[_touchID] == TouchTypeEnum.controller) && (_mousePos.y < _controller.transform.position.y - _controllerRadius))
             {
