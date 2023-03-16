@@ -22,7 +22,7 @@ namespace Rechrysalis.CameraControl
             {
                 Debug.Log($"transition to targeting");
             }
-            _mainManager.Paused = true;
+            _mainManager.TimeStopped = true;
             float xSum = 0;
             float ySum = 0;
             float count = 0;
@@ -49,7 +49,7 @@ namespace Rechrysalis.CameraControl
             {
                 Debug.Log($"transtion to controller");                
             }
-            _mainManager.Paused = false;
+            _mainManager.TimeStopped = false;
             transform.position = _controllerCameraTransform.position;
             transform.parent = _controllerCameraTransform;
             _inTargetMode = false;

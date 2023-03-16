@@ -12,7 +12,7 @@ namespace Rechrysalis.UI
         public void ControllerIsHit()
         {
             _controllerHitGO.SetActive(true);
-            _mainManager.Paused = true;
+            _mainManager.TimeStopped = true;
             // Time.timeScale = 0;
             StartCoroutine(ControllerHitTimer());
         }
@@ -20,7 +20,7 @@ namespace Rechrysalis.UI
         {
             yield return new WaitForSeconds(0.15f);
             _controllerHitGO.SetActive(false);
-            _mainManager.Paused = false;
+            _mainManager.TimeStopped = false;
             // Time.timeScale = 1;
         }
     }

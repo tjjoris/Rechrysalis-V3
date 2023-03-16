@@ -80,7 +80,7 @@ namespace Rechrysalis.Movement
         {
             Vector2 directionToSet = Vector2.zero;
             directionInput.Normalize();          
-            if ((_siegeInt <= 0) && (!_mainManager.Paused))
+            if ((_siegeInt <= 0) && (!_mainManager.TimeStopped))
             {
                 float ySpeedMult = TurnV2IntoApproachSpeedMult(directionInput);
                 _direction = directionInput * _speedVaried;

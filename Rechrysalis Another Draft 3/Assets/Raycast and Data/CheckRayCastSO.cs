@@ -75,6 +75,10 @@ namespace Rechrysalis.Controller
         }
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID)
         {
+            if (_mainManager.Paused)
+            {
+                return;
+            }
             Vector3 _mousePosV3;
             RaycastHit2D hit;
             CreateRayCastFunction(_mousePos, out _mousePosV3, out hit);
