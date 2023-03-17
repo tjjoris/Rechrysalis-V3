@@ -51,11 +51,11 @@ namespace Rechrysalis.Unit
                     {
                         if (_parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectPrefab.Count > 0)
                         {
-                            foreach (GameObject hatchEffectPrefab in _parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectPrefab)
+                            foreach (HatchEffectClass hatchEffectClass in _parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectClasses)
                             {
-                                if (hatchEffectPrefab != null)
+                                if (hatchEffectClass != null)
                                 {
-                                    _parentUnitHatchEffects.CreateHatchEffect(hatchEffectPrefab, _parentUnitManager.ParentIndex, unitIndex, true);
+                                    _parentUnitHatchEffects.CreateHatchEffect(hatchEffectClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitIndex, true, hatchEffectClass.HatchEffectHealth);
                                 }
                             }
                         }
