@@ -216,6 +216,7 @@ namespace Rechrysalis.Unit
                 _advUnitClass.SacrificeControllerAmount = _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.SacrificeControllerAmount;
                 _advUnitClass.MoveSpeedAdd = _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.MoveSpeedAdd;
                 _advUnitClass.SiegeDuration = advancedModifier.SiegeDuration;
+                _advUnitClass.BurstHeal = advancedModifier.BurstHeal;
                 // _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
 
             }
@@ -261,6 +262,7 @@ namespace Rechrysalis.Unit
             _advUnitClass.SacrificeControllerAmount += advUnitModifierSO.SacrificeControllerAmount;
             _advUnitClass.MoveSpeedAdd += advUnitModifierSO.MoveSpeedAdd;
             _advUnitClass.SiegeDuration += advUnitModifierSO.SiegeDuration;
+            _advUnitClass.BurstHeal += advUnitModifierSO.BurstHeal;
             // _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
         }
         // private void CalculateAdvDamage()

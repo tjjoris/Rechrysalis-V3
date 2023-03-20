@@ -52,6 +52,8 @@ namespace Rechrysalis.Unit
         public float MoveSpeedAdd { get => _moveSpeedAdd; set => _moveSpeedAdd = value; }
         [SerializeField] private float _siegeDuration;
         public float SiegeDuration { get => _siegeDuration; set => _siegeDuration = value; }
+        [SerializeField] private float _burstHeal;
+        public float BurstHeal { get => _burstHeal; set => _burstHeal = value; }        
         [SerializeField] private Sprite _projectileSprite;
         public Sprite ProjectileSprite { get => _projectileSprite; set => _projectileSprite = value; }
         

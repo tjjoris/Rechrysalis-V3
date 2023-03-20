@@ -52,6 +52,8 @@ namespace Rechrysalis.Unit
         public float MoveSpeedAdd => _moveSpeedAdd;
         [SerializeField] private float _siegeDuration = 0;
         public float SiegeDuration => _siegeDuration;
+        [SerializeField] private float _burstHeal;
+        public float BurstHeal => _burstHeal;
 
 
         private void OnValidate()

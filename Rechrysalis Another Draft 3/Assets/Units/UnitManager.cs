@@ -44,6 +44,7 @@ namespace Rechrysalis.Unit
         private TargetPrioratizeByScore _targetPrioratizeByScore;
         private MoveSpeedAddManager _moveSpeedAddManager;
         private SiegeManager _siegeManager;
+        private BurstHealManager _burstHealManager;
         private float _baseDPS;
         private float _newDPS;
         private float _baseChargeUp;
@@ -142,6 +143,12 @@ namespace Rechrysalis.Unit
                     _siegeManager = GetComponent<SiegeManager>();
                     _siegeManager?.Initialize(mover);
                     _siegeManager?.AddToSiegeDuration(_unitClass.SiegeDuration);
+                }
+                if (_unitClass.BurstHeal > 0)
+                {
+                    gameObject.AddComponent<BurstHealManager>();
+                    _burstHealManager = GetComponent<BurstHealManager>();
+                    // _burstHealManager?
                 }
             }
             ReCalculateDamageChanges();

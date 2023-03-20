@@ -74,6 +74,10 @@ namespace Rechrysalis.Controller
                     parentUnitGO.name = "Parent Unit " + parentUnitIndex.ToString();
                     ParentUnitManager pum = parentUnitGO.GetComponent<ParentUnitManager>();
                     _controllerManager.ParentUnitManagers.Add(pum);
+                    if (pum.GetComponent<ParentHealth>() != null)
+                    {
+                        _controllerManager.ParentHealths.Add(pum.GetComponent<ParentHealth>());
+                    }
                     HatchEffectSO[] _hatchEffectSOs = SetHatchEffectSOs(parentUnitIndex);
                     pum?.Initialize(controllerIndex, parentUnitIndex, unitComp, compsAndUnits.PlayerUnits[controllerIndex], transform, _hatchEffectSOs, unitComp.ParentUnitClassList[parentUnitIndex], mainManager);
                     _hilightRingParentCreator?.CreateHilightRingParent(parentUnitIndex, unitComp.ParentUnitCount, unitOffset);

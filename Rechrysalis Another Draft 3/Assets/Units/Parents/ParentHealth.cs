@@ -57,6 +57,18 @@ namespace Rechrysalis.Unit
             GetComponent<ParentUnitHatchEffects>()?.TakeDamage(_damage);
             CheckIfDead();
         }
+        public void Heal(float healAmount)
+        {
+            if (!_isChrysalis)
+            {
+                _currentHealth += healAmount;
+                if (_currentHealth >= _maxHealth)
+                {
+                    _currentHealth = _maxHealth;
+                }
+                UpdateHpBar();
+            }
+        }
         public void SetChrysalis(bool _value)
         {
             _isChrysalis = _value;
