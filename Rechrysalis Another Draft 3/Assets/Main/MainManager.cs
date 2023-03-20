@@ -100,7 +100,7 @@ namespace Rechrysalis
             }
             _projectilesHolder?.Tick(_timeAmount);
         }
-        private void PauseUnPause(bool pauseBool)
+        public void PauseUnPause(bool pauseBool)
         {
             foreach (ControllerManager controllerManager in _controllerManager)
             {
