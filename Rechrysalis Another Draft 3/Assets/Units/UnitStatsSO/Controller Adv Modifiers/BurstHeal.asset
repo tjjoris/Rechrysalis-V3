@@ -38,4 +38,4 @@ MonoBehaviour:
   _sacrificeControllerAmount: 0
   _moveSpeedAdd: 0
   _siegeDuration: 0
-  _burstHeal: 25
+  _burstHeal: 65
