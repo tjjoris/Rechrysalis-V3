@@ -25,7 +25,7 @@ namespace Rechrysalis.CameraControl
                 Debug.Log($"transition to targeting");
             }
             // _mainManager.TimeStopped = true;
-            _pauseScript.SetTimeFrozen(true);
+            _pauseScript.SetTargetingPause(true);
             float xSum = 0;
             float ySum = 0;
             float count = 0;
@@ -54,7 +54,7 @@ namespace Rechrysalis.CameraControl
                 Debug.Log($"transtion to controller");                
             }
             // _mainManager.TimeStopped = false;
-            _pauseScript.SetTimeFrozen(false);
+            _pauseScript.SetTargetingPause(false);
             transform.position = _controllerCameraTransform.position;
             transform.parent = _controllerCameraTransform;
             _inTargetMode = false;
