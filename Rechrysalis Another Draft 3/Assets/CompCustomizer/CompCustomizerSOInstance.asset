@@ -26,6 +26,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 566cfc1b0ca2848b3836fb1ee6f80030, type: 2}
   - {fileID: 11400000, guid: e08c89c5bd6654b7fbdcb49e5d7c8105, type: 2}
   - {fileID: 11400000, guid: 2cdb0fefb8bb74741b427efb8edfd1fe, type: 2}
+  - {fileID: 11400000, guid: b62e7b77ea010418fa680db694feccbe, type: 2}
   _controllerHeartUpgrades:
   - {fileID: 11400000, guid: 75fc5b7c7c95243d3a3d41c9f9c2e8dc, type: 2}
   - {fileID: 11400000, guid: 6dc60c3f3e31a439caed0fc1ab4d2112, type: 2}

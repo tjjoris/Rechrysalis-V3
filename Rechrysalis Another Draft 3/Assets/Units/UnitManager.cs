@@ -148,7 +148,7 @@ namespace Rechrysalis.Unit
                 {
                     gameObject.AddComponent<BurstHealManager>();
                     _burstHealManager = GetComponent<BurstHealManager>();
-                    // _burstHealManager?
+                    _burstHealManager?.Initialize(_controllerManager, _unitClass.BurstHeal);
                 }
             }
             ReCalculateDamageChanges();
