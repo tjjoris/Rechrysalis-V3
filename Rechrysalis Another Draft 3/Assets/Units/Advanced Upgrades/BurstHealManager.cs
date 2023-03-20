@@ -14,6 +14,7 @@ namespace Rechrysalis.AdvancedUpgrade
         public void Initialize(ControllerManager controllerManager, float healAmount)
         {
             _controllerManager = controllerManager;
+            _healAmount = healAmount;
         }
         public void OnEnable()
         {
