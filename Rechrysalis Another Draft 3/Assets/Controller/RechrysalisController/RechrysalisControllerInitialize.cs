@@ -255,7 +255,7 @@ namespace Rechrysalis.Controller
                         _manaGenerator.AddToStartingMana(parentUnitClass.AdvancedUpgradesUTCList.Count);
 
                     }
-                    if (parentUnitClass.UTCHatchEffect != null)
+                    if (parentUnitClass.UTCHatchEffects != null)
                     {
                         _manaGenerator.AddToStartingMana(1);
                     }

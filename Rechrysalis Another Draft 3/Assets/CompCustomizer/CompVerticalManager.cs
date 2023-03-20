@@ -54,9 +54,9 @@ namespace Rechrysalis.CompCustomizer
         public void CreateAndSetUpCompButtons(ParentUnitClass parentUnitClass, GameObject compButtonPrefab)
         {
             CreateCompButton(compButtonPrefab, parentUnitClass.UTCBasicUnit);
-            if ((parentUnitClass.UTCHatchEffect != null) && (parentUnitClass.UTCHatchEffect.Count > 0))
+            if ((parentUnitClass.UTCHatchEffects != null) && (parentUnitClass.UTCHatchEffects.Count > 0))
             {
-                foreach (UpgradeTypeClass hatchEffect in parentUnitClass.UTCHatchEffect)
+                foreach (UpgradeTypeClass hatchEffect in parentUnitClass.UTCHatchEffects)
                 {
                     if (hatchEffect != null)
                     {

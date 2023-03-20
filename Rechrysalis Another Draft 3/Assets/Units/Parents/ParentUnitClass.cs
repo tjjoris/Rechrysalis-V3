@@ -14,7 +14,7 @@ namespace Rechrysalis.Unit
         [SerializeField] private UpgradeTypeClass _utcBasicUnit;
         public UpgradeTypeClass UTCBasicUnit { get{ return _utcBasicUnit; } set{ _utcBasicUnit = value; } }
         [SerializeField] private List<UpgradeTypeClass> _utcHatchEffect = new List<UpgradeTypeClass>();
-        public List<UpgradeTypeClass> UTCHatchEffect { get{ return _utcHatchEffect; } set{ _utcHatchEffect = value; } }
+        public List<UpgradeTypeClass> UTCHatchEffects { get{ return _utcHatchEffect; } set{ _utcHatchEffect = value; } }
         private UpgradeTypeClass _replacedUTCBasicUnit;
         // private UpgradeTypeClass _replaceUTCHatchEffect;
         [SerializeField] private UnitClass _basicUnitClass;
@@ -284,7 +284,8 @@ namespace Rechrysalis.Unit
                             duplicateHatchEffectClass.HatchEffectHealth += hatchEffect.GetHatchEffectSO().HealthMax[0];
                         }
                         else 
-                        {                        
+                        {                     
+                            Debug.Log($"create hatch effect class "+ hatchEffect.GetHatchEffectSO().HealthMax[0]);   
                             HatchEffectClass hatchEffectClass = new HatchEffectClass();
                             hatchEffectClass.HatchEffectPrefab = hatchEffect.GetHatchEffectSO().HatchEffectPrefab;
                             hatchEffectClass.HatchEffectHealth = hatchEffect.GetHatchEffectSO().HealthMax[0];
