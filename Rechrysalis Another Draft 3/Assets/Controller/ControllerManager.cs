@@ -24,7 +24,7 @@ namespace Rechrysalis.Controller
          
         [SerializeField] private List<ParentUnitManager> _parentUnitManagers;
         public List<ParentUnitManager> ParentUnitManagers {get {return _parentUnitManagers;} set{_parentUnitManagers = value;}}
-        private List<ParentHealth> _parentHealths = new List<ParentHealth>();
+        [SerializeField] private List<ParentHealth> _parentHealths = new List<ParentHealth>();
         public List<ParentHealth> ParentHealths => _parentHealths;
         [SerializeField] private List<Mover> _parentUnitMovers = new List<Mover>();
         public List<Mover> ParentUnitMovers { get => _parentUnitMovers; set => _parentUnitMovers = value; }

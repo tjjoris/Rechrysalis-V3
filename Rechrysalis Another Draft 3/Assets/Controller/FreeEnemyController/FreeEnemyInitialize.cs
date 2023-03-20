@@ -109,6 +109,10 @@ namespace Rechrysalis.Controller
                         parentUnitManager?.Initialize(_controllerIndex, _unitInWaveIndex, compSO, playerUnitsSO, transform, null, parentUnitClass, _mainManager);
                         parentUnitManager.ParentUnitClass = parentUnitClass;
                         _controllerManager.ParentUnitManagers.Add(parentUnitManager);
+                        if (parentUnitManager.GetComponent<ParentHealth>() != null)
+                        {
+                            _controllerManager.ParentHealths.Add(parentUnitManager.GetComponent<ParentHealth>());
+                        }
                         Mover parentUnitMover = parentUnitManager.GetComponent<Mover>();
                         if (parentUnitMover != null)
                         {
