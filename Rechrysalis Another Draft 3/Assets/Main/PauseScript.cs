@@ -46,7 +46,7 @@ namespace Rechrysalis
 
         private void CheckToCallPauseUnPause()
         {
-            if  (IsPaused())
+            if  (!IsPaused())
             {
                 _mainMangaer.PauseUnPause(false);
             }
