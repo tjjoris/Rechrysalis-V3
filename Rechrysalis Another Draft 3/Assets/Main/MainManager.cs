@@ -19,11 +19,11 @@ namespace Rechrysalis
         //     _timeStopped = value;
         //     PauseUnPause(value);
         // }}
-        [SerializeField] private bool _paused;
-        public bool Paused { get {return _paused;} set{
-            _paused = value;
-            PauseUnPause(value);
-        }}
+        // [SerializeField] private bool _paused;
+        // public bool Paused { get {return _paused;} set{
+        //     _paused = value;
+        //     PauseUnPause(value);
+        // }}
         private PauseScript _pauseScript;
         [SerializeField] CompsAndUnitsSO _compsAndUnitsSO;        
         [SerializeField] ControllerManager[] _controllerManager;
