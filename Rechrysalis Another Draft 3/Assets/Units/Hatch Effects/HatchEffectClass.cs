@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Rechrysalis.HatchEffect
 {
     [System.Serializable]
-    public class HatchEffectClass : MonoBehaviour
+    public class HatchEffectClass
     {
         [SerializeField] private GameObject _hatchEffectPrefab;
         public GameObject HatchEffectPrefab {get => _hatchEffectPrefab; set => _hatchEffectPrefab = value;}        
