@@ -60,9 +60,9 @@ namespace Rechrysalis
         {
             if ((!_timeFrozen) && (!_menuPause) && (!_targetingPause))
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
     }
 }
