@@ -16,6 +16,7 @@ namespace Rechrysalis.Controller
     {
         private bool _debugBool = false;
         private MainManager _mainManager;
+        private PauseScript _pauseScript;
         [SerializeField] private CompsAndUnitsSO _compsAndUnits;
         private TargetsListSO _playerTargtList;
         [SerializeField] private ClickInfo _clickInfo;
@@ -52,6 +53,7 @@ namespace Rechrysalis.Controller
             _cameraGOScroll = cameraGOScroll;
             _graphicsRaycaster = graphicRaycaster;
             _mainManager = mainManager;
+            _pauseScript = _mainManager.GetComponent<PauseScript>();
             _eventSystem = _mainManager.EventSystem;
             _plyaerPrefsInteract = _mainManager.PlayerPrefsInteract;
             _transitionTargetingCamera = transitionTargetingCamera;
@@ -79,7 +81,7 @@ namespace Rechrysalis.Controller
         }
         public void CheckRayCastDownFunction(Vector2 _mousePos, int _touchID, Vector2 mousePosRaw)
         {
-            if (_mainManager.Paused)
+            if (_pauseScript.GetMenuPause())
             {
                 return;
             }
