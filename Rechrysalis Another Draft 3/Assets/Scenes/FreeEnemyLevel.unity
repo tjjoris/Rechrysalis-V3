@@ -1738,6 +1738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _menu: {fileID: 1982639719}
   _mainManager: {fileID: 1448413822}
+  _pauseScript: {fileID: 1448413825}
 --- !u!1 &886669363
 GameObject:
   m_ObjectHideFlags: 0
@@ -2531,6 +2532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controllerHitGO: {fileID: 1569290864}
   _mainManager: {fileID: 1448413822}
+  _pauseScript: {fileID: 1448413825}
 --- !u!1 &1177779209
 GameObject:
   m_ObjectHideFlags: 0
@@ -2994,7 +2996,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227754fb773cf4025b4c4b089d3f09e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeStopped: 0
   _paused: 0
   _compsAndUnitsSO: {fileID: 11400000, guid: abce2c694bba2494b88e77f2ae192b6f, type: 2}
   _controllerManager:

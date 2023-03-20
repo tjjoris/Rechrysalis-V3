@@ -8,6 +8,7 @@ namespace Rechrysalis.UI
     {
         [SerializeField] private GameObject _menu;
         [SerializeField] private MainManager _mainManager;
+        [SerializeField] private PauseScript _pauseScript;
 
         public void MenuButtonClicked()
         {
@@ -15,14 +16,16 @@ namespace Rechrysalis.UI
             {
                 // Time.timeScale = 1;
                 // _mainManager.TimeStopped = false;
-                _mainManager.Paused = false;
+                // _mainManager.Paused = false;
+                _pauseScript.SetMenuPause(false);
                 _menu.SetActive(false);                
             }
             else
             {
                 // Time.timeScale = 0;
                 // _mainManager.TimeStopped = true;
-                _mainManager.Paused = true;
+                // _mainManager.Paused = true;
+                _pauseScript.SetMenuPause(true);
                 _menu.SetActive(true);
             }
         }
