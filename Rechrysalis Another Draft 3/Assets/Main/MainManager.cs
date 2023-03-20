@@ -14,17 +14,17 @@ namespace Rechrysalis
 {
     public class MainManager : MonoBehaviour
     {
-        [SerializeField] private bool _timeStopped;
-        public bool TimeStopped { get {return _timeStopped;} set {
-            _timeStopped = value;
-            PauseUnPause(value);
-        }}
+        // [SerializeField] private bool _timeStopped;
+        // public bool TimeStopped { get {return _timeStopped;} set {
+        //     _timeStopped = value;
+        //     PauseUnPause(value);
+        // }}
         [SerializeField] private bool _paused;
         public bool Paused { get {return _paused;} set{
             _paused = value;
             PauseUnPause(value);
         }}
-        
+        private PauseScript _pauseScript;
         [SerializeField] CompsAndUnitsSO _compsAndUnitsSO;        
         [SerializeField] ControllerManager[] _controllerManager;
         [SerializeField] PlayerUnitsSO[] _playerUnitsSO;  
@@ -44,6 +44,7 @@ namespace Rechrysalis
 
         private void Awake() {
             // _compsAndUnitsSO.CompsSO = _compSO;
+            _pauseScript = GetComponent<PauseScript>();
             _compSO = _compsAndUnitsSO.CompsSO;
             _compsAndUnitsSO.ControllerManagers = _controllerManager;
             GameMaster.GetSingleton().ReferenceManager.CompsAndUnitsSO = _compsAndUnitsSO;
@@ -65,7 +66,7 @@ namespace Rechrysalis
 
         private void FixedUpdate()
         {
-            if ((!_timeStopped) && (!_paused))
+            if (!_pauseScript.IsPaused())
             {
                 _backGroundManager.Tick();
                 ResetTick();

@@ -46,7 +46,7 @@ namespace Rechrysalis
 
         private void CheckToCallPauseUnPause()
         {
-            if  (CheckIfPaused())
+            if  (IsPaused())
             {
                 _mainMangaer.PauseUnPause(false);
             }
@@ -56,7 +56,7 @@ namespace Rechrysalis
             }
         }
 
-        public bool CheckIfPaused()
+        public bool IsPaused()
         {
             if ((!_timeFrozen) && (!_menuPause) && (!_targetingPause))
             {

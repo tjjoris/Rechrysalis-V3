@@ -12,6 +12,7 @@ namespace Rechrysalis.Movement
     public class Mover : MonoBehaviour
     {
         private MainManager _mainManager;
+        private PauseScript _pauseScript;
         private bool _debugBool = false;
         [SerializeField] int _controllerIndex;
         [SerializeField] private GameObject _backG;
@@ -41,6 +42,7 @@ namespace Rechrysalis.Movement
         public void Initialize(int _controllerIndex, MainManager mainManager)
         {
             _mainManager = mainManager;
+            _pauseScript = _mainManager.GetComponent<PauseScript>();
             _parentUnitManager = GetComponent<ParentUnitManager>();
             _causesPushBack = GetComponent<CausesPushBack>();
             this._controllerIndex = _controllerIndex;
@@ -80,7 +82,7 @@ namespace Rechrysalis.Movement
         {
             Vector2 directionToSet = Vector2.zero;
             directionInput.Normalize();          
-            if ((_siegeInt <= 0) && (!_mainManager.TimeStopped))
+            if ((_siegeInt <= 0) && (!_pauseScript.IsPaused()))
             {
                 float ySpeedMult = TurnV2IntoApproachSpeedMult(directionInput);
                 _direction = directionInput * _speedVaried;
@@ -110,7 +112,7 @@ namespace Rechrysalis.Movement
             }
             else 
             {
-                if (!_mainManager.TimeStopped)
+                if (!_pauseScript.IsPaused())
                 {
                     _rb2d.velocity = _direction;
                 }
