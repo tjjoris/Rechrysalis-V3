@@ -2850,6 +2850,7 @@ MonoBehaviour:
   _inTargetMode: 0
   _enemyControllerManager: {fileID: 691481331}
   _mainManager: {fileID: 1448413822}
+  _pauseScript: {fileID: 1448413825}
   _returnToControllerButton: {fileID: 525052437}
 --- !u!1 &1282761965
 GameObject:
@@ -2973,6 +2974,7 @@ GameObject:
   - component: {fileID: 1448413823}
   - component: {fileID: 1448413822}
   - component: {fileID: 1448413824}
+  - component: {fileID: 1448413825}
   m_Layer: 0
   m_Name: MainHandler
   m_TagString: Untagged
@@ -3039,6 +3041,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fdc2d9f6524428b99b6096fb8f2822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1448413825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448413821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146f79bbb695849509cfccdaef84439f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeFrozen: 0
+  _menuPause: 0
+  _targetingPause: 0
+  _mainMangaer: {fileID: 0}
 --- !u!1 &1457545405
 GameObject:
   m_ObjectHideFlags: 0

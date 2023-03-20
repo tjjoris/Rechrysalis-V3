@@ -15,6 +15,7 @@ namespace Rechrysalis.CameraControl
         [SerializeField] private bool _inTargetMode;
         [SerializeField] private ControllerManager _enemyControllerManager;
         [SerializeField] private MainManager _mainManager;
+        [SerializeField] private PauseScript _pauseScript;
         [SerializeField] private GameObject _returnToControllerButton;
         public bool InTargetMode => _inTargetMode;
         public void TransitionToTargeting()
@@ -23,7 +24,8 @@ namespace Rechrysalis.CameraControl
             {
                 Debug.Log($"transition to targeting");
             }
-            _mainManager.TimeStopped = true;
+            // _mainManager.TimeStopped = true;
+            _pauseScript.SetTimeFrozen(true);
             float xSum = 0;
             float ySum = 0;
             float count = 0;
@@ -51,7 +53,8 @@ namespace Rechrysalis.CameraControl
             {
                 Debug.Log($"transtion to controller");                
             }
-            _mainManager.TimeStopped = false;
+            // _mainManager.TimeStopped = false;
+            _pauseScript.SetTimeFrozen(false);
             transform.position = _controllerCameraTransform.position;
             transform.parent = _controllerCameraTransform;
             _inTargetMode = false;
