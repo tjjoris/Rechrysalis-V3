@@ -96,7 +96,7 @@ namespace Rechrysalis.Controller
                         parentUnitClass.SetUTCBasicUnit(_unitStats.UpgradeTypeClass);
                         parentUnitClass.SetAllStats();
                         float controllerLifeCostOfUnit = parentUnitClass.BasicUnitClass.ControllerLifeCostMult * _compsAndUnits.FreeUnitToControllerLifeLostMult;
-                        if (_controllerHealth.CheckIfHasHealth(controllerLifeCostOfUnit))
+                        if (_controllerHealth.CheckIfHasEnoughHealth(controllerLifeCostOfUnit))
                         {                            
                             // _wave.ParentUnitClasses.Add(parentUnitClass);                        
                             // ParentUnitClass parentUnitClass = _wave.ParentUnitClasses[_compSO.ParentUnitClassList.Count - 1];

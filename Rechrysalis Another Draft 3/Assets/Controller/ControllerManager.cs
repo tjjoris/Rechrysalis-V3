@@ -53,6 +53,8 @@ namespace Rechrysalis.Controller
         private TargetScoreRanking _targetScoreRanking;
         // private CompCustomizerSO _compCustomizer;
         private ManaGenerator _manaGenerator;
+        [SerializeField] private ControllerHealth _controllerHealth;
+        public ControllerHealth ControllerHealth => _controllerHealth;
         [SerializeField] private TransitionTargetingCamera _transitionTargetingCamera;
         // public bool IsStopped
         // {
@@ -69,6 +71,7 @@ namespace Rechrysalis.Controller
 
         public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits, CompCustomizerSO _compCustomizer, MainManager mainManager, GraphicRaycaster graphicRaycaster, Transform cameraScrollTransform) 
         {
+            _controllerHealth = GetComponent<ControllerHealth>();
             this._controllerIndex = _controllerIndex;
             this._playerUnitsSO = _playerUnitsSO;
             this._compSO = _compSO;
@@ -82,6 +85,7 @@ namespace Rechrysalis.Controller
             _hatchEffects = new List<GameObject>();
             _allUnits.Clear();
             _mover = GetComponent<Mover>();
+            _controllerHealth?.Initialize(_compsAndUnits.ControllerHealth[_controllerIndex], _allUnits, _compsAndUnits);
             if (_mover != null) {
                 _mover?.Initialize(_controllerIndex, mainManager);
                 _mover?.SetBaseSpeed(_compsAndUnits.Speed);
@@ -115,7 +119,7 @@ namespace Rechrysalis.Controller
                 // }
             }
             // Debug.Log($"health " + _compsAndUnits.ControllerHealth[_controllerIndex]);
-            GetComponent<ControllerHealth>()?.Initialize(_compsAndUnits.ControllerHealth[_controllerIndex], _allUnits, _compsAndUnits);
+            
             // _unitRingManager?.Initialize(_compsAndUnits.CompsSO[_controllerIndex].ParentUnitCount);            
             SetIsStopped(true);
 

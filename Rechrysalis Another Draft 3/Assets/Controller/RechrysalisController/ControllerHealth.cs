@@ -52,8 +52,9 @@ namespace Rechrysalis.Controller
                 _healthCurrent = _healthMax;
             }            
         }
-        public bool CheckIfHasHealth(float healthToCheck)
+        public bool CheckIfHasEnoughHealth(float healthToCheck)
         {
+            Debug.Log($"health current " + _healthCurrent + " health to check " + healthToCheck);
             if (_healthCurrent >= healthToCheck)
             {
                 return true;
