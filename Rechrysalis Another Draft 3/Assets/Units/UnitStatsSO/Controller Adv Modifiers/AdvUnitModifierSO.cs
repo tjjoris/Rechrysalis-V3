@@ -54,6 +54,8 @@ namespace Rechrysalis.Unit
         public float SiegeDuration => _siegeDuration;
         [SerializeField] private float _burstHeal;
         public float BurstHeal => _burstHeal;
+        [SerializeField] private float _controllerLifeCostMult = 1;
+        public float ControllerLifeCostMult => _controllerLifeCostMult;
 
 
         private void OnValidate()

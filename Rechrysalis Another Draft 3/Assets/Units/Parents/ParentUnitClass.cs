@@ -173,6 +173,7 @@ namespace Rechrysalis.Unit
                 _basicUnitClass.DPS = baseMultiplierSO.DPSMultiplier * typeMultipler.DPSMultiplier;
                 _basicUnitClass.AttackChargeUp = baseMultiplierSO.AttackChargeUp * typeMultipler.AttackChargeUp;
                 _basicUnitClass.AttackWindDown = baseMultiplierSO.AttackWindDown * typeMultipler.AttackWindDown;
+                _basicUnitClass.ControllerLifeCostMult = baseMultiplierSO.ControllerLifeCostMult * typeMultipler.ControllerLifeCostMult;
                 _basicUnitClass.UnitSprite = _utcBasicUnit.GetUnitStatsSO().UnitSprite;
                 _basicUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
                 _basicUnitClass.ProjectileSpeed = baseMultiplierSO.ProjectileSpeed * typeMultipler.ProjectileSpeed;
@@ -185,7 +186,7 @@ namespace Rechrysalis.Unit
         private void SetAdvClass()
         {
             UnitStatsSO basicUnitStats = _utcBasicUnit.GetUnitStatsSO();
-            AdvUnitModifierSO advancedModifier = basicUnitStats.AdvUnitModifierSO;
+            AdvUnitModifierSO advancedModifier = basicUnitStats.AdvUnitModifierSO;            
             if (_utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO != null)//.GetAdvUnitModifierSO() != null)
             {
                 if (_debugBool)
@@ -207,6 +208,7 @@ namespace Rechrysalis.Unit
                 _advUnitClass.AttackWindDown = _basicUnitClass.AttackWindDown * _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.AttackWindDownMult;
                 _advUnitClass.AttackWindDown += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.AttackWindDownAdd;
                 _advUnitClass.HatchEffectMult = _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.HatchEffectMultiplierAdd;
+                _advUnitClass.ControllerLifeCostMult = _basicUnitClass.ControllerLifeCostMult + advancedModifier.ControllerLifeCostMult;
                 _advUnitClass.UnitSprite = _utcBasicUnit.GetUnitStatsSO().UnitSprite;
                 _advUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
                 _advUnitClass.ProjectileSpeed = _utcBasicUnit.GetUnitStatsSO().ProjectileSpeed;
