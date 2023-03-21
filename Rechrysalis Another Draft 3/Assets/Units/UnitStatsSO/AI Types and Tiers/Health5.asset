@@ -21,4 +21,4 @@ MonoBehaviour:
   _tier: 0
   _buildTimeMultiplier: 1
   _projectileSpeed: 1
-  _controllerLifeCostMult: 1
+  _controllerLifeCostMult: 2.5
