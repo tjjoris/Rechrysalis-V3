@@ -35,6 +35,10 @@ namespace Rechrysalis
         [SerializeField] private float[] _controllerHealth;
         public float[] ControllerHealth {get{return _controllerHealth;}}
         [SerializeField] private int _controllerHPTokensCurrent = 3;
+        [SerializeField] private float _freeUnitToControllerLifeLostMult = 2;          
+        public float FreeUnitToControllerLifeLostMult => _freeUnitToControllerLifeLostMult;
+        [SerializeField] private float _freeUnitControllerLifeGainedPerLevel = 5;
+        public float FreeUnitControllerLifeGainedPerLevel => _freeUnitControllerLifeGainedPerLevel;
         public int ControllerHPTokensCurrent {get {return _controllerHPTokensCurrent;} set {_controllerHPTokensCurrent = value;}}
         [SerializeField] private int _controllerHPTokensMax = 3;
         public int ControllerHPTokensMax => _controllerHPTokensMax;
