@@ -60,6 +60,11 @@ namespace Rechrysalis.Controller
             }
             return false;
         }
+        public void SetHealthToZero()
+        {
+            _healthCurrent = 0;
+            _controllerHPBar?.ChangeHPBar(_healthCurrent);
+        }
         public bool CheckIfHasEnoughHealth(float healthToCheck)
         {
             Debug.Log($"health current " + _healthCurrent + " health to check " + healthToCheck);
