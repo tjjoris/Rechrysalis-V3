@@ -29,7 +29,7 @@ namespace Rechrysalis.Controller
             _controllerHPBar?.Initialize(_healthMax);
             // _controllerDeathGameOver = GetComponent<ControllerDeathGameOver>();
             SubscribeToControllerDamage();
-            _controllerHPTokens.Initialize(compsAndUnitsSO);
+            _controllerHPTokens?.Initialize(compsAndUnitsSO);
             _controllerHit = GetComponent<ControllerHit>();
         }
         public void TakeDamage(float _damageAmount)
@@ -42,7 +42,7 @@ namespace Rechrysalis.Controller
             CheckIfHealthZero();
             _controllerHPBar?.ChangeHPBar(_healthCurrent);
             _controllerTakesDamageAction?.Invoke();     
-            _controllerHit.ControllerIsHit();       
+            _controllerHit?.ControllerIsHit();       
         }
         private void CheckIfHealthZero()
         {
