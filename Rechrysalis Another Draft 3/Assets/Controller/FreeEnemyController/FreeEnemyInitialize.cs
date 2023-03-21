@@ -90,47 +90,53 @@ namespace Rechrysalis.Controller
                     UnitStatsSO _unitStats = wave.UnitInWave[_unitInWaveIndex];
                     if (_unitStats != null)
                     {
+                        
                         ParentUnitClass parentUnitClass = new ParentUnitClass();
                         parentUnitClass.ClearAllUpgrades();
                         parentUnitClass.SetUTCBasicUnit(_unitStats.UpgradeTypeClass);
                         parentUnitClass.SetAllStats();
-                        // _wave.ParentUnitClasses.Add(parentUnitClass);                        
-                        // ParentUnitClass parentUnitClass = _wave.ParentUnitClasses[_compSO.ParentUnitClassList.Count - 1];
+                        float controllerLifeCostOfUnit = parentUnitClass.BasicUnitClass.ControllerLifeCostMult * _compsAndUnits.FreeUnitToControllerLifeLostMult;
+                        if (_controllerHealth.CheckIfHasHealth(controllerLifeCostOfUnit))
+                        {                            
+                            // _wave.ParentUnitClasses.Add(parentUnitClass);                        
+                            // ParentUnitClass parentUnitClass = _wave.ParentUnitClasses[_compSO.ParentUnitClassList.Count - 1];
 
-                        // Vector3 _newUnitPos = _freeEnemyCompLayout.UnitPos[0, _unitInWaveIndex];
-                        Vector3 _newUnitPos = (freeUnitCompSO.WaveLayout.GetUnitPosInWave(_unitInWaveIndex) + enemyController.gameObject.transform.position);
-                        // _newUnitPos.y = _newUnitPos.y + enemyController.gameObject.transform.position.y;                        
-                        GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
-                        newFreeEnemy.transform.Rotate(new Vector3(0, 0, 180f));
-                        playerUnitsSO.ParentUnits.Add(newFreeEnemy);
-                        newFreeEnemy.name = _unitStats.name + " " + _unitInWaveIndex.ToString();
-                        newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(enemyController);
-                        // UnitManager _unitManager = newFreeEnemy.GetComponent<UnitManager>();
-                        // newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);   
-                        ParentUnitManager parentUnitManager = newFreeEnemy.GetComponent<ParentUnitManager>();
-                        parentUnitManager?.Initialize(_controllerIndex, _unitInWaveIndex, compSO, playerUnitsSO, transform, null, parentUnitClass, _mainManager);
-                        parentUnitManager.ParentUnitClass = parentUnitClass;
-                        _controllerManager.ParentUnitManagers.Add(parentUnitManager);
-                        if (parentUnitManager.GetComponent<ParentHealth>() != null)
-                        {
-                            _controllerManager.ParentHealths.Add(parentUnitManager.GetComponent<ParentHealth>());
+                            // Vector3 _newUnitPos = _freeEnemyCompLayout.UnitPos[0, _unitInWaveIndex];
+                            Vector3 _newUnitPos = (freeUnitCompSO.WaveLayout.GetUnitPosInWave(_unitInWaveIndex) + enemyController.gameObject.transform.position);
+                            // _newUnitPos.y = _newUnitPos.y + enemyController.gameObject.transform.position.y;                        
+                            GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
+                            newFreeEnemy.transform.Rotate(new Vector3(0, 0, 180f));
+                            playerUnitsSO.ParentUnits.Add(newFreeEnemy);
+                            newFreeEnemy.name = _unitStats.name + " " + _unitInWaveIndex.ToString();
+                            newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(enemyController);
+                            // UnitManager _unitManager = newFreeEnemy.GetComponent<UnitManager>();
+                            // newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);   
+                            ParentUnitManager parentUnitManager = newFreeEnemy.GetComponent<ParentUnitManager>();
+                            parentUnitManager?.Initialize(_controllerIndex, _unitInWaveIndex, compSO, playerUnitsSO, transform, null, parentUnitClass, _mainManager);
+                            parentUnitManager.ParentUnitClass = parentUnitClass;
+                            _controllerManager.ParentUnitManagers.Add(parentUnitManager);
+                            if (parentUnitManager.GetComponent<ParentHealth>() != null)
+                            {
+                                _controllerManager.ParentHealths.Add(parentUnitManager.GetComponent<ParentHealth>());
+                            }
+                            Mover parentUnitMover = parentUnitManager.GetComponent<Mover>();
+                            if (parentUnitMover != null)
+                            {
+                                _controllerManager.ParentUnitMovers.Add(parentUnitMover);
+                            }
+                            ParentFreeEnemyManager _freeParentManager = newFreeEnemy.GetComponent<ParentFreeEnemyManager>();
+                            // _freeParentManager?.InitializeOld(controllerIndex, _unitStats, compsAndUnits, _unitInWaveIndex, playerUnitsSO);
+                            _freeParentManager?.Initialize(_controllerManager, parentUnitClass.BasicUnitClass, _unitInWaveIndex, compsAndUnits, _controllerIndex);
+                            parentUnitManager.ChildUnitManagers.Add(_freeParentManager.BasicUnitManager);
+                            newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(parentUnitClass.BasicUnitClass.HPMax);
+                            newFreeEnemy.GetComponent<Mover>()?.Initialize(controllerIndex, _mainManager);
+                            playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
+                            _allUnits.Add(_freeParentManager.UnitManager.gameObject);
+                            _controllerFreeHatch?.SetUnitsArray(newFreeEnemy, _unitInWaveIndex);
+                            AIFocusFireOnInitialzie(_unitStats, parentUnitManager);
+                            // _unitManager?.RestartUnit();
+                            _controllerHealth.TakeDamage(controllerLifeCostOfUnit);
                         }
-                        Mover parentUnitMover = parentUnitManager.GetComponent<Mover>();
-                        if (parentUnitMover != null)
-                        {
-                            _controllerManager.ParentUnitMovers.Add(parentUnitMover);
-                        }
-                        ParentFreeEnemyManager _freeParentManager = newFreeEnemy.GetComponent<ParentFreeEnemyManager>();
-                        // _freeParentManager?.InitializeOld(controllerIndex, _unitStats, compsAndUnits, _unitInWaveIndex, playerUnitsSO);
-                        _freeParentManager?.Initialize(_controllerManager, parentUnitClass.BasicUnitClass, _unitInWaveIndex, compsAndUnits, _controllerIndex);
-                        parentUnitManager.ChildUnitManagers.Add(_freeParentManager.BasicUnitManager);
-                        newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(parentUnitClass.BasicUnitClass.HPMax);
-                        newFreeEnemy.GetComponent<Mover>()?.Initialize(controllerIndex, _mainManager);
-                        playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
-                        _allUnits.Add(_freeParentManager.UnitManager.gameObject);
-                        _controllerFreeHatch?.SetUnitsArray(newFreeEnemy, _unitInWaveIndex);
-                        AIFocusFireOnInitialzie(_unitStats, parentUnitManager);
-                        // _unitManager?.RestartUnit();
                     }
                 }
             }

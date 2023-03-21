@@ -46,11 +46,19 @@ namespace Rechrysalis.Controller
         }
         private void CheckIfHealthZero()
         {
-            if (_healthCurrent <= 0)
+            if ((_healthCurrent <= 0) && (GetComponent<FreeEnemyInitialize>() == null))
             {
                 _controllerHPTokens.RemoveToken();
                 _healthCurrent = _healthMax;
             }            
+        }
+        public bool CheckIfHasHealth(float healthToCheck)
+        {
+            if (_healthCurrent >= healthToCheck)
+            {
+                return true;
+            }
+            return false;
         }
         public void SubscribeToControllerDamage()        
         {            
@@ -116,8 +124,7 @@ namespace Rechrysalis.Controller
                         }
                     }
                 }
-            }
-            
+            }            
         }
 
     }
