@@ -42,6 +42,8 @@ namespace Rechrysalis
         public int ControllerHPTokensCurrent {get {return _controllerHPTokensCurrent;} set {_controllerHPTokensCurrent = value;}}
         [SerializeField] private int _controllerHPTokensMax = 3;
         public int ControllerHPTokensMax => _controllerHPTokensMax;
+        [SerializeField] private List<ControllerUnitsSO> _controllerUnitsSOs = new List<ControllerUnitsSO>();
+        public List<ControllerUnitsSO> ControllerUnitsSOs => _controllerUnitsSOs;
         // [SerializeField] private List<GameObject> _projectilesList;
         // public List<GameObject> ProjectilesList {set {_projectilesList = value;} get{return _projectilesList;}}
         
