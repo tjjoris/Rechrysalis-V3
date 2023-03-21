@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthMultiplier: 2.2
   _dpsMultiplier: 1.2
-  _range: 5
+  _range: 1
   _attackChargeUp: 1
   _attackWindDown: 1
   _manaMultiplier: 1
   _tier: 0
   _buildTimeMultiplier: 1
   _projectileSpeed: 1
+  _controllerLifeCostMult: 1
