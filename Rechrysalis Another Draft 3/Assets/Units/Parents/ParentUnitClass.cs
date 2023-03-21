@@ -165,15 +165,16 @@ namespace Rechrysalis.Unit
             {
                 UnitStatsMultiplierSO baseMultiplierSO = _utcBasicUnit.GetUnitStatsSO().BaseMultiplier;
                 UnitStatsMultiplierSO typeMultipler = _utcBasicUnit.GetUnitStatsSO().TypeMultiplier;
+                UnitStatsMultiplierSO tierMultiplier = _utcBasicUnit.GetUnitStatsSO().TierMultiplier;
                 _basicUnitClass = new UnitClass();
-                _basicUnitClass.ManaCost = baseMultiplierSO.ManaMultiplier * typeMultipler.ManaMultiplier;
-                _basicUnitClass.HPMax = baseMultiplierSO.HealthMultiplier * typeMultipler.HealthMultiplier;
-                _basicUnitClass.BuildTime = baseMultiplierSO.BuildTimeMultiplier * typeMultipler.BuildTimeMultiplier;
-                _basicUnitClass.Range = baseMultiplierSO.Range * typeMultipler.Range;
-                _basicUnitClass.DPS = baseMultiplierSO.DPSMultiplier * typeMultipler.DPSMultiplier;
-                _basicUnitClass.AttackChargeUp = baseMultiplierSO.AttackChargeUp * typeMultipler.AttackChargeUp;
-                _basicUnitClass.AttackWindDown = baseMultiplierSO.AttackWindDown * typeMultipler.AttackWindDown;
-                _basicUnitClass.ControllerLifeCostMult = baseMultiplierSO.ControllerLifeCostMult * typeMultipler.ControllerLifeCostMult;
+                _basicUnitClass.ManaCost = baseMultiplierSO.ManaMultiplier * typeMultipler.ManaMultiplier * tierMultiplier.ManaMultiplier;
+                _basicUnitClass.HPMax = baseMultiplierSO.HealthMultiplier * typeMultipler.HealthMultiplier * tierMultiplier.HealthMultiplier;
+                _basicUnitClass.BuildTime = baseMultiplierSO.BuildTimeMultiplier * typeMultipler.BuildTimeMultiplier * tierMultiplier.BuildTimeMultiplier;
+                _basicUnitClass.Range = baseMultiplierSO.Range * typeMultipler.Range * tierMultiplier.Range;
+                _basicUnitClass.DPS = baseMultiplierSO.DPSMultiplier * typeMultipler.DPSMultiplier * tierMultiplier.DPSMultiplier;
+                _basicUnitClass.AttackChargeUp = baseMultiplierSO.AttackChargeUp * typeMultipler.AttackChargeUp * tierMultiplier.AttackChargeUp;
+                _basicUnitClass.AttackWindDown = baseMultiplierSO.AttackWindDown * typeMultipler.AttackWindDown * tierMultiplier.AttackWindDown;
+                _basicUnitClass.ControllerLifeCostMult = baseMultiplierSO.ControllerLifeCostMult * typeMultipler.ControllerLifeCostMult * tierMultiplier.ControllerLifeCostMult;
                 _basicUnitClass.UnitSprite = _utcBasicUnit.GetUnitStatsSO().UnitSprite;
                 _basicUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
                 _basicUnitClass.ProjectileSpeed = baseMultiplierSO.ProjectileSpeed * typeMultipler.ProjectileSpeed;
