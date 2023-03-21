@@ -135,7 +135,11 @@ namespace Rechrysalis.Controller
                             _controllerFreeHatch?.SetUnitsArray(newFreeEnemy, _unitInWaveIndex);
                             AIFocusFireOnInitialzie(_unitStats, parentUnitManager);
                             // _unitManager?.RestartUnit();
-                            _controllerHealth.TakeDamage(controllerLifeCostOfUnit);
+                            _controllerHealth?.TakeDamage(controllerLifeCostOfUnit);
+                        }
+                        else
+                        {
+                            _controllerHealth?.SetHealthToZero();
                         }
                     }
                 }
