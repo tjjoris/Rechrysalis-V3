@@ -1210,6 +1210,7 @@ MonoBehaviour:
   _hilightRingManager: {fileID: 0}
   _upgradeRingManager: {fileID: 0}
   _unitRingOuterRadius: 0
+  _controllerHealth: {fileID: 0}
   _transitionTargetingCamera: {fileID: 0}
 --- !u!114 &691481332
 MonoBehaviour:
@@ -1265,7 +1266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthMax: 0
   _healthCurrent: 0
-  _controllerHPBar: {fileID: 0}
+  _controllerHPBar: {fileID: 1521742255}
   _controllerHPTokens: {fileID: 0}
   _controllerHit: {fileID: 0}
 --- !u!224 &693044507 stripped
@@ -2287,6 +2288,7 @@ MonoBehaviour:
   _hilightRingManager: {fileID: 30328080}
   _upgradeRingManager: {fileID: 688441835}
   _unitRingOuterRadius: 1.3
+  _controllerHealth: {fileID: 0}
   _transitionTargetingCamera: {fileID: 1217180116}
 --- !u!114 &1159822627
 MonoBehaviour:
@@ -3179,6 +3181,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3041224786513365615, guid: 841c4c0ce78c845bfaf6679514281ff2, type: 3}
   m_PrefabInstance: {fileID: 1521742253}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1521742255 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3041224786513365614, guid: 841c4c0ce78c845bfaf6679514281ff2, type: 3}
+  m_PrefabInstance: {fileID: 1521742253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398b18f12adc44519b06f22986fb6b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1532661378 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3041224786513365615, guid: 841c4c0ce78c845bfaf6679514281ff2, type: 3}
