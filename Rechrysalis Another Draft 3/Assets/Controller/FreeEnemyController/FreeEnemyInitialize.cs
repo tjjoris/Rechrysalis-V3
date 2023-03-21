@@ -124,7 +124,7 @@ namespace Rechrysalis.Controller
                         // _freeParentManager?.InitializeOld(controllerIndex, _unitStats, compsAndUnits, _unitInWaveIndex, playerUnitsSO);
                         _freeParentManager?.Initialize(_controllerManager, parentUnitClass.BasicUnitClass, _unitInWaveIndex, compsAndUnits, _controllerIndex);
                         parentUnitManager.ChildUnitManagers.Add(_freeParentManager.BasicUnitManager);
-                        newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(_unitStats.HealthMaxBasic);
+                        newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(parentUnitClass.BasicUnitClass.HPMax);
                         newFreeEnemy.GetComponent<Mover>()?.Initialize(controllerIndex, _mainManager);
                         playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
                         _allUnits.Add(_freeParentManager.UnitManager.gameObject);
