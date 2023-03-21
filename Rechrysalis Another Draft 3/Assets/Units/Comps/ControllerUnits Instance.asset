@@ -10,5 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 418813e340fdb45119c140690c136bd3, type: 3}
-  m_Name: ControllerUnitsSOInstance
+  m_Name: ControllerUnits Instance
   m_EditorClassIdentifier: 
+  _controllerUnits:
+  - {fileID: 11400000, guid: 26013306915e94bbb9768f96b280b2e3, type: 2}
+  - {fileID: 11400000, guid: fa69ef5db294945ad99b976e69fc34a5, type: 2}
+  - {fileID: 11400000, guid: 714954640421846ffb1ba8210bb502a4, type: 2}
+  - {fileID: 11400000, guid: 0655bdb7fce124529858749e26a697b7, type: 2}
