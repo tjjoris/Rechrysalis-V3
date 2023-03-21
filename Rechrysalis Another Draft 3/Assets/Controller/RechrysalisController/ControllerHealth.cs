@@ -39,18 +39,26 @@ namespace Rechrysalis.Controller
                 Debug.Log($"controller take damage " + _damageAmount);
             }
             _healthCurrent -= _damageAmount;
-            CheckIfHealthZero();
+            RemoveHeartIfHealthZero();
             _controllerHPBar?.ChangeHPBar(_healthCurrent);
             _controllerTakesDamageAction?.Invoke();     
             _controllerHit?.ControllerIsHit();       
         }
-        private void CheckIfHealthZero()
+        private void RemoveHeartIfHealthZero()
         {
             if ((_healthCurrent <= 0) && (GetComponent<FreeEnemyInitialize>() == null))
             {
                 _controllerHPTokens.RemoveToken();
                 _healthCurrent = _healthMax;
             }            
+        }
+        public bool CheckIfHealthZero()
+        {
+            if (_healthCurrent <= 0)
+            {
+                return true;
+            }
+            return false;
         }
         public bool CheckIfHasEnoughHealth(float healthToCheck)
         {

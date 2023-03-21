@@ -167,7 +167,8 @@ namespace Rechrysalis.Controller
 
         private bool CheckIfLevelDone(int _waveIndex)
         {
-            if (_waveIndex >= _freeUnitCompSO.Waves.Length)
+            // if (_waveIndex >= _freeUnitCompSO.Waves.Length)
+            if (_controllerHealth.CheckIfHealthZero())
             {
                 return true;
             }
