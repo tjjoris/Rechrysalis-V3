@@ -25,6 +25,7 @@ namespace Rechrysalis.Controller
         private FreeUnitCompSO _freeUnitCompSO;
         private CompCustomizerSO _compCustomizer;
         private ControllerManager _controllerManager;
+        private ControllerHealth _controllerHealth;
         // private int _controllerIndex;
         private List<GameObject> _allUnits;       
         private Transform _targetCameraScrollTransform;
@@ -34,6 +35,7 @@ namespace Rechrysalis.Controller
             _mainManager = mainManager;
             _targetCameraScrollTransform = _mainManager.TargetCameraScrollTransform;
             _controllerManager = GetComponent<ControllerManager>();
+            _controllerHealth = GetComponent<ControllerHealth>();
             this._controllerIndex = controllerIndex;
             this._enemyController = enemyController;
             this._compSO = compSO;

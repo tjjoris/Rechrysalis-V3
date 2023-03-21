@@ -55,6 +55,9 @@ namespace Rechrysalis.Unit
         [SerializeField] private float _burstHeal;
         public float BurstHeal { get => _burstHeal; set => _burstHeal = value; }        
         [SerializeField] private Sprite _projectileSprite;
+        [SerializeField] private float _controllerLifeCostMult = 1;
+        public float ControllerLifeCostMult { get => _controllerLifeCostMult; set => _controllerLifeCostMult = value; }
+        
         public Sprite ProjectileSprite { get => _projectileSprite; set => _projectileSprite = value; }
         
         

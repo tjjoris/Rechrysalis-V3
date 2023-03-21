@@ -42,6 +42,6 @@ MonoBehaviour:
   _chrysalis: {fileID: 11400000, guid: 1400a98c8c39341749b54dbd2d0bd166, type: 2}
   _controllerHealth:
   - 33
-  - 33
+  - 45
   _controllerHPTokensCurrent: 1
   _controllerHPTokensMax: 3

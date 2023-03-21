@@ -26,5 +26,8 @@ namespace Rechrysalis.Unit
         public float BuildTimeMultiplier => _buildTimeMultiplier;
         [SerializeField] private float _projectileSpeed;
         public float ProjectileSpeed => _projectileSpeed;
+        [SerializeField] private float _controllerLifeCostMult = 1;
+        public float ControllerLifeCostMult { get => _controllerLifeCostMult; set => _controllerLifeCostMult = value; }
+        
     }
 }
