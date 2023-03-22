@@ -65,6 +65,7 @@ namespace Rechrysalis.Controller
             _freeUnitCompSO = compsAndUnits.FreeUnitCompSO[controllerIndex];
 
             _randomizeFreeChangingUnits = GetComponent<RandomizeFreeChangingUnits>();
+            _randomizeFreeChangingUnits?.Initialize();
             _randomizeFreeChangingUnits?.RandomizeChangingUnitsFunc(_compsAndUnits.Level);
             if (freeUnitCompSO.Waves.Length > 0)
             {
