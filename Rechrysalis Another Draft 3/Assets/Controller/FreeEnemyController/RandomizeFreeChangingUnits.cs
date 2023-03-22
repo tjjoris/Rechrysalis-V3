@@ -19,17 +19,31 @@ namespace Rechrysalis.Unit
         }
         public void RandomizeChangingUnitsFunc(int level)
         {
+            int i=0;
             foreach (UnitStatsSO unitToChange in _changingUnits.ControllerUnits)
             {
                 if (unitToChange != null)
                 {
                     ChangeThisUnitType(level, unitToChange);
+                    if (i < 1)
+                    {
+                        ChangeFocusFire(true, unitToChange);
+                    }
+                    else 
+                    {
+                        ChangeFocusFire(false, unitToChange);
+                    }
                 }
                 else
                 {
                     Debug.LogError($"error ! unit changing null");
                 }
+                i++;
             }
+        }
+        private void ChangeFocusFire(bool ffBool, UnitStatsSO unitToChange)
+        {
+            unitToChange.AIFocusFire = ffBool;
         }
         private void ChangeThisUnitType(int level, UnitStatsSO unitToChange)
         {
