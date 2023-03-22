@@ -25,6 +25,7 @@ namespace Rechrysalis.Unit
                 if (unitToChange != null)
                 {
                     ChangeThisUnitType(level, unitToChange);
+                    ChangeThisUnitTIer(level, unitToChange);
                     if (i < 1)
                     {
                         ChangeFocusFire(true, unitToChange);
