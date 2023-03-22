@@ -13,6 +13,7 @@ namespace Rechrysalis.Controller
     {
         private bool _debugBool = false;
         [SerializeField] private float _healthMax;
+        public float HealthMax => _healthMax;
         [SerializeField] private float _healthCurrent;
         [SerializeField] private ControllerHPBar _controllerHPBar;
         [SerializeField] private ControllerHPTokens _controllerHPTokens;
@@ -26,7 +27,7 @@ namespace Rechrysalis.Controller
             this._healthMax = _healthMax;
             _healthCurrent = _healthMax;
             this._allUnits = _allUnits;
-            _controllerHPBar?.Initialize(_healthMax);
+            _controllerHPBar?.Initialize(this);
             // _controllerDeathGameOver = GetComponent<ControllerDeathGameOver>();
             SubscribeToControllerDamage();
             _controllerHPTokens?.Initialize(compsAndUnitsSO);
