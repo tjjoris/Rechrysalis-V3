@@ -1142,6 +1142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 691481328}
   - component: {fileID: 691481330}
+  - component: {fileID: 691481336}
   - component: {fileID: 691481331}
   - component: {fileID: 691481332}
   - component: {fileID: 691481333}
@@ -1272,6 +1273,20 @@ MonoBehaviour:
   _controllerHPBar: {fileID: 1521742255}
   _controllerHPTokens: {fileID: 0}
   _controllerHit: {fileID: 0}
+--- !u!114 &691481336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691481327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092f69536e48d4b10a8e70cc462c8af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changingUnits: {fileID: 11400000, guid: 60b756f5bedc54f42aaad53c6c5ac17c, type: 2}
+  _unitTypes: {fileID: 11400000, guid: e6a692086072a4d778fa72ffbd6d7174, type: 2}
 --- !u!224 &693044507 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6974679594234141080, guid: 7a22963889f0b4f9bb6171f227d5d732, type: 3}
