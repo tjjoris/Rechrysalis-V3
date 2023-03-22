@@ -99,13 +99,13 @@ namespace Rechrysalis.Controller
                 wave.ParentUnitClasses.Clear();
                 for (int _unitInWaveIndex = 0; _unitInWaveIndex < freeUnitCompSO.Waves[waveIndex].UnitInWave.Length; _unitInWaveIndex++)
                 {
-                    UnitStatsSO _unitStats = wave.UnitInWave[_unitInWaveIndex];
-                    if (_unitStats != null)
+                    UnitStatsSO unitStats = _randomizeFreeChangingUnits.GetARandomUnitFromChangings();
+                    if (unitStats != null)
                     {
                         
                         ParentUnitClass parentUnitClass = new ParentUnitClass();
                         parentUnitClass.ClearAllUpgrades();
-                        parentUnitClass.SetUTCBasicUnit(_randomizeFreeChangingUnits.GetARandomUnitFromChangings().UpgradeTypeClass);
+                        parentUnitClass.SetUTCBasicUnit(unitStats.UpgradeTypeClass);
                         parentUnitClass.SetAllStats();
                         float controllerLifeCostOfUnit = parentUnitClass.BasicUnitClass.ControllerLifeCostMult * _compsAndUnits.FreeUnitToControllerLifeLostMult;
                         if (_controllerHealth.CheckIfHasEnoughHealth(controllerLifeCostOfUnit))
@@ -119,7 +119,7 @@ namespace Rechrysalis.Controller
                             GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
                             newFreeEnemy.transform.Rotate(new Vector3(0, 0, 180f));
                             playerUnitsSO.ParentUnits.Add(newFreeEnemy);
-                            newFreeEnemy.name = _unitStats.name + " " + _unitInWaveIndex.ToString();
+                            newFreeEnemy.name = unitStats.UnitName + " " + _unitInWaveIndex.ToString();
                             newFreeEnemy.GetComponent<PushBackFromPlayer>()?.Initialize(enemyController);
                             // UnitManager _unitManager = newFreeEnemy.GetComponent<UnitManager>();
                             // newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);   
@@ -145,7 +145,7 @@ namespace Rechrysalis.Controller
                             playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
                             _allUnits.Add(_freeParentManager.UnitManager.gameObject);
                             _controllerFreeHatch?.SetUnitsArray(newFreeEnemy, _unitInWaveIndex);
-                            AIFocusFireOnInitialzie(_unitStats, parentUnitManager);
+                            AIFocusFireOnInitialzie(unitStats, parentUnitManager);
                             // _unitManager?.RestartUnit();
                             _controllerHealth?.TakeDamage(controllerLifeCostOfUnit);
                         }
