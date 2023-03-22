@@ -90,7 +90,7 @@ namespace Rechrysalis.Controller
         {
             // if (_compSO.UnitSOArray.Length > 0) {
                 WaveSO wave = freeUnitCompSO.Waves[waveIndex];
-            if (wave.UnitInWave.Length > 0)
+            // if (wave.UnitInWave.Length > 0)
             {
                 _targetCameraScrollTransform.localPosition = Vector2.zero;
                 _controllerFreeHatch?.InitializeUnitsArray(wave.UnitInWave.Length);

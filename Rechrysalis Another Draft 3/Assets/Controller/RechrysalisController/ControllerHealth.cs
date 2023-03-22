@@ -15,6 +15,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private float _healthMax;
         public float HealthMax => _healthMax;
         [SerializeField] private float _healthCurrent;
+        public float HealthCurrent => _healthCurrent;
         [SerializeField] private ControllerHPBar _controllerHPBar;
         [SerializeField] private ControllerHPTokens _controllerHPTokens;
         [SerializeField] private ControllerHit _controllerHit;
