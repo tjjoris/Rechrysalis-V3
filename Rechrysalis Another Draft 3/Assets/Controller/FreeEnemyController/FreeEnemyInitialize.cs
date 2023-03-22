@@ -30,7 +30,7 @@ namespace Rechrysalis.Controller
         private List<GameObject> _allUnits;       
         private Transform _targetCameraScrollTransform;
         private int _waveIndex;
-        
+
         [SerializeField] private WaveLayoutsByRange _waveLayoutsByRange;
         public WaveLayoutsByRange WaveLayoutsByRange => _waveLayoutsByRange;
         [SerializeField] private ControllerUnitsSO _controllerUnitsToChooseFrom;
@@ -42,13 +42,14 @@ namespace Rechrysalis.Controller
             _mainManager = mainManager;
             _targetCameraScrollTransform = _mainManager.TargetCameraScrollTransform;
             _controllerManager = GetComponent<ControllerManager>();
-            _controllerHealth = GetComponent<ControllerHealth>();
+            _controllerHealth = GetComponent<ControllerHealth>();            
             this._controllerIndex = controllerIndex;
             this._enemyController = enemyController;
             this._compSO = compSO;
             this._playerUnitsSO = playerUnitsSO;
             this._compsAndUnits = compsAndUnits;
             this._freeUnitCompSO = freeUnitCompSO;
+            _controllerHealth?.IncreaseMaxHealth(_compsAndUnits.Level * _compsAndUnits.FreeUnitControllerLifeGainedPerLevel);
             this._compCustomizer = compCustomizer;
             _controllerFreeHatch = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _allUnits = new List<GameObject>();

@@ -44,6 +44,12 @@ namespace Rechrysalis.Controller
             _controllerTakesDamageAction?.Invoke();     
             _controllerHit?.ControllerIsHit();       
         }
+        public void IncreaseMaxHealth(float amount)
+        {
+            _healthMax += amount;
+            _healthCurrent += amount;
+            _controllerHPBar?.ChangeHPBar(_healthCurrent);
+        }
         private void RemoveHeartIfHealthZero()
         {
             if ((_healthCurrent <= 0) && (GetComponent<FreeEnemyInitialize>() == null))
