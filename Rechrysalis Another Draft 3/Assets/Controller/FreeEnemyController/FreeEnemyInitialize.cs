@@ -86,22 +86,22 @@ namespace Rechrysalis.Controller
             {                
                 _freeUnitHatchEffects[_unitIndex] = _allUnits[_unitIndex].GetComponent<FreeUnitHatchEffect>();
             }
-            _controllerFreeHatch?.SetFreeHatches(_freeUnitHatchEffects);
-            _controllerFreeHatch?.SubscribeToUnits();
+            // _controllerFreeHatch?.SetFreeHatches(_freeUnitHatchEffects);
+            // _controllerFreeHatch?.SubscribeToUnits();
             RestartUnits();
         }
 
         private void CreateWave(int controllerIndex, ControllerManager enemyController, CompSO compSO, PlayerUnitsSO playerUnitsSO, CompsAndUnitsSO compsAndUnits, FreeUnitCompSO freeUnitCompSO, int waveIndex)
         {
             // if (_compSO.UnitSOArray.Length > 0) {
-                WaveSO wave = freeUnitCompSO.Waves[waveIndex];
+                // WaveSO wave = freeUnitCompSO.Waves[waveIndex];
             // if (wave.UnitInWave.Length > 0)
             {
                 _targetCameraScrollTransform.localPosition = Vector2.zero;
-                _controllerFreeHatch?.InitializeUnitsArray(wave.UnitInWave.Length);
+                // _controllerFreeHatch?.InitializeUnitsArray(wave.UnitInWave.Length);
                 // for (int i = 0; i < _compSO.UnitSOArray.Length; i++)
-                wave.ParentUnitClasses = new List<ParentUnitClass>();
-                wave.ParentUnitClasses.Clear();
+                // wave.ParentUnitClasses = new List<ParentUnitClass>();
+                // wave.ParentUnitClasses.Clear();
                 _unitInWaveIndex = 0;
                 _lifeToSpendOnThisWave = _lifePerFreeWave.GetLifeToSpendOnThisWave(_compsAndUnits.Level, waveIndex);
                 // for (int _unitInWaveIndex = 0; _unitInWaveIndex < freeUnitCompSO.Waves[waveIndex].UnitInWave.Length; _unitInWaveIndex++)
@@ -158,7 +158,7 @@ namespace Rechrysalis.Controller
                     newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerIndex, _mainManager);
                     _playerUnitsSO.ActiveUnits.Add(newFreeEnemy);
                     _allUnits.Add(_freeParentManager.UnitManager.gameObject);
-                    _controllerFreeHatch?.SetUnitsArray(newFreeEnemy, _unitInWaveIndex);
+                    // _controllerFreeHatch?.SetUnitsArray(newFreeEnemy, _unitInWaveIndex);
                     AIFocusFireOnInitialzie(unitStats, parentUnitManager);
                     // _unitManager?.RestartUnit();
                     _controllerHealth?.TakeDamage(controllerLifeCostOfUnit);
