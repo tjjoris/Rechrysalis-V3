@@ -1183,6 +1183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _FreeUnitPrefab: {fileID: 8804105779283925579, guid: 76eb3c923da744f9cae202ff2279002c, type: 3}
+  _waveLayoutsByRange: {fileID: 11400000, guid: 185ad63d27b724143b439a7b4001646d, type: 2}
+  _controllerUnitsToChooseFrom: {fileID: 11400000, guid: e6a692086072a4d778fa72ffbd6d7174, type: 2}
+  _currentChangingControllerUnits: {fileID: 11400000, guid: 60b756f5bedc54f42aaad53c6c5ac17c, type: 2}
 --- !u!114 &691481331
 MonoBehaviour:
   m_ObjectHideFlags: 0

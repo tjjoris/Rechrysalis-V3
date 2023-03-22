@@ -30,6 +30,13 @@ namespace Rechrysalis.Controller
         private List<GameObject> _allUnits;       
         private Transform _targetCameraScrollTransform;
         private int _waveIndex;
+        
+        [SerializeField] private WaveLayoutsByRange _waveLayoutsByRange;
+        public WaveLayoutsByRange WaveLayoutsByRange => _waveLayoutsByRange;
+        [SerializeField] private ControllerUnitsSO _controllerUnitsToChooseFrom;
+        public ControllerUnitsSO ControllerUnitsToChooseFrom => _controllerUnitsToChooseFrom;
+        [SerializeField] private ControllerUnitsSO _currentChangingControllerUnits;
+        public ControllerUnitsSO CurrentChangingControllerUnits => _currentChangingControllerUnits;
         public void Initialize(int controllerIndex, ControllerManager enemyController, CompSO compSO, PlayerUnitsSO playerUnitsSO, CompsAndUnitsSO compsAndUnits, FreeUnitCompSO freeUnitCompSO, CompCustomizerSO compCustomizer, MainManager mainManager)        
         {
             _mainManager = mainManager;
