@@ -21,7 +21,7 @@ namespace Rechrysalis.Unit
        [SerializeField] private Sprite _projectileSprite;
        public Sprite ProjectileSprite {get{return _projectileSprite;}}
        [SerializeField] private Sprite _unitSprite;
-       public Sprite UnitSprite {get{return _unitSprite;}}
+       public Sprite UnitSprite {get{return _unitSprite;} set => _unitSprite = value;}
        [SerializeField] private Sprite _chrysalisSprite;
        public Sprite ChrysalisSprite => _chrysalisSprite;
        [SerializeField] private string _unitName;
@@ -80,11 +80,11 @@ namespace Rechrysalis.Unit
        [SerializeField] private UnitStatsMultiplierSO _baseMultipler;
        public UnitStatsMultiplierSO BaseMultiplier => _baseMultipler;
        [SerializeField] private UnitStatsMultiplierSO _typeMultipler;
-       public UnitStatsMultiplierSO TypeMultiplier => _typeMultipler;
+       public UnitStatsMultiplierSO TypeMultiplier { get => _typeMultipler; set => _typeMultipler = value; }       
        [SerializeField] private UnitStatsMultiplierSO _tierMultiplier;
-       public UnitStatsMultiplierSO TierMultiplier {get {return _tierMultiplier;}}
+       public UnitStatsMultiplierSO TierMultiplier {get {return _tierMultiplier;} set {_tierMultiplier = value;}}
        [SerializeField] private bool _aiFocusFire;
-       public bool AIFocusFire => _aiFocusFire;
+       public bool AIFocusFire { get => _aiFocusFire; set => _aiFocusFire = value;}
 
        
         private void OnValidate()
