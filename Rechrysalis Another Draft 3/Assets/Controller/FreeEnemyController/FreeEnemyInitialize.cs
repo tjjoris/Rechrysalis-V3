@@ -46,7 +46,8 @@ namespace Rechrysalis.Controller
             _targetCameraScrollTransform = _mainManager.TargetCameraScrollTransform;
             _controllerManager = GetComponent<ControllerManager>();
             _controllerHealth = GetComponent<ControllerHealth>(); 
-            _lifePerFreeWave = GetComponent<LifePerFreeWave>();           
+            _lifePerFreeWave = GetComponent<LifePerFreeWave>();  
+            _lifePerFreeWave?.Initialize();         
             this._controllerIndex = controllerIndex;
             this._enemyController = enemyController;
             this._compSO = compSO;
@@ -121,7 +122,7 @@ namespace Rechrysalis.Controller
                 parentUnitClass.SetUTCBasicUnit(unitStats.UpgradeTypeClass);
                 parentUnitClass.SetAllStats();
                 float controllerLifeCostOfUnit = parentUnitClass.BasicUnitClass.ControllerLifeCostMult * _compsAndUnits.FreeUnitToControllerLifeLostMult;
-                if (_lifeToSPendOnThisWave >= controllerLifeCostOfUnit)
+                if (_lifeToSpendOnThisWave >= controllerLifeCostOfUnit)
                 {
                     // _wave.ParentUnitClasses.Add(parentUnitClass);                        
                     // ParentUnitClass parentUnitClass = _wave.ParentUnitClasses[_compSO.ParentUnitClassList.Count - 1];
@@ -161,6 +162,7 @@ namespace Rechrysalis.Controller
                     AIFocusFireOnInitialzie(unitStats, parentUnitManager);
                     // _unitManager?.RestartUnit();
                     _controllerHealth?.TakeDamage(controllerLifeCostOfUnit);
+                    _lifeToSpendOnThisWave -= controllerLifeCostOfUnit;
                 }
                 else
                 {
