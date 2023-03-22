@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rechrysalis
+namespace Rechrysalis.Unit
 {
     [System.Serializable]
     [CreateAssetMenu(fileName = "new WaveLayout", menuName = "Unit/FreeUnitLayout/WaveLayout")]
