@@ -61,6 +61,7 @@ namespace Rechrysalis.Unit
                 randomNumber = _tierMultipliersToChooseFrom.Count -1;
             }
             unitToChange.TierMultiplier = _tierMultipliersToChooseFrom[randomNumber];
+            unitToChange.UnitName += " " + randomNumber.ToString();
         }
         public UnitStatsSO GetARandomUnitFromChangings()
         {
