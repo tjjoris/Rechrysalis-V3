@@ -30,7 +30,7 @@ namespace Rechrysalis.Controller
         private List<GameObject> _allUnits;       
         private Transform _targetCameraScrollTransform;
         private int _waveIndex;
-
+        private RandomizeFreeChangingUnits _randomizeFreeChangingUnits;
         [SerializeField] private WaveLayoutsByRange _waveLayoutsByRange;
         public WaveLayoutsByRange WaveLayoutsByRange => _waveLayoutsByRange;
         [SerializeField] private ControllerUnitsSO _controllerUnitsToChooseFrom;
@@ -63,6 +63,9 @@ namespace Rechrysalis.Controller
 
             compsAndUnits.FreeUnitCompSO[controllerIndex] = compsAndUnits.Levels[compsAndUnits.Level];
             _freeUnitCompSO = compsAndUnits.FreeUnitCompSO[controllerIndex];
+
+            _randomizeFreeChangingUnits = GetComponent<RandomizeFreeChangingUnits>();
+            _randomizeFreeChangingUnits?.RandomizeChangingUnitsFunc(_compsAndUnits.Level);
             if (freeUnitCompSO.Waves.Length > 0)
             {
                 // for (int _waveIndex = 0; _waveIndex < _freeUnitCompSO.Waves.Length; _waveIndex++)

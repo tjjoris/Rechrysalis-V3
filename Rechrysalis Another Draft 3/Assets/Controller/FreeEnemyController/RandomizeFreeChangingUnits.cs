@@ -27,8 +27,10 @@ namespace Rechrysalis.Unit
         }
         private void ChangeThisUnit(int level, UnitStatsSO unitToChange)
         {
-            int randumNumber = Random.Range(0, _unitTypes.ControllerUnits.Count -1);
+            int randomNumber = Random.Range(0, _unitTypes.ControllerUnits.Count -1);            
             unitToChange.TypeMultiplier = _unitTypes.ControllerUnits[randomNumber].TypeMultiplier;
+            unitToChange.UnitSprite = _unitTypes.ControllerUnits[randomNumber].UnitSprite;
+            unitToChange.UnitName = _unitTypes.ControllerUnits[randomNumber].UnitName;
         }
     }
 }

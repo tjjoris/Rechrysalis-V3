@@ -25,7 +25,7 @@ namespace Rechrysalis.Unit
        [SerializeField] private Sprite _chrysalisSprite;
        public Sprite ChrysalisSprite => _chrysalisSprite;
        [SerializeField] private string _unitName;
-       public string UnitName {get{return _unitName;}}
+       public string UnitName {get{return _unitName;} set => _unitName = value;}
        [SerializeField] private float _currencyCost;
        public float CurrencyCost => _currencyCost;
         [SerializeField] private float _manaBase = 1;
