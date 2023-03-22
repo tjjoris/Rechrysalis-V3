@@ -17,6 +17,12 @@ namespace Rechrysalis.Unit
         public WaveSO[] Waves { get {return _waves;}}
         [SerializeField] private WaveLayout _waveLayout;
         public WaveLayout WaveLayout {get {return _waveLayout;}}
+        [SerializeField] private WaveLayoutsByRange _waveLayoutsByRange;
+        public WaveLayoutsByRange WaveLayoutsByRange => _waveLayoutsByRange;
+        [SerializeField] private ControllerUnitsSO _controllerUnitsToChooseFrom;
+        public ControllerUnitsSO ControllerUnitsToChooseFrom => _controllerUnitsToChooseFrom;
+        [SerializeField] private ControllerUnitsSO _currentChangingControllerUnits;
+        public ControllerUnitsSO CurrentChangingControllerUnits => _currentChangingControllerUnits;
         
     }
 }
