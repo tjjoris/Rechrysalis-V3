@@ -41,7 +41,7 @@ namespace Rechrysalis.Unit
             _unitManager?.InitializeOld(controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, null);
             _unitManager?.SetUnitName(_unitStats.UnitName);
             GetComponent<Die>()?.Initialize(_compsAndUnits, controllerIndex);
-            GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(controllerIndex)]);
+            GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(controllerIndex)], _controllerManager);
             GetComponent<ParentClickManager>().Initialize(controllerIndex);
             GetComponent<ParentHealth>().CurrentUnit = _unitManager;
             _mover = GetComponent<Mover>();
@@ -80,7 +80,7 @@ namespace Rechrysalis.Unit
             // _unitManager?.InitializeOld(controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, null);
             _unitManager?.SetUnitName(unitClass.UnitName);
             GetComponent<Die>()?.Initialize(_compsAndUnits, controllerIndex);
-            GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(controllerIndex)]);
+            GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(controllerIndex)], _controllerManager);
             GetComponent<ParentClickManager>()?.Initialize(controllerIndex);
             GetComponent<ParentHealth>().CurrentUnit = _unitManager;
             _mover = GetComponent<Mover>();

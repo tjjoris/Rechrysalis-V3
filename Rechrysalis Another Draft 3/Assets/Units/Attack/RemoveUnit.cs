@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
+using Rechrysalis.Controller;
 
 namespace Rechrysalis.Attacking
 {
@@ -9,11 +10,14 @@ namespace Rechrysalis.Attacking
     {
         private PlayerUnitsSO _playerUnits;
         private TargetsListSO _targetsList;
+        private ControllerManager _controllerManager;
 
-        public void Initialize(PlayerUnitsSO _playerUnits, TargetsListSO _targetsList)
+
+        public void Initialize(PlayerUnitsSO _playerUnits, TargetsListSO _targetsList, ControllerManager controllerManager)
         {
             this._playerUnits = _playerUnits;
             this._targetsList = _targetsList;
+            _controllerManager = controllerManager;
         }
         public void RemoveUnitFunction()
         {
