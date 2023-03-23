@@ -75,8 +75,8 @@ namespace Rechrysalis.Attacking
         }
         public void ResetUnitAttack()
         {
-            _attackChargeCurrent = 0;
-            _isWindingDown = false;
+            _attackChargeCurrent = _attackChargeUp + _attackWindDown;
+            _isWindingDown = true;
         }
         public void Tick(float _timeAmount)
         {
