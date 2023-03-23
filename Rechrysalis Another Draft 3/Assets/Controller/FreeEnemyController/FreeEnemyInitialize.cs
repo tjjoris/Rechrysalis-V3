@@ -135,6 +135,7 @@ namespace Rechrysalis.Controller
 
                     // Vector3 _newUnitPos = _freeEnemyCompLayout.UnitPos[0, _unitInWaveIndex];
                     Vector3 _newUnitPos = (_freeUnitCompSO.WaveLayout.GetUnitPosInWave(_unitInWaveIndex) + _enemyController.gameObject.transform.position);
+                    _newUnitPos = _waveLayoutsByRange.GetWaveLayoutByRange(parentUnitClass.BasicUnitClass.Range).GetUnitPosInWave(_unitInWaveIndex) + _enemyController.gameObject.transform.position;
                     // _newUnitPos.y = _newUnitPos.y + enemyController.gameObject.transform.position.y;                        
                     GameObject newFreeEnemy = Instantiate(_FreeUnitPrefab, _newUnitPos, Quaternion.identity, gameObject.transform);
                     newFreeEnemy.transform.Rotate(new Vector3(0, 0, 180f));

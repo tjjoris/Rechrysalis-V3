@@ -18,3 +18,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1fa22d0bd5b4841619cd642b113abe14, type: 2}
   - {fileID: 11400000, guid: 5c9d198a37c0a40e2b9e9ae698df85da, type: 2}
   - {fileID: 11400000, guid: e8e754f89e536429eb924cae72655c5e, type: 2}
+  _rangesList:
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
