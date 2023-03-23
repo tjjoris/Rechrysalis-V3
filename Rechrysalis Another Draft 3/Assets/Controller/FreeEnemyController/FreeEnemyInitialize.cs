@@ -104,6 +104,10 @@ namespace Rechrysalis.Controller
                 // wave.ParentUnitClasses.Clear();
                 _unitInWaveIndex = 0;
                 _lifeToSpendOnThisWave = _lifePerFreeWave.GetLifeToSpendOnThisWave(_compsAndUnits.Level, waveIndex);
+                if (_lifeToSpendOnThisWave > _controllerHealth.HealthCurrent)
+                {
+                    _lifeToSpendOnThisWave = _controllerHealth.HealthCurrent;
+                }
                 Debug.Log($"life to spend on this wave " + _lifeToSpendOnThisWave);
                 // for (int _unitInWaveIndex = 0; _unitInWaveIndex < freeUnitCompSO.Waves[waveIndex].UnitInWave.Length; _unitInWaveIndex++)
                 {
@@ -170,12 +174,15 @@ namespace Rechrysalis.Controller
                 }
                 else
                 {
-                    if (_controllerHealth.HealthCurrent < _lifeToSpendOnThisWave)
+                    if (_controllerHealth.HealthCurrent <= _lifeToSpendOnThisWave)
                     {
                         _controllerHealth?.SetHealthToZero();
                     }
                     _lifeToSpendOnThisWave = 0;
-                    NextWave();
+                    if ((_controllerManager.ParentUnitManagers.Count <= 0) && (_controllerHealth.CheckIfHealthZero()))                    
+                    {
+                        LevelDone();
+                    }
                 }
                 if (_lifeToSpendOnThisWave > 0)
                 {
@@ -207,7 +214,7 @@ namespace Rechrysalis.Controller
             }       
         }
 
-        private bool CheckIfLevelDone(int _waveIndex)
+        private bool CheckIfLevelDone()
         {
             // if (_waveIndex >= _freeUnitCompSO.Waves.Length)
             if (_controllerHealth.CheckIfHealthZero())
@@ -237,26 +244,32 @@ namespace Rechrysalis.Controller
                     {
                         Debug.Log($"wave index" + _waveIndex + "waves lenght "+ _freeUnitCompSO.Waves.Length);
                     }
-                    if (CheckIfLevelDone(_waveIndex))
+                    if (CheckIfLevelDone())
                     {
-
-                        _compsAndUnits.Level++;
-                        if (_compsAndUnits.Level < _compsAndUnits.Levels.Length)
-                        {
-                            GoToCompCustomizer();
-                        }
-                        else 
-                        {
-                            _compsAndUnits.NewGameStatusEnum = CompsAndUnitsSO.NewGameStatus.Won;
-                            SceneManager.LoadScene("Start");
-                        }
+                        LevelDone();
                         return;
-                    }                
+                    }
                     CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);
                     AddNextWaveAction();
                 }
             }
         }
+
+        private void LevelDone()
+        {
+            _compsAndUnits.Level++;
+            if (_compsAndUnits.Level < _compsAndUnits.Levels.Length)
+            {
+                GoToCompCustomizer();
+            }
+            else
+            {
+                _compsAndUnits.NewGameStatusEnum = CompsAndUnitsSO.NewGameStatus.Won;
+                SceneManager.LoadScene("Start");
+            }
+            return;
+        }
+
         private void GoToCompCustomizer()
         {
             _compCustomizer.NumberOfUpgrades = 1;
