@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.Controller;
+using Rechrysalis.Movement;
 
 namespace Rechrysalis.Attacking
 {
@@ -13,6 +14,7 @@ namespace Rechrysalis.Attacking
         private ControllerManager _controllerManager;
         private ParentUnitManager _parentUnitManager;
         private ParentHealth _parentHealth;
+        private Mover _parentMover;
 
 
         public void Initialize(PlayerUnitsSO _playerUnits, TargetsListSO _targetsList, ControllerManager controllerManager, ParentUnitManager parentUnitManager)
@@ -22,6 +24,7 @@ namespace Rechrysalis.Attacking
             _controllerManager = controllerManager;
             _parentUnitManager = parentUnitManager;
             _parentHealth = parentUnitManager.GetComponent<ParentHealth>();
+            _parentMover = parentUnitManager.GetComponent<Mover>();
         }
         public void RemoveUnitFunction()
         {
@@ -44,6 +47,10 @@ namespace Rechrysalis.Attacking
             if (_controllerManager.ParentUnitManagers.Contains(_parentUnitManager))
             {
                 _controllerManager.ParentUnitManagers.Remove(_parentUnitManager);
+            }
+            if (_controllerManager.ParentUnitMovers.Contains(_parentMover))
+            {
+                _controllerManager.ParentUnitMovers.Remove(_parentMover);
             }
             gameObject.SetActive(false);    
         }
