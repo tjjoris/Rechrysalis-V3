@@ -117,7 +117,7 @@ namespace Rechrysalis.Attacking
                 }
             }
             //if winding down { build charge }
-            else if ((_isWindingDown))
+            else if ((_isWindingDown) && (_attackChargeCurrent < (_attackChargeUp + _attackWindDown)))
             {
                 _attackChargeCurrent += _timeAmount;
             }
