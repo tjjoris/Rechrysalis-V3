@@ -8,6 +8,7 @@ namespace Rechrysalis.Unit
     [CreateAssetMenu (fileName = "WaveLayoutsByRange" , menuName = "Unit/FreeUnitLayout/WavesByRange")]
     public class WaveLayoutsByRange : ScriptableObject
     {
+        private bool _debugBool = true;
         [SerializeField] private List<WaveLayout> _waveLayouts = new List<WaveLayout>();
         public List<WaveLayout> WaveLayouts { get => _waveLayouts; set => _waveLayouts = value; }
         [SerializeField] private List<float> _rangesList = new List<float>();
@@ -28,11 +29,18 @@ namespace Rechrysalis.Unit
                 }     
                 if ((range >= minRange) && (range <= maxRange))
                 {
-                    Debug.Log($"wave layout " + i);
+                    if (_debugBool)
+                    {
+                        Debug.Log($"wave layout " + i);
+                    }
                     return _waveLayouts[i];
                 }                
             }
-            return null;
+            if (_debugBool)
+            {
+                Debug.Log($"range not found, return max wave layout");
+            }
+            return _waveLayouts[_waveLayouts.Count-1];
         }
     }
 }
