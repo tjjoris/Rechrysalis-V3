@@ -164,12 +164,17 @@ namespace Rechrysalis.Controller
                     _controllerHealth?.TakeDamage(controllerLifeCostOfUnit);
                     _lifeToSpendOnThisWave -= controllerLifeCostOfUnit;
                     _unitInWaveIndex ++;
-                    // CreateUnit
+                    // CreateUnit                    
                 }
                 else
                 {
                     _controllerHealth?.SetHealthToZero();
+                    _lifeToSpendOnThisWave = 0;
                     NextWave();
+                }
+                if (_lifeToSpendOnThisWave > 0)
+                {
+                    CreateUnit();
                 }
             }
         }
@@ -218,7 +223,7 @@ namespace Rechrysalis.Controller
         }
         public void NextWave()
         {
-            if (_compsAndUnits.PlayerUnits[_controllerIndex].ActiveUnits.Count <= 0)
+            if (_controllerManager.ParentUnitManagers.Count <= 0)
             {
                 _waveIndex ++;
                 // if (_freeUnitCompSO.Waves.Length >= _waveIndex)
