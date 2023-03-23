@@ -170,7 +170,10 @@ namespace Rechrysalis.Controller
                 }
                 else
                 {
-                    _controllerHealth?.SetHealthToZero();
+                    if (_controllerHealth.HealthCurrent < _lifeToSpendOnThisWave)
+                    {
+                        _controllerHealth?.SetHealthToZero();
+                    }
                     _lifeToSpendOnThisWave = 0;
                     NextWave();
                 }
