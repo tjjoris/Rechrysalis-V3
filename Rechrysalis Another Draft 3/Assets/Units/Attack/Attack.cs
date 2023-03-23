@@ -77,11 +77,12 @@ namespace Rechrysalis.Attacking
         {
             _attackChargeCurrent = _attackChargeUp + _attackWindDown;
             _isWindingDown = true;
+            _progressBarManager?.TintWindDown();
         }
         public void Tick(float _timeAmount)
         {
             //if chargecurrent > winddown + charge up { set charge to 0 }
-            if ((_attackChargeCurrent >= _attackWindDown + _attackChargeUp)) 
+            if ((_attackChargeCurrent >= _attackWindDown + _attackChargeUp) && (_rb2d.velocity == Vector2.zero)) 
             {
                 _tempTarget = GetTargetInRange();
                 if (_tempTarget != null)

@@ -60,7 +60,7 @@ namespace Rechrysalis.Unit
                             }
                         }
                     }
-                    _progressBarManager?.TintChargeUp();
+                    // _progressBarManager?.TintChargeUp();
                 }
                 _chrysalisActivation.DeactivateChrysalis(_indexInSubUnits);
             }
