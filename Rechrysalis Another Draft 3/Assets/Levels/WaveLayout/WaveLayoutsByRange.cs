@@ -26,8 +26,9 @@ namespace Rechrysalis.Unit
                 {
                     maxRange = _rangesList[i];
                 }     
-                if ((range >= minRange) && (range < maxRange))
+                if ((range >= minRange) && (range <= maxRange))
                 {
+                    Debug.Log($"wave layout " + i);
                     return _waveLayouts[i];
                 }                
             }
