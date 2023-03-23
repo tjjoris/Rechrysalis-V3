@@ -108,7 +108,10 @@ namespace Rechrysalis.Controller
                 {
                     _lifeToSpendOnThisWave = _controllerHealth.HealthCurrent;
                 }
-                Debug.Log($"life to spend on this wave " + _lifeToSpendOnThisWave);
+                if (_debugBool)
+                {
+                    Debug.Log($"life to spend on this wave " + _lifeToSpendOnThisWave);
+                }
                 // for (int _unitInWaveIndex = 0; _unitInWaveIndex < freeUnitCompSO.Waves[waveIndex].UnitInWave.Length; _unitInWaveIndex++)
                 {
                     CreateUnit();
@@ -127,7 +130,10 @@ namespace Rechrysalis.Controller
                 parentUnitClass.SetUTCBasicUnit(unitStats.UpgradeTypeClass);
                 parentUnitClass.SetAllStats();
                 float controllerLifeCostOfUnit = parentUnitClass.BasicUnitClass.ControllerLifeCostMult * _compsAndUnits.FreeUnitToControllerLifeLostMult;
-                Debug.Log($"controller cost of unit " + controllerLifeCostOfUnit);
+                if (_debugBool)
+                {
+                    Debug.Log($"controller cost of unit " + controllerLifeCostOfUnit);
+                }
                 if (_lifeToSpendOnThisWave >= controllerLifeCostOfUnit)
                 {
                     // _wave.ParentUnitClasses.Add(parentUnitClass);                        

@@ -63,8 +63,10 @@ namespace Rechrysalis.Unit
             _utcHatchEffect = new List<UpgradeTypeClass>();
             _utcBasicUnit = null;
             // _utcHatchEffect = null;
-            // if (_debugBool)
-            Debug.Log($"clear all stats");
+            if (_debugBool)
+            {
+                Debug.Log($"clear all stats");
+            }
             // SetAllStats();
         }
         public void SetUTCBasicUnit(UpgradeTypeClass utcBasicUnit)
