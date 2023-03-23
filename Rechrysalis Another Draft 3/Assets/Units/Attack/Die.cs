@@ -35,7 +35,7 @@ namespace Rechrysalis.Attacking
             // }
             // gameObject.SetActive(false);
             _removeUnit.RemoveUnitFunction();
-            if (_compsAndUnitsSO.PlayerUnits[_controllerIndex].ActiveUnits.Count <= 0)
+            // if (_compsAndUnitsSO.PlayerUnits[_controllerIndex].ActiveUnits.Count <= 0)
             {
                 if (_debugBool)
                 {

@@ -169,6 +169,7 @@ namespace Rechrysalis.Controller
                 else
                 {
                     _controllerHealth?.SetHealthToZero();
+                    NextWave();
                 }
             }
         }
@@ -217,30 +218,33 @@ namespace Rechrysalis.Controller
         }
         public void NextWave()
         {
-            _waveIndex ++;
-            // if (_freeUnitCompSO.Waves.Length >= _waveIndex)
-            {                
-                if (_debugBool)
-                {
-                    Debug.Log($"wave index" + _waveIndex + "waves lenght "+ _freeUnitCompSO.Waves.Length);
-                }
-                if (CheckIfLevelDone(_waveIndex))
-                {
+            if (_compsAndUnits.PlayerUnits[_controllerIndex].ActiveUnits.Count <= 0)
+            {
+                _waveIndex ++;
+                // if (_freeUnitCompSO.Waves.Length >= _waveIndex)
+                {                
+                    if (_debugBool)
+                    {
+                        Debug.Log($"wave index" + _waveIndex + "waves lenght "+ _freeUnitCompSO.Waves.Length);
+                    }
+                    if (CheckIfLevelDone(_waveIndex))
+                    {
 
-                    _compsAndUnits.Level++;
-                    if (_compsAndUnits.Level < _compsAndUnits.Levels.Length)
-                    {
-                        GoToCompCustomizer();
-                    }
-                    else 
-                    {
-                        _compsAndUnits.NewGameStatusEnum = CompsAndUnitsSO.NewGameStatus.Won;
-                        SceneManager.LoadScene("Start");
-                    }
-                    return;
-                }                
-                CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);
-                AddNextWaveAction();
+                        _compsAndUnits.Level++;
+                        if (_compsAndUnits.Level < _compsAndUnits.Levels.Length)
+                        {
+                            GoToCompCustomizer();
+                        }
+                        else 
+                        {
+                            _compsAndUnits.NewGameStatusEnum = CompsAndUnitsSO.NewGameStatus.Won;
+                            SceneManager.LoadScene("Start");
+                        }
+                        return;
+                    }                
+                    CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);
+                    AddNextWaveAction();
+                }
             }
         }
         private void GoToCompCustomizer()

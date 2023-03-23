@@ -62,6 +62,7 @@ namespace Rechrysalis.Controller
         }
         public bool CheckIfHealthZero()
         {
+            Debug.Log($"checking controller health " + _healthCurrent);
             if (_healthCurrent <= 0)
             {
                 return true;

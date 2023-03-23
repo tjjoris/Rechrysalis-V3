@@ -1143,6 +1143,7 @@ GameObject:
   - component: {fileID: 691481328}
   - component: {fileID: 691481330}
   - component: {fileID: 691481336}
+  - component: {fileID: 691481337}
   - component: {fileID: 691481331}
   - component: {fileID: 691481332}
   - component: {fileID: 691481333}
@@ -1296,6 +1297,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 77307ff2e821d4739ad4078890585a32, type: 2}
   - {fileID: 11400000, guid: 2049743e030a54a52956d19b8c60be54, type: 2}
   - {fileID: 11400000, guid: 70e83448f88104fea88a3edf2dabc743, type: 2}
+--- !u!114 &691481337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691481327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24148f6e9fb944c0cb4fb257661bb4b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firstLevelFirstWaveLife: 5
+  _extraLifePerWave: 1
+  _extraLifePerLevelForFirstWave: 1
+  _lifeMultByLevelToAddToWave: 1.01
 --- !u!224 &693044507 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6974679594234141080, guid: 7a22963889f0b4f9bb6171f227d5d732, type: 3}
