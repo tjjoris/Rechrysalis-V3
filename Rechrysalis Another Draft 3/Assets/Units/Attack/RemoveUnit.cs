@@ -12,6 +12,7 @@ namespace Rechrysalis.Attacking
         private TargetsListSO _targetsList;
         private ControllerManager _controllerManager;
         private ParentUnitManager _parentUnitManager;
+        private ParentHealth _parentHealth;
 
 
         public void Initialize(PlayerUnitsSO _playerUnits, TargetsListSO _targetsList, ControllerManager controllerManager, ParentUnitManager parentUnitManager)
@@ -20,6 +21,7 @@ namespace Rechrysalis.Attacking
             this._targetsList = _targetsList;
             _controllerManager = controllerManager;
             _parentUnitManager = parentUnitManager;
+            _parentHealth = parentUnitManager.GetComponent<ParentHealth>();
         }
         public void RemoveUnitFunction()
         {
@@ -35,8 +37,14 @@ namespace Rechrysalis.Attacking
             {
                 _targetsList.Targets.Remove(gameObject);
             }            
-            // ParentHealth parentHealth = 
-            // if (_controllerManager.ParentHealths.Contains(`))
+            if (_controllerManager.ParentHealths.Contains(_parentHealth))
+            {
+                _controllerManager.ParentHealths.Remove(_parentHealth);                
+            }
+            if (_controllerManager.ParentUnitManagers.Contains(_parentUnitManager))
+            {
+                _controllerManager.ParentUnitManagers.Remove(_parentUnitManager);
+            }
             gameObject.SetActive(false);    
         }
     }
