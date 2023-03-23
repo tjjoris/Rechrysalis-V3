@@ -32,6 +32,7 @@ namespace Rechrysalis.Attacking
         private ParentUnitManager _parentUnitManager;
         private ProgressBarManager _progressBarManager;
         private Rigidbody2D _rb2d;
+        [SerializeField] private GameObject _tempTarget;
 
 
         public void Initialize(UnitClass unitClass, ParentUnitManager parentUnitManager)
@@ -82,9 +83,13 @@ namespace Rechrysalis.Attacking
             //if chargecurrent > winddown + charge up { set charge to 0 }
             if ((_attackChargeCurrent >= _attackWindDown + _attackChargeUp)) 
             {
-                _attackChargeCurrent = 0;
-                _isWindingDown = false;
-                _progressBarManager.TintChargeUp();
+                _tempTarget = GetTargetInRange();
+                if (_tempTarget != null)
+                {
+                    _attackChargeCurrent = 0;
+                    _isWindingDown = false;
+                    _progressBarManager.TintChargeUp();
+                }
             }
             //if not winding down && stopped & charge < charge up { build charge }
             else if ((!_isWindingDown) && (_rb2d.velocity == Vector2.zero) && (_attackChargeCurrent < _attackChargeUp))
@@ -94,8 +99,8 @@ namespace Rechrysalis.Attacking
             //if not winding down & stopped { attack }
             else if((!_isWindingDown) && (_rb2d.velocity == Vector2.zero))
             {          
-                GameObject _tempTarget = null;
-                _tempTarget = GetTargetInRange();
+                // GameObject _tempTarget = null;
+                // _tempTarget = GetTargetInRange();
                 if (_tempTarget != null)
                 {
                     GameObject _projectile = _projectilesPool?.GetPooledObject();
@@ -132,14 +137,14 @@ namespace Rechrysalis.Attacking
         }
         private GameObject GetTargetInRange()
         {
-            GameObject _tempTarget = _inRangeByPriority?.CheckPriorityTargetInRange();
-            if (_tempTarget == null)
+            GameObject tempTarget = _inRangeByPriority?.CheckPriorityTargetInRange();
+            if (tempTarget == null)
             {
-                _tempTarget = _targetHolder.Target;
+                tempTarget = _targetHolder.Target;
             }
-            if (_targetHolder.GetThisTargetInRange(_tempTarget))
+            if (_targetHolder.GetThisTargetInRange(tempTarget))
             {
-                return _tempTarget;
+                return tempTarget;
             }
             return null;
         }
