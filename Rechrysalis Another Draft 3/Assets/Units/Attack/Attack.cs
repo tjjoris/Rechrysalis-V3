@@ -33,6 +33,7 @@ namespace Rechrysalis.Attacking
         private ProgressBarManager _progressBarManager;
         private Rigidbody2D _rb2d;
         [SerializeField] private GameObject _tempTarget;
+        private ControllerUnitAttackClosest _controllerUnitAttackClosest;
 
 
         public void Initialize(UnitClass unitClass, ParentUnitManager parentUnitManager)
@@ -50,6 +51,7 @@ namespace Rechrysalis.Attacking
             _closestTarget = GetComponent<ClosestTarget>();
             _targetHolder = GetComponent<TargetHolder>();
             _rb2d = _parentUnitManager.GetComponent<Rigidbody2D>();
+            _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
             if (parentUnitManager.ControllerManager.GetComponent<Rigidbody2D>() != null)
             {
                 _rb2d = parentUnitManager.ControllerManager.GetComponent<Rigidbody2D>();
@@ -99,10 +101,11 @@ namespace Rechrysalis.Attacking
             }
             //if not winding down & stopped { attack }
             else if((!_isWindingDown) && (_rb2d.velocity == Vector2.zero))
-            {          
+            {
                 // GameObject _tempTarget = null;
                 // _tempTarget = GetTargetInRange();
-                if (_tempTarget != null)
+                _controllerUnitAttackClosest.CheckToGetTarget();
+                if (_targetHolder.Target != null)
                 {
                     GameObject _projectile = _projectilesPool?.GetPooledObject();
                     if (_projectile != null) 
@@ -138,6 +141,7 @@ namespace Rechrysalis.Attacking
         }
         private GameObject GetTargetInRange()
         {
+            _controllerUnitAttackClosest.CheckToGetTarget();
             GameObject tempTarget = _inRangeByPriority?.CheckPriorityTargetInRange();
             if (tempTarget == null)
             {

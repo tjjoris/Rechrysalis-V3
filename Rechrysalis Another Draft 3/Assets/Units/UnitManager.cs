@@ -240,7 +240,8 @@ namespace Rechrysalis.Unit
             // if (gameObject.active == true) 
             // {
                 // bool _isStopped = false;
-                _controllerUnitAttackClosest?.CheckToGetTarget();
+                
+                // _controllerUnitAttackClosest?.CheckToGetTarget();
                 if (_mover != null)
                 {
                     // _mover?.Tick(_timeAmount);

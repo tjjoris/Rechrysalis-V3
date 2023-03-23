@@ -23,7 +23,7 @@ namespace Rechrysalis.Movement
         [SerializeField] private float _maxY;
         // private float _pushBackMovement;
         // public float PushBackMovement {set{_pushBackMovement = value;}}
-        private float _approachSpeedMult = 0.15f;
+        private float _approachSpeedMult = 0.2f;
         [SerializeField] private Vector3 _moveVector;        
         [SerializeField] private Vector2 _direction = Vector2.zero;
         public Vector2 Direction {set{_direction = value;}get {return _direction;}}
