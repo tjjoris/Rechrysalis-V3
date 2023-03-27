@@ -36,7 +36,7 @@ namespace Rechrysalis.Movement
                 {
                     // Vector2 _direction = gameObject.transform.position - _targetHolder.Target.transform.position;
                     // if ((Mathf.Abs(_direction.magnitude)) < (_range.GetRange() - 0.5f))
-                    if ((attack.IsWindingDown) && (_targetHolder.IsTargetInRangePlusValue(-0.5f)))
+                    if ((attack.IsWindingDown) && (_targetHolder.IsTargetInRangePlusValue(0.7f)))
                     // if (_targetHolder.IsTargetInRange())
                     {
                         // Debug.Log($"retreat");
