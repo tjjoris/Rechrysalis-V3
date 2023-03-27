@@ -11,6 +11,7 @@ namespace Rechrysalis.Unit
 
         
         [SerializeField] private Vector2[] _unitInWave;
+        public Vector2[] UnitInWave => _unitInWave;
         [SerializeField] private float _zOffset = -1f;
 
         public Vector3 GetUnitPosInWave(int _unitIndex)

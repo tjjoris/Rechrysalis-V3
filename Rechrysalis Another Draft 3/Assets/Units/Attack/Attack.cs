@@ -104,7 +104,7 @@ namespace Rechrysalis.Attacking
             {
                 // GameObject _tempTarget = null;
                 // _tempTarget = GetTargetInRange();
-                _controllerUnitAttackClosest.CheckToGetTarget();
+                _controllerUnitAttackClosest?.CheckToGetTarget();
                 if (_targetHolder.Target != null)
                 {
                     GameObject _projectile = _projectilesPool?.GetPooledObject();
@@ -141,7 +141,7 @@ namespace Rechrysalis.Attacking
         }
         private GameObject GetTargetInRange()
         {
-            _controllerUnitAttackClosest.CheckToGetTarget();
+            _controllerUnitAttackClosest?.CheckToGetTarget();
             GameObject tempTarget = _inRangeByPriority?.CheckPriorityTargetInRange();
             if (tempTarget == null)
             {

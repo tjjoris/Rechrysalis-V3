@@ -134,7 +134,7 @@ namespace Rechrysalis.Controller
                 {
                     Debug.Log($"controller cost of unit " + controllerLifeCostOfUnit);
                 }
-                if (_lifeToSpendOnThisWave >= controllerLifeCostOfUnit)
+                if ((_lifeToSpendOnThisWave >= controllerLifeCostOfUnit) && (_unitInWaveIndex <= _freeUnitCompSO.WaveLayout.UnitInWave.Length -1))
                 {
                     // _wave.ParentUnitClasses.Add(parentUnitClass);                        
                     // ParentUnitClass parentUnitClass = _wave.ParentUnitClasses[_compSO.ParentUnitClassList.Count - 1];
