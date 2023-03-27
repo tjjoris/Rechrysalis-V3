@@ -7,6 +7,7 @@ using Rechrysalis.Attacking;
 using Rechrysalis.HatchEffect;
 using UnityEngine.SceneManagement;
 using Rechrysalis.CompCustomizer;
+using Rechrysalis.UI;
 
 namespace Rechrysalis.Controller
 {
@@ -26,6 +27,7 @@ namespace Rechrysalis.Controller
         private CompCustomizerSO _compCustomizer;
         private ControllerManager _controllerManager;
         private ControllerHealth _controllerHealth;
+        [SerializeField] private FreeControllerControllerProgressBar _freeControllerControllerProgressBar;
         // private int _controllerIndex;
         private List<GameObject> _allUnits;       
         private Transform _targetCameraScrollTransform;

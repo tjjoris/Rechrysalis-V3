@@ -1185,6 +1185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _FreeUnitPrefab: {fileID: 8804105779283925579, guid: 76eb3c923da744f9cae202ff2279002c, type: 3}
+  _freeControllerControllerProgressBar: {fileID: 3041224787693009862}
   _waveLayoutsByRange: {fileID: 11400000, guid: 185ad63d27b724143b439a7b4001646d, type: 2}
   _controllerUnitsToChooseFrom: {fileID: 11400000, guid: e6a692086072a4d778fa72ffbd6d7174, type: 2}
   _currentChangingControllerUnits: {fileID: 11400000, guid: 60b756f5bedc54f42aaad53c6c5ac17c, type: 2}
@@ -4724,6 +4725,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a26b3d3f9a3447a9c7febf1e2d01e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _progressFill: {fileID: 0}
+  _progressMax: 0
+  _progressCurrent: 0
 --- !u!1001 &3041224787707069677
 PrefabInstance:
   m_ObjectHideFlags: 0
