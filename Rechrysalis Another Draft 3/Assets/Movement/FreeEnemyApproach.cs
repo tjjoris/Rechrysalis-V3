@@ -65,7 +65,7 @@ namespace Rechrysalis.Movement
                 {
                     Vector2 _distV2 = (_targetHolder.Target.transform.position - transform.position);
                     // if (Mathf.Abs(_distV2.magnitude) > _range.GetRange())
-                    if ((_enemyControllerMover.Direction.y < -0.9f) && (_approaching) && (!_targetHolder.IsTargetMinusChargeDistMinusDistInRange(0f)))
+                    if ((_enemyControllerMover.Direction.y < -0.9f) && (_approaching) && (!_targetHolder.IsTargetInRange()))
                     {
                         // _approachDirection = Vector3.MoveTowards(transform.position, _targetHolder.Target.transform.position, 1);
                         _approachDirection = ApproachDirection(_distV2);
