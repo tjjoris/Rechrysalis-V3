@@ -21,12 +21,19 @@ namespace Rechrysalis.UI
         public void AddProgress(float amount)
         {
             _progressCurrent += amount;
-            float progressPercent = amount / _progressMax;
+            float progressPercent = _progressCurrent / _progressMax;
             SetBarScale(progressPercent);
         }
         private void SetBarScale(float percent)
         {
             _progressFill.localScale = new Vector3(percent, 1, 1);
+        }
+        private void CheckIfProgressFull()
+        {
+            if (_progressCurrent >= _progressMax)
+            {
+                
+            }
         }
     }
 }

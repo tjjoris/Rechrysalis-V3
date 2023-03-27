@@ -182,6 +182,7 @@ namespace Rechrysalis.Controller
                     if (die != null)
                     {
                         die.ControllerProgressValue = controllerLifeCostOfUnit;
+                        die.FreeControllerProgressBar = _freeControllerControllerProgressBar;
                     }
                     _controllerHealth?.TakeDamage(controllerLifeCostOfUnit);
                     _lifeToSpendOnThisWave -= controllerLifeCostOfUnit;

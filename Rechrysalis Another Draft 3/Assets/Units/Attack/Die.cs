@@ -41,6 +41,7 @@ namespace Rechrysalis.Attacking
             // }
             // gameObject.SetActive(false);
             _removeUnit.RemoveUnitFunction();
+            _freeControllerProgressBar?.AddProgress(_controllerProgressValue);
             // if (_compsAndUnitsSO.PlayerUnits[_controllerIndex].ActiveUnits.Count <= 0)
             {
                 if (_debugBool)
