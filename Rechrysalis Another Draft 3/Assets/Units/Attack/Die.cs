@@ -15,6 +15,9 @@ namespace Rechrysalis.Attacking
         private CompsAndUnitsSO _compsAndUnitsSO;
         private int _controllerIndex;
         public Action _spawnWaveAction;
+        [SerializeField] private float _controllerProgressValue;
+        public float ControllerProgressValue {get  => _controllerProgressValue; set => _controllerProgressValue = value;}        
+        
         public void Initialize(CompsAndUnitsSO _compsAndUbnitsSO, int _controllerIndex)        
         {
             _playerUnits = _compsAndUbnitsSO.PlayerUnits[_controllerIndex];

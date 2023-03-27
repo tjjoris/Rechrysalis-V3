@@ -178,6 +178,11 @@ namespace Rechrysalis.Controller
                     // _controllerFreeHatch?.SetUnitsArray(newFreeEnemy, _unitInWaveIndex);
                     AIFocusFireOnInitialzie(unitStats, parentUnitManager);
                     // _unitManager?.RestartUnit();
+                    Die die = parentUnitManager.GetComponent<Die>();
+                    if (die != null)
+                    {
+                        die.ControllerProgressValue = controllerLifeCostOfUnit;
+                    }
                     _controllerHealth?.TakeDamage(controllerLifeCostOfUnit);
                     _lifeToSpendOnThisWave -= controllerLifeCostOfUnit;
                     _unitInWaveIndex ++;
