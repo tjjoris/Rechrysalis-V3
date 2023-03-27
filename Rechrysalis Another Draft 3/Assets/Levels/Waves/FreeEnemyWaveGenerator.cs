@@ -30,8 +30,13 @@ namespace Rechrysalis.Unit
             {
                 WaveClass waveClass = new WaveClass();
         _waveClassList.Add(waveClass);
-                waveClass.UnitsInWave = new List<UnitStatsSO>();
+                waveClass.UnitsInWave = new List<ParentUnitClass>();
             }
+        }
+        private UnitStatsSO GetUnitInWave()
+        {
+            
+            return null;
         }
     }
 }

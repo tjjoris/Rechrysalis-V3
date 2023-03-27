@@ -47,6 +47,7 @@ namespace Rechrysalis.Unit
                     parentUnitClass.ClearAllUpgrades();
                     parentUnitClass.SetUTCBasicUnit(unitToChange.UpgradeTypeClass);
                     parentUnitClass.SetAllStats();
+                    _listOfRandomParentUnitClasses.Add(parentUnitClass);
                 i++;
             }
         }
