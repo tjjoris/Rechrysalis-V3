@@ -11,6 +11,8 @@ namespace Rechrysalis.UI
         public float ProgressMax { get => _progressMax; set => _progressMax = value; }
         [SerializeField] private float _progressCurrent;
         public float ProgressCurrent => _progressCurrent;
+        [SerializeField] private LevelSceneManagement _levelSceneManagement;
+        public LevelSceneManagement LevelSceneManagement {set => _levelSceneManagement = value;}
 
         public void Initialize(float progressMax)
         {
@@ -32,7 +34,7 @@ namespace Rechrysalis.UI
         {
             if (_progressCurrent >= _progressMax)
             {
-                
+                _levelSceneManagement.LevelBeat();
             }
         }
     }

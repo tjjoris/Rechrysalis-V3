@@ -14,6 +14,8 @@ namespace Rechrysalis.Controller
     public class ControllerManager : MonoBehaviour
     {
         private bool _debugBool = false;
+        [SerializeField] private MainManager _mainManager;
+        public MainManager MainManager => _mainManager;
         [SerializeField] private int _controllerIndex;        
         [SerializeField] private CheckRayCastSO _checkRayCast;
         public CheckRayCastSO CheckRayCast => _checkRayCast;
@@ -71,6 +73,7 @@ namespace Rechrysalis.Controller
 
         public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits, CompCustomizerSO _compCustomizer, MainManager mainManager, GraphicRaycaster graphicRaycaster, Transform cameraScrollTransform) 
         {
+            _mainManager = mainManager;
             _controllerHealth = GetComponent<ControllerHealth>();
             this._controllerIndex = _controllerIndex;
             this._playerUnitsSO = _playerUnitsSO;

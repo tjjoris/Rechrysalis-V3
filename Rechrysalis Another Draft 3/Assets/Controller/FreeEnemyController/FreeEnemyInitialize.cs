@@ -58,6 +58,7 @@ namespace Rechrysalis.Controller
             this._freeUnitCompSO = freeUnitCompSO;
             _controllerHealth?.IncreaseMaxHealth(_compsAndUnits.Level * _compsAndUnits.FreeUnitControllerLifeGainedPerLevel);
             _freeControllerControllerProgressBar.Initialize(_controllerHealth.HealthMax);
+            _freeControllerControllerProgressBar.LevelSceneManagement = _mainManager.LevelSceneManagement;
             this._compCustomizer = compCustomizer;
             _controllerFreeHatch = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _allUnits = new List<GameObject>();

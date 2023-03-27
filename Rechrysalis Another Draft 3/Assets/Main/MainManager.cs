@@ -19,7 +19,8 @@ namespace Rechrysalis
         [SerializeField] ControllerManager[] _controllerManager;
         [SerializeField] PlayerUnitsSO[] _playerUnitsSO;  
         [SerializeField] CompSO[] _compSO;
-
+        [SerializeField] private LevelSceneManagement _levelSceneManagement;
+        public LevelSceneManagement LevelSceneManagement { get => _levelSceneManagement; set => _levelSceneManagement = value; }        
         [SerializeField] CompCustomizerSO _compCustomizer;
         [SerializeField] ProjectilesHolder _projectilesHolder;
         [SerializeField] BackgroundManager _backGroundManager;
@@ -34,6 +35,8 @@ namespace Rechrysalis
 
         private void Awake() {
             // _compsAndUnitsSO.CompsSO = _compSO;
+            _levelSceneManagement = GetComponent<LevelSceneManagement>();
+            _levelSceneManagement?.Initialize(_compsAndUnitsSO);
             _pauseScript = GetComponent<PauseScript>();
             _compSO = _compsAndUnitsSO.CompsSO;
             _compsAndUnitsSO.ControllerManagers = _controllerManager;
