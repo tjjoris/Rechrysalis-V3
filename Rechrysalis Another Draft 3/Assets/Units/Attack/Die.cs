@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
+using Rechrysalis.UI;
 using System;
 
 namespace Rechrysalis.Attacking
@@ -16,9 +17,11 @@ namespace Rechrysalis.Attacking
         private int _controllerIndex;
         public Action _spawnWaveAction;
         [SerializeField] private float _controllerProgressValue;
-        public float ControllerProgressValue {get  => _controllerProgressValue; set => _controllerProgressValue = value;}        
-        
-        public void Initialize(CompsAndUnitsSO _compsAndUbnitsSO, int _controllerIndex)        
+        public float ControllerProgressValue {get  => _controllerProgressValue; set => _controllerProgressValue = value;}
+        [SerializeField] private FreeControllerControllerProgressBar _freeControllerProgressBar;
+        public FreeControllerControllerProgressBar FreeControllerProgressBar {get => _freeControllerProgressBar; set => _freeControllerProgressBar = value;}
+
+        public void Initialize(CompsAndUnitsSO _compsAndUbnitsSO, int _controllerIndex)
         {
             _playerUnits = _compsAndUbnitsSO.PlayerUnits[_controllerIndex];
             _targetsList = _compsAndUbnitsSO.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)];
