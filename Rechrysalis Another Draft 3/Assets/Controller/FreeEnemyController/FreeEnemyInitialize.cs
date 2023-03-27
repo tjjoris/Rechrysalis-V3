@@ -38,6 +38,8 @@ namespace Rechrysalis.Controller
         private LifePerFreeWave _lifePerFreeWave;
         [SerializeField] private WaveLayoutsByRange _waveLayoutsByRange;
         public WaveLayoutsByRange WaveLayoutsByRange => _waveLayoutsByRange;
+        [SerializeField] private List<WaveClass> _waveClassList = new List<WaveClass>();
+        public List<WaveClass> WaveClassList => _waveClassList;
         [SerializeField] private ControllerUnitsSO _controllerUnitsToChooseFrom;
         public ControllerUnitsSO ControllerUnitsToChooseFrom => _controllerUnitsToChooseFrom;
         [SerializeField] private ControllerUnitsSO _currentChangingControllerUnits;
@@ -56,10 +58,11 @@ namespace Rechrysalis.Controller
             this._playerUnitsSO = playerUnitsSO;
             this._compsAndUnits = compsAndUnits;
             this._freeUnitCompSO = freeUnitCompSO;
+            this._compCustomizer = compCustomizer;
             _controllerHealth?.IncreaseMaxHealth(_compsAndUnits.Level * _compsAndUnits.FreeUnitControllerLifeGainedPerLevel);
             _freeControllerControllerProgressBar.Initialize(_controllerHealth.HealthMax);
             _freeControllerControllerProgressBar.LevelSceneManagement = _mainManager.LevelSceneManagement;
-            this._compCustomizer = compCustomizer;
+            
             _controllerFreeHatch = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _allUnits = new List<GameObject>();
             // this._controllerIndex = _controllerIndex;
@@ -199,7 +202,7 @@ namespace Rechrysalis.Controller
                     _lifeToSpendOnThisWave = 0;
                     if ((_controllerManager.ParentUnitManagers.Count <= 0) && (_controllerHealth.CheckIfHealthZero()))                    
                     {
-                        LevelDone();
+                        // LevelDone();
                     }
                 }
                 if (_lifeToSpendOnThisWave > 0)
@@ -264,7 +267,7 @@ namespace Rechrysalis.Controller
                     }
                     if (CheckIfLevelDone())
                     {
-                        LevelDone();
+                        // LevelDone();
                         return;
                     }
                     CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);

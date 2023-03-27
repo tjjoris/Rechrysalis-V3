@@ -8,7 +8,7 @@ namespace Rechrysalis.Unit
     [CreateAssetMenu (fileName = "WaveLayoutsByRange" , menuName = "Unit/FreeUnitLayout/WavesByRange")]
     public class WaveLayoutsByRange : ScriptableObject
     {
-        private bool _debugBool = true;
+        private bool _debugBool = false;
         [SerializeField] private List<WaveLayout> _waveLayouts = new List<WaveLayout>();
         public List<WaveLayout> WaveLayouts { get => _waveLayouts; set => _waveLayouts = value; }
         [SerializeField] private List<float> _rangesList = new List<float>();
