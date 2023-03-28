@@ -1145,6 +1145,8 @@ GameObject:
   - component: {fileID: 691481336}
   - component: {fileID: 691481337}
   - component: {fileID: 691481338}
+  - component: {fileID: 691481340}
+  - component: {fileID: 691481339}
   - component: {fileID: 691481331}
   - component: {fileID: 691481332}
   - component: {fileID: 691481333}
@@ -1334,6 +1336,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveClassList: []
+  _progressMaxForThisLevel: 0
+--- !u!114 &691481339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691481327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4ef198a20c94cd0b234cc5a9671cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &691481340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691481327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be61e99ea87424f0185e580088d3993e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waveIndex: 0
+  _compsAndUnitsSO: {fileID: 0}
 --- !u!224 &693044507 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6974679594234141080, guid: 7a22963889f0b4f9bb6171f227d5d732, type: 3}
