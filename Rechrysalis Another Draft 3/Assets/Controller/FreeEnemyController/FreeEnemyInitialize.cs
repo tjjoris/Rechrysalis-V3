@@ -22,6 +22,7 @@ namespace Rechrysalis.Controller
         private ControllerFreeUnitHatchEffectManager _controllerFreeHatch;
         private CompSO _compSO;
         private PlayerUnitsSO _playerUnitsSO;
+        public PlayerUnitsSO PlayerUnitsSO {get => _playerUnitsSO; set => _playerUnitsSO = value;}
         private CompsAndUnitsSO _compsAndUnits;
         private FreeUnitCompSO _freeUnitCompSO;
         private CompCustomizerSO _compCustomizer;
