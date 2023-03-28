@@ -33,18 +33,20 @@ namespace Rechrysalis.Unit
         {
             int wave = 0;
             float progressCost = 0;
-            float progressValue = _controllerHealth.HealthMax;
+            float progressValueMax = _controllerHealth.HealthMax;
             _waveClassList = new List<WaveClass>();
             // while (progressValue >= 0)
             {
                 float progressMaxForThisWave = _lifePerFreeWave.GetLifeToSpendOnThisWave(_compsAndUnitsSO.Level, wave);                
+                float progressCostForThisWave = 0;
                 WaveClass waveClass = new WaveClass();
                 _waveClassList.Add(waveClass);
                 waveClass.UnitsInWave = new List<ParentUnitClass>();
-                ParentUnitClass unitForWave = _randomFreeChangingUnits.GetARandomParentUnitClassFromChangingsBasedOnLifeAmount(progressMaxForThisWave)
+                ParentUnitClass unitForWave = _randomFreeChangingUnits.GetARandomParentUnitClassFromChangingsBasedOnLifeAmount(progressMaxForThisWave - progressCostForThisWave);
                 if (unitForWave != null)
                 {
-                    progressMaxForThisWave -= unitForWave.BasicUnitClass.ControllerLifeCostMult;                    
+                    waveClass.UnitsInWave.Add(unitForWave);
+                    progressCostForThisWave += unitForWave.BasicUnitClass.ControllerLifeCostMult;                    
                 }
                 else 
                 {
