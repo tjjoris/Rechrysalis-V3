@@ -85,7 +85,6 @@ GameObject:
   - component: {fileID: 7721016742656668050}
   - component: {fileID: 8477975428765417811}
   - component: {fileID: 1196362697060269112}
-  - component: {fileID: 225529875955136253}
   - component: {fileID: 8731316875822150724}
   - component: {fileID: 8191118075137061996}
   - component: {fileID: 760855933313962050}
@@ -145,6 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449dba754117b4f8cbf2c49c502ddf7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _controllerProgressValue: 0
+  _freeControllerProgressBar: {fileID: 0}
 --- !u!114 &4378128114718766567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,24 +204,12 @@ MonoBehaviour:
   _maxY: 0
   _moveVector: {x: 0, y: 0, z: 0}
   _direction: {x: 0, y: 0}
+  _directionBase: {x: 0, y: 0}
+  _directionWhilePaused: {x: 0, y: 0}
   _isStopped: 1
-  _speed: 0
---- !u!114 &225529875955136253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8804105779283925579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55c63cca6f7c44af0aad94b29b9dbbd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _controllerIndex: 0
-  _playerUnitsSO: []
-  _enemyController: {fileID: 0}
-  _pushBackY: 2
+  _baseSpeed: 0
+  _speedVaried: 0
+  _siegeInt: 0
 --- !u!58 &8731316875822150724
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -334,7 +323,27 @@ MonoBehaviour:
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
     _utcHatchEffect:
-      _upgradeType: 0
+    - _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    - _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    - _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    - _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    - _upgradeType: 0
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
@@ -349,14 +358,21 @@ MonoBehaviour:
       _attackChargeUp: 0
       _attackWindDown: 0
       _damage: 0
-      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectPrefab:
+      - {fileID: 0}
+      _hatchEffectClasses: []
       _hatchEffectMult: 0
       _hatchEffectDurationAdd: 0
       _unitSprite: {fileID: 0}
       _chrysalisSprite: {fileID: 0}
       _amountToPool: 0
       _projectileSpeed: 0
+      _sacrificeControllerAmount: 0
+      _moveSpeedAdd: 0
+      _siegeDuration: 0
+      _burstHeal: 0
       _projectileSprite: {fileID: 0}
+      _controllerLifeCostMult: 1
     _advUnitClass:
       _manaCost: 0
       _unitName: 
@@ -367,20 +383,29 @@ MonoBehaviour:
       _attackChargeUp: 0
       _attackWindDown: 0
       _damage: 0
-      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectPrefab:
+      - {fileID: 0}
+      _hatchEffectClasses: []
       _hatchEffectMult: 0
       _hatchEffectDurationAdd: 0
       _unitSprite: {fileID: 0}
       _chrysalisSprite: {fileID: 0}
       _amountToPool: 0
       _projectileSpeed: 0
+      _sacrificeControllerAmount: 0
+      _moveSpeedAdd: 0
+      _siegeDuration: 0
+      _burstHeal: 0
       _projectileSprite: {fileID: 0}
+      _controllerLifeCostMult: 1
   _controllerIndex: 0
   _subUnits: []
   _subChrysalii: []
   _childUnitManagers: []
   _childChrysaliiUnitManagers: []
   _progressBarManager: {fileID: 0}
+  _hilightRingParentManager: {fileID: 0}
+  _isStopped: 0
 --- !u!114 &6648744941601182457
 MonoBehaviour:
   m_ObjectHideFlags: 0

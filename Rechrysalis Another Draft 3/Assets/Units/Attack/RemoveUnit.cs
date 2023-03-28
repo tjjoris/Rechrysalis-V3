@@ -52,7 +52,10 @@ namespace Rechrysalis.Attacking
             {
                 _controllerManager.ParentUnitMovers.Remove(_parentMover);
             }
-            gameObject.SetActive(false);    
+            if (gameObject.activeInHierarchy)
+            {
+                gameObject.SetActive(false);    
+            }
         }
     }
 }
