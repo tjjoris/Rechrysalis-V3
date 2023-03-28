@@ -56,12 +56,34 @@ namespace Rechrysalis.Unit
             newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerManager.ControllerIndex, _mainManager);
             // _thesePlayerUnitsSO.ActiveUnits.Add(newFreeEnemy);
             // _allUnits.Add(_freeParentManager.UnitManager.gameObject);
-            // AIFocusFireOnInitialzie(unitStats, parentUnitManager);
+            AIFocusFireOnInitialzie(basicUnitStatsSO, parentUnitManager);
             Die die = parentUnitManager.GetComponent<Die>();
             if (die != null)
             {
                 die.ControllerProgressValue = parentUnitClass.BasicUnitClass.ControllerLifeCostMult;
                 die.FreeControllerProgressBar = _freeEnemeyInitialize.FreeControllerControllerProgressBar;
+            }
+        }
+        private static void AIFocusFireOnInitialzie(UnitStatsSO unitStats, ParentUnitManager parentUnitManager)
+        {
+
+            foreach (UnitManager childUnit in parentUnitManager.ChildUnitManagers)
+            {
+                if (childUnit != null)
+                {
+                    if ((!unitStats.AIFocusFire))
+                    {
+                        if ((childUnit.GetComponent<TargetPrioratizeByScore>() != null))
+                        {
+                            Destroy(childUnit.GetComponent<TargetPrioratizeByScore>());
+                        }
+                    }
+                    else
+                    {
+                        childUnit.ControllerUnitSpriteHandler.TintSpriteRed();
+                        //this unit has focus fire, and already starts with the focus fire component.
+                    }
+                }
             }
         }
     }
