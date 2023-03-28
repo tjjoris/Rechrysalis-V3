@@ -7,6 +7,7 @@ namespace Rechrysalis.Unit
 {
     public class FreeEnemyWaveInstantiator : MonoBehaviour
     {
+        private LevelSceneManagement _levelSceneManagement;
         [SerializeField] private int _waveIndex = 0;
         private FreeEnemyWaveGenerator _freeEnemyWaveGenerator;
         [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;
@@ -14,8 +15,9 @@ namespace Rechrysalis.Unit
         private FreeEnemyInitialize _freeEnemyInitialize;
         private FreeEnemyUnitInstantiator _freeEnemyUnitInstantiator;
 
-        public void Initialize(CompsAndUnitsSO compsAndUnitsSO)
+        public void Initialize(CompsAndUnitsSO compsAndUnitsSO, LevelSceneManagement levelSceneManagement)
         {
+            _levelSceneManagement = levelSceneManagement;
             _compsAndUnitsSO = compsAndUnitsSO;
             _freeEnemyWaveGenerator = GetComponent<FreeEnemyWaveGenerator>();
             _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
@@ -35,6 +37,10 @@ namespace Rechrysalis.Unit
                         unitInWaveIndex ++;
                     }
                 }
+            }
+            else 
+            {
+                _levelSceneManagement.LevelBeat();
             }
             _waveIndex ++;
         }

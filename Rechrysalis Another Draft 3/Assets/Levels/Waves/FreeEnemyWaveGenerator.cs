@@ -17,10 +17,7 @@ namespace Rechrysalis.Unit
         [SerializeField] private float _progressMaxForThisLevel;
         public float ProgressMaxForThisLevel { get => _progressMaxForThisLevel; set => _progressMaxForThisLevel = value; }
         
-        private void Awake()
-        {
-            Initialize(null);
-        }
+        
         public void Initialize(CompsAndUnitsSO compsAndUnitsSO)
         {
             _controllerHealth = GetComponent<ControllerHealth>();

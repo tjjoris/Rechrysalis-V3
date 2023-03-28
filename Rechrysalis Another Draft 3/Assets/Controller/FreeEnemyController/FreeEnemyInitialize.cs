@@ -15,7 +15,7 @@ namespace Rechrysalis.Controller
     {
         private bool _debugBool  = false;
         private MainManager _mainManager;
-        // [SerializeField] private FreeUnitLayoutSO _freeEnemyCompLayout;
+        private LevelSceneManagement _levelSceneManagement;
         [SerializeField] private GameObject _FreeUnitPrefab;
         private int _controllerIndex;
         private ControllerManager _enemyController;
@@ -52,6 +52,7 @@ namespace Rechrysalis.Controller
         public void Initialize(int controllerIndex, ControllerManager enemyController, CompSO compSO, PlayerUnitsSO playerUnitsSO, CompsAndUnitsSO compsAndUnits, FreeUnitCompSO freeUnitCompSO, CompCustomizerSO compCustomizer, MainManager mainManager)        
         {
             _mainManager = mainManager;
+            _levelSceneManagement = mainManager.GetComponent<LevelSceneManagement>();
             _targetCameraScrollTransform = _mainManager.TargetCameraScrollTransform;
             _controllerManager = GetComponent<ControllerManager>();
             _controllerHealth = GetComponent<ControllerHealth>(); 
@@ -67,7 +68,7 @@ namespace Rechrysalis.Controller
             this._compCustomizer = compCustomizer;
             _freeEnemyWaveGenerator?.Initialize(_compsAndUnits);
             _freeEnemyWaveInstantiator = GetComponent<FreeEnemyWaveInstantiator>();
-            _freeEnemyWaveInstantiator?.Initialize(_compsAndUnits);
+            _freeEnemyWaveInstantiator?.Initialize(_compsAndUnits, _levelSceneManagement);
             _freeEnemyUnitInstantiator = GetComponent<FreeEnemyUnitInstantiator>();
             _freeEnemyUnitInstantiator?.Initialize(_mainManager, _controllerManager, _enemyController);
             _controllerHealth?.IncreaseMaxHealth(_compsAndUnits.Level * _compsAndUnits.FreeUnitControllerLifeGainedPerLevel);
