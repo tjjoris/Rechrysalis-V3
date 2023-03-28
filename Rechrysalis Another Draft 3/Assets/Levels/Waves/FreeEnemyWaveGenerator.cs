@@ -54,11 +54,12 @@ namespace Rechrysalis.Unit
             waveClass.UnitsInWave = new List<ParentUnitClass>();
             GenerateUnit(waveClass, ref progressCostForThisWave, progressMaxForThisWave);
             progressCost += progressCostForThisWave;
-            if ((waveClass.UnitsInWave.Count > 0))
+
+            _waveClassList.Add(waveClass);
+            if ((waveClass.UnitsInWave.Count > 0) && (waveClass.UnitsInWave[0] != null))
             {
-                _waveClassList.Add(waveClass);
                 wave++;
-                // GenerateWave(ref progressCost, ref wave, progressValueMax);
+                GenerateWave(ref progressCost, ref wave, progressValueMax);
             }
             waveClass.ProgressValueOfWave = progressCost;
             return false;
@@ -68,6 +69,7 @@ namespace Rechrysalis.Unit
             ParentUnitClass unitForWave = _randomFreeChangingUnits.GetARandomParentUnitClassFromChangingsBasedOnLifeAmount(progressMaxForThisWave - progressCostForThisWave);
             if (unitForWave != null)
             {
+                Debug.Log($"unit generated " + unitForWave.BasicUnitClass.UnitName);
                 waveClass.UnitsInWave.Add(unitForWave);
                 progressCostForThisWave += unitForWave.BasicUnitClass.ControllerLifeCostMult;
                 GenerateUnit(waveClass, ref progressCostForThisWave, progressMaxForThisWave);
