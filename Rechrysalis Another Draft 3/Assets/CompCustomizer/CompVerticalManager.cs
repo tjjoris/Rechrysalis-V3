@@ -142,7 +142,7 @@ namespace Rechrysalis.CompCustomizer
         public ParentUnitClass GetParentUnitClass()
         {
             ParentUnitClass parentUnitClassToReturn = new ParentUnitClass();
-            parentUnitClassToReturn.Initialize(_compsAndUnitsSO) 
+            parentUnitClassToReturn.Initialize(_compsAndUnitsSO);
             parentUnitClassToReturn.ClearAllUpgrades();
             foreach (Transform upgradeTransform in _verticalContainer.transform)
             {
