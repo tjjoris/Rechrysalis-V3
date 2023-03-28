@@ -91,12 +91,13 @@ namespace Rechrysalis.Controller
             _randomizeFreeChangingUnits?.Initialize(_compsAndUnits);
             _randomizeFreeChangingUnits?.RandomizeChangingUnitsFunc(_compsAndUnits.Level);
             _freeEnemyWaveGenerator?.GenerateWaves();
+            _freeEnemyWaveInstantiator?.CreateWave();
             if (freeUnitCompSO.Waves.Length > 0)
             {
                 // for (int _waveIndex = 0; _waveIndex < _freeUnitCompSO.Waves.Length; _waveIndex++)
                 _waveIndex = 0;
                 // {
-                    CreateWave(controllerIndex, enemyController, compSO, playerUnitsSO, compsAndUnits, _freeUnitCompSO, _waveIndex);
+                    // CreateWave(controllerIndex, enemyController, compSO, playerUnitsSO, compsAndUnits, _freeUnitCompSO, _waveIndex);
                 // }
             }
             AddNextWaveAction();
