@@ -16,6 +16,21 @@ namespace Rechrysalis
         public void LevelBeat()
         {
             Debug.Log($"level beat");
+            _compsAndUnitsSO.Level++;
+            if (_compsAndUnitsSO.Level < _compsAndUnitsSO.Levels.Length)
+            {
+                GoToCompCustomizer();
+            }
+            else
+            {
+                _compsAndUnitsSO.NewGameStatusEnum = CompsAndUnitsSO.NewGameStatus.Won;
+                SceneManager.LoadScene("Start");
+            }
+        }
+        private void GoToCompCustomizer()
+        {
+            // _compCustomizerSO.NumberOfUpgrades = 1;
+            SceneManager.LoadScene("CompCustomizer");
         }
     }
 }
