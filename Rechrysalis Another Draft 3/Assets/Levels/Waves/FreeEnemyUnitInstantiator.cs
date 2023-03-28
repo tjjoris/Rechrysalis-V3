@@ -9,6 +9,7 @@ namespace Rechrysalis.Unit
     {
         private WaveLayoutsByRange _waveLayoutsByRange;
         private ControllerManager _enemyController;
+        [SerializeField] private GameObject _freeUnitPrefab;
 
         public void Initialize(ControllerManager enemyController)
         {
@@ -18,7 +19,7 @@ namespace Rechrysalis.Unit
         {
             Vector3 newUnitPos = _waveLayoutsByRange.GetWaveLayoutByRange(parentUnitClass.BasicUnitClass.Range).GetUnitPosInWave(unitInWaveIndex);
             newUnitPos = new Vector3(newUnitPos.x, newUnitPos.y + _enemyController.transform.position.y);
-            
+            GameObject newFreeEnemy = Instantiate(_freeUnitPrefab, newUnitPos, Quaternion.identity, gameObject.transform);
         }
     }
 }
