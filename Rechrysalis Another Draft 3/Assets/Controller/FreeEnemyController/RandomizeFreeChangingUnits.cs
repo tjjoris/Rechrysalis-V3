@@ -101,10 +101,18 @@ namespace Rechrysalis.Unit
             {
                 return parentUnitClass;
             }
-            List<ParentUnitClass> ifNotEnoughManaParentUnitClassesNotTried = _listOfRandomParentUnitClasses;
+            List<ParentUnitClass> ifNotEnoughManaParentUnitClassesNotTried = new List<ParentUnitClass>();
+            foreach (ParentUnitClass parentUnitClassToAdd in _listOfRandomParentUnitClasses)
+            {
+                if (parentUnitClassToAdd != null)
+                {
+                    ifNotEnoughManaParentUnitClassesNotTried.Add(parentUnitClassToAdd);
+                }
+            }
             if (ifNotEnoughManaParentUnitClassesNotTried.Contains(parentUnitClass))
             {
                 ifNotEnoughManaParentUnitClassesNotTried.Remove(parentUnitClass);
+                Debug.Log($"random parent units length " + _listOfRandomParentUnitClasses.Count);
             }
             foreach(ParentUnitClass parentUnitClassLeft in ifNotEnoughManaParentUnitClassesNotTried)            
             {
