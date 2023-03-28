@@ -37,11 +37,8 @@ namespace Rechrysalis.Unit
             float progressCost = 0;
             float progressValueMax = _controllerHealth.HealthMax;
             _waveClassList = new List<WaveClass>();
-            // while (progressValue >= 0)
-            {
-                GenerateWave(ref progressCost, ref wave, progressValueMax);   
-                _progressMaxForThisLevel = progressCost;             
-            }
+            GenerateWave(ref progressCost, ref wave, progressValueMax);   
+            _progressMaxForThisLevel = progressCost; 
         }
         private bool GenerateWave(ref float progressCost, ref int wave, float progressValueMax)
         {

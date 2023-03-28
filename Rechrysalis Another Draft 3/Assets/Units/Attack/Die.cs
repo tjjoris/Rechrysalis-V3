@@ -40,15 +40,18 @@ namespace Rechrysalis.Attacking
             //     _targetsList.Targets.Remove(gameObject);
             // }
             // gameObject.SetActive(false);
-            _freeControllerProgressBar?.AddProgress(_controllerProgressValue);
-            _removeUnit.RemoveUnitFunction();
-            // if (_compsAndUnitsSO.PlayerUnits[_controllerIndex].ActiveUnits.Count <= 0)
+            if (gameObject.activeInHierarchy)
             {
-                if (_debugBool)
+                _freeControllerProgressBar?.AddProgress(_controllerProgressValue);
+                _removeUnit.RemoveUnitFunction();
+                // if (_compsAndUnitsSO.PlayerUnits[_controllerIndex].ActiveUnits.Count <= 0)
                 {
-                    Debug.Log($"next wave");
+                    if (_debugBool)
+                    {
+                        Debug.Log($"next wave");
+                    }
+                    _spawnWaveAction?.Invoke();
                 }
-                _spawnWaveAction?.Invoke();
             }
         }
     }

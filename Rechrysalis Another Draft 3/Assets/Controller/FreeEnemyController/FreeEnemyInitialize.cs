@@ -71,7 +71,7 @@ namespace Rechrysalis.Controller
             _freeEnemyUnitInstantiator = GetComponent<FreeEnemyUnitInstantiator>();
             _freeEnemyUnitInstantiator?.Initialize(_mainManager, _controllerManager, _enemyController);
             _controllerHealth?.IncreaseMaxHealth(_compsAndUnits.Level * _compsAndUnits.FreeUnitControllerLifeGainedPerLevel);
-            _freeControllerControllerProgressBar.Initialize(_controllerHealth.HealthMax);
+            // _freeControllerControllerProgressBar.Initialize(_controllerHealth.HealthMax);
             _freeControllerControllerProgressBar.LevelSceneManagement = _mainManager.LevelSceneManagement;
             
             _controllerFreeHatch = GetComponent<ControllerFreeUnitHatchEffectManager>();
@@ -91,6 +91,7 @@ namespace Rechrysalis.Controller
             _randomizeFreeChangingUnits?.Initialize(_compsAndUnits);
             _randomizeFreeChangingUnits?.RandomizeChangingUnitsFunc(_compsAndUnits.Level);
             _freeEnemyWaveGenerator?.GenerateWaves();
+            _freeControllerControllerProgressBar.Initialize(_freeEnemyWaveGenerator.ProgressMaxForThisLevel);
             _freeEnemyWaveInstantiator?.CreateWave();
             if (freeUnitCompSO.Waves.Length > 0)
             {
