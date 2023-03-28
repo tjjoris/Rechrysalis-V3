@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Controller;
 using Rechrysalis.Movement;
+using Rechrysalis.Attacking;
 
 namespace Rechrysalis.Unit
 {
@@ -48,7 +49,19 @@ namespace Rechrysalis.Unit
             }
             ParentFreeEnemyManager _freeParentManager = newFreeEnemy.GetComponent<ParentFreeEnemyManager>();
             _freeParentManager?.Initialize(_controllerManager, parentUnitClass.BasicUnitClass, unitInWaveIndex, _mainManager.CompsAndUnitsSO, _controllerManager.ControllerIndex);
-            
+
+            parentUnitManager.ChildUnitManagers.Add(_freeParentManager.BasicUnitManager);
+            newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(parentUnitClass.BasicUnitClass.HPMax);
+            newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerManager.ControllerIndex, _mainManager);
+            // _thesePlayerUnitsSO.ActiveUnits.Add(newFreeEnemy);
+            // _allUnits.Add(_freeParentManager.UnitManager.gameObject);
+            // AIFocusFireOnInitialzie(unitStats, parentUnitManager);
+            Die die = parentUnitManager.GetComponent<Die>();
+            if (die != null)
+            {
+                die.ControllerProgressValue = parentUnitClass.BasicUnitClass.ControllerLifeCostMult;
+                die.FreeControllerProgressBar = _freeEnemeyInitialize.FreeControllerControllerProgressBar;
+            }
         }
     }
 }

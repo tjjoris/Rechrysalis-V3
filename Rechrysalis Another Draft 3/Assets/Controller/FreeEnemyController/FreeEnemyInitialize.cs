@@ -29,6 +29,7 @@ namespace Rechrysalis.Controller
         private ControllerManager _controllerManager;
         private ControllerHealth _controllerHealth;
         [SerializeField] private FreeControllerControllerProgressBar _freeControllerControllerProgressBar;
+        public FreeControllerControllerProgressBar FreeControllerControllerProgressBar => _freeControllerControllerProgressBar;
         // private int _controllerIndex;
         private List<GameObject> _allUnits;       
         private Transform _targetCameraScrollTransform;
