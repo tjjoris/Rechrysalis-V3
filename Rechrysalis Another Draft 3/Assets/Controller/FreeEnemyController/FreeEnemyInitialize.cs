@@ -146,6 +146,7 @@ namespace Rechrysalis.Controller
             {
 
                 ParentUnitClass parentUnitClass = new ParentUnitClass();
+                parentUnitClass.Initialize(_compsAndUnits);
                 parentUnitClass.ClearAllUpgrades();
                 parentUnitClass.SetUTCBasicUnit(unitStats.UpgradeTypeClass);
                 parentUnitClass.SetAllStats();

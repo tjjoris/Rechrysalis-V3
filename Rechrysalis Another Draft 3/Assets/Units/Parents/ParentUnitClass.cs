@@ -9,6 +9,7 @@ namespace Rechrysalis.Unit
     public class ParentUnitClass
     {
         private bool _debugBool = false;
+        private CompsAndUnitsSO _compsAndUnitsSO;
         [SerializeField] private List<UpgradeTypeClass> _advancedUpgradesUTCList;
         public List<UpgradeTypeClass> AdvancedUpgradesUTCList { get{ return _advancedUpgradesUTCList; } set{ _advancedUpgradesUTCList = value; } }
         [SerializeField] private UpgradeTypeClass _utcBasicUnit;
@@ -56,6 +57,10 @@ namespace Rechrysalis.Unit
         // [SerializeField] private float _hatchEffectMult;
         // public float HatchEffectMult => _hatchEffectMult;
         
+        public void Initialize(CompsAndUnitsSO compsAndUnitsSO)
+        {
+            _compsAndUnitsSO = compsAndUnitsSO;
+        }
         public void ClearAllUpgrades()
         {
             _advancedUpgradesUTCList = new List<UpgradeTypeClass>();
@@ -176,7 +181,8 @@ namespace Rechrysalis.Unit
                 _basicUnitClass.DPS = baseMultiplierSO.DPSMultiplier * typeMultipler.DPSMultiplier * tierMultiplier.DPSMultiplier;
                 _basicUnitClass.AttackChargeUp = baseMultiplierSO.AttackChargeUp * typeMultipler.AttackChargeUp * tierMultiplier.AttackChargeUp;
                 _basicUnitClass.AttackWindDown = baseMultiplierSO.AttackWindDown * typeMultipler.AttackWindDown * tierMultiplier.AttackWindDown;
-                _basicUnitClass.ControllerLifeCostMult = baseMultiplierSO.ControllerLifeCostMult * typeMultipler.ControllerLifeCostMult * tierMultiplier.ControllerLifeCostMult;
+                _basicUnitClass.ControllerLifeCostMult = baseMultiplierSO.ControllerLifeCostMult * typeMultipler.ControllerLifeCostMult * tierMultiplier.ControllerLifeCostMult * _compsAndUnitsSO.FreeUnitToControllerLifeLostMult;
+
                 _basicUnitClass.UnitSprite = _utcBasicUnit.GetUnitStatsSO().UnitSprite;
                 _basicUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
                 _basicUnitClass.ProjectileSpeed = baseMultiplierSO.ProjectileSpeed * typeMultipler.ProjectileSpeed;

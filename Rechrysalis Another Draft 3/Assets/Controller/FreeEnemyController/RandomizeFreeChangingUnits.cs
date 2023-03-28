@@ -60,6 +60,7 @@ namespace Rechrysalis.Unit
                     Debug.LogError($"error ! unit changing null");
                 }
                 ParentUnitClass parentUnitClass = new ParentUnitClass();
+                parentUnitClass.Initialize(_compsAndUnitsSO);
                 parentUnitClass.ClearAllUpgrades();
                 parentUnitClass.SetUTCBasicUnit(unitToChange.UpgradeTypeClass);
                 parentUnitClass.SetAllStats();

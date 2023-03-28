@@ -13,6 +13,7 @@ namespace Rechrysalis.CompCustomizer
     public class CompVerticalManager : MonoBehaviour//, IDropHandler
     {
         bool debugBool = false;
+        private CompsAndUnitsSO _compsAndUnitsSO;
         [SerializeField] private List<CompUpgradeManager> _compUpgradeManagers;
         [SerializeField] private Transform _verticalContainer;
         public Transform VerticalContainer => _verticalContainer;
@@ -35,7 +36,7 @@ namespace Rechrysalis.CompCustomizer
         // }
         public void Initialize(Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens)
         {
-
+            _compsAndUnitsSO = compsAndUnitsSO;
             if (debugBool)
                 Debug.Log($"initialize vertical");
             _scrollRect = GetComponent<ScrollRect>();
@@ -140,7 +141,8 @@ namespace Rechrysalis.CompCustomizer
         }
         public ParentUnitClass GetParentUnitClass()
         {
-            ParentUnitClass parentUnitClassToReturn = new ParentUnitClass(); 
+            ParentUnitClass parentUnitClassToReturn = new ParentUnitClass();
+            parentUnitClassToReturn.Initialize(_compsAndUnitsSO) 
             parentUnitClassToReturn.ClearAllUpgrades();
             foreach (Transform upgradeTransform in _verticalContainer.transform)
             {
