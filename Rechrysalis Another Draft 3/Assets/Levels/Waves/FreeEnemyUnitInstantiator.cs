@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rechrysalis
+namespace Rechrysalis.Unit
 {
     public class FreeEnemyUnitInstantiator : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        private WaveLayoutsByRange _waveLayoutsByRange;
 
-        // Update is called once per frame
-        void Update()
+        private void Awake()
         {
-        
+            Initialize();
+        }
+        public void Initialize()
+        {
+            _waveLayoutsByRange = GetComponent<WaveLayoutsByRange>();
+        }
+        public void InstantiateUnit(ParentUnitClass parentUnitClass)
+        {
+            
         }
     }
 }
