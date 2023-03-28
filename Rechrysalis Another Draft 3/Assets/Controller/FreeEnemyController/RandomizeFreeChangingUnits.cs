@@ -9,12 +9,17 @@ namespace Rechrysalis.Unit
         [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;
         [SerializeField] private ControllerUnitsSO _changingUnits;
         public ControllerUnitsSO ChangingUnits => _changingUnits;
+        [SerializeField] private ControllerUnitsSO _focusFireChangings;
+        public ControllerUnitsSO FocusFireChangings { get => _focusFireChangings; set => _focusFireChangings = value; }        
         [SerializeField] private ControllerUnitsSO _unitTypes;
         public ControllerUnitsSO UnitTypes { get => _unitTypes; set => _unitTypes = value; }
         [SerializeField] private List<UnitStatsMultiplierSO> _tierMultipliersToChooseFrom = new List<UnitStatsMultiplierSO>();
         public List<UnitStatsMultiplierSO> TierMultipliersToChooseFrom => _tierMultipliersToChooseFrom;
         [SerializeField] private List<ParentUnitClass> _listOfRandomParentUnitClasses = new List<ParentUnitClass>();
         public List<ParentUnitClass> ListOfRandomParentUnitClasses { get => _listOfRandomParentUnitClasses; set => _listOfRandomParentUnitClasses = value; }
+        [SerializeField] private List<ParentUnitClass> _listOfFFParentUnitClasses;
+        public List<ParentUnitClass> ListOfFFParentUnitClasses { get => _listOfFFParentUnitClasses; set => _listOfFFParentUnitClasses = value; }
+        
         
         private List<UnitStatsSO> _unitsNotEnoughManaForNotTried = new List<UnitStatsSO>();
         private List<ParentUnitClass> _ifNotEnoughManaParentUnitClassesNotTried;
@@ -23,38 +28,46 @@ namespace Rechrysalis.Unit
             _compsAndUnitsSO = compsAndUnitsSO;
             _unitsNotEnoughManaForNotTried = _changingUnits.ControllerUnits;
             _listOfRandomParentUnitClasses = new List<ParentUnitClass>();
+            _listOfFFParentUnitClasses = new List<ParentUnitClass>();
             // _ifNotEnoughManaParentUnitClassesNotTried = new List<ParentUnitClass>();
         }
         public void RandomizeChangingUnitsFunc(int level)
         {
-            int i=0;
-            foreach (UnitStatsSO unitToChange in _changingUnits.ControllerUnits)
+            ChangeUnits(level, _changingUnits, false, _listOfRandomParentUnitClasses);
+            ChangeUnits(level, _focusFireChangings, true, _listOfFFParentUnitClasses);
+        }
+
+        private void ChangeUnits(int level, ControllerUnitsSO changingUnits, bool focusFireBool, List<ParentUnitClass> listOfParentUnitClasses)
+        {
+            int i = 0;
+            foreach (UnitStatsSO unitToChange in changingUnits.ControllerUnits)
             {
                 if (unitToChange != null)
                 {
                     ChangeThisUnitType(level, unitToChange);
                     ChangeThisUnitTIer(level, unitToChange);
-                    if (i < 1)
-                    {
-                        ChangeFocusFire(true, unitToChange);
-                    }
-                    else 
-                    {
-                        ChangeFocusFire(false, unitToChange);
-                    }
+                    // if (i < 1)
+                    // {
+                    //     ChangeFocusFire(true, unitToChange);
+                    // }
+                    // else 
+                    // {
+                    ChangeFocusFire(focusFireBool, unitToChange);
+                    // }
                 }
                 else
                 {
                     Debug.LogError($"error ! unit changing null");
                 }
-                    ParentUnitClass parentUnitClass = new ParentUnitClass();
-                    parentUnitClass.ClearAllUpgrades();
-                    parentUnitClass.SetUTCBasicUnit(unitToChange.UpgradeTypeClass);
-                    parentUnitClass.SetAllStats();
-                    _listOfRandomParentUnitClasses.Add(parentUnitClass);
+                ParentUnitClass parentUnitClass = new ParentUnitClass();
+                parentUnitClass.ClearAllUpgrades();
+                parentUnitClass.SetUTCBasicUnit(unitToChange.UpgradeTypeClass);
+                parentUnitClass.SetAllStats();
+                listOfParentUnitClasses.Add(parentUnitClass);
                 i++;
-            }            
+            }
         }
+
         private void ChangeFocusFire(bool ffBool, UnitStatsSO unitToChange)
         {
             unitToChange.AIFocusFire = ffBool;
