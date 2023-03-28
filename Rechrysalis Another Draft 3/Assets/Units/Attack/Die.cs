@@ -30,7 +30,7 @@ namespace Rechrysalis.Attacking
             this._controllerIndex = _controllerIndex;
         }
         public void UnitDies()
-        {   
+        {
             // if (_playerUnits.ActiveUnits.Contains(gameObject))
             // {        
             //     _playerUnits.ActiveUnits.Remove(gameObject);
@@ -40,8 +40,8 @@ namespace Rechrysalis.Attacking
             //     _targetsList.Targets.Remove(gameObject);
             // }
             // gameObject.SetActive(false);
-            _removeUnit.RemoveUnitFunction();
             _freeControllerProgressBar?.AddProgress(_controllerProgressValue);
+            _removeUnit.RemoveUnitFunction();
             // if (_compsAndUnitsSO.PlayerUnits[_controllerIndex].ActiveUnits.Count <= 0)
             {
                 if (_debugBool)
