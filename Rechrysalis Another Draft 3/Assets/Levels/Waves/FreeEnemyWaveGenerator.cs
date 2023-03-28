@@ -47,7 +47,7 @@ namespace Rechrysalis.Unit
         {
             float progressMaxForThisWave = _lifePerFreeWave.GetProgressMaxForThisWave(progressCost, progressValueMax, _compsAndUnitsSO.Level, wave);
 
-            Debug.Log($"generarte wave " + progressCost + wave + progressValueMax + progressMaxForThisWave);
+            Debug.Log($"generarte wave progress cost " + progressCost + " wave " + wave + " progess value max " + progressValueMax + " max for this wave " + progressMaxForThisWave);
             float progressCostForThisWave = 0;
             WaveClass waveClass = new WaveClass();
             
