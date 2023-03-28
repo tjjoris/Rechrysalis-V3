@@ -31,5 +31,16 @@ namespace Rechrysalis.Unit
 
             return amount;
         }
+        public float GetProgressMaxForThisWave(float progressValue, float progressMax, int level, int wave)
+        {
+            float amount = GetLifeToSpendOnThisWave(level, wave);
+            if (amount < progressMax - progressValue)
+            {
+                amount = progressMax - progressValue;   
+            }
+            return amount;
+
+
+        }
     }
 }

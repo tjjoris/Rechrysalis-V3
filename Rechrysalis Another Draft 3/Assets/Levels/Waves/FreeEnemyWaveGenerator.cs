@@ -39,25 +39,26 @@ namespace Rechrysalis.Unit
             _waveClassList = new List<WaveClass>();
             // while (progressValue >= 0)
             {
-                GenerateWave(ref progressCost, ref wave);   
+                GenerateWave(ref progressCost, ref wave, progressValueMax);   
                 _progressMaxForThisLevel = progressCost;             
             }
         }
-        private bool GenerateWave(ref float progressCost, ref int wave)
+        private bool GenerateWave(ref float progressCost, ref int wave, float progressValueMax)
         {
+            float progressMaxForThisWave = _lifePerFreeWave.GetProgressMaxForThisWave(progressCost, progressValueMax, _compsAndUnitsSO.Level, wave);
 
-            float progressMaxForThisWave = _lifePerFreeWave.GetLifeToSpendOnThisWave(_compsAndUnitsSO.Level, wave);
+            Debug.Log($"generarte wave " + progressCost + wave + progressValueMax + progressMaxForThisWave);
             float progressCostForThisWave = 0;
             WaveClass waveClass = new WaveClass();
             
             waveClass.UnitsInWave = new List<ParentUnitClass>();
             GenerateUnit(waveClass, ref progressCostForThisWave, progressMaxForThisWave);
             progressCost += progressCostForThisWave;
-            if (waveClass.UnitsInWave.Count > 0)
+            if ((waveClass.UnitsInWave.Count > 0))
             {
                 _waveClassList.Add(waveClass);
                 wave++;
-                // GenerateWave(ref progressCost, ref wave);
+                // GenerateWave(ref progressCost, ref wave, progressValueMax);
             }
             waveClass.ProgressValueOfWave = progressCost;
             return false;
