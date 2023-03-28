@@ -82,7 +82,7 @@ namespace Rechrysalis.Controller
             _randomizeFreeChangingUnits = GetComponent<RandomizeFreeChangingUnits>();
             _randomizeFreeChangingUnits?.Initialize(_compsAndUnits);
             _randomizeFreeChangingUnits?.RandomizeChangingUnitsFunc(_compsAndUnits.Level);
-            _freeEnemyWaveGenerator.GenerateWaves();
+            _freeEnemyWaveGenerator?.GenerateWaves();
             if (freeUnitCompSO.Waves.Length > 0)
             {
                 // for (int _waveIndex = 0; _waveIndex < _freeUnitCompSO.Waves.Length; _waveIndex++)

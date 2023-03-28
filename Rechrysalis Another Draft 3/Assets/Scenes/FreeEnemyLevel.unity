@@ -1144,6 +1144,7 @@ GameObject:
   - component: {fileID: 691481330}
   - component: {fileID: 691481336}
   - component: {fileID: 691481337}
+  - component: {fileID: 691481338}
   - component: {fileID: 691481331}
   - component: {fileID: 691481332}
   - component: {fileID: 691481333}
@@ -1187,6 +1188,7 @@ MonoBehaviour:
   _FreeUnitPrefab: {fileID: 8804105779283925579, guid: 76eb3c923da744f9cae202ff2279002c, type: 3}
   _freeControllerControllerProgressBar: {fileID: 3041224787693009862}
   _waveLayoutsByRange: {fileID: 11400000, guid: 185ad63d27b724143b439a7b4001646d, type: 2}
+  _waveClassList: []
   _controllerUnitsToChooseFrom: {fileID: 11400000, guid: e6a692086072a4d778fa72ffbd6d7174, type: 2}
   _currentChangingControllerUnits: {fileID: 11400000, guid: 60b756f5bedc54f42aaad53c6c5ac17c, type: 2}
 --- !u!114 &691481331
@@ -1201,6 +1203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6ef97af7cec47d5abfb65fbd090e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainManager: {fileID: 0}
   _controllerIndex: 0
   _checkRayCast: {fileID: 0}
   _click: {fileID: 0}
@@ -1287,6 +1290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092f69536e48d4b10a8e70cc462c8af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _compsAndUnitsSO: {fileID: 0}
   _changingUnits: {fileID: 11400000, guid: 60b756f5bedc54f42aaad53c6c5ac17c, type: 2}
   _unitTypes: {fileID: 11400000, guid: e6a692086072a4d778fa72ffbd6d7174, type: 2}
   _tierMultipliersToChooseFrom:
@@ -1298,6 +1302,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 77307ff2e821d4739ad4078890585a32, type: 2}
   - {fileID: 11400000, guid: 2049743e030a54a52956d19b8c60be54, type: 2}
   - {fileID: 11400000, guid: 70e83448f88104fea88a3edf2dabc743, type: 2}
+  _listOfRandomParentUnitClasses: []
 --- !u!114 &691481337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1314,6 +1319,19 @@ MonoBehaviour:
   _extraLifePerWave: 1
   _extraLifePerLevelForFirstWave: 1
   _lifeMultByLevelToAddToWave: 1.01
+--- !u!114 &691481338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691481327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5edd0617282477bb25a31e5da76495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waveClassList: []
 --- !u!224 &693044507 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6974679594234141080, guid: 7a22963889f0b4f9bb6171f227d5d732, type: 3}
@@ -2315,6 +2333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6ef97af7cec47d5abfb65fbd090e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainManager: {fileID: 0}
   _controllerIndex: 0
   _checkRayCast: {fileID: 11400000, guid: ccaf1a1cf438f4f49a8c3935f00ee5d8, type: 2}
   _click: {fileID: 11400000, guid: 8d0cd0d9344a540809dd8a15a6d9d0aa, type: 2}
@@ -2968,6 +2987,7 @@ GameObject:
   - component: {fileID: 1448413822}
   - component: {fileID: 1448413824}
   - component: {fileID: 1448413825}
+  - component: {fileID: 1448413826}
   m_Layer: 0
   m_Name: MainHandler
   m_TagString: Untagged
@@ -2997,6 +3017,7 @@ MonoBehaviour:
   _compSO:
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
+  _levelSceneManagement: {fileID: 0}
   _compCustomizer: {fileID: 11400000, guid: 5ca9183df0e6a48208639a14b95217d1, type: 2}
   _projectilesHolder: {fileID: 1295238391}
   _backGroundManager: {fileID: 1949008738}
@@ -3048,6 +3069,19 @@ MonoBehaviour:
   _menuPause: 0
   _targetingPause: 0
   _mainMangaer: {fileID: 0}
+--- !u!114 &1448413826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448413821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b98124c6d80487b86fb222318af617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _compsAndUnitsSO: {fileID: 0}
 --- !u!1 &1457545405
 GameObject:
   m_ObjectHideFlags: 0
@@ -4457,7 +4491,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -70, y: 0}
-  m_SizeDelta: {x: 140, y: 10}
+  m_SizeDelta: {x: 140, y: 15}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &3041224787115410187
 MonoBehaviour:
@@ -4532,7 +4566,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9, y: 0}
+  m_AnchoredPosition: {x: 9, y: -0.88}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3041224787253305884
@@ -4566,8 +4600,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4288880086
-  m_fontColor: {r: 0.8396226, g: 0.11485406, b: 0.63913375, a: 1}
+    rgba: 4279121168
+  m_fontColor: {r: 0.061300687, g: 0.20754719, b: 0.053844795, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4673,7 +4707,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 243, y: -177}
-  m_SizeDelta: {x: 140, y: 10}
+  m_SizeDelta: {x: 140, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3041224787693009860
 MonoBehaviour:
@@ -4728,6 +4762,7 @@ MonoBehaviour:
   _progressFill: {fileID: 3041224787115410186}
   _progressMax: 0
   _progressCurrent: 0
+  _levelSceneManagement: {fileID: 0}
 --- !u!1001 &3041224787707069677
 PrefabInstance:
   m_ObjectHideFlags: 0
