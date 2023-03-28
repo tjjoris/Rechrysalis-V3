@@ -16,9 +16,9 @@ namespace Rechrysalis.Unit
         {
             _waveLayoutsByRange = GetComponent<WaveLayoutsByRange>();
         }
-        public void InstantiateUnit(ParentUnitClass parentUnitClass)
+        public void InstantiateUnit(ParentUnitClass parentUnitClass, int unitInWaveIndex)
         {
-            
+            Vector2 newUnitPos = _waveLayoutsByRange.GetWaveLayoutByRange(parentUnitClass.BasicUnitClass.Range).GetUnitPosInWave(unitInWaveIndex);
         }
     }
 }

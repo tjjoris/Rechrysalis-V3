@@ -12,6 +12,7 @@ namespace Rechrysalis.Unit
         [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;
         private WaveLayoutsByRange _waveLayoutByRange;
         private FreeEnemyInitialize _freeEnemyInitialize;
+        private FreeEnemyUnitInstantiator _freeEnemyUnitInstantiator;
 
         public void Initialize(CompsAndUnitsSO compsAndUnitsSO)
         {
@@ -19,6 +20,7 @@ namespace Rechrysalis.Unit
             _freeEnemyWaveGenerator = GetComponent<FreeEnemyWaveGenerator>();
             _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             _waveLayoutByRange = _freeEnemyInitialize.WaveLayoutsByRange;
+            _freeEnemyUnitInstantiator = GetComponent<FreeEnemyUnitInstantiator>();
         }
         public void CreateWave()
         {
@@ -26,12 +28,15 @@ namespace Rechrysalis.Unit
             {
                 if (_freeEnemyWaveGenerator.WaveClassList[_waveIndex].UnitsInWave.Count > 0)
                 {
+                    int unitInWaveIndex = 0;
                     foreach (ParentUnitClass parentUnitClass in _freeEnemyWaveGenerator.WaveClassList[_waveIndex].UnitsInWave)
                     {
-
+                        _freeEnemyUnitInstantiator.InstantiateUnit(parentUnitClass, unitInWaveIndex);
+                        unitInWaveIndex ++;
                     }
                 }
             }
+            _waveIndex ++;
         }
     }
 }
