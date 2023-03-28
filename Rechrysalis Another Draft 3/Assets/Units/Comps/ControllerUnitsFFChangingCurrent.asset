@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418813e340fdb45119c140690c136bd3, type: 3}
+  m_Name: ControllerUnitsFFChangingCurrent
+  m_EditorClassIdentifier: 
+  _controllerUnits:
+  - {fileID: 11400000, guid: f412025f625fc4b3a92c329193087422, type: 2}
+  - {fileID: 11400000, guid: 38605add56c5641faa817818f2658124, type: 2}
