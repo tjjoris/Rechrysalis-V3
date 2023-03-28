@@ -52,7 +52,7 @@ namespace Rechrysalis.Unit
             {
                 waveClass.UnitsInWave.Add(unitForWave);
                 progressCostForThisWave += unitForWave.BasicUnitClass.ControllerLifeCostMult;
-                
+                progressCostForThisWave = GenerateUnit(waveClass, progressCostForThisWave, progressMaxForThisWave);
             }
             else
             {
