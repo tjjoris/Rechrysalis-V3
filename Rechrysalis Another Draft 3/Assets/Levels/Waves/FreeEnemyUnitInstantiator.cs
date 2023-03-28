@@ -19,8 +19,8 @@ namespace Rechrysalis.Unit
         {
             _mainManager = mainManager;
             _thisController = thisController;
-            _waveLayoutsByRange = GetComponent<WaveLayoutsByRange>();
             _freeEnemeyInitialize = GetComponent<FreeEnemyInitialize>();
+            _waveLayoutsByRange = _freeEnemeyInitialize.WaveLayoutsByRange;
             _thesePlayerUnitsSO = _freeEnemeyInitialize.PlayerUnitsSO;
         }
         public void InstantiateUnit(ParentUnitClass parentUnitClass, int unitInWaveIndex)
