@@ -87,7 +87,7 @@ namespace Rechrysalis.Unit
             get {return _isStopped;}
          }
 
-        public void Initialize(int _controllerIndex, int _parentUnitIndex, CompSO unitComp, PlayerUnitsSO _theseUnits, Transform controllertransform, HatchEffectSO[] _subHatchEffects, ParentUnitClass parentUnitClass, MainManager mainManager)
+        public void Initialize(int _controllerIndex, int _parentUnitIndex, PlayerUnitsSO _theseUnits, Transform controllertransform, HatchEffectSO[] _subHatchEffects, ParentUnitClass parentUnitClass, MainManager mainManager)
         {
             _controllerManager = controllertransform.GetComponent<ControllerManager>();
             _enemyControllerManager = _controllerManager.EnemyController;

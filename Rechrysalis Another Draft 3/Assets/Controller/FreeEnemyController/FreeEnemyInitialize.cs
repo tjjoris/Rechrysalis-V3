@@ -68,7 +68,7 @@ namespace Rechrysalis.Controller
             _freeEnemyWaveInstantiator = GetComponent<FreeEnemyWaveInstantiator>();
             _freeEnemyWaveInstantiator?.Initialize(_compsAndUnits);
             _freeEnemyUnitInstantiator = GetComponent<FreeEnemyUnitInstantiator>();
-            _freeEnemyUnitInstantiator?.Initialize(_enemyController);
+            _freeEnemyUnitInstantiator?.Initialize(_mainManager, _controllerManager, _enemyController);
             _controllerHealth?.IncreaseMaxHealth(_compsAndUnits.Level * _compsAndUnits.FreeUnitControllerLifeGainedPerLevel);
             _freeControllerControllerProgressBar.Initialize(_controllerHealth.HealthMax);
             _freeControllerControllerProgressBar.LevelSceneManagement = _mainManager.LevelSceneManagement;
@@ -170,7 +170,7 @@ namespace Rechrysalis.Controller
                     // UnitManager _unitManager = newFreeEnemy.GetComponent<UnitManager>();
                     // newFreeEnemy.GetComponent<UnitManager>()?.Initialize(_controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex);   
                     ParentUnitManager parentUnitManager = newFreeEnemy.GetComponent<ParentUnitManager>();
-                    parentUnitManager?.Initialize(_controllerIndex, _unitInWaveIndex, _compSO, _playerUnitsSO, transform, null, parentUnitClass, _mainManager);
+                    parentUnitManager?.Initialize(_controllerIndex, _unitInWaveIndex, _playerUnitsSO, transform, null, parentUnitClass, _mainManager);
                     parentUnitManager.ParentUnitClass = parentUnitClass;
                     _controllerManager.ParentUnitManagers.Add(parentUnitManager);
                     if (parentUnitManager.GetComponent<ParentHealth>() != null)

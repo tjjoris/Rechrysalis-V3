@@ -16,7 +16,8 @@ namespace Rechrysalis.Controller
         private bool _debugBool = false;
         [SerializeField] private MainManager _mainManager;
         public MainManager MainManager => _mainManager;
-        [SerializeField] private int _controllerIndex;        
+        [SerializeField] private int _controllerIndex;    
+        public int ControllerIndex => _controllerIndex;    
         [SerializeField] private CheckRayCastSO _checkRayCast;
         public CheckRayCastSO CheckRayCast => _checkRayCast;
         [SerializeField] private Click _click;
