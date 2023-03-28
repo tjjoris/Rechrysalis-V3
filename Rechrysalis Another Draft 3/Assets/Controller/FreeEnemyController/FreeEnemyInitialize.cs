@@ -283,7 +283,8 @@ namespace Rechrysalis.Controller
                         // LevelDone();
                         return;
                     }
-                    CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);
+                    // CreateWave(_controllerIndex, _enemyController, _compSO, _playerUnitsSO, _compsAndUnits, _freeUnitCompSO, _waveIndex);
+                    _freeEnemyWaveInstantiator?.CreateWave();
                     AddNextWaveAction();
                 }
             }

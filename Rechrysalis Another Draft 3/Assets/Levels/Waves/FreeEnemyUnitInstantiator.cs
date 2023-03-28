@@ -21,6 +21,7 @@ namespace Rechrysalis.Unit
         {
             _mainManager = mainManager;
             _controllerManager = thisController;
+            _enemyController = enemyController;
             _freeEnemeyInitialize = GetComponent<FreeEnemyInitialize>();
             _waveLayoutsByRange = _freeEnemeyInitialize.WaveLayoutsByRange;
             _thesePlayerUnitsSO = _freeEnemeyInitialize.PlayerUnitsSO;
