@@ -36,6 +36,7 @@ namespace Rechrysalis.Controller
         private float _lifeToSpendOnThisWave;
         private RandomizeFreeChangingUnits _randomizeFreeChangingUnits;
         private FreeEnemyWaveGenerator _freeEnemyWaveGenerator;
+        private FreeEnemyWaveInstantiator _freeEnemyWaveInstantiator;
         private LifePerFreeWave _lifePerFreeWave;
         [SerializeField] private WaveLayoutsByRange _waveLayoutsByRange;
         public WaveLayoutsByRange WaveLayoutsByRange => _waveLayoutsByRange;
@@ -62,6 +63,8 @@ namespace Rechrysalis.Controller
             this._freeUnitCompSO = freeUnitCompSO;
             this._compCustomizer = compCustomizer;
             _freeEnemyWaveGenerator?.Initialize(_compsAndUnits);
+            _freeEnemyWaveInstantiator = GetComponent<FreeEnemyWaveInstantiator>();
+            _freeEnemyWaveInstantiator?.Initialize(_compsAndUnits);
             _controllerHealth?.IncreaseMaxHealth(_compsAndUnits.Level * _compsAndUnits.FreeUnitControllerLifeGainedPerLevel);
             _freeControllerControllerProgressBar.Initialize(_controllerHealth.HealthMax);
             _freeControllerControllerProgressBar.LevelSceneManagement = _mainManager.LevelSceneManagement;
