@@ -57,7 +57,7 @@ namespace Rechrysalis.Unit
             {
                 _waveClassList.Add(waveClass);
                 wave++;
-                GenerateWave(ref progressCost, ref wave);
+                // GenerateWave(ref progressCost, ref wave);
             }
             waveClass.ProgressValueOfWave = progressCost;
             return false;
