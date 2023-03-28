@@ -35,6 +35,7 @@ namespace Rechrysalis.Controller
         private int _unitInWaveIndex = 0;
         private float _lifeToSpendOnThisWave;
         private RandomizeFreeChangingUnits _randomizeFreeChangingUnits;
+        private FreeEnemyWaveGenerator _freeEnemyWaveGenerator;
         private LifePerFreeWave _lifePerFreeWave;
         [SerializeField] private WaveLayoutsByRange _waveLayoutsByRange;
         public WaveLayoutsByRange WaveLayoutsByRange => _waveLayoutsByRange;
@@ -51,6 +52,7 @@ namespace Rechrysalis.Controller
             _controllerManager = GetComponent<ControllerManager>();
             _controllerHealth = GetComponent<ControllerHealth>(); 
             _lifePerFreeWave = GetComponent<LifePerFreeWave>();  
+            _freeEnemyWaveGenerator = GetComponent<FreeEnemyWaveGenerator>();
             _lifePerFreeWave?.Initialize();         
             this._controllerIndex = controllerIndex;
             this._enemyController = enemyController;
@@ -59,6 +61,7 @@ namespace Rechrysalis.Controller
             this._compsAndUnits = compsAndUnits;
             this._freeUnitCompSO = freeUnitCompSO;
             this._compCustomizer = compCustomizer;
+            _freeEnemyWaveGenerator?.Initialize(_compsAndUnits);
             _controllerHealth?.IncreaseMaxHealth(_compsAndUnits.Level * _compsAndUnits.FreeUnitControllerLifeGainedPerLevel);
             _freeControllerControllerProgressBar.Initialize(_controllerHealth.HealthMax);
             _freeControllerControllerProgressBar.LevelSceneManagement = _mainManager.LevelSceneManagement;
@@ -77,7 +80,7 @@ namespace Rechrysalis.Controller
             _freeUnitCompSO = compsAndUnits.FreeUnitCompSO[controllerIndex];
 
             _randomizeFreeChangingUnits = GetComponent<RandomizeFreeChangingUnits>();
-            _randomizeFreeChangingUnits?.Initialize();
+            _randomizeFreeChangingUnits?.Initialize(_compsAndUnits);
             _randomizeFreeChangingUnits?.RandomizeChangingUnitsFunc(_compsAndUnits.Level);
             if (freeUnitCompSO.Waves.Length > 0)
             {

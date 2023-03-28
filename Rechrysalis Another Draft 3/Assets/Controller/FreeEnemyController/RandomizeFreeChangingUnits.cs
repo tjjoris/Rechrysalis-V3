@@ -6,6 +6,7 @@ namespace Rechrysalis.Unit
 {
     public class RandomizeFreeChangingUnits : MonoBehaviour
     {
+        [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;
         [SerializeField] private ControllerUnitsSO _changingUnits;
         public ControllerUnitsSO ChangingUnits => _changingUnits;
         [SerializeField] private ControllerUnitsSO _unitTypes;
@@ -16,10 +17,13 @@ namespace Rechrysalis.Unit
         public List<ParentUnitClass> ListOfRandomParentUnitClasses { get => _listOfRandomParentUnitClasses; set => _listOfRandomParentUnitClasses = value; }
         
         private List<UnitStatsSO> _unitsNotEnoughManaForNotTried = new List<UnitStatsSO>();
-        public void Initialize()
+        private List<ParentUnitClass> _ifNotEnoughManaParentUnitClassesNotTried;
+        public void Initialize(CompsAndUnitsSO compsAndUnitsSO)
         {
+            _compsAndUnitsSO = compsAndUnitsSO;
             _unitsNotEnoughManaForNotTried = _changingUnits.ControllerUnits;
             _listOfRandomParentUnitClasses = new List<ParentUnitClass>();
+            // _ifNotEnoughManaParentUnitClassesNotTried = new List<ParentUnitClass>();
         }
         public void RandomizeChangingUnitsFunc(int level)
         {
@@ -49,7 +53,7 @@ namespace Rechrysalis.Unit
                     parentUnitClass.SetAllStats();
                     _listOfRandomParentUnitClasses.Add(parentUnitClass);
                 i++;
-            }
+            }            
         }
         private void ChangeFocusFire(bool ffBool, UnitStatsSO unitToChange)
         {
@@ -72,6 +76,35 @@ namespace Rechrysalis.Unit
             unitToChange.TierMultiplier = _tierMultipliersToChooseFrom[randomNumber];
             unitToChange.UnitName += " " + randomNumber.ToString();
         }
+        public ParentUnitClass GetARandomParentUnitClassFromChangings()
+        {
+            int randomNumber = Random.Range(0, _listOfRandomParentUnitClasses.Count -1);
+            return _listOfRandomParentUnitClasses[randomNumber];
+        }
+        public ParentUnitClass GetARandomParentUnitClassFromChangingsBasedOnLifeAmount(float life)
+        {
+            ParentUnitClass parentUnitClass = GetARandomParentUnitClassFromChangings();
+            if ((parentUnitClass.BasicUnitClass.ControllerLifeCostMult <= life))
+            {
+                return parentUnitClass;
+            }
+            _ifNotEnoughManaParentUnitClassesNotTried = _listOfRandomParentUnitClasses;
+            if (_ifNotEnoughManaParentUnitClassesNotTried.Contains(parentUnitClass))
+            {
+                _ifNotEnoughManaParentUnitClassesNotTried.Remove(parentUnitClass);
+            }
+            foreach(ParentUnitClass parentUnitClassLeft in _ifNotEnoughManaParentUnitClassesNotTried)            
+            {
+                if (parentUnitClassLeft != null)
+                {
+                    if ((parentUnitClass.BasicUnitClass.ControllerLifeCostMult <= life))
+                    {
+                        return parentUnitClassLeft;
+                    }
+                }
+            }
+            return null;
+        }
         public UnitStatsSO GetARandomUnitFromChangings()
         {
             int randomNumber = Random.Range(0, _changingUnits.ControllerUnits.Count -1);
@@ -79,12 +112,12 @@ namespace Rechrysalis.Unit
                 return _changingUnits.ControllerUnits[randomNumber];
             }
         }
-        public UnitStatsSO GetARandomUnitFromChangingsBasedOnLifeAmount(float life)
-        {
-            UnitStatsSO randomUnit = GetARandomUnitFromChangings();
-            // if (randomUnit.)
-            return randomUnit;
-        }
+        // public UnitStatsSO GetARandomUnitFromChangingsBasedOnLifeAmount(float life)
+        // {
+        //     UnitStatsSO randomUnit = GetARandomUnitFromChangings();
+
+        //     return randomUnit;
+        // }
         public void NotEnoughManaForThisUnit(UnitStatsSO unitNotEnoughManaFor)
         {
             if (_unitsNotEnoughManaForNotTried.Contains(unitNotEnoughManaFor))
