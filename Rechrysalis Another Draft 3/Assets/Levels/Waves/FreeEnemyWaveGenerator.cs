@@ -13,8 +13,10 @@ namespace Rechrysalis.Unit
         public List<WaveClass> WaveClassList { get => _waveClassList; set => _waveClassList = value; }
         private ControllerHealth _controllerHealth;
         private RandomizeFreeChangingUnits _randomFreeChangingUnits;
-        private float _lifeInThisWave;
-
+        // private float _lifeInThisWave;
+        [SerializeField] private float _progressMaxForThisLevel;
+        public float ProgressMaxForThisLevel { get => _progressMaxForThisLevel; set => _progressMaxForThisLevel = value; }
+        
         private void Awake()
         {
             Initialize(null);
@@ -37,7 +39,8 @@ namespace Rechrysalis.Unit
             _waveClassList = new List<WaveClass>();
             // while (progressValue >= 0)
             {
-                GenerateWave(ref progressCost, ref wave);                
+                GenerateWave(ref progressCost, ref wave);   
+                _progressMaxForThisLevel = progressCost;             
             }
         }
         private bool GenerateWave(ref float progressCost, ref int wave)
@@ -46,12 +49,17 @@ namespace Rechrysalis.Unit
             float progressMaxForThisWave = _lifePerFreeWave.GetLifeToSpendOnThisWave(_compsAndUnitsSO.Level, wave);
             float progressCostForThisWave = 0;
             WaveClass waveClass = new WaveClass();
-            _waveClassList.Add(waveClass);
+            
             waveClass.UnitsInWave = new List<ParentUnitClass>();
             GenerateUnit(waveClass, ref progressCostForThisWave, progressMaxForThisWave);
             progressCost += progressCostForThisWave;
-            wave ++;
-            
+            if (waveClass.UnitsInWave.Count > 0)
+            {
+                _waveClassList.Add(waveClass);
+                wave++;
+                GenerateWave(ref progressCost, ref wave);
+            }
+            waveClass.ProgressValueOfWave = progressCost;
             return false;
         }
         private bool GenerateUnit(WaveClass waveClass, ref float progressCostForThisWave, float progressMaxForThisWave)
