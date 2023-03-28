@@ -1292,6 +1292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _compsAndUnitsSO: {fileID: 0}
   _changingUnits: {fileID: 11400000, guid: 60b756f5bedc54f42aaad53c6c5ac17c, type: 2}
+  _focusFireChangings: {fileID: 11400000, guid: 6c20f9b83c07645218bdc08c392c81b1, type: 2}
   _unitTypes: {fileID: 11400000, guid: e6a692086072a4d778fa72ffbd6d7174, type: 2}
   _tierMultipliersToChooseFrom:
   - {fileID: 11400000, guid: 5a0f3a8a1e50e483a81040baf946b34b, type: 2}
@@ -1303,6 +1304,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2049743e030a54a52956d19b8c60be54, type: 2}
   - {fileID: 11400000, guid: 70e83448f88104fea88a3edf2dabc743, type: 2}
   _listOfRandomParentUnitClasses: []
+  _listOfFFParentUnitClasses: []
 --- !u!114 &691481337
 MonoBehaviour:
   m_ObjectHideFlags: 0
