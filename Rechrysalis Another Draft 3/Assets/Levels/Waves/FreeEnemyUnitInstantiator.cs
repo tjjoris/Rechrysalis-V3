@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Controller;
+using Rechrysalis.Movement;
 
 namespace Rechrysalis.Unit
 {
     public class FreeEnemyUnitInstantiator : MonoBehaviour
     {
         private MainManager _mainManager;
-        private ControllerManager _thisController;
+        private ControllerManager _controllerManager;
         private WaveLayoutsByRange _waveLayoutsByRange;
         private ControllerManager _enemyController;
         [SerializeField] private GameObject _freeUnitPrefab;
@@ -18,7 +19,7 @@ namespace Rechrysalis.Unit
         public void Initialize(MainManager mainManager, ControllerManager thisController, ControllerManager enemyController)
         {
             _mainManager = mainManager;
-            _thisController = thisController;
+            _controllerManager = thisController;
             _freeEnemeyInitialize = GetComponent<FreeEnemyInitialize>();
             _waveLayoutsByRange = _freeEnemeyInitialize.WaveLayoutsByRange;
             _thesePlayerUnitsSO = _freeEnemeyInitialize.PlayerUnitsSO;
@@ -33,7 +34,21 @@ namespace Rechrysalis.Unit
             _thesePlayerUnitsSO.ParentUnits.Add(newFreeEnemy);
             newFreeEnemy.name = basicUnitStatsSO.UnitName + " " + unitInWaveIndex.ToString();
             ParentUnitManager parentUnitManager = newFreeEnemy.GetComponent<ParentUnitManager>();
-            parentUnitManager?.Initialize(_thisController.ControllerIndex, unitInWaveIndex, _thesePlayerUnitsSO, transform, null, parentUnitClass, _mainManager);
+            parentUnitManager?.Initialize(_controllerManager.ControllerIndex, unitInWaveIndex, _thesePlayerUnitsSO, transform, null, parentUnitClass, _mainManager);
+            parentUnitManager.ParentUnitClass = parentUnitClass;
+            _controllerManager.ParentUnitManagers.Add(parentUnitManager);
+            if (parentUnitManager.GetComponent<ParentHealth>() != null)
+            {
+                _controllerManager.ParentHealths.Add(parentUnitManager.GetComponent<ParentHealth>());
+            }
+            Mover parentUnitMover = parentUnitManager.GetComponent<Mover>();
+            if (parentUnitMover != null)
+            {
+                _controllerManager.ParentUnitMovers.Add(parentUnitMover);
+            }
+            ParentFreeEnemyManager _freeParentManager = newFreeEnemy.GetComponent<ParentFreeEnemyManager>();
+            _freeParentManager?.Initialize(_controllerManager, parentUnitClass.BasicUnitClass, unitInWaveIndex, _mainManager.CompsAndUnitsSO, _controllerManager.ControllerIndex);
+            
         }
     }
 }

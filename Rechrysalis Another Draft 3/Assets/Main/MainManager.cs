@@ -15,7 +15,8 @@ namespace Rechrysalis
     public class MainManager : MonoBehaviour
     {
         private PauseScript _pauseScript;
-        [SerializeField] CompsAndUnitsSO _compsAndUnitsSO;        
+        [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;  
+        public CompsAndUnitsSO CompsAndUnitsSO => _compsAndUnitsSO;    
         [SerializeField] ControllerManager[] _controllerManager;
         [SerializeField] PlayerUnitsSO[] _playerUnitsSO;  
         [SerializeField] CompSO[] _compSO;
