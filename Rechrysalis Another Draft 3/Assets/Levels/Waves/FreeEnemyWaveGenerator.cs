@@ -42,10 +42,10 @@ namespace Rechrysalis.Unit
                 WaveClass waveClass = new WaveClass();
                 _waveClassList.Add(waveClass);
                 waveClass.UnitsInWave = new List<ParentUnitClass>();
-                progressCostForThisWave = GenerateUnit(waveClass, progressCostForThisWave);
+                progressCostForThisWave = GenerateUnit(waveClass, progressCostForThisWave, progressMaxForThisWave);
             }
         }
-        private float GenerateUnit(WaveClass waveClass, float progressCostForThisWave)
+        private float GenerateUnit(WaveClass waveClass, float progressCostForThisWave, float progressMaxForThisWave)
         {
             ParentUnitClass unitForWave = _randomFreeChangingUnits.GetARandomParentUnitClassFromChangingsBasedOnLifeAmount(progressMaxForThisWave - progressCostForThisWave);
             if (unitForWave != null)
