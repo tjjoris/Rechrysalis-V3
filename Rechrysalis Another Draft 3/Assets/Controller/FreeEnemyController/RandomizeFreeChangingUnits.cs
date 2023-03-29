@@ -6,6 +6,7 @@ namespace Rechrysalis.Unit
 {
     public class RandomizeFreeChangingUnits : MonoBehaviour
     {
+        private bool _debugBool = false;
         [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;
         [SerializeField] private ControllerUnitsSO _changingUnits;
         public ControllerUnitsSO ChangingUnits => _changingUnits;
@@ -127,7 +128,10 @@ namespace Rechrysalis.Unit
             if (ifNotEnoughManaParentUnitClassesNotTried.Contains(parentUnitClass))
             {
                 ifNotEnoughManaParentUnitClassesNotTried.Remove(parentUnitClass);
-                Debug.Log($"random parent units length " + ffOrNot.Count);
+                if (_debugBool)
+                {
+                    Debug.Log($"random parent units length " + ffOrNot.Count);
+                }
             }
             foreach(ParentUnitClass parentUnitClassLeft in ifNotEnoughManaParentUnitClassesNotTried)            
             {
