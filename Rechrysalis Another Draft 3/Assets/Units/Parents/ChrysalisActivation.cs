@@ -16,7 +16,6 @@ namespace Rechrysalis.Unit
         private ProgressBarManager _progressBarManager;
         [SerializeField] private HilightRingParentManager _hilightRingParentManager;
         public HilightRingParentManager HilightRingParentManager { get => _hilightRingParentManager; set => _hilightRingParentManager = value; }
-        private FreeChrysalisStoresHealth _freeChrysalisStoresHealth;
 
         public void Initialize(ParentUnitManager parentUnitManager)
         {
@@ -24,27 +23,28 @@ namespace Rechrysalis.Unit
             _unitActivation = GetComponent<UnitActivation>();
             _parentHealth = GetComponent<ParentHealth>();
             _targetScoreValue = GetComponent<TargetScoreValue>();
-            _progressBarManager = GetComponent<ProgressBarManager>();
-            _freeChrysalisStoresHealth = GetComponent<FreeChrysalisStoresHealth>();
+            _progressBarManager = GetComponent<ProgressBarManager>();            
         }
-        public void DeactivateChrysalis(int _chryslisIndex)
+        public void DeactivateChrysalis(int chrysalisIndex)
         {
-            if (_freeChrysalisStoresHealth != null)
+            if (_parentUnitManager.ChildChrysaliiUnitManagers.Count > chrysalisIndex) 
             {
-                _freeChrysalisStoresHealth.SetStoredHealth(_parentHealth.CurrentHealth);
-            }
-            if (_parentUnitManager.ChildChrysaliiUnitManagers.Count > _chryslisIndex) 
-            {
-                if (_parentUnitManager.ChildChrysaliiUnitManagers[_chryslisIndex].gameObject != null)
+
+                FreeChrysalisStoresHealth freeChrysalisStoresHealth = _parentUnitManager.GetComponent<FreeChrysalisStoresHealth>();
+                if (freeChrysalisStoresHealth != null)
                 {
-                    if (_parentUnitManager.ChildChrysaliiUnitManagers[_chryslisIndex].gameObject.activeInHierarchy == true)
+                    freeChrysalisStoresHealth.SetStoredHealth(_parentHealth.CurrentHealth);
+                }
+                if (_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject != null)
+                {
+                    if (_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject.activeInHierarchy == true)
                     {
-                        _parentUnitManager.ChildChrysaliiUnitManagers[_chryslisIndex].gameObject.SetActive(false);
+                        _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject.SetActive(false);
                     }
                 }
-                if (_parentUnitManager.TheseUnits.ActiveUnits.Contains(_parentUnitManager.ChildChrysaliiUnitManagers[_chryslisIndex].gameObject))
+                if (_parentUnitManager.TheseUnits.ActiveUnits.Contains(_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject))
                 {
-                    _parentUnitManager.TheseUnits.ActiveUnits.Remove(_parentUnitManager.ChildChrysaliiUnitManagers[_chryslisIndex].gameObject);
+                    _parentUnitManager.TheseUnits.ActiveUnits.Remove(_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject);
                 }
             }
         }
@@ -59,10 +59,6 @@ namespace Rechrysalis.Unit
             // if (_parentUnitManager.CurrentSubUnit != _parentUnitManager.SubChrysalii[_chrysalisIndex])
             _parentHealth.SetChrysalis(true);
             _parentHealth.SetMaxHealth(_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].UnitClass.HPMax);
-            if (_freeChrysalisStoresHealth != null)
-            {
-                _parentHealth.SetCurrentHealth(_freeChrysalisStoresHealth.StoredHealth);
-            }
             float _timeToKeep = 0;
             ChrysalisTimer _chrysalisTimer = _parentUnitManager.CurrentSubUnit.GetComponent<ChrysalisTimer>();
             if (_chrysalisTimer != null)
@@ -94,6 +90,12 @@ namespace Rechrysalis.Unit
             }
             _progressBarManager?.TintChrysalis();
             _hilightRingParentManager?.ActivateChrysalis(chrysalisIndex);
+
+            FreeChrysalisStoresHealth freeChrysalisStoresHealth = _parentUnitManager.GetComponent<FreeChrysalisStoresHealth>();
+            if (freeChrysalisStoresHealth != null)
+            {
+                _parentHealth.SetCurrentHealth(freeChrysalisStoresHealth.StoredHealth);
+            }
             _targetScoreValue.SetEgg(true);
         }
     }

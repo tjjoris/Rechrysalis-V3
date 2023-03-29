@@ -16,7 +16,7 @@ namespace Rechrysalis.Unit
         [SerializeField] private GameObject _freeUnitPrefab;
         private FreeEnemyInitialize _freeEnemeyInitialize;
         private PlayerUnitsSO _thesePlayerUnitsSO;
-        private FreeChrysalisStoresHealth _freeChrysalisStoresHealth;
+        // private FreeChrysalisStoresHealth _freeChrysalisStoresHealth;
 
         public void Initialize(MainManager mainManager, ControllerManager thisController, ControllerManager enemyController)
         {
@@ -26,7 +26,7 @@ namespace Rechrysalis.Unit
             _freeEnemeyInitialize = GetComponent<FreeEnemyInitialize>();
             _waveLayoutsByRange = _freeEnemeyInitialize.WaveLayoutsByRange;
             _thesePlayerUnitsSO = _freeEnemeyInitialize.PlayerUnitsSO;
-            _freeChrysalisStoresHealth = GetComponent<FreeChrysalisStoresHealth>();
+            // _freeChrysalisStoresHealth = GetComponent<FreeChrysalisStoresHealth>();
         }
         public void InstantiateUnit(ParentUnitClass parentUnitClass, int unitInWaveIndex)
         {
@@ -57,7 +57,7 @@ namespace Rechrysalis.Unit
             // _freeParentManager.ChrysalisUnitManager.Initialize(_controllerManager, _controllerManager.ControllerIndex, parentUnitClass.BasicUnitClass, )
             _freeParentManager.ChrysalisUnitManager.GetComponent<ChrysalisTimer>()?.Initialize(parentUnitClass.BasicUnitClass.BuildTime, 0, null);
             newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(parentUnitClass.BasicUnitClass.HPMax);
-            _freeChrysalisStoresHealth?.SetStoredHealth(parentUnitClass.BasicUnitClass.HPMax);
+            newFreeEnemy.GetComponent<FreeChrysalisStoresHealth>()?.SetStoredHealth(parentUnitClass.BasicUnitClass.HPMax);
             newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerManager.ControllerIndex, _mainManager);
             // _thesePlayerUnitsSO.ActiveUnits.Add(newFreeEnemy);
             // _allUnits.Add(_freeParentManager.UnitManager.gameObject);

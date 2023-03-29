@@ -40,7 +40,6 @@ namespace Rechrysalis.Unit
                     // _parentUnitManager.SubUnits[unitIndex].SetActive(true);
                     _parentUnitManager.ChildUnitManagers[unitIndex].gameObject.SetActive(true);
                     _parentHealth.CurrentUnit = _parentUnitManager.ChildUnitManagers[unitIndex];
-                    _parentHealth.SetMaxHealth(_parentUnitManager.ChildUnitManagers[unitIndex].UnitClass.HPMax);                    
                     _parentHealth.SetChrysalis(false);
                     UnitManager _unitManager = _parentUnitManager.ChildUnitManagers[unitIndex];
                     // int _tier = _unitManager.UnitStats.TierMultiplier.Tier - 1;
@@ -71,6 +70,7 @@ namespace Rechrysalis.Unit
                 }
                 _chrysalisActivation.DeactivateChrysalis(_indexInSubUnits);
             }
+            _parentHealth.SetMaxHealth(_parentUnitManager.ChildUnitManagers[unitIndex].UnitClass.HPMax);
             _targetScoreValue.SetCurrentUnit(_parentUnitManager.CurrentSubUnit.GetComponent<Attack>());
             _hilightRingParentManager?.ActivateUnit(unitIndex);
             _parentUnitManager.CurrentSubUnit?.GetComponent<Attack>()?.ResetUnitAttack();
