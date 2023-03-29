@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6648744941601182457}
   - component: {fileID: 8875302418032156048}
   - component: {fileID: 830242925234938650}
+  - component: {fileID: 3105541469315484569}
   m_Layer: 7
   m_Name: FreeEnemyParent
   m_TagString: Untagged
@@ -407,7 +408,7 @@ MonoBehaviour:
   _subChrysalii: []
   _childUnitManagers: []
   _childChrysaliiUnitManagers: []
-  _progressBarManager: {fileID: 0}
+  _progressBarManager: {fileID: 6648744941601182457}
   _hilightRingParentManager: {fileID: 0}
   _isStopped: 0
 --- !u!114 &6648744941601182457
@@ -450,6 +451,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hilightRingParentManager: {fileID: 0}
+--- !u!114 &3105541469315484569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8804105779283925579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0469c4b99392e49f8baba91a5080ebb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _backGSprite: {fileID: 2628509726691809700}
+  _fillSprite: {fileID: 4078819666624566501}
+  _fillTransform: {fileID: 2384973300107825752}
 --- !u!1001 &4018325213903686455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -616,6 +632,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8615980890676439241, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: _progressBarManager
+      value: 
+      objectReference: {fileID: 6648744941601182457}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
 --- !u!224 &1657512131119855181 stripped

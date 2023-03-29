@@ -12,12 +12,15 @@ namespace Rechrysalis.Unit
         public float TimerCurrent {set {_timerCurrent = value;} get {return _timerCurrent;}}
         private  int _nextUnitBuilding;
         private int _subUnitCount;
-        private ProgressBarManager _progressBarManager;
+        [SerializeField] private ProgressBarManager _progressBarManager;
         public Action<int> _startUnit;
 
         public void Initialize (float _timerMax, int _nextUnitBuilding, ProgressBarManager progressBarManager)
         {
-            _progressBarManager= progressBarManager;
+            if (_progressBarManager == null)
+            {
+                _progressBarManager= progressBarManager;
+            }
             this._timerMax = _timerMax;
             this._nextUnitBuilding = _nextUnitBuilding;
         }
