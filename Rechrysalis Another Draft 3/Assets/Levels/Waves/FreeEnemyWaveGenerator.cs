@@ -73,7 +73,7 @@ namespace Rechrysalis.Unit
                 //     Debug.Log($"unit generated " + unitForWave.BasicUnitClass.UnitName);
                 //     waveClass.UnitsInWave.Add(unitForWave);
                 //     progressCostForThisWave += unitForWave.BasicUnitClass.ControllerLifeCostMult;
-                bool didGenerateFFUnit = GenerateFFUnit(waveClass, ref progressCostForThisWave, ref focusFireCostThisWave);
+                bool didGenerateFFUnit = GenerateFFUnit(waveClass, ref progressCostForThisWave, focusFireCostThisWave);
                 if (didGenerateFFUnit)
                 {
                     GenerateUnit(waveClass, ref progressCostForThisWave, progressMaxForThisWave, focusFireCostThisWave);
@@ -81,7 +81,7 @@ namespace Rechrysalis.Unit
                 else
                 {
                     Debug.Log($"ff cost exceeded");
-                    bool didGenerateNonFFUnit = GenerateNonFFUnit(waveClass, ref progressCostForThisWave, ref progressMaxForThisWave);
+                    bool didGenerateNonFFUnit = GenerateNonFFUnit(waveClass, ref progressCostForThisWave, progressMaxForThisWave);
                     if (didGenerateNonFFUnit)
                     {
                         GenerateUnit(waveClass, ref progressCostForThisWave, progressMaxForThisWave, focusFireCostThisWave);
@@ -97,7 +97,7 @@ namespace Rechrysalis.Unit
             }
             return false;            
         }
-        private bool GenerateNonFFUnit(WaveClass waveClass, ref float progressCostForThisWave, ref float progressMaxForThisWave)
+        private bool GenerateNonFFUnit(WaveClass waveClass, ref float progressCostForThisWave, float progressMaxForThisWave)
         {
 
             ParentUnitClass unitForWave = _randomFreeChangingUnits.GetARandomNonFFParentUnitClassBasedOnControllerLife(progressMaxForThisWave - progressCostForThisWave);
@@ -110,7 +110,7 @@ namespace Rechrysalis.Unit
             }
             return false;
         }
-        private bool GenerateFFUnit(WaveClass waveClass, ref float progressCostForThisWave, ref float progressMaxForThisWave)
+        private bool GenerateFFUnit(WaveClass waveClass, ref float progressCostForThisWave, float progressMaxForThisWave)
         {
 
             ParentUnitClass unitForWave = _randomFreeChangingUnits.GetARandomFFParentUnitClassBasedOnControllerLife(progressMaxForThisWave - progressCostForThisWave);
