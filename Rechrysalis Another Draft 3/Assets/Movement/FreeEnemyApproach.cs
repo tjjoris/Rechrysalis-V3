@@ -37,6 +37,10 @@ namespace Rechrysalis.Movement
         public void Tick(bool _isRetreating, bool _aiCanMove)
         {
             _range = _parentUnitManager.CurrentSubUnit.GetComponent<Range>();
+            if (_range == null)
+            {
+                return;
+            }
             _targetHolder = _range.GetComponent<TargetHolder>();
             _targetPrioratizeByScore = _range.GetComponent<TargetPrioratizeByScore>();
             GameObject focusTarget = null;
