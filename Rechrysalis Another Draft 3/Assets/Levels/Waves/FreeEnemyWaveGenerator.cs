@@ -8,6 +8,8 @@ namespace Rechrysalis.Unit
     public class FreeEnemyWaveGenerator : MonoBehaviour
     {
         private CompsAndUnitsSO _compsAndUnitsSO;
+        private FreeEnemyInitialize _freeEnemyInitialize;
+        private WaveLayoutsByRange _waveLayoutsByRange;
         private LifePerFreeWave _lifePerFreeWave;
         [SerializeField] private List<WaveClass> _waveClassList;
         public List<WaveClass> WaveClassList { get => _waveClassList; set => _waveClassList = value; }
@@ -20,6 +22,8 @@ namespace Rechrysalis.Unit
         
         public void Initialize(CompsAndUnitsSO compsAndUnitsSO)
         {
+            _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
+            _waveLayoutsByRange = _freeEnemyInitialize.WaveLayoutsByRange;
             _controllerHealth = GetComponent<ControllerHealth>();
             _randomFreeChangingUnits = GetComponent<RandomizeFreeChangingUnits>();
             _lifePerFreeWave = GetComponent<LifePerFreeWave>();
@@ -60,19 +64,23 @@ namespace Rechrysalis.Unit
         }
         private bool GenerateUnit(WaveClass waveClass, ref float progressCostForThisWave, float progressMaxForThisWave)
         {
-            ParentUnitClass unitForWave = _randomFreeChangingUnits.GetARandomParentUnitClassFromChangingsBasedOnLifeAmount(progressMaxForThisWave - progressCostForThisWave);
-            if (unitForWave != null)
+            if (waveClass.UnitsInWave.Count <= _waveLayoutsByRange.WaveLayouts.Count)
             {
-                Debug.Log($"unit generated " + unitForWave.BasicUnitClass.UnitName);
-                waveClass.UnitsInWave.Add(unitForWave);
-                progressCostForThisWave += unitForWave.BasicUnitClass.ControllerLifeCostMult;
-                GenerateUnit(waveClass, ref progressCostForThisWave, progressMaxForThisWave);
-            }
-            else
-            {
+                ParentUnitClass unitForWave = _randomFreeChangingUnits.GetARandomParentUnitClassFromChangingsBasedOnLifeAmount(progressMaxForThisWave - progressCostForThisWave);
+                if (unitForWave != null)
+                {
+                    Debug.Log($"unit generated " + unitForWave.BasicUnitClass.UnitName);
+                    waveClass.UnitsInWave.Add(unitForWave);
+                    progressCostForThisWave += unitForWave.BasicUnitClass.ControllerLifeCostMult;
+                    GenerateUnit(waveClass, ref progressCostForThisWave, progressMaxForThisWave);
+                }
+                else
+                {
 
+                }
             }
             return false;
+            
         }
     }
 }
