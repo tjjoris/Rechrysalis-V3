@@ -39,6 +39,8 @@ namespace Rechrysalis
         public float FreeUnitToControllerLifeLostMult => _freeUnitToControllerLifeLostMult;
         [SerializeField] private float _freeUnitControllerLifeGainedPerLevel = 5;
         public float FreeUnitControllerLifeGainedPerLevel => _freeUnitControllerLifeGainedPerLevel;
+        [SerializeField] private float _ratioOfFreeUnitsToBeFF = 0.3333f;
+        public float RatioOfFreeUnitsToBeFF => _ratioOfFreeUnitsToBeFF;
         public int ControllerHPTokensCurrent {get {return _controllerHPTokensCurrent;} set {_controllerHPTokensCurrent = value;}}
         [SerializeField] private int _controllerHPTokensMax = 3;
         public int ControllerHPTokensMax => _controllerHPTokensMax;
