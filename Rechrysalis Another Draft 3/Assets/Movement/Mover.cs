@@ -81,12 +81,12 @@ namespace Rechrysalis.Movement
         public void SetDirection(Vector2 directionInput)
         {
             Vector2 directionToSet = Vector2.zero;
-            directionInput.Normalize();          
+            directionInput.Normalize(); 
+            float ySpeedMult = TurnV2IntoApproachSpeedMult(directionInput);
+            _direction = directionInput * _speedVaried;
+            _direction.y = _direction.y * ySpeedMult;
             if ((_siegeInt <= 0) && (!_pauseScript.IsPaused()))
             {
-                float ySpeedMult = TurnV2IntoApproachSpeedMult(directionInput);
-                _direction = directionInput * _speedVaried;
-                _direction.y = _direction.y * ySpeedMult;
                 directionToSet = _direction;
             }
             else {

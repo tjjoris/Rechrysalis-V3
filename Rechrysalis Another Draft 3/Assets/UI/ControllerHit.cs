@@ -18,7 +18,7 @@ namespace Rechrysalis.UI
         }
         IEnumerator ControllerHitTimer()
         {
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(1.15f);
             _controllerHitGO.SetActive(false);
             _pauseScript.SetTimeFrozen(false);
         }

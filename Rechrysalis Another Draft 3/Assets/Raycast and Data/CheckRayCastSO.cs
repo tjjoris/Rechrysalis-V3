@@ -83,7 +83,7 @@ namespace Rechrysalis.Controller
         {
             if (_pauseScript.GetMenuPause())
             {
-                return;
+                return;                
             }
             Vector3 _mousePosV3;
             RaycastHit2D hit;
