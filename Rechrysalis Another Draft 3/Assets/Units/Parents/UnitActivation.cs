@@ -13,6 +13,7 @@ namespace Rechrysalis.Unit
         private ParentHealth _parentHealth;
         private TargetScoreValue _targetScoreValue;
         private ChrysalisActivation _chrysalisActivation;
+        // private FreeChrysalisStoresHealth _freeChrysalisStoresHealth;
         private ParentUnitHatchEffects _parentUnitHatchEffects;
         private ProgressBarManager _progressBarManager;
         private HilightRingParentManager _hilightRingParentManager;
@@ -25,6 +26,7 @@ namespace Rechrysalis.Unit
             _chrysalisActivation = GetComponent<ChrysalisActivation>();
             _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
             _progressBarManager = GetComponent<ProgressBarManager>();
+            // _freeChrysalisStoresHealth = GetComponent<FreeChrysalisStoresHealth>();
         }
         
         public void ActivateUnit(int unitIndex)
@@ -38,6 +40,7 @@ namespace Rechrysalis.Unit
                     // _parentUnitManager.SubUnits[unitIndex].SetActive(true);
                     _parentUnitManager.ChildUnitManagers[unitIndex].gameObject.SetActive(true);
                     _parentHealth.CurrentUnit = _parentUnitManager.ChildUnitManagers[unitIndex];
+                    _parentHealth.SetMaxHealth(_parentUnitManager.ChildUnitManagers[unitIndex].UnitClass.HPMax);                    
                     _parentHealth.SetChrysalis(false);
                     UnitManager _unitManager = _parentUnitManager.ChildUnitManagers[unitIndex];
                     // int _tier = _unitManager.UnitStats.TierMultiplier.Tier - 1;

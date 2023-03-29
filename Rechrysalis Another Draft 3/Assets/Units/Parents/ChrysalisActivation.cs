@@ -16,8 +16,8 @@ namespace Rechrysalis.Unit
         private ProgressBarManager _progressBarManager;
         [SerializeField] private HilightRingParentManager _hilightRingParentManager;
         public HilightRingParentManager HilightRingParentManager { get => _hilightRingParentManager; set => _hilightRingParentManager = value; }
-        
-        
+        private FreeChrysalisStoresHealth _freeChrysalisStoresHealth;
+
         public void Initialize(ParentUnitManager parentUnitManager)
         {
             _parentUnitManager = parentUnitManager;
@@ -25,9 +25,14 @@ namespace Rechrysalis.Unit
             _parentHealth = GetComponent<ParentHealth>();
             _targetScoreValue = GetComponent<TargetScoreValue>();
             _progressBarManager = GetComponent<ProgressBarManager>();
+            _freeChrysalisStoresHealth = GetComponent<FreeChrysalisStoresHealth>();
         }
         public void DeactivateChrysalis(int _chryslisIndex)
         {
+            if (_freeChrysalisStoresHealth != null)
+            {
+                _freeChrysalisStoresHealth.SetStoredHealth(_parentHealth.CurrentHealth);
+            }
             if (_parentUnitManager.ChildChrysaliiUnitManagers.Count > _chryslisIndex) 
             {
                 if (_parentUnitManager.ChildChrysaliiUnitManagers[_chryslisIndex].gameObject != null)
@@ -53,8 +58,11 @@ namespace Rechrysalis.Unit
             // if ((_chrysalisIndex == 0) && (_parentUnitManager.CurrentSubUnit != _parentUnitManager._subUnits[0])) return;
             // if (_parentUnitManager.CurrentSubUnit != _parentUnitManager.SubChrysalii[_chrysalisIndex])
             _parentHealth.SetChrysalis(true);
-
             _parentHealth.SetMaxHealth(_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].UnitClass.HPMax);
+            if (_freeChrysalisStoresHealth != null)
+            {
+                _parentHealth.SetCurrentHealth(_freeChrysalisStoresHealth.StoredHealth);
+            }
             float _timeToKeep = 0;
             ChrysalisTimer _chrysalisTimer = _parentUnitManager.CurrentSubUnit.GetComponent<ChrysalisTimer>();
             if (_chrysalisTimer != null)

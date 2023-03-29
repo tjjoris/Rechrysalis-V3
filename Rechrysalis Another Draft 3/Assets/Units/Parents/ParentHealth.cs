@@ -39,6 +39,11 @@ namespace Rechrysalis.Unit
             _currentHealth = _maxHealth;
             UpdateHpBar();
         }
+        public void SetCurrentHealth(float currentHealth)
+        {
+            _currentHealth = currentHealth;
+            UpdateHpBar();
+        }
         public void TakeDamage(float _damage)
         {
             // float _damageToTake = _damage * _currentUnit.GetIncomingDamageMultiplier();            
