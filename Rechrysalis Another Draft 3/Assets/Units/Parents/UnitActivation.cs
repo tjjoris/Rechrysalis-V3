@@ -41,7 +41,10 @@ namespace Rechrysalis.Unit
                     _parentHealth.SetChrysalis(false);
                     UnitManager _unitManager = _parentUnitManager.ChildUnitManagers[unitIndex];
                     // int _tier = _unitManager.UnitStats.TierMultiplier.Tier - 1;
-                    HatchEffectSO _hatchEffectSO = _parentUnitManager.SubHatchEffects[unitIndex];
+                    // if ((_parentUnitManager.SubHatchEffects != null) && (_parentUnitManager.SubHatchEffects.Length > unitIndex))
+                    // {
+                    // HatchEffectSO _hatchEffectSO = _parentUnitManager.SubHatchEffects[unitIndex];
+                    // }
                     _parentUnitManager.ChildUnitManagers[unitIndex]?.RestartUnit();
                     if (!_parentUnitManager.TheseUnits.ActiveUnits.Contains(_parentUnitManager.ChildUnitManagers[_indexInSubUnits].gameObject))
                     {
