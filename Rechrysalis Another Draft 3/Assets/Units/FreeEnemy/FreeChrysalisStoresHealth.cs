@@ -11,6 +11,7 @@ namespace Rechrysalis.Unit
 
         public void SetStoredHealth(float amount)
         {
+            Debug.Log($"set stored health " + amount);
             _storedHealth = amount;
         }
     }
