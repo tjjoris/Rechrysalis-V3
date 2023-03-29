@@ -20,7 +20,7 @@ namespace Rechrysalis.Attacking
         public float CurrentDPS => _currentDPS;
         private ProjectilesPool _projectilesPool;
         private bool _isWindingDown;
-        public bool IsWindingDown => _isWindingDown;
+        [SerializeField] public bool IsWindingDown => _isWindingDown;
         // private bool _isChargingUp;
         // private bool _isStopped;
         // public bool IsStopped{set{_isStopped = value;}}
@@ -204,7 +204,7 @@ namespace Rechrysalis.Attacking
         }
         public bool IsAttackReady()
         {
-            if ((_attackChargeCurrent >= _attackChargeUp) && (!_isWindingDown))
+            if ((_attackChargeCurrent >= _attackChargeUp + _attackWindDown) || (_attackChargeCurrent < _attackChargeUp))
             return true;
             return false;
         }
