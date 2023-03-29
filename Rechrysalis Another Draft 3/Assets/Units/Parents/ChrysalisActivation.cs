@@ -28,56 +28,59 @@ namespace Rechrysalis.Unit
         }
         public void DeactivateChrysalis(int _chryslisIndex)
         {
-            if (_parentUnitManager.SubChrysalii[_chryslisIndex] != null)
+            if (_parentUnitManager.ChildChrysaliiUnitManagers.Count > _chryslisIndex) 
             {
-                if (_parentUnitManager.SubChrysalii[_chryslisIndex].activeInHierarchy == true)
+                if (_parentUnitManager.ChildChrysaliiUnitManagers[_chryslisIndex].gameObject != null)
                 {
-                    _parentUnitManager.SubChrysalii[_chryslisIndex].SetActive(false);
+                    if (_parentUnitManager.ChildChrysaliiUnitManagers[_chryslisIndex].gameObject.activeInHierarchy == true)
+                    {
+                        _parentUnitManager.ChildChrysaliiUnitManagers[_chryslisIndex].gameObject.SetActive(false);
+                    }
                 }
-            }
-            if (_parentUnitManager.TheseUnits.ActiveUnits.Contains(_parentUnitManager.SubChrysalii[_chryslisIndex]))
-            {
-                _parentUnitManager.TheseUnits.ActiveUnits.Remove(_parentUnitManager.SubChrysalii[_chryslisIndex]);
+                if (_parentUnitManager.TheseUnits.ActiveUnits.Contains(_parentUnitManager.ChildChrysaliiUnitManagers[_chryslisIndex].gameObject))
+                {
+                    _parentUnitManager.TheseUnits.ActiveUnits.Remove(_parentUnitManager.ChildChrysaliiUnitManagers[_chryslisIndex].gameObject);
+                }
             }
         }
         public void ActivateChrysalis(int chrysalisIndex)
         {
             if (_parentUnitManager.CurrentSubUnit == null)
             {
-                _parentUnitManager.CurrentSubUnit = _parentUnitManager.SubChrysalii[chrysalisIndex];
+                _parentUnitManager.CurrentSubUnit = _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject;
             }
-            if (_parentUnitManager.SubChrysalii[chrysalisIndex] == null) return;
+            if (_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject == null) return;
             // if ((_chrysalisIndex == 0) && (_parentUnitManager.CurrentSubUnit != _parentUnitManager._subUnits[0])) return;
             // if (_parentUnitManager.CurrentSubUnit != _parentUnitManager.SubChrysalii[_chrysalisIndex])
             _parentHealth.SetChrysalis(true);
 
-            _parentHealth.SetMaxHealth(_parentUnitManager.SubUnits[chrysalisIndex].GetComponent<UnitManager>().UnitClass.HPMax);
+            _parentHealth.SetMaxHealth(_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].UnitClass.HPMax);
             float _timeToKeep = 0;
             ChrysalisTimer _chrysalisTimer = _parentUnitManager.CurrentSubUnit.GetComponent<ChrysalisTimer>();
             if (_chrysalisTimer != null)
             {
                 _timeToKeep = _chrysalisTimer.TimerCurrent;
             }
-            for (int _indexInSubChrysalis = 0; _indexInSubChrysalis < _parentUnitManager.SubChrysalii.Length; _indexInSubChrysalis++)
+            for (int _indexInSubChrysalis = 0; _indexInSubChrysalis < _parentUnitManager.ChildChrysaliiUnitManagers.Count; _indexInSubChrysalis++)
             {
                 if (_indexInSubChrysalis == chrysalisIndex)
                 {
-                    _parentUnitManager.CurrentSubUnit = _parentUnitManager.SubChrysalii[chrysalisIndex];
+                    _parentUnitManager.CurrentSubUnit = _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject;
                     if (_debugBool)
                     {
                         Debug.Log($"activating chrysalis" + chrysalisIndex);
                     }
-                    _parentUnitManager.SubChrysalii[chrysalisIndex].SetActive(true);
-                    _parentHealth.CurrentUnit = _parentUnitManager.SubChrysalii[chrysalisIndex].GetComponent<UnitManager>();
-                    _parentUnitManager.SubChrysalii[chrysalisIndex].GetComponent<ChrysalisTimer>()?.StartThisChrysalis(_timeToKeep);
-                    if (!_parentUnitManager.TheseUnits.ActiveUnits.Contains(_parentUnitManager.SubChrysalii[chrysalisIndex]))
+                    _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject.SetActive(true);
+                    _parentHealth.CurrentUnit = _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex];
+                    _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].GetComponent<ChrysalisTimer>()?.StartThisChrysalis(_timeToKeep);
+                    if (!_parentUnitManager.TheseUnits.ActiveUnits.Contains(_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject))
                     {
-                        _parentUnitManager.TheseUnits.ActiveUnits.Add(_parentUnitManager.SubChrysalii[chrysalisIndex]);
+                        _parentUnitManager.TheseUnits.ActiveUnits.Add(_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject);
                     }
                 }
                 else DeactivateChrysalis(_indexInSubChrysalis);
             }
-            for (int _unitIndex = 0; _unitIndex < _parentUnitManager.SubUnits.Length; _unitIndex++)
+            for (int _unitIndex = 0; _unitIndex < _parentUnitManager.ChildUnitManagers.Count; _unitIndex++)
             {
                 _unitActivation.DeactivateUnit(_unitIndex);
             }

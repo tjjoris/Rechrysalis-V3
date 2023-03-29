@@ -35,7 +35,8 @@ namespace Rechrysalis.Unit
                 if (_indexInSubUnits == unitIndex)
                 {
                     _parentUnitManager.CurrentSubUnit = _parentUnitManager.SubUnits[unitIndex];
-                    _parentUnitManager.SubUnits[unitIndex].SetActive(true);
+                    // _parentUnitManager.SubUnits[unitIndex].SetActive(true);
+                    _parentUnitManager.ChildUnitManagers[unitIndex].gameObject.SetActive(true);
                     _parentHealth.CurrentUnit = _parentUnitManager.SubUnits[unitIndex].GetComponent<UnitManager>();
                     _parentHealth.SetChrysalis(false);
                     UnitManager _unitManager = _parentUnitManager.SubUnits[unitIndex].GetComponent<UnitManager>();
@@ -70,16 +71,16 @@ namespace Rechrysalis.Unit
         }
         public void DeactivateUnit(int _unitIndex)
         {
-            if (_parentUnitManager.SubUnits[_unitIndex] != null)
+            if (_parentUnitManager.ChildUnitManagers[_unitIndex].gameObject != null)
             {
-                if (_parentUnitManager.SubUnits[_unitIndex].activeInHierarchy == true)
+                if (_parentUnitManager.ChildUnitManagers[_unitIndex].gameObject.activeInHierarchy == true)
                 {
-                    _parentUnitManager.SubUnits[_unitIndex].SetActive(false);
+                    _parentUnitManager.ChildUnitManagers[_unitIndex].gameObject.SetActive(false);
                 }
             }
-            if (_parentUnitManager.TheseUnits.ActiveUnits.Contains(_parentUnitManager.SubUnits[_unitIndex]))
+            if (_parentUnitManager.TheseUnits.ActiveUnits.Contains(_parentUnitManager.ChildUnitManagers[_unitIndex].gameObject))
             {
-                _parentUnitManager.TheseUnits.ActiveUnits.Remove(_parentUnitManager.SubUnits[_unitIndex]);
+                _parentUnitManager.TheseUnits.ActiveUnits.Remove(_parentUnitManager.ChildUnitManagers[_unitIndex].gameObject);
             }
         }        
     }
