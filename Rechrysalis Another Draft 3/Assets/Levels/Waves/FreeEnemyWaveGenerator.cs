@@ -50,7 +50,8 @@ namespace Rechrysalis.Unit
             WaveClass waveClass = new WaveClass();
             
             waveClass.UnitsInWave = new List<ParentUnitClass>();
-            GenerateUnit(waveClass, ref progressCostForThisWave, progressMaxForThisWave);
+            float focusFireCostThisWave = progressMaxForThisWave * _compsAndUnitsSO.RatioOfFreeUnitsToBeFF;
+            GenerateUnit(waveClass, ref progressCostForThisWave, progressMaxForThisWave, focusFireCostThisWave);
             progressCost += progressCostForThisWave;
 
             if ((waveClass.UnitsInWave.Count > 0) && (waveClass.UnitsInWave[0] != null))
@@ -62,17 +63,17 @@ namespace Rechrysalis.Unit
             }
             return false;
         }
-        private bool GenerateUnit(WaveClass waveClass, ref float progressCostForThisWave, float progressMaxForThisWave)
+        private bool GenerateUnit(WaveClass waveClass, ref float progressCostForThisWave, float progressMaxForThisWave, float focusFireCostThisWave)
         {
             if (waveClass.UnitsInWave.Count < _waveLayoutsByRange.WaveLayouts[0].UnitInWave.Length)
             {
-                ParentUnitClass unitForWave = _randomFreeChangingUnits.GetARandomParentUnitClassFromChangingsBasedOnLifeAmount(progressMaxForThisWave - progressCostForThisWave);
+                ParentUnitClass unitForWave = _randomFreeChangingUnits.GetARandomNonFFParentUnitClassBasedOnControllerLife(progressMaxForThisWave - progressCostForThisWave);
                 if (unitForWave != null)
                 {
                     Debug.Log($"unit generated " + unitForWave.BasicUnitClass.UnitName);
                     waveClass.UnitsInWave.Add(unitForWave);
                     progressCostForThisWave += unitForWave.BasicUnitClass.ControllerLifeCostMult;
-                    GenerateUnit(waveClass, ref progressCostForThisWave, progressMaxForThisWave);
+                    GenerateUnit(waveClass, ref progressCostForThisWave, progressMaxForThisWave, focusFireCostThisWave);
                 }
                 else
                 {
@@ -83,8 +84,20 @@ namespace Rechrysalis.Unit
             {
                 Debug.Log($"wave class units in wave count " + waveClass.UnitsInWave.Count.ToString());
             }
+            return false;            
+        }
+        private bool GenerateNonFFUnit(WaveClass waveClass, ref float progressCostForThisWave, ref float progressMaxForThisWave)
+        {
+
+            ParentUnitClass unitForWave = _randomFreeChangingUnits.GetARandomNonFFParentUnitClassBasedOnControllerLife(progressMaxForThisWave - progressCostForThisWave);
+            if (unitForWave != null)
+            {
+                Debug.Log($"unit generated " + unitForWave.BasicUnitClass.UnitName);
+                waveClass.UnitsInWave.Add(unitForWave);
+                progressCostForThisWave += unitForWave.BasicUnitClass.ControllerLifeCostMult;
+                return true;
+            }
             return false;
-            
         }
     }
 }

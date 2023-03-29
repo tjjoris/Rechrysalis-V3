@@ -95,7 +95,20 @@ namespace Rechrysalis.Unit
             int randomNumber = Random.Range(0, _listOfRandomParentUnitClasses.Count -1);
             return _listOfRandomParentUnitClasses[randomNumber];
         }
-        public ParentUnitClass GetARandomParentUnitClassFromChangingsBasedOnLifeAmount(float life)
+        public ParentUnitClass GetARandomFFParentUnitClass()
+        {
+            int randomNumber = Random.Range(0, _listOfFFParentUnitClasses.Count - 1);
+            return _listOfFFParentUnitClasses[randomNumber];
+        }
+        public ParentUnitClass GetARandomFFParentUnitClassBasedOnControllerLife(float life)
+        {
+            return GetARandomParentUnitClassFFOrNOtBasedOnLifeAmount(life, _listOfFFParentUnitClasses);
+        }
+        public ParentUnitClass GetARandomNonFFParentUnitClassBasedOnControllerLife(float life)
+        {
+            return GetARandomParentUnitClassFFOrNOtBasedOnLifeAmount(life, _listOfRandomParentUnitClasses);
+        }
+        public ParentUnitClass GetARandomParentUnitClassFFOrNOtBasedOnLifeAmount(float life, List<ParentUnitClass> ffOrNot)
         {
             ParentUnitClass parentUnitClass = GetARandomParentUnitClassFromChangings();
             if ((parentUnitClass.BasicUnitClass.ControllerLifeCostMult <= life))
