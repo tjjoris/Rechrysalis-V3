@@ -90,10 +90,10 @@ namespace Rechrysalis.Unit
             unitToChange.TierMultiplier = _tierMultipliersToChooseFrom[randomNumber];
             unitToChange.UnitName += " " + randomNumber.ToString();
         }
-        public ParentUnitClass GetARandomParentUnitClassFromChangings()
+        public ParentUnitClass GetARandomParentUnitClassFromChangings(List<ParentUnitClass> ffOrNot)
         {
-            int randomNumber = Random.Range(0, _listOfRandomParentUnitClasses.Count -1);
-            return _listOfRandomParentUnitClasses[randomNumber];
+            int randomNumber = Random.Range(0, ffOrNot.Count -1);
+            return ffOrNot[randomNumber];
         }
         public ParentUnitClass GetARandomFFParentUnitClass()
         {
@@ -110,23 +110,24 @@ namespace Rechrysalis.Unit
         }
         public ParentUnitClass GetARandomParentUnitClassFFOrNOtBasedOnLifeAmount(float life, List<ParentUnitClass> ffOrNot)
         {
-            ParentUnitClass parentUnitClass = GetARandomParentUnitClassFromChangings();
+            ParentUnitClass parentUnitClass = GetARandomParentUnitClassFromChangings(ffOrNot);
             if ((parentUnitClass.BasicUnitClass.ControllerLifeCostMult <= life))
             {
                 return parentUnitClass;
             }
-            List<ParentUnitClass> ifNotEnoughManaParentUnitClassesNotTried = new List<ParentUnitClass>();
-            foreach (ParentUnitClass parentUnitClassToAdd in _listOfRandomParentUnitClasses)
-            {
-                if (parentUnitClassToAdd != null)
-                {
-                    ifNotEnoughManaParentUnitClassesNotTried.Add(parentUnitClassToAdd);
-                }
-            }
+            // List<ParentUnitClass> ifNotEnoughManaParentUnitClassesNotTried = new List<ParentUnitClass>();
+            // foreach (ParentUnitClass parentUnitClassToAdd in ffOrNot)
+            // {
+            //     if (parentUnitClassToAdd != null)
+            //     {
+            //         ifNotEnoughManaParentUnitClassesNotTried.Add(parentUnitClassToAdd);
+            //     }
+            // }
+            List<ParentUnitClass> ifNotEnoughManaParentUnitClassesNotTried = CreateListIfNotEnoughMana(ffOrNot);
             if (ifNotEnoughManaParentUnitClassesNotTried.Contains(parentUnitClass))
             {
                 ifNotEnoughManaParentUnitClassesNotTried.Remove(parentUnitClass);
-                Debug.Log($"random parent units length " + _listOfRandomParentUnitClasses.Count);
+                Debug.Log($"random parent units length " + ffOrNot.Count);
             }
             foreach(ParentUnitClass parentUnitClassLeft in ifNotEnoughManaParentUnitClassesNotTried)            
             {
@@ -139,6 +140,18 @@ namespace Rechrysalis.Unit
                 }
             }
             return null;
+        }
+        private List<ParentUnitClass> CreateListIfNotEnoughMana(List<ParentUnitClass> ffOrNot)
+        {
+            List<ParentUnitClass> ifNotEnoughManaParentUnitClassesNotTried = new List<ParentUnitClass>();
+            foreach (ParentUnitClass parentUnitClassToAdd in ffOrNot)
+            {
+                if (parentUnitClassToAdd != null)
+                {
+                    ifNotEnoughManaParentUnitClassesNotTried.Add(parentUnitClassToAdd);
+                }
+            }
+            return ifNotEnoughManaParentUnitClassesNotTried;
         }
         public UnitStatsSO GetARandomUnitFromChangings()
         {
