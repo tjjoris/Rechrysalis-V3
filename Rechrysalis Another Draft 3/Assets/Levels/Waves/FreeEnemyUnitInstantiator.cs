@@ -49,9 +49,9 @@ namespace Rechrysalis.Unit
                 _controllerManager.ParentUnitMovers.Add(parentUnitMover);
             }
             ParentFreeEnemyManager _freeParentManager = newFreeEnemy.GetComponent<ParentFreeEnemyManager>();
-            _freeParentManager?.Initialize(_controllerManager, parentUnitClass.BasicUnitClass, unitInWaveIndex, _mainManager.CompsAndUnitsSO, _controllerManager.ControllerIndex);
-
+            _freeParentManager?.Initialize(_controllerManager, parentUnitClass.BasicUnitClass, unitInWaveIndex, _mainManager.CompsAndUnitsSO, _controllerManager.ControllerIndex);            
             parentUnitManager.ChildUnitManagers.Add(_freeParentManager.BasicUnitManager);
+            parentUnitManager.ChildChrysaliiUnitManagers.Add(_freeParentManager.ChrysalisUnitManager);
             newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(parentUnitClass.BasicUnitClass.HPMax);
             newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerManager.ControllerIndex, _mainManager);
             // _thesePlayerUnitsSO.ActiveUnits.Add(newFreeEnemy);

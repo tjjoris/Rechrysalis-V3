@@ -15,6 +15,9 @@ namespace Rechrysalis.Attacking
         private RemoveUnit _removeUnit;
         private CompsAndUnitsSO _compsAndUnitsSO;
         private int _controllerIndex;
+        private ParentHealth _parentHealth;
+        private UnitActivation _unitActivation;
+        private ChrysalisActivation _chrysalisActivation;
         public Action _spawnWaveAction;
         [SerializeField] private float _controllerProgressValue;
         public float ControllerProgressValue {get  => _controllerProgressValue; set => _controllerProgressValue = value;}
@@ -28,6 +31,9 @@ namespace Rechrysalis.Attacking
             _removeUnit = GetComponent<RemoveUnit>();
             this._compsAndUnitsSO = _compsAndUbnitsSO;
             this._controllerIndex = _controllerIndex;
+            _parentHealth = GetComponent<ParentHealth>();
+            _unitActivation = GetComponent<UnitActivation>();
+            _chrysalisActivation = GetComponent<ChrysalisActivation>();
         }
         public void UnitDies()
         {
@@ -40,6 +46,11 @@ namespace Rechrysalis.Attacking
             //     _targetsList.Targets.Remove(gameObject);
             // }
             // gameObject.SetActive(false);
+            if (!_parentHealth.IsChrysalis)
+            {
+                _chrysalisActivation.ActivateChrysalis(0);
+            }
+            else
             if (gameObject.activeInHierarchy)
             {
                 _freeControllerProgressBar?.AddProgress(_controllerProgressValue);

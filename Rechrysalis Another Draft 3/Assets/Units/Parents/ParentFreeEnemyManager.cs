@@ -30,6 +30,8 @@ namespace Rechrysalis.Unit
         private int _controllerIndex;
         [SerializeField] private UnitManager _basicUnitManager;
         public UnitManager BasicUnitManager {get {return _basicUnitManager;}}
+        [SerializeField] private UnitManager _chrysalisUnitManager;
+        public UnitManager ChrysalisUnitManager => _chrysalisUnitManager;
 
         public void InitializeOld(int controllerIndex,UnitStatsSO _unitStats, CompsAndUnitsSO _compsAndUnits, int _unitInWaveIndex, PlayerUnitsSO _ownUnits)
         {

@@ -14,6 +14,7 @@ namespace Rechrysalis.Unit
         private float _currentHealth;
         public float CurrentHealth => _currentHealth;
         private bool _isChrysalis;
+        public bool IsChrysalis => _isChrysalis;
         private float _incomingDamageMultbase = 0f;
         private float _incomingDamageMult = 0f;
         private float _chrysalisDefenceMult = 0.4f;
