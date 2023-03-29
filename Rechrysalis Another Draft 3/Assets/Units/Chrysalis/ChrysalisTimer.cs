@@ -7,8 +7,8 @@ namespace Rechrysalis.Unit
 {
     public class ChrysalisTimer : MonoBehaviour
     {
-        private float _timerMax;
-        private float _timerCurrent;
+        [SerializeField] private float _timerMax;
+        [SerializeField] private float _timerCurrent;
         public float TimerCurrent {set {_timerCurrent = value;} get {return _timerCurrent;}}
         private  int _nextUnitBuilding;
         private int _subUnitCount;
