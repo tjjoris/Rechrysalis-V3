@@ -107,7 +107,8 @@ namespace Rechrysalis.Unit
             this._theseUnits = _theseUnits;
             // _parentUnitClass = unitComp.ParentUnitClassList[_parentUnitIndex];
             _parentUnitClass = parentUnitClass;
-            _parentHealth = GetComponent<ParentHealth>();            
+            _parentHealth = GetComponent<ParentHealth>();  
+            _parentHealth?.Initialize();          
             // AddChrysalisAndUnitActions();
             _rotateParentUnit = GetComponent<RotateParentUnit>();
             _rotateParentUnit?.Initialize(controllertransform);

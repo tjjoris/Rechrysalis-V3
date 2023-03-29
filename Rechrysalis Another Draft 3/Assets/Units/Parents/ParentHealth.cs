@@ -43,7 +43,7 @@ namespace Rechrysalis.Unit
         {
             // float _damageToTake = _damage * _currentUnit.GetIncomingDamageMultiplier();            
             float damageToTake = _damage * (1 - _incomingDamageMult);            
-            if (_isChrysalis)
+            if ((_isChrysalis) && (_die == null))
             {
                 damageToTake *= (_chrysalisDefenceMult);
                 _enemyControllerHeal?.Invoke(_damage * _enemyControllerHealMult);
