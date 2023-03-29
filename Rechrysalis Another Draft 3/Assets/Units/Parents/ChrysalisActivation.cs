@@ -85,7 +85,7 @@ namespace Rechrysalis.Unit
                 _unitActivation.DeactivateUnit(_unitIndex);
             }
             _progressBarManager?.TintChrysalis();
-            _hilightRingParentManager.ActivateChrysalis(chrysalisIndex);
+            _hilightRingParentManager?.ActivateChrysalis(chrysalisIndex);
             _targetScoreValue.SetEgg(true);
         }
     }
