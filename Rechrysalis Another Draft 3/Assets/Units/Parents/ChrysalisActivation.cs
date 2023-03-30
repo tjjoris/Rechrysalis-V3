@@ -56,6 +56,11 @@ namespace Rechrysalis.Unit
         public void ActivateChrysalis(int chrysalisIndex)
         {
             _buildTimeFasterWithHigherHP?.SetBuildSpeedMult();
+            if ((_buildTimeFasterWithHigherHP != null) && (_buildTimeFasterWithHigherHP.GetBuildSpeedMult() <= 0))
+            {
+                _unitActivation?.ActivateUnit(chrysalisIndex);
+                return;
+            }
             if (_parentUnitManager.CurrentSubUnit == null)
             {
                 _parentUnitManager.CurrentSubUnit = _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject;
