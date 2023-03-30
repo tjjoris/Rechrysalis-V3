@@ -26,15 +26,18 @@ namespace Rechrysalis.Unit
         }
         private void SetBuildSpeedMultIndex(float healthRatio)
         {
+            _buildSPeedMultIndexToUse = GetBuildSpeedMultIndex(healthRatio);            
+        }
+        public int GetBuildSpeedMultIndex(float healthRatio)
+        {
             for (int i = 0; i < _ratioThreshHolds.Length; i++)
             {
                 if (healthRatio <= _ratioThreshHolds[i])
                 {
-                    _buildSPeedMultIndexToUse = i;
-                    Debug.Log($"saved build speed mult " + _buildSpeedMult[i]);
-                    return;
+                    return i;
                 }
             }
+            return 0;            
         }
         public void SetBuildSpeedMultMax()
         {

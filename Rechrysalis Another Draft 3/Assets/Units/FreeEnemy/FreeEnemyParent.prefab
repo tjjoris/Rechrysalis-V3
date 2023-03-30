@@ -140,6 +140,7 @@ MonoBehaviour:
   _maxHealth: 0
   _currentHealth: 0
   _hpBarFill: {fileID: 4977181882463418522}
+  _hpBarSprite: {fileID: 4078819666624566501}
 --- !u!114 &5820227700844239276
 MonoBehaviour:
   m_ObjectHideFlags: 0

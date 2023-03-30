@@ -22,7 +22,10 @@ namespace Rechrysalis.Unit
         private UnitManager _currentUnit;
         public UnitManager CurrentUnit {set {_currentUnit = value;} get {return _currentUnit;}}
         private Die _die;
+        private BuildTimeFasterWithHigherHP _buildTimeFasterwithHigherHP;
         [SerializeField] private Transform _hpBarFill;
+        [SerializeField] private SpriteRenderer _hpBarSprite;
+        private Color[] _hpBarTintByTier = new Color[3];
         public Action<int> _unitDies;
         public Action<float> _controllerTakeDamage;
         public Action<float> _enemyControllerHeal;
@@ -31,6 +34,7 @@ namespace Rechrysalis.Unit
         {
             _die = GetComponent<Die>();
             // _parentUnitManager = GetComponent<ParentUnitManager>();
+            _buildTimeFasterwithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
         }
 
         public void SetMaxHealth(float _maxHealth)
@@ -99,9 +103,21 @@ namespace Rechrysalis.Unit
         }
         private void UpdateHpBar()
         {
-            // Debug.Log($"update hp bar" + _currentHealth / _maxHealth);            
-            Vector2 hpBarScale = new Vector2 (GetHealthRatio(), 1f);
+            // Debug.Log($"update hp bar" + _currentHealth / _maxHealth);  
+            float healthRatio = GetHealthMissingRatio();          
+            Vector2 hpBarScale = new Vector2 (healthRatio, 1f);        
+            if (_buildTimeFasterwithHigherHP != null)
+            {
+                TintHPBar(_buildTimeFasterwithHigherHP.GetBuildSpeedMultIndex(healthRatio));
+            }    
             _hpBarFill.localScale = hpBarScale;
+        }
+        private void TintHPBar(int tier)
+        {
+            if ((_hpBarTintByTier.Length > tier) && (_hpBarTintByTier[tier] != null))
+            {
+                _hpBarSprite.color = _hpBarTintByTier[tier];
+            }
         }
         public float GetHealthRatio()
         {

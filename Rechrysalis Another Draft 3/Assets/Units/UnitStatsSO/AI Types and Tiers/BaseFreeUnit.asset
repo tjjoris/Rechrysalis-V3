@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthMultiplier: 34
   _chrysalisHealthMultiplier: 20
-  _dpsMultiplier: 3.7
+  _dpsMultiplier: 2
   _range: 1
   _attackChargeUp: 0.5
   _attackWindDown: 1.7

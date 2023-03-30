@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99313784cf6b467180b60a3e8c38185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hatchEffects: []
 --- !u!114 &7291548834546563690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +199,7 @@ MonoBehaviour:
   _maxHealth: 0
   _currentHealth: 0
   _hpBarFill: {fileID: 3090269855239971886}
+  _hpBarSprite: {fileID: 4824100114993928293}
 --- !u!114 &8342931345726060697
 MonoBehaviour:
   m_ObjectHideFlags: 0
