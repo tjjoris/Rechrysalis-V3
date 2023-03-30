@@ -29,7 +29,7 @@ namespace Rechrysalis.Controller
         private UpgradeRingManager _upgradeRingManager;
         private float _unitRingOuterRadius;
         // private float _controllerRadius;
-        public enum TouchTypeEnum {nothing, controller, map, friendlyUnit, unitRing, menu, other }
+        public enum TouchTypeEnum {nothing, controller, map, friendlyUnit, unitRing, menu, other, targetClicked }
         [SerializeField]private TouchTypeEnum[] _touchTypeArray = new TouchTypeEnum[5];
         [SerializeField] private Vector2[] _touchPosDown = new Vector2[5];
         [SerializeField] private Vector2[] _touchPosDownRaw = new Vector2[5];
@@ -38,6 +38,7 @@ namespace Rechrysalis.Controller
         private int _unitUpgrading;
         private ControllerManager _controllerManager;
         [SerializeField] private TransitionTargetingCamera _transitionTargetingCamera;
+        private GameObject _targetModeTargetClicked;
         // [SerializeField] private bool _targetDuringTargetMode;
         // public bool TargetDuringTargetMode { get => _targetDuringTargetMode; set => _targetDuringTargetMode = value; }
         [SerializeField] private PlayerPrefsInteract _plyaerPrefsInteract;
@@ -104,8 +105,9 @@ namespace Rechrysalis.Controller
             else if ((hit) && (UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)) && ((!_plyaerPrefsInteract.GetTargetOnlyDuringTargetMode()) || (_transitionTargetingCamera.InTargetMode)))
             {
                 // Debug.Log($"click enemy");
-                _playerTargtList.SetNewTarget(hit.collider.gameObject);
-                _touchTypeArray[_touchID] = TouchTypeEnum.other;
+                // _playerTargtList.SetNewTarget(hit.collider.gameObject);
+                _targetModeTargetClicked = hit.collider.gameObject;
+                _touchTypeArray[_touchID] = TouchTypeEnum.targetClicked;
             }
             // }
             else if ((!_transitionTargetingCamera.InTargetMode) && (UnitRingMouseOver(_mousePos, _controller.transform.position)))
@@ -252,6 +254,10 @@ namespace Rechrysalis.Controller
                 newPos += cameraScrollLocalPos;
                 _cameraGOScroll.localPosition = newPos;
             }
+            if ((_touchTypeArray[_touchID] == TouchTypeEnum.targetClicked) && ((_targetModeTargetClicked == null) || (!hit) || (hit.collider.gameObject != _targetModeTargetClicked)))
+            {
+                Debug.Log($"moved from target");
+            }
             else if ((_touchTypeArray[_touchID] == TouchTypeEnum.controller) && (_mousePos.y < _controller.transform.position.y - _controllerRadius))
             {
                 _transitionTargetingCamera.TransitionToTargeting();
@@ -297,6 +303,10 @@ namespace Rechrysalis.Controller
             CreateRayCastFunction(_mousePos, out _mousePosV3, out hit);
             // Debug.Log($"hit" + hit.collider.name);
             // Debug.Log($"controller pos " + _controller.transform.position);
+            if (_touchTypeArray[_touchID] == TouchTypeEnum.targetClicked)
+            {
+                _playerTargtList.SetNewTarget(_targetModeTargetClicked);
+            }
             if ((hit) && (ControllerMouseOver(hit)) && (_touchTypeArray[_touchID] == TouchTypeEnum.controller))
             {
                 _clickInfo.ControlledController.GetComponent<ControllerManager>().SetIsStopped(true);
