@@ -23,7 +23,6 @@ namespace Rechrysalis.Unit
         public UnitManager CurrentUnit {set {_currentUnit = value;} get {return _currentUnit;}}
         private Die _die;
         [SerializeField] private Transform _hpBarFill;
-        private BuildTimeFasterWithHigherHP _buildTimeFasterWithHigherHP;
         public Action<int> _unitDies;
         public Action<float> _controllerTakeDamage;
         public Action<float> _enemyControllerHeal;
@@ -32,7 +31,6 @@ namespace Rechrysalis.Unit
         {
             _die = GetComponent<Die>();
             // _parentUnitManager = GetComponent<ParentUnitManager>();
-            _buildTimeFasterWithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
         }
 
         public void SetMaxHealth(float _maxHealth)
@@ -85,7 +83,6 @@ namespace Rechrysalis.Unit
         {
             if (_currentHealth <= 0)
             {
-                _buildTimeFasterWithHigherHP?.SetBuildSpeedMult();
                 _unitDies?.Invoke(0);
                 GetComponent<Die>()?.UnitDies();
             }
@@ -102,12 +99,16 @@ namespace Rechrysalis.Unit
         }
         private void UpdateHpBar()
         {
-            // Debug.Log($"update hp bar" + _currentHealth / _maxHealth);
-            Vector2 hpBarScale = new Vector2 (_currentHealth / _maxHealth, 1f);
+            // Debug.Log($"update hp bar" + _currentHealth / _maxHealth);            
+            Vector2 hpBarScale = new Vector2 (GetHealthRatio(), 1f);
             _hpBarFill.localScale = hpBarScale;
         }
         public float GetHealthRatio()
         {
+            if (_currentHealth <= 0)
+            {
+                return 0;
+            }
             return (_currentHealth / _maxHealth);
         }
         public float GetHealthMissingRatio()

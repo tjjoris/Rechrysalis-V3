@@ -18,6 +18,7 @@ namespace Rechrysalis.Unit
         private FreeUnitChrysalisMovementStop _freeUnitChrysalisMovementStop;
         [SerializeField] private HilightRingParentManager _hilightRingParentManager;
         public HilightRingParentManager HilightRingParentManager { get => _hilightRingParentManager; set => _hilightRingParentManager = value; }
+        private BuildTimeFasterWithHigherHP _buildTimeFasterWithHigherHP;
 
         public void Initialize(ParentUnitManager parentUnitManager)
         {
@@ -26,7 +27,8 @@ namespace Rechrysalis.Unit
             _parentHealth = GetComponent<ParentHealth>();
             _targetScoreValue = GetComponent<TargetScoreValue>();
             _progressBarManager = GetComponent<ProgressBarManager>(); 
-            _freeUnitChrysalisMovementStop = GetComponent<FreeUnitChrysalisMovementStop>();           
+            _freeUnitChrysalisMovementStop = GetComponent<FreeUnitChrysalisMovementStop>();
+            _buildTimeFasterWithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
         }
         public void DeactivateChrysalis(int chrysalisIndex)
         {
@@ -53,6 +55,7 @@ namespace Rechrysalis.Unit
         }
         public void ActivateChrysalis(int chrysalisIndex)
         {
+            _buildTimeFasterWithHigherHP?.SetBuildSpeedMult();
             if (_parentUnitManager.CurrentSubUnit == null)
             {
                 _parentUnitManager.CurrentSubUnit = _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject;
@@ -79,7 +82,12 @@ namespace Rechrysalis.Unit
                     }
                     _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject.SetActive(true);
                     _parentHealth.CurrentUnit = _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex];
-                    _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].GetComponent<ChrysalisTimer>()?.StartThisChrysalis(_timeToKeep);
+                    ChrysalisTimer newChrysalisTimer = _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].GetComponent<ChrysalisTimer>();
+                    if (_buildTimeFasterWithHigherHP != null)
+                    {
+                        newChrysalisTimer?.ApplyTimerMaxMult(_buildTimeFasterWithHigherHP.GetBuildSpeedMult());
+                    }
+                    newChrysalisTimer?.StartThisChrysalis(_timeToKeep);
                     if (!_parentUnitManager.TheseUnits.ActiveUnits.Contains(_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject))
                     {
                         _parentUnitManager.TheseUnits.ActiveUnits.Add(_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject);

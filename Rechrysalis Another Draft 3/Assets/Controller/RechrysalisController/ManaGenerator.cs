@@ -17,7 +17,7 @@ namespace Rechrysalis.Controller
         private float _generateIntervalMax = 0.5f;
         private float _generateAmount = 1.3f;
         private bool _generatingMana;
-        private float _baseStartingAmount = 35;
+        private float _baseStartingAmount = 1035;
         private float _startingAmountMult = 15;
         private float _startingAmount = 35;
         private GameObject[] _parentUnits;

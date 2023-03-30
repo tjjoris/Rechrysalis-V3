@@ -7,6 +7,7 @@ namespace Rechrysalis.Unit
 {
     public class ChrysalisTimer : MonoBehaviour
     {
+        [SerializeField] private float _timerMaxBase;
         [SerializeField] private float _timerMax;
         [SerializeField] private float _timerCurrent;
         public float TimerCurrent {set {_timerCurrent = value;} get {return _timerCurrent;}}
@@ -21,8 +22,12 @@ namespace Rechrysalis.Unit
             {
                 _progressBarManager= progressBarManager;
             }
-            this._timerMax = _timerMax;
+            this._timerMaxBase = _timerMax;
             this._nextUnitBuilding = _nextUnitBuilding;
+        }
+        public void ApplyTimerMaxMult(float mult)
+        {
+            _timerMax = _timerMaxBase * mult;
         }
         public void StartThisChrysalis(float _timeToKeep)
         {
@@ -32,7 +37,7 @@ namespace Rechrysalis.Unit
         public void Tick (float _timeAmount)
         {
             _timerCurrent += _timeAmount;
-            if (_timerCurrent >= _timerMax)
+            if (_timerCurrent >= _timerMaxBase)
             {
                 _startUnit?.Invoke(_nextUnitBuilding);
             }
@@ -47,7 +52,7 @@ namespace Rechrysalis.Unit
         }
         private void CalculateProgressAndStrech()
         {
-            float timePercent = _timerCurrent / _timerMax;
+            float timePercent = _timerCurrent / _timerMaxBase;
             _progressBarManager.StrechFillByValue(timePercent);
         }
     }
