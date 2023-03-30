@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 6173028383454830166}
   - component: {fileID: 7979089051657480519}
   - component: {fileID: 8422274680845796423}
+  - component: {fileID: 7226957364316686763}
   - component: {fileID: 8365431111369499537}
   - component: {fileID: 132562969853228936}
   - component: {fileID: 7896667228969595942}
@@ -72,7 +73,27 @@ MonoBehaviour:
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
     _utcHatchEffect:
-      _upgradeType: 0
+    - _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    - _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    - _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    - _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    - _upgradeType: 0
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
@@ -81,44 +102,62 @@ MonoBehaviour:
       _manaCost: 0
       _unitName: 
       _hpMax: 0
+      _chrysalisHPMax: 0
       _buildTime: 0
       _range: 0
       _dps: 0
       _attackChargeUp: 0
       _attackWindDown: 0
       _damage: 0
-      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectPrefab:
+      - {fileID: 0}
+      _hatchEffectClasses: []
       _hatchEffectMult: 0
       _hatchEffectDurationAdd: 0
       _unitSprite: {fileID: 0}
       _chrysalisSprite: {fileID: 0}
       _amountToPool: 0
       _projectileSpeed: 0
+      _sacrificeControllerAmount: 0
+      _moveSpeedAdd: 0
+      _siegeDuration: 0
+      _burstHeal: 0
       _projectileSprite: {fileID: 0}
+      _controllerLifeCostMult: 1
     _advUnitClass:
       _manaCost: 0
       _unitName: 
       _hpMax: 0
+      _chrysalisHPMax: 0
       _buildTime: 0
       _range: 0
       _dps: 0
       _attackChargeUp: 0
       _attackWindDown: 0
       _damage: 0
-      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectPrefab:
+      - {fileID: 0}
+      _hatchEffectClasses: []
       _hatchEffectMult: 0
       _hatchEffectDurationAdd: 0
       _unitSprite: {fileID: 0}
       _chrysalisSprite: {fileID: 0}
       _amountToPool: 0
       _projectileSpeed: 0
+      _sacrificeControllerAmount: 0
+      _moveSpeedAdd: 0
+      _siegeDuration: 0
+      _burstHeal: 0
       _projectileSprite: {fileID: 0}
+      _controllerLifeCostMult: 1
   _controllerIndex: 0
   _subUnits: []
   _subChrysalii: []
   _childUnitManagers: []
   _childChrysaliiUnitManagers: []
   _progressBarManager: {fileID: 0}
+  _hilightRingParentManager: {fileID: 0}
+  _isStopped: 0
 --- !u!114 &9014156547805089921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed24b9eb47064778b1799bd722851c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 0
+  _currentHealth: 0
   _hpBarFill: {fileID: 3090269855239971886}
 --- !u!114 &8342931345726060697
 MonoBehaviour:
@@ -244,6 +285,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81d9e8b05bfd4476291b65f15353bb6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hilightRingParentManager: {fileID: 0}
+--- !u!114 &7226957364316686763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6178309120940175549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd9bb85cf21cd412ca7d305af15d7372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8365431111369499537

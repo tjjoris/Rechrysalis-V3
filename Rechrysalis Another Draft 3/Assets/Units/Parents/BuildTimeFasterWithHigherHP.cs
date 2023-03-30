@@ -19,7 +19,7 @@ namespace Rechrysalis.Unit
         {
             _parentHealth = GetComponent<ParentHealth>();
         }
-        public void FindBuildSpeedMult()
+        public void SetBuildSpeedMult()
         {
             float healthRatio = _parentHealth.GetHealthRatio();
             FindBuildSPeedMultIndex(healthRatio);            

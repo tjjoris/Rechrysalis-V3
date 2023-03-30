@@ -23,6 +23,7 @@ namespace Rechrysalis.Unit
         public UnitManager CurrentUnit {set {_currentUnit = value;} get {return _currentUnit;}}
         private Die _die;
         [SerializeField] private Transform _hpBarFill;
+        private BuildTimeFasterWithHigherHP _buildTimeFasterWithHigherHP;
         public Action<int> _unitDies;
         public Action<float> _controllerTakeDamage;
         public Action<float> _enemyControllerHeal;
@@ -31,6 +32,7 @@ namespace Rechrysalis.Unit
         {
             _die = GetComponent<Die>();
             // _parentUnitManager = GetComponent<ParentUnitManager>();
+            _buildTimeFasterWithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
         }
 
         public void SetMaxHealth(float _maxHealth)
@@ -83,6 +85,7 @@ namespace Rechrysalis.Unit
         {
             if (_currentHealth <= 0)
             {
+                _buildTimeFasterWithHigherHP?.SetBuildSpeedMult();
                 _unitDies?.Invoke(0);
                 GetComponent<Die>()?.UnitDies();
             }
