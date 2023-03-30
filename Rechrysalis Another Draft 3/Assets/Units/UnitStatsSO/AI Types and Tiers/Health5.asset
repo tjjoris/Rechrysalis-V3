@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Health5
   m_EditorClassIdentifier: 
   _healthMultiplier: 2.5
-  _chrysalisHealthMultiplier: 2.5
-  _dpsMultiplier: 1.25
+  _chrysalisHealthMultiplier: 4
+  _dpsMultiplier: 1.5
   _range: 1
   _attackChargeUp: 1
   _attackWindDown: 1
