@@ -16,13 +16,14 @@ namespace Rechrysalis.Unit
         [SerializeField] private ProgressBarManager _progressBarManager;
         public Action<int> _startUnit;
 
-        public void Initialize (float _timerMax, int _nextUnitBuilding, ProgressBarManager progressBarManager)
+        public void Initialize (float timerMax, int _nextUnitBuilding, ProgressBarManager progressBarManager)
         {
             if (_progressBarManager == null)
             {
                 _progressBarManager= progressBarManager;
             }
-            this._timerMaxBase = _timerMax;
+            this._timerMaxBase = timerMax;
+            _timerMax = _timerMaxBase;
             this._nextUnitBuilding = _nextUnitBuilding;
         }
         public void ApplyTimerMaxMult(float mult)
@@ -37,7 +38,7 @@ namespace Rechrysalis.Unit
         public void Tick (float _timeAmount)
         {
             _timerCurrent += _timeAmount;
-            if (_timerCurrent >= _timerMaxBase)
+            if (_timerCurrent >= _timerMax)
             {
                 _startUnit?.Invoke(_nextUnitBuilding);
             }
@@ -52,8 +53,20 @@ namespace Rechrysalis.Unit
         }
         private void CalculateProgressAndStrech()
         {
-            float timePercent = _timerCurrent / _timerMaxBase;
+            float timePercent = GetProgressRatio();
             _progressBarManager.StrechFillByValue(timePercent);
+        }
+        private float GetProgressRatio()
+        {
+            if (_timerCurrent <= 0)
+            {
+                return 0;
+            }
+            if (_timerMax <= 0)
+            {
+                return 1;                
+            }
+            return _timerCurrent / _timerMax;
         }
     }
 }
