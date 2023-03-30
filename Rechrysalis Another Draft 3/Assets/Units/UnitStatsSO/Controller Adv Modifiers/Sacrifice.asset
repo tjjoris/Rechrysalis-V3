@@ -35,4 +35,8 @@ MonoBehaviour:
   _attackWindDownMult: 1
   _hatchEffectMultiplierAdd: 0
   _hatchEffectDurationAdd: 0
-  _sacrificeControllerAmount: 10
+  _sacrificeControllerAmount: 4
+  _moveSpeedAdd: 0
+  _siegeDuration: 0
+  _burstHeal: 0
+  _controllerLifeCostMult: 1

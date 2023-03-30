@@ -41,12 +41,13 @@ namespace Rechrysalis.Unit
         private void ChangeUnits(int level, ControllerUnitsSO changingUnits, bool focusFireBool, List<ParentUnitClass> listOfParentUnitClasses)
         {
             int i = 0;
+            int tier = level;
             foreach (UnitStatsSO unitToChange in changingUnits.ControllerUnits)
             {
                 if (unitToChange != null)
                 {
-                    ChangeThisUnitType(level, unitToChange);
-                    ChangeThisUnitTIer(level, unitToChange);
+                    ChangeThisUnitType(tier, unitToChange);
+                    ChangeThisUnitTIer(tier, unitToChange);
                     // if (i < 1)
                     // {
                     //     ChangeFocusFire(true, unitToChange);
@@ -67,6 +68,11 @@ namespace Rechrysalis.Unit
                 parentUnitClass.SetAllStats();
                 listOfParentUnitClasses.Add(parentUnitClass);
                 i++;
+                tier --;
+                if (tier < 0)
+                {
+                    tier = 0;
+                }
             }
         }
 
@@ -81,15 +87,15 @@ namespace Rechrysalis.Unit
             unitToChange.UnitSprite = _unitTypes.ControllerUnits[randomNumber].UnitSprite;
             unitToChange.UnitName = _unitTypes.ControllerUnits[randomNumber].UnitName;
         }
-        private void ChangeThisUnitTIer(int level, UnitStatsSO unitToChange)
+        private void ChangeThisUnitTIer(int tier, UnitStatsSO unitToChange)
         {
-            int randomNumber = Random.Range(0, level);
-            if (randomNumber > _tierMultipliersToChooseFrom.Count -1)
-            {
-                randomNumber = _tierMultipliersToChooseFrom.Count -1;
-            }
-            unitToChange.TierMultiplier = _tierMultipliersToChooseFrom[randomNumber];
-            unitToChange.UnitName += " " + randomNumber.ToString();
+            // int randomNumber = Random.Range(0, tier);
+            // if (randomNumber > _tierMultipliersToChooseFrom.Count -1)
+            // {
+            //     randomNumber = _tierMultipliersToChooseFrom.Count -1;
+            // }
+            unitToChange.TierMultiplier = _tierMultipliersToChooseFrom[tier];
+            unitToChange.UnitName += " " + tier.ToString();
         }
         public ParentUnitClass GetARandomParentUnitClassFromChangings(List<ParentUnitClass> ffOrNot)
         {
