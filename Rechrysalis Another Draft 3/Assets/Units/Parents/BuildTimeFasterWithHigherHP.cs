@@ -22,9 +22,9 @@ namespace Rechrysalis.Unit
         public void SetBuildSpeedMult()
         {
             float healthRatio = _parentHealth.GetHealthRatio();
-            FindBuildSPeedMultIndex(healthRatio);            
+            SetBuildSpeedMultIndex(healthRatio);            
         }
-        private void FindBuildSPeedMultIndex(float healthRatio)
+        private void SetBuildSpeedMultIndex(float healthRatio)
         {
             for (int i = 0; i < _ratioThreshHolds.Length; i++)
             {
@@ -35,6 +35,10 @@ namespace Rechrysalis.Unit
                     return;
                 }
             }
+        }
+        public void SetBuildSpeedMultMax()
+        {
+            SetBuildSpeedMultIndex(0);
         }
         public float GetBuildSpeedMult()
         {

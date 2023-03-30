@@ -55,7 +55,19 @@ namespace Rechrysalis.Unit
         }
         public void ActivateChrysalis(int chrysalisIndex)
         {
-            _buildTimeFasterWithHigherHP?.SetBuildSpeedMult();
+            ChrysalisTimer chrysalisTimer = null;
+            if (_parentUnitManager.CurrentSubUnit != null)
+                {            
+                    chrysalisTimer = _parentUnitManager.CurrentSubUnit.GetComponent<ChrysalisTimer>();
+                }
+            if ((chrysalisTimer == null))
+            {
+                _buildTimeFasterWithHigherHP?.SetBuildSpeedMult();
+            }
+            else 
+            {
+                _buildTimeFasterWithHigherHP?.SetBuildSpeedMultMax();
+            }
             if ((_buildTimeFasterWithHigherHP != null) && (_buildTimeFasterWithHigherHP.GetBuildSpeedMult() <= 0))
             {
                 _unitActivation?.ActivateUnit(chrysalisIndex);
@@ -71,10 +83,9 @@ namespace Rechrysalis.Unit
             _parentHealth.SetChrysalis(true);
             _parentHealth.SetMaxHealth(_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].UnitClass.ChrysalisHPMax);
             float _timeToKeep = 0;
-            ChrysalisTimer _chrysalisTimer = _parentUnitManager.CurrentSubUnit.GetComponent<ChrysalisTimer>();
-            if (_chrysalisTimer != null)
+            if (chrysalisTimer != null)
             {
-                _timeToKeep = _chrysalisTimer.TimerCurrent;
+                _timeToKeep = chrysalisTimer.TimerCurrent;
             }
             for (int _indexInSubChrysalis = 0; _indexInSubChrysalis < _parentUnitManager.ChildChrysaliiUnitManagers.Count; _indexInSubChrysalis++)
             {

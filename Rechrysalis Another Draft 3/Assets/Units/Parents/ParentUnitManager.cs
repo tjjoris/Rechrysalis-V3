@@ -37,7 +37,7 @@ namespace Rechrysalis.Unit
         public HatchEffectSO[] SubHatchEffects {get { return _subHatchEffects;}}       
         private PlayerUnitsSO _theseUnits;
         public PlayerUnitsSO TheseUnits {get {return _theseUnits;}}
-        private GameObject _currentSubUnit;
+        [SerializeField] private GameObject _currentSubUnit;
         public GameObject CurrentSubUnit {get { return _currentSubUnit;} set { _currentSubUnit = value;} }
         private RotateParentUnit _rotateParentUnit;
         private ParentHealth _parentHealth;

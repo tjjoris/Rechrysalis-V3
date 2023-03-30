@@ -244,6 +244,7 @@ namespace Rechrysalis.Controller
                         // thisParentUnit.GetComponent<ParentHealth>().SetMaxHealth(thisParentUnit.SubUnits[0].GetComponent<UnitManager>().UnitClass.HPMax);
                         // thisParentUnit.GetComponent<UnitActivation>().ActivateUnit(0);
                         thisParentUnit.GetComponent<ChrysalisActivation>().ActivateChrysalis(0);
+                        thisParentUnit.CurrentSubUnit = thisParentUnit.ChildChrysaliiUnitManagers[0].gameObject;
                     }
                 }
             }
