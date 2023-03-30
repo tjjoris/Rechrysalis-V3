@@ -140,7 +140,7 @@ MonoBehaviour:
   _maxHealth: 0
   _currentHealth: 0
   _hpBarFill: {fileID: 4977181882463418522}
-  _hpBarSprite: {fileID: 4078819666624566501}
+  _hpBarSprite: {fileID: 6670183963937668647}
 --- !u!114 &5820227700844239276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,6 +565,11 @@ Transform:
 --- !u!4 &4977181882463418522 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8273523667061994413, guid: 5e5df04f13c19414eb3a5b50a801b952, type: 3}
+  m_PrefabInstance: {fileID: 4018325213903686455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &6670183963937668647 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7733443090496320784, guid: 5e5df04f13c19414eb3a5b50a801b952, type: 3}
   m_PrefabInstance: {fileID: 4018325213903686455}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6993386582829586431
