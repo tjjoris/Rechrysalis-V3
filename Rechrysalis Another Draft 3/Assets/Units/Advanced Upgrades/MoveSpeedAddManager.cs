@@ -9,6 +9,7 @@ namespace Rechrysalis.AdvancedUpgrade
     {
         private bool _debugBool = true;
         private Mover _mover;
+        private Rigidbody2D _rb2d;
         private float _moveSpeedAdd;
         private float _timeToWait = 4f;
         [SerializeField] private float _timeCurrent = 0;
@@ -17,6 +18,7 @@ namespace Rechrysalis.AdvancedUpgrade
         {
             _mover = mover;
             _moveSpeedAdd = moveSpeedAdd;
+            _rb2d = _mover.RB2D;
         }
         public void OnEnable()
         {
@@ -46,7 +48,7 @@ namespace Rechrysalis.AdvancedUpgrade
         }
         public void Tick(float timeAmount)
         {
-            if (!_hasBeenDeactivated)
+            if ((!_hasBeenDeactivated) && (_rb2d.velocity != Vector2.zero))
             {
                 _timeCurrent += timeAmount;
                 if (_timeCurrent >= _timeToWait)
