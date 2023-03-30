@@ -155,6 +155,7 @@ MonoBehaviour:
   _subChrysalii: []
   _childUnitManagers: []
   _childChrysaliiUnitManagers: []
+  _currentSubUnit: {fileID: 0}
   _progressBarManager: {fileID: 0}
   _hilightRingParentManager: {fileID: 0}
   _isStopped: 0
@@ -275,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2f04af9b4b1427785687081e3a3420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _particleEffectPrefab: {fileID: 7911281763207815054, guid: 2538756a4dcac4719bd9629ebba4c776, type: 3}
 --- !u!114 &8422274680845796423
 MonoBehaviour:
   m_ObjectHideFlags: 0

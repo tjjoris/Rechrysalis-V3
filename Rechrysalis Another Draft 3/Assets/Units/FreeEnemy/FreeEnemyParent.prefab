@@ -137,6 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed24b9eb47064778b1799bd722851c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 0
+  _currentHealth: 0
   _hpBarFill: {fileID: 4977181882463418522}
 --- !u!114 &5820227700844239276
 MonoBehaviour:
@@ -384,6 +386,7 @@ MonoBehaviour:
       _manaCost: 0
       _unitName: 
       _hpMax: 0
+      _chrysalisHPMax: 0
       _buildTime: 0
       _range: 0
       _dps: 0
@@ -409,6 +412,7 @@ MonoBehaviour:
       _manaCost: 0
       _unitName: 
       _hpMax: 0
+      _chrysalisHPMax: 0
       _buildTime: 0
       _range: 0
       _dps: 0
@@ -435,6 +439,7 @@ MonoBehaviour:
   _subChrysalii: []
   _childUnitManagers: []
   _childChrysaliiUnitManagers: []
+  _currentSubUnit: {fileID: 0}
   _progressBarManager: {fileID: 6648744941601182457}
   _hilightRingParentManager: {fileID: 0}
   _isStopped: 0
@@ -465,6 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2f04af9b4b1427785687081e3a3420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _particleEffectPrefab: {fileID: 7911281763207815054, guid: 2538756a4dcac4719bd9629ebba4c776, type: 3}
 --- !u!114 &830242925234938650
 MonoBehaviour:
   m_ObjectHideFlags: 0
