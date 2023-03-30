@@ -9,11 +9,12 @@ namespace Rechrysalis.Unit
     public class ParentUnitHatchEffects : MonoBehaviour
     {
         private ParentUnitManager _parentUnitManager;
-        private List<GameObject> _hatchEffects;
+        [SerializeField] private List<GameObject> _hatchEffects;
         public List<GameObject> HatchEffects => _hatchEffects;
         private GameObject[] _subUnits;
         private GameObject[] _subChrysalii;
         public Action<GameObject, int, int, bool> _addHatchEffect;
+        public Action<GameObject, int, int, bool> _removeHatchEffect;
         public void Initialize (GameObject[] _subUnits, GameObject[] _subchrysalii)
         {
             _parentUnitManager = GetComponent<ParentUnitManager>();
@@ -48,6 +49,10 @@ namespace Rechrysalis.Unit
             // {
             //     _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
             // }
+        }
+        public void RemoveAllHatchEffectsOwnedByUnit()
+        {
+
         }
         public void RemoveHatchEffect(GameObject _hatchEffect)
         {

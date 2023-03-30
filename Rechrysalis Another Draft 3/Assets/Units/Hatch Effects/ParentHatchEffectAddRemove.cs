@@ -16,12 +16,14 @@ namespace Rechrysalis.HatchEffect
             _parentUnitManager = parentUnitManager;
             _parentHealth = GetComponent<ParentHealth>();
         }
-        public void AddHatchEffect(GameObject _hatchEffect)
+        public void AddHatchEffect(GameObject hatchEffect)
         {
             if (_debugBool)
             {
                 Debug.Log($"parent unit add hatch effect called");
             }
+            // HatchEffectManager hatchEffectManager = hatchEffect.GetComponent<HatchEffectManager>();
+            // _parentUnitManager.HatchEffectsIOwn.Add(hatchEffectManager);
             // _hatchEffectManagersToDamage.Add(_hatchEffect.GetComponent<HatchEffectManager>());
             // _pUHE?.AddHatchEffect(_hatchEffect);
             if (_parentUnitManager.SubUnits.Length > 0)
@@ -34,20 +36,20 @@ namespace Rechrysalis.HatchEffect
                         {
                             Debug.Log($"add hatch effect to child");
                         }
-                        _parentUnitManager.SubUnits[_childIndex].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                        _parentUnitManager.SubUnits[_childIndex].GetComponent<UnitManager>()?.AddHatchEffect(hatchEffect);
                     }
                 }
                 for (int _childIndex = 0; _childIndex < _parentUnitManager.SubChrysalii.Length; _childIndex++)
                 {
                     if (_parentUnitManager.SubChrysalii[_childIndex] != null)
                     {
-                        _parentUnitManager.SubChrysalii[_childIndex].GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
+                        _parentUnitManager.SubChrysalii[_childIndex].GetComponent<UnitManager>()?.AddHatchEffect(hatchEffect);
                     }
                 }
             }
-            CheckToModifyParentDefencesFromHEChanges(_hatchEffect);
+            CheckToModifyParentDefencesFromHEChanges(hatchEffect);
         }
-        public void RemoveHatchEffect(GameObject _hatchEffect)
+        public void RemoveHatchEffect(GameObject hatchEffect)
         {
             // HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
             // if (_hatchEffectManager != null)
@@ -58,24 +60,29 @@ namespace Rechrysalis.HatchEffect
             //     }
             // }
             // _pUHE?.RemoveHatchEffect(_hatchEffect);
+            // HatchEffectManager hatchEffectManager = hatchEffect.GetComponent<HatchEffectManager>();
+            // if (_parentUnitManager.HatchEffectsIOwn.Contains(hatchEffectManager))
+            // {
+            //     _parentUnitManager.HatchEffectsIOwn.Remove(hatchEffectManager);
+            // }
             if (_parentUnitManager.SubUnits.Length > 0)
             {
                 for (int _childIndex = 0; _childIndex < _parentUnitManager.SubUnits.Length; _childIndex++)
                 {
                     if (_parentUnitManager.SubUnits[_childIndex] != null)
                     {
-                        _parentUnitManager.SubUnits[_childIndex].GetComponent<UnitManager>()?.RemoveHatchEffect(_hatchEffect);
+                        _parentUnitManager.SubUnits[_childIndex].GetComponent<UnitManager>()?.RemoveHatchEffect(hatchEffect);
                     }
                 }
                 for (int _childIndex = 0; _childIndex < _parentUnitManager.SubChrysalii.Length; _childIndex++)
                 {
                     if (_parentUnitManager.SubChrysalii[_childIndex] != null)
                     {
-                        _parentUnitManager.SubChrysalii[_childIndex].GetComponent<UnitManager>()?.RemoveHatchEffect(_hatchEffect);
+                        _parentUnitManager.SubChrysalii[_childIndex].GetComponent<UnitManager>()?.RemoveHatchEffect(hatchEffect);
                     }
                 }
             }
-            CheckToModifyParentDefencesFromHEChanges(_hatchEffect);
+            CheckToModifyParentDefencesFromHEChanges(hatchEffect);
         }
         private void CheckToModifyParentDefencesFromHEChanges(GameObject hatchEffect)
         {

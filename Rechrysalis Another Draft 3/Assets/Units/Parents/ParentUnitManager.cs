@@ -32,6 +32,9 @@ namespace Rechrysalis.Unit
         // private List<HatchEffectManager> _hatchEffectManagersToDamage;
         [SerializeField] private List<UnitManager> _childChrysaliiUnitManagers;
         public List<UnitManager> ChildChrysaliiUnitManagers { get => _childChrysaliiUnitManagers; set => _childChrysaliiUnitManagers = value; }
+        [SerializeField] private List<HatchEffectManager> _hatchEffectsIOwn = new List<HatchEffectManager>()
+        public List<HatchEffectManager> HatchEffectsIOwn { get => _hatchEffectsIOwn; set => _hatchEffectsIOwn = value; }
+        
         
         private HatchEffectSO[] _subHatchEffects; 
         public HatchEffectSO[] SubHatchEffects {get { return _subHatchEffects;}}       

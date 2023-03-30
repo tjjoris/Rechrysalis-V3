@@ -60,7 +60,7 @@ namespace Rechrysalis.Unit
             }
             if (_debugBool) Debug.Log($"take damage " + damageToTake);
             UpdateHpBar();
-            GetComponent<ParentUnitHatchEffects>()?.TakeDamage(_damage);
+            // GetComponent<ParentUnitHatchEffects>()?.TakeDamage(_damage);
             CheckIfDead();
         }
         public void Heal(float healAmount)
