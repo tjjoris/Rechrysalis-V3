@@ -10,8 +10,8 @@ namespace Rechrysalis.Unit
     public class ParentHealth : MonoBehaviour
     {
         bool _debugBool = false;
-        private float _maxHealth;
-        private float _currentHealth;
+        [SerializeField] private float _maxHealth;
+        [SerializeField] private float _currentHealth;
         public float CurrentHealth => _currentHealth;
         private bool _isChrysalis;
         public bool IsChrysalis => _isChrysalis;

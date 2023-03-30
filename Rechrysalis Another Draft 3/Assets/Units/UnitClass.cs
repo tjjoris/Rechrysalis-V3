@@ -17,6 +17,8 @@ namespace Rechrysalis.Unit
         public string UnitName { get => _unitName; set => _unitName = value; }
         [SerializeField] private float _hpMax;       
         public float HPMax {get => _hpMax; set => _hpMax = value;}
+        [SerializeField] private float _chrysalisHPMax;
+        public float ChrysalisHPMax { get => _chrysalisHPMax; set => _chrysalisHPMax = value; }        
         [SerializeField] private float _buildTime;
         public float BuildTime {get => _buildTime; set => _buildTime = value;}
         [SerializeField] private float _range;

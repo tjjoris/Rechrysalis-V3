@@ -61,7 +61,7 @@ namespace Rechrysalis.Unit
             // if ((_chrysalisIndex == 0) && (_parentUnitManager.CurrentSubUnit != _parentUnitManager._subUnits[0])) return;
             // if (_parentUnitManager.CurrentSubUnit != _parentUnitManager.SubChrysalii[_chrysalisIndex])
             _parentHealth.SetChrysalis(true);
-            _parentHealth.SetMaxHealth(_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].UnitClass.HPMax);
+            _parentHealth.SetMaxHealth(_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].UnitClass.ChrysalisHPMax);
             float _timeToKeep = 0;
             ChrysalisTimer _chrysalisTimer = _parentUnitManager.CurrentSubUnit.GetComponent<ChrysalisTimer>();
             if (_chrysalisTimer != null)

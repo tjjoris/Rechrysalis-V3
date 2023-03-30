@@ -10,6 +10,9 @@ namespace Rechrysalis.Unit
     {
         [SerializeField] private float _healthMultiplier = 1;
         public float HealthMultiplier {get{return _healthMultiplier;}}
+        [SerializeField] private float _chrysalisHealthMultiplier = 1;
+        public float ChrysalisHealthMultiplier { get => _chrysalisHealthMultiplier; set => _chrysalisHealthMultiplier = value; }
+        
         [SerializeField] private float _dpsMultiplier = 1;
         public float DPSMultiplier {get{return _dpsMultiplier;}}
         [SerializeField] private float _range = 5;

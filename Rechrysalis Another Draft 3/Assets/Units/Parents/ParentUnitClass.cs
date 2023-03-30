@@ -176,6 +176,7 @@ namespace Rechrysalis.Unit
                 _basicUnitClass = new UnitClass();
                 _basicUnitClass.ManaCost = baseMultiplierSO.ManaMultiplier * typeMultipler.ManaMultiplier * tierMultiplier.ManaMultiplier;
                 _basicUnitClass.HPMax = baseMultiplierSO.HealthMultiplier * typeMultipler.HealthMultiplier * tierMultiplier.HealthMultiplier;
+                _basicUnitClass.ChrysalisHPMax = baseMultiplierSO.ChrysalisHealthMultiplier * typeMultipler.ChrysalisHealthMultiplier * tierMultiplier.ChrysalisHealthMultiplier;
                 _basicUnitClass.BuildTime = baseMultiplierSO.BuildTimeMultiplier * typeMultipler.BuildTimeMultiplier * tierMultiplier.BuildTimeMultiplier;
                 _basicUnitClass.Range = baseMultiplierSO.Range * typeMultipler.Range * tierMultiplier.Range;
                 _basicUnitClass.DPS = baseMultiplierSO.DPSMultiplier * typeMultipler.DPSMultiplier * tierMultiplier.DPSMultiplier;
@@ -207,6 +208,7 @@ namespace Rechrysalis.Unit
                 _advUnitClass.ManaCost += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.ManaAdd;
                 _advUnitClass.HPMax = _basicUnitClass.HPMax * _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.HPMaxMult;
                 _advUnitClass.HPMax += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.HPMaxAdd;
+                _advUnitClass.ChrysalisHPMax = _basicUnitClass.ChrysalisHPMax;
                 _advUnitClass.BuildTime = _basicUnitClass.BuildTime * _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.BuildTimeMult;
                 _advUnitClass.BuildTime += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.BuildTimeAdd;
                 _advUnitClass.Range = _basicUnitClass.Range + _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.RangeAdd;

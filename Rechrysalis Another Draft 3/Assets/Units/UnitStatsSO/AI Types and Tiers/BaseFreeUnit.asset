@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BaseFreeUnit
   m_EditorClassIdentifier: 
   _healthMultiplier: 34
+  _chrysalisHealthMultiplier: 20
   _dpsMultiplier: 3.7
   _range: 1
   _attackChargeUp: 0.5
