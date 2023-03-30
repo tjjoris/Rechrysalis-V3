@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Attacking;
 using Rechrysalis.Controller;
+using Rechrysalis.Movement;
 
 namespace Rechrysalis.Unit
 {
@@ -14,6 +15,7 @@ namespace Rechrysalis.Unit
         private ParentHealth _parentHealth;
         private TargetScoreValue _targetScoreValue;
         private ProgressBarManager _progressBarManager;
+        private FreeUnitChrysalisMovementStop _freeUnitChrysalisMovementStop;
         [SerializeField] private HilightRingParentManager _hilightRingParentManager;
         public HilightRingParentManager HilightRingParentManager { get => _hilightRingParentManager; set => _hilightRingParentManager = value; }
 
@@ -23,7 +25,8 @@ namespace Rechrysalis.Unit
             _unitActivation = GetComponent<UnitActivation>();
             _parentHealth = GetComponent<ParentHealth>();
             _targetScoreValue = GetComponent<TargetScoreValue>();
-            _progressBarManager = GetComponent<ProgressBarManager>();            
+            _progressBarManager = GetComponent<ProgressBarManager>(); 
+            _freeUnitChrysalisMovementStop = GetComponent<FreeUnitChrysalisMovementStop>();           
         }
         public void DeactivateChrysalis(int chrysalisIndex)
         {
@@ -96,6 +99,7 @@ namespace Rechrysalis.Unit
             {
                 _parentHealth.SetCurrentHealth(freeChrysalisStoresHealth.StoredHealth);
             }
+            _freeUnitChrysalisMovementStop?.StopMovement();
             _targetScoreValue.SetEgg(true);
         }
     }
