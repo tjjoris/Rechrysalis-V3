@@ -94,6 +94,10 @@ namespace Rechrysalis.Unit
             // {
             //     randomNumber = _tierMultipliersToChooseFrom.Count -1;
             // }
+            if (_tierMultipliersToChooseFrom.Count <= tier)
+            {
+                tier = _tierMultipliersToChooseFrom.Count -1;
+            }
             unitToChange.TierMultiplier = _tierMultipliersToChooseFrom[tier];
             unitToChange.UnitName += " " + tier.ToString();
         }
