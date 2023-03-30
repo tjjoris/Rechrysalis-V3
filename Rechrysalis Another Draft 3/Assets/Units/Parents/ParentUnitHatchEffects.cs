@@ -15,7 +15,7 @@ namespace Rechrysalis.Unit
         private int _parentIndex;
         private GameObject[] _subChrysalii;
         public Action<GameObject, int, int, bool> _addHatchEffect;
-        public Action<GameObject, int, bool> _removeHatchEffect;
+        public Action<GameObject, int, int, bool> _removeHatchEffect;
         public void Initialize (GameObject[] _subUnits, GameObject[] _subchrysalii)
         {
             _parentUnitManager = GetComponent<ParentUnitManager>();
@@ -54,11 +54,19 @@ namespace Rechrysalis.Unit
         }
         public void RemoveAllHatchEffectsOwnedByUnit()
         {
+            List<GameObject> tempHEList = new List<GameObject>();
             foreach (GameObject hatchEffect in _hatchEffects)
             {
                 if (hatchEffect != null)
                 {
-                    _removeHatchEffect?.Invoke(hatchEffect, _parentIndex, true);
+                    tempHEList.Add(hatchEffect);
+                }
+            }
+            foreach (GameObject hatchEffect in tempHEList)
+            {
+                if ((hatchEffect != null) && (hatchEffect.activeInHierarchy))
+                {
+                    _removeHatchEffect?.Invoke(hatchEffect, _parentIndex, 0, true);
                 }
             }
         }

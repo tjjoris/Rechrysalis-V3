@@ -32,8 +32,6 @@ namespace Rechrysalis.Unit
         // private List<HatchEffectManager> _hatchEffectManagersToDamage;
         [SerializeField] private List<UnitManager> _childChrysaliiUnitManagers;
         public List<UnitManager> ChildChrysaliiUnitManagers { get => _childChrysaliiUnitManagers; set => _childChrysaliiUnitManagers = value; }
-        [SerializeField] private List<HatchEffectManager> _hatchEffectsIOwn = new List<HatchEffectManager>()
-        public List<HatchEffectManager> HatchEffectsIOwn { get => _hatchEffectsIOwn; set => _hatchEffectsIOwn = value; }
         
         
         private HatchEffectSO[] _subHatchEffects; 
@@ -45,8 +43,10 @@ namespace Rechrysalis.Unit
         private RotateParentUnit _rotateParentUnit;
         private ParentHealth _parentHealth;
         public ParentHealth ParentHealth => _parentHealth;
-        private ParentUnitHatchEffects _pUHE;
+        private ParentUnitHatchEffects _parentUnitHatchEffects;
+        public ParentUnitHatchEffects ParentUnitHatchEffects => _parentUnitHatchEffects;
         private ParentHatchEffectAddRemove _parentHatchEffectAddRemove;
+        
         private UnitActivation _unitActivation;
         public UnitActivation UnitActivation => _unitActivation;
         private ChrysalisActivation _chrysalisActivation;
@@ -115,7 +115,7 @@ namespace Rechrysalis.Unit
             // AddChrysalisAndUnitActions();
             _rotateParentUnit = GetComponent<RotateParentUnit>();
             _rotateParentUnit?.Initialize(controllertransform);
-            _pUHE = GetComponent<ParentUnitHatchEffects>();
+            _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
             _parentHatchEffectAddRemove = GetComponent<ParentHatchEffectAddRemove>();
             _parentHatchEffectAddRemove?.Initialzie(this);
             GetComponent<ParentClickManager>()?.Initialize(_controllerIndex);

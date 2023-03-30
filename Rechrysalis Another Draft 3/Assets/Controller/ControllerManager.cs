@@ -128,6 +128,7 @@ namespace Rechrysalis.Controller
             SetIsStopped(true);
 
             SubScribeToParentUnits();
+            SubscribeToHEDeathOnUnitDeath();
             GetComponent<ControllerHealth>()?.SubscribeToParentUnits(_parentUnits);
             _rechrysalisControllerInitialize?.ActivateInitialUnits();
             _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
@@ -138,7 +139,9 @@ namespace Rechrysalis.Controller
         private void OnEnable()
         {
            SubScribeToParentUnits();
-           UnSubscribeToHatchEffects();
+        //    UnSubscribeToHatchEffects();
+        SubscribeToHatchEffects();
+        SubscribeToHEDeathOnUnitDeath();
         }
         public void SubScribeToParentUnits()
         {
@@ -184,6 +187,34 @@ namespace Rechrysalis.Controller
                 }
             }
         }
+        private void SubscribeToHEDeathOnUnitDeath()
+        {
+            foreach (ParentUnitManager parentUnitManager in _parentUnitManagers)
+            {
+                if (parentUnitManager != null)
+                {
+                    ParentUnitHatchEffects parentUnitHatchEffects = parentUnitManager.ParentUnitHatchEffects;
+                    if (parentUnitHatchEffects != null)
+                    {
+                         parentUnitHatchEffects._removeHatchEffect -= RemoveHatchEffect;
+                        parentUnitHatchEffects._removeHatchEffect += RemoveHatchEffect;
+                    }
+                }
+            }
+        }private void UnSubscribeToHEDeathOnUnitDeath()
+        {
+            foreach (ParentUnitManager parentUnitManager in _parentUnitManagers)
+            {
+                if (parentUnitManager != null)
+                {
+                    ParentUnitHatchEffects parentUnitHatchEffects = parentUnitManager.ParentUnitHatchEffects;
+                    if (parentUnitHatchEffects != null)
+                    {
+                        parentUnitHatchEffects._removeHatchEffect -= RemoveHatchEffect;
+                    }
+                }
+            }
+        }
         public void UnSubscribeToHatchEffects()
         {
             if ((_hatchEffects != null) && (_hatchEffects.Count > 0))
@@ -214,6 +245,7 @@ namespace Rechrysalis.Controller
                 }
             }
             UnSubscribeToHatchEffects();
+            UnSubscribeToHEDeathOnUnitDeath();
         }
         private void Update() 
         {
@@ -424,6 +456,7 @@ namespace Rechrysalis.Controller
         }
         public void RemoveHatchEffect(GameObject _hatchEffect, int _parentIndex, int _unitIndex, bool _effectAll)
         {
+            Debug.Log($"remove hatch effects");
             for (int _parentLoopIndex = 0; _parentLoopIndex < _parentUnits.Length; _parentLoopIndex++)
             {
                 if (_parentUnits[_parentLoopIndex] != null)

@@ -19,6 +19,7 @@ namespace Rechrysalis.Unit
         [SerializeField] private HilightRingParentManager _hilightRingParentManager;
         public HilightRingParentManager HilightRingParentManager { get => _hilightRingParentManager; set => _hilightRingParentManager = value; }
         private BuildTimeFasterWithHigherHP _buildTimeFasterWithHigherHP;
+        private ParentUnitHatchEffects _parentUnitHatchEffects;
 
         public void Initialize(ParentUnitManager parentUnitManager)
         {
@@ -29,6 +30,7 @@ namespace Rechrysalis.Unit
             _progressBarManager = GetComponent<ProgressBarManager>(); 
             _freeUnitChrysalisMovementStop = GetComponent<FreeUnitChrysalisMovementStop>();
             _buildTimeFasterWithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
+            _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
         }
         public void DeactivateChrysalis(int chrysalisIndex)
         {
@@ -56,6 +58,10 @@ namespace Rechrysalis.Unit
         public void ActivateChrysalis(int chrysalisIndex)
         {
             ChrysalisTimer chrysalisTimer = null;
+            if (_parentUnitHatchEffects != null)
+            {
+                _parentUnitHatchEffects.RemoveAllHatchEffectsOwnedByUnit();
+            }
             if (_parentUnitManager.CurrentSubUnit != null)
                 {            
                     chrysalisTimer = _parentUnitManager.CurrentSubUnit.GetComponent<ChrysalisTimer>();
