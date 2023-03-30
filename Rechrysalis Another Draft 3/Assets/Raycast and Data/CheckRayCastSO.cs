@@ -254,7 +254,7 @@ namespace Rechrysalis.Controller
                 newPos += cameraScrollLocalPos;
                 _cameraGOScroll.localPosition = newPos;
             }
-            if ((_touchTypeArray[_touchID] == TouchTypeEnum.targetClicked) && ((_targetModeTargetClicked == null) || (!hit) || (hit.collider.gameObject != _targetModeTargetClicked)))
+            if ((_touchTypeArray[_touchID] == TouchTypeEnum.targetClicked) && ((_targetModeTargetClicked == null) && ((!hit) || (hit.collider.gameObject != _targetModeTargetClicked))))
             {
                 Debug.Log($"moved from target");
             }
