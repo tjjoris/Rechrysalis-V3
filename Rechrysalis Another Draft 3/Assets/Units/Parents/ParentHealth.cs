@@ -102,7 +102,10 @@ namespace Rechrysalis.Unit
                 if (hatchEffect != null)
                 _incomingDamageMult += hatchEffect.GetIncomingDamageMult();
             }
-            Debug.Log($"incoming damage mult " + _incomingDamageMult);
+            if (_debugBool)
+            {
+                Debug.Log($"incoming damage mult " + _incomingDamageMult);
+            }
         }
         private void UpdateHpBar()
         {

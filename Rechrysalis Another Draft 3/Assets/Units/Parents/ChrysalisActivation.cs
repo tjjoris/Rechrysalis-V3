@@ -76,7 +76,9 @@ namespace Rechrysalis.Unit
             }
             if ((_buildTimeFasterWithHigherHP != null) && (_buildTimeFasterWithHigherHP.GetBuildSpeedMult() <= 0))
             {
+                _unitActivation?.DeactivateUnit(_parentUnitManager.CurrentSubUnit.GetComponent<UnitManager>().ChildUnitIndex);
                 _unitActivation?.ActivateUnit(chrysalisIndex);
+                Debug.Log($"activate unit " + chrysalisIndex);
                 return;
             }
             if (_parentUnitManager.CurrentSubUnit == null)

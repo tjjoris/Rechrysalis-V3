@@ -23,6 +23,9 @@ namespace Rechrysalis.Unit
         [SerializeField] private int _controllerIndex;        
         public int ControllerIndex {get{return _controllerIndex;}}
         private int _freeUnitIndex;
+        public int FreeUnitIndex => _freeUnitIndex;
+        [SerializeField] private int _childUnitIndex;
+        public int ChildUnitIndex => _childUnitIndex;
         [SerializeField] private UnitStatsSO _unitStats;
         private HatchEffectSO _hatchEffectSO;
         [SerializeField] private TMP_Text _nameText;
@@ -71,9 +74,10 @@ namespace Rechrysalis.Unit
         //         }
         //     }
         public System.Action<float> _unitDealsDamage;
-        public void Initialize(ControllerManager controllerManager, int controllerIndex, UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnits, bool isChrysalis)
+        public void Initialize(ControllerManager controllerManager, int controllerIndex, UnitClass unitClass, int freeUnitIndex, int subUnitIndex, CompsAndUnitsSO compsAndUnits, bool isChrysalis)
         {
             _controllerManager = controllerManager;
+            _childUnitIndex = subUnitIndex;
             _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
             Mover mover = _controllerManager.GetComponent<Mover>();
             if (_parentUnitManager.GetComponent<Mover>() != null)
