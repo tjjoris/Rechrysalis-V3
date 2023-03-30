@@ -12,12 +12,14 @@ namespace Rechrysalis.Unit
         [SerializeField] private List<GameObject> _hatchEffects;
         public List<GameObject> HatchEffects => _hatchEffects;
         private GameObject[] _subUnits;
+        private int _parentIndex;
         private GameObject[] _subChrysalii;
         public Action<GameObject, int, int, bool> _addHatchEffect;
-        public Action<GameObject, int, int, bool> _removeHatchEffect;
+        public Action<GameObject, int, bool> _removeHatchEffect;
         public void Initialize (GameObject[] _subUnits, GameObject[] _subchrysalii)
         {
             _parentUnitManager = GetComponent<ParentUnitManager>();
+            _parentIndex = _parentUnitManager.ParentIndex;
             this._subUnits = _subUnits;
             this._subChrysalii =_subchrysalii;
             _hatchEffects = new List<GameObject>();
@@ -52,7 +54,13 @@ namespace Rechrysalis.Unit
         }
         public void RemoveAllHatchEffectsOwnedByUnit()
         {
-
+            foreach (GameObject hatchEffect in _hatchEffects)
+            {
+                if (hatchEffect != null)
+                {
+                    _removeHatchEffect?.Invoke(hatchEffect, _parentIndex, true);
+                }
+            }
         }
         public void RemoveHatchEffect(GameObject _hatchEffect)
         {
