@@ -125,6 +125,7 @@ namespace Rechrysalis.Controller
         private void SubtractMana(float _amount)
         {
             SetMana(_manaCurrent -= _amount);
+            _manaDisplay?.SetManaNumber(_manaCurrent);
         }
     }
 }

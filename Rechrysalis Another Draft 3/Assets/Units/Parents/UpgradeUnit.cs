@@ -47,6 +47,7 @@ namespace Rechrysalis.Unit
         }
         private void SubtractMana(int _chrysalisIndex)
         {
+            // Debug.Log($"should subtract " + _parentUnitManager.SubUnits[_chrysalisIndex].GetComponent<UnitManager>().ManaCost);
             _subtractMana?.Invoke(_parentUnitManager.SubUnits[_chrysalisIndex].GetComponent<UnitManager>().ManaCost);
         }
     }
