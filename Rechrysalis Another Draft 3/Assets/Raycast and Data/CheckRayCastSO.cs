@@ -233,6 +233,7 @@ namespace Rechrysalis.Controller
         public void CheckRayCastMoveFunction(Vector2 _mousePos, int _touchID, Vector2 mousePosRaw)
         {
             LayerMask _mask = LayerMask.GetMask("PlayerController");
+            _mask += LayerMask.GetMask("Unit");
             // int _layer = 6;
             // LayerMask _mask = 1 << _layer;
             // int _results = 10;
@@ -254,9 +255,10 @@ namespace Rechrysalis.Controller
                 newPos += cameraScrollLocalPos;
                 _cameraGOScroll.localPosition = newPos;
             }
-            if (((_touchTypeArray[_touchID] == TouchTypeEnum.targetClicked) && (_targetModeTargetClicked == null)) && ((!hit) || (hit.collider.gameObject != _targetModeTargetClicked)))
+            if (((_touchTypeArray[_touchID] == TouchTypeEnum.targetClicked) && (_targetModeTargetClicked != null)) && ((!hit) || (hit.collider.gameObject != _targetModeTargetClicked)))
             {
-                Debug.Log($"moved from target");
+                _touchTypeArray[_touchID] = TouchTypeEnum.map;
+                _touchPosLast[_touchID] = _mousePos;
             }
             else if ((_touchTypeArray[_touchID] == TouchTypeEnum.controller) && (_mousePos.y < _controller.transform.position.y - _controllerRadius))
             {
