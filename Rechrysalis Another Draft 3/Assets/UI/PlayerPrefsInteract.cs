@@ -49,7 +49,7 @@ namespace Rechrysalis.UI
             }
             PlayerPrefs.SetInt(HASBASICUNIT, 0);
         }
-        public int GetHasBasicUnit()
+        public bool GetHasBasicUnit()
         {
             if (PlayerPrefs.GetInt(HASBASICUNIT) == 1)
             {
