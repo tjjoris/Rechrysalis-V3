@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Rechrysalis.Unit;
 using Rechrysalis.UI;
+using UnityEngine.UI;
 
 namespace Rechrysalis
 {
@@ -11,9 +12,26 @@ namespace Rechrysalis
     {
         [SerializeField]private CompsAndUnitsSO _compsAndUnits;
         [SerializeField] private NewGameStatus _newGameStatus;
+        [SerializeField] private Toggle _hasManaToggle;
+        private void Awake()
+        {
+            PlayerPrefsChanged();
+        }
         private void Start()
         {
             SetNewGameStatus();
+        }
+        private void OnEnable()
+        {
+            PlayerPrefsInteract._changePlayerPrefs +=  PlayerPrefsChanged;
+        }
+        private void OnDisable()
+        {
+            PlayerPrefsInteract._changePlayerPrefs -= PlayerPrefsChanged;
+        }
+        private void PlayerPrefsChanged()
+        {
+            _hasManaToggle.isOn = PlayerPrefsInteract.GetHasMana();
         }
         public void LevelSelect()
         {
@@ -46,7 +64,10 @@ namespace Rechrysalis
             {
                _newGameStatus.YouWon();
             }
-
+        }
+        public void ToggleHasMana()
+        {
+            PlayerPrefsInteract.SetHasMana(_hasManaToggle.isOn);
         }
     }
 }

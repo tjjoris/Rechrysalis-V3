@@ -61,6 +61,7 @@ namespace Rechrysalis.UI
         {
             if (value)
             {
+                Debug.Log($"has mana true");
                 PlayerPrefs.SetInt(HASMANA, 1);
                 return;
             }
@@ -70,6 +71,7 @@ namespace Rechrysalis.UI
         {
             if (PlayerPrefs.GetInt(HASMANA) == 1)
             {
+                Debug.Log($"has mana return true");
                 return true;
             }
             return false;

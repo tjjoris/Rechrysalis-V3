@@ -3004,7 +3004,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1448413823}
   - component: {fileID: 1448413822}
-  - component: {fileID: 1448413824}
   - component: {fileID: 1448413825}
   - component: {fileID: 1448413826}
   m_Layer: 0
@@ -3041,7 +3040,6 @@ MonoBehaviour:
   _projectilesHolder: {fileID: 1295238391}
   _backGroundManager: {fileID: 1949008738}
   _levelDisplay: {fileID: 6974679593843350660}
-  _playerPrefsInteract: {fileID: 1448413824}
   _graphicRaycaster: {fileID: 1857028576}
   _eventSystem: {fileID: 0}
   _targetCameraScrollTransform: {fileID: 433741824}
@@ -3060,18 +3058,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1448413824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1448413821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8fdc2d9f6524428b99b6096fb8f2822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1448413825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3409,7 +3395,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _toggle: {fileID: 1784010864}
-  _playerPrefsInteract: {fileID: 1448413824}
 --- !u!1 &1857028575
 GameObject:
   m_ObjectHideFlags: 0
