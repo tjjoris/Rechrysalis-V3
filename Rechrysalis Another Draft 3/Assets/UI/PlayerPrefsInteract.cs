@@ -5,15 +5,15 @@ using System;
 
 namespace Rechrysalis.UI
 {
-    public class PlayerPrefsInteract : MonoBehaviour
+    public static class PlayerPrefsInteract 
     {
         private const string TARGETDURINGTARGETMODE = "TargetDuringTargetMode";
         private const string HEALTHTOBUILDTIME  = "HealthToBuildTime";
         private const string HASBASICUNIT = "HasBasicUnit";
         private const string HASMANA = "HasMana";
-        public Action _changePlayerPrefs;
+        public static Action _changePlayerPrefs;
 
-        public void SetTargetDuringTargetMode(bool value)
+        public static void SetTargetDuringTargetMode(bool value)
         {
             int number = 0;
             if (value)
@@ -23,7 +23,7 @@ namespace Rechrysalis.UI
             PlayerPrefs.SetInt(TARGETDURINGTARGETMODE, number);
             _changePlayerPrefs?.Invoke();
         }
-        public bool GetTargetOnlyDuringTargetMode()
+        public static bool GetTargetOnlyDuringTargetMode()
         {
             if (PlayerPrefs.GetInt(TARGETDURINGTARGETMODE) == 1)
             {
@@ -31,16 +31,16 @@ namespace Rechrysalis.UI
             }
             return false;
         }
-        public void SetHealthToBuildTime(int value)
+        public static void SetHealthToBuildTime(int value)
         {
             if ((value < 0) || (value > 2)) return;
             PlayerPrefs.SetInt(HEALTHTOBUILDTIME, value);
         }
-        public int GetHealthToBuildTime()
+        public static int GetHealthToBuildTime()
         {
             return PlayerPrefs.GetInt(HEALTHTOBUILDTIME);
         }
-        public void SetHasBasicUnit(bool value)
+        public static void SetHasBasicUnit(bool value)
         {
             if (value)
             {
@@ -49,7 +49,7 @@ namespace Rechrysalis.UI
             }
             PlayerPrefs.SetInt(HASBASICUNIT, 0);
         }
-        public bool GetHasBasicUnit()
+        public static bool GetHasBasicUnit()
         {
             if (PlayerPrefs.GetInt(HASBASICUNIT) == 1)
             {
@@ -57,7 +57,7 @@ namespace Rechrysalis.UI
             }
             return false;
         }
-        public void SetHasMana(bool value)
+        public static void SetHasMana(bool value)
         {
             if (value)
             {
@@ -66,7 +66,7 @@ namespace Rechrysalis.UI
             }
             PlayerPrefs.SetInt(HASMANA, 0);
         }
-        public bool GetHasMana()
+        public static bool GetHasMana()
         {
             if (PlayerPrefs.GetInt(HASMANA) == 1)
             {
