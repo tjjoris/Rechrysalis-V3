@@ -29,7 +29,7 @@ namespace Rechrysalis.Unit
             if ((_chrysalisIndex == 0) && (_parentUnitManager.CurrentSubUnit != _parentUnitManager.SubUnits[0])) return;
             if (_parentUnitManager.CurrentSubUnit == _parentUnitManager.SubChrysalii[_chrysalisIndex]) return;
             if (_chrysalisIndex == 0) return;
-            if ((_manaGenerator == null) || (!CheckIfEnoughMana(_chrysalisIndex))) return;
+            if (!CheckIfEnoughMana(_chrysalisIndex)) return;
             if (_debugLog)
             {
                 Debug.Log($"upgrade unit func " + _chrysalisIndex);
@@ -39,6 +39,7 @@ namespace Rechrysalis.Unit
         }
         private bool CheckIfEnoughMana(int _chrysalisIndex)
         {
+            if (_manaGenerator == null) return true;
             if ((_parentUnitManager.SubUnits[_chrysalisIndex].GetComponent<UnitManager>().ManaCost <= _manaGenerator.ManaCurrent))
             {
                 return true;
