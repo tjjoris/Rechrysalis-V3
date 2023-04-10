@@ -83,8 +83,8 @@ namespace Rechrysalis.Controller
             this._compsAndUnits = _compsAndUnits;
             _parentUnitManagers = new List<ParentUnitManager>();
             // this._compCustomizer = _compCustomizer;
-            _manaGenerator = GetComponent<ManaGenerator>();
-            _manaGenerator?.InitializeManaAmount();
+            // _manaGenerator = GetComponent<ManaGenerator>();
+            // _manaGenerator?.InitializeManaAmount();
             _allUnits = new List<GameObject>();
             _hatchEffects = new List<GameObject>();
             _allUnits.Clear();
@@ -110,6 +110,9 @@ namespace Rechrysalis.Controller
                 _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius, mainManager);
                 _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
                 _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
+
+                _manaGenerator = GetComponent<ManaGenerator>();
+                _manaGenerator?.InitializeManaAmount();
                 _manaGenerator?.Initialize(_parentUnits);
                 // if ((_parentUnits != null) && (_parentUnits.Length > 0))
                 // {

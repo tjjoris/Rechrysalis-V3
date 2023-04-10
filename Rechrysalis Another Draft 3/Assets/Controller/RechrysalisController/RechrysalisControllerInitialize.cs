@@ -32,8 +32,8 @@ namespace Rechrysalis.Controller
         private float _unitRingAngle = 90f;
         public void Initialize(int controllerIndex, CompSO unitComp, CompsAndUnitsSO compsAndUnits, UnitRingManager unitRingManager, HilightRingManager hilightRingManager, UpgradeRingManager upgradeRingManager, float unitRingOuterRadius, MainManager mainManager)
         {
-            _manaGenerator = GetComponent<ManaGenerator>();
             AddOrRemoveHasMana();
+            _manaGenerator = GetComponent<ManaGenerator>();
            _controllerManager = GetComponent<ControllerManager>(); 
            _hilightRingManager = _controllerManager.HilightRingManager;
            _hilightRingParentCreator = _controllerManager.HilightRingManager.GetComponent<HilightRingParentCreator>();
@@ -152,9 +152,9 @@ namespace Rechrysalis.Controller
         }
         private void AddOrRemoveHasMana()
         {
-            if ((!PlayerPrefsInteract.GetHasMana()) && (_manaGenerator != null))
+            if ((!PlayerPrefsInteract.GetHasMana()) && (GetComponent<ManaGenerator>() != null))
             {
-                Destroy(_manaGenerator);                
+                Destroy(GetComponent<ManaGenerator>());                
             }
         }
         private void CreateChildUnitAndChrysalis(UnitClass unitClass, int childUnitIndex, ParentUnitManager pum, int parentUnitIndex, CompsAndUnitsSO compsAndUnits, bool isAdvUnit)
