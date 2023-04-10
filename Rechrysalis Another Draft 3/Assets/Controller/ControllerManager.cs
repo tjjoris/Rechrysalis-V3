@@ -8,12 +8,15 @@ using Rechrysalis.CompCustomizer;
 using Rechrysalis.Attacking;
 using Rechrysalis.CameraControl;
 using UnityEngine.UI;
+using Rechrysalis.UI;
 
 namespace Rechrysalis.Controller
 {
     public class ControllerManager : MonoBehaviour
     {
         private bool _debugBool = false;
+
+        [SerializeField] private ManaDisplay _manaDisplay;
         [SerializeField] private MainManager _mainManager;
         public MainManager MainManager => _mainManager;
         [SerializeField] private int _controllerIndex;    
@@ -74,6 +77,8 @@ namespace Rechrysalis.Controller
 
         public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits, CompCustomizerSO _compCustomizer, MainManager mainManager, GraphicRaycaster graphicRaycaster, Transform cameraScrollTransform) 
         {
+
+            AddOrRemoveHasMana();
             _mainManager = mainManager;
             _controllerHealth = GetComponent<ControllerHealth>();
             this._controllerIndex = _controllerIndex;
@@ -113,7 +118,7 @@ namespace Rechrysalis.Controller
 
                 _manaGenerator = GetComponent<ManaGenerator>();
                 _manaGenerator?.InitializeManaAmount();
-                _manaGenerator?.Initialize(_parentUnits);
+                _manaGenerator?.Initialize(_parentUnits, _manaDisplay);
                 // if ((_parentUnits != null) && (_parentUnits.Length > 0))
                 // {
                 //     for (int i=0; i<_parentUnits.Length; i++)
@@ -249,6 +254,15 @@ namespace Rechrysalis.Controller
             }
             UnSubscribeToHatchEffects();
             UnSubscribeToHEDeathOnUnitDeath();
+        }
+
+        private void AddOrRemoveHasMana()
+        {
+            if ((PlayerPrefsInteract.GetHasMana()) && (GetComponent<ManaGenerator>() == null))
+            {
+                gameObject.AddComponent<ManaGenerator>();
+                _manaGenerator = GetComponent<ManaGenerator>();
+            }
         }
         private void Update() 
         {

@@ -1205,6 +1205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6ef97af7cec47d5abfb65fbd090e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _manaDisplay: {fileID: 0}
   _mainManager: {fileID: 0}
   _controllerIndex: 0
   _checkRayCast: {fileID: 0}
@@ -2317,7 +2318,6 @@ GameObject:
   - component: {fileID: 1159822631}
   - component: {fileID: 1159822632}
   - component: {fileID: 1159822633}
-  - component: {fileID: 1159822634}
   - component: {fileID: 1159822635}
   - component: {fileID: 1159822636}
   - component: {fileID: 1159822637}
@@ -2364,6 +2364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6ef97af7cec47d5abfb65fbd090e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _manaDisplay: {fileID: 1202472030}
   _mainManager: {fileID: 0}
   _controllerIndex: 0
   _checkRayCast: {fileID: 11400000, guid: ccaf1a1cf438f4f49a8c3935f00ee5d8, type: 2}
@@ -2496,19 +2497,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1159822634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1159822623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a373be20c98124d2d969f5b8168d89ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _manaDisplay: {fileID: 1202472030}
 --- !u!114 &1159822635
 MonoBehaviour:
   m_ObjectHideFlags: 0
