@@ -19,6 +19,7 @@ namespace Rechrysalis.Unit
         [SerializeField] private HilightRingParentManager _hilightRingParentManager;
         public HilightRingParentManager HilightRingParentManager { get => _hilightRingParentManager; set => _hilightRingParentManager = value; }
         private BuildTimeFasterWithHigherHP _buildTimeFasterWithHigherHP;
+        private HealthToBuildTimeLinear _healthToBuildTimeLinear;
         private ParentUnitHatchEffects _parentUnitHatchEffects;
 
         public void Initialize(ParentUnitManager parentUnitManager)
@@ -30,6 +31,7 @@ namespace Rechrysalis.Unit
             _progressBarManager = GetComponent<ProgressBarManager>(); 
             _freeUnitChrysalisMovementStop = GetComponent<FreeUnitChrysalisMovementStop>();
             _buildTimeFasterWithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
+            _healthToBuildTimeLinear = GetComponent<HealthToBuildTimeLinear>();
             _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
         }
         public void DeactivateChrysalis(int chrysalisIndex)
@@ -69,10 +71,12 @@ namespace Rechrysalis.Unit
             if ((chrysalisTimer == null))
             {
                 _buildTimeFasterWithHigherHP?.SetBuildSpeedMult();
+                _healthToBuildTimeLinear?.SetBuildTimeMult();
             }
             else 
             {
                 _buildTimeFasterWithHigherHP?.SetBuildSpeedMultMax();
+                _healthToBuildTimeLinear?.SetBuildTimeMax();
             }
             if ((_buildTimeFasterWithHigherHP != null) && (_buildTimeFasterWithHigherHP.GetBuildSpeedMult() <= 0))
             {
@@ -110,6 +114,10 @@ namespace Rechrysalis.Unit
                     if (_buildTimeFasterWithHigherHP != null)
                     {
                         newChrysalisTimer?.ApplyTimerMaxMult(_buildTimeFasterWithHigherHP.GetBuildSpeedMult());
+                    }
+                    if (_healthToBuildTimeLinear != null)
+                    {
+                        newChrysalisTimer?.ApplyTimerMaxMult(_healthToBuildTimeLinear.GetBuildTimeMult());
                     }
                     newChrysalisTimer?.StartThisChrysalis(_timeToKeep);
                     if (!_parentUnitManager.TheseUnits.ActiveUnits.Contains(_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject))

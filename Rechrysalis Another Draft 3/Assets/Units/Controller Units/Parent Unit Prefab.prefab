@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 6173028383454830166}
   - component: {fileID: 7979089051657480519}
   - component: {fileID: 8422274680845796423}
-  - component: {fileID: 7226957364316686763}
   - component: {fileID: 8365431111369499537}
   - component: {fileID: 132562969853228936}
   - component: {fileID: 7896667228969595942}
@@ -292,18 +291,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hilightRingParentManager: {fileID: 0}
---- !u!114 &7226957364316686763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6178309120940175549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd9bb85cf21cd412ca7d305af15d7372, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8365431111369499537
 MonoBehaviour:
   m_ObjectHideFlags: 0

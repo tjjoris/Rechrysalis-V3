@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 261992763}
   - component: {fileID: 261992762}
   m_Layer: 5
-  m_Name: HealthToBuildSpeed
+  m_Name: HealthToBuildTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -603,7 +603,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 379322980}
+        m_TargetAssemblyTypeName: Rechrysalis.StartMainManager, Assembly-CSharp
+        m_MethodName: SetLifeToBuildTimeDropdown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &261992763
 MonoBehaviour:
@@ -678,6 +690,8 @@ MonoBehaviour:
   _compsAndUnits: {fileID: 11400000, guid: abce2c694bba2494b88e77f2ae192b6f, type: 2}
   _newGameStatus: {fileID: 1910403565}
   _hasManaToggle: {fileID: 168580675}
+  _hasBasicUnitToggle: {fileID: 707442149}
+  _healthToBuildTimeDropDown: {fileID: 261992762}
 --- !u!114 &379322981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1921,7 +1935,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 379322980}
+        m_TargetAssemblyTypeName: Rechrysalis.StartMainManager, Assembly-CSharp
+        m_MethodName: ToggleHasBasicUnit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &758013165
 GameObject:

@@ -262,7 +262,9 @@ namespace Rechrysalis.Controller
             {
                 gameObject.AddComponent<ManaGenerator>();
                 _manaGenerator = GetComponent<ManaGenerator>();
+                return;
             }
+            _manaDisplay?.gameObject.SetActive(false);
         }
         private void Update() 
         {
@@ -390,7 +392,7 @@ namespace Rechrysalis.Controller
         }
         private void DealsDamage(float _damage)
         {
-            _manaGenerator.StartTimer();
+            _manaGenerator?.StartTimer();
         }
         public void SetIsStopped(bool isStopped)
         {
