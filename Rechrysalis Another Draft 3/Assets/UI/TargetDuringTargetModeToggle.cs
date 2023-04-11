@@ -8,15 +8,14 @@ namespace Rechrysalis.UI
     public class TargetDuringTargetModeToggle : MonoBehaviour
     {
         [SerializeField] private Toggle _toggle;
-        [SerializeField] private PlayerPrefsInteract _playerPrefsInteract;
 
         private void Start()
         {
-            _toggle.isOn = _playerPrefsInteract.GetTargetOnlyDuringTargetMode();
+            _toggle.isOn = PlayerPrefsInteract.GetTargetOnlyDuringTargetMode();
         }
         public void TogglePressed()
         {
-            _playerPrefsInteract.SetTargetDuringTargetMode(_toggle.isOn);
+            PlayerPrefsInteract.SetTargetDuringTargetMode(_toggle.isOn);
         }
     }
 }

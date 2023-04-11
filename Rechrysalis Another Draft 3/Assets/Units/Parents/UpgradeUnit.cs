@@ -39,7 +39,8 @@ namespace Rechrysalis.Unit
         }
         private bool CheckIfEnoughMana(int _chrysalisIndex)
         {
-            if ((_manaGenerator != null) && (_parentUnitManager.SubUnits[_chrysalisIndex].GetComponent<UnitManager>().ManaCost <= _manaGenerator.ManaCurrent))
+            if (_manaGenerator == null) return true;
+            if ((_parentUnitManager.SubUnits[_chrysalisIndex].GetComponent<UnitManager>().ManaCost <= _manaGenerator.ManaCurrent))
             {
                 return true;
             }

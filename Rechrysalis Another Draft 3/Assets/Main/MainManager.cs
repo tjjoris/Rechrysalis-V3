@@ -26,13 +26,11 @@ namespace Rechrysalis
         [SerializeField] ProjectilesHolder _projectilesHolder;
         [SerializeField] BackgroundManager _backGroundManager;
         [SerializeField] private LevelDisplay _levelDisplay;
-        [SerializeField] private PlayerPrefsInteract _playerPrefsInteract;
         [SerializeField] private GraphicRaycaster _graphicRaycaster;
         [SerializeField] private EventSystem _eventSystem;
         [SerializeField] private Transform _targetCameraScrollTransform;
         public Transform TargetCameraScrollTransform => _targetCameraScrollTransform;
         public EventSystem EventSystem => _eventSystem;
-        public PlayerPrefsInteract PlayerPrefsInteract => _playerPrefsInteract;
 
         private void Awake() {
             // _compsAndUnitsSO.CompsSO = _compSO;
@@ -107,11 +105,11 @@ namespace Rechrysalis
         }
         private void OnEnable()
         {
-            _playerPrefsInteract._changePlayerPrefs += UpdatePreferances;
+            PlayerPrefsInteract._changePlayerPrefs += UpdatePreferances;
         }
         private void OnDisable()
         {
-            _playerPrefsInteract._changePlayerPrefs -= UpdatePreferances;
+            PlayerPrefsInteract._changePlayerPrefs -= UpdatePreferances;
         }
         private void UpdatePreferances()
         {
@@ -121,7 +119,7 @@ namespace Rechrysalis
                 {
                     if (controllerManager.CheckRayCast != null)
                     {
-                        Debug.Log($"set target during target mode" + _playerPrefsInteract.GetTargetOnlyDuringTargetMode());
+                        Debug.Log($"set target during target mode" + PlayerPrefsInteract.GetTargetOnlyDuringTargetMode());
                     }
                 }
             }

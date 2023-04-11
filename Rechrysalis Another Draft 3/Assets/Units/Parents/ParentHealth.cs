@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using Rechrysalis.Attacking;
 using Rechrysalis.HatchEffect;
+using Rechrysalis.UI;
 
 namespace Rechrysalis.Unit
 {
@@ -90,7 +91,12 @@ namespace Rechrysalis.Unit
         {
             if (_currentHealth <= 0)
             {
-                _unitDies?.Invoke(0);
+                int childIndex = 0;
+                if (!PlayerPrefsInteract.GetHasBasicUnit())
+                {
+                    childIndex = 1;
+                }
+                _unitDies?.Invoke(childIndex);
                 GetComponent<Die>()?.UnitDies();
             }
         }

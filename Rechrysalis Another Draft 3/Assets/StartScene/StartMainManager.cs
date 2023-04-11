@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Rechrysalis.Unit;
 using Rechrysalis.UI;
+using UnityEngine.UI;
+using TMPro;
 
 namespace Rechrysalis
 {
@@ -11,9 +13,30 @@ namespace Rechrysalis
     {
         [SerializeField]private CompsAndUnitsSO _compsAndUnits;
         [SerializeField] private NewGameStatus _newGameStatus;
+        [SerializeField] private Toggle _hasManaToggle;
+        [SerializeField] private Toggle _hasBasicUnitToggle;
+        [SerializeField] private TMP_Dropdown _healthToBuildTimeDropDown;
+        private void Awake()
+        {
+            PlayerPrefsChanged();
+        }
         private void Start()
         {
             SetNewGameStatus();
+        }
+        private void OnEnable()
+        {
+            PlayerPrefsInteract._changePlayerPrefs +=  PlayerPrefsChanged;
+        }
+        private void OnDisable()
+        {
+            PlayerPrefsInteract._changePlayerPrefs -= PlayerPrefsChanged;
+        }
+        private void PlayerPrefsChanged()
+        {
+            _hasManaToggle.isOn = PlayerPrefsInteract.GetHasMana();
+            _healthToBuildTimeDropDown.value = PlayerPrefsInteract.GetHealthToBuildTime();
+            _hasBasicUnitToggle.isOn = PlayerPrefsInteract.GetHasBasicUnit();
         }
         public void LevelSelect()
         {
@@ -46,7 +69,18 @@ namespace Rechrysalis
             {
                _newGameStatus.YouWon();
             }
-
+        }
+        public void ToggleHasMana()
+        {
+            PlayerPrefsInteract.SetHasMana(_hasManaToggle.isOn);
+        }
+        public void SetLifeToBuildTimeDropdown()
+        {
+            PlayerPrefsInteract.SetHealthToBuildTime(_healthToBuildTimeDropDown.value);
+        }
+        public void ToggleHasBasicUnit()
+        {
+            PlayerPrefsInteract.SetHasBasicUnit(_hasBasicUnitToggle.isOn);
         }
     }
 }

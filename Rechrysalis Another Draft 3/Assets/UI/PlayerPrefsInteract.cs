@@ -5,12 +5,15 @@ using System;
 
 namespace Rechrysalis.UI
 {
-    public class PlayerPrefsInteract : MonoBehaviour
+    public static class PlayerPrefsInteract 
     {
         private const string TARGETDURINGTARGETMODE = "TargetDuringTargetMode";
-        public Action _changePlayerPrefs;
+        private const string HEALTHTOBUILDTIME  = "HealthToBuildTime";
+        private const string HASBASICUNIT = "HasBasicUnit";
+        private const string HASMANA = "HasMana";
+        public static Action _changePlayerPrefs;
 
-        public void SetTargetDuringTargetMode(bool value)
+        public static void SetTargetDuringTargetMode(bool value)
         {
             int number = 0;
             if (value)
@@ -20,9 +23,52 @@ namespace Rechrysalis.UI
             PlayerPrefs.SetInt(TARGETDURINGTARGETMODE, number);
             _changePlayerPrefs?.Invoke();
         }
-        public bool GetTargetOnlyDuringTargetMode()
+        public static bool GetTargetOnlyDuringTargetMode()
         {
             if (PlayerPrefs.GetInt(TARGETDURINGTARGETMODE) == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static void SetHealthToBuildTime(int value)
+        {
+            if ((value < 0) || (value > 2)) return;
+            PlayerPrefs.SetInt(HEALTHTOBUILDTIME, value);
+        }
+        public static int GetHealthToBuildTime()
+        {
+            return PlayerPrefs.GetInt(HEALTHTOBUILDTIME);
+        }
+        public static void SetHasBasicUnit(bool value)
+        {
+            if (value)
+            {
+                PlayerPrefs.SetInt(HASBASICUNIT, 1);
+                return;
+            }
+            PlayerPrefs.SetInt(HASBASICUNIT, 0);
+        }
+        public static bool GetHasBasicUnit()
+        {
+            if (PlayerPrefs.GetInt(HASBASICUNIT) == 1)
+            {
+            return true;
+            }
+            return false;
+        }
+        public static void SetHasMana(bool value)
+        {
+            if (value)
+            {
+                PlayerPrefs.SetInt(HASMANA, 1);
+                return;
+            }
+            PlayerPrefs.SetInt(HASMANA, 0);
+        }
+        public static bool GetHasMana()
+        {
+            if (PlayerPrefs.GetInt(HASMANA) == 1)
             {
                 return true;
             }

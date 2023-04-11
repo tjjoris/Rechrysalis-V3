@@ -48,7 +48,12 @@ namespace Rechrysalis.Attacking
             // gameObject.SetActive(false);
             if (!_parentHealth.IsChrysalis)
             {
-                _chrysalisActivation.ActivateChrysalis(0);
+                int childIndex = 0;
+                // if (!PlayerPrefsInteract.GetHasBasicUnit())
+                // {
+                //     childIndex = 1;
+                // }
+                _chrysalisActivation.ActivateChrysalis(childIndex);
             }
             else
             if (gameObject.activeInHierarchy)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.HatchEffect;
+using Rechrysalis.UI;
 
 namespace Rechrysalis.Controller
 {
@@ -34,8 +35,7 @@ namespace Rechrysalis.Controller
            _controllerManager = GetComponent<ControllerManager>(); 
            _hilightRingManager = _controllerManager.HilightRingManager;
            _hilightRingParentCreator = _controllerManager.HilightRingManager.GetComponent<HilightRingParentCreator>();
-            hilightRingManager?.Initialize(unitRingManager);
-           _manaGenerator = GetComponent<ManaGenerator>();
+            hilightRingManager?.Initialize(unitRingManager);           
             _controllerIndex = controllerIndex;
             this._unitComp = unitComp;
             _allUnits = new List<GameObject>();
@@ -68,6 +68,7 @@ namespace Rechrysalis.Controller
                     Vector3 goPosition = unitOffset;
                     goPosition += _unitRing.transform.position;
                     GameObject parentUnitGO = Instantiate(_parentUnitPrefab, goPosition, Quaternion.identity, _unitRing.transform);
+                    AddLifeToBuildTime(parentUnitGO);
                     _theseUnits.ParentUnits.Add(parentUnitGO);
                     // parentUnitGO.transform.localPosition = unitOffset;
                     _parentUnits[parentUnitIndex] = parentUnitGO;
@@ -189,6 +190,19 @@ namespace Rechrysalis.Controller
                 chrysalisUnitManager?.ControllerUnitSpriteHandler?.TintSpriteMagenta();
             }
         }
+        private void AddLifeToBuildTime(GameObject parentUnit)
+        {
+            if (PlayerPrefsInteract.GetHealthToBuildTime() == 2)
+            {
+                parentUnit.AddComponent<BuildTimeFasterWithHigherHP>();
+                return;
+            }
+            if (PlayerPrefsInteract.GetHealthToBuildTime() == 1)
+            {
+                parentUnit.AddComponent<HealthToBuildTimeLinear>();
+                return;
+            }
+        }
         private HatchEffectSO[] SetHatchEffectSOs (int _parentUnitIndex)
         {
             HatchEffectSO[] _hatchEffectSOs = new HatchEffectSO[_unitComp.ChildUnitCount];
@@ -243,8 +257,14 @@ namespace Rechrysalis.Controller
                         // _parentUnits[_parentUnitIndex].GetComponent<ParentUnitManager>().ActivateInitialUnit();
                         // thisParentUnit.GetComponent<ParentHealth>().SetMaxHealth(thisParentUnit.SubUnits[0].GetComponent<UnitManager>().UnitClass.HPMax);
                         // thisParentUnit.GetComponent<UnitActivation>().ActivateUnit(0);
-                        thisParentUnit.GetComponent<ChrysalisActivation>().ActivateChrysalis(0);
-                        thisParentUnit.CurrentSubUnit = thisParentUnit.ChildChrysaliiUnitManagers[0].gameObject;
+                        int childIndex = 0;
+                        if (!PlayerPrefsInteract.GetHasBasicUnit())
+                        {
+                            childIndex = 1;
+                        }
+                        thisParentUnit.GetComponent<UnitActivation>().ActivateUnit(childIndex);
+                        thisParentUnit.CurrentSubUnit = thisParentUnit.ChildUnitManagers[childIndex].gameObject;
+
                     }
                 }
             }
@@ -257,12 +277,12 @@ namespace Rechrysalis.Controller
                 {
                     if (parentUnitClass.AdvancedUpgradesUTCList.Count > 0)
                     {                    
-                        _manaGenerator.AddToStartingMana(parentUnitClass.AdvancedUpgradesUTCList.Count);
+                        _manaGenerator?.AddToStartingMana(parentUnitClass.AdvancedUpgradesUTCList.Count);
 
                     }
                     if (parentUnitClass.UTCHatchEffects != null)
                     {
-                        _manaGenerator.AddToStartingMana(1);
+                        _manaGenerator?.AddToStartingMana(1);
                     }
                 }
             }

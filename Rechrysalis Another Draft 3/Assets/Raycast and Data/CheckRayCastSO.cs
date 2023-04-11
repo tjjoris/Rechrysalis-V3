@@ -40,8 +40,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private TransitionTargetingCamera _transitionTargetingCamera;
         private GameObject _targetModeTargetClicked;
         // [SerializeField] private bool _targetDuringTargetMode;
-        // public bool TargetDuringTargetMode { get => _targetDuringTargetMode; set => _targetDuringTargetMode = value; }
-        [SerializeField] private PlayerPrefsInteract _plyaerPrefsInteract;
+        // public bool TargetDuringTargetMode { get => _targetDuringTargetMode; set => _targetDuringTargetMode = value; }        
         [SerializeField] private GraphicRaycaster _graphicsRaycaster;
         [SerializeField] private EventSystem _eventSystem;
         [SerializeField] private Transform _cameraGOScroll;
@@ -56,7 +55,6 @@ namespace Rechrysalis.Controller
             _mainManager = mainManager;
             _pauseScript = _mainManager.GetComponent<PauseScript>();
             _eventSystem = _mainManager.EventSystem;
-            _plyaerPrefsInteract = _mainManager.PlayerPrefsInteract;
             _transitionTargetingCamera = transitionTargetingCamera;
             this._upgradeRingManager = _upgradeRingManager;
             this._compsAndUnits = _compsAndUnits;
@@ -102,7 +100,7 @@ namespace Rechrysalis.Controller
                 // _clickInfo.ControlledController.GetComponent<Mover>().SetDirection(Vector2.zero);
                 _touchTypeArray[_touchID] = TouchTypeEnum.controller;
             }
-            else if ((hit) && (UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)) && ((!_plyaerPrefsInteract.GetTargetOnlyDuringTargetMode()) || (_transitionTargetingCamera.InTargetMode)))
+            else if ((hit) && (UnitMouseOver(hit)) && (hit.collider.gameObject.GetComponent<ParentClickManager>().IsEnemy(_controllerIndex)) && ((!PlayerPrefsInteract.GetTargetOnlyDuringTargetMode()) || (_transitionTargetingCamera.InTargetMode)))
             {
                 // Debug.Log($"click enemy");
                 // _playerTargtList.SetNewTarget(hit.collider.gameObject);

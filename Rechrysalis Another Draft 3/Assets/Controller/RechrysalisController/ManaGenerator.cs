@@ -24,10 +24,11 @@ namespace Rechrysalis.Controller
         // private void Start() {
         //     _manaDisplay.SetManaNumber(_manaCurrent);
         // }
-        public void Initialize(GameObject[] _parentUnits)
+        public void Initialize(GameObject[] _parentUnits, ManaDisplay manaDisplay)
         {
+            _manaDisplay = manaDisplay;
             _manaCurrent = _startingAmount;
-            _manaDisplay.SetManaNumber(_manaCurrent);
+            _manaDisplay?.SetManaNumber(_manaCurrent);            
             this._parentUnits = _parentUnits;
             SubscribeToParentUnits();
         }
