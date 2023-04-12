@@ -23,11 +23,12 @@ namespace Rechrysalis.Unit
             float mult = _parentHealth.GetHealthRatio();
             if (mult == 0)
             {
-                Debug.Log($"return max");
-                _buildTimeMult = _buildTimeMultMax;
+                Debug.Log($"return min");
+                // _buildTimeMult = _buildTimeMultMax;
+                _buildTimeMult = 1;
             return;
             }
-            mult *= _buildTimeMult;
+            mult *= _buildTimeMultMax;
             mult =  1 - mult;
             Debug.Log($"return {mult}");
             _buildTimeMult = mult;
