@@ -26,10 +26,6 @@ namespace Rechrysalis.Unit
             _timerMax = _timerMaxBase;
             this._nextUnitBuilding = _nextUnitBuilding;
         }
-        public void AddToTimerMaxBase(float add)
-        {
-            _timerMaxBase += add;
-        }
         public void ApplyTimerMaxMult(float mult)
         {
             _timerMax = _timerMaxBase * mult;
