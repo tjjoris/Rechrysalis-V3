@@ -20,7 +20,10 @@ namespace Rechrysalis.AdvancedUpgrade
             _moveSpeedAdd = moveSpeedAdd;
             _rb2d = _mover.RB2D;
         }
-        public void OnEnable()
+        // public void OnEnable()
+        // {
+        // }
+        public void Activate()
         {
             if (_debugBool)
             {

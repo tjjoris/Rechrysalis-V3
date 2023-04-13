@@ -30,6 +30,8 @@ namespace Rechrysalis.Unit
         private HatchEffectSO _hatchEffectSO;
         [SerializeField] private TMP_Text _nameText;
         public UnitStatsSO UnitStats {get{return _unitStats;}}
+        [SerializeField] private Hatch _hatch;
+        public Hatch Hatch { get => _hatch; set => _hatch = value; }
         private Health _health;
         private Mover _mover;
         private Attack _attack;
@@ -47,9 +49,12 @@ namespace Rechrysalis.Unit
         private ParentUnitManager _parentUnitManager;
         private TargetPrioratizeByScore _targetPrioratizeByScore;
         private MoveSpeedAddManager _moveSpeedAddManager;
+        public MoveSpeedAddManager MoveSpeedAddManager => _moveSpeedAddManager;
         private SiegeManager _siegeManager;
         private HatchAdjustBuildTimerMaxBase _hatchAdjustBuildTimerMaxBase;
+        public HatchAdjustBuildTimerMaxBase HatchAdjustBuildTimerMaxBase => _hatchAdjustBuildTimerMaxBase;
         private BurstHealManager _burstHealManager;
+        public BurstHealManager BurstHealManager => _burstHealManager;
         private float _baseDPS;
         private float _newDPS;
         private float _baseChargeUp;

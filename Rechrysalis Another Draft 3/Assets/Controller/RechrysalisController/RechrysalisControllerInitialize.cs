@@ -169,6 +169,9 @@ namespace Rechrysalis.Controller
             // _theseUnits.ActiveUnits.Add(childUnitGo);
             childUnitGo.SetActive(false);
             pum.HilightRingParentManager.CreateHilightRingUnit(unitClass.UnitSprite);
+            _childUnitManager.Hatch = childUnitGo.AddComponent<Hatch>();
+            _childUnitManager.Hatch?.Initialize(_controllerManager, pum);
+
             GameObject chrysalisGo = Instantiate(_chrysalisPrefab, pum.transform);
             chrysalisGo.SetActive(false);
             chrysalisGo.name = $"Chrysalis " + childUnitIndex;
