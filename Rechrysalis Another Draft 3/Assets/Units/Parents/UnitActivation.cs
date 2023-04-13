@@ -54,20 +54,21 @@ namespace Rechrysalis.Unit
                         _parentUnitManager.TheseUnits.ActiveUnits.Add(_parentUnitManager.ChildUnitManagers[unitIndex].gameObject);
                     }
                     // if (_hatchEffectSO != null)
-                    if (unitIndex == 1)
-                    {
-                        if (_parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectPrefab.Count > 0)
-                        {
-                            foreach (HatchEffectClass hatchEffectClass in _parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectClasses)
-                            {
-                                if (hatchEffectClass != null)
-                                {
-                                    _parentUnitHatchEffects.CreateHatchEffect(hatchEffectClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitIndex, true, hatchEffectClass.HatchEffectHealth);
-                                }
-                            }
-                        }
-                    }
-                    // _progressBarManager?.TintChargeUp();
+
+                    // if (unitIndex == 1)
+                    // {
+                    //     if (_parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectPrefab.Count > 0)
+                    //     {
+                    //         foreach (HatchEffectClass hatchEffectClass in _parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectClasses)
+                    //         {
+                    //             if (hatchEffectClass != null)
+                    //             {
+                    //                 _parentUnitHatchEffects.CreateHatchEffect(hatchEffectClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitIndex, true, hatchEffectClass.HatchEffectHealth);
+                    //             }
+                    //         }
+                    //     }
+                    // }
+                    // // _progressBarManager?.TintChargeUp();
                 }
                 _chrysalisActivation.DeactivateChrysalis(_indexInSubUnits);
             }
