@@ -8,6 +8,7 @@ namespace Rechrysalis.AdvancedUpgrade
     public class MoveSpeedAddManager : MonoBehaviour
     {
         private bool _debugBool = true;
+        [SerializeField] private bool _speedHasBeenAdded;
         private Mover _mover;
         private Rigidbody2D _rb2d;
         private float _moveSpeedAdd;
@@ -29,13 +30,14 @@ namespace Rechrysalis.AdvancedUpgrade
             {
                 Debug.Log($"increase move speed");
             }
+            _speedHasBeenAdded = true;
             _mover.AddSpeed(_moveSpeedAdd);
             _timeCurrent = 0;
             _hasBeenDeactivated = false;
         }
         public void OnDisable()
         {
-            if (!_hasBeenDeactivated)
+            if ((_speedHasBeenAdded) && (!_hasBeenDeactivated))
             {
                 _mover.AddSpeed(-_moveSpeedAdd);
             }
@@ -51,7 +53,7 @@ namespace Rechrysalis.AdvancedUpgrade
         }
         public void Tick(float timeAmount)
         {
-            if ((!_hasBeenDeactivated) && (_rb2d.velocity != Vector2.zero))
+            if ((_speedHasBeenAdded) && (!_hasBeenDeactivated) && (_rb2d.velocity != Vector2.zero))
             {
                 _timeCurrent += timeAmount;
                 if (_timeCurrent >= _timeToWait)

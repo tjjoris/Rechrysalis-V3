@@ -47,6 +47,7 @@ namespace Rechrysalis.Unit
         public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
         private FreeUnitHatchEffect _freeHatchScript;
         private ParentUnitManager _parentUnitManager;
+        public ParentUnitManager ParentUnitManager => _parentUnitManager;
         private TargetPrioratizeByScore _targetPrioratizeByScore;
         private MoveSpeedAddManager _moveSpeedAddManager;
         public MoveSpeedAddManager MoveSpeedAddManager => _moveSpeedAddManager;
