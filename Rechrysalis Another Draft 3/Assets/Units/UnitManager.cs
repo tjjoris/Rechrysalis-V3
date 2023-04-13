@@ -56,6 +56,8 @@ namespace Rechrysalis.Unit
         public HatchAdjustBuildTimerMaxBase HatchAdjustBuildTimerMaxBase => _hatchAdjustBuildTimerMaxBase;
         private BurstHealManager _burstHealManager;
         public BurstHealManager BurstHealManager => _burstHealManager;
+        [SerializeField] private GameObject _particleEffectPrefab;
+        public GameObject ParticleEffectPrefab => _particleEffectPrefab;
         private float _baseDPS;
         private float _newDPS;
         private float _baseChargeUp;

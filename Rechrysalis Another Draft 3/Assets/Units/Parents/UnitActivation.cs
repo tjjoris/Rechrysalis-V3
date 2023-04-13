@@ -18,7 +18,7 @@ namespace Rechrysalis.Unit
         private ProgressBarManager _progressBarManager;
         private HilightRingParentManager _hilightRingParentManager;
         public HilightRingParentManager HilightRingParentManager {get { return _hilightRingParentManager;} set {_hilightRingParentManager = value;}}
-        [SerializeField] private GameObject _particleEffectPrefab;
+        // [SerializeField] private GameObject _particleEffectPrefab;
         public void Initialize(ParentUnitManager parentUnitManager)
         {
             _parentUnitManager = parentUnitManager;
@@ -71,7 +71,7 @@ namespace Rechrysalis.Unit
                 }
                 _chrysalisActivation.DeactivateChrysalis(_indexInSubUnits);
             }
-            Instantiate(_particleEffectPrefab, transform.position, Quaternion.identity, transform.parent);
+            // Instantiate(_particleEffectPrefab, transform.position, Quaternion.identity, transform.parent);
             _parentHealth.SetMaxHealth(_parentUnitManager.ChildUnitManagers[unitIndex].UnitClass.HPMax);
             _targetScoreValue.SetCurrentUnit(_parentUnitManager.CurrentSubUnit.GetComponent<Attack>());
             _hilightRingParentManager?.ActivateUnit(unitIndex);

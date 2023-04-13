@@ -342,25 +342,37 @@ MonoBehaviour:
     _manaCost: 0
     _unitName: 
     _hpMax: 0
+    _chrysalisHPMax: 0
     _buildTime: 0
     _range: 0
     _dps: 0
     _attackChargeUp: 0
     _attackWindDown: 0
     _damage: 0
-    _hatchEffectPrefab: {fileID: 0}
+    _hatchEffectPrefab:
+    - {fileID: 0}
+    _hatchEffectClasses: []
     _hatchEffectMult: 0
+    _hatchEffectDurationAdd: 0
     _unitSprite: {fileID: 0}
     _chrysalisSprite: {fileID: 0}
     _amountToPool: 0
     _projectileSpeed: 0
+    _sacrificeControllerAmount: 0
+    _moveSpeedAdd: 0
+    _siegeDuration: 0
+    _burstHeal: 0
     _projectileSprite: {fileID: 0}
+    _controllerLifeCostMult: 1
+    _hatchBuildTimeMaxBaseAdd: 0
   _unitSpriteHandler: {fileID: 2413047905271185919}
   _controllerIndex: 0
+  _childUnitIndex: 0
   _unitStats: {fileID: 0}
   _nameText: {fileID: 1178424233875251256}
+  _hatch: {fileID: 0}
   _hatchEffectPrefab: {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}
-  _isStopped: 0
+  _particleEffectPrefab: {fileID: 7911281763207815054, guid: 2538756a4dcac4719bd9629ebba4c776, type: 3}
 --- !u!114 &5745213307618876047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,26 +389,38 @@ MonoBehaviour:
     _manaCost: 0
     _unitName: 
     _hpMax: 0
+    _chrysalisHPMax: 0
     _buildTime: 0
     _range: 0
     _dps: 0
     _attackChargeUp: 0
     _attackWindDown: 0
     _damage: 0
-    _hatchEffectPrefab: {fileID: 0}
+    _hatchEffectPrefab:
+    - {fileID: 0}
+    _hatchEffectClasses: []
     _hatchEffectMult: 0
+    _hatchEffectDurationAdd: 0
     _unitSprite: {fileID: 0}
     _chrysalisSprite: {fileID: 0}
     _amountToPool: 0
     _projectileSpeed: 0
+    _sacrificeControllerAmount: 0
+    _moveSpeedAdd: 0
+    _siegeDuration: 0
+    _burstHeal: 0
     _projectileSprite: {fileID: 0}
+    _controllerLifeCostMult: 1
+    _hatchBuildTimeMaxBaseAdd: 0
   _attackChargeCurrent: 0
   _attackChargeUp: 0
   _attackWindDown: 0
   _baseDamage: 0
   _damage: 0
   _baseDPS: 0
+  _currentDPS: 0
   _targetsList: {fileID: 0}
+  _tempTarget: {fileID: 0}
 --- !u!114 &663411085894280897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,6 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50e74d30a245480d9c9a431d55f2c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _target: {fileID: 0}
 --- !u!114 &4036424163165419216
 MonoBehaviour:
   m_ObjectHideFlags: 0

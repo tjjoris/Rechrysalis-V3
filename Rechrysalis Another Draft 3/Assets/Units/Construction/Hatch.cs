@@ -20,6 +20,7 @@ namespace Rechrysalis.Unit
         {
             _unitManager.MoveSpeedAddManager?.Activate();
             _unitManager.BurstHealManager?.Activate();
+            Instantiate(_unitManager.ParticleEffectPrefab, transform.position, Quaternion.identity, transform.parent);
         }
     }
 }
