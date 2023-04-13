@@ -20,7 +20,8 @@ namespace Rechrysalis.CompCustomizer
         public ControllerHeartUpgrade[] ControllerHeartUpgrades => _controllerHeartUpgrades;
         [SerializeField] private HatchEffectSO[] _hatchEffectSelectionArray;
         public HatchEffectSO[] HatchEffectSelectionArray { get{ return _hatchEffectSelectionArray; }}
-
+        [SerializeField] private AdvUnitModifierSO[] _onHatchEffectSelectionArray;
+        public AdvUnitModifierSO[] OnHatchEffectSelectionArray => _onHatchEffectSelectionArray;
         
     }
 }

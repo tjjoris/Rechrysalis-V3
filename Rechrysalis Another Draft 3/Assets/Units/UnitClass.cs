@@ -59,6 +59,8 @@ namespace Rechrysalis.Unit
         [SerializeField] private Sprite _projectileSprite;
         [SerializeField] private float _controllerLifeCostMult = 1;
         public float ControllerLifeCostMult { get => _controllerLifeCostMult; set => _controllerLifeCostMult = value; }
+        [SerializeField] private float _hatchBuildTimeMaxBaseAdd;
+        public float HatchBuildTimeMaxBaseAdd { get => _hatchBuildTimeMaxBaseAdd; set => _hatchBuildTimeMaxBaseAdd = value;}
         
         public Sprite ProjectileSprite { get => _projectileSprite; set => _projectileSprite = value; }
         

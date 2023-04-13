@@ -30,6 +30,10 @@ namespace Rechrysalis.Unit
         {
             _timerMax = _timerMaxBase * mult;
         }
+        public void AddTimerMaxBase(float amount)
+        {
+            _timerMaxBase += amount;
+        }
         public void StartThisChrysalis(float _timeToKeep)
         {
             _timerCurrent = 0 + _timeToKeep;     

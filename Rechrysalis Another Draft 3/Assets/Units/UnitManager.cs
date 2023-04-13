@@ -35,6 +35,7 @@ namespace Rechrysalis.Unit
         private Attack _attack;
         private ControllerUnitAttackClosest _controllerUnitAttackClosest;
         private ChrysalisTimer _chrysalisTimer;
+        public ChrysalisTimer ChryslaisTimer => _chrysalisTimer;
         private Rechrysalize _rechrysalize;
         private CompsAndUnitsSO _compsAndUnits;
         private ProjectilesPool _projectilesPool;
@@ -47,6 +48,7 @@ namespace Rechrysalis.Unit
         private TargetPrioratizeByScore _targetPrioratizeByScore;
         private MoveSpeedAddManager _moveSpeedAddManager;
         private SiegeManager _siegeManager;
+        private HatchAdjustBuildTimerMaxBase _hatchAdjustBuildTimerMaxBase;
         private BurstHealManager _burstHealManager;
         private float _baseDPS;
         private float _newDPS;
@@ -153,6 +155,11 @@ namespace Rechrysalis.Unit
                     gameObject.AddComponent<BurstHealManager>();
                     _burstHealManager = GetComponent<BurstHealManager>();
                     _burstHealManager?.Initialize(_controllerManager, _unitClass.BurstHeal);
+                }
+                if (_unitClass.HatchBuildTimeMaxBaseAdd != 0)
+                {
+                    _hatchAdjustBuildTimerMaxBase = gameObject.AddComponent<HatchAdjustBuildTimerMaxBase>();                    
+                    _hatchAdjustBuildTimerMaxBase?.Initialize(_controllerManager, _unitClass.HatchBuildTimeMaxBaseAdd);
                 }
             }
             ReCalculateDamageChanges();
@@ -261,6 +268,7 @@ namespace Rechrysalis.Unit
                 _chrysalisTimer?.Tick(timeAmount);
                 _moveSpeedAddManager?.Tick(timeAmount);
                 _siegeManager?.Tick(timeAmount);
+                _hatchAdjustBuildTimerMaxBase?.Tick(timeAmount);
             // }
         }
         public bool IsEnemy(int _controllerIndex)

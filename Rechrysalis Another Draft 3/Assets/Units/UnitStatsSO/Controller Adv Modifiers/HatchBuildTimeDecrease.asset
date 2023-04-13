@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cb8c6223c7614439bf8d98a437c4269, type: 3}
-  m_Name: BurstHeal
+  m_Name: HatchBuildTimeDecrease
   m_EditorClassIdentifier: 
   _upgradeTypeClass:
     _upgradeType: 2
@@ -18,7 +18,7 @@ MonoBehaviour:
     _hatchEffectSO: {fileID: 0}
     _advUnitModifierSO: {fileID: 11400000}
     _controllerHeartUpgrade: {fileID: 0}
-  _upgradeName: Heal
+  _upgradeName: -Build Time
   _currencyCost: 25
   _manaAdd: 7
   _manaMult: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
   _hpMaxAdd: 0
   _hpMaxMult: 1
   _rangeAdd: 0
-  _dpsAdd: 0
+  _dpsAdd: 2
   _dpsMult: 1
   _attackChargeUpAdd: 0
   _attackChargeUpMult: 1
@@ -37,7 +37,7 @@ MonoBehaviour:
   _hatchEffectDurationAdd: 0
   _sacrificeControllerAmount: 0
   _moveSpeedAdd: 0
-  _hatchBuildTimeMaxBaseAdd: 0
+  _hatchBuildTimeMaxBaseAdd: -1
   _siegeDuration: 0
-  _burstHeal: 65
+  _burstHeal: 0
   _controllerLifeCostMult: 1
