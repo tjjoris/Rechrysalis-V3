@@ -82,5 +82,25 @@ namespace Rechrysalis
         {
             PlayerPrefsInteract.SetHasBasicUnit(_hasBasicUnitToggle.isOn);
         }
+        public void HyperManaMode()
+        {
+            
+            _hasManaToggle.isOn = true;
+            ToggleHasMana();
+            _healthToBuildTimeDropDown.value = 2;
+            SetLifeToBuildTimeDropdown();
+            _hasBasicUnitToggle.isOn = true;
+            ToggleHasBasicUnit();
+        }
+        public void InfinityMode()
+        {
+            _hasManaToggle.isOn = false;
+            ToggleHasMana();
+            _healthToBuildTimeDropDown.value = 1;
+            SetLifeToBuildTimeDropdown();
+            _hasBasicUnitToggle.isOn = false;
+            ToggleHasBasicUnit();
+
+        }
     }
 }

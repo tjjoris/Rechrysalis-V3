@@ -30,11 +30,14 @@ namespace Rechrysalis.Unit
         private HatchEffectSO _hatchEffectSO;
         [SerializeField] private TMP_Text _nameText;
         public UnitStatsSO UnitStats {get{return _unitStats;}}
+        [SerializeField] private Hatch _hatch;
+        public Hatch Hatch { get => _hatch; set => _hatch = value; }
         private Health _health;
         private Mover _mover;
         private Attack _attack;
         private ControllerUnitAttackClosest _controllerUnitAttackClosest;
         private ChrysalisTimer _chrysalisTimer;
+        public ChrysalisTimer ChryslaisTimer => _chrysalisTimer;
         private Rechrysalize _rechrysalize;
         private CompsAndUnitsSO _compsAndUnits;
         private ProjectilesPool _projectilesPool;
@@ -44,10 +47,15 @@ namespace Rechrysalis.Unit
         public GameObject HatchEffectPrefab {get {return _hatchEffectPrefab;}}
         private FreeUnitHatchEffect _freeHatchScript;
         private ParentUnitManager _parentUnitManager;
+        public ParentUnitManager ParentUnitManager => _parentUnitManager;
         private TargetPrioratizeByScore _targetPrioratizeByScore;
         private MoveSpeedAddManager _moveSpeedAddManager;
+        public MoveSpeedAddManager MoveSpeedAddManager => _moveSpeedAddManager;
         private SiegeManager _siegeManager;
+        private HatchAdjustBuildTimerMaxBase _hatchAdjustBuildTimerMaxBase;
+        public HatchAdjustBuildTimerMaxBase HatchAdjustBuildTimerMaxBase => _hatchAdjustBuildTimerMaxBase;
         private BurstHealManager _burstHealManager;
+        public BurstHealManager BurstHealManager => _burstHealManager;
         private float _baseDPS;
         private float _newDPS;
         private float _baseChargeUp;
@@ -153,6 +161,11 @@ namespace Rechrysalis.Unit
                     gameObject.AddComponent<BurstHealManager>();
                     _burstHealManager = GetComponent<BurstHealManager>();
                     _burstHealManager?.Initialize(_controllerManager, _unitClass.BurstHeal);
+                }
+                if (_unitClass.HatchBuildTimeMaxBaseAdd != 0)
+                {
+                    _hatchAdjustBuildTimerMaxBase = gameObject.AddComponent<HatchAdjustBuildTimerMaxBase>();                    
+                    _hatchAdjustBuildTimerMaxBase?.Initialize(_controllerManager, _unitClass.HatchBuildTimeMaxBaseAdd);
                 }
             }
             ReCalculateDamageChanges();
@@ -261,6 +274,7 @@ namespace Rechrysalis.Unit
                 _chrysalisTimer?.Tick(timeAmount);
                 _moveSpeedAddManager?.Tick(timeAmount);
                 _siegeManager?.Tick(timeAmount);
+                _hatchAdjustBuildTimerMaxBase?.Tick(timeAmount);
             // }
         }
         public bool IsEnemy(int _controllerIndex)

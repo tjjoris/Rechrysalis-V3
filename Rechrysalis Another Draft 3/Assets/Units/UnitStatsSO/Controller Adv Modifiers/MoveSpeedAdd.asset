@@ -22,12 +22,12 @@ MonoBehaviour:
   _currencyCost: 25
   _manaAdd: 7
   _manaMult: 1
-  _buildTimeAdd: -0.4
+  _buildTimeAdd: 0
   _buildTimeMult: 1
   _hpMaxAdd: 5
   _hpMaxMult: 1
   _rangeAdd: 0
-  _dpsAdd: 2
+  _dpsAdd: 0
   _dpsMult: 1
   _attackChargeUpAdd: 0
   _attackChargeUpMult: 1
@@ -37,3 +37,7 @@ MonoBehaviour:
   _hatchEffectDurationAdd: 0
   _sacrificeControllerAmount: 0
   _moveSpeedAdd: 2
+  _hatchBuildTimeMaxBaseAdd: -1
+  _siegeDuration: 0
+  _burstHeal: 0
+  _controllerLifeCostMult: 1
