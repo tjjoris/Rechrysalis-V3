@@ -19,6 +19,7 @@ namespace Rechrysalis.Unit
         public void ActivateHatch()
         {
             _unitManager.MoveSpeedAddManager?.Activate();
+            _unitManager.BurstHealManager?.Activate();
         }
     }
 }

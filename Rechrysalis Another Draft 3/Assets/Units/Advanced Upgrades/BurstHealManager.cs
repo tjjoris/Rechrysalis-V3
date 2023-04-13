@@ -16,9 +16,13 @@ namespace Rechrysalis.AdvancedUpgrade
             _controllerManager = controllerManager;
             _healAmount = healAmount;
         }
-        public void OnEnable()
+        // public void OnEnable()
+        // {
+            
+        // }
+        public void Activate()
         {
-            foreach(ParentHealth parentHealth in _controllerManager.ParentHealths)
+foreach (ParentHealth parentHealth in _controllerManager.ParentHealths)
             {
                 if (parentHealth != null)
                 {
