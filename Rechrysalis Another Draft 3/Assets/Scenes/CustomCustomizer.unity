@@ -380,7 +380,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _compCustomizerSO: {fileID: 11400000, guid: 5ca9183df0e6a48208639a14b95217d1, type: 2}
   _compsAndUnitsSO: {fileID: 11400000, guid: abce2c694bba2494b88e77f2ae192b6f, type: 2}
-  _selectionInitialize: {fileID: 1909423963}
+  _selectionInitializeMain: {fileID: 1909423970}
+  _selectionInitialize: {fileID: 0}
   _compInitialize: {fileID: 1228158368}
   _compSO: {fileID: 0}
   _controllerHPTokens: {fileID: 1717111042}
@@ -600,7 +601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 414014357}
   m_Layer: 5
-  m_Name: MovingButtonHolder
+  m_Name: DraggedButtonHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2211,13 +2212,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1909423959}
   - component: {fileID: 1909423961}
-  - component: {fileID: 1909423963}
   - component: {fileID: 1909423965}
   - component: {fileID: 1909423964}
   - component: {fileID: 1909423967}
   - component: {fileID: 1909423966}
   - component: {fileID: 1909423968}
   - component: {fileID: 1909423969}
+  - component: {fileID: 1909423970}
   m_Layer: 5
   m_Name: Selection
   m_TagString: Untagged
@@ -2255,22 +2256,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909423958}
   m_CullTransparentMesh: 1
---- !u!114 &1909423963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1909423958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c01904b1ec1884e18a0cf7f0a7f041df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _selectionContainer: {fileID: 452630626}
-  _compCustomizerSO: {fileID: 0}
-  _upgradeButtonPrefab: {fileID: 1858269929011501162, guid: bf20bc1710cf74588a7291cfa3f61b27, type: 3}
-  _upgradeButtonIndex: 
 --- !u!114 &1909423964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2365,6 +2350,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66143fa5404204d3cab3576172e09ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1909423970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909423958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 665c99b1acc764c5a9879250dcc70dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _compButtonPrefab: {fileID: 1858269929011501162, guid: bf20bc1710cf74588a7291cfa3f61b27, type: 3}
+  _selectionContainer: {fileID: 452630626}
 --- !u!224 &1948182668 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6878637215049703428, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}

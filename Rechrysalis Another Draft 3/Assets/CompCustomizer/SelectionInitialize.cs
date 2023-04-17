@@ -25,8 +25,10 @@ namespace Rechrysalis.CompCustomizer
         private CheckForUTCDuplicates _checkForDuplicates;
         
         
-        public void Initialize(CompCustomizerSO compCustomizerSO, Transform movingButtonHolder, CompSO compSO)
+        public void Initialize(CompCustomizerSO compCustomizerSO, Transform movingButtonHolder, CompSO compSO, GameObject compButtonPrefab, Transform selectionContainer)
         {
+            _upgradeButtonPrefab = compButtonPrefab;
+            _selectionContainer = selectionContainer;
             _addAllToSelection = GetComponent<AddAllToSelection>();
             _movingButtonHolder = movingButtonHolder;
             _upgradeButtonIndex = new int[_numberOfUpgrades];

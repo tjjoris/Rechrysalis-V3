@@ -16,6 +16,8 @@ namespace Rechrysalis.CompCustomizer
         public CompCustomizerSO CompCustomizerSO { get{ return _compCustomizerSO; } set{ _compCustomizerSO = value; } }
         [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;
         public CompsAndUnitsSO CompsAndUnitsSO { get{ return _compsAndUnitsSO; } set{ _compsAndUnitsSO = value; } }
+        [SerializeField] private SelectionInitializeMain _selectionInitializeMain;
+        public SelectionInitializeMain SelectionInitializeMain => _selectionInitializeMain;
         [SerializeField] private SelectionInitialize _selectionInitialize;
         [SerializeField] private CompInitialize _compInitialize;
         
@@ -44,7 +46,14 @@ namespace Rechrysalis.CompCustomizer
         private void Start()
         {
             _compSO = _compsAndUnitsSO.CompsSO[0];
-            _selectionInitialize.Initialize(_compCustomizerSO, _movingButtonHolder.transform, _compSO);
+            _selectionInitializeMain.Initialize(_compCustomizerSO, _movingButtonHolder, _compSO);
+            _selectionInitialize = _selectionInitializeMain.SelectionInitialize;
+            // if (PlayerPrefsInteract.GetCustomizeOnlyHEAndUnit())
+            // {
+            //     _selectionInitialize = _selectionInitializeMain.AddComponent<SelectionInitialize>();
+            //     _selectionInitialize.Initialize(_compCustomizerSO, _movingButtonHolder.transform, _compSO);
+            // }
+            
             _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0], _movingButtonHolder, _compsAndUnitsSO, _controllerHPTokens);
             _controllerHPTokens.Initialize(_compsAndUnitsSO);
             _levelDisplay.SetLevelText(_compsAndUnitsSO.Level);
