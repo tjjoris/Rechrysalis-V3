@@ -15,6 +15,7 @@ namespace Rechrysalis
         [SerializeField] private NewGameStatus _newGameStatus;
         [SerializeField] private Toggle _hasManaToggle;
         [SerializeField] private Toggle _hasBasicUnitToggle;
+        [SerializeField] private Toggle _customizeOnlyHEAndUnit;
         [SerializeField] private TMP_Dropdown _healthToBuildTimeDropDown;
         private void Awake()
         {
@@ -37,6 +38,8 @@ namespace Rechrysalis
             _hasManaToggle.isOn = PlayerPrefsInteract.GetHasMana();
             _healthToBuildTimeDropDown.value = PlayerPrefsInteract.GetHealthToBuildTime();
             _hasBasicUnitToggle.isOn = PlayerPrefsInteract.GetHasBasicUnit();
+            _customizeOnlyHEAndUnit.isOn = PlayerPrefsInteract.GetCustomizeOnlyHEAndUnit();
+            
         }
         public void LevelSelect()
         {
@@ -82,6 +85,10 @@ namespace Rechrysalis
         {
             PlayerPrefsInteract.SetHasBasicUnit(_hasBasicUnitToggle.isOn);
         }
+        public void ToggleCustomizeOnlyHEAndUnit()
+        {
+            PlayerPrefsInteract.SetCustomizeOnlyHEAndUnit(_customizeOnlyHEAndUnit.isOn);
+        }
         public void HyperManaMode()
         {
             
@@ -91,6 +98,8 @@ namespace Rechrysalis
             SetLifeToBuildTimeDropdown();
             _hasBasicUnitToggle.isOn = true;
             ToggleHasBasicUnit();
+            _customizeOnlyHEAndUnit.isOn = false;
+            ToggleCustomizeOnlyHEAndUnit();
         }
         public void InfinityMode()
         {
@@ -100,7 +109,8 @@ namespace Rechrysalis
             SetLifeToBuildTimeDropdown();
             _hasBasicUnitToggle.isOn = false;
             ToggleHasBasicUnit();
-
+            _customizeOnlyHEAndUnit.isOn = true;
+            ToggleCustomizeOnlyHEAndUnit();
         }
     }
 }

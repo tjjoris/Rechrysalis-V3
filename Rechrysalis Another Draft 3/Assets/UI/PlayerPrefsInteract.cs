@@ -11,6 +11,7 @@ namespace Rechrysalis.UI
         private const string HEALTHTOBUILDTIME  = "HealthToBuildTime";
         private const string HASBASICUNIT = "HasBasicUnit";
         private const string HASMANA = "HasMana";
+        private const string CUSTOMIZEONLYHEANDUNIT = "CustomizeOnlyHEAndUnit";
         public static Action _changePlayerPrefs;
 
         public static void SetTargetDuringTargetMode(bool value)
@@ -69,6 +70,23 @@ namespace Rechrysalis.UI
         public static bool GetHasMana()
         {
             if (PlayerPrefs.GetInt(HASMANA) == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static void SetCustomizeOnlyHEAndUnit(bool value)
+        {
+            if (value)
+            {
+                PlayerPrefs.SetInt(CUSTOMIZEONLYHEANDUNIT, 1);
+                return;
+            }
+            PlayerPrefs.SetInt(CUSTOMIZEONLYHEANDUNIT, 0);
+        }
+        public static bool GetCustomizeOnlyHEAndUnit()
+        {
+            if (PlayerPrefs.GetInt(CUSTOMIZEONLYHEANDUNIT) == 1)
             {
                 return true;
             }
