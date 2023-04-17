@@ -16,6 +16,7 @@ namespace Rechrysalis.CompCustomizer
         public SelectionInitialize SelectionInitialize => _selectionInitialize;
         private CompCustomizerSO _compCustomizerSO;
         private CompSO _compSO;
+        // private GetRandomUpgradeTypeClassesFromList _getRandomUpgradeTypeClassesFromList;
 
         public void Initialize(CompCustomizerSO compCustomizerSO, Transform draggedButtonHolder, CompSO compSO)
         {
@@ -33,6 +34,14 @@ namespace Rechrysalis.CompCustomizer
                 _selectionInitializeOnlyBasicUnit = gameObject.AddComponent<SelectionInitializeOnlyBasicUnit>();
                 List<UpgradeTypeClass> basicButtonsToCreate = _selectionInitializeOnlyBasicUnit.GetButtons(_compCustomizerSO, 2);
             }
+            // public GetRandomUpgradeTypeClassesFromList GetRandomUpgradeTypeClassesFromList()
+            // {
+            //     _getRandomUpgradeTypeClassesFromList = GetComponent<GetRandomUpgradeTypeClassesFromList>();
+            //     if (_getRandomUpgradeTypeClassesFromList == null)
+            //     {
+            //         gameObject.AddComponent<GetRandomUpgradeTypeClassesFromList>
+            //     }
+            // }
            
         }
     }
