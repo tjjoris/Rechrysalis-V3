@@ -26,8 +26,8 @@ namespace Rechrysalis.CompCustomizer
             {
                 _listToChooseFrom.Add(basicUnit.UpgradeTypeClass);
             }
-
-            return _listToChooseFrom;
+            List<UpgradeTypeClass> randomSelection = _getRandomUpgradeTypeClassesFromList.GetRandomListFunc(_listToChooseFrom, maxChosen);
+            return randomSelection;
         }
         
     }

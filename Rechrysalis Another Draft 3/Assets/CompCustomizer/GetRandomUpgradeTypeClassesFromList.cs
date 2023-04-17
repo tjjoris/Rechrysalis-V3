@@ -11,7 +11,7 @@ namespace Rechrysalis.CompCustomizer
         {
             List<UpgradeTypeClass> chosenList = new List<UpgradeTypeClass>();
             int max = listToChooseFrom.Count;
-            while ((chosenList.Count < maxToChoose) || (max > 0))
+            // while ((chosenList.Count < maxToChoose) || (max > 0))
             {
                 chosenList.Add(GetRandomFunc(listToChooseFrom, chosenList));
                 max --;
@@ -20,7 +20,8 @@ namespace Rechrysalis.CompCustomizer
         }
         public UpgradeTypeClass GetRandomFunc(List<UpgradeTypeClass> listToChooseFrom, List<UpgradeTypeClass> chosenList)
         {
-            int randomNumber = Random.Range(0, listToChooseFrom.Count -1);
+            // Debug.Log($"listToChooseFromCount-1" + (listToChooseFrom.Count));
+            int randomNumber = Random.Range(0, listToChooseFrom.Count);
             UpgradeTypeClass randomUTC = listToChooseFrom[randomNumber];
             if (chosenList.Contains(randomUTC))
             {
