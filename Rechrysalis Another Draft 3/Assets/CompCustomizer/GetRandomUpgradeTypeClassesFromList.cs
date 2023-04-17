@@ -11,7 +11,7 @@ namespace Rechrysalis.CompCustomizer
         {
             List<UpgradeTypeClass> chosenList = new List<UpgradeTypeClass>();
             int max = listToChooseFrom.Count;
-            // while ((chosenList.Count < maxToChoose) || (max > 0))
+            while ((chosenList.Count < maxToChoose) && (max > 0))
             {
                 chosenList.Add(GetRandomFunc(listToChooseFrom, chosenList));
                 max --;
