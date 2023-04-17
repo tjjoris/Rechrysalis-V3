@@ -16,13 +16,17 @@ namespace Rechrysalis.CompCustomizer
         public SelectionInitialize SelectionInitialize => _selectionInitialize;
         private CompCustomizerSO _compCustomizerSO;
         private CompSO _compSO;
+        private MainCompCustomizerManager _mainCompCustomizerManager;
+        private InstantiateButton _instantiateButton;
         // private GetRandomUpgradeTypeClassesFromList _getRandomUpgradeTypeClassesFromList;
 
-        public void Initialize(CompCustomizerSO compCustomizerSO, Transform draggedButtonHolder, CompSO compSO)
+        public void Initialize(CompCustomizerSO compCustomizerSO, Transform draggedButtonHolder, CompSO compSO, MainCompCustomizerManager mainCompCustomizerManager)
         {
+            _mainCompCustomizerManager = mainCompCustomizerManager;
             _compCustomizerSO = compCustomizerSO;
             _draggedButtonHolder = draggedButtonHolder;
             _compSO = compSO;
+            _instantiateButton = _mainCompCustomizerManager.InstantiateButton;
 
             if (!PlayerPrefsInteract.GetCustomizeOnlyHEAndUnit())
             {
@@ -32,17 +36,16 @@ namespace Rechrysalis.CompCustomizer
             else 
             {
                 _selectionInitializeOnlyBasicUnit = gameObject.AddComponent<SelectionInitializeOnlyBasicUnit>();
-                List<UpgradeTypeClass> basicButtonsToCreate = _selectionInitializeOnlyBasicUnit.GetButtons(_compCustomizerSO, 2);
+                List<UpgradeTypeClass> basicButtonsToCreate = _selectionInitializeOnlyBasicUnit.GetButtons(_compCustomizerSO, 1);
+                InstantiateAllButtonsInList(basicButtonsToCreate);
             }
-            // public GetRandomUpgradeTypeClassesFromList GetRandomUpgradeTypeClassesFromList()
-            // {
-            //     _getRandomUpgradeTypeClassesFromList = GetComponent<GetRandomUpgradeTypeClassesFromList>();
-            //     if (_getRandomUpgradeTypeClassesFromList == null)
-            //     {
-            //         gameObject.AddComponent<GetRandomUpgradeTypeClassesFromList>
-            //     }
-            // }
-           
+        }
+        private void InstantiateAllButtonsInList(List<UpgradeTypeClass> buttonsInList)
+        {
+            foreach (UpgradeTypeClass upgradeTypeClass in buttonsInList)
+            {
+                _instantiateButton.CreateSelectionButtons(buttonsInList, _selectionContainer);
+            }
         }
     }
 }

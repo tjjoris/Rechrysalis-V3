@@ -28,6 +28,8 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private LevelDisplay _levelDisplay;
         private ContinueReturnsToStart _continueReturnsToStart;
         private ContinueStartsFreeUnitLevel _continueStartsFreeUnitLevel;
+        [SerializeField] private InstantiateButton _instantiateButton;
+        public InstantiateButton InstantiateButton => _instantiateButton;
 
         // private void OnEnable()
         // {
@@ -42,11 +44,12 @@ namespace Rechrysalis.CompCustomizer
         {
             _continueReturnsToStart = GetComponent<ContinueReturnsToStart>();
             _continueStartsFreeUnitLevel = GetComponent<ContinueStartsFreeUnitLevel>();
+            _instantiateButton = GetComponent<InstantiateButton>();
         }
         private void Start()
         {
             _compSO = _compsAndUnitsSO.CompsSO[0];
-            _selectionInitializeMain.Initialize(_compCustomizerSO, _movingButtonHolder, _compSO);
+            _selectionInitializeMain.Initialize(_compCustomizerSO, _movingButtonHolder, _compSO, this);
             _selectionInitialize = _selectionInitializeMain.SelectionInitialize;
             // if (PlayerPrefsInteract.GetCustomizeOnlyHEAndUnit())
             // {
