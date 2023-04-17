@@ -13,6 +13,7 @@ namespace Rechrysalis.CompCustomizer
         private Transform _draggedButtonHolder;
         private SelectionInitialize _selectionInitialize;
         private SelectionInitializeOnlyBasicUnit _selectionInitializeOnlyBasicUnit;
+        private SelectionInitializeOnlyOnHatchEffects _selectionInitializeOnlyHE;
         public SelectionInitialize SelectionInitialize => _selectionInitialize;
         private CompCustomizerSO _compCustomizerSO;
         private CompSO _compSO;
@@ -38,6 +39,9 @@ namespace Rechrysalis.CompCustomizer
                 _selectionInitializeOnlyBasicUnit = gameObject.AddComponent<SelectionInitializeOnlyBasicUnit>();
                 List<UpgradeTypeClass> basicButtonsToCreate = _selectionInitializeOnlyBasicUnit.GetButtons(_compCustomizerSO, 1);
                 _instantiateButton.CreateSelectionButtons(basicButtonsToCreate, _selectionContainer);
+                _selectionInitializeOnlyHE = gameObject.AddComponent<SelectionInitializeOnlyOnHatchEffects>();
+                List<UpgradeTypeClass> onHatchEffectsToCreate = _selectionInitializeOnlyHE.GetButtons(_compCustomizerSO, 1);
+                _instantiateButton.CreateSelectionButtons(onHatchEffectsToCreate, _selectionContainer);
             }
         }
     }
