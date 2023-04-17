@@ -37,14 +37,7 @@ namespace Rechrysalis.CompCustomizer
             {
                 _selectionInitializeOnlyBasicUnit = gameObject.AddComponent<SelectionInitializeOnlyBasicUnit>();
                 List<UpgradeTypeClass> basicButtonsToCreate = _selectionInitializeOnlyBasicUnit.GetButtons(_compCustomizerSO, 1);
-                InstantiateAllButtonsInList(basicButtonsToCreate);
-            }
-        }
-        private void InstantiateAllButtonsInList(List<UpgradeTypeClass> buttonsInList)
-        {
-            foreach (UpgradeTypeClass upgradeTypeClass in buttonsInList)
-            {
-                _instantiateButton.CreateSelectionButtons(buttonsInList, _selectionContainer);
+                _instantiateButton.CreateSelectionButtons(basicButtonsToCreate, _selectionContainer);
             }
         }
     }
