@@ -8,6 +8,7 @@ namespace Rechrysalis.CompCustomizer
     [RequireComponent(typeof(GetRandomUpgradeTypeClassesFromList))]
     public class SelectionInitializeOnlyBasicUnit : MonoBehaviour
     {
+        private bool _debugBool = true;
         private int _numberOfupgrades;
         private List<UpgradeTypeClass> _chosenList;
         private List<UpgradeTypeClass> _listToChooseFrom;
@@ -27,6 +28,7 @@ namespace Rechrysalis.CompCustomizer
                 _listToChooseFrom.Add(basicUnit.UpgradeTypeClass);
             }
             List<UpgradeTypeClass> randomSelection = _getRandomUpgradeTypeClassesFromList.GetRandomListFunc(_listToChooseFrom, maxChosen);
+            if (_debugBool) Debug.Log($"random seleciton " + randomSelection[0].GetUpgradeType());
             return randomSelection;
         }
         
