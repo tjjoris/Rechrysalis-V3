@@ -1489,6 +1489,7 @@ MonoBehaviour:
   - {fileID: 1287336173}
   - {fileID: 6878637215250843785}
   _showCompErrorText: {fileID: 124370955}
+  _startingComp: {fileID: 11400000, guid: b59987cecce20478296567ad3d814c4d, type: 2}
 --- !u!1 &1273122378
 GameObject:
   m_ObjectHideFlags: 0

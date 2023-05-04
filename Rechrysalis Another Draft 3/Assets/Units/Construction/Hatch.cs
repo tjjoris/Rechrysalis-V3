@@ -8,6 +8,7 @@ namespace Rechrysalis.Unit
 {
     public class Hatch : MonoBehaviour
     {
+        private bool _debugBool = true;
         private ControllerManager _controllerManager;
         private ParentUnitManager _parentUnitManager;
         private UnitManager _unitManager;
@@ -29,7 +30,7 @@ namespace Rechrysalis.Unit
         }
         private void ActivateHatchEffects(int unitIndex)
         {
-
+            if (_debugBool) Debug.Log($"activate hatch effects in hatch called");
             // if (_unitManager.UnitIndex == 1)
             {
                 if (_parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectPrefab.Count > 0)

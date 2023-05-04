@@ -8,7 +8,7 @@ namespace Rechrysalis.CompCustomizer
     [RequireComponent(typeof(GetRandomUpgradeTypeClassesFromList))]
     public class SelectionInitializeOnlyBasicUnit : MonoBehaviour
     {
-        private bool _debugBool = true;
+        private bool _debugBool = false;
         private int _numberOfupgrades;
         private List<UpgradeTypeClass> _chosenList;
         private List<UpgradeTypeClass> _listToChooseFrom;

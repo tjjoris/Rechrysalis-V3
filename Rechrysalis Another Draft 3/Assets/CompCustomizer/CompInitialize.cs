@@ -17,6 +17,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private List<CompVerticalManager> _verticalMangers;
         public List<CompVerticalManager> VerticalManagers => _verticalMangers;
         [SerializeField] private ShowCompErrorText _showCompErrorText;
+        [SerializeField] private CompSO _startingComp;
         // public Action<CompVerticalManager, CompUpgradeManager> _droppedIntoVertical;
         
         // private void OnEnable()
@@ -42,6 +43,10 @@ namespace Rechrysalis.CompCustomizer
         // }
         public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens)
         {
+            if (!playerComp.IsCompExists())
+            {
+                // playerComp = _startingComp;
+            }
             _movingButtonHolder = movingButtonHolder;
             _playerComp = playerComp;
             _compCustomizerSO = compCustomizerSO;  

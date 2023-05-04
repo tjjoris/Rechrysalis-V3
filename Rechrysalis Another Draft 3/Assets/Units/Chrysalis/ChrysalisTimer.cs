@@ -7,6 +7,7 @@ namespace Rechrysalis.Unit
 {
     public class ChrysalisTimer : MonoBehaviour
     {
+        private bool _debugBool = false;
         private UnitManager _chrysalisUnitManger;
         private ParentUnitManager _parentUnitManager;
         [SerializeField] private float _timerMaxBase;
@@ -48,8 +49,8 @@ namespace Rechrysalis.Unit
             _timerCurrent += _timeAmount;
             if (_timerCurrent >= _timerMax)
             {
-                _startUnit?.Invoke(_nextUnitBuilding);
-                Debug.Log($"hatch {_nextUnitBuilding}");
+                _startUnit?.Invoke(_nextUnitBuilding);                
+                if (_debugBool) Debug.Log($"hatch {_nextUnitBuilding}");
                 _parentUnitManager.ChildUnitManagers[_nextUnitBuilding].Hatch?.ActivateHatch();
             }
             CalculateProgressAndStrech();

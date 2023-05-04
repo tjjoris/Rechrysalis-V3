@@ -8,6 +8,7 @@ namespace Rechrysalis.Unit
 {
     public class ParentUnitHatchEffects : MonoBehaviour
     {
+        private bool _debugBool = true;
         private ParentUnitManager _parentUnitManager;
         [SerializeField] private List<GameObject> _hatchEffects;
         public List<GameObject> HatchEffects => _hatchEffects;
@@ -28,7 +29,17 @@ namespace Rechrysalis.Unit
 
         public void CreateHatchEffect(GameObject _hatchEffectPrefab, int _parentIndex, int _unitIndex, bool _affectAll, float hpMax)
         {
-            if ((_hatchEffectPrefab != null) && (_parentUnitManager.SubHatchEffects[_unitIndex] != null))
+            if (_debugBool) Debug.Log($"create hacth effect called in parent unit hatch effects");
+            if (_hatchEffectPrefab == null) 
+            {
+                Debug.LogWarning("hatcheffect prefab == null");
+                return;
+            }
+            if (_parentUnitManager.SubHatchEffects[_unitIndex] == null)
+            {
+                Debug.LogWarning("parentunitmanager.subhatcheffects[_unitindex] == null");
+                return;
+            }
             {
                 GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
                 HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
@@ -38,6 +49,7 @@ namespace Rechrysalis.Unit
         }
         public void AddHatchEffect(GameObject _hatchEffect)
         {
+            if (_debugBool) Debug.Log($"add hatch effect called in parent unit hatch effects script");
             _hatchEffects.Add(_hatchEffect);
             for (int _index = 0; _index < _hatchEffects.Count; _index ++)
             {

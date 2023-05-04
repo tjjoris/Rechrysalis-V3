@@ -84,6 +84,11 @@ namespace Rechrysalis.Unit
         //         }
         //     }
         public System.Action<float> _unitDealsDamage;
+
+        private void Awake()
+        {
+            _hatch = GetComponent<Hatch>();
+        }
         public void Initialize(ControllerManager controllerManager, int controllerIndex, UnitClass unitClass, int freeUnitIndex, int subUnitIndex, CompsAndUnitsSO compsAndUnits, bool isChrysalis)
         {
             _controllerManager = controllerManager;

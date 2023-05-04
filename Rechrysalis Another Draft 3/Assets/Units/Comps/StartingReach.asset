@@ -1,0 +1,200 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3926e171e51a44655954fa6e2b0738af, type: 3}
+  m_Name: StartingReach
+  m_EditorClassIdentifier: 
+  _parentUnitClassList:
+  - _advancedUpgradesUTCList: []
+    _utcBasicUnit:
+      _upgradeType: 1
+      _unitStatsSO: {fileID: 11400000, guid: bbcc2376878734c429161156a1711320, type: 2}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    _utcHatchEffect: []
+    _basicUnitClass:
+      _manaCost: 0
+      _unitName: 
+      _hpMax: 0
+      _chrysalisHPMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: []
+      _hatchEffectClasses: []
+      _hatchEffectMult: 0
+      _hatchEffectDurationAdd: 0
+      _unitSprite: {fileID: 0}
+      _chrysalisSprite: {fileID: 0}
+      _amountToPool: 0
+      _projectileSpeed: 0
+      _sacrificeControllerAmount: 0
+      _moveSpeedAdd: 0
+      _siegeDuration: 0
+      _burstHeal: 0
+      _projectileSprite: {fileID: 0}
+      _controllerLifeCostMult: 1
+      _hatchBuildTimeMaxBaseAdd: 0
+    _advUnitClass:
+      _manaCost: 0
+      _unitName: 
+      _hpMax: 0
+      _chrysalisHPMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: []
+      _hatchEffectClasses: []
+      _hatchEffectMult: 0
+      _hatchEffectDurationAdd: 0
+      _unitSprite: {fileID: 0}
+      _chrysalisSprite: {fileID: 0}
+      _amountToPool: 0
+      _projectileSpeed: 0
+      _sacrificeControllerAmount: 0
+      _moveSpeedAdd: 0
+      _siegeDuration: 0
+      _burstHeal: 0
+      _projectileSprite: {fileID: 0}
+      _controllerLifeCostMult: 1
+      _hatchBuildTimeMaxBaseAdd: 0
+  - _advancedUpgradesUTCList: []
+    _utcBasicUnit:
+      _upgradeType: 1
+      _unitStatsSO: {fileID: 11400000, guid: bbcc2376878734c429161156a1711320, type: 2}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    _utcHatchEffect: []
+    _basicUnitClass:
+      _manaCost: 0
+      _unitName: 
+      _hpMax: 0
+      _chrysalisHPMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: []
+      _hatchEffectClasses: []
+      _hatchEffectMult: 0
+      _hatchEffectDurationAdd: 0
+      _unitSprite: {fileID: 0}
+      _chrysalisSprite: {fileID: 0}
+      _amountToPool: 0
+      _projectileSpeed: 0
+      _sacrificeControllerAmount: 0
+      _moveSpeedAdd: 0
+      _siegeDuration: 0
+      _burstHeal: 0
+      _projectileSprite: {fileID: 0}
+      _controllerLifeCostMult: 1
+      _hatchBuildTimeMaxBaseAdd: 0
+    _advUnitClass:
+      _manaCost: 0
+      _unitName: 
+      _hpMax: 0
+      _chrysalisHPMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: []
+      _hatchEffectClasses: []
+      _hatchEffectMult: 0
+      _hatchEffectDurationAdd: 0
+      _unitSprite: {fileID: 0}
+      _chrysalisSprite: {fileID: 0}
+      _amountToPool: 0
+      _projectileSpeed: 0
+      _sacrificeControllerAmount: 0
+      _moveSpeedAdd: 0
+      _siegeDuration: 0
+      _burstHeal: 0
+      _projectileSprite: {fileID: 0}
+      _controllerLifeCostMult: 1
+      _hatchBuildTimeMaxBaseAdd: 0
+  - _advancedUpgradesUTCList: []
+    _utcBasicUnit:
+      _upgradeType: 1
+      _unitStatsSO: {fileID: 11400000, guid: bbcc2376878734c429161156a1711320, type: 2}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+    _utcHatchEffect: []
+    _basicUnitClass:
+      _manaCost: 0
+      _unitName: 
+      _hpMax: 0
+      _chrysalisHPMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: []
+      _hatchEffectClasses: []
+      _hatchEffectMult: 0
+      _hatchEffectDurationAdd: 0
+      _unitSprite: {fileID: 0}
+      _chrysalisSprite: {fileID: 0}
+      _amountToPool: 0
+      _projectileSpeed: 0
+      _sacrificeControllerAmount: 0
+      _moveSpeedAdd: 0
+      _siegeDuration: 0
+      _burstHeal: 0
+      _projectileSprite: {fileID: 0}
+      _controllerLifeCostMult: 1
+      _hatchBuildTimeMaxBaseAdd: 0
+    _advUnitClass:
+      _manaCost: 0
+      _unitName: 
+      _hpMax: 0
+      _chrysalisHPMax: 0
+      _buildTime: 0
+      _range: 0
+      _dps: 0
+      _attackChargeUp: 0
+      _attackWindDown: 0
+      _damage: 0
+      _hatchEffectPrefab: []
+      _hatchEffectClasses: []
+      _hatchEffectMult: 0
+      _hatchEffectDurationAdd: 0
+      _unitSprite: {fileID: 0}
+      _chrysalisSprite: {fileID: 0}
+      _amountToPool: 0
+      _projectileSpeed: 0
+      _sacrificeControllerAmount: 0
+      _moveSpeedAdd: 0
+      _siegeDuration: 0
+      _burstHeal: 0
+      _projectileSprite: {fileID: 0}
+      _controllerLifeCostMult: 1
+      _hatchBuildTimeMaxBaseAdd: 0
+  _unitSOArray: []
+  _hatchEffectSOArray: []
+  _parentUnitcount: 0
+  _childUnitCount: 0
+  _upgradeCountArray: 
