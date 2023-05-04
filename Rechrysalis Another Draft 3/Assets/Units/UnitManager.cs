@@ -68,21 +68,6 @@ namespace Rechrysalis.Unit
         private float _newIncomingDamageMult = 1;
         private float _manaCost;
         public float ManaCost {get{return _manaCost;}}
-        // [SerializeField] private bool _isStopped;
-        // public bool IsStopped 
-        // {
-        //     set{
-        //             _isStopped = value;
-        //             if (_mover != null)
-        //             {
-        //             _mover.IsStopped = _isStopped;
-        //             }
-        //             if (_attack != null)
-        //             {
-        //             _attack.IsStopped = _isStopped;
-        //             }
-        //         }
-        //     }
         public System.Action<float> _unitDealsDamage;
 
         private void Awake()
@@ -256,16 +241,10 @@ namespace Rechrysalis.Unit
         public void RestartUnit()
         {
             _health?.RestartUnit();
-            // _freeHatchScript?.TriggerHatchEffect();
         }
         public void Tick(float timeAmount)
         {
             if (_debugBool)   Debug.Log($"tick");
-            // if (gameObject.active == true) 
-            // {
-                // bool _isStopped = false;
-                
-                // _controllerUnitAttackClosest?.CheckToGetTarget();
                 if (_mover != null)
                 {
                     // _mover?.Tick(_timeAmount);

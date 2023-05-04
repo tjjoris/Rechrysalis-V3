@@ -31,24 +31,7 @@ namespace Rechrysalis.Unit
         }
         private void ActivateHatchEffects(int unitIndex)
         {
-            if (_debugBool) Debug.Log($"activate hatch effects in hatch called");            
-            // if (_unitManager.UnitIndex == 1)
-            // {
-            //     // if (_parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectPrefab.Count > 0)
-
-            //     {
-            //         foreach (HatchEffectClass hatchEffectClass in _parentUnitManager.ParentUnitClass.AdvUnitClass.HatchEffectClasses)
-            //         {
-            //             if (hatchEffectClass != null)
-            //             {
-            //                 _parentUnitHatchEffects.CreateHatchEffect(hatchEffectClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitIndex, true, hatchEffectClass.HatchEffectHealth);
-            //                 //this will need to be enabled later?
-            //             }
-            //         }
-            //     }                
-            // }
-            // _progressBarManager?.TintChargeUp();
-
+            if (_debugBool) Debug.Log($"activate hatch effects in hatch called");         
             if (_unitManager.UnitClass.HatchEffectClasses.Count == 0) return;
             foreach (HatchEffectClass hatcheffectClass in _unitManager.UnitClass.HatchEffectClasses)
             {

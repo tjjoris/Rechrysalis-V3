@@ -22,10 +22,6 @@ namespace Rechrysalis.HatchEffect
             {
                 Debug.Log($"parent unit add hatch effect called");
             }
-            // HatchEffectManager hatchEffectManager = hatchEffect.GetComponent<HatchEffectManager>();
-            // _parentUnitManager.HatchEffectsIOwn.Add(hatchEffectManager);
-            // _hatchEffectManagersToDamage.Add(_hatchEffect.GetComponent<HatchEffectManager>());
-            // _pUHE?.AddHatchEffect(_hatchEffect);
             if (_parentUnitManager.SubUnits.Length > 0)
             {
                 for (int _childIndex = 0; _childIndex < _parentUnitManager.SubUnits.Length; _childIndex++)
@@ -51,20 +47,6 @@ namespace Rechrysalis.HatchEffect
         }
         public void RemoveHatchEffect(GameObject hatchEffect)
         {
-            // HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
-            // if (_hatchEffectManager != null)
-            // {
-            //     if (_hatchEffectManagersToDamage.Contains(_hatchEffectManager))
-            //     {
-            //         _hatchEffectManagersToDamage.Remove(_hatchEffectManager);
-            //     }
-            // }
-            // _pUHE?.RemoveHatchEffect(_hatchEffect);
-            // HatchEffectManager hatchEffectManager = hatchEffect.GetComponent<HatchEffectManager>();
-            // if (_parentUnitManager.HatchEffectsIOwn.Contains(hatchEffectManager))
-            // {
-            //     _parentUnitManager.HatchEffectsIOwn.Remove(hatchEffectManager);
-            // }
             if (_parentUnitManager.SubUnits.Length > 0)
             {
                 for (int _childIndex = 0; _childIndex < _parentUnitManager.SubUnits.Length; _childIndex++)

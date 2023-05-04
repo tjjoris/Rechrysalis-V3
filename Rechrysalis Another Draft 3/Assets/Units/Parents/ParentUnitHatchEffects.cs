@@ -35,20 +35,11 @@ namespace Rechrysalis.Unit
                 Debug.LogWarning("hatcheffect prefab == null");
                 return;
             }
-            //     foreach (HatchEffectSO hatchEffectSO in _parentUnitManager.SubHatchEffects)
-            //     {
-
-            // if (_parentUnitManager.SubHatchEffects[_unitIndex] == null)
-            //     {
-            //         Debug.LogWarning("parentunitmanager.subhatcheffects[_unitindex] == null");
-            //         continue;
-            //     }
-                GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
-                HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
-                _hatchEffectManager?.Initialize(null, _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass, hpMax);
-                _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
-            }
-        // }
+            GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
+            HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
+            _hatchEffectManager?.Initialize(null, _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass, hpMax);
+            _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
+        }
         public void AddHatchEffect(GameObject _hatchEffect)
         {
             if (_debugBool) Debug.Log($"add hatch effect called in parent unit hatch effects script");
@@ -57,14 +48,6 @@ namespace Rechrysalis.Unit
             {
                 _hatchEffects[_index].GetComponent<HEDisplay>().PositionOffset(_index);
             }
-            // foreach (GameObject _unit in _subUnits)
-            // {
-            //     _unit.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-            // }
-            // foreach (GameObject _chrysalis in _subChrysalii)
-            // {
-            //     _chrysalis.GetComponent<UnitManager>()?.AddHatchEffect(_hatchEffect);
-            // }
         }
         public void RemoveAllHatchEffectsOwnedByUnit()
         {
@@ -99,7 +82,7 @@ namespace Rechrysalis.Unit
         {
             if ((_hatchEffects.Count > 0) && (_hatchEffects[0] != null))
             {
-                // Debug.Log($"take damage " + _damage);
+                if (_debugBool) Debug.Log($"hatch effect take damage " + _damage);
                 _hatchEffects[0].GetComponent<HatchEffectManager>().TakeDamage(_damage);
             }
         }

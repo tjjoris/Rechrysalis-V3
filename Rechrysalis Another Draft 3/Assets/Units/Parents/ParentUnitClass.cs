@@ -22,40 +22,6 @@ namespace Rechrysalis.Unit
         public UnitClass BasicUnitClass => _basicUnitClass;
         [SerializeField] private UnitClass _advUnitClass;
         public UnitClass AdvUnitClass => _advUnitClass;
-        // [SerializeField] private float _manaCost;
-        // public float ManaCost => _manaCost;
-        // [SerializeField] private float _hpMaxBasic;
-        // public float HPMaxBasic => _hpMaxBasic;
-        // [SerializeField] private float _hpMaxAdvanced;
-        // public float HPMaxAdvanced => _hpMaxAdvanced;
-        // [SerializeField] private float _buildTimeBasic;
-        // public float BuildTimeBasic => _buildTimeBasic;
-        // [SerializeField] private float _buildTimeAdv;
-        // public float BuildTimeAdv => _buildTimeAdv;
-        // [SerializeField] private float _rangeBasic;
-        // public float RangeBasic => _rangeBasic;
-        // [SerializeField] private float _rangeAdv;
-        // public float RangeAdv => _rangeAdv;
-        // [SerializeField] private float _dpsBasic;
-        // public float DPSBasic => _dpsBasic;
-        // [SerializeField] private float _dpsAdv;
-        // public float DPSAdv => _dpsAdv;
-        // [SerializeField] private float _attackChargeUpBasic;
-        // public float AttackChargeUpBasic => _attackChargeUpBasic;
-        // [SerializeField] private float _attackChargeUpAdv;
-        // public float AttackChargeUpAdv => _attackChargeUpAdv;
-        // [SerializeField] private float _attackWindDownBasic;
-        // public float AttackWindDownBasic => _attackWindDownBasic; 
-        // [SerializeField] private float _attackWindDownAdv;
-        // public float AttackWindDownAdv => _attackWindDownAdv;
-        // [SerializeField] private float _damageBasic;
-        // public float DamamgeBasic => _damageBasic;
-        // [SerializeField] private float _damageAdv;
-        // public float DamageAdv => _damageAdv;
-        // [SerializeField] private GameObject _hatchEffectPrefab;
-        // public GameObject HatchEffectPrefab => _hatchEffectPrefab;
-        // [SerializeField] private float _hatchEffectMult;
-        // public float HatchEffectMult => _hatchEffectMult;
         
         public void Initialize(CompsAndUnitsSO compsAndUnitsSO)
         {
@@ -67,12 +33,10 @@ namespace Rechrysalis.Unit
             _advancedUpgradesUTCList.Clear();
             _utcHatchEffect = new List<UpgradeTypeClass>();
             _utcBasicUnit = null;
-            // _utcHatchEffect = null;
             if (_debugBool)
             {
                 Debug.Log($"clear all stats");
             }
-            // SetAllStats();
         }
         public void SetUTCBasicUnit(UpgradeTypeClass utcBasicUnit)
         {
@@ -86,7 +50,6 @@ namespace Rechrysalis.Unit
             }
             if (_debugBool)
             Debug.Log($"SET BASIC UNIT");
-            // SetAllStats();
         }
         public UpgradeTypeClass GetReplacedUTCBasicUnit()
         {
@@ -96,31 +59,15 @@ namespace Rechrysalis.Unit
         {
             _replacedUTCBasicUnit = null;
             if (_debugBool) Debug.Log($"set replaced basic unit to null");
-            // SetAllStats();
         }
         public void SetUTCHatchEffect(UpgradeTypeClass utcHatchEffect)
         {
             if (utcHatchEffect != null)
             {
-                // if (_utcHatchEffect != null)
-                // {
-                //     _replaceUTCHatchEffect = _utcHatchEffect;
-                // }
                 _utcHatchEffect.Add(utcHatchEffect);
                 if (_debugBool) Debug.Log($"set hatch effect");
-                // SetAllStats();
             }
         }
-        // public UpgradeTypeClass GetReplacedUTCHatchEffect()
-        // {
-        //     return _replaceUTCHatchEffect;
-        // }
-        // public void SetUTCReplacedHatchEffectToNull()
-        // {
-        //     _replaceUTCHatchEffect = null;
-        //     if (_debugBool) Debug.Log($"replace hatch effect to null");
-        //     // SetAllStats();
-        // }
         public void AddUTCAdvanced(UpgradeTypeClass advancedToAdd)
         {
             if (advancedToAdd != null)
@@ -128,7 +75,6 @@ namespace Rechrysalis.Unit
                 _advancedUpgradesUTCList.Add(advancedToAdd);
             }
             if (_debugBool) Debug.Log($"add advanced");
-            // SetAllStats();
         }
         public void RemoveUTCAdvanced(UpgradeTypeClass advancedToRemove)
         {
@@ -140,12 +86,10 @@ namespace Rechrysalis.Unit
                 }
             }
             if (_debugBool) Debug.Log($"remove advanced");
-            // SetAllStats();
         }
         private void OnValidate()
         {
             if (_debugBool) Debug.Log($"validate");
-            // SetAllStats();
         }
         public void SetAllStats()
         {
@@ -157,7 +101,6 @@ namespace Rechrysalis.Unit
                     SetAdvClass();
                     SetAdvWhenAdvUpgrades();
                     CheckToSetHatchEffect();
-                    // CalculateAdvDamage();
                     _advUnitClass?.CalculateDamge();
                 }
             }
@@ -168,7 +111,6 @@ namespace Rechrysalis.Unit
             {
                 Debug.Log($"set stats" + _utcBasicUnit.GetUnitStatsSO().UnitName);
             }
-            // if (_utcBasicUnit != null)
             {
                 UnitStatsMultiplierSO baseMultiplierSO = _utcBasicUnit.GetUnitStatsSO().BaseMultiplier;
                 UnitStatsMultiplierSO typeMultipler = _utcBasicUnit.GetUnitStatsSO().TypeMultiplier;
@@ -231,7 +173,6 @@ namespace Rechrysalis.Unit
                 _advUnitClass.HatchBuildTimeMaxBaseAdd = basicUnitStats.AdvUnitModifierSO.HatchBuildTimeMaxBaseAdd;
                 _advUnitClass.SiegeDuration = advancedModifier.SiegeDuration;
                 _advUnitClass.BurstHeal = advancedModifier.BurstHeal;
-                // _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
 
             }
         }
@@ -257,19 +198,13 @@ namespace Rechrysalis.Unit
         }
         private void SetStatsForThisAdvUpgrade(AdvUnitModifierSO advUnitModifierSO)
         {
-            // _manaCost *= _utcBasicUnit.GetAdvUnitModifierSO().ManaMult;
             _advUnitClass.ManaCost += advUnitModifierSO.ManaAdd;
-            // _hpMaxAdvanced = _hpMaxBasic * _utcBasicUnit.GetAdvUnitModifierSO().HPMaxMult;
             _advUnitClass.HPMax += advUnitModifierSO.HPMaxAdd;
-            // _buildTimeAdv = _buildTimeBasic * _utcBasicUnit.GetAdvUnitModifierSO().BuildTimeMult;
             _advUnitClass.BuildTime += advUnitModifierSO.BuildTimeAdd;
             _advUnitClass.Range = _advUnitClass.Range + advUnitModifierSO.RangeAdd;
             if (_debugBool) Debug.Log($"increase range " + advUnitModifierSO.RangeAdd);
-            // _dpsAdv = _dpsBasic * _utcBasicUnit.GetAdvUnitModifierSO().DPSMult;
             _advUnitClass.DPS += advUnitModifierSO.DPSAdd;
-            // _attackChargeUpAdv = _attackChargeUpBasic * _utcBasicUnit.GetAdvUnitModifierSO().AttackChargeUpMult;
             _advUnitClass.AttackChargeUp += advUnitModifierSO.AttackChargeUpAdd;
-            // _attackWindDownAdv = _attackWindDownBasic * _utcBasicUnit.GetAdvUnitModifierSO().AttackWindDownMult;
             _advUnitClass.AttackWindDown += advUnitModifierSO.AttackWindDownAdd;
             _advUnitClass.HatchEffectMult += advUnitModifierSO.HatchEffectMultiplierAdd;
             _advUnitClass.HatchEffectDurationAdd += advUnitModifierSO.HatchEffectDurationAdd;
@@ -278,15 +213,7 @@ namespace Rechrysalis.Unit
             _advUnitClass.HatchBuildTimeMaxBaseAdd += advUnitModifierSO.HatchBuildTimeMaxBaseAdd;
             _advUnitClass.SiegeDuration += advUnitModifierSO.SiegeDuration;
             _advUnitClass.BurstHeal += advUnitModifierSO.BurstHeal;
-            // _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
         }
-        // private void CalculateAdvDamage()
-        // {
-        //     if ((_dpsAdv != 0) && (_attackChargeUpAdv != 0) && (_attackWindDownAdv != 0))
-        //     {
-        //         _damageAdv = _dpsAdv / (_attackChargeUpAdv + _attackWindDownAdv);
-        //     }
-        // }
         private void CheckToSetHatchEffect()
         {
             if (_utcHatchEffect != null)
@@ -312,13 +239,7 @@ namespace Rechrysalis.Unit
                             _advUnitClass.BuildTime += hatchEffect.GetHatchEffectSO().BuildTimeAdd;
                         }
                     }
-                }
-                // if (_utcHatchEffect.GetHatchEffectSO() != null)
-                // {
-                //     _advUnitClass.HatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;
-                //     _advUnitClass.ManaCost += _utcHatchEffect.GetHatchEffectSO().AddedManaCost;
-                //     _advUnitClass.BuildTime += _utcHatchEffect.GetHatchEffectSO().BuildTimeAdd;
-                // }             
+                }          
             }
         }
         private HatchEffectClass CheckIfDuplicateHatchEffect(UpgradeTypeClass hatchEffect)
@@ -338,12 +259,5 @@ namespace Rechrysalis.Unit
             }
             return null;
         }
-        // private void SetHatchEffect()
-        // {
-        //     if (_debugBool)
-        //     Debug.Log($"set hatch effect");
-        //     // if (_utcHatchEffect.GetHatchEffectSO() != null)
-        //     _advUnitClass.HatchEffectPrefab = _utcHatchEffect.GetHatchEffectSO().HatchEffectPrefab;
-        // }
     }
 }
