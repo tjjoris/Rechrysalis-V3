@@ -35,18 +35,20 @@ namespace Rechrysalis.Unit
                 Debug.LogWarning("hatcheffect prefab == null");
                 return;
             }
-            if (_parentUnitManager.SubHatchEffects[_unitIndex] == null)
-            {
-                Debug.LogWarning("parentunitmanager.subhatcheffects[_unitindex] == null");
-                return;
-            }
-            {
+            //     foreach (HatchEffectSO hatchEffectSO in _parentUnitManager.SubHatchEffects)
+            //     {
+
+            // if (_parentUnitManager.SubHatchEffects[_unitIndex] == null)
+            //     {
+            //         Debug.LogWarning("parentunitmanager.subhatcheffects[_unitindex] == null");
+            //         continue;
+            //     }
                 GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
                 HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
-                _hatchEffectManager?.Initialize(_parentUnitManager.SubHatchEffects[_unitIndex], _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass, hpMax);
+                _hatchEffectManager?.Initialize(null, _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass, hpMax);
                 _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
             }
-        }
+        // }
         public void AddHatchEffect(GameObject _hatchEffect)
         {
             if (_debugBool) Debug.Log($"add hatch effect called in parent unit hatch effects script");

@@ -34,8 +34,8 @@ namespace Rechrysalis.Unit
         public List<UnitManager> ChildChrysaliiUnitManagers { get => _childChrysaliiUnitManagers; set => _childChrysaliiUnitManagers = value; }
         
         
-        private HatchEffectSO[] _subHatchEffects; 
-        public HatchEffectSO[] SubHatchEffects {get { return _subHatchEffects;}}       
+        private List<HatchEffectSO> _subHatchEffects; 
+        public List<HatchEffectSO> SubHatchEffects {get { return _subHatchEffects;}}       
         private PlayerUnitsSO _theseUnits;
         public PlayerUnitsSO TheseUnits {get {return _theseUnits;}}
         [SerializeField] private GameObject _currentSubUnit;
@@ -90,7 +90,7 @@ namespace Rechrysalis.Unit
             get {return _isStopped;}
          }
 
-        public void Initialize(int _controllerIndex, int _parentUnitIndex, PlayerUnitsSO _theseUnits, Transform controllertransform, HatchEffectSO[] _subHatchEffects, ParentUnitClass parentUnitClass, MainManager mainManager)
+        public void Initialize(int _controllerIndex, int _parentUnitIndex, PlayerUnitsSO _theseUnits, Transform controllertransform, List<HatchEffectSO> subHatchEffects, ParentUnitClass parentUnitClass, MainManager mainManager)
         {
             _controllerManager = controllertransform.GetComponent<ControllerManager>();
             _enemyControllerManager = _controllerManager.EnemyController;
@@ -105,7 +105,7 @@ namespace Rechrysalis.Unit
             _upgradeUnit = GetComponent<UpgradeUnit>();
             _upgradeUnit?.Initialize(this, _controllerManager.GetComponent<ManaGenerator>());
             this._parentIndex = _parentUnitIndex;
-            this._subHatchEffects = _subHatchEffects;
+            this._subHatchEffects = subHatchEffects;
             this._controllerIndex = _controllerIndex;
             this._theseUnits = _theseUnits;
             // _parentUnitClass = unitComp.ParentUnitClassList[_parentUnitIndex];

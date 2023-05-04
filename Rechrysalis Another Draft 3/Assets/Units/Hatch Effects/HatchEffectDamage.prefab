@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a8ce385e1a04ce081d229dd4ec44c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hatchEffectSO: {fileID: 11400000, guid: c2ac6c8fc40424eda843552f46aadd13, type: 2}
   _hatchMult: 0
   _hatchDurationMult: 0
   _name: {fileID: 5695291920276427103}
@@ -229,20 +230,29 @@ MonoBehaviour:
     _manaCost: 0
     _unitName: 
     _hpMax: 0
+    _chrysalisHPMax: 0
     _buildTime: 0
     _range: 0
     _dps: 0
     _attackChargeUp: 0
     _attackWindDown: 0
     _damage: 0
-    _hatchEffectPrefab: {fileID: 0}
+    _hatchEffectPrefab:
+    - {fileID: 0}
+    _hatchEffectClasses: []
     _hatchEffectMult: 0
     _hatchEffectDurationAdd: 0
     _unitSprite: {fileID: 0}
     _chrysalisSprite: {fileID: 0}
     _amountToPool: 0
     _projectileSpeed: 0
+    _sacrificeControllerAmount: 0
+    _moveSpeedAdd: 0
+    _siegeDuration: 0
+    _burstHeal: 0
     _projectileSprite: {fileID: 0}
+    _controllerLifeCostMult: 1
+    _hatchBuildTimeMaxBaseAdd: 0
 --- !u!114 &1894819527670956384
 MonoBehaviour:
   m_ObjectHideFlags: 0

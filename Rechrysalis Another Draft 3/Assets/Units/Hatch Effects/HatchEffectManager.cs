@@ -12,7 +12,7 @@ namespace Rechrysalis.HatchEffect
         private bool _debugBool = false;
         private int _parentIndex;
         private int _unitIndex;
-        private HatchEffectSO _hatchEffectSO;
+        [SerializeField] private HatchEffectSO _hatchEffectSO;
         private HETimer _hETimer;
         private HatchEffectHealth _hEHealth;
         private bool _affectAll = true;
@@ -37,18 +37,18 @@ namespace Rechrysalis.HatchEffect
         [SerializeField] private UnitClass _unitClass;
         public Action<GameObject, int, int, bool> _hatchEffectDies;
 
-        public void Initialize(HatchEffectSO _hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass, float hpMax)
+        public void Initialize(HatchEffectSO hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass, float hpMax)
         {
             _unitClass = advUnitClass;
             if (_debugBool)
             {
-                Debug.Log($"HE Initialize " + _hatchEffectSO.HatchEffectName +  " tier " + _tier);
+                Debug.Log($"HE Initialize " + hatchEffectSO.HatchEffectName +  " tier " + _tier);
             }
             this._parentIndex = _parentIndex;
             this._unitIndex = _unitIndex;
             this._affectAll = _affectAll;
             // this._tier = _tier;
-            this._hatchEffectSO = _hatchEffectSO;
+            if (hatchEffectSO != null) this._hatchEffectSO = hatchEffectSO;
             _hETimer = GetComponent<HETimer>();
             // _name.text = _hatchEffectSO.HatchEffectName;
             _hEDisplay = GetComponent<HEDisplay>();

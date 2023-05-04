@@ -79,8 +79,8 @@ namespace Rechrysalis.Controller
                     {
                         _controllerManager.ParentHealths.Add(pum.GetComponent<ParentHealth>());
                     }
-                    HatchEffectSO[] _hatchEffectSOs = SetHatchEffectSOs(parentUnitIndex);
-                    pum?.Initialize(controllerIndex, parentUnitIndex, compsAndUnits.PlayerUnits[controllerIndex], transform, _hatchEffectSOs, unitComp.ParentUnitClassList[parentUnitIndex], mainManager);
+                    // List<HatchEffectSO> _hatchEffectSOs = SetHatchEffectSOs(parentUnitIndex);
+                    pum?.Initialize(controllerIndex, parentUnitIndex, compsAndUnits.PlayerUnits[controllerIndex], transform, null, unitComp.ParentUnitClassList[parentUnitIndex], mainManager);
                     _hilightRingParentCreator?.CreateHilightRingParent(parentUnitIndex, unitComp.ParentUnitCount, unitOffset);
                     pum.HilightRingParentManager = _hilightRingParentCreator?.GetLastCreatedHilightRingParentManager();
                     pum.HilightRingParentManager.GetComponent<RotateParentUnit>()?.Initialize(_controllerManager.transform);
@@ -206,17 +206,20 @@ namespace Rechrysalis.Controller
                 return;
             }
         }
-        private HatchEffectSO[] SetHatchEffectSOs (int _parentUnitIndex)
-        {
-            HatchEffectSO[] _hatchEffectSOs = new HatchEffectSO[_unitComp.ChildUnitCount];
-            for (int _childIndex = 0; _childIndex < _unitComp.ChildUnitCount; _childIndex ++)
-            {
-                _hatchEffectSOs[_childIndex] = _unitComp.HatchEffectSOArray[(_parentUnitIndex * _unitComp.ChildUnitCount) + _childIndex];
-                // if (_hatchEffectSOs[_childIndex] != null)
-                // Debug.Log($"hatch effect SOs " + _hatchEffectSOs[_childIndex].HatchEffectName);
-            }
-            return _hatchEffectSOs;
-        }
+        // private List<HatchEffectSO> SetHatchEffectSOs (int _parentUnitIndex)
+        // {
+        //     List<HatchEffectSO> _hatchEffectSOs = new List<HatchEffectSO>();
+        //     for (int _parentIndex = 0; _parentIndex < _parentUnits.Length; _parentIndex ++)
+        //     {
+        //         // _hatchEffectSOs[_childIndex] = _unitComp.HatchEffectSOArray[(_parentUnitIndex * _unitComp.ChildUnitCount) + _childIndex];
+
+        //         // if (_hatchEffectSOs[_childIndex] != null)
+        //         // Debug.Log($"hatch effect SOs " + _hatchEffectSOs[_childIndex].HatchEffectName);
+                
+        //         // HatchEffectSO hatchEffectSO = _controllerManager.ParentUnitManagers[_parentIndex].ParentUnitClass.BasicUnitClass.HatchEffectClasses
+        //     }
+        //     return _hatchEffectSOs;
+        // }
         private bool CheckIfParentUnitShouldExist(CompSO _comp, int _parentIndex)
         {
             for (int _childIndex = 0; _childIndex < _comp.ChildUnitCount; _childIndex ++)
