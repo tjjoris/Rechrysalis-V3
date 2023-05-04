@@ -17,7 +17,7 @@ namespace Rechrysalis.Unit
         private bool _isChrysalis;
         public bool IsChrysalis => _isChrysalis;
         private float _incomingDamageMultbase = 0f;
-        private float _incomingDamageMult = 0f;
+        [SerializeField] private float _incomingDamageReductionMult = 0f;
         private float _chrysalisDefenceMult = 0.4f;
         private float _enemyControllerHealMult = 0.5f;
         private UnitManager _currentUnit;
@@ -55,7 +55,7 @@ namespace Rechrysalis.Unit
         public void TakeDamage(float _damage)
         {
             // float _damageToTake = _damage * _currentUnit.GetIncomingDamageMultiplier();            
-            float damageToTake = _damage * (1 - _incomingDamageMult);            
+            float damageToTake = _damage * (1 - _incomingDamageReductionMult);            
             if ((_isChrysalis) && (_die == null))
             {
                 damageToTake *= (_chrysalisDefenceMult);
@@ -102,15 +102,15 @@ namespace Rechrysalis.Unit
         }
         public void ReCalculateIncomingDamageModifier(List<HEIncreaseDefence> hEIncreaseDefenceList)
         {
-            _incomingDamageMult = _incomingDamageMultbase;
+            _incomingDamageReductionMult = _incomingDamageMultbase;
             foreach (HEIncreaseDefence hatchEffect in hEIncreaseDefenceList)
             {
                 if (hatchEffect != null)
-                _incomingDamageMult += hatchEffect.GetIncomingDamageMult();
+                _incomingDamageReductionMult += hatchEffect.GetIncomingDamageMult();
             }
             if (_debugBool)
             {
-                Debug.Log($"incoming damage mult " + _incomingDamageMult);
+                Debug.Log($"incoming damage mult " + _incomingDamageReductionMult);
             }
         }
         private void UpdateHpBar()
