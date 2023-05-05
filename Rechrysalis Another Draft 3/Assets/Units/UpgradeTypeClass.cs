@@ -17,8 +17,17 @@ namespace Rechrysalis.Unit
             [SerializeField] private HatchEffectSO _hatchEffectSO;
             [SerializeField] private AdvUnitModifierSO _advUnitModifierSO;
             [SerializeField] private ControllerHeartUpgrade _controllerHeartUpgrade;
-            [SerializeField] private string _upgradeName;
-            public string UpgradeName => _upgradeName;
+            [SerializeField] private HatchEffectManager _hatchEffectManager;
+            public HatchEffectManager HatchEffectManager { get => _hatchEffectManager; set => _hatchEffectManager = value;}
+            [SerializeField] private GameObject _hatchEffectPrefab;
+            public GameObject HatchEffectPrefab => _hatchEffectPrefab;
+            [SerializeField] private string _buttonName;
+            public string ButtonName => _buttonName;
+            
+            private void Awake()
+            {
+                _hatchEffectManager = _hatchEffectPrefab.GetComponent<HatchEffectManager>();
+            }
 
             public void SetUpgradeType(UpgradeType upgradeType)
             {

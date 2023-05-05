@@ -216,44 +216,37 @@ namespace Rechrysalis.Unit
         }
         private void CheckToSetHatchEffect()
         {
-            if (_utcHatchEffect != null)
+            if (_utcHatchEffect == null) return;
+            foreach (UpgradeTypeClass upgradeTypeClassHE in _utcHatchEffect)
             {
-                foreach (UpgradeTypeClass hatchEffect in _utcHatchEffect)
+                if (upgradeTypeClassHE == null) continue;
+                HatchEffectClass duplicateHatchEffectClass = CheckIfDuplicateHatchEffect(upgradeTypeClassHE);
+                if (duplicateHatchEffectClass != null)
                 {
-                    if ((hatchEffect != null) && (hatchEffect.GetHatchEffectSO() != null))
-                    {
-                        HatchEffectClass duplicateHatchEffectClass = CheckIfDuplicateHatchEffect(hatchEffect);
-                        if (duplicateHatchEffectClass != null)
-                        {
-                            duplicateHatchEffectClass.HatchEffectHealth += hatchEffect.GetHatchEffectSO().HealthMax[0];
-                        }
-                        else 
-                        {                     
-                            Debug.Log($"create hatch effect class "+ hatchEffect.GetHatchEffectSO().HealthMax[0]);   
-                            HatchEffectClass hatchEffectClass = new HatchEffectClass();
-                            hatchEffectClass.HatchEffectPrefab = hatchEffect.GetHatchEffectSO().HatchEffectPrefab;
-                            hatchEffectClass.HatchEffectHealth = hatchEffect.GetHatchEffectSO().HealthMax[0];
-                            _advUnitClass.HatchEffectClasses.Add(hatchEffectClass);
-                            _advUnitClass.HatchEffectPrefab.Add(hatchEffect.GetHatchEffectSO().HatchEffectPrefab);
-                            _advUnitClass.ManaCost += hatchEffect.GetHatchEffectSO().AddedManaCost;
-                            _advUnitClass.BuildTime += hatchEffect.GetHatchEffectSO().BuildTimeAdd;
-                        }
-                    }
-                }          
+                    duplicateHatchEffectClass.HatchEffectHealth += upgradeTypeClassHE.HatchEffectManager.HEHealthMax;
+                }
+                else 
+                {                                         
+                    HatchEffectClass hatchEffectClass = new HatchEffectClass();
+                    hatchEffectClass.HatchEffectPrefab = upgradeTypeClassHE.HatchEffectPrefab;
+                    hatchEffectClass.HatchEffectHealth = upgradeTypeClassHE.HatchEffectManager.HEHealthMax;
+                    _advUnitClass.HatchEffectClasses.Add(hatchEffectClass);
+                    _advUnitClass.HatchEffectPrefab.Add(upgradeTypeClassHE.HatchEffectPrefab);
+                    _advUnitClass.ManaCost += upgradeTypeClassHE.HatchEffectManager.ManaCostIncrease;
+                    _advUnitClass.BuildTime += upgradeTypeClassHE.HatchEffectManager.BuildTimeIncrease;
+                }
             }
         }
         private HatchEffectClass CheckIfDuplicateHatchEffect(UpgradeTypeClass hatchEffect)
         {
-            if ((_advUnitClass.HatchEffectClasses != null) && (_advUnitClass.HatchEffectPrefab.Count > 0))
+            if ((_advUnitClass.HatchEffectClasses == null) || (_advUnitClass.HatchEffectPrefab.Count == 0)) return null;
+            foreach (HatchEffectClass hatchEffectClass in _advUnitClass.HatchEffectClasses)
             {
-                foreach (HatchEffectClass hatchEffectClass in _advUnitClass.HatchEffectClasses)
+                if (hatchEffectClass != null)
                 {
-                    if (hatchEffectClass != null)
+                    if (hatchEffectClass.HatchEffectPrefab.GetComponent<HatchEffectManager>().UpgradeTypeClass == hatchEffect)
                     {
-                        if (hatchEffectClass.HatchEffectPrefab == hatchEffect.GetHatchEffectSO().HatchEffectPrefab)
-                        {
-                            return hatchEffectClass;
-                        }
+                        return hatchEffectClass;
                     }
                 }
             }

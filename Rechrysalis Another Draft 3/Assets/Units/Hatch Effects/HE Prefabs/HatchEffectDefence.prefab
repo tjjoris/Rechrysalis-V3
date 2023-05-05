@@ -227,9 +227,14 @@ MonoBehaviour:
     _hatchEffectSO: {fileID: 0}
     _advUnitModifierSO: {fileID: 0}
     _controllerHeartUpgrade: {fileID: 0}
-    _upgradeName: HE DEF
+    _hatchEffectManager: {fileID: 5162682908650232571}
+    _hatchEffectPrefab: {fileID: 4387173649336406545}
+    _buttonName: HE DEF
+  _HEHealthMax: 50
   _hatchMult: 0
   _hatchDurationMult: 0
+  _manaCostIncrease: 0
+  _buildTimeIncrease: 0
   _name: {fileID: 5695291920276427103}
   _hEIncreaseDamage: {fileID: 0}
   _hEIncreaseDefence: {fileID: 0}

@@ -44,7 +44,7 @@ namespace Rechrysalis.CompCustomizer
         }
         public void DisplayForHatchEffect(UpgradeTypeClass upgradeTypeClass)
         {
-            _nameText.text = upgradeTypeClass.UpgradeName;
+            _nameText.text = upgradeTypeClass.ButtonName;
         }
         public void DisplayForAdvUnit(AdvUnitModifierSO advUnitModifierSO)
         {
