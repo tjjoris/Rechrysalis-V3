@@ -9,6 +9,7 @@ namespace Rechrysalis.HatchEffect
     [CreateAssetMenu (menuName = "Unit/HatchEffectsSO", fileName = "new Hatch Efect")]
     public class HatchEffectSO : ScriptableObject
     {
+        //note that the stats here are no longer used, and the stats used are stored on the prefab.
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
         public UpgradeTypeClass UpgradeTypeClass { get{ return _upgradeTypeClass; } set{ _upgradeTypeClass = value; } }
         [SerializeField] private GameObject _hatchEffectPrefab;
