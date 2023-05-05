@@ -45,7 +45,7 @@ namespace Rechrysalis.CompCustomizer
         {
             if (!playerComp.IsCompExists())
             {
-                // playerComp = _startingComp;
+                playerComp = _startingComp;
             }
             _movingButtonHolder = movingButtonHolder;
             _playerComp = playerComp;
