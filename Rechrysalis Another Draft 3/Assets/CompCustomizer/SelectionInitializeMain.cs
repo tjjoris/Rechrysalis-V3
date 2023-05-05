@@ -29,7 +29,7 @@ namespace Rechrysalis.CompCustomizer
             _compSO = compSO;
             _instantiateButton = _mainCompCustomizerManager.InstantiateButton;
 
-            if (!PlayerPrefsInteract.GetCustomizeOnlyHEAndUnit())
+            if ((!PlayerPrefsInteract.GetCustomizeOnlyHEAndUnit()) || (GetComponent<AddAllToSelection>()))
             {
                  _selectionInitialize = gameObject.AddComponent<SelectionInitialize>();
                  _selectionInitialize.Initialize(_compCustomizerSO, _draggedButtonHolder, _compSO, _compButtonPrefab, _selectionContainer);
