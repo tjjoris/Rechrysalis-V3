@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00a8ce385e1a04ce081d229dd4ec44c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hatchEffectSO: {fileID: 11400000, guid: c2ac6c8fc40424eda843552f46aadd13, type: 2}
+  _hatchEffectSO: {fileID: 0}
   _upgradeTypeClass:
     _upgradeType: 3
     _unitStatsSO: {fileID: 0}
@@ -230,12 +230,13 @@ MonoBehaviour:
     _hatchEffectManager: {fileID: 5162682908650232571}
     _hatchEffectPrefab: {fileID: 4387173649336406545}
     _buttonName: HE DMG
-  _HEHealthMax: 50
+  _HEHealthMax: 4
   _hatchMult: 0
   _hatchDurationMult: 0
   _manaCostIncrease: 0
   _buildTimeIncrease: 0
   _name: {fileID: 5695291920276427103}
+  _hpDrainPerTick: 1
   _hEIncreaseDamage: {fileID: 0}
   _hEIncreaseDefence: {fileID: 0}
   _unitClass:

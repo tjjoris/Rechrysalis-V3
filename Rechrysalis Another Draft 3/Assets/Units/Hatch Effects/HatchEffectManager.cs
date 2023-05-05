@@ -21,10 +21,6 @@ namespace Rechrysalis.HatchEffect
         public bool AffectAll {get{return _affectAll;}}
         [SerializeField] private float _HEHealthMax;
         public float HEHealthMax => _HEHealthMax;
-        private float _dPSIncrease;
-        public float DPSIncrease {get {return _dPSIncrease;}}
-        private float _incomingDamageMult = 1;
-        public float IncomingDamageMult {get{return _incomingDamageMult;}}
         [SerializeField] private float _hatchMult;
         public float HatchMult => _hatchMult;
         [SerializeField] private float _hatchDurationMult;
@@ -36,7 +32,7 @@ namespace Rechrysalis.HatchEffect
         [SerializeField] private TMP_Text _name;
         // private float _maxHP;
         // private float _currentHP;
-        private float _hpDrainPerTick;
+        [SerializeField] private float _hpDrainPerTick = 1f;
         private int _tier;
         [SerializeField] private HEIncreaseDamage _hEIncreaseDamage;
         public HEIncreaseDamage HEIncreaseDamage => _hEIncreaseDamage;
@@ -71,20 +67,7 @@ namespace Rechrysalis.HatchEffect
             // _maxHP = _hatchEffectSO.HealthMax[_tier];
             _hatchMult = advUnitClass.HatchEffectMult;
             _hatchDurationMult = advUnitClass.HatchEffectDurationAdd;
-            _hEHealth.Initialize(_hatchMult, advUnitClass, hpMax);
-            }
-            // _currentHP = _maxHP;
-            if (_hatchEffectSO.DamageLossPerTick.Length > this._tier)
-            {
-            _hpDrainPerTick = _hatchEffectSO.DamageLossPerTick[this._tier];
-            }
-            if (_hatchEffectSO.DPSIncrease.Length > this._tier)
-            {
-                _dPSIncrease = _hatchEffectSO.DPSIncrease[this._tier];
-            }
-            if (_hatchEffectSO.IncomingDamageMultiplier.Length > this._tier)
-            {
-                _incomingDamageMult = _hatchEffectSO.IncomingDamageMultiplier[this._tier];
+            _hEHealth.Initialize(_hatchMult, advUnitClass, _HEHealthMax);
             }
             _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
             _hEIncreaseDamage?.Initialize(_hatchMult);
