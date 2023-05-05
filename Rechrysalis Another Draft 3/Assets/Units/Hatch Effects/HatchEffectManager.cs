@@ -13,6 +13,8 @@ namespace Rechrysalis.HatchEffect
         private int _parentIndex;
         private int _unitIndex;
         [SerializeField] private HatchEffectSO _hatchEffectSO;
+        [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
+        public UpgradeTypeClass UpgradeTypeClass => _upgradeTypeClass;
         private HETimer _hETimer;
         private HatchEffectHealth _hEHealth;
         private bool _affectAll = true;

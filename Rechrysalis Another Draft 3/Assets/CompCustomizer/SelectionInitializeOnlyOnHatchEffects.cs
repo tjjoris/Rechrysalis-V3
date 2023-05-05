@@ -22,13 +22,11 @@ namespace Rechrysalis.CompCustomizer
             _getRandomUpgradeTypeClassesFromList = GetComponent<GetRandomUpgradeTypeClassesFromList>();
             _compCustomizerSO = compCustomierSO;
             _listToChooseFrom = new List<UpgradeTypeClass>();
-            foreach (AdvUnitModifierSO onHatchEffect in _compCustomizerSO.OnHatchEffectSelectionArray)
+            foreach (GameObject hatchEffectPrefab in _compCustomizerSO.HatchEffectSelectionPrefabArray)
             {
-                _listToChooseFrom.Add(onHatchEffect.UpgradeTypeClass);
-            }
-            foreach (HatchEffectSO hatchEffect in _compCustomizerSO.HatchEffectSelectionArray)
-            {
-                _listToChooseFrom.Add(hatchEffect.UpgradeTypeClass);
+                if (hatchEffectPrefab == null) continue;
+                UpgradeTypeClass upgradeTypeClass = GetComponent<HatchEffectManager>().UpgradeTypeClass;
+                _listToChooseFrom.Add(upgradeTypeClass);
             }
             List<UpgradeTypeClass> randomSelection = _getRandomUpgradeTypeClassesFromList.GetRandomListFunc(_listToChooseFrom, maxChosen);
             return randomSelection;

@@ -96,7 +96,7 @@ namespace Rechrysalis.CompCustomizer
         }
         public void CalculateUpgradeSelectionCount()
         {
-            _upgradeSelectionCount = _compCustomizerSO.BasicUnitArray.Length + _compCustomizerSO.AdvancedUnitSelectionT1Array.Length + _compCustomizerSO.HatchEffectSelectionArray.Length + _compCustomizerSO.ControllerHeartUpgrades.Length;
+            _upgradeSelectionCount = _compCustomizerSO.BasicUnitArray.Length + _compCustomizerSO.AdvancedUnitSelectionT1Array.Length + _compCustomizerSO.HatchEffectSelectionPrefabArray.Length + _compCustomizerSO.ControllerHeartUpgrades.Length;
         }
     }
 }

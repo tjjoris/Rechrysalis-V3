@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.Unit;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.CompCustomizer
 {
@@ -22,11 +23,11 @@ namespace Rechrysalis.CompCustomizer
                 return _compCustomizerSO.AdvancedUnitSelectionT1Array[index - categoryCount].UpgradeTypeClass;
             }
             categoryCount += _compCustomizerSO.AdvancedUnitSelectionT1Array.Length;
-            if ((_compCustomizerSO.HatchEffectSelectionArray.Length > (index - categoryCount)) && (_compCustomizerSO.HatchEffectSelectionArray[index - categoryCount] != null))
+            if ((_compCustomizerSO.HatchEffectSelectionPrefabArray.Length > (index - categoryCount)) && (_compCustomizerSO.HatchEffectSelectionPrefabArray[index - categoryCount] != null))
             {
-                return _compCustomizerSO.HatchEffectSelectionArray[index - categoryCount].UpgradeTypeClass;
+                return _compCustomizerSO.HatchEffectSelectionPrefabArray[index - categoryCount].GetComponent<HatchEffectManager>().UpgradeTypeClass;
             }
-            categoryCount += _compCustomizerSO.HatchEffectSelectionArray.Length;
+            categoryCount += _compCustomizerSO.HatchEffectSelectionPrefabArray.Length;
             if ((_compCustomizerSO.ControllerHeartUpgrades.Length > (index - categoryCount)) && (_compCustomizerSO.ControllerHeartUpgrades[index - categoryCount] != null))
             {
                 return  _compCustomizerSO.ControllerHeartUpgrades[index - categoryCount].UpgradeTypeClass;

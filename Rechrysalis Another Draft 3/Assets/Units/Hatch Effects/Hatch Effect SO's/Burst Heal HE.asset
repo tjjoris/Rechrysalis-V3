@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ccba6bd7fa964834a8774e6c551ba65, type: 3}
+  m_Name: Burst Heal HE
+  m_EditorClassIdentifier: 
+  _upgradeTypeClass:
+    _upgradeType: 3
+    _unitStatsSO: {fileID: 0}
+    _hatchEffectSO: {fileID: 11400000}
+    _advUnitModifierSO: {fileID: 0}
+    _controllerHeartUpgrade: {fileID: 0}
+  _hatchEffectPrefab: {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}
+  _currencyCost: 0
+  _addedManaCost: 6
+  _dpsIncrease:
+  - 20
+  - 6
+  - 9
+  _incomingDamageMultiplier: []
+  _rangeIncrease: []
+  _speedDecrease: []
+  _aoeDamage: []
+  _manaMultiplier:
+  - 1.3
+  - 1.3
+  - 1.3
+  _hpHealed: []
+  _hpRegenPerTick: []
+  _damageLossPerTick:
+  - 5
+  - 5
+  - 5
+  _healthMax:
+  - 37
+  - 70
+  - 90
+  _affectAll: 010101
+  _buildTimeAdd: -0.4
+  _hatchEffectName: DPS(HE)

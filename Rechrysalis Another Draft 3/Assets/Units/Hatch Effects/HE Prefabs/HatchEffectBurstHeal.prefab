@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 4948415442075945803}
   - component: {fileID: -3631670784294215762}
   m_Layer: 0
-  m_Name: HatchEffectDamage
+  m_Name: HatchEffectBurstHeal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
