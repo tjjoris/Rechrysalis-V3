@@ -27,7 +27,7 @@ namespace Rechrysalis.Unit
             // GetComponent<ParentClickManager>().Initialize(_controllerIndex);
         }
 
-        public void CreateHatchEffect(GameObject _hatchEffectPrefab, int _parentIndex, int _unitIndex, bool _affectAll, float hpMax)
+        public void CreateHatchEffect(GameObject _hatchEffectPrefab, int _parentIndex, int _unitIndex, bool _affectAll)
         {
             if (_debugBool) Debug.Log($"create hacth effect called in parent unit hatch effects");
             if (_hatchEffectPrefab == null) 
@@ -37,7 +37,7 @@ namespace Rechrysalis.Unit
             }
             GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
             HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
-            _hatchEffectManager?.Initialize(null, _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass, hpMax);
+            _hatchEffectManager?.Initialize(null, _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass);
             _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
         }
         public void AddHatchEffect(GameObject _hatchEffect)

@@ -221,15 +221,15 @@ namespace Rechrysalis.Unit
             {
                 if (upgradeTypeClassHE == null) continue;
                 HatchEffectClass duplicateHatchEffectClass = CheckIfDuplicateHatchEffect(upgradeTypeClassHE);
-                if (duplicateHatchEffectClass != null)
-                {
-                    duplicateHatchEffectClass.HatchEffectHealth += upgradeTypeClassHE.HatchEffectManager.HEHealthMax;
-                }
-                else 
+                // if (duplicateHatchEffectClass != null)
+                // {
+                //     duplicateHatchEffectClass.HatchEffectHealth += upgradeTypeClassHE.HatchEffectManager.HEHealthMax;
+                // }
+                // else 
                 {                                         
                     HatchEffectClass hatchEffectClass = new HatchEffectClass();
                     hatchEffectClass.HatchEffectPrefab = upgradeTypeClassHE.HatchEffectPrefab;
-                    hatchEffectClass.HatchEffectHealth = upgradeTypeClassHE.HatchEffectManager.HEHealthMax;
+                    // hatchEffectClass.HatchEffectHealth = upgradeTypeClassHE.HatchEffectManager.HEHealthMax;
                     _advUnitClass.HatchEffectClasses.Add(hatchEffectClass);
                     _advUnitClass.HatchEffectPrefab.Add(upgradeTypeClassHE.HatchEffectPrefab);
                     _advUnitClass.ManaCost += upgradeTypeClassHE.HatchEffectManager.ManaCostIncrease;

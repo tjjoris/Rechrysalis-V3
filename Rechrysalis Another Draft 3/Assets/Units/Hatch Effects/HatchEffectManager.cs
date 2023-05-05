@@ -47,7 +47,7 @@ namespace Rechrysalis.HatchEffect
 
             _upgradeTypeClass.HatchEffectManager = this;
         }
-        public void Initialize(HatchEffectSO hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass, float hpMax)
+        public void Initialize(HatchEffectSO hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass)
         {
             _unitClass = advUnitClass;
             if (_debugBool)
