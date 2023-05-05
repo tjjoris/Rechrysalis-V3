@@ -17,6 +17,8 @@ namespace Rechrysalis.Unit
             [SerializeField] private HatchEffectSO _hatchEffectSO;
             [SerializeField] private AdvUnitModifierSO _advUnitModifierSO;
             [SerializeField] private ControllerHeartUpgrade _controllerHeartUpgrade;
+            [SerializeField] private string _upgradeName;
+            public string UpgradeName => _upgradeName;
 
             public void SetUpgradeType(UpgradeType upgradeType)
             {

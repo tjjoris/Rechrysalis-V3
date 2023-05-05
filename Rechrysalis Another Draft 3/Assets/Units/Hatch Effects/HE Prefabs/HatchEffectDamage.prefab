@@ -227,6 +227,7 @@ MonoBehaviour:
     _hatchEffectSO: {fileID: 0}
     _advUnitModifierSO: {fileID: 0}
     _controllerHeartUpgrade: {fileID: 0}
+    _upgradeName: HE DMG
   _hatchMult: 0
   _hatchDurationMult: 0
   _name: {fileID: 5695291920276427103}
