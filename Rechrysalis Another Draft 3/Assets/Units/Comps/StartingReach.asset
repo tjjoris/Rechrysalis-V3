@@ -20,12 +20,18 @@ MonoBehaviour:
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
     _utcHatchEffect:
     - _upgradeType: 3
       _unitStatsSO: {fileID: 0}
-      _hatchEffectSO: {fileID: 11400000, guid: 4e2126990d4304c08942fe939bc50acc, type: 2}
+      _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 5162682908650232571, guid: aefcd6ac80d67485a974e9fb8978af45, type: 3}
+      _hatchEffectPrefab: {fileID: 4387173649336406545, guid: aefcd6ac80d67485a974e9fb8978af45, type: 3}
+      _buttonName: 
     _basicUnitClass:
       _manaCost: 0
       _unitName: 
@@ -85,6 +91,9 @@ MonoBehaviour:
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
     _utcHatchEffect: []
     _basicUnitClass:
       _manaCost: 0
@@ -145,6 +154,9 @@ MonoBehaviour:
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
     _utcHatchEffect: []
     _basicUnitClass:
       _manaCost: 0
