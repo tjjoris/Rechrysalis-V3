@@ -73,6 +73,7 @@ namespace Rechrysalis.CompCustomizer
             {
                 if (_debugBool) Debug.Log($"move he to selection");
                 dropSelection.DropUpgrade(hE);
+                hE.EndDragFunc();
             }
         }
     }

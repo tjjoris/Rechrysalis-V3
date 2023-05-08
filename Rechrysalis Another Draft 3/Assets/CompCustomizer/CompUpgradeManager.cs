@@ -63,8 +63,17 @@ namespace Rechrysalis.CompCustomizer
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            EndDragFunc();
+            // if (debugBool)
+            // Debug.Log($"sibling index " + _siblingIndex);
+            // transform.SetParent(_parentAfterDrag);
+            // transform.SetSiblingIndex(_siblingIndex);
+            // _image.raycastTarget = true;
+        }
+        public void EndDragFunc()
+        {
             if (debugBool)
-            Debug.Log($"sibling index " + _siblingIndex);
+                Debug.Log($"sibling index " + _siblingIndex);
             transform.SetParent(_parentAfterDrag);
             transform.SetSiblingIndex(_siblingIndex);
             _image.raycastTarget = true;
