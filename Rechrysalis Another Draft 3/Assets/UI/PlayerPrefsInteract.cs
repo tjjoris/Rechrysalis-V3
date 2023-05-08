@@ -12,6 +12,7 @@ namespace Rechrysalis.UI
         private const string HASBASICUNIT = "HasBasicUnit";
         private const string HASMANA = "HasMana";
         private const string CUSTOMIZEONLYHEANDUNIT = "CustomizeOnlyHEAndUnit";
+        private const string ONLYONEHATCHEFFECT = "OnlyOneHatchEffect";
         public static Action _changePlayerPrefs;
 
         public static void SetTargetDuringTargetMode(bool value)
@@ -87,6 +88,23 @@ namespace Rechrysalis.UI
         public static bool GetCustomizeOnlyHEAndUnit()
         {
             if (PlayerPrefs.GetInt(CUSTOMIZEONLYHEANDUNIT) == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static void SetOnlyOneHatchEffect(bool value)
+        {
+            if (value)
+            {
+                PlayerPrefs.SetInt(ONLYONEHATCHEFFECT, 1);
+                return;                
+            }
+            PlayerPrefs.SetInt(ONLYONEHATCHEFFECT, 0);            
+        }
+        public static bool GetOnlyOneHatchEffect()
+        {
+            if (PlayerPrefs.GetInt(ONLYONEHATCHEFFECT) == 1)
             {
                 return true;
             }

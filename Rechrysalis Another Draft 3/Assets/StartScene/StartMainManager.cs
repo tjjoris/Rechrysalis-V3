@@ -16,6 +16,7 @@ namespace Rechrysalis
         [SerializeField] private Toggle _hasManaToggle;
         [SerializeField] private Toggle _hasBasicUnitToggle;
         [SerializeField] private Toggle _customizeOnlyHEAndUnit;
+        [SerializeField] private Toggle _onlyOneHatchEffect;
         [SerializeField] private TMP_Dropdown _healthToBuildTimeDropDown;
         private void Awake()
         {
@@ -39,7 +40,7 @@ namespace Rechrysalis
             _healthToBuildTimeDropDown.value = PlayerPrefsInteract.GetHealthToBuildTime();
             _hasBasicUnitToggle.isOn = PlayerPrefsInteract.GetHasBasicUnit();
             _customizeOnlyHEAndUnit.isOn = PlayerPrefsInteract.GetCustomizeOnlyHEAndUnit();
-            
+            _onlyOneHatchEffect.isOn = PlayerPrefsInteract.GetOnlyOneHatchEffect();
         }
         public void LevelSelect()
         {
@@ -89,6 +90,10 @@ namespace Rechrysalis
         {
             PlayerPrefsInteract.SetCustomizeOnlyHEAndUnit(_customizeOnlyHEAndUnit.isOn);
         }
+        public void ToggleOnlyOneHatchEffect()
+        {
+            PlayerPrefsInteract.SetOnlyOneHatchEffect(_onlyOneHatchEffect.isOn);
+        }
         public void HyperManaMode()
         {
             
@@ -100,6 +105,8 @@ namespace Rechrysalis
             ToggleHasBasicUnit();
             _customizeOnlyHEAndUnit.isOn = false;
             ToggleCustomizeOnlyHEAndUnit();
+            _onlyOneHatchEffect.isOn = false;
+            ToggleOnlyOneHatchEffect();
         }
         public void InfinityMode()
         {
@@ -111,6 +118,8 @@ namespace Rechrysalis
             ToggleHasBasicUnit();
             _customizeOnlyHEAndUnit.isOn = true;
             ToggleCustomizeOnlyHEAndUnit();
+            _onlyOneHatchEffect.isOn = true;
+            ToggleOnlyOneHatchEffect();
         }
     }
 }
