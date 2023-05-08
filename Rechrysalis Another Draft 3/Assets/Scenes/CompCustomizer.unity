@@ -1563,6 +1563,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1273122379}
     m_Modifications:
+    - target: {fileID: 2518985821757069683, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
+      propertyPath: _dropSelection
+      value: 
+      objectReference: {fileID: 452630632}
     - target: {fileID: 5273430123089610198, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.000093747236
@@ -2470,6 +2474,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1273122379}
     m_Modifications:
+    - target: {fileID: 2518985821757069683, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
+      propertyPath: _dropSelection
+      value: 
+      objectReference: {fileID: 452630632}
     - target: {fileID: 6365158185765351856, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
       propertyPath: m_VerticalFit
       value: 2
@@ -2587,6 +2595,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1273122379}
     m_Modifications:
+    - target: {fileID: 2518985821757069683, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
+      propertyPath: _dropSelection
+      value: 
+      objectReference: {fileID: 452630632}
     - target: {fileID: 5273430123089610198, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.000093747236

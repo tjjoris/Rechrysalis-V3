@@ -388,6 +388,7 @@ MonoBehaviour:
   _controllerHPTokens: {fileID: 1717111042}
   _movingButtonHolder: {fileID: 414014357}
   _levelDisplay: {fileID: 1197898121}
+  _instantiateButton: {fileID: 0}
 --- !u!114 &117628111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1488,6 +1489,7 @@ MonoBehaviour:
   - {fileID: 1287336173}
   - {fileID: 6878637215250843785}
   _showCompErrorText: {fileID: 124370955}
+  _startingComp: {fileID: 0}
 --- !u!1 &1273122378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,6 +1563,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1273122379}
     m_Modifications:
+    - target: {fileID: 2518985821757069683, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
+      propertyPath: _dropSelection
+      value: 
+      objectReference: {fileID: 452630632}
     - target: {fileID: 5273430123089610198, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.000093747236
@@ -2482,6 +2488,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1273122379}
     m_Modifications:
+    - target: {fileID: 2518985821757069683, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
+      propertyPath: _dropSelection
+      value: 
+      objectReference: {fileID: 452630632}
     - target: {fileID: 6365158185765351856, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
       propertyPath: m_VerticalFit
       value: 2
@@ -2599,6 +2609,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1273122379}
     m_Modifications:
+    - target: {fileID: 2518985821757069683, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
+      propertyPath: _dropSelection
+      value: 
+      objectReference: {fileID: 452630632}
     - target: {fileID: 5273430123089610198, guid: 4b444d7fb5625454eb50ae3bb312fb0e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.000093747236
