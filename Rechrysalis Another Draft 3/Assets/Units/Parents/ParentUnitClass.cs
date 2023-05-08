@@ -73,6 +73,7 @@ namespace Rechrysalis.Unit
         }
         public void SetUTCHEsFromGOs()
         {
+            ClearUTCHEs();
             foreach(GameObject hatchEffectGO in _hatchEffectPrefabs)
             {
                 if (hatchEffectGO == null) continue;
