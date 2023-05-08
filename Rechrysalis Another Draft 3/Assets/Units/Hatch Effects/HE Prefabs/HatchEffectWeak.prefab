@@ -230,8 +230,8 @@ MonoBehaviour:
     _controllerHeartUpgrade: {fileID: 0}
     _hatchEffectManager: {fileID: 5162682908650232571}
     _hatchEffectPrefab: {fileID: 0}
-    _buttonName: 
-  _HEHealthMax: 0
+    _buttonName: HE Weak
+  _HEHealthMax: 4
   _hatchMult: 0
   _hatchDurationMult: 0
   _manaCostIncrease: 0

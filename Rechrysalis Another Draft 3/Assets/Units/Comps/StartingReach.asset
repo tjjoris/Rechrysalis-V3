@@ -31,7 +31,7 @@ MonoBehaviour:
       _controllerHeartUpgrade: {fileID: 0}
       _hatchEffectManager: {fileID: 5162682908650232571, guid: aefcd6ac80d67485a974e9fb8978af45, type: 3}
       _hatchEffectPrefab: {fileID: 4387173649336406545, guid: aefcd6ac80d67485a974e9fb8978af45, type: 3}
-      _buttonName: 
+      _buttonName: HE Weak
     _basicUnitClass:
       _manaCost: 0
       _unitName: 
