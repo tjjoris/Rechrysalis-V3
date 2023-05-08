@@ -23,6 +23,23 @@ namespace Rechrysalis.Unit
         [SerializeField] private int[] _upgradeCountArray;
         public int[] UpgradeCountArray {get {return _upgradeCountArray;}}
 
+        [ContextMenu ("Set up HE's")] public void SetUpComp()
+        {
+            SetUpCompFunc();
+        }
+        private void OnValidate()
+        {
+            SetUpCompFunc();
+        }
+        private void SetUpCompFunc()
+        {
+            foreach (ParentUnitClass parentUnitClass in _parentUnitClassList)
+            {
+                if (parentUnitClass == null) continue;
+                parentUnitClass.SetUTCHEsFromGOs();
+            }
+        }
+
         public bool IsCompExists()
         {
             if (_parentUnitClassList.Count == 0)

@@ -14,6 +14,8 @@ namespace Rechrysalis.Unit
         public List<UpgradeTypeClass> AdvancedUpgradesUTCList { get{ return _advancedUpgradesUTCList; } set{ _advancedUpgradesUTCList = value; } }
         [SerializeField] private UpgradeTypeClass _utcBasicUnit;
         public UpgradeTypeClass UTCBasicUnit { get{ return _utcBasicUnit; } set{ _utcBasicUnit = value; } }
+        [SerializeField] private List<GameObject> _hatchEffectPrefabs;
+        public List<GameObject> HatchEffectPrefabs => _hatchEffectPrefabs;
         [SerializeField] private List<UpgradeTypeClass> _utcHatchEffect = new List<UpgradeTypeClass>();
         public List<UpgradeTypeClass> UTCHatchEffects { get{ return _utcHatchEffect; } set{ _utcHatchEffect = value; } }
         private UpgradeTypeClass _replacedUTCBasicUnit;
@@ -31,7 +33,8 @@ namespace Rechrysalis.Unit
         {
             _advancedUpgradesUTCList = new List<UpgradeTypeClass>();
             _advancedUpgradesUTCList.Clear();
-            _utcHatchEffect = new List<UpgradeTypeClass>();
+            _hatchEffectPrefabs = new List<GameObject>();
+            ClearUTCHEs();
             _utcBasicUnit = null;
             if (_debugBool)
             {
@@ -67,6 +70,21 @@ namespace Rechrysalis.Unit
                 _utcHatchEffect.Add(utcHatchEffect);
                 if (_debugBool) Debug.Log($"set hatch effect");
             }
+        }
+        public void SetUTCHEsFromGOs()
+        {
+            foreach(GameObject hatchEffectGO in _hatchEffectPrefabs)
+            {
+                if (hatchEffectGO == null) continue;
+                HatchEffectManager hatchEffectManager = hatchEffectGO.GetComponent<HatchEffectManager>();
+                if (hatchEffectManager == null) continue;
+                if (hatchEffectManager.UpgradeTypeClass == null) continue;
+                _utcHatchEffect.Add(hatchEffectManager.UpgradeTypeClass);
+            }
+        }
+        private void ClearUTCHEs()
+        {
+            _utcHatchEffect = new List<UpgradeTypeClass>();
         }
         public void AddUTCAdvanced(UpgradeTypeClass advancedToAdd)
         {
