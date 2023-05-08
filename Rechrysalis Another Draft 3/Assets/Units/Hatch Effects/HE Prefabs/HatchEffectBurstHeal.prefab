@@ -264,6 +264,7 @@ MonoBehaviour:
     _projectileSprite: {fileID: 0}
     _controllerLifeCostMult: 1
     _hatchBuildTimeMaxBaseAdd: 0
+  _burstHealAmount: 10
 --- !u!114 &1894819527670956384
 MonoBehaviour:
   m_ObjectHideFlags: 0

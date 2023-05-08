@@ -116,13 +116,13 @@ namespace Rechrysalis.Unit
             this._freeUnitIndex = freeUnitIndex;
             // _freeHatchScript?.Initialize(unitClass.HatchEffectPrefab, _freeUnitIndex);
             float _hatchManaMult = 1;
-            if (_hatchEffectSO != null)
-            {
-                if (_hatchEffectSO.ManaMultiplier.Length >= _unitStats.TierMultiplier.Tier - 1)
-                {
-                    _hatchManaMult = _hatchEffectSO.ManaMultiplier[_unitStats.TierMultiplier.Tier - 1];
-                }
-            }
+            // if (_hatchEffectSO != null)
+            // {
+            //     if (_hatchEffectSO.ManaMultiplier.Length >= _unitStats.TierMultiplier.Tier - 1)
+            //     {
+            //         _hatchManaMult = _hatchEffectSO.ManaMultiplier[_unitStats.TierMultiplier.Tier - 1];
+            //     }
+            // }
             _manaCost = unitClass.ManaCost;
             _targetPrioratizeByScore = GetComponent<TargetPrioratizeByScore>();
             _targetPrioratizeByScore?.Initialize(_enemyControllerManager.GetComponent<TargetScoreRanking>(), compsAndUnits.TargetsLists[_controllerIndex]);
@@ -159,8 +159,22 @@ namespace Rechrysalis.Unit
                     _hatchAdjustBuildTimerMaxBase = gameObject.AddComponent<HatchAdjustBuildTimerMaxBase>();                    
                     _hatchAdjustBuildTimerMaxBase?.Initialize(_controllerManager, _unitClass.HatchBuildTimeMaxBaseAdd);
                 }
+                foreach (UpgradeTypeClass upgradeTypeClass in _parentUnitManager.ParentUnitClass.UTCHatchEffects)
+                {
+                    if (upgradeTypeClass == null) continue;
+                    HatchEffectManager hatchEffectManager = upgradeTypeClass.HatchEffectManager;
+                    if (hatchEffectManager == null) continue;
+                    AddBurstHeal(hatchEffectManager);
+                }
             }
             ReCalculateDamageChanges();
+        }
+        private void AddBurstHeal(HatchEffectManager hatchEffectManager)
+        {
+            if (hatchEffectManager.BurstHealAmount == 0) return;
+            gameObject.AddComponent<BurstHealManager>();
+            _burstHealManager = GetComponent<BurstHealManager>();
+            _burstHealManager?.Initialize(_controllerManager, hatchEffectManager.BurstHealAmount);
         }
         public void SetUnitSPrite(Sprite unitSprite)
         {

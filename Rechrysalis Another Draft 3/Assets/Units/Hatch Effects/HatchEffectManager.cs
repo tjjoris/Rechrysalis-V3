@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using Rechrysalis.Unit;
+using Rechrysalis.AdvancedUpgrade;
 
 namespace Rechrysalis.HatchEffect
 {
@@ -41,6 +42,8 @@ namespace Rechrysalis.HatchEffect
         public HEIncreaseDefence HEIncreaseDefence => _hEIncreaseDefence;
         [SerializeField] private UnitClass _unitClass;
         public Action<GameObject, int, int, bool> _hatchEffectDies;
+        [SerializeField] private float _burstHealAmount;
+        public float BurstHealAmount => _burstHealAmount;
 
 
         private void OnValidate()
@@ -91,6 +94,15 @@ namespace Rechrysalis.HatchEffect
             _hEIncreaseDefence?.Initialize(_hatchMult);
 
         }
+        // public void SetUpUnit(UnitManager unit)
+        // {
+        //     AddBurstHeal(unit);
+        // }
+        // private void AddBurstHeal(UnitManager unit)
+        // {
+        //     if (_burstHealAmount == 0) return;
+        //     unit.gameObject.AddComponent<BurstHealManager>();
+        // }
         public void SetOffset(int _multiplier)
         {
             _hEDisplay?.PositionOffset(_multiplier);
