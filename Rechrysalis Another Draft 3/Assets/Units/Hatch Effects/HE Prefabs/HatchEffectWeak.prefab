@@ -222,9 +222,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hatchEffectSO: {fileID: 11400000, guid: 4e2126990d4304c08942fe939bc50acc, type: 2}
+  _upgradeTypeClass:
+    _upgradeType: 0
+    _unitStatsSO: {fileID: 0}
+    _hatchEffectSO: {fileID: 0}
+    _advUnitModifierSO: {fileID: 0}
+    _controllerHeartUpgrade: {fileID: 0}
+    _hatchEffectManager: {fileID: 5162682908650232571}
+    _hatchEffectPrefab: {fileID: 0}
+    _buttonName: 
+  _HEHealthMax: 0
   _hatchMult: 0
   _hatchDurationMult: 0
+  _manaCostIncrease: 0
+  _buildTimeIncrease: 0
   _name: {fileID: 5695291920276427103}
+  _hpDrainPerTick: 1
   _hEIncreaseDamage: {fileID: 0}
   _hEIncreaseDefence: {fileID: 0}
   _unitClass:

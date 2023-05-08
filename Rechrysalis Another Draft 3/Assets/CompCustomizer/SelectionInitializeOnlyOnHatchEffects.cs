@@ -25,7 +25,7 @@ namespace Rechrysalis.CompCustomizer
             foreach (GameObject hatchEffectPrefab in _compCustomizerSO.HatchEffectSelectionPrefabArray)
             {
                 if (hatchEffectPrefab == null) continue;
-                UpgradeTypeClass upgradeTypeClass = GetComponent<HatchEffectManager>().UpgradeTypeClass;
+                UpgradeTypeClass upgradeTypeClass = hatchEffectPrefab.GetComponent<HatchEffectManager>().UpgradeTypeClass;
                 _listToChooseFrom.Add(upgradeTypeClass);
             }
             List<UpgradeTypeClass> randomSelection = _getRandomUpgradeTypeClassesFromList.GetRandomListFunc(_listToChooseFrom, maxChosen);

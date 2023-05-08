@@ -24,11 +24,17 @@ namespace Rechrysalis.Unit
             [SerializeField] private string _buttonName;
             public string ButtonName => _buttonName;
             
-            private void Awake()
-            {
-                _hatchEffectManager = _hatchEffectPrefab.GetComponent<HatchEffectManager>();
+            // private void Awake()
+            // {
+            // }
+            // [ContextMenu("Set Up UTC")] void SetUpUTC()
+            // {
+            //     SetUpFunc();
+            // }
+            private void SetUpFunc()
+        {
+            _hatchEffectManager = _hatchEffectPrefab.GetComponent<HatchEffectManager>();
             }
-
             public void SetUpgradeType(UpgradeType upgradeType)
             {
                 _upgradeType = upgradeType;

@@ -21,6 +21,7 @@ namespace Rechrysalis.CompCustomizer
         [SerializeField] private ScrollRect _scrollRect;
         private Transform _movingButtonHolder;
         [SerializeField] private ParentUnitClass _parentUnitClass;
+        [SerializeField] private InstantiateButton _instanatiateButton;
         // public Action<CompVerticalManager, CompUpgradeManager> _vertcialDropped;
         
         // private void OnEnable()
@@ -34,7 +35,7 @@ namespace Rechrysalis.CompCustomizer
         //     if (_dropBackGround == null) return;
         //     _dropBackGround._buttonDropped -= DroppedIntoVertical;
         // }
-        public void Initialize(Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens)
+        public void Initialize(Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens, InstantiateButton instantiateButton)
         {
             _compsAndUnitsSO = compsAndUnitsSO;
             if (debugBool)
@@ -46,6 +47,7 @@ namespace Rechrysalis.CompCustomizer
             if (dropComp != null) dropComp.ControllerHPTokens = controllerHPTokens;
             if ((_verticalContainer != null) && (_verticalContainer.GetComponent<DropComp>() != null))
             _verticalContainer.GetComponent<DropComp>().ControllerHPTokens = controllerHPTokens;
+            _instanatiateButton = instantiateButton;
         }
         // private void DroppedIntoVertical(CompUpgradeManager compUpgradeManager)
         // {
@@ -78,11 +80,12 @@ namespace Rechrysalis.CompCustomizer
             if ((upgradeTypeClass != null) && (upgradeTypeClass.GetUpgradeType() != UpgradeTypeClass.UpgradeType.Error))
             {
                 // Debug.Log($"creating utc "+ upgradeTypeClass.GetUnitStatsSO().UnitName);
-                GameObject compButtonCreated = Instantiate(compButtonPrefab, _verticalContainer);
-                CompUpgradeManager compUpgradeManager = compButtonCreated.GetComponent<CompUpgradeManager>();
-                compUpgradeManager?.Initialize(_movingButtonHolder);
-                compUpgradeManager?.SetUpgradeTypeClass(upgradeTypeClass);
-                compUpgradeManager?.SetDisplay(upgradeTypeClass);
+                // GameObject compButtonCreated = Instantiate(compButtonPrefab, _verticalContainer);
+                // CompUpgradeManager compUpgradeManager = compButtonCreated.GetComponent<CompUpgradeManager>();
+                // compUpgradeManager?.Initialize(_movingButtonHolder);
+                // compUpgradeManager?.SetUpgradeTypeClass(upgradeTypeClass);
+                // compUpgradeManager?.SetDisplay(upgradeTypeClass);
+                _instanatiateButton.CreateSelectionButton(upgradeTypeClass, _verticalContainer);
             }
         }
         private void DisableScrollRect()
