@@ -15,8 +15,9 @@ namespace Rechrysalis.HatchEffect
         [SerializeField] private HatchEffectSO _hatchEffectSO;
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
         public UpgradeTypeClass UpgradeTypeClass => _upgradeTypeClass;
-        private HETimer _hETimer;
+        private HETimer _hETimer;        
         private HatchEffectHealth _hEHealth;
+        public HatchEffectHealth HEHealth => _hEHealth;
         private bool _affectAll = true;
         public bool AffectAll {get{return _affectAll;}}
         [SerializeField] private float _HEHealthMax;
@@ -41,14 +42,29 @@ namespace Rechrysalis.HatchEffect
         [SerializeField] private UnitClass _unitClass;
         public Action<GameObject, int, int, bool> _hatchEffectDies;
 
-        
+
+        private void OnValidate()
+        {
+            SetUpAwake();
+        }
         private void Awake()
+        {
+            // _upgradeTypeClass.HatchEffectManager = this;
+            SetUpAwake();
+        }
+        private void SetUpAwake()
         {
 
             _upgradeTypeClass.HatchEffectManager = this;
+            _hETimer = GetComponent<HETimer>();
+            _hEDisplay = GetComponent<HEDisplay>();
+            _hEHealth = GetComponent<HatchEffectHealth>();
+            _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
+            _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
         }
         public void Initialize(HatchEffectSO hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass)
         {
+            SetUpAwake();
             _unitClass = advUnitClass;
             if (_debugBool)
             {
@@ -59,9 +75,9 @@ namespace Rechrysalis.HatchEffect
             this._affectAll = _affectAll;
             // this._tier = _tier;
             if (hatchEffectSO != null) this._hatchEffectSO = hatchEffectSO;
-            _hETimer = GetComponent<HETimer>();
-            _hEDisplay = GetComponent<HEDisplay>();
-            _hEHealth = GetComponent<HatchEffectHealth>();
+            // _hETimer = GetComponent<HETimer>();
+            // _hEDisplay = GetComponent<HEDisplay>();
+            // _hEHealth = GetComponent<HatchEffectHealth>();
             // if (_hatchEffectSO.HealthMax.Length > this._tier)
             {
             // _maxHP = _hatchEffectSO.HealthMax[_tier];
@@ -69,9 +85,9 @@ namespace Rechrysalis.HatchEffect
             _hatchDurationMult = advUnitClass.HatchEffectDurationAdd;
             _hEHealth.Initialize(_hatchMult, advUnitClass, _HEHealthMax);
             }
-            _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
+            // _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
             _hEIncreaseDamage?.Initialize(_hatchMult);
-            _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
+            // _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
             _hEIncreaseDefence?.Initialize(_hatchMult);
 
         }
