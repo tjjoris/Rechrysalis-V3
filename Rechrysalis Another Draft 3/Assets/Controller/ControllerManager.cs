@@ -157,24 +157,24 @@ namespace Rechrysalis.Controller
         }
         public void SubScribeToParentUnits()
         {
-            if ((_parentUnits != null) && (_parentUnits.Length > 0))
+            if ((_parentUnitManagers != null) && (_parentUnitManagers.Count > 0))
             {
                 // foreach (GameObject _parentUnit in _parentUnits)
-                for (int _parentIndex = 0; _parentIndex < _parentUnits.Length; _parentIndex++)                
+                for (int _parentIndex = 0; _parentIndex < _parentUnitManagers.Count; _parentIndex++)                
                 {
-                    if (_parentUnits[_parentIndex] != null)
+                    if (_parentUnitManagers[_parentIndex] != null)
                     {
-                        ParentUnitManager _parentManager = _parentUnits[_parentIndex].GetComponent<ParentUnitManager>();
+                        ParentUnitManager parentUnitManager = _parentUnitManagers[_parentIndex];
                         // _parentManager._addHatchEffect -= AddHatchEffect;
                         // _parentManager._addHatchEffect += AddHatchEffect;
-                        ParentUnitHatchEffects parentUnitHatchEffects = _parentManager.GetComponent<ParentUnitHatchEffects>();
+                        ParentUnitHatchEffects parentUnitHatchEffects = parentUnitManager.ParentUnitHatchEffects;
                         if (parentUnitHatchEffects != null)
                         {
                             parentUnitHatchEffects._addHatchEffect -= AddHatchEffect;
                             parentUnitHatchEffects._addHatchEffect += AddHatchEffect;
                         }
-                        _parentManager._parentDealsDamage -= DealsDamage;
-                        _parentManager._parentDealsDamage += DealsDamage;
+                        parentUnitManager._parentDealsDamage -= DealsDamage;
+                        parentUnitManager._parentDealsDamage += DealsDamage;
 
                     }
                 }
