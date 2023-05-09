@@ -22,6 +22,7 @@ namespace Rechrysalis.Unit
         }
         public void ActivateHatch()
         {
+            Rechrysalis.UI.DebugTextStatic.DebugText.DisplayText("in unit hatch script, activated hatch");
             Debug.Log($"activate hatch in  hatch");
             _unitManager.MoveSpeedAddManager?.Activate();
             _unitManager.BurstHealManager?.Activate();
