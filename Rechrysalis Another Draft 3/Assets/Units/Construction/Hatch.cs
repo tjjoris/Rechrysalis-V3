@@ -26,7 +26,7 @@ namespace Rechrysalis.Unit
             _unitManager.MoveSpeedAddManager?.Activate();
             _unitManager.BurstHealManager?.Activate();
             _unitManager.HatchAdjustBuildTimerMaxBase?.Activate();
-            ActivateHatchEffects(_unitManager.FreeUnitIndex);
+            ActivateHatchEffects(_unitManager.ChildUnitIndex);
             Instantiate(_unitManager.ParticleEffectPrefab, transform.position, Quaternion.identity, transform.parent);            
         }
         private void ActivateHatchEffects(int unitIndex)

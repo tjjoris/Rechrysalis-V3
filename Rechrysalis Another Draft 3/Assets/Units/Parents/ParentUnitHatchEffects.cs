@@ -37,7 +37,7 @@ namespace Rechrysalis.Unit
             }
             GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
             HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
-            _hatchEffectManager?.Initialize(null, _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass);
+            _hatchEffectManager?.Initialize(null, _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass, _parentUnitManager.ChildUnitManagers[_unitIndex]);
             _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
         }
         public void AddHatchEffect(GameObject _hatchEffect)

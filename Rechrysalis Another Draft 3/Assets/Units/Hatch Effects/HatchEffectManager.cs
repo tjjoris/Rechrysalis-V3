@@ -13,6 +13,8 @@ namespace Rechrysalis.HatchEffect
         private bool _debugBool = false;
         private int _parentIndex;
         private int _unitIndex;
+        [SerializeField] private UnitManager _unitManager;
+        public UnitManager UnitManager => _unitManager;
         [SerializeField] private HatchEffectSO _hatchEffectSO;
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
         public UpgradeTypeClass UpgradeTypeClass => _upgradeTypeClass;
@@ -65,7 +67,7 @@ namespace Rechrysalis.HatchEffect
             _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
             _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
         }
-        public void Initialize(HatchEffectSO hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass)
+        public void Initialize(HatchEffectSO hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass, UnitManager unitManager)
         {
             SetUpAwake();
             _unitClass = advUnitClass;
@@ -84,6 +86,7 @@ namespace Rechrysalis.HatchEffect
             // if (_hatchEffectSO.HealthMax.Length > this._tier)
             {
             // _maxHP = _hatchEffectSO.HealthMax[_tier];
+            _unitManager = unitManager;
             _hatchMult = advUnitClass.HatchEffectMult;
             _hatchDurationMult = advUnitClass.HatchEffectDurationAdd;
             _hEHealth.Initialize(_hatchMult, advUnitClass, _HEHealthMax);
