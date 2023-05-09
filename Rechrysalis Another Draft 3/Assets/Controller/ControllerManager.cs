@@ -443,6 +443,7 @@ namespace Rechrysalis.Controller
         // }
         public void AddHatchEffect(GameObject _hatchEffect, int _parentIndex, int _unitIndex, bool _effectAll)
         {
+            DebugTextStatic.DebugText.DisplayText("in controller, Add hatch effect from subscription.");
             {
                 _mover.FromHEAddSpeed(_hatchEffect);
                 if (_debugBool)
