@@ -18,6 +18,7 @@ namespace Rechrysalis.CompCustomizer
         public List<CompVerticalManager> VerticalManagers => _verticalMangers;
         [SerializeField] private ShowCompErrorText _showCompErrorText;
         [SerializeField] private CompSO _startingComp;
+        private InstantiateButton _instantiateButton;
         // public Action<CompVerticalManager, CompUpgradeManager> _droppedIntoVertical;
         
         // private void OnEnable()
@@ -41,7 +42,7 @@ namespace Rechrysalis.CompCustomizer
         //         }
         //     }
         // }
-        public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens)
+        public void Initialize(CompCustomizerSO compCustomizerSO, CompSO playerComp, Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens, InstantiateButton instantiateButton)
         {
             if (!playerComp.IsCompExists())
             {
@@ -49,7 +50,8 @@ namespace Rechrysalis.CompCustomizer
             }
             _movingButtonHolder = movingButtonHolder;
             _playerComp = playerComp;
-            _compCustomizerSO = compCustomizerSO;  
+            _compCustomizerSO = compCustomizerSO;
+            _instantiateButton = instantiateButton; 
             LoopVerticalsToSetUp(playerComp, movingButtonHolder, compsAndUnitsSO, controllerHPTokens);
         }
         // private void DroppedIntoVertical(CompVerticalManager compVerticalManager, CompUpgradeManager compUpgradeManager)
@@ -68,7 +70,7 @@ namespace Rechrysalis.CompCustomizer
         {   
             if (_debugBool)
             Debug.Log($"vertical to set up " + parentIndex);
-            _verticalMangers[parentIndex]?.Initialize(_movingButtonHolder, compsAndUnitsSO, controllerHPTokens);
+            _verticalMangers[parentIndex]?.Initialize(_movingButtonHolder, compsAndUnitsSO, controllerHPTokens, _instantiateButton);
             _verticalMangers[parentIndex]?.VerticalContainer.GetComponent<DropBackGround>()?.Initialize(compsAndUnitsSO);
             if (playerComp.ParentUnitClassList.Count > parentIndex)
             {

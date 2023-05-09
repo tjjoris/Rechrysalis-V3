@@ -14,6 +14,8 @@ namespace Rechrysalis.Unit
         public List<UpgradeTypeClass> AdvancedUpgradesUTCList { get{ return _advancedUpgradesUTCList; } set{ _advancedUpgradesUTCList = value; } }
         [SerializeField] private UpgradeTypeClass _utcBasicUnit;
         public UpgradeTypeClass UTCBasicUnit { get{ return _utcBasicUnit; } set{ _utcBasicUnit = value; } }
+        [SerializeField] private List<GameObject> _hatchEffectPrefabs;
+        public List<GameObject> HatchEffectPrefabs => _hatchEffectPrefabs;
         [SerializeField] private List<UpgradeTypeClass> _utcHatchEffect = new List<UpgradeTypeClass>();
         public List<UpgradeTypeClass> UTCHatchEffects { get{ return _utcHatchEffect; } set{ _utcHatchEffect = value; } }
         private UpgradeTypeClass _replacedUTCBasicUnit;
@@ -31,7 +33,8 @@ namespace Rechrysalis.Unit
         {
             _advancedUpgradesUTCList = new List<UpgradeTypeClass>();
             _advancedUpgradesUTCList.Clear();
-            _utcHatchEffect = new List<UpgradeTypeClass>();
+            _hatchEffectPrefabs = new List<GameObject>();
+            ClearUTCHEs();
             _utcBasicUnit = null;
             if (_debugBool)
             {
@@ -67,6 +70,22 @@ namespace Rechrysalis.Unit
                 _utcHatchEffect.Add(utcHatchEffect);
                 if (_debugBool) Debug.Log($"set hatch effect");
             }
+        }
+        public void SetUTCHEsFromGOs()
+        {
+            ClearUTCHEs();
+            foreach(GameObject hatchEffectGO in _hatchEffectPrefabs)
+            {
+                if (hatchEffectGO == null) continue;
+                HatchEffectManager hatchEffectManager = hatchEffectGO.GetComponent<HatchEffectManager>();
+                if (hatchEffectManager == null) continue;
+                if (hatchEffectManager.UpgradeTypeClass == null) continue;
+                _utcHatchEffect.Add(hatchEffectManager.UpgradeTypeClass);
+            }
+        }
+        private void ClearUTCHEs()
+        {
+            _utcHatchEffect = new List<UpgradeTypeClass>();
         }
         public void AddUTCAdvanced(UpgradeTypeClass advancedToAdd)
         {
@@ -216,44 +235,39 @@ namespace Rechrysalis.Unit
         }
         private void CheckToSetHatchEffect()
         {
-            if (_utcHatchEffect != null)
+            if (_utcHatchEffect == null) return;
+            foreach (UpgradeTypeClass upgradeTypeClassHE in _utcHatchEffect)
             {
-                foreach (UpgradeTypeClass hatchEffect in _utcHatchEffect)
-                {
-                    if ((hatchEffect != null) && (hatchEffect.GetHatchEffectSO() != null))
-                    {
-                        HatchEffectClass duplicateHatchEffectClass = CheckIfDuplicateHatchEffect(hatchEffect);
-                        if (duplicateHatchEffectClass != null)
-                        {
-                            duplicateHatchEffectClass.HatchEffectHealth += hatchEffect.GetHatchEffectSO().HealthMax[0];
-                        }
-                        else 
-                        {                     
-                            Debug.Log($"create hatch effect class "+ hatchEffect.GetHatchEffectSO().HealthMax[0]);   
-                            HatchEffectClass hatchEffectClass = new HatchEffectClass();
-                            hatchEffectClass.HatchEffectPrefab = hatchEffect.GetHatchEffectSO().HatchEffectPrefab;
-                            hatchEffectClass.HatchEffectHealth = hatchEffect.GetHatchEffectSO().HealthMax[0];
-                            _advUnitClass.HatchEffectClasses.Add(hatchEffectClass);
-                            _advUnitClass.HatchEffectPrefab.Add(hatchEffect.GetHatchEffectSO().HatchEffectPrefab);
-                            _advUnitClass.ManaCost += hatchEffect.GetHatchEffectSO().AddedManaCost;
-                            _advUnitClass.BuildTime += hatchEffect.GetHatchEffectSO().BuildTimeAdd;
-                        }
-                    }
-                }          
+                if (upgradeTypeClassHE == null) continue;
+                HatchEffectClass duplicateHatchEffectClass = CheckIfDuplicateHatchEffect(upgradeTypeClassHE);
+                // if (duplicateHatchEffectClass != null)
+                // {
+                //     duplicateHatchEffectClass.HatchEffectHealth += upgradeTypeClassHE.HatchEffectManager.HEHealthMax;
+                // }
+                // else 
+                {                                         
+                    HatchEffectClass hatchEffectClass = new HatchEffectClass();
+                    hatchEffectClass.HatchEffectPrefab = upgradeTypeClassHE.HatchEffectPrefab;
+                    hatchEffectClass.HatchEffectManager = upgradeTypeClassHE.HatchEffectPrefab.GetComponent<HatchEffectManager>();
+                    // hatchEffectClass.HatchEffectHealth = upgradeTypeClassHE.HatchEffectManager.HEHealthMax;
+                    _advUnitClass.HatchEffectClasses.Add(hatchEffectClass);
+                    _advUnitClass.HatchEffectPrefab.Add(upgradeTypeClassHE.HatchEffectPrefab);
+                    if (upgradeTypeClassHE.HatchEffectManager == null) Debug.LogWarning("upgradeTypeClassHE.HatchEffectmanager = null");
+                    _advUnitClass.ManaCost += upgradeTypeClassHE.HatchEffectManager.ManaCostIncrease;
+                    _advUnitClass.BuildTime += upgradeTypeClassHE.HatchEffectManager.BuildTimeIncrease;
+                }
             }
         }
         private HatchEffectClass CheckIfDuplicateHatchEffect(UpgradeTypeClass hatchEffect)
         {
-            if ((_advUnitClass.HatchEffectClasses != null) && (_advUnitClass.HatchEffectPrefab.Count > 0))
+            if ((_advUnitClass.HatchEffectClasses == null) || (_advUnitClass.HatchEffectPrefab.Count == 0)) return null;
+            foreach (HatchEffectClass hatchEffectClass in _advUnitClass.HatchEffectClasses)
             {
-                foreach (HatchEffectClass hatchEffectClass in _advUnitClass.HatchEffectClasses)
+                if (hatchEffectClass != null)
                 {
-                    if (hatchEffectClass != null)
+                    if (hatchEffectClass.HatchEffectPrefab.GetComponent<HatchEffectManager>().UpgradeTypeClass == hatchEffect)
                     {
-                        if (hatchEffectClass.HatchEffectPrefab == hatchEffect.GetHatchEffectSO().HatchEffectPrefab)
-                        {
-                            return hatchEffectClass;
-                        }
+                        return hatchEffectClass;
                     }
                 }
             }

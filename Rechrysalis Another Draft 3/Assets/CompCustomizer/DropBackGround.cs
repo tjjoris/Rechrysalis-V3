@@ -28,7 +28,7 @@ namespace Rechrysalis.CompCustomizer
                 DropUpgrade(compUpgradeManager);
             }
         }
-        protected virtual void DropUpgrade(CompUpgradeManager compUpgradeManager)
+        public virtual void DropUpgrade(CompUpgradeManager compUpgradeManager)
         {            
             if (_debugBool)
             {

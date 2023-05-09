@@ -18,8 +18,8 @@ namespace Rechrysalis.CompCustomizer
         public AdvUnitModifierSO[] AdvancedUnitSelectionT1Array { get{ return _advancedUnitSelectionArray; }}
         [SerializeField] private ControllerHeartUpgrade[] _controllerHeartUpgrades;
         public ControllerHeartUpgrade[] ControllerHeartUpgrades => _controllerHeartUpgrades;
-        [SerializeField] private HatchEffectSO[] _hatchEffectSelectionArray;
-        public HatchEffectSO[] HatchEffectSelectionArray { get{ return _hatchEffectSelectionArray; }}
+        [SerializeField] private GameObject[] _hatchEffectSelectionPrefabArray;
+        public GameObject[] HatchEffectSelectionPrefabArray => _hatchEffectSelectionPrefabArray;
         [SerializeField] private AdvUnitModifierSO[] _onHatchEffectSelectionArray;
         public AdvUnitModifierSO[] OnHatchEffectSelectionArray => _onHatchEffectSelectionArray;
         

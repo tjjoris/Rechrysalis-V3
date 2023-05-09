@@ -36,7 +36,8 @@ namespace Rechrysalis.Unit
             foreach (HatchEffectClass hatcheffectClass in _unitManager.UnitClass.HatchEffectClasses)
             {
                 if (hatcheffectClass == null) continue;
-                _parentUnitHatchEffects.CreateHatchEffect(hatcheffectClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitIndex, true, hatcheffectClass.HatchEffectHealth);
+                if (hatcheffectClass.HatchEffectManager.HEHealth == null) continue;                
+                _parentUnitHatchEffects.CreateHatchEffect(hatcheffectClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitIndex, true);
             }
 
         }

@@ -57,7 +57,7 @@ namespace Rechrysalis.CompCustomizer
             //     _selectionInitialize.Initialize(_compCustomizerSO, _movingButtonHolder.transform, _compSO);
             // }
             
-            _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0], _movingButtonHolder, _compsAndUnitsSO, _controllerHPTokens);
+            _compInitialize.Initialize(_compCustomizerSO, _compsAndUnitsSO.CompsSO[0], _movingButtonHolder, _compsAndUnitsSO, _controllerHPTokens, _instantiateButton);
             _controllerHPTokens.Initialize(_compsAndUnitsSO);
             _levelDisplay.SetLevelText(_compsAndUnitsSO.Level);
         }
