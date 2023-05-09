@@ -33,9 +33,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6dc60c3f3e31a439caed0fc1ab4d2112, type: 2}
   - {fileID: 11400000, guid: 6dc60c3f3e31a439caed0fc1ab4d2112, type: 2}
   _hatchEffectSelectionPrefabArray:
-  - {fileID: 4387173649336406545, guid: 516e936724dc6430e8e17eadb6f1f9ba, type: 3}
-  - {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}
+  - {fileID: 4387173649336406545, guid: b118d70eac5c84a78af12956ab8bbcb6, type: 3}
   - {fileID: 4387173649336406545, guid: 58e63edc2da7644d89cb7292f80eeb8b, type: 3}
+  - {fileID: 4387173649336406545, guid: a3e2c5bb80c6a4910be5dd1a656f956d, type: 3}
+  - {fileID: 4387173649336406545, guid: 516e936724dc6430e8e17eadb6f1f9ba, type: 3}
   _onHatchEffectSelectionArray:
   - {fileID: 11400000, guid: c3d5d7dfdda084a3c886b45b8509f723, type: 2}
   - {fileID: 11400000, guid: e08c89c5bd6654b7fbdcb49e5d7c8105, type: 2}
