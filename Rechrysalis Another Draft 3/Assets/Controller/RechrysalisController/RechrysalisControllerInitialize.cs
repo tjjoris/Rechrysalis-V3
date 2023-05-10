@@ -42,7 +42,8 @@ namespace Rechrysalis.Controller
             if (_debugBool) Debug.Log($"rechrysalis controller initialize");
            _hilightRingManager = _controllerManager.HilightRingManager;
            _hilightRingParentCreator = _controllerManager.HilightRingManager.GetComponent<HilightRingParentCreator>();
-            hilightRingManager?.Initialize(unitRingManager);           
+            hilightRingManager?.Initialize(unitRingManager);   
+            _hilightRingParentCreator?.Initialize(hilightRingManager.transform);        
             _controllerIndex = controllerIndex;
             this._unitComp = unitComp;
             _allUnits = new List<GameObject>();
@@ -60,6 +61,7 @@ namespace Rechrysalis.Controller
             {       
                 if (unitComp.DoesParentExist(parentUnitIndex))
                 {
+                    
                     if (_debugBool)
                     {
                         Debug.Log($"parent exists " + parentUnitIndex);
@@ -120,6 +122,7 @@ namespace Rechrysalis.Controller
         }
         private void CreateChildUnitAndChrysalis(UnitClass unitClass, int childUnitIndex, ParentUnitManager pum, int parentUnitIndex, CompsAndUnitsSO compsAndUnits, bool isAdvUnit)
         {
+            if (_debugBool) Debug.Log($"create child unit and chrsyalis " + parentUnitIndex + " class " + unitClass.UnitName);
             GameObject childUnitGo = Instantiate(_childUnitPrefab, pum.transform);
             childUnitGo.SetActive(false);
             UnitStatsSO _unitStats = _unitComp.UnitSOArray[(parentUnitIndex * 3) + (childUnitIndex)];

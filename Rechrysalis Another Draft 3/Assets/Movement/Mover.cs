@@ -44,7 +44,6 @@ namespace Rechrysalis.Movement
         private void Awake()
         {
 
-            _pauseScript = _mainManager.GetComponent<PauseScript>();
             _parentUnitManager = GetComponent<ParentUnitManager>();
             _causesPushBack = GetComponent<CausesPushBack>();
             _rb2d = GetComponent<Rigidbody2D>();
@@ -52,6 +51,7 @@ namespace Rechrysalis.Movement
         public void Initialize(int _controllerIndex, MainManager mainManager)
         {
             _mainManager = mainManager;
+            _pauseScript = _mainManager.GetComponent<PauseScript>();
             this._controllerIndex = _controllerIndex;
             _backG = GameMaster.GetSingleton().ReferenceManager.BackG;
             BackgroundManager _backGScript = _backG.GetComponent<BackgroundManager>();
