@@ -23,13 +23,13 @@ namespace Rechrysalis.Unit
         {
             _chrysalisUnitManger = GetComponent<UnitManager>();
         }
-        public void Initialize (float timerMax, int _nextUnitBuilding, ProgressBarManager progressBarManager)
+        public void Initialize (float timerMax, int _nextUnitBuilding, ProgressBarManager progressBarManager, ParentUnitManager parentUnitManager)
         {
             if (_progressBarManager == null)
             {
                 _progressBarManager= progressBarManager;
             }
-            _parentUnitManager = _chrysalisUnitManger.ParentUnitManager;
+            _parentUnitManager = parentUnitManager;
             this._timerMaxBase = timerMax;
             _timerMax = _timerMaxBase;
             this._nextUnitBuilding = _nextUnitBuilding;

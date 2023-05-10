@@ -59,7 +59,7 @@ namespace Rechrysalis.Unit
             parentUnitManager.ChildUnitManagers.Add(_freeParentManager.BasicUnitManager);
             parentUnitManager.ChildChrysaliiUnitManagers.Add(_freeParentManager.ChrysalisUnitManager);
             // _freeParentManager.ChrysalisUnitManager.Initialize(_controllerManager, _controllerManager.ControllerIndex, parentUnitClass.BasicUnitClass, )
-            _freeParentManager.ChrysalisUnitManager.GetComponent<ChrysalisTimer>()?.Initialize(parentUnitClass.BasicUnitClass.BuildTime, 0, null);
+            _freeParentManager.ChrysalisUnitManager.GetComponent<ChrysalisTimer>()?.Initialize(parentUnitClass.BasicUnitClass.BuildTime, 0, null, parentUnitManager);
             newFreeEnemy.GetComponent<ParentHealth>()?.SetMaxHealth(parentUnitClass.BasicUnitClass.HPMax);
             newFreeEnemy.GetComponent<FreeChrysalisStoresHealth>()?.SetStoredHealth(parentUnitClass.BasicUnitClass.ChrysalisHPMax);
             newFreeEnemy.GetComponent<Mover>()?.Initialize(_controllerManager.ControllerIndex, _mainManager);

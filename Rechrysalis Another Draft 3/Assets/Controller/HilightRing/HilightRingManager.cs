@@ -19,7 +19,7 @@ namespace Rechrysalis.Controller
         public void Initialize(UnitRingManager _unitRingManager)
         {
             this._unitRingManager = _unitRingManager;   
-            _hilightRingParentCreator?.Initialize(transform);        
+            // _hilightRingParentCreator?.Initialize(transform);        
         }
         public void SetAngleToUnitRing()
         {

@@ -148,7 +148,7 @@ namespace Rechrysalis.Controller
             UnitManager chrysalisUnitManager = chrysalisGo.GetComponent<UnitManager>();
             chrysalisGo.GetComponent<UnitManager>()?.Initialize(_controllerManager, _controllerIndex, unitClass, parentUnitIndex, childUnitIndex, compsAndUnits, true);
             chrysalisGo.GetComponent<UnitManager>()?.SetUnitSPrite(unitClass.ChrysalisSprite);            
-            chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(unitClass.BuildTime, childUnitIndex, pum.GetComponent<ProgressBarManager>());
+            chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(unitClass.BuildTime, childUnitIndex, pum.GetComponent<ProgressBarManager>(), pum);
             pum.SubChrysalii[childUnitIndex] = chrysalisGo;
             _allUnits.Add(chrysalisGo);
             _controllerHatchEffect.SetUnitsArray(chrysalisGo, ((parentUnitIndex * 6) + (childUnitIndex * 2) + 1));
