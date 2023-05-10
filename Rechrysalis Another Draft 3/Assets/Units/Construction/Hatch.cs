@@ -13,11 +13,14 @@ namespace Rechrysalis.Unit
         private ParentUnitManager _parentUnitManager;
         private UnitManager _unitManager;
         private ParentUnitHatchEffects _parentUnitHatchEffects;
+        private void Awake()
+        {
+            _unitManager = GetComponent<UnitManager>();
+        }
         public void Initialize(ControllerManager controllerManager, ParentUnitManager parentUnitManager)
         {
             _controllerManager = controllerManager;
             _parentUnitManager = parentUnitManager;
-            _unitManager = GetComponent<UnitManager>();
             _parentUnitHatchEffects = _parentUnitManager.ParentUnitHatchEffects;
         }
         public void ActivateHatch()

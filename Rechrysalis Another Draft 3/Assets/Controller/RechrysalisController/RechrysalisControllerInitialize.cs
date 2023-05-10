@@ -9,7 +9,7 @@ namespace Rechrysalis.Controller
 {
     public class RechrysalisControllerInitialize : MonoBehaviour
     {
-        private bool _debugBool;
+        private bool _debugBool = true;
         private ControllerManager _controllerManager;
         private HilightRingManager _hilightRingManager;
         private HilightRingParentCreator _hilightRingParentCreator;

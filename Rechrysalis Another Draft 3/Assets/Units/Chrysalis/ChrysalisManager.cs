@@ -12,9 +12,12 @@ namespace Rechrysalis.Unit
         private float _timeMax;
         private GameObject _unitBuilding;
 
-        public void Initialize(float _timeMax, GameObject _unitBuilding)
+        private void Awake()
         {
             _chrysalisTimer = GetComponent<ChrysalisTimer>();
+        }
+        public void Initialize(float _timeMax, GameObject _unitBuilding)
+        {
             _timeCurrent =0;
             this._timeMax = _timeMax;
             this._unitBuilding = _unitBuilding;

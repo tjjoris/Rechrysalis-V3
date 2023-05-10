@@ -16,11 +16,14 @@ namespace Rechrysalis.Unit
         [SerializeField] private float _curentFlawedCurrent;
         
         private ParentFreeEnemyManager _parentFreeEnemyManager;
-        public void Initialize()
+        private void Awake()
         {
             _controllerManager = GetComponent<ControllerManager>();
-            _enemyControllerManager = _controllerManager.EnemyController;
             _parentFreeEnemyManager = GetComponent<ParentFreeEnemyManager>();
+        }
+        public void Initialize()
+        {
+            _enemyControllerManager = _controllerManager.EnemyController;
             SetFlawedMax();
         }
         public void SetFlawedMax()

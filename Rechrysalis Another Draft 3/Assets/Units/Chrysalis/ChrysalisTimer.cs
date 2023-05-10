@@ -19,13 +19,16 @@ namespace Rechrysalis.Unit
         [SerializeField] private ProgressBarManager _progressBarManager;
         public Action<int> _startUnit;
 
+        private void Awake()
+        {
+            _chrysalisUnitManger = GetComponent<UnitManager>();
+        }
         public void Initialize (float timerMax, int _nextUnitBuilding, ProgressBarManager progressBarManager)
         {
             if (_progressBarManager == null)
             {
                 _progressBarManager= progressBarManager;
             }
-            _chrysalisUnitManger = GetComponent<UnitManager>();
             _parentUnitManager = _chrysalisUnitManger.ParentUnitManager;
             this._timerMaxBase = timerMax;
             _timerMax = _timerMaxBase;

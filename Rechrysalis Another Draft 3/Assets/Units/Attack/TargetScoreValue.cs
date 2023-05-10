@@ -32,9 +32,6 @@ namespace Rechrysalis.Attacking
             _priorityScoreDPS = GetComponent<PriorityScoreDPS>();
             _priorityScoreHatchEffect = GetComponent<PriorityScoreHatchEffect>();
         }
-        // public void Initialize()
-        // {
-        // }
         public void SetCurrentUnit(Attack attack)
         {
             _currentUnitAttack = attack;

@@ -96,7 +96,7 @@ namespace Rechrysalis.Unit
             _mover = GetComponent<Mover>();
             _attack = GetComponent<Attack>();
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
-            _controllerUnitAttackClosest?.Initialzie();
+            // _controllerUnitAttackClosest?.Initialzie();
             if (_parentUnitManager != null) _parentUnitManager.IsStopped = true;
             _attack?.Initialize(_unitClass, _parentUnitManager);
             _health?.Initialize(_unitClass.HPMax);
@@ -195,7 +195,7 @@ namespace Rechrysalis.Unit
             _mover = GetComponent<Mover>();
             _attack = GetComponent<Attack>();
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
-            _controllerUnitAttackClosest?.Initialzie();
+            // _controllerUnitAttackClosest?.Initialzie();
             if (_parentUnitManager != null)  _parentUnitManager.IsStopped = true;
             _health = GetComponent<Health>();
             _health?.Initialize(_unitStats.HealthMaxBasic);

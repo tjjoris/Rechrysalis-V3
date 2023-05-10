@@ -11,11 +11,14 @@ namespace Rechrysalis.Attacking
         private Range _range;
         private TargetHolder _targetHolder;
 
+        private void Awake()
+        {
+            _range = GetComponent<Range>();
+            _targetHolder = GetComponent<TargetHolder>();
+        }
         public void Initialize (PlayerUnitsSO _enemyUnits)
         {
             this._enemyUnits = _enemyUnits;            
-            _range = GetComponent<Range>();
-            _targetHolder = GetComponent<TargetHolder>();
         }
         public void GetNearestEnemyInRange()
         {

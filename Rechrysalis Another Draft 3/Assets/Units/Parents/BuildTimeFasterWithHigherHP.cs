@@ -13,10 +13,6 @@ namespace Rechrysalis.Unit
 
         private void Awake()
         {
-            Initaialize();
-        }
-        public void Initaialize()
-        {
             _parentHealth = GetComponent<ParentHealth>();
         }
         public void SetBuildSpeedMult()

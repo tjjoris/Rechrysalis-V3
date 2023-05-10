@@ -10,10 +10,6 @@ namespace Rechrysalis.Movement
 
         public void Awake()
         {
-            Initialize();
-        }
-        public void Initialize()
-        {
             _mover = GetComponent<Mover>();
         }
         public void StopMovement()
