@@ -62,6 +62,7 @@ namespace Rechrysalis.Controller
         [SerializeField] private ControllerHealth _controllerHealth;
         public ControllerHealth ControllerHealth => _controllerHealth;
         [SerializeField] private TransitionTargetingCamera _transitionTargetingCamera;
+        private RechrysalisControllerInitialize _rechrysalisControllerInitialize;
         // public bool IsStopped
         // {
         //     set
@@ -74,13 +75,20 @@ namespace Rechrysalis.Controller
         //         }
         //     }
         // }
-
+        private void Awake()
+        {
+            _controllerHealth = GetComponent<ControllerHealth>();
+            _mover = GetComponent<Mover>();
+            _controllerFreeHatchEffectManager = GetComponent<ControllerFreeUnitHatchEffectManager>();
+            _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
+            _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();
+            _manaGenerator = GetComponent<ManaGenerator>();
+        }
         public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits, CompCustomizerSO _compCustomizer, MainManager mainManager, GraphicRaycaster graphicRaycaster, Transform cameraScrollTransform) 
         {
 
             AddOrRemoveHasMana();
             _mainManager = mainManager;
-            _controllerHealth = GetComponent<ControllerHealth>();
             this._controllerIndex = _controllerIndex;
             this._playerUnitsSO = _playerUnitsSO;
             this._compSO = _compSO;
@@ -93,7 +101,6 @@ namespace Rechrysalis.Controller
             _allUnits = new List<GameObject>();
             _hatchEffects = new List<GameObject>();
             _allUnits.Clear();
-            _mover = GetComponent<Mover>();
             _controllerHealth?.Initialize(_compsAndUnits.ControllerHealth[_controllerIndex], _allUnits, _compsAndUnits);
             if (_mover != null) {
                 _mover?.Initialize(_controllerIndex, mainManager);
@@ -102,21 +109,17 @@ namespace Rechrysalis.Controller
             _click?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
             _touch?.Initialize(gameObject, _compsAndUnits, _unitRingManager, _checkRayCast);
             _checkRayCast?.Initialize(_compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius, _transitionTargetingCamera, mainManager, graphicRaycaster, cameraScrollTransform);
-            _controllerFreeHatchEffectManager = GetComponent<ControllerFreeUnitHatchEffectManager>();
-            _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             if (_freeEnemyInitialize != null)
             {
                 _freeEnemyInitialize.Initialize(_controllerIndex, _enemyController, _compSO, _playerUnitsSO[_controllerIndex], _compsAndUnits, _compsAndUnits.FreeUnitCompSO[_controllerIndex], _compCustomizer, mainManager);
                 _allUnits = _freeEnemyInitialize.GetAllUnits();
             }            
-            RechrysalisControllerInitialize _rechrysalisControllerInitialize = GetComponent<RechrysalisControllerInitialize>();
-            if (GetComponent<RechrysalisControllerInitialize>() != null)
+            if (_rechrysalisControllerInitialize != null)
             {
                 _rechrysalisControllerInitialize.Initialize(_controllerIndex, _compSO, _compsAndUnits, _unitRingManager, _hilightRingManager, _upgradeRingManager, _unitRingOuterRadius, mainManager);
                 _allUnits = _rechrysalisControllerInitialize.GetAllUnits();
-                _parentUnits = GetComponent<RechrysalisControllerInitialize>().ParentUnits;
+                _parentUnits = _rechrysalisControllerInitialize.ParentUnits;
 
-                _manaGenerator = GetComponent<ManaGenerator>();
                 _manaGenerator?.InitializeManaAmount();
                 _manaGenerator?.Initialize(_parentUnits, _manaDisplay);
                 // if ((_parentUnits != null) && (_parentUnits.Length > 0))
@@ -144,10 +147,10 @@ namespace Rechrysalis.Controller
             _targetScoreRanking = GetComponent<TargetScoreRanking>();
             _targetScoreRanking?.Initialize(_enemyController, _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
         }  
-        private void Start()
-        {
-            SubScribeToParentUnits();
-        }      
+        // private void Start()
+        // {
+        //     SubScribeToParentUnits();
+        // }      
         private void OnEnable()
         {
            SubScribeToParentUnits();

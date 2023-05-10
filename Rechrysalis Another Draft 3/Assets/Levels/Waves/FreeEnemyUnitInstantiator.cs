@@ -18,12 +18,16 @@ namespace Rechrysalis.Unit
         private PlayerUnitsSO _thesePlayerUnitsSO;
         // private FreeChrysalisStoresHealth _freeChrysalisStoresHealth;
 
+        private void Awake()
+        {
+
+            _freeEnemeyInitialize = GetComponent<FreeEnemyInitialize>();
+        }
         public void Initialize(MainManager mainManager, ControllerManager thisController, ControllerManager enemyController)
         {
             _mainManager = mainManager;
             _controllerManager = thisController;
             _enemyController = enemyController;
-            _freeEnemeyInitialize = GetComponent<FreeEnemyInitialize>();
             _waveLayoutsByRange = _freeEnemeyInitialize.WaveLayoutsByRange;
             _thesePlayerUnitsSO = _freeEnemeyInitialize.PlayerUnitsSO;
             // _freeChrysalisStoresHealth = GetComponent<FreeChrysalisStoresHealth>();

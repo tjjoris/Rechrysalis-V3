@@ -30,9 +30,15 @@ namespace Rechrysalis.Controller
         private CompSO _unitComp; 
         private float _unitRingOutRadius;
         private float _unitRingAngle = 90f;
+
+        private void Awake()
+        {
+
+            _controllerManager = GetComponent<ControllerManager>();
+            _controllerHatchEffect = GetComponent<ControllerFreeUnitHatchEffectManager>();
+        }
         public void Initialize(int controllerIndex, CompSO unitComp, CompsAndUnitsSO compsAndUnits, UnitRingManager unitRingManager, HilightRingManager hilightRingManager, UpgradeRingManager upgradeRingManager, float unitRingOuterRadius, MainManager mainManager)
         {
-           _controllerManager = GetComponent<ControllerManager>(); 
            _hilightRingManager = _controllerManager.HilightRingManager;
            _hilightRingParentCreator = _controllerManager.HilightRingManager.GetComponent<HilightRingParentCreator>();
             hilightRingManager?.Initialize(unitRingManager);           
@@ -46,7 +52,6 @@ namespace Rechrysalis.Controller
             _theseUnits.ActiveUnits.Clear();
             _theseUnits.ParentUnits = new List<GameObject>();
             _theseUnits.ParentUnits.Clear();
-            _controllerHatchEffect = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _controllerHatchEffect.InitializeUnitsArray(18);
             ParentUnitHatchEffects[] _parentUnitHatchEffects = new ParentUnitHatchEffects[unitComp.ParentUnitCount];
             

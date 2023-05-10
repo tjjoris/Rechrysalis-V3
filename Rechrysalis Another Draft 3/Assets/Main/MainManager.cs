@@ -32,11 +32,15 @@ namespace Rechrysalis
         public Transform TargetCameraScrollTransform => _targetCameraScrollTransform;
         public EventSystem EventSystem => _eventSystem;
 
-        private void Awake() {
-            // _compsAndUnitsSO.CompsSO = _compSO;
+        private void Awake()
+        {
             _levelSceneManagement = GetComponent<LevelSceneManagement>();
-            _levelSceneManagement?.Initialize(_compsAndUnitsSO);
             _pauseScript = GetComponent<PauseScript>();
+
+        }
+        private void start() {
+            // _compsAndUnitsSO.CompsSO = _compSO;
+            _levelSceneManagement?.Initialize(_compsAndUnitsSO);
             _compSO = _compsAndUnitsSO.CompsSO;
             _compsAndUnitsSO.ControllerManagers = _controllerManager;
             GameMaster.GetSingleton().ReferenceManager.CompsAndUnitsSO = _compsAndUnitsSO;
@@ -55,7 +59,6 @@ namespace Rechrysalis
             _backGroundManager?.Initialize();
             UpdatePreferances();
         }
-
         private void FixedUpdate()
         {
             if (!_pauseScript.IsPaused())

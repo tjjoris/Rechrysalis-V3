@@ -11,11 +11,14 @@ namespace Rechrysalis.Controller
         private UnitRingManager _unitRingManager;
         [SerializeField] private HilightRingParentCreator _hilightRingParentCreator;
         
+        private void Awake()
+        {
 
+            _hilightRingParentCreator = GetComponent<HilightRingParentCreator>();
+        }
         public void Initialize(UnitRingManager _unitRingManager)
         {
             this._unitRingManager = _unitRingManager;   
-            _hilightRingParentCreator = GetComponent<HilightRingParentCreator>(); 
             _hilightRingParentCreator?.Initialize(transform);        
         }
         public void SetAngleToUnitRing()

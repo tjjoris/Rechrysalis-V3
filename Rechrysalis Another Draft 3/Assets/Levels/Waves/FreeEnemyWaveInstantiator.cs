@@ -15,14 +15,18 @@ namespace Rechrysalis.Unit
         private FreeEnemyInitialize _freeEnemyInitialize;
         private FreeEnemyUnitInstantiator _freeEnemyUnitInstantiator;
 
+        private void Awake()
+        {
+
+            _freeEnemyWaveGenerator = GetComponent<FreeEnemyWaveGenerator>();
+            _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
+            _freeEnemyUnitInstantiator = GetComponent<FreeEnemyUnitInstantiator>();
+        }
         public void Initialize(CompsAndUnitsSO compsAndUnitsSO, LevelSceneManagement levelSceneManagement)
         {
             _levelSceneManagement = levelSceneManagement;
             _compsAndUnitsSO = compsAndUnitsSO;
-            _freeEnemyWaveGenerator = GetComponent<FreeEnemyWaveGenerator>();
-            _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
             _waveLayoutByRange = _freeEnemyInitialize.WaveLayoutsByRange;
-            _freeEnemyUnitInstantiator = GetComponent<FreeEnemyUnitInstantiator>();
         }
         public void CreateWave()
         {

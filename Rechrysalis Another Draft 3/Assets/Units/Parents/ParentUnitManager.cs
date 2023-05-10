@@ -90,6 +90,25 @@ namespace Rechrysalis.Unit
             get {return _isStopped;}
          }
 
+        private void Awake()
+        {
+
+            _unitActivation = GetComponent<UnitActivation>();
+            _chrysalisActivation = GetComponent<ChrysalisActivation>();
+            _upgradeUnit = GetComponent<UpgradeUnit>();
+            _parentHealth = GetComponent<ParentHealth>();
+            _rotateParentUnit = GetComponent<RotateParentUnit>();
+            _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
+            _parentHatchEffectAddRemove = GetComponent<ParentHatchEffectAddRemove>();
+            _targetScoreValue = GetComponent<TargetScoreValue>();
+            _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
+            _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
+            _freeApproach = GetComponent<FreeEnemyApproach>();
+            _parentFreeEnemyManager = GetComponent<ParentFreeEnemyManager>();
+            _parentUnitMover = GetComponent<Mover>();
+            _priorityScoreChrysalis = GetComponent<PriorityScoreChrysalis>();
+            _progressBarManager = GetComponent<ProgressBarManager>();
+        }
         public void Initialize(int _controllerIndex, int _parentUnitIndex, PlayerUnitsSO _theseUnits, Transform controllertransform, List<HatchEffectSO> subHatchEffects, ParentUnitClass parentUnitClass, MainManager mainManager)
         {
             _controllerManager = controllertransform.GetComponent<ControllerManager>();
@@ -98,42 +117,27 @@ namespace Rechrysalis.Unit
             _childChrysaliiUnitManagers = new List<UnitManager>();
             // _hatchEffectManagersToDamage = new List<HatchEffectManager>();
             // _hatchEffectManagersToDamage.Clear();
-            _unitActivation = GetComponent<UnitActivation>();
             _unitActivation?.Initialize(this);
-            _chrysalisActivation = GetComponent<ChrysalisActivation>();
             _chrysalisActivation?.Initialize(this);
-            _upgradeUnit = GetComponent<UpgradeUnit>();
             _upgradeUnit?.Initialize(this, _controllerManager.GetComponent<ManaGenerator>());
             this._parentIndex = _parentUnitIndex;
             this._subHatchEffects = subHatchEffects;
             this._controllerIndex = _controllerIndex;
             this._theseUnits = _theseUnits;
             // _parentUnitClass = unitComp.ParentUnitClassList[_parentUnitIndex];
-            _parentUnitClass = parentUnitClass;
-            _parentHealth = GetComponent<ParentHealth>();  
+            _parentUnitClass = parentUnitClass; 
             _parentHealth?.Initialize();          
             // AddChrysalisAndUnitActions();
-            _rotateParentUnit = GetComponent<RotateParentUnit>();
             _rotateParentUnit?.Initialize(controllertransform);
-            _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
-            _parentHatchEffectAddRemove = GetComponent<ParentHatchEffectAddRemove>();
             _parentHatchEffectAddRemove?.Initialzie(this);
             GetComponent<ParentClickManager>()?.Initialize(_controllerIndex);
-            _targetScoreValue = GetComponent<TargetScoreValue>();
             _targetScoreValue?.Initialize();
-            _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
             // _aiAlwaysPreferClosest = GetComponent<AIAlwaysPreferClosest>();
             // _aiAlwaysPreferClosest?.Initialize();
-            _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
             _freeEnemyKiteMaxRange?.Initialize();
-            _freeApproach = GetComponent<FreeEnemyApproach>();
             _freeApproach?.Initialize(_theseUnits, _enemyControllerManager.GetComponent<Mover>());
-            _parentFreeEnemyManager = GetComponent<ParentFreeEnemyManager>();
-            _parentUnitMover = GetComponent<Mover>();
             _parentUnitMover?.Initialize(_controllerIndex, mainManager);
-            _priorityScoreChrysalis = GetComponent<PriorityScoreChrysalis>();
             _priorityScoreChrysalis?.Initialize(_enemyControllerManager);
-            _progressBarManager = GetComponent<ProgressBarManager>();
         }
         public void Tick(float timeAmount)
         {

@@ -47,7 +47,6 @@ namespace Rechrysalis.Controller
         
         private int _controllerIndex = 0;
 
-        
         public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius, TransitionTargetingCamera transitionTargetingCamera, MainManager mainManager, GraphicRaycaster graphicRaycaster, Transform cameraGOScroll)
         {
             _cameraGOScroll = cameraGOScroll;

@@ -20,14 +20,17 @@ namespace Rechrysalis.Unit
         [SerializeField] private float _progressMaxForThisLevel;
         public float ProgressMaxForThisLevel { get => _progressMaxForThisLevel; set => _progressMaxForThisLevel = value; }
         
-        
-        public void Initialize(CompsAndUnitsSO compsAndUnitsSO)
+        private void Awake()
         {
+
             _freeEnemyInitialize = GetComponent<FreeEnemyInitialize>();
-            _waveLayoutsByRange = _freeEnemyInitialize.WaveLayoutsByRange;
             _controllerHealth = GetComponent<ControllerHealth>();
             _randomFreeChangingUnits = GetComponent<RandomizeFreeChangingUnits>();
             _lifePerFreeWave = GetComponent<LifePerFreeWave>();
+        }
+        public void Initialize(CompsAndUnitsSO compsAndUnitsSO)
+        {
+            _waveLayoutsByRange = _freeEnemyInitialize.WaveLayoutsByRange;
             if (compsAndUnitsSO != null)
             {
                 _compsAndUnitsSO = compsAndUnitsSO;

@@ -41,12 +41,17 @@ namespace Rechrysalis.Movement
         private Rigidbody2D _rb2d;
         public Rigidbody2D RB2D => _rb2d;
         public Action _resetChargeUp;
-        public void Initialize(int _controllerIndex, MainManager mainManager)
+        private void Awake()
         {
-            _mainManager = mainManager;
+
             _pauseScript = _mainManager.GetComponent<PauseScript>();
             _parentUnitManager = GetComponent<ParentUnitManager>();
             _causesPushBack = GetComponent<CausesPushBack>();
+            _rb2d = GetComponent<Rigidbody2D>();
+        }
+        public void Initialize(int _controllerIndex, MainManager mainManager)
+        {
+            _mainManager = mainManager;
             this._controllerIndex = _controllerIndex;
             _backG = GameMaster.GetSingleton().ReferenceManager.BackG;
             BackgroundManager _backGScript = _backG.GetComponent<BackgroundManager>();
@@ -54,7 +59,6 @@ namespace Rechrysalis.Movement
             _maxX = _backGScript.MaxX;
             _minY = _backGScript.MinY;
             _maxY = _backGScript.MaxY;
-            _rb2d = GetComponent<Rigidbody2D>();
             _heIncreaseSpeedList = new List<HEIncreaseSpeed>();
         }
         public void SetBaseSpeed(float baseSpeed)
