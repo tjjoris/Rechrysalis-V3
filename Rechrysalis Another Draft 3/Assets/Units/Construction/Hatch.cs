@@ -21,7 +21,7 @@ namespace Rechrysalis.Unit
         {
             _controllerManager = controllerManager;
             _parentUnitManager = parentUnitManager;
-            _parentUnitHatchEffects = _parentUnitManager.GetComponent<ParentUnitHatchEffects>();
+            _parentUnitHatchEffects = parentUnitManager.GetComponent<ParentUnitHatchEffects>();
         }
         public void ActivateHatch()
         {
@@ -36,12 +36,14 @@ namespace Rechrysalis.Unit
         private void ActivateHatchEffects(int unitIndex)
         {
             UI.DebugTextStatic.DebugText.DisplayText("activate hatch effects func in hatch.");
+            if (_parentUnitHatchEffects == null) UI.DebugTextStatic.DebugText.DisplayText("parent unit hatch effects == null");
             if (_debugBool) Debug.Log($"activate hatch effects in hatch called");         
             if (_unitManager.UnitClass.HatchEffectClasses.Count == 0) return;
             if (_unitManager == null) UI.DebugTextStatic.DebugText.DisplayText("unit manager == null");
             if (_unitManager.UnitClass == null) UI.DebugTextStatic.DebugText.DisplayText("unitmanager.Unit class == null");
             if (_unitManager.UnitClass.HatchEffectClasses == null) UI.DebugTextStatic.DebugText.DisplayText("unit manager.unit class.HEclasses == null");
             if (_unitManager.UnitClass.HatchEffectClasses.Count == 0) UI.DebugTextStatic.DebugText.DisplayText("no hatch effects stored on unit class in unit manager for unit");
+            
             foreach (HatchEffectClass hatcheffectClass in _unitManager.UnitClass.HatchEffectClasses)
             {
                 if (hatcheffectClass == null) 
@@ -49,7 +51,17 @@ namespace Rechrysalis.Unit
                     UI.DebugTextStatic.DebugText.DisplayText("hatcheffectclass == null");
                     continue;
                 }
-                if (hatcheffectClass.HatchEffectManager.HEHealth == null) continue;                
+                if (hatcheffectClass.HatchEffectManager.HEHealth == null) 
+                {
+                    UI.DebugTextStatic.DebugText.DisplayText("he health == null");
+                    continue;                
+                }
+                if (hatcheffectClass.HatchEffectPrefab == null) 
+                {
+                    UI.DebugTextStatic.DebugText.DisplayText("hatch effect prefab == null");
+                    continue;
+                }
+                UI.DebugTextStatic.DebugText.DisplayText("in activateHatchEffects func, about to call create hatch");                
                 _parentUnitHatchEffects.CreateHatchEffect(hatcheffectClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitIndex, true);
             }
 
