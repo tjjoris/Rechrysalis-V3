@@ -4,6 +4,7 @@ using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.HatchEffect;
 using Rechrysalis.UI;
+using System;
 
 namespace Rechrysalis.Controller
 {
@@ -30,6 +31,7 @@ namespace Rechrysalis.Controller
         private CompSO _unitComp; 
         private float _unitRingOutRadius;
         private float _unitRingAngle = 90f;
+        public Action<ParentUnitHatchEffects> _subscribeToParentUnitHEsAction;
 
         private void Awake()
         {
@@ -97,7 +99,8 @@ namespace Rechrysalis.Controller
                     pum.SubChrysalii = new GameObject[unitComp.UpgradeCountArray[parentUnitIndex]];
                     _parentUnitHatchEffects[parentUnitIndex] = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
                     if (_parentUnitHatchEffects[parentUnitIndex] == null) DebugTextStatic.DebugText.DisplayText("parent unit hatch effects " + parentUnitIndex + " = null.");
-                    _controllerManager.SubscribeToHatchEffect(_parentUnitHatchEffects[parentUnitIndex]);
+                    // _controllerManager.SubscribeToHatchEffect(_parentUnitHatchEffects[parentUnitIndex]);
+                    _subscribeToParentUnitHEsAction?.Invoke(_parentUnitHatchEffects[parentUnitIndex]);
                     {
                         {
                             int _childUnitIndex = 0;

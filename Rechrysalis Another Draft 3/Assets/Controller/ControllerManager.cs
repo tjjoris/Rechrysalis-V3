@@ -160,6 +160,11 @@ namespace Rechrysalis.Controller
         }
         private void OnEnable()
         {
+            if (GetComponent<RechrysalisControllerInitialize>() != null)
+            {
+                GetComponent<RechrysalisControllerInitialize>()._subscribeToParentUnitHEsAction -= SubscribeToHatchEffect;
+                GetComponent<RechrysalisControllerInitialize>()._subscribeToParentUnitHEsAction += SubscribeToHatchEffect;
+            }
            SubScribeToParentUnits();
         //    UnSubscribeToHatchEffects();
         SubscribeToHatchEffects();
@@ -255,6 +260,10 @@ namespace Rechrysalis.Controller
         
         private void OnDisable()
         {
+            if (GetComponent<RechrysalisControllerInitialize>() != null)
+            {
+                GetComponent<RechrysalisControllerInitialize>()._subscribeToParentUnitHEsAction -= SubscribeToHatchEffect;
+            }
             DebugTextStatic.DebugText.DisplayText("controller manager disabled");
             foreach (GameObject _parentUnit in _parentUnits)
             {
