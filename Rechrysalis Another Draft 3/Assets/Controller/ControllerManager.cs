@@ -14,7 +14,7 @@ namespace Rechrysalis.Controller
 {
     public class ControllerManager : MonoBehaviour
     {
-        private bool _debugBool = false;
+        private bool _debugBool = true;
 
         [SerializeField] private ManaDisplay _manaDisplay;
         [SerializeField] private MainManager _mainManager;
@@ -86,7 +86,7 @@ namespace Rechrysalis.Controller
         }
         public void Initialize(int _controllerIndex, PlayerUnitsSO[] _playerUnitsSO, CompSO _compSO, ControllerManager _enemyController, CompsAndUnitsSO _compsAndUnits, CompCustomizerSO _compCustomizer, MainManager mainManager, GraphicRaycaster graphicRaycaster, Transform cameraScrollTransform) 
         {
-
+            if (_debugBool) Debug.Log($"initialize controller " + _controllerIndex);
             AddOrRemoveHasMana();
             _mainManager = mainManager;
             this._controllerIndex = _controllerIndex;

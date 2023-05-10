@@ -39,6 +39,7 @@ namespace Rechrysalis.Controller
         }
         public void Initialize(int controllerIndex, CompSO unitComp, CompsAndUnitsSO compsAndUnits, UnitRingManager unitRingManager, HilightRingManager hilightRingManager, UpgradeRingManager upgradeRingManager, float unitRingOuterRadius, MainManager mainManager)
         {
+            if (_debugBool) Debug.Log($"rechrysalis controller initialize");
            _hilightRingManager = _controllerManager.HilightRingManager;
            _hilightRingParentCreator = _controllerManager.HilightRingManager.GetComponent<HilightRingParentCreator>();
             hilightRingManager?.Initialize(unitRingManager);           

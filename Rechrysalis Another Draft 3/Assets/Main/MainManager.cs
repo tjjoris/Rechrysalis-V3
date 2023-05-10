@@ -38,7 +38,8 @@ namespace Rechrysalis
             _pauseScript = GetComponent<PauseScript>();
 
         }
-        private void start() {
+        private void Start() {
+            Debug.Log($"main start");
             // _compsAndUnitsSO.CompsSO = _compSO;
             _levelSceneManagement?.Initialize(_compsAndUnitsSO);
             _compSO = _compsAndUnitsSO.CompsSO;
@@ -46,6 +47,7 @@ namespace Rechrysalis
             GameMaster.GetSingleton().ReferenceManager.CompsAndUnitsSO = _compsAndUnitsSO;
             _projectilesHolder.Initialize();
             _levelDisplay?.SetLevelText(_compsAndUnitsSO.Level);
+            Debug.Log($"main start initializing controllers");
             if ((_controllerManager != null) && (_controllerManager.Length > 0))
             {
                 for (int i=0; i<_controllerManager.Length; i++)
