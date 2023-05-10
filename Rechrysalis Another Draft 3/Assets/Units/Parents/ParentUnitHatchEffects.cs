@@ -34,6 +34,7 @@ namespace Rechrysalis.Unit
 
         public void CreateHatchEffect(GameObject _hatchEffectPrefab, int _parentIndex, int _unitIndex, bool _affectAll)
         {
+            UI.DebugTextStatic.DebugText.DisplayText("create hatch effet in PUHE");
             if (_debugBool) Debug.Log($"create hacth effect called in parent unit hatch effects");
             if (_hatchEffectPrefab == null) 
             {

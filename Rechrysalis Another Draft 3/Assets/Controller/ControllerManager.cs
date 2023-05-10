@@ -162,6 +162,7 @@ namespace Rechrysalis.Controller
         {
             if (GetComponent<RechrysalisControllerInitialize>() != null)
             {
+                DebugTextStatic.DebugText.DisplayText("controller subscribing to subscribe to HE.");
                 GetComponent<RechrysalisControllerInitialize>()._subscribeToParentUnitHEsAction -= SubscribeToHatchEffect;
                 GetComponent<RechrysalisControllerInitialize>()._subscribeToParentUnitHEsAction += SubscribeToHatchEffect;
             }
