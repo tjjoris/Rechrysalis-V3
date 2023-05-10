@@ -56,7 +56,7 @@ namespace Rechrysalis.Unit
             _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
             _aiAlwaysPreferClosest.Initialize();
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
-            _freeEnemyKiteMaxRange?.Initialize();
+            // _freeEnemyKiteMaxRange?.Initialize();
             // _parentUnitManager.ParentUnitClass = new ParentUnitClass();
             // _parentUnitManager.ParentUnitClass. = _unitStats;
 
@@ -73,7 +73,7 @@ namespace Rechrysalis.Unit
             _chrysalisUnitManager?.Initialize(controllerManager, _controllerIndex, unitClass, freeUnitIndex, 0, compsAndUnitSO, true);
             _parentUnitManager.CurrentSubUnit = _unitManager.gameObject;
             _targetScoreValue = GetComponent<TargetScoreValue>();
-            _targetScoreValue?.Initialize();
+            // _targetScoreValue?.Initialize();
             _targetScoreValue?.SetCurrentUnit(_unitManager.GetComponent<Attack>());
 
             this._compsAndUnits = compsAndUnitSO;
@@ -96,7 +96,7 @@ namespace Rechrysalis.Unit
             _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
             _aiAlwaysPreferClosest?.Initialize();
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
-            _freeEnemyKiteMaxRange?.Initialize();
+            // _freeEnemyKiteMaxRange?.Initialize();
         }
         // private void OnEnable()
         // {

@@ -22,17 +22,20 @@ namespace Rechrysalis.Unit
         private HealthToBuildTimeLinear _healthToBuildTimeLinear;
         private ParentUnitHatchEffects _parentUnitHatchEffects;
 
-        public void Initialize(ParentUnitManager parentUnitManager)
+        private void Awake()
         {
-            _parentUnitManager = parentUnitManager;
             _unitActivation = GetComponent<UnitActivation>();
             _parentHealth = GetComponent<ParentHealth>();
             _targetScoreValue = GetComponent<TargetScoreValue>();
-            _progressBarManager = GetComponent<ProgressBarManager>(); 
+            _progressBarManager = GetComponent<ProgressBarManager>();
             _freeUnitChrysalisMovementStop = GetComponent<FreeUnitChrysalisMovementStop>();
             _buildTimeFasterWithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
             _healthToBuildTimeLinear = GetComponent<HealthToBuildTimeLinear>();
             _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
+        }
+        public void Initialize(ParentUnitManager parentUnitManager)
+        {
+            _parentUnitManager = parentUnitManager;
         }
         public void DeactivateChrysalis(int chrysalisIndex)
         {

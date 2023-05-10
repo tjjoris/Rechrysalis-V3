@@ -19,14 +19,17 @@ namespace Rechrysalis.Unit
         private HilightRingParentManager _hilightRingParentManager;
         public HilightRingParentManager HilightRingParentManager {get { return _hilightRingParentManager;} set {_hilightRingParentManager = value;}}
         // [SerializeField] private GameObject _particleEffectPrefab;
-        public void Initialize(ParentUnitManager parentUnitManager)
+        private void Awake()
         {
-            _parentUnitManager = parentUnitManager;
             _parentHealth = GetComponent<ParentHealth>();
             _targetScoreValue = GetComponent<TargetScoreValue>();
             _chrysalisActivation = GetComponent<ChrysalisActivation>();
             _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
             _progressBarManager = GetComponent<ProgressBarManager>();
+        }
+        public void Initialize(ParentUnitManager parentUnitManager)
+        {
+            _parentUnitManager = parentUnitManager;
             // _freeChrysalisStoresHealth = GetComponent<FreeChrysalisStoresHealth>();
         }
         

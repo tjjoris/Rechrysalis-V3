@@ -108,6 +108,7 @@ namespace Rechrysalis.Unit
             _parentUnitMover = GetComponent<Mover>();
             _priorityScoreChrysalis = GetComponent<PriorityScoreChrysalis>();
             _progressBarManager = GetComponent<ProgressBarManager>();
+            _unitActivation = GetComponent<UnitActivation>();
         }
         public void Initialize(int _controllerIndex, int _parentUnitIndex, PlayerUnitsSO _theseUnits, Transform controllertransform, List<HatchEffectSO> subHatchEffects, ParentUnitClass parentUnitClass, MainManager mainManager)
         {
@@ -131,10 +132,10 @@ namespace Rechrysalis.Unit
             _rotateParentUnit?.Initialize(controllertransform);
             _parentHatchEffectAddRemove?.Initialzie(this);
             GetComponent<ParentClickManager>()?.Initialize(_controllerIndex);
-            _targetScoreValue?.Initialize();
+            // _targetScoreValue?.Initialize();
             // _aiAlwaysPreferClosest = GetComponent<AIAlwaysPreferClosest>();
             // _aiAlwaysPreferClosest?.Initialize();
-            _freeEnemyKiteMaxRange?.Initialize();
+            // _freeEnemyKiteMaxRange?.Initialize();
             _freeApproach?.Initialize(_theseUnits, _enemyControllerManager.GetComponent<Mover>());
             _parentUnitMover?.Initialize(_controllerIndex, mainManager);
             _priorityScoreChrysalis?.Initialize(_enemyControllerManager);
@@ -186,10 +187,6 @@ namespace Rechrysalis.Unit
                     childChrysalii.Tick(timeAmount);
                 }
             }
-        }
-        private void Awake()
-        {
-            _unitActivation = GetComponent<UnitActivation>();
         }
         private void OnEnable()
         {

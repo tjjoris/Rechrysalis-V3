@@ -12,14 +12,15 @@ namespace Rechrysalis.Attacking
         private ControllerManager _enemyControllerManager;
         private ParentUnitManager _parentUnitManager;
 
+        private void Awake()
+        {
+
+            _parentUnitManager = GetComponent<ParentUnitManager>();
+            _targetScoreValue = GetComponent<TargetScoreValue>();
+        }
         public void Initialize(ControllerManager controllerManager)
         {
             _enemyControllerManager = controllerManager;
-            _parentUnitManager = GetComponent<ParentUnitManager>();
-        }
-        private void Awake()
-        {
-            _targetScoreValue = GetComponent<TargetScoreValue>();
         }
 
         public float GenerateScore()

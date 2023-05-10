@@ -31,11 +31,14 @@ namespace Rechrysalis.Unit
         public Action<float> _controllerTakeDamage;
         public Action<float> _enemyControllerHeal;
 
+        private void Awake()
+        {
+            _buildTimeFasterwithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
+        }
         public void Initialize()
         {
             _die = GetComponent<Die>();
             // _parentUnitManager = GetComponent<ParentUnitManager>();
-            _buildTimeFasterwithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
             _hpBarTintByTier[0] = new Color(1, 0.6f, 0, 1);
             _hpBarTintByTier[1] = new Color(1, 1, 0, 1);            
             _hpBarTintByTier[2] = new Color(0, 1, 0, 1);

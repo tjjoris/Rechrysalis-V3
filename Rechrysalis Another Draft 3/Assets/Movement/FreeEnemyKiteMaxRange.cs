@@ -17,15 +17,19 @@ namespace Rechrysalis.Movement
         // private Attack _attack;
         private FreeEnemyApproach _freeEnemyApproach;
 
-        public void Initialize()
+        private void Awake()
         {
+
             _freeEnemyApproach = GetComponent<FreeEnemyApproach>();
-            // _attack = attack;
             _mover = GetComponent<Mover>();
             _parentUnitManager = GetComponent<ParentUnitManager>();
-            // this._targetHolder = _targetHolder;
-            // _range = this._targetHolder.GetComponent<Range>();
         }
+        // public void Initialize()
+        // {
+        //     // _attack = attack;
+        //     // this._targetHolder = _targetHolder;
+        //     // _range = this._targetHolder.GetComponent<Range>();
+        // }
         public void Tick(bool aiCanMove)
         {
             _targetHolder = _parentUnitManager.CurrentSubUnit.GetComponent<TargetHolder>();
