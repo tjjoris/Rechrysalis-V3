@@ -152,6 +152,12 @@ namespace Rechrysalis.Controller
         // {
         //     SubScribeToParentUnits();
         // }      
+        public void SubscribeToHatchEffect(ParentUnitHatchEffects parentUnitHatchEffects)
+        {
+            parentUnitHatchEffects._addHatchEffect -= AddHatchEffect;
+            parentUnitHatchEffects._addHatchEffect += AddHatchEffect;
+            DebugTextStatic.DebugText.DisplayText("subscribed to hatch effect");
+        }
         private void OnEnable()
         {
            SubScribeToParentUnits();
@@ -164,11 +170,11 @@ namespace Rechrysalis.Controller
             if ((_parentUnitManagers != null) && (_parentUnitManagers.Count > 0))
             {
                 // foreach (GameObject _parentUnit in _parentUnits)
-                for (int _parentIndex = 0; _parentIndex < _parentUnitManagers.Count; _parentIndex++)                
+                for (int parentIndex = 0; parentIndex < _parentUnitManagers.Count; parentIndex++)                
                 {
-                    if (_parentUnitManagers[_parentIndex] != null)
+                    if (_parentUnitManagers[parentIndex] != null)
                     {
-                        ParentUnitManager parentUnitManager = _parentUnitManagers[_parentIndex];
+                        ParentUnitManager parentUnitManager = _parentUnitManagers[parentIndex];
                         // _parentManager._addHatchEffect -= AddHatchEffect;
                         // _parentManager._addHatchEffect += AddHatchEffect;
                         ParentUnitHatchEffects parentUnitHatchEffects = parentUnitManager.ParentUnitHatchEffects;
@@ -176,6 +182,7 @@ namespace Rechrysalis.Controller
                         {
                             parentUnitHatchEffects._addHatchEffect -= AddHatchEffect;
                             parentUnitHatchEffects._addHatchEffect += AddHatchEffect;
+                            DebugTextStatic.DebugText.DisplayText("subscribe to parentUnitHatchEffects " + parentIndex);
                         }
                         parentUnitManager._parentDealsDamage -= DealsDamage;
                         parentUnitManager._parentDealsDamage += DealsDamage;
@@ -184,6 +191,7 @@ namespace Rechrysalis.Controller
                 }
             }
         }
+
         public void SubscribeToHatchEffect(GameObject _hatchEffect)
         {
             _hatchEffect.GetComponent<HatchEffectManager>()._hatchEffectDies -= RemoveHatchEffect;
@@ -247,6 +255,7 @@ namespace Rechrysalis.Controller
         
         private void OnDisable()
         {
+            DebugTextStatic.DebugText.DisplayText("controller manager disabled");
             foreach (GameObject _parentUnit in _parentUnits)
             {
                 if (_parentUnit != null)

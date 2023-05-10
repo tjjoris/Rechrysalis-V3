@@ -75,7 +75,12 @@ namespace Rechrysalis.Controller
                     _parentUnits[parentUnitIndex] = parentUnitGO;
                     parentUnitGO.name = "Parent Unit " + parentUnitIndex.ToString();
                     ParentUnitManager pum = parentUnitGO.GetComponent<ParentUnitManager>();
-                    _controllerManager.ParentUnitManagers.Add(pum);
+                    if (pum == null) DebugTextStatic.DebugText.DisplayText("pum in rechrysalis controller initialize == null");                    
+                    if (_controllerManager == null) DebugTextStatic.DebugText.DisplayText("controller manager in rechrysalis controller == null");
+                    if (!_controllerManager.ParentUnitManagers.Contains(pum))
+                    {
+                        _controllerManager.ParentUnitManagers.Add(pum);
+                    }
                     if (pum.GetComponent<ParentHealth>() != null)
                     {
                         _controllerManager.ParentHealths.Add(pum.GetComponent<ParentHealth>());
@@ -91,6 +96,8 @@ namespace Rechrysalis.Controller
                     pum.SubUnits = new GameObject[unitComp.UpgradeCountArray[parentUnitIndex]];
                     pum.SubChrysalii = new GameObject[unitComp.UpgradeCountArray[parentUnitIndex]];
                     _parentUnitHatchEffects[parentUnitIndex] = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
+                    if (_parentUnitHatchEffects[parentUnitIndex] == null) DebugTextStatic.DebugText.DisplayText("parent unit hatch effects " + parentUnitIndex + " = null.");
+                    _controllerManager.SubscribeToHatchEffect(_parentUnitHatchEffects[parentUnitIndex]);
                     {
                         {
                             int _childUnitIndex = 0;
