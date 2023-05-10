@@ -55,6 +55,7 @@ namespace Rechrysalis.Controller
         private bool _isStopped;
         private List<GameObject> _hatchEffects;
         private FreeEnemyInitialize _freeEnemyInitialize;
+        public FreeEnemyInitialize FreeEnemyInitialize => _freeEnemyInitialize;
         private ControllerFreeUnitHatchEffectManager _controllerFreeHatchEffectManager;
         private TargetScoreRanking _targetScoreRanking;
         // private CompCustomizerSO _compCustomizer;

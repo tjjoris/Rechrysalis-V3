@@ -92,6 +92,7 @@ namespace Rechrysalis.Unit
             {
                 _parentUnitManager.CurrentSubUnit = _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject;
             }
+            if ((chrysalisIndex >= _parentUnitManager.ChildChrysaliiUnitManagers.Count) || chrysalisIndex < 0) Debug.LogWarning("chrysalis index out of range " + chrysalisIndex);
             if (_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject == null) return;
             // if ((_chrysalisIndex == 0) && (_parentUnitManager.CurrentSubUnit != _parentUnitManager._subUnits[0])) return;
             // if (_parentUnitManager.CurrentSubUnit != _parentUnitManager.SubChrysalii[_chrysalisIndex])
