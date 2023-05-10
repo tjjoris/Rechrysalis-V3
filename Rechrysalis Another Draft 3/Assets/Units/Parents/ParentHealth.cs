@@ -33,11 +33,11 @@ namespace Rechrysalis.Unit
 
         private void Awake()
         {
+            _die = GetComponent<Die>();
             _buildTimeFasterwithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
         }
         public void Initialize()
         {
-            _die = GetComponent<Die>();
             // _parentUnitManager = GetComponent<ParentUnitManager>();
             _hpBarTintByTier[0] = new Color(1, 0.6f, 0, 1);
             _hpBarTintByTier[1] = new Color(1, 1, 0, 1);            

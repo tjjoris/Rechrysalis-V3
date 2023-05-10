@@ -17,9 +17,14 @@ namespace Rechrysalis.Unit
         private GameObject[] _subChrysalii;
         public Action<GameObject, int, int, bool> _addHatchEffect;
         public Action<GameObject, int, int, bool> _removeHatchEffect;
+
+        private void Awake()
+        {
+
+            _parentUnitManager = GetComponent<ParentUnitManager>();
+        }
         public void Initialize (GameObject[] _subUnits, GameObject[] _subchrysalii)
         {
-            _parentUnitManager = GetComponent<ParentUnitManager>();
             _parentIndex = _parentUnitManager.ParentIndex;
             this._subUnits = _subUnits;
             this._subChrysalii =_subchrysalii;

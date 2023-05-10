@@ -73,6 +73,12 @@ namespace Rechrysalis.Unit
         private void Awake()
         {
             _hatch = GetComponent<Hatch>();
+            _mover = GetComponent<Mover>();
+            _attack = GetComponent<Attack>();
+            _chrysalisTimer = GetComponent<ChrysalisTimer>();
+            _rechrysalize = GetComponent<Rechrysalize>();
+            _projectilesPool = GetComponent<ProjectilesPool>();
+            _targetPrioratizeByScore = GetComponent<TargetPrioratizeByScore>();
         }
         public void Initialize(ControllerManager controllerManager, int controllerIndex, UnitClass unitClass, int freeUnitIndex, int subUnitIndex, CompsAndUnitsSO compsAndUnits, bool isChrysalis)
         {
@@ -93,8 +99,6 @@ namespace Rechrysalis.Unit
             }
             _unitClass = unitClass;
             // GetComponent<ProjectilesPool>()?.CreatePool(_unitClass)
-            _mover = GetComponent<Mover>();
-            _attack = GetComponent<Attack>();
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
             // _controllerUnitAttackClosest?.Initialzie();
             if (_parentUnitManager != null) _parentUnitManager.IsStopped = true;
@@ -107,9 +111,6 @@ namespace Rechrysalis.Unit
             GetComponent<InRangeByPriority>()?.Initialize(_compsAndUnits.TargetsLists[_controllerIndex]);
             GetComponent<ClosestTarget>()?.Initialize(_compsAndUnits.PlayerUnits[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
             GetComponent<Range>()?.Initialize(unitClass);
-            _chrysalisTimer = GetComponent<ChrysalisTimer>();
-            _rechrysalize = GetComponent<Rechrysalize>();
-            _projectilesPool = GetComponent<ProjectilesPool>();
             _projectilesPool?.CreatePool(unitClass.AmountToPool, unitClass.ProjectileSpeed, unitClass.ProjectileSprite);
             _currentHatchEffects = new List<GameObject>();
             _freeHatchScript = GetComponent<FreeUnitHatchEffect>();
@@ -124,7 +125,6 @@ namespace Rechrysalis.Unit
             //     }
             // }
             _manaCost = unitClass.ManaCost;
-            _targetPrioratizeByScore = GetComponent<TargetPrioratizeByScore>();
             _targetPrioratizeByScore?.Initialize(_enemyControllerManager.GetComponent<TargetScoreRanking>(), compsAndUnits.TargetsLists[_controllerIndex]);
             if (!isChrysalis)
             {
