@@ -36,6 +36,7 @@ namespace Rechrysalis.Unit
         private Mover _mover;
         private Attack _attack;
         private Range _range;
+        private UnitManagerRemoveHatchEffect _unitManagerRemoveHatchEffect;
         private ControllerUnitAttackClosest _controllerUnitAttackClosest;
         private ChrysalisTimer _chrysalisTimer;
         public ChrysalisTimer ChryslaisTimer => _chrysalisTimer;
@@ -81,6 +82,7 @@ namespace Rechrysalis.Unit
             _projectilesPool = GetComponent<ProjectilesPool>();
             _targetPrioratizeByScore = GetComponent<TargetPrioratizeByScore>();
             _range = GetComponent<Range>();
+            _unitManagerRemoveHatchEffect = GetComponent<UnitManagerRemoveHatchEffect>();
         }
         public void Initialize(ControllerManager controllerManager, int controllerIndex, UnitClass unitClass, int freeUnitIndex, int subUnitIndex, CompsAndUnitsSO compsAndUnits, bool isChrysalis)
         {
@@ -293,20 +295,21 @@ namespace Rechrysalis.Unit
         }
         public void RemoveHatchEffect(GameObject _hatchEffect)
         {
-            if (_currentHatchEffects.Contains(_hatchEffect))
-            {
-                _currentHatchEffects.Remove(_hatchEffect);
-            }
-            // ReCalculateStatChanges();
-            if (_hatchEffect.GetComponent<HEIncreaseDamage>() != null)
-            {
-                ReCalculateDamageChanges();
-            }
-            HEIncreaseRange heIncreaseRange = _hatchEffect.GetComponent<HEIncreaseRange>();
-            if (heIncreaseRange != null)
-            {
-                _range?.RemoveRangeHE(heIncreaseRange);
-            }
+            _unitManagerRemoveHatchEffect?.RemoveHatchEffect(_hatchEffect);
+            // if (_currentHatchEffects.Contains(_hatchEffect))
+            // {
+            //     _currentHatchEffects.Remove(_hatchEffect);
+            // }
+            // // ReCalculateStatChanges();
+            // if (_hatchEffect.GetComponent<HEIncreaseDamage>() != null)
+            // {
+            //     ReCalculateDamageChanges();
+            // }
+            // HEIncreaseRange heIncreaseRange = _hatchEffect.GetComponent<HEIncreaseRange>();
+            // if (heIncreaseRange != null)
+            // {
+            //     _range?.RemoveRangeHE(heIncreaseRange);
+            // }
         }
         public void AddHatchEffect(GameObject _hatchEffect)
         {
@@ -325,7 +328,7 @@ namespace Rechrysalis.Unit
                 _range?.AddRangeHE(heIncreaseRange);
             }
         }
-        private void ReCalculateDamageChanges()
+        public void ReCalculateDamageChanges()
         {
             List<HEIncreaseDamage> hEIncreaseDamageList = new List<HEIncreaseDamage>();
             foreach (GameObject hatchEffect in _currentHatchEffects)
