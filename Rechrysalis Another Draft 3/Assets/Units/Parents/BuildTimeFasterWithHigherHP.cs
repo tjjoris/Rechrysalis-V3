@@ -6,6 +6,7 @@ namespace Rechrysalis.Unit
 {    
     public class BuildTimeFasterWithHigherHP : MonoBehaviour
     {
+        private bool _debugBool = true;
         private ParentHealth _parentHealth;
         private float[] _ratioThreshHolds = new float[3] {0.3333f, 0.6666f, 1f};
         private float[] _buildSpeedMult = new float[3] {1, 0.5f, 0f};
@@ -16,9 +17,10 @@ namespace Rechrysalis.Unit
             _parentHealth = GetComponent<ParentHealth>();
         }
         public void SetBuildSpeedMult()
-        {
+        {            
             float healthRatio = _parentHealth.GetHealthRatio();
-            SetBuildSpeedMultIndex(healthRatio);            
+            SetBuildSpeedMultIndex(healthRatio);
+            if (_debugBool) Debug.Log($"set build speed mult " + _buildSPeedMultIndexToUse);        
         }
         private void SetBuildSpeedMultIndex(float healthRatio)
         {

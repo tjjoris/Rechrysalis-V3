@@ -9,7 +9,7 @@ namespace Rechrysalis.Unit
 {
     public class ChrysalisActivation : MonoBehaviour
     {
-        private bool _debugBool = false;
+        private bool _debugBool = true;
         private ParentUnitManager _parentUnitManager;
         private UnitActivation _unitActivation;
         private ParentHealth _parentHealth;
@@ -29,13 +29,15 @@ namespace Rechrysalis.Unit
             _targetScoreValue = GetComponent<TargetScoreValue>();
             _progressBarManager = GetComponent<ProgressBarManager>();
             _freeUnitChrysalisMovementStop = GetComponent<FreeUnitChrysalisMovementStop>();
-            _buildTimeFasterWithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
-            _healthToBuildTimeLinear = GetComponent<HealthToBuildTimeLinear>();
+            // _buildTimeFasterWithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
+            // _healthToBuildTimeLinear = GetComponent<HealthToBuildTimeLinear>();
             _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
         }
         public void Initialize(ParentUnitManager parentUnitManager)
         {
             _parentUnitManager = parentUnitManager;
+            _buildTimeFasterWithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
+            _healthToBuildTimeLinear = GetComponent<HealthToBuildTimeLinear>();
         }
         public void DeactivateChrysalis(int chrysalisIndex)
         {
@@ -62,6 +64,7 @@ namespace Rechrysalis.Unit
         }
         public void ActivateChrysalis(int chrysalisIndex)
         {
+            if (_debugBool) Debug.Log($"activate chrysalis in chrysalis activation");
             ChrysalisTimer chrysalisTimer = null;
             if (_parentUnitHatchEffects != null)
             {
@@ -73,11 +76,13 @@ namespace Rechrysalis.Unit
                 }
             if ((chrysalisTimer == null))
             {
+                if (_debugBool) Debug.Log($"set build time");
                 _buildTimeFasterWithHigherHP?.SetBuildSpeedMult();
                 _healthToBuildTimeLinear?.SetBuildTimeMult();
             }
             else 
             {
+                if (_debugBool) Debug.Log($"set build speed max");
                 _buildTimeFasterWithHigherHP?.SetBuildSpeedMultMax();
                 _healthToBuildTimeLinear?.SetBuildTimeMax();
             }
@@ -85,6 +90,7 @@ namespace Rechrysalis.Unit
             {
                 _unitActivation?.DeactivateUnit(_parentUnitManager.CurrentSubUnit.GetComponent<UnitManager>().ChildUnitIndex);
                 _unitActivation?.ActivateUnit(chrysalisIndex);
+                _parentUnitManager.ChildUnitManagers[chrysalisIndex].Hatch.ActivateHatch();
                 Debug.Log($"activate unit " + chrysalisIndex);
                 return;
             }
