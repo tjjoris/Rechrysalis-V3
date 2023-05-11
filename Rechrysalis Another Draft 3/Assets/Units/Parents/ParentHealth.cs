@@ -39,7 +39,7 @@ namespace Rechrysalis.Unit
         {
             _parentUnitManager = GetComponent<ParentUnitManager>();
             _die = GetComponent<Die>();
-            _buildTimeFasterwithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
+            // _buildTimeFasterwithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
         }
         public void Initialize()
         {
@@ -49,6 +49,7 @@ namespace Rechrysalis.Unit
             _hpBarTintByTier[2] = new Color(0, 1, 0, 1);
             _controllerManager = _parentUnitManager.ControllerManager;
             _freeEnemyInitialize = _controllerManager.FreeEnemyInitialize;
+            _buildTimeFasterwithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
         }
 
         public void SetMaxHealth(float _maxHealth)
