@@ -57,15 +57,16 @@ namespace Rechrysalis.Unit
         private void RemoveHEIncreaseBuildSpeed(HEIncreaseBuildSpeed heIncreaseBuildSpeed)
         {
             if (!_heIncreaseBuildSpeedList.Contains(heIncreaseBuildSpeed)) return;
+            if (_debugBool) Debug.Log($"remove he build speed from list");
             _heIncreaseBuildSpeedList.Remove(heIncreaseBuildSpeed);
         }
         private void SetCurrentBuildSpeedBasedOnHE()
         {
-            _timerCurrent = _timerSpeedBase;
+            _timerSpeedCurrent = _timerSpeedBase;
             foreach (HEIncreaseBuildSpeed heIncreaseBuildSpeed in _heIncreaseBuildSpeedList)
             {
                 if (heIncreaseBuildSpeed == null) continue;
-                _timerCurrent += heIncreaseBuildSpeed.GetIncreaseBuildSpeed();
+                _timerSpeedCurrent += heIncreaseBuildSpeed.GetIncreaseBuildSpeed();
             }
         }
         public void ApplyTimerMaxMult(float mult)
