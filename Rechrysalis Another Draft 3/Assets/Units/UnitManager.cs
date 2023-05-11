@@ -35,6 +35,7 @@ namespace Rechrysalis.Unit
         private Health _health;
         private Mover _mover;
         private Attack _attack;
+        private Range _range;
         private ControllerUnitAttackClosest _controllerUnitAttackClosest;
         private ChrysalisTimer _chrysalisTimer;
         public ChrysalisTimer ChryslaisTimer => _chrysalisTimer;
@@ -79,6 +80,7 @@ namespace Rechrysalis.Unit
             _rechrysalize = GetComponent<Rechrysalize>();
             _projectilesPool = GetComponent<ProjectilesPool>();
             _targetPrioratizeByScore = GetComponent<TargetPrioratizeByScore>();
+            _range = GetComponent<Range>();
         }
         public void Initialize(ControllerManager controllerManager, int controllerIndex, UnitClass unitClass, int freeUnitIndex, int subUnitIndex, CompsAndUnitsSO compsAndUnits, bool isChrysalis)
         {
@@ -300,6 +302,11 @@ namespace Rechrysalis.Unit
             {
                 ReCalculateDamageChanges();
             }
+            HEIncreaseRange heIncreaseRange = _hatchEffect.GetComponent<HEIncreaseRange>();
+            if (heIncreaseRange != null)
+            {
+                _range?.RemoveRangeHE(heIncreaseRange);
+            }
         }
         public void AddHatchEffect(GameObject _hatchEffect)
         {
@@ -311,6 +318,11 @@ namespace Rechrysalis.Unit
             if (_hatchEffect.GetComponent<HEIncreaseDamage>() != null)
             {
                 ReCalculateDamageChanges();                
+            }
+            HEIncreaseRange heIncreaseRange = _hatchEffect.GetComponent<HEIncreaseRange>();
+            if (heIncreaseRange != null)
+            {
+                _range?.AddRangeHE(heIncreaseRange);
             }
         }
         private void ReCalculateDamageChanges()
