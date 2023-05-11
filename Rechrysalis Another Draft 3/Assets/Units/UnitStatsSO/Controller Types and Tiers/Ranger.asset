@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Ranger
   m_EditorClassIdentifier: 
   _healthMultiplier: 1.2
+  _chrysalisHealthMultiplier: 1
   _dpsMultiplier: 1.2
   _range: 4.5
   _attackChargeUp: 0.7
@@ -21,3 +22,4 @@ MonoBehaviour:
   _tier: 0
   _buildTimeMultiplier: 1
   _projectileSpeed: 1
+  _controllerLifeCostMult: 1

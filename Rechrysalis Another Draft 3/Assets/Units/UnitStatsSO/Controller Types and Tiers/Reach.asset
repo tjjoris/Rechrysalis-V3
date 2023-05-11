@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Reach
   m_EditorClassIdentifier: 
   _healthMultiplier: 1.1
+  _chrysalisHealthMultiplier: 1
   _dpsMultiplier: 1.1
   _range: 3.75
   _attackChargeUp: 0.7
@@ -21,3 +22,4 @@ MonoBehaviour:
   _tier: 0
   _buildTimeMultiplier: 1
   _projectileSpeed: 1
+  _controllerLifeCostMult: 1

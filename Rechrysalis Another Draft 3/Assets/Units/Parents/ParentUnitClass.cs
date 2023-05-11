@@ -8,7 +8,7 @@ namespace Rechrysalis.Unit
     [System.Serializable]
     public class ParentUnitClass
     {
-        private bool _debugBool = false;
+        private bool _debugBool = true;
         private CompsAndUnitsSO _compsAndUnitsSO;
         [SerializeField] private List<UpgradeTypeClass> _advancedUpgradesUTCList;
         public List<UpgradeTypeClass> AdvancedUpgradesUTCList { get{ return _advancedUpgradesUTCList; } set{ _advancedUpgradesUTCList = value; } }
@@ -148,6 +148,7 @@ namespace Rechrysalis.Unit
                 _basicUnitClass.UnitSprite = _utcBasicUnit.GetUnitStatsSO().UnitSprite;
                 _basicUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
                 _basicUnitClass.ProjectileSpeed = baseMultiplierSO.ProjectileSpeed * typeMultipler.ProjectileSpeed;
+                if (_debugBool) Debug.Log($"projectile speed = " +_basicUnitClass.ProjectileSpeed + " base mult " + baseMultiplierSO.name);
                 _basicUnitClass.ProjectileSprite = _utcBasicUnit.GetUnitStatsSO().ProjectileSprite;
                 _basicUnitClass.UnitName = _utcBasicUnit.GetUnitStatsSO().UnitName;
                 _basicUnitClass.ChrysalisSprite = _utcBasicUnit.GetUnitStatsSO().ChrysalisSprite;
@@ -183,8 +184,8 @@ namespace Rechrysalis.Unit
                 _advUnitClass.ControllerLifeCostMult = _basicUnitClass.ControllerLifeCostMult + advancedModifier.ControllerLifeCostMult;
                 _advUnitClass.UnitSprite = _utcBasicUnit.GetUnitStatsSO().UnitSprite;
                 _advUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
-                _advUnitClass.ProjectileSpeed = _utcBasicUnit.GetUnitStatsSO().ProjectileSpeed;
-                _advUnitClass.ProjectileSprite = _utcBasicUnit.GetUnitStatsSO().ProjectileSprite;
+                _advUnitClass.ProjectileSpeed = _basicUnitClass.ProjectileSpeed;
+                _advUnitClass.ProjectileSprite = _basicUnitClass.ProjectileSprite;
                 _advUnitClass.UnitName = $"Adv " + _basicUnitClass.UnitName;
                 _advUnitClass.ChrysalisSprite = _utcBasicUnit.GetUnitStatsSO().ChrysalisSprite;
                 _advUnitClass.SacrificeControllerAmount = _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.SacrificeControllerAmount;

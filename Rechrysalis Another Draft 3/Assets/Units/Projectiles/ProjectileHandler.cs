@@ -24,9 +24,10 @@ namespace Rechrysalis.Attacking
         _spriteRenderer.sprite = sprite;
         _speed = speed;
     }
-    public void TurnOnProjectile (GameObject _targetUnit)
+    public void TurnOnProjectile (GameObject _targetUnit, float speed)
     {
         this._targetUnit = _targetUnit;
+        _speed = speed;
         RotateProjectile();
     }
     private void RotateProjectile()
