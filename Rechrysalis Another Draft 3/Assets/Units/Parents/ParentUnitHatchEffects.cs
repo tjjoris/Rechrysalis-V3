@@ -84,6 +84,9 @@ namespace Rechrysalis.Unit
             }
             for (int _index = 0; _index < _hatchEffects.Count; _index++)
             {
+                if (_hatchEffects[_index] == null) continue;
+                HEDisplay heDisplay = _hatchEffects[_index].GetComponent<HEDisplay>();
+                if (heDisplay == null) continue;            
                 _hatchEffects[_index].GetComponent<HEDisplay>().PositionOffset(_index);
             }
         }

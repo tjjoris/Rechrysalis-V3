@@ -10,6 +10,7 @@ namespace Rechrysalis.HatchEffect
         private Vector2 _offset = new Vector2(0.2f, -0.2f);
         public void PositionOffset(int _multiplier)
         {
+            if (_transformToOffset == null) return;
             _transformToOffset.localPosition = (_offset * _multiplier);
         }
     }

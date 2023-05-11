@@ -108,9 +108,15 @@ namespace Rechrysalis.Unit
                 if ((!PlayerPrefsInteract.GetHasBasicUnit()) && (_freeEnemyInitialize == null))
                 {
                     childIndex = 1;
+                }                
+                if (_die == null)
+                {
+                    _unitDies?.Invoke(childIndex);
+                } 
+                else
+                {
+                    GetComponent<Die>()?.UnitDies();
                 }
-                _unitDies?.Invoke(childIndex);
-                GetComponent<Die>()?.UnitDies();
             }
         }
         public void ReCalculateIncomingDamageModifier(List<HEIncreaseDefence> hEIncreaseDefenceList)
