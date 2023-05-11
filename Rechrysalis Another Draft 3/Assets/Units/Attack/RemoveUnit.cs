@@ -16,7 +16,6 @@ namespace Rechrysalis.Attacking
         private ParentHealth _parentHealth;
         private Mover _parentMover;
 
-
         public void Initialize(PlayerUnitsSO _playerUnits, TargetsListSO _targetsList, ControllerManager controllerManager, ParentUnitManager parentUnitManager)
         {
             this._playerUnits = _playerUnits;

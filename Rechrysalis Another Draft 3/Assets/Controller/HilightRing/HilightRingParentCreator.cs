@@ -16,6 +16,7 @@ namespace Rechrysalis.Controller
         public void Initialize(Transform hilightRingParentContainer)
         {
             _hilightRingParentContainer = hilightRingParentContainer;
+            if (_hilightRingParentContainer == null) Debug.LogWarning("hiligight ring parent creator set to null");
         }
         public void CreateHilightRingParent(int index, int parentCount, Vector2 parentUnitOffset)
         {

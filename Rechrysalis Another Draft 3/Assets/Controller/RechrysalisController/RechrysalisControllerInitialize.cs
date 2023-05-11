@@ -4,12 +4,13 @@ using UnityEngine;
 using Rechrysalis.Unit;
 using Rechrysalis.HatchEffect;
 using Rechrysalis.UI;
+using System;
 
 namespace Rechrysalis.Controller
 {
     public class RechrysalisControllerInitialize : MonoBehaviour
     {
-        private bool _debugBool;
+        private bool _debugBool = false;
         private ControllerManager _controllerManager;
         private HilightRingManager _hilightRingManager;
         private HilightRingParentCreator _hilightRingParentCreator;
@@ -30,12 +31,21 @@ namespace Rechrysalis.Controller
         private CompSO _unitComp; 
         private float _unitRingOutRadius;
         private float _unitRingAngle = 90f;
+        public Action<ParentUnitHatchEffects> _subscribeToParentUnitHEsAction;
+
+        private void Awake()
+        {
+
+            _controllerManager = GetComponent<ControllerManager>();
+            _controllerHatchEffect = GetComponent<ControllerFreeUnitHatchEffectManager>();
+        }
         public void Initialize(int controllerIndex, CompSO unitComp, CompsAndUnitsSO compsAndUnits, UnitRingManager unitRingManager, HilightRingManager hilightRingManager, UpgradeRingManager upgradeRingManager, float unitRingOuterRadius, MainManager mainManager)
         {
-           _controllerManager = GetComponent<ControllerManager>(); 
+            if (_debugBool) Debug.Log($"rechrysalis controller initialize");
            _hilightRingManager = _controllerManager.HilightRingManager;
            _hilightRingParentCreator = _controllerManager.HilightRingManager.GetComponent<HilightRingParentCreator>();
-            hilightRingManager?.Initialize(unitRingManager);           
+            hilightRingManager?.Initialize(unitRingManager);   
+            _hilightRingParentCreator?.Initialize(hilightRingManager.transform);        
             _controllerIndex = controllerIndex;
             this._unitComp = unitComp;
             _allUnits = new List<GameObject>();
@@ -46,7 +56,6 @@ namespace Rechrysalis.Controller
             _theseUnits.ActiveUnits.Clear();
             _theseUnits.ParentUnits = new List<GameObject>();
             _theseUnits.ParentUnits.Clear();
-            _controllerHatchEffect = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _controllerHatchEffect.InitializeUnitsArray(18);
             ParentUnitHatchEffects[] _parentUnitHatchEffects = new ParentUnitHatchEffects[unitComp.ParentUnitCount];
             
@@ -54,9 +63,10 @@ namespace Rechrysalis.Controller
             {       
                 if (unitComp.DoesParentExist(parentUnitIndex))
                 {
+                    
                     if (_debugBool)
                     {
-                        Debug.Log($"parent exists " + parentUnitIndex);
+                        if (_debugBool) Debug.Log($"parent exists " + parentUnitIndex);
                     }
                     Vector2 unitOffset = AnglesMath.GetOffsetPosForParentInRing(parentUnitIndex, unitComp.ParentUnitCount, _unitRingAngle, _ringDistFromCentre);
                     Vector3 goPosition = unitOffset;
@@ -67,7 +77,12 @@ namespace Rechrysalis.Controller
                     _parentUnits[parentUnitIndex] = parentUnitGO;
                     parentUnitGO.name = "Parent Unit " + parentUnitIndex.ToString();
                     ParentUnitManager pum = parentUnitGO.GetComponent<ParentUnitManager>();
-                    _controllerManager.ParentUnitManagers.Add(pum);
+                    if (pum == null) DebugTextStatic.DebugText.DisplayText("pum in rechrysalis controller initialize == null");                    
+                    if (_controllerManager == null) DebugTextStatic.DebugText.DisplayText("controller manager in rechrysalis controller == null");
+                    if (!_controllerManager.ParentUnitManagers.Contains(pum))
+                    {
+                        _controllerManager.ParentUnitManagers.Add(pum);
+                    }
                     if (pum.GetComponent<ParentHealth>() != null)
                     {
                         _controllerManager.ParentHealths.Add(pum.GetComponent<ParentHealth>());
@@ -83,6 +98,9 @@ namespace Rechrysalis.Controller
                     pum.SubUnits = new GameObject[unitComp.UpgradeCountArray[parentUnitIndex]];
                     pum.SubChrysalii = new GameObject[unitComp.UpgradeCountArray[parentUnitIndex]];
                     _parentUnitHatchEffects[parentUnitIndex] = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
+                    if (_parentUnitHatchEffects[parentUnitIndex] == null) DebugTextStatic.DebugText.DisplayText("parent unit hatch effects " + parentUnitIndex + " = null.");
+                    // _controllerManager.SubscribeToHatchEffect(_parentUnitHatchEffects[parentUnitIndex]);
+                    _subscribeToParentUnitHEsAction?.Invoke(_parentUnitHatchEffects[parentUnitIndex]);
                     {
                         {
                             int _childUnitIndex = 0;
@@ -94,7 +112,7 @@ namespace Rechrysalis.Controller
                         }
                     }
                     ParentUnitHatchEffects _pUHE = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
-                    _pUHE?.Initialize(pum.SubUnits, pum.SubChrysalii);
+                    _pUHE?.Initialize(pum.SubUnits, pum.SubChrysalii, _controllerManager);
                     pum.AddChrysalisAndUnitActions();   
                 }              
             }
@@ -114,6 +132,7 @@ namespace Rechrysalis.Controller
         }
         private void CreateChildUnitAndChrysalis(UnitClass unitClass, int childUnitIndex, ParentUnitManager pum, int parentUnitIndex, CompsAndUnitsSO compsAndUnits, bool isAdvUnit)
         {
+            if (_debugBool) Debug.Log($"create child unit and chrsyalis " + parentUnitIndex + " class " + unitClass.UnitName);
             GameObject childUnitGo = Instantiate(_childUnitPrefab, pum.transform);
             childUnitGo.SetActive(false);
             UnitStatsSO _unitStats = _unitComp.UnitSOArray[(parentUnitIndex * 3) + (childUnitIndex)];
@@ -139,7 +158,7 @@ namespace Rechrysalis.Controller
             UnitManager chrysalisUnitManager = chrysalisGo.GetComponent<UnitManager>();
             chrysalisGo.GetComponent<UnitManager>()?.Initialize(_controllerManager, _controllerIndex, unitClass, parentUnitIndex, childUnitIndex, compsAndUnits, true);
             chrysalisGo.GetComponent<UnitManager>()?.SetUnitSPrite(unitClass.ChrysalisSprite);            
-            chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(unitClass.BuildTime, childUnitIndex, pum.GetComponent<ProgressBarManager>());
+            chrysalisGo.GetComponent<ChrysalisTimer>()?.Initialize(unitClass.BuildTime, childUnitIndex, pum.GetComponent<ProgressBarManager>(), pum);
             pum.SubChrysalii[childUnitIndex] = chrysalisGo;
             _allUnits.Add(chrysalisGo);
             _controllerHatchEffect.SetUnitsArray(chrysalisGo, ((parentUnitIndex * 6) + (childUnitIndex * 2) + 1));

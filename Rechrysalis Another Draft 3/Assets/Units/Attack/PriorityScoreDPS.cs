@@ -11,13 +11,14 @@ namespace Rechrysalis.Attacking
         
         private void Awake()
         {
-            Initialize();
+
+            _parentUnitManager = GetComponent<ParentUnitManager>();
+            // Initialize();
         }
 
-        public void Initialize()
-        {
-            _parentUnitManager = GetComponent<ParentUnitManager>();
-        }
+        // public void Initialize()
+        // {
+        // }
         public float GenerateScore()
         {
             Attack attack = _parentUnitManager.CurrentSubUnit.GetComponent<Attack>();

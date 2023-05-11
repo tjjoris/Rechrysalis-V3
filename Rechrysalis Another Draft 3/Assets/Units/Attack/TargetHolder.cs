@@ -13,8 +13,9 @@ namespace Rechrysalis.Attacking
         public GameObject Target {set {_target = value;} get {return _target;}}
         private Range _range;
         
-        private void Start() {
-            _range = GetComponent<Range>();            
+        private void Awake()
+        {
+            _range = GetComponent<Range>();
         }
 
         public bool IsTargetInRange()

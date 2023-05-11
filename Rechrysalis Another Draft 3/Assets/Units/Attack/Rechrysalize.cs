@@ -13,9 +13,13 @@ namespace Rechrysalis.Attacking
         private ChrysalisTimer _chryslisTimer;
         public Action<int> _startChrysalis;
 
+        private void Awake()
+        {
+
+            _chryslisTimer = GetComponent<ChrysalisTimer>();
+        }
         public void Initialize (int _maxSubUnits)
         {
-            _chryslisTimer = GetComponent<ChrysalisTimer>();
             this._maxSubUnits = _maxSubUnits;
             _nextEvolvedUnit = 0;
         }

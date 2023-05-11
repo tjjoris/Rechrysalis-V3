@@ -23,6 +23,11 @@ namespace Rechrysalis.Controller
         private List<GameObject> _allUnits;
         public Action _controllerTakesDamageAction;
 
+        private void Awake()
+        {
+
+            _controllerHit = GetComponent<ControllerHit>();
+        }
         public void Initialize(float _healthMax, List<GameObject> _allUnits, CompsAndUnitsSO compsAndUnitsSO)
         {
             this._healthMax = _healthMax;
@@ -32,7 +37,6 @@ namespace Rechrysalis.Controller
             // _controllerDeathGameOver = GetComponent<ControllerDeathGameOver>();
             SubscribeToControllerDamage();
             _controllerHPTokens?.Initialize(compsAndUnitsSO);
-            _controllerHit = GetComponent<ControllerHit>();
         }
         public void TakeDamage(float _damageAmount)
         {

@@ -24,7 +24,7 @@ namespace Rechrysalis.Attacking
         private PriorityScoreDPS _priorityScoreDPS;
         private PriorityScoreHatchEffect _priorityScoreHatchEffect;
         
-        public void Initialize()
+        private void Awake()
         {
             _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
             _parentHealth = GetComponent<ParentHealth>();

@@ -24,16 +24,20 @@ namespace Rechrysalis.Attacking
         [SerializeField] private FreeControllerControllerProgressBar _freeControllerProgressBar;
         public FreeControllerControllerProgressBar FreeControllerProgressBar {get => _freeControllerProgressBar; set => _freeControllerProgressBar = value;}
 
+        private void Awake()
+        {
+
+            _removeUnit = GetComponent<RemoveUnit>();
+            _parentHealth = GetComponent<ParentHealth>();
+            _unitActivation = GetComponent<UnitActivation>();
+            _chrysalisActivation = GetComponent<ChrysalisActivation>();
+        }
         public void Initialize(CompsAndUnitsSO _compsAndUbnitsSO, int _controllerIndex)
         {
             _playerUnits = _compsAndUbnitsSO.PlayerUnits[_controllerIndex];
             _targetsList = _compsAndUbnitsSO.TargetsLists[GetOppositeController.ReturnOppositeController(_controllerIndex)];
-            _removeUnit = GetComponent<RemoveUnit>();
             this._compsAndUnitsSO = _compsAndUbnitsSO;
             this._controllerIndex = _controllerIndex;
-            _parentHealth = GetComponent<ParentHealth>();
-            _unitActivation = GetComponent<UnitActivation>();
-            _chrysalisActivation = GetComponent<ChrysalisActivation>();
         }
         public void UnitDies()
         {

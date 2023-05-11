@@ -54,49 +54,53 @@ namespace Rechrysalis.Unit
             _freeApproach = GetComponent<FreeEnemyApproach>();
             _freeApproach?.Initialize(_ownUnits, _compsAndUnits.ControllerManagers[GetOppositeController.ReturnOppositeController(_controllerIndex)].GetComponent<Mover>());
             _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
-            _aiAlwaysPreferClosest.Initialize();
+            // _aiAlwaysPreferClosest.Initialize();
             _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
-            _freeEnemyKiteMaxRange?.Initialize();
+            // _freeEnemyKiteMaxRange?.Initialize();
             // _parentUnitManager.ParentUnitClass = new ParentUnitClass();
             // _parentUnitManager.ParentUnitClass. = _unitStats;
 
 
         }
+        private void Awake()
+        {
+
+            _parentUnitManager = GetComponent<ParentUnitManager>();
+            _targetScoreValue = GetComponent<TargetScoreValue>();
+            _parentHealth = GetComponent<ParentHealth>();
+            _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
+            _mover = GetComponent<Mover>();
+            _freeApproach = GetComponent<FreeEnemyApproach>();
+            _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
+        }
         public void Initialize(ControllerManager controllerManager, UnitClass unitClass, int freeUnitIndex, CompsAndUnitsSO compsAndUnitSO, int controllerIndex)
         {
             _controllerManager = controllerManager;
             _controllerIndex = controllerIndex;
-            _parentUnitManager = GetComponent<ParentUnitManager>();
             _unitClass = unitClass;
             // _attack.Initialize(unitClass);
             _unitManager?.Initialize(controllerManager, _controllerIndex, unitClass, freeUnitIndex, 0,  compsAndUnitSO, false);
             _chrysalisUnitManager?.Initialize(controllerManager, _controllerIndex, unitClass, freeUnitIndex, 0, compsAndUnitSO, true);
             _parentUnitManager.CurrentSubUnit = _unitManager.gameObject;
-            _targetScoreValue = GetComponent<TargetScoreValue>();
-            _targetScoreValue?.Initialize();
+            // _targetScoreValue?.Initialize();
             _targetScoreValue?.SetCurrentUnit(_unitManager.GetComponent<Attack>());
 
             this._compsAndUnits = compsAndUnitSO;
             _controllerIndex = controllerIndex;
-            _parentHealth = GetComponent<ParentHealth>();
-            _aiFlawedUpdate = GetComponent<AIFlawedUpdate>();
             // _unitManager?.InitializeOld(controllerIndex, _unitStats, _compsAndUnits, _unitInWaveIndex, null);
             _unitManager?.SetUnitName(unitClass.UnitName);
             GetComponent<Die>()?.Initialize(_compsAndUnits, controllerIndex);
             GetComponent<RemoveUnit>()?.Initialize(_compsAndUnits.PlayerUnits[controllerIndex], _compsAndUnits.TargetsLists[GetOppositeController.ReturnOppositeController(controllerIndex)], _controllerManager, _parentUnitManager);
             GetComponent<ParentClickManager>()?.Initialize(controllerIndex);
             GetComponent<ParentHealth>().CurrentUnit = _unitManager;
-            _mover = GetComponent<Mover>();
             _mover.IsStopped = false;
             _mover?.SetBaseSpeed(_compsAndUnits.Speed);
             _attack = _unitManager.GetComponent<Attack>();
             // _aiAttackTimer = _unitManager.GetComponent<AIAttackChargeUpTimer>();
-            _freeApproach = GetComponent<FreeEnemyApproach>();
             _freeApproach?.Initialize(compsAndUnitSO.PlayerUnits[_controllerIndex], _compsAndUnits.ControllerManagers[GetOppositeController.ReturnOppositeController(_controllerIndex)].GetComponent<Mover>());
             _aiAlwaysPreferClosest = _unitManager.GetComponent<AIAlwaysPreferClosest>();
-            _aiAlwaysPreferClosest?.Initialize();
-            _freeEnemyKiteMaxRange = GetComponent<FreeEnemyKiteMaxRange>();
-            _freeEnemyKiteMaxRange?.Initialize();
+            // _aiAlwaysPreferClosest?.Initialize();
+            // _freeEnemyKiteMaxRange?.Initialize();
         }
         // private void OnEnable()
         // {

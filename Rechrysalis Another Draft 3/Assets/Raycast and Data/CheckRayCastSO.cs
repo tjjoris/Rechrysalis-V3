@@ -47,7 +47,6 @@ namespace Rechrysalis.Controller
         
         private int _controllerIndex = 0;
 
-        
         public void Initialize(CompsAndUnitsSO _compsAndUnits, UnitRingManager _unitRIngManager, HilightRingManager _hilightRingManager, UpgradeRingManager _upgradeRingManager, float _unitRingOuterRadius, TransitionTargetingCamera transitionTargetingCamera, MainManager mainManager, GraphicRaycaster graphicRaycaster, Transform cameraGOScroll)
         {
             _cameraGOScroll = cameraGOScroll;
@@ -245,7 +244,7 @@ namespace Rechrysalis.Controller
             // }
             if ((_transitionTargetingCamera.InTargetMode) && (_touchTypeArray[_touchID] == TouchTypeEnum.map))
             {
-                Debug.Log($"touch pos " + _touchPosDown[_touchID] + " mouse pos " + _mousePos);
+                if (_debugBool) Debug.Log($"touch pos " + _touchPosDown[_touchID] + " mouse pos " + _mousePos);
                 // Vector2 newPos = (_touchPosDownRaw[_touchID] / 5.4f) - (mousePosRaw / 5.4f);
                 Vector2 newPos = _touchPosLast[_touchID] - _mousePos;
                 _touchPosLast[_touchID] = _mousePos + newPos;

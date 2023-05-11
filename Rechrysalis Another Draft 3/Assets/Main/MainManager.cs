@@ -14,6 +14,7 @@ namespace Rechrysalis
 {
     public class MainManager : MonoBehaviour
     {
+        private bool _debugBool = false;
         private PauseScript _pauseScript;
         [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;  
         public CompsAndUnitsSO CompsAndUnitsSO => _compsAndUnitsSO;    
@@ -32,16 +33,21 @@ namespace Rechrysalis
         public Transform TargetCameraScrollTransform => _targetCameraScrollTransform;
         public EventSystem EventSystem => _eventSystem;
 
-        private void Awake() {
-            // _compsAndUnitsSO.CompsSO = _compSO;
+        private void Awake()
+        {
             _levelSceneManagement = GetComponent<LevelSceneManagement>();
-            _levelSceneManagement?.Initialize(_compsAndUnitsSO);
             _pauseScript = GetComponent<PauseScript>();
+
+        }
+        private void Start() {
+            // _compsAndUnitsSO.CompsSO = _compSO;
+            _levelSceneManagement?.Initialize(_compsAndUnitsSO);
             _compSO = _compsAndUnitsSO.CompsSO;
             _compsAndUnitsSO.ControllerManagers = _controllerManager;
             GameMaster.GetSingleton().ReferenceManager.CompsAndUnitsSO = _compsAndUnitsSO;
             _projectilesHolder.Initialize();
             _levelDisplay?.SetLevelText(_compsAndUnitsSO.Level);
+            if (_debugBool) Debug.Log($"main start initializing controllers");
             if ((_controllerManager != null) && (_controllerManager.Length > 0))
             {
                 for (int i=0; i<_controllerManager.Length; i++)
@@ -55,7 +61,6 @@ namespace Rechrysalis
             _backGroundManager?.Initialize();
             UpdatePreferances();
         }
-
         private void FixedUpdate()
         {
             if (!_pauseScript.IsPaused())
@@ -119,7 +124,7 @@ namespace Rechrysalis
                 {
                     if (controllerManager.CheckRayCast != null)
                     {
-                        Debug.Log($"set target during target mode" + PlayerPrefsInteract.GetTargetOnlyDuringTargetMode());
+                        if (_debugBool) Debug.Log($"set target during target mode" + PlayerPrefsInteract.GetTargetOnlyDuringTargetMode());
                     }
                 }
             }

@@ -411,24 +411,37 @@ MonoBehaviour:
     _manaCost: 0
     _unitName: 
     _hpMax: 0
+    _chrysalisHPMax: 0
     _buildTime: 0
     _range: 0
     _dps: 0
     _attackChargeUp: 0
     _attackWindDown: 0
     _damage: 0
-    _hatchEffectPrefab: {fileID: 0}
+    _hatchEffectPrefab:
+    - {fileID: 0}
+    _hatchEffectClasses: []
     _hatchEffectMult: 0
+    _hatchEffectDurationAdd: 0
     _unitSprite: {fileID: 0}
     _chrysalisSprite: {fileID: 0}
     _amountToPool: 0
     _projectileSpeed: 0
+    _sacrificeControllerAmount: 0
+    _moveSpeedAdd: 0
+    _siegeDuration: 0
+    _burstHeal: 0
     _projectileSprite: {fileID: 0}
+    _controllerLifeCostMult: 1
+    _hatchBuildTimeMaxBaseAdd: 0
   _unitSpriteHandler: {fileID: 1479136404559439461}
   _controllerIndex: 0
+  _childUnitIndex: 0
   _unitStats: {fileID: 0}
   _nameText: {fileID: 2931416109678527446}
+  _hatch: {fileID: 0}
   _hatchEffectPrefab: {fileID: 0}
+  _particleEffectPrefab: {fileID: 0}
 --- !u!114 &5534486646873433980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,19 +458,29 @@ MonoBehaviour:
     _manaCost: 0
     _unitName: 
     _hpMax: 0
+    _chrysalisHPMax: 0
     _buildTime: 0
     _range: 0
     _dps: 0
     _attackChargeUp: 0
     _attackWindDown: 0
     _damage: 0
-    _hatchEffectPrefab: {fileID: 0}
+    _hatchEffectPrefab:
+    - {fileID: 0}
+    _hatchEffectClasses: []
     _hatchEffectMult: 0
+    _hatchEffectDurationAdd: 0
     _unitSprite: {fileID: 0}
     _chrysalisSprite: {fileID: 0}
     _amountToPool: 0
     _projectileSpeed: 0
+    _sacrificeControllerAmount: 0
+    _moveSpeedAdd: 0
+    _siegeDuration: 0
+    _burstHeal: 0
     _projectileSprite: {fileID: 0}
+    _controllerLifeCostMult: 1
+    _hatchBuildTimeMaxBaseAdd: 0
   _attackChargeCurrent: 0
   _attackChargeUp: 0
   _attackWindDown: 0
@@ -466,6 +489,7 @@ MonoBehaviour:
   _baseDPS: 0
   _currentDPS: 0
   _targetsList: {fileID: 0}
+  _tempTarget: {fileID: 0}
 --- !u!114 &4886878533295244870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,6 +610,7 @@ Transform:
   - {fileID: 265398145843587037}
   - {fileID: 3828727494653770053}
   - {fileID: 8046207735284266191}
+  - {fileID: 585146153010906424}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -601,7 +626,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed24b9eb47064778b1799bd722851c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 0
+  _currentHealth: 0
+  _incomingDamageReductionMult: 0
   _hpBarFill: {fileID: 4977181882463418522}
+  _hpBarSprite: {fileID: 0}
 --- !u!114 &2294334004744366797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +643,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449dba754117b4f8cbf2c49c502ddf7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _controllerProgressValue: 0
+  _freeControllerProgressBar: {fileID: 0}
 --- !u!114 &4378128114718766567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,6 +659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitManager: {fileID: 6948555136272082086}
   _basicUnitManager: {fileID: 6948555136272082086}
+  _chrysalisUnitManager: {fileID: 7966895250258933950}
 --- !u!114 &7721016742656668050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,8 +704,13 @@ MonoBehaviour:
   _maxY: 0
   _moveVector: {x: 0, y: 0, z: 0}
   _direction: {x: 0, y: 0}
+  _directionBase: {x: 0, y: 0}
+  _directionWhilePaused: {x: 0, y: 0}
   _isStopped: 1
-  _speed: 0
+  _baseSpeed: 0
+  _speedVaried: 0
+  _heIncreaseSpeedList: []
+  _siegeInt: 0
 --- !u!114 &225529875955136253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -802,51 +839,114 @@ MonoBehaviour:
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
+    _hatchEffectPrefabs: []
     _utcHatchEffect:
-      _upgradeType: 0
+    - _upgradeType: 0
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
+    - _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
+    - _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
+    - _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
+    - _upgradeType: 0
+      _unitStatsSO: {fileID: 0}
+      _hatchEffectSO: {fileID: 0}
+      _advUnitModifierSO: {fileID: 0}
+      _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
     _basicUnitClass:
       _manaCost: 0
       _unitName: 
       _hpMax: 0
+      _chrysalisHPMax: 0
       _buildTime: 0
       _range: 0
       _dps: 0
       _attackChargeUp: 0
       _attackWindDown: 0
       _damage: 0
-      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectPrefab:
+      - {fileID: 0}
+      _hatchEffectClasses: []
       _hatchEffectMult: 0
+      _hatchEffectDurationAdd: 0
       _unitSprite: {fileID: 0}
       _chrysalisSprite: {fileID: 0}
       _amountToPool: 0
       _projectileSpeed: 0
+      _sacrificeControllerAmount: 0
+      _moveSpeedAdd: 0
+      _siegeDuration: 0
+      _burstHeal: 0
       _projectileSprite: {fileID: 0}
+      _controllerLifeCostMult: 1
+      _hatchBuildTimeMaxBaseAdd: 0
     _advUnitClass:
       _manaCost: 0
       _unitName: 
       _hpMax: 0
+      _chrysalisHPMax: 0
       _buildTime: 0
       _range: 0
       _dps: 0
       _attackChargeUp: 0
       _attackWindDown: 0
       _damage: 0
-      _hatchEffectPrefab: {fileID: 0}
+      _hatchEffectPrefab:
+      - {fileID: 0}
+      _hatchEffectClasses: []
       _hatchEffectMult: 0
+      _hatchEffectDurationAdd: 0
       _unitSprite: {fileID: 0}
       _chrysalisSprite: {fileID: 0}
       _amountToPool: 0
       _projectileSpeed: 0
+      _sacrificeControllerAmount: 0
+      _moveSpeedAdd: 0
+      _siegeDuration: 0
+      _burstHeal: 0
       _projectileSprite: {fileID: 0}
+      _controllerLifeCostMult: 1
+      _hatchBuildTimeMaxBaseAdd: 0
   _controllerIndex: 0
   _subUnits: []
   _subChrysalii: []
   _childUnitManagers: []
   _childChrysaliiUnitManagers: []
+  _currentSubUnit: {fileID: 0}
+  _progressBarManager: {fileID: 0}
+  _hilightRingParentManager: {fileID: 0}
+  _isStopped: 0
 --- !u!1001 &4018325213903686455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -914,3 +1014,120 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8273523667061994413, guid: 5e5df04f13c19414eb3a5b50a801b952, type: 3}
   m_PrefabInstance: {fileID: 4018325213903686455}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9084870784746267786
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8804105779283925589}
+    m_Modifications:
+    - target: {fileID: 6317117471778483703, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_Name
+      value: AISubChrysalis
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317117471778483703, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+--- !u!224 &585146153010906424 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8506502048681222578, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+  m_PrefabInstance: {fileID: 9084870784746267786}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7966895250258933950 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1190050763939650612, guid: 3120dc4e8a92b41399ff15cffc0b92f7, type: 3}
+  m_PrefabInstance: {fileID: 9084870784746267786}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768857a65777a42ecb3e0adb0cd0d609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

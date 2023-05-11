@@ -11,10 +11,13 @@ namespace Rechrysalis.Attacking
         private TargetHolder _targetHolder;
         private TargetsListSO _targetsListSO;
 
+        private void Awake()
+        {
+            _targetHolder = GetComponent<TargetHolder>();
+        }
         public void Initialize(TargetScoreRanking targetScoreRanking, TargetsListSO targetsListSO)
         {
             _targetScoreRanking = targetScoreRanking;
-            _targetHolder = GetComponent<TargetHolder>();
             _targetsListSO = targetsListSO;
         }
         public void SetTargetByScore()

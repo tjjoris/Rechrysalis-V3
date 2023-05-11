@@ -14,9 +14,12 @@ namespace Rechrysalis.Attacking
         public List<ParentUnitManager> ScoresRanked => _scoresRanked;
         private TargetsListSO _targetsListSO;
 
-        public void Initialize(ControllerManager enemyControllerManager, TargetsListSO targetsListSO)
+        private void Awake()
         {
             _controllerManager = GetComponent<ControllerManager>();
+        }
+        public void Initialize(ControllerManager enemyControllerManager, TargetsListSO targetsListSO)
+        {
             _enemyControllerManager = enemyControllerManager;
             _targetsListSO = targetsListSO;
         }

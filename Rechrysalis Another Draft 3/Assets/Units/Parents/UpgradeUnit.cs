@@ -14,11 +14,15 @@ namespace Rechrysalis.Unit
         public Action<float> _subtractMana;
         private ManaGenerator _manaGenerator;
 
+        private void Awake()
+        {
+            _chrysalisActivation = GetComponent<ChrysalisActivation>();
+        }
         public void Initialize(ParentUnitManager parentUnitManager, ManaGenerator manaGenerator)
         {
             _parentUnitManager = parentUnitManager;
             _manaGenerator = manaGenerator;
-            _chrysalisActivation = GetComponent<ChrysalisActivation>();
+
         }
         public void UpgradeUnitFunction(int _chrysalisIndex)
         {

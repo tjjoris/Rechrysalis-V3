@@ -49,16 +49,25 @@ namespace Rechrysalis.Controller
         public ControllerUnitsSO ControllerUnitsToChooseFrom => _controllerUnitsToChooseFrom;
         [SerializeField] private ControllerUnitsSO _currentChangingControllerUnits;
         public ControllerUnitsSO CurrentChangingControllerUnits => _currentChangingControllerUnits;
+
+        private void Awake()
+        {
+            _controllerManager = GetComponent<ControllerManager>();
+            _controllerHealth = GetComponent<ControllerHealth>();
+            _lifePerFreeWave = GetComponent<LifePerFreeWave>();
+            _freeEnemyWaveGenerator = GetComponent<FreeEnemyWaveGenerator>();
+            _freeEnemyWaveInstantiator = GetComponent<FreeEnemyWaveInstantiator>();
+            _freeEnemyUnitInstantiator = GetComponent<FreeEnemyUnitInstantiator>();
+            _controllerFreeHatch = GetComponent<ControllerFreeUnitHatchEffectManager>();
+            _randomizeFreeChangingUnits = GetComponent<RandomizeFreeChangingUnits>();
+
+        }
         public void Initialize(int controllerIndex, ControllerManager enemyController, CompSO compSO, PlayerUnitsSO playerUnitsSO, CompsAndUnitsSO compsAndUnits, FreeUnitCompSO freeUnitCompSO, CompCustomizerSO compCustomizer, MainManager mainManager)        
         {
             _mainManager = mainManager;
             _levelSceneManagement = mainManager.GetComponent<LevelSceneManagement>();
             _targetCameraScrollTransform = _mainManager.TargetCameraScrollTransform;
-            _controllerManager = GetComponent<ControllerManager>();
-            _controllerHealth = GetComponent<ControllerHealth>(); 
-            _lifePerFreeWave = GetComponent<LifePerFreeWave>();  
-            _freeEnemyWaveGenerator = GetComponent<FreeEnemyWaveGenerator>();
-            _lifePerFreeWave?.Initialize();         
+            // _lifePerFreeWave?.Initialize();         
             this._controllerIndex = controllerIndex;
             this._enemyController = enemyController;
             this._compSO = compSO;
@@ -67,15 +76,12 @@ namespace Rechrysalis.Controller
             this._freeUnitCompSO = freeUnitCompSO;
             this._compCustomizer = compCustomizer;
             _freeEnemyWaveGenerator?.Initialize(_compsAndUnits);
-            _freeEnemyWaveInstantiator = GetComponent<FreeEnemyWaveInstantiator>();
             _freeEnemyWaveInstantiator?.Initialize(_compsAndUnits, _levelSceneManagement);
-            _freeEnemyUnitInstantiator = GetComponent<FreeEnemyUnitInstantiator>();
             _freeEnemyUnitInstantiator?.Initialize(_mainManager, _controllerManager, _enemyController);
             _controllerHealth?.IncreaseMaxHealth(_compsAndUnits.Level * _compsAndUnits.FreeUnitControllerLifeGainedPerLevel);
             // _freeControllerControllerProgressBar.Initialize(_controllerHealth.HealthMax);
             _freeControllerControllerProgressBar.LevelSceneManagement = _mainManager.LevelSceneManagement;
             
-            _controllerFreeHatch = GetComponent<ControllerFreeUnitHatchEffectManager>();
             _allUnits = new List<GameObject>();
             // this._controllerIndex = _controllerIndex;
             if (_debugBool)
@@ -88,7 +94,6 @@ namespace Rechrysalis.Controller
             compsAndUnits.FreeUnitCompSO[controllerIndex] = compsAndUnits.Levels[compsAndUnits.Level];
             _freeUnitCompSO = compsAndUnits.FreeUnitCompSO[controllerIndex];
 
-            _randomizeFreeChangingUnits = GetComponent<RandomizeFreeChangingUnits>();
             _randomizeFreeChangingUnits?.Initialize(_compsAndUnits);
             _randomizeFreeChangingUnits?.RandomizeChangingUnitsFunc(_compsAndUnits.Level);
             _freeEnemyWaveGenerator?.GenerateWaves();

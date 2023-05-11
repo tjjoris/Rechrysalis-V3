@@ -288,6 +288,8 @@ GameObject:
   - component: {fileID: 7050183295212557629}
   - component: {fileID: 8030698657273627931}
   - component: {fileID: 2341178934404972419}
+  - component: {fileID: 3322181934711744504}
+  - component: {fileID: 6308862472978636377}
   m_Layer: 0
   m_Name: Chrysallis Prefab
   m_TagString: Untagged
@@ -341,6 +343,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14a1203e798a4ce2a772a0136a4210d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timerMaxBase: 0
+  _timerMax: 0
+  _timerCurrent: 0
+  _timerSpeedBase: 1
+  _timerSpeedCurrent: 1
+  _progressBarManager: {fileID: 0}
 --- !u!114 &8030698657273627931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,12 +361,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 768857a65777a42ecb3e0adb0cd0d609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _unitClass:
+    _manaCost: 0
+    _unitName: 
+    _hpMax: 0
+    _chrysalisHPMax: 0
+    _buildTime: 0
+    _range: 0
+    _dps: 0
+    _attackChargeUp: 0
+    _attackWindDown: 0
+    _damage: 0
+    _hatchEffectPrefab: []
+    _hatchEffectClasses: []
+    _hatchEffectMult: 0
+    _hatchEffectDurationAdd: 0
+    _unitSprite: {fileID: 0}
+    _chrysalisSprite: {fileID: 0}
+    _amountToPool: 0
+    _projectileSpeed: 0
+    _sacrificeControllerAmount: 0
+    _moveSpeedAdd: 0
+    _siegeDuration: 0
+    _burstHeal: 0
+    _projectileSprite: {fileID: 0}
+    _controllerLifeCostMult: 1
+    _hatchBuildTimeMaxBaseAdd: 0
   _unitSpriteHandler: {fileID: 5790735230280151310}
   _controllerIndex: 0
+  _childUnitIndex: 0
   _unitStats: {fileID: 0}
   _nameText: {fileID: 8081687621683907718}
-  _isStopped: 0
+  _hatch: {fileID: 0}
   _hatchEffectPrefab: {fileID: 0}
+  _particleEffectPrefab: {fileID: 0}
 --- !u!114 &2341178934404972419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,3 +409,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthMax: 0
   _healthCurrent: 0
+--- !u!114 &3322181934711744504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4275633068800706783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6184ec6d178dd43d98983e923df7a0c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6308862472978636377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4275633068800706783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81eecb688d86042e3938c770394f0ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

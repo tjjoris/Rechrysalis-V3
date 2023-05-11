@@ -12,13 +12,16 @@ namespace Rechrysalis.Attacking
        private Rechrysalize _rechrysalize;
        private DamagesController _damagesController;
 
+        private void Awake()
+        {
+            _rechrysalize = GetComponent<Rechrysalize>();
+            _die = GetComponent<Die>();
+            _damagesController = GetComponent<DamagesController>();
+        }
        public void Initialize(float _healthMax)
        {
         this._healthMax = _healthMax;
         this._healthCurrent = _healthMax;
-        _rechrysalize = GetComponent<Rechrysalize>();
-        _die = GetComponent<Die>();
-        _damagesController = GetComponent<DamagesController>();
        }
        public void RestartUnit()
        {

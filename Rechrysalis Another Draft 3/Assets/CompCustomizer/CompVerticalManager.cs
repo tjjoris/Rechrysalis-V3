@@ -12,7 +12,7 @@ namespace Rechrysalis.CompCustomizer
 {
     public class CompVerticalManager : MonoBehaviour//, IDropHandler
     {
-        bool debugBool = false;
+        bool _debugBool = false;
         private CompsAndUnitsSO _compsAndUnitsSO;
         [SerializeField] private List<CompUpgradeManager> _compUpgradeManagers;
         [SerializeField] private Transform _verticalContainer;
@@ -38,7 +38,7 @@ namespace Rechrysalis.CompCustomizer
         public void Initialize(Transform movingButtonHolder, CompsAndUnitsSO compsAndUnitsSO, ControllerHPTokens controllerHPTokens, InstantiateButton instantiateButton)
         {
             _compsAndUnitsSO = compsAndUnitsSO;
-            if (debugBool)
+            if (_debugBool)
                 Debug.Log($"initialize vertical");
             _scrollRect = GetComponent<ScrollRect>();
             _movingButtonHolder = movingButtonHolder;
@@ -158,7 +158,7 @@ namespace Rechrysalis.CompCustomizer
                     }
                     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.HatchEffect)
                     {
-                        Debug.Log($"add hatch effect " +compUpgradeManager.gameObject.name);
+                        if (_debugBool) Debug.Log($"add hatch effect " +compUpgradeManager.gameObject.name);
                         parentUnitClassToReturn.SetUTCHatchEffect(compUpgradeManager.GetUpgradeTypeClass());                        
                     }
                     if (compUpgradeManager.GetUpgradeType() == UpgradeTypeClass.UpgradeType.Advanced)

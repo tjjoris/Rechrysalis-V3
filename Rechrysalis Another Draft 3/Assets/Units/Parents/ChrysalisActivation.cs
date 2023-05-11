@@ -22,17 +22,22 @@ namespace Rechrysalis.Unit
         private HealthToBuildTimeLinear _healthToBuildTimeLinear;
         private ParentUnitHatchEffects _parentUnitHatchEffects;
 
-        public void Initialize(ParentUnitManager parentUnitManager)
+        private void Awake()
         {
-            _parentUnitManager = parentUnitManager;
             _unitActivation = GetComponent<UnitActivation>();
             _parentHealth = GetComponent<ParentHealth>();
             _targetScoreValue = GetComponent<TargetScoreValue>();
-            _progressBarManager = GetComponent<ProgressBarManager>(); 
+            _progressBarManager = GetComponent<ProgressBarManager>();
             _freeUnitChrysalisMovementStop = GetComponent<FreeUnitChrysalisMovementStop>();
+            // _buildTimeFasterWithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
+            // _healthToBuildTimeLinear = GetComponent<HealthToBuildTimeLinear>();
+            _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
+        }
+        public void Initialize(ParentUnitManager parentUnitManager)
+        {
+            _parentUnitManager = parentUnitManager;
             _buildTimeFasterWithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
             _healthToBuildTimeLinear = GetComponent<HealthToBuildTimeLinear>();
-            _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
         }
         public void DeactivateChrysalis(int chrysalisIndex)
         {
@@ -59,6 +64,7 @@ namespace Rechrysalis.Unit
         }
         public void ActivateChrysalis(int chrysalisIndex)
         {
+            if (_debugBool) Debug.Log($"activate chrysalis in chrysalis activation");
             ChrysalisTimer chrysalisTimer = null;
             if (_parentUnitHatchEffects != null)
             {
@@ -70,11 +76,13 @@ namespace Rechrysalis.Unit
                 }
             if ((chrysalisTimer == null))
             {
+                if (_debugBool) Debug.Log($"set build time");
                 _buildTimeFasterWithHigherHP?.SetBuildSpeedMult();
                 _healthToBuildTimeLinear?.SetBuildTimeMult();
             }
             else 
             {
+                if (_debugBool) Debug.Log($"set build speed max");
                 _buildTimeFasterWithHigherHP?.SetBuildSpeedMultMax();
                 _healthToBuildTimeLinear?.SetBuildTimeMax();
             }
@@ -82,6 +90,7 @@ namespace Rechrysalis.Unit
             {
                 _unitActivation?.DeactivateUnit(_parentUnitManager.CurrentSubUnit.GetComponent<UnitManager>().ChildUnitIndex);
                 _unitActivation?.ActivateUnit(chrysalisIndex);
+                _parentUnitManager.ChildUnitManagers[chrysalisIndex].Hatch.ActivateHatch();
                 Debug.Log($"activate unit " + chrysalisIndex);
                 return;
             }
@@ -89,6 +98,7 @@ namespace Rechrysalis.Unit
             {
                 _parentUnitManager.CurrentSubUnit = _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject;
             }
+            if ((chrysalisIndex >= _parentUnitManager.ChildChrysaliiUnitManagers.Count) || chrysalisIndex < 0) Debug.LogWarning("chrysalis index out of range " + chrysalisIndex);
             if (_parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject == null) return;
             // if ((_chrysalisIndex == 0) && (_parentUnitManager.CurrentSubUnit != _parentUnitManager._subUnits[0])) return;
             // if (_parentUnitManager.CurrentSubUnit != _parentUnitManager.SubChrysalii[_chrysalisIndex])
@@ -106,7 +116,7 @@ namespace Rechrysalis.Unit
                     _parentUnitManager.CurrentSubUnit = _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject;
                     if (_debugBool)
                     {
-                        Debug.Log($"activating chrysalis" + chrysalisIndex);
+                        if (_debugBool) Debug.Log($"activating chrysalis" + chrysalisIndex);
                     }
                     _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex].gameObject.SetActive(true);
                     _parentHealth.CurrentUnit = _parentUnitManager.ChildChrysaliiUnitManagers[chrysalisIndex];

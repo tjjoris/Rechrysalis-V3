@@ -35,7 +35,14 @@ namespace Rechrysalis.Attacking
         [SerializeField] private GameObject _tempTarget;
         private ControllerUnitAttackClosest _controllerUnitAttackClosest;
 
-
+        private void Awake()
+        {
+            _projectilesPool = GetComponent<ProjectilesPool>();
+            _inRangeByPriority = GetComponent<InRangeByPriority>();
+            _closestTarget = GetComponent<ClosestTarget>();
+            _targetHolder = GetComponent<TargetHolder>();
+            _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
+        }
         public void Initialize(UnitClass unitClass, ParentUnitManager parentUnitManager)
         {
             // _parentUnitManager = transform.parent.GetComponent<ParentUnitManager>();
@@ -46,12 +53,7 @@ namespace Rechrysalis.Attacking
             _attackChargeUp = _unitClass.AttackChargeUp;
             _attackWindDown = _unitClass.AttackWindDown;
             _baseDamage = _unitClass.Damamge;
-            _projectilesPool = GetComponent<ProjectilesPool>();
-            _inRangeByPriority = GetComponent<InRangeByPriority>();
-            _closestTarget = GetComponent<ClosestTarget>();
-            _targetHolder = GetComponent<TargetHolder>();
             _rb2d = _parentUnitManager.GetComponent<Rigidbody2D>();
-            _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
             if (parentUnitManager.ControllerManager.GetComponent<Rigidbody2D>() != null)
             {
                 _rb2d = parentUnitManager.ControllerManager.GetComponent<Rigidbody2D>();

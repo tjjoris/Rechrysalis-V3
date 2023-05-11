@@ -11,10 +11,15 @@ namespace Rechrysalis.Attacking
         // private TargetHolder _targetHolder;
         private Range _range;
 
+        private void Awake()
+        {
+
+            _range = GetComponent<Range>();
+
+        }
         public void Initialize(TargetsListSO _targetsList)
         {
             this._targetsList = _targetsList;
-            _range = GetComponent<Range>();
             // _targetHolder = GetComponent<TargetHolder>();
         }
         public GameObject CheckPriorityTargetInRange()

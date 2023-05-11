@@ -11,13 +11,16 @@ namespace Rechrysalis.Attacking
         private ClosestTarget _closestTarget;
         private InRangeByPriority _inRangeByPriority;
 
-        public void Initialzie()
+        private void Awake()
         {
             _targetHolder = GetComponent<TargetHolder>();
             _range = GetComponent<Range>();
             _closestTarget = GetComponent<ClosestTarget>();
             _inRangeByPriority = GetComponent<InRangeByPriority>();
         }
+        // public void Initialzie()
+        // {
+        // }
         
         public void CheckToGetTarget()
         {

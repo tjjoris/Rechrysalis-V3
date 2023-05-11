@@ -18,9 +18,13 @@ namespace Rechrysalis.Background
         private int _tickCount = 10;
         private int _tickMax = 10;
 
+        private void Awake()
+        {
+
+            _backGroundPool = GetComponent<BackgroundPool>();
+        }
         public void Initialize ()
         {
-            _backGroundPool = GetComponent<BackgroundPool>();
             _backGroundPool?.CreatePool(50);
         }
         public void Tick()

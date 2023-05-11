@@ -6,6 +6,7 @@ using Rechrysalis.Background;
 using System;
 using Rechrysalis.Unit;
 using Rechrysalis.Attacking;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Movement
 {
@@ -33,18 +34,24 @@ namespace Rechrysalis.Movement
         public bool IsStopped {set{_isStopped = value;}get {return _isStopped;}}
         [SerializeField] private float _baseSpeed;
         [SerializeField] private float _speedVaried;
+        [SerializeField] private List<HEIncreaseSpeed> _heIncreaseSpeedList;
         [SerializeField] private int _siegeInt;
         private CausesPushBack _causesPushBack;
         private ParentUnitManager _parentUnitManager;
         private Rigidbody2D _rb2d;
         public Rigidbody2D RB2D => _rb2d;
         public Action _resetChargeUp;
+        private void Awake()
+        {
+
+            _parentUnitManager = GetComponent<ParentUnitManager>();
+            _causesPushBack = GetComponent<CausesPushBack>();
+            _rb2d = GetComponent<Rigidbody2D>();
+        }
         public void Initialize(int _controllerIndex, MainManager mainManager)
         {
             _mainManager = mainManager;
             _pauseScript = _mainManager.GetComponent<PauseScript>();
-            _parentUnitManager = GetComponent<ParentUnitManager>();
-            _causesPushBack = GetComponent<CausesPushBack>();
             this._controllerIndex = _controllerIndex;
             _backG = GameMaster.GetSingleton().ReferenceManager.BackG;
             BackgroundManager _backGScript = _backG.GetComponent<BackgroundManager>();
@@ -52,12 +59,39 @@ namespace Rechrysalis.Movement
             _maxX = _backGScript.MaxX;
             _minY = _backGScript.MinY;
             _maxY = _backGScript.MaxY;
-            _rb2d = GetComponent<Rigidbody2D>();
+            _heIncreaseSpeedList = new List<HEIncreaseSpeed>();
         }
         public void SetBaseSpeed(float baseSpeed)
         {
             this._baseSpeed = baseSpeed;
             _speedVaried = _baseSpeed;
+        }
+        public void FromHEAddSpeed(GameObject hatchEffectGO)
+        {
+            if (hatchEffectGO == null) return;
+            HEIncreaseSpeed heIncreaseSpeed = hatchEffectGO.GetComponent<HEIncreaseSpeed>();
+            if (heIncreaseSpeed == null) return;
+            _heIncreaseSpeedList.Add(heIncreaseSpeed);
+            SetSpeedFromHeList();
+        }
+        public void FromHEDecreaseSpeed(GameObject hatchEffectGO)
+        {
+            if (hatchEffectGO == null) return;
+            HEIncreaseSpeed hEIncreaseSpeed = hatchEffectGO.GetComponent<HEIncreaseSpeed>();
+            if (hEIncreaseSpeed == null) return;
+            if (!_heIncreaseSpeedList.Contains(hEIncreaseSpeed)) return;
+            _heIncreaseSpeedList.Remove(hEIncreaseSpeed);
+            SetSpeedFromHeList();
+        }
+        private void SetSpeedFromHeList()
+        {
+            _speedVaried = _baseSpeed;
+            foreach (HEIncreaseSpeed heIncreaseSpeed in _heIncreaseSpeedList)
+            {
+                if (heIncreaseSpeed == null) continue;
+                _speedVaried += heIncreaseSpeed.GetSpeedToAdd();
+            }
+            SetDirection(_direction);
         }
         public void AddSpeed(float speedToAdd)
         {

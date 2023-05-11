@@ -5,12 +5,18 @@ using System;
 using Rechrysalis.Attacking;
 using Rechrysalis.HatchEffect;
 using Rechrysalis.UI;
+using Rechrysalis.Controller;
 
 namespace Rechrysalis.Unit
 {
     public class ParentHealth : MonoBehaviour
     {
         bool _debugBool = false;
+        private ParentUnitManager _parentUnitManager;
+        public ParentUnitManager ParentUnitManager => _parentUnitManager;
+        private ControllerManager _controllerManager;
+        public ControllerManager ControllerManager => _controllerManager;
+        private FreeEnemyInitialize _freeEnemyInitialize;
         [SerializeField] private float _maxHealth;
         [SerializeField] private float _currentHealth;
         public float CurrentHealth => _currentHealth;
@@ -31,14 +37,21 @@ namespace Rechrysalis.Unit
         public Action<float> _controllerTakeDamage;
         public Action<float> _enemyControllerHeal;
 
+        private void Awake()
+        {
+            _parentUnitManager = GetComponent<ParentUnitManager>();
+            _die = GetComponent<Die>();
+            // _buildTimeFasterwithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
+        }
         public void Initialize()
         {
-            _die = GetComponent<Die>();
             // _parentUnitManager = GetComponent<ParentUnitManager>();
-            _buildTimeFasterwithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
             _hpBarTintByTier[0] = new Color(1, 0.6f, 0, 1);
             _hpBarTintByTier[1] = new Color(1, 1, 0, 1);            
             _hpBarTintByTier[2] = new Color(0, 1, 0, 1);
+            _controllerManager = _parentUnitManager.ControllerManager;
+            _freeEnemyInitialize = _controllerManager.FreeEnemyInitialize;
+            _buildTimeFasterwithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
         }
 
         public void SetMaxHealth(float _maxHealth)
@@ -92,12 +105,18 @@ namespace Rechrysalis.Unit
             if (_currentHealth <= 0)
             {
                 int childIndex = 0;
-                if (!PlayerPrefsInteract.GetHasBasicUnit())
+                if ((!PlayerPrefsInteract.GetHasBasicUnit()) && (_freeEnemyInitialize == null))
                 {
                     childIndex = 1;
+                }                
+                if (_die == null)
+                {
+                    _unitDies?.Invoke(childIndex);
+                } 
+                else
+                {
+                    GetComponent<Die>()?.UnitDies();
                 }
-                _unitDies?.Invoke(childIndex);
-                GetComponent<Die>()?.UnitDies();
             }
         }
         public void ReCalculateIncomingDamageModifier(List<HEIncreaseDefence> hEIncreaseDefenceList)

@@ -14,9 +14,13 @@ namespace Rechrysalis.Unit
         [SerializeField] private float _extraLifePerLevelForFirstWave =1;
         [SerializeField] private float _lifeMultByLevelToAddToWave = 1.01f;
 
+        private void Awake()
+        {
+
+            _controllerHealth = GetComponent<ControllerHealth>();
+        }
         public void Initialize()
         {
-            _controllerHealth = GetComponent<ControllerHealth>();
         }
         public float GetLifeToSpendOnThisWave(int level, int wave)
         {

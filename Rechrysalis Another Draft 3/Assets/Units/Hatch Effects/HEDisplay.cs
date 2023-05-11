@@ -6,10 +6,12 @@ namespace Rechrysalis.HatchEffect
 {
     public class HEDisplay : MonoBehaviour
     {
+        [SerializeField] private Transform _transformToOffset;
         private Vector2 _offset = new Vector2(0.2f, -0.2f);
         public void PositionOffset(int _multiplier)
         {
-            transform.localPosition = (_offset * _multiplier);
+            if (_transformToOffset == null) return;
+            _transformToOffset.localPosition = (_offset * _multiplier);
         }
     }
 }

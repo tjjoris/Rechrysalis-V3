@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.HatchEffect;
 using System;
+using Rechrysalis.Controller;
 
 namespace Rechrysalis.Unit
 {
     public class ParentUnitHatchEffects : MonoBehaviour
     {
-        private bool _debugBool = true;
+        private bool _debugBool = false;
+        private ControllerManager _controllerManager;
         private ParentUnitManager _parentUnitManager;
         [SerializeField] private List<GameObject> _hatchEffects;
         public List<GameObject> HatchEffects => _hatchEffects;
@@ -17,9 +19,15 @@ namespace Rechrysalis.Unit
         private GameObject[] _subChrysalii;
         public Action<GameObject, int, int, bool> _addHatchEffect;
         public Action<GameObject, int, int, bool> _removeHatchEffect;
-        public void Initialize (GameObject[] _subUnits, GameObject[] _subchrysalii)
+
+        private void Awake()
         {
+
             _parentUnitManager = GetComponent<ParentUnitManager>();
+        }
+        public void Initialize (GameObject[] _subUnits, GameObject[] _subchrysalii, ControllerManager controllerManager)
+        {
+            _controllerManager = controllerManager;
             _parentIndex = _parentUnitManager.ParentIndex;
             this._subUnits = _subUnits;
             this._subChrysalii =_subchrysalii;
@@ -29,6 +37,7 @@ namespace Rechrysalis.Unit
 
         public void CreateHatchEffect(GameObject _hatchEffectPrefab, int _parentIndex, int _unitIndex, bool _affectAll)
         {
+            UI.DebugTextStatic.DebugText.DisplayText("create hatch effet in PUHE");
             if (_debugBool) Debug.Log($"create hacth effect called in parent unit hatch effects");
             if (_hatchEffectPrefab == null) 
             {
@@ -37,7 +46,7 @@ namespace Rechrysalis.Unit
             }
             GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
             HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
-            _hatchEffectManager?.Initialize(null, _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass);
+            _hatchEffectManager?.Initialize(null, _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass, _parentUnitManager.ChildUnitManagers[_unitIndex], _controllerManager);
             _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
         }
         public void AddHatchEffect(GameObject _hatchEffect)
@@ -75,6 +84,9 @@ namespace Rechrysalis.Unit
             }
             for (int _index = 0; _index < _hatchEffects.Count; _index++)
             {
+                if (_hatchEffects[_index] == null) continue;
+                HEDisplay heDisplay = _hatchEffects[_index].GetComponent<HEDisplay>();
+                if (heDisplay == null) continue;            
                 _hatchEffects[_index].GetComponent<HEDisplay>().PositionOffset(_index);
             }
         }

@@ -13,14 +13,14 @@ namespace Rechrysalis.Attacking
 
         private void Awake()
         {
-            Initialize();
-        }
-        public void Initialize()
-        {
             _parentUnitManager = GetComponent<ParentUnitManager>();
             _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
-
+            // Initialize();
         }
+        // public void Initialize()
+        // {
+
+        // }
         public float GenerateScore()
         {
             if ((_parentUnitHatchEffects != null) && (_parentUnitHatchEffects.HatchEffects.Count > 0))

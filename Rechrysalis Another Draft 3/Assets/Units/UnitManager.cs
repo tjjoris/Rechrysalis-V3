@@ -35,6 +35,9 @@ namespace Rechrysalis.Unit
         private Health _health;
         private Mover _mover;
         private Attack _attack;
+        private Range _range;
+        private UnitManagerRemoveHatchEffect _unitManagerRemoveHatchEffect;
+        private UnitManagerAddHatchEffect _unitManagerAddHatchEffect;
         private ControllerUnitAttackClosest _controllerUnitAttackClosest;
         private ChrysalisTimer _chrysalisTimer;
         public ChrysalisTimer ChryslaisTimer => _chrysalisTimer;
@@ -73,6 +76,15 @@ namespace Rechrysalis.Unit
         private void Awake()
         {
             _hatch = GetComponent<Hatch>();
+            _mover = GetComponent<Mover>();
+            _attack = GetComponent<Attack>();
+            _chrysalisTimer = GetComponent<ChrysalisTimer>();
+            _rechrysalize = GetComponent<Rechrysalize>();
+            _projectilesPool = GetComponent<ProjectilesPool>();
+            _targetPrioratizeByScore = GetComponent<TargetPrioratizeByScore>();
+            _range = GetComponent<Range>();
+            _unitManagerRemoveHatchEffect = GetComponent<UnitManagerRemoveHatchEffect>();
+            _unitManagerAddHatchEffect = GetComponent<UnitManagerAddHatchEffect>();
         }
         public void Initialize(ControllerManager controllerManager, int controllerIndex, UnitClass unitClass, int freeUnitIndex, int subUnitIndex, CompsAndUnitsSO compsAndUnits, bool isChrysalis)
         {
@@ -93,10 +105,8 @@ namespace Rechrysalis.Unit
             }
             _unitClass = unitClass;
             // GetComponent<ProjectilesPool>()?.CreatePool(_unitClass)
-            _mover = GetComponent<Mover>();
-            _attack = GetComponent<Attack>();
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
-            _controllerUnitAttackClosest?.Initialzie();
+            // _controllerUnitAttackClosest?.Initialzie();
             if (_parentUnitManager != null) _parentUnitManager.IsStopped = true;
             _attack?.Initialize(_unitClass, _parentUnitManager);
             _health?.Initialize(_unitClass.HPMax);
@@ -107,9 +117,6 @@ namespace Rechrysalis.Unit
             GetComponent<InRangeByPriority>()?.Initialize(_compsAndUnits.TargetsLists[_controllerIndex]);
             GetComponent<ClosestTarget>()?.Initialize(_compsAndUnits.PlayerUnits[GetOppositeController.ReturnOppositeController(_controllerIndex)]);
             GetComponent<Range>()?.Initialize(unitClass);
-            _chrysalisTimer = GetComponent<ChrysalisTimer>();
-            _rechrysalize = GetComponent<Rechrysalize>();
-            _projectilesPool = GetComponent<ProjectilesPool>();
             _projectilesPool?.CreatePool(unitClass.AmountToPool, unitClass.ProjectileSpeed, unitClass.ProjectileSprite);
             _currentHatchEffects = new List<GameObject>();
             _freeHatchScript = GetComponent<FreeUnitHatchEffect>();
@@ -124,7 +131,6 @@ namespace Rechrysalis.Unit
             //     }
             // }
             _manaCost = unitClass.ManaCost;
-            _targetPrioratizeByScore = GetComponent<TargetPrioratizeByScore>();
             _targetPrioratizeByScore?.Initialize(_enemyControllerManager.GetComponent<TargetScoreRanking>(), compsAndUnits.TargetsLists[_controllerIndex]);
             if (!isChrysalis)
             {
@@ -195,7 +201,7 @@ namespace Rechrysalis.Unit
             _mover = GetComponent<Mover>();
             _attack = GetComponent<Attack>();
             _controllerUnitAttackClosest = GetComponent<ControllerUnitAttackClosest>();
-            _controllerUnitAttackClosest?.Initialzie();
+            // _controllerUnitAttackClosest?.Initialzie();
             if (_parentUnitManager != null)  _parentUnitManager.IsStopped = true;
             _health = GetComponent<Health>();
             _health?.Initialize(_unitStats.HealthMaxBasic);
@@ -291,29 +297,13 @@ namespace Rechrysalis.Unit
         }
         public void RemoveHatchEffect(GameObject _hatchEffect)
         {
-            if (_currentHatchEffects.Contains(_hatchEffect))
-            {
-                _currentHatchEffects.Remove(_hatchEffect);
-            }
-            // ReCalculateStatChanges();
-            if (_hatchEffect.GetComponent<HEIncreaseDamage>() != null)
-            {
-                ReCalculateDamageChanges();
-            }
+            _unitManagerRemoveHatchEffect?.RemoveHatchEffect(_hatchEffect);
         }
         public void AddHatchEffect(GameObject _hatchEffect)
         {
-            if (!_currentHatchEffects.Contains(_hatchEffect))
-            {
-                _currentHatchEffects.Add(_hatchEffect);
-            }
-            // ReCalculateStatChanges();
-            if (_hatchEffect.GetComponent<HEIncreaseDamage>() != null)
-            {
-                ReCalculateDamageChanges();                
-            }
+            _unitManagerAddHatchEffect?.AddHatchEffect(_hatchEffect);
         }
-        private void ReCalculateDamageChanges()
+        public void ReCalculateDamageChanges()
         {
             List<HEIncreaseDamage> hEIncreaseDamageList = new List<HEIncreaseDamage>();
             foreach (GameObject hatchEffect in _currentHatchEffects)
@@ -324,39 +314,6 @@ namespace Rechrysalis.Unit
                 }
             }
             _attack?.ReCalculateDamageWithHE(hEIncreaseDamageList);
-        }
-        // private void ReCalculateDefenceChanges()
-        // {
-        //     List<HEIncreaseDefence> hEIncreaseDefenceList = new List<HEIncreaseDefence>();
-        //     foreach (GameObject hatchEffect  in _hatchEffects)
-        //     {
-        //         if (hatchEffect.GetComponent<HEIncreaseDefence>() != null)
-        //         {
-        //             hEIncreaseDefenceList.Add(hatchEffect.GetComponent<HEIncreaseDefence>());
-        //         }
-        //     }
-        // }
-        private void ReCalculateStatChanges()
-        {
-            // _newDPS = _baseDPS;
-            // _newChargeUp = _baseChargeUp;
-            // _newWindDown = _baseWindDown;
-            // _newIncomingDamageMult = _baseIncomindDamageMult;
-            // if ((_hatchEffects!= null) && (_hatchEffects.Count > 0))
-            // {
-            //     for (int _hatchIndex = 0; _hatchIndex < _hatchEffects.Count; _hatchIndex++)
-            //     {
-            //         HatchEffectManager _hatchEffectManager = _hatchEffects[_hatchIndex].GetComponent<HatchEffectManager>();
-            //         _newDPS += _hatchEffectManager.DPSIncrease;
-            //         _newIncomingDamageMult *= _hatchEffectManager.IncomingDamageMult;
-            //     }
-            // }
-            // if (_newDPS == 0) 
-            // {
-            //     _attack?.SetDamage(0);
-            //     return;
-            // }
-            // _attack?.SetDamage(_newDPS / (_newChargeUp + _newWindDown));
         }
 
         public float GetIncomingDamageMultiplier()

@@ -22,16 +22,20 @@ namespace Rechrysalis.Movement
         private Mover _mover;
         private TargetPrioratizeByScore _targetPrioratizeByScore;
 
+        private void Awake()
+        {
+
+            _parentUnitManager = GetComponent<ParentUnitManager>();
+            _mover = GetComponent<Mover>();
+        }
         public void Initialize(PlayerUnitsSO _ownUnits, Mover enemyControllerMover)
         {
-            _parentUnitManager = GetComponent<ParentUnitManager>();
             // this._range = _range;
             _enemyControllerMover = enemyControllerMover;
             this._ownUnits = _ownUnits;
             // this._range = _range;
             // this._closestTarget = this._range.GetComponent<ClosestTarget>();
             // _targetHolder = this._range.GetComponent<TargetHolder>();
-            _mover = GetComponent<Mover>();
         }
 
         public void Tick(bool _isRetreating, bool _aiCanMove)
