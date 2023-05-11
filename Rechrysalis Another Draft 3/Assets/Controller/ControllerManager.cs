@@ -505,7 +505,7 @@ namespace Rechrysalis.Controller
         public void RemoveHatchEffect(GameObject _hatchEffect, int _parentIndex, int _unitIndex, bool _effectAll)
         {
             _mover.FromHEDecreaseSpeed(_hatchEffect);
-            Debug.Log($"remove hatch effects");
+            if (_debugBool) Debug.Log($"remove hatch effects");
             for (int _parentLoopIndex = 0; _parentLoopIndex < _parentUnits.Length; _parentLoopIndex++)
             {
                 if (_parentUnits[_parentLoopIndex] != null)

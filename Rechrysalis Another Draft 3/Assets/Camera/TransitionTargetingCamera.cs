@@ -8,7 +8,7 @@ namespace Rechrysalis.CameraControl
     
     public class TransitionTargetingCamera : MonoBehaviour
     {
-        private bool _debugBool = true;
+        private bool _debugBool = false;
         [SerializeField] private CameraFollowGOManager _cameraFollowGOManager;
         [SerializeField] private Transform _cameraFollowerParentTransform;
         [SerializeField] private Transform _controllerCameraTransform;
@@ -22,7 +22,7 @@ namespace Rechrysalis.CameraControl
         {
             if (_debugBool)
             {
-                Debug.Log($"transition to targeting");
+                if (_debugBool) Debug.Log($"transition to targeting");
             }
             _pauseScript.SetTargetingPause(true);
             float xSum = 0;
@@ -50,7 +50,7 @@ namespace Rechrysalis.CameraControl
         {
             if (_debugBool)
             {
-                Debug.Log($"transtion to controller");                
+                if(_debugBool) Debug.Log($"transtion to controller");                
             }
             _pauseScript.SetTargetingPause(false);
             transform.position = _controllerCameraTransform.position;

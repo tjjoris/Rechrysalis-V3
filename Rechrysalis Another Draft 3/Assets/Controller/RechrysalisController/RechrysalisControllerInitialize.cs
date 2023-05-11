@@ -10,7 +10,7 @@ namespace Rechrysalis.Controller
 {
     public class RechrysalisControllerInitialize : MonoBehaviour
     {
-        private bool _debugBool = true;
+        private bool _debugBool = false;
         private ControllerManager _controllerManager;
         private HilightRingManager _hilightRingManager;
         private HilightRingParentCreator _hilightRingParentCreator;
@@ -66,7 +66,7 @@ namespace Rechrysalis.Controller
                     
                     if (_debugBool)
                     {
-                        Debug.Log($"parent exists " + parentUnitIndex);
+                        if (_debugBool) Debug.Log($"parent exists " + parentUnitIndex);
                     }
                     Vector2 unitOffset = AnglesMath.GetOffsetPosForParentInRing(parentUnitIndex, unitComp.ParentUnitCount, _unitRingAngle, _ringDistFromCentre);
                     Vector3 goPosition = unitOffset;

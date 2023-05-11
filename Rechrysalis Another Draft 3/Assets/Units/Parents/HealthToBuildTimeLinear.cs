@@ -7,7 +7,7 @@ namespace Rechrysalis.Unit
 {
     public class HealthToBuildTimeLinear : MonoBehaviour
     {
-        private bool _debugBool = true;
+        private bool _debugBool = false;
         private ParentHealth _parentHealth;
         private float _buildTimeMultMax = 0.5f;
         private float _buildTimeMult;
@@ -27,7 +27,7 @@ namespace Rechrysalis.Unit
             }
             mult *= _buildTimeMultMax;
             mult =  1 - mult;
-            Debug.Log($"return {mult}");
+            if (_debugBool) Debug.Log($"return {mult}");
             _buildTimeMult = mult;
             if (_debugBool) Debug.Log($"set build time mult " + _buildTimeMult);
             return;

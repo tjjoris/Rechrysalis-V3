@@ -244,7 +244,7 @@ namespace Rechrysalis.Controller
             // }
             if ((_transitionTargetingCamera.InTargetMode) && (_touchTypeArray[_touchID] == TouchTypeEnum.map))
             {
-                Debug.Log($"touch pos " + _touchPosDown[_touchID] + " mouse pos " + _mousePos);
+                if (_debugBool) Debug.Log($"touch pos " + _touchPosDown[_touchID] + " mouse pos " + _mousePos);
                 // Vector2 newPos = (_touchPosDownRaw[_touchID] / 5.4f) - (mousePosRaw / 5.4f);
                 Vector2 newPos = _touchPosLast[_touchID] - _mousePos;
                 _touchPosLast[_touchID] = _mousePos + newPos;

@@ -14,6 +14,7 @@ namespace Rechrysalis
 {
     public class MainManager : MonoBehaviour
     {
+        private bool _debugBool = false;
         private PauseScript _pauseScript;
         [SerializeField] private CompsAndUnitsSO _compsAndUnitsSO;  
         public CompsAndUnitsSO CompsAndUnitsSO => _compsAndUnitsSO;    
@@ -39,7 +40,6 @@ namespace Rechrysalis
 
         }
         private void Start() {
-            Debug.Log($"main start");
             // _compsAndUnitsSO.CompsSO = _compSO;
             _levelSceneManagement?.Initialize(_compsAndUnitsSO);
             _compSO = _compsAndUnitsSO.CompsSO;
@@ -47,7 +47,7 @@ namespace Rechrysalis
             GameMaster.GetSingleton().ReferenceManager.CompsAndUnitsSO = _compsAndUnitsSO;
             _projectilesHolder.Initialize();
             _levelDisplay?.SetLevelText(_compsAndUnitsSO.Level);
-            Debug.Log($"main start initializing controllers");
+            if (_debugBool) Debug.Log($"main start initializing controllers");
             if ((_controllerManager != null) && (_controllerManager.Length > 0))
             {
                 for (int i=0; i<_controllerManager.Length; i++)
@@ -124,7 +124,7 @@ namespace Rechrysalis
                 {
                     if (controllerManager.CheckRayCast != null)
                     {
-                        Debug.Log($"set target during target mode" + PlayerPrefsInteract.GetTargetOnlyDuringTargetMode());
+                        if (_debugBool) Debug.Log($"set target during target mode" + PlayerPrefsInteract.GetTargetOnlyDuringTargetMode());
                     }
                 }
             }

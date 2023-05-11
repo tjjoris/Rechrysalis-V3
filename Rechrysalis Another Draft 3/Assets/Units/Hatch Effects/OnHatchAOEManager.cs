@@ -8,6 +8,7 @@ namespace Rechrysalis.HatchEffect
 {
     public class OnHatchAOEManager : MonoBehaviour
     {
+        private bool _debugBool = false;
         [SerializeField] private HatchEffectManager _hatchEffectManager;
         [SerializeField] private ControllerManager _controllerManager;
         [SerializeField] private float _damage;
@@ -40,7 +41,7 @@ namespace Rechrysalis.HatchEffect
                 if (parentHealth == null) return;
                 parentHealth.TakeDamage(_damage);
 
-                Debug.Log($"take aoe damage");
+                if (_debugBool) Debug.Log($"take aoe damage");
             }
         }
         private List<ParentHealth> CopyParentHealthList()
@@ -55,7 +56,7 @@ namespace Rechrysalis.HatchEffect
         }
         void OnTriggerEnter2D(Collider2D col)
         {
-            Debug.Log($"collisoin enter " + col.gameObject.name);
+            if (_debugBool) Debug.Log($"collisoin enter " + col.gameObject.name);
             if (col == null) return;
             ParentHealth parentHealth = col.gameObject.GetComponent<ParentHealth>();
             if (parentHealth == null) return;
@@ -74,7 +75,7 @@ namespace Rechrysalis.HatchEffect
         {
             if (_parentHealthList.Contains(parentHealth)) return;
             _parentHealthList.Add(parentHealth);
-            Debug.Log($"add unit to list of colliders " + parentHealth.gameObject.name);
+            if (_debugBool) Debug.Log($"add unit to list of colliders " + parentHealth.gameObject.name);
         }
         private void RemoveUnitFromListOfColliders(ParentHealth parentHealth)
         {
