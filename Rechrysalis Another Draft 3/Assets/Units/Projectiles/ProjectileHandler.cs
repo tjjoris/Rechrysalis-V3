@@ -27,6 +27,11 @@ namespace Rechrysalis.Attacking
     public void TurnOnProjectile (GameObject _targetUnit)
     {
         this._targetUnit = _targetUnit;
+        RotateProjectile();
+    }
+    private void RotateProjectile()
+    {
+        transform.right = _targetUnit.transform.position - transform.position;
     }
     public void Tick (float _timeAmount)
     {
