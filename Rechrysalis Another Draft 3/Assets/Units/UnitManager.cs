@@ -337,39 +337,6 @@ namespace Rechrysalis.Unit
             }
             _attack?.ReCalculateDamageWithHE(hEIncreaseDamageList);
         }
-        // private void ReCalculateDefenceChanges()
-        // {
-        //     List<HEIncreaseDefence> hEIncreaseDefenceList = new List<HEIncreaseDefence>();
-        //     foreach (GameObject hatchEffect  in _hatchEffects)
-        //     {
-        //         if (hatchEffect.GetComponent<HEIncreaseDefence>() != null)
-        //         {
-        //             hEIncreaseDefenceList.Add(hatchEffect.GetComponent<HEIncreaseDefence>());
-        //         }
-        //     }
-        // }
-        private void ReCalculateStatChanges()
-        {
-            // _newDPS = _baseDPS;
-            // _newChargeUp = _baseChargeUp;
-            // _newWindDown = _baseWindDown;
-            // _newIncomingDamageMult = _baseIncomindDamageMult;
-            // if ((_hatchEffects!= null) && (_hatchEffects.Count > 0))
-            // {
-            //     for (int _hatchIndex = 0; _hatchIndex < _hatchEffects.Count; _hatchIndex++)
-            //     {
-            //         HatchEffectManager _hatchEffectManager = _hatchEffects[_hatchIndex].GetComponent<HatchEffectManager>();
-            //         _newDPS += _hatchEffectManager.DPSIncrease;
-            //         _newIncomingDamageMult *= _hatchEffectManager.IncomingDamageMult;
-            //     }
-            // }
-            // if (_newDPS == 0) 
-            // {
-            //     _attack?.SetDamage(0);
-            //     return;
-            // }
-            // _attack?.SetDamage(_newDPS / (_newChargeUp + _newWindDown));
-        }
 
         public float GetIncomingDamageMultiplier()
         {
