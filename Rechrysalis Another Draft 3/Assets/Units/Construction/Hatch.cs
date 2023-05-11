@@ -8,7 +8,7 @@ namespace Rechrysalis.Unit
 {
     public class Hatch : MonoBehaviour
     {
-        private bool _debugBool = true;
+        private bool _debugBool = false;
         private ControllerManager _controllerManager;
         private ParentUnitManager _parentUnitManager;
         private UnitManager _unitManager;
@@ -26,7 +26,7 @@ namespace Rechrysalis.Unit
         public void ActivateHatch()
         {
             Rechrysalis.UI.DebugTextStatic.DebugText.DisplayText("in unit hatch script, activate hatch");
-            Debug.Log($"activate hatch in  hatch");
+            if (_debugBool) Debug.Log($"activate hatch in  hatch");
             _unitManager.MoveSpeedAddManager?.Activate();
             _unitManager.BurstHealManager?.Activate();
             _unitManager.HatchAdjustBuildTimerMaxBase?.Activate();

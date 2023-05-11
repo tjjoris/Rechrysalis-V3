@@ -13,6 +13,7 @@ namespace Rechrysalis.HatchEffect
         [SerializeField] private float _damage;
         [SerializeField] private float _tickRate;
         [SerializeField] private float _tickCurrent;
+        [SerializeField] private List<ParentHealth> _parentHealthList;
 
         
         private void Awake()
@@ -34,7 +35,51 @@ namespace Rechrysalis.HatchEffect
         }
         private void DealDamage()
         {
-            Debug.Log($"HE aoe damage");
+            foreach (ParentHealth parentHealth in CopyParentHealthList())
+            {
+                if (parentHealth == null) return;
+                parentHealth.TakeDamage(_damage);
+
+                Debug.Log($"take aoe damage");
+            }
+        }
+        private List<ParentHealth> CopyParentHealthList()
+        {
+            List<ParentHealth> listCopy = new List<ParentHealth>();
+            foreach (ParentHealth parentHealth in _parentHealthList)
+            {
+                if (parentHealth == null) continue;
+                listCopy.Add(parentHealth);
+            }
+            return listCopy;
+        }
+        void OnTriggerEnter2D(Collider2D col)
+        {
+            Debug.Log($"collisoin enter " + col.gameObject.name);
+            if (col == null) return;
+            ParentHealth parentHealth = col.gameObject.GetComponent<ParentHealth>();
+            if (parentHealth == null) return;
+            if (parentHealth.ControllerManager.ControllerIndex != _controllerManager.ControllerIndex)
+            AddUnitToListOfColliders(parentHealth);
+        }
+        void OnTriggerExit2D(Collider2D col) 
+        {
+            if (col == null) return;
+            ParentHealth parentHealth = col.gameObject.GetComponent<ParentHealth>();
+            if (parentHealth == null) return;
+            RemoveUnitFromListOfColliders(parentHealth);
+        }
+    
+        private void AddUnitToListOfColliders(ParentHealth parentHealth)
+        {
+            if (_parentHealthList.Contains(parentHealth)) return;
+            _parentHealthList.Add(parentHealth);
+            Debug.Log($"add unit to list of colliders " + parentHealth.gameObject.name);
+        }
+        private void RemoveUnitFromListOfColliders(ParentHealth parentHealth)
+        {
+            if (!_parentHealthList.Contains(parentHealth)) return;
+            _parentHealthList.Remove(parentHealth);
         }
     }
 }

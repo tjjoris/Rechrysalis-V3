@@ -7,7 +7,7 @@ namespace Rechrysalis.HatchEffect
 {
     public class ParentHatchEffectAddRemove : MonoBehaviour
     {
-        private bool _debugBool = true;
+        private bool _debugBool = false;
         private ParentUnitManager _parentUnitManager;
         private ParentHealth _parentHealth;
 

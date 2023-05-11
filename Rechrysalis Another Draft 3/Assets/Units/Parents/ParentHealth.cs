@@ -13,7 +13,9 @@ namespace Rechrysalis.Unit
     {
         bool _debugBool = false;
         private ParentUnitManager _parentUnitManager;
+        public ParentUnitManager ParentUnitManager => _parentUnitManager;
         private ControllerManager _controllerManager;
+        public ControllerManager ControllerManager => _controllerManager;
         private FreeEnemyInitialize _freeEnemyInitialize;
         [SerializeField] private float _maxHealth;
         [SerializeField] private float _currentHealth;

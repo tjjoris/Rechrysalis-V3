@@ -14,7 +14,7 @@ namespace Rechrysalis.Controller
 {
     public class ControllerManager : MonoBehaviour
     {
-        private bool _debugBool = true;
+        private bool _debugBool = false;
 
         [SerializeField] private ManaDisplay _manaDisplay;
         [SerializeField] private MainManager _mainManager;
@@ -471,7 +471,7 @@ namespace Rechrysalis.Controller
                 _mover.FromHEAddSpeed(_hatchEffect);
                 if (_debugBool)
                 {
-                    Debug.Log($" add hatch effect " + _hatchEffect.name + " for parents" + _parentIndex + "unit " + _unitIndex);
+                    if (_debugBool) Debug.Log($" add hatch effect " + _hatchEffect.name + " for parents" + _parentIndex + "unit " + _unitIndex);
                 }
                 for (int _parentLoopIndex = 0; _parentLoopIndex < _parentUnits.Length; _parentLoopIndex++)
                 {
