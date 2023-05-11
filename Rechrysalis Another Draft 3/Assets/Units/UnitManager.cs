@@ -37,6 +37,7 @@ namespace Rechrysalis.Unit
         private Attack _attack;
         private Range _range;
         private UnitManagerRemoveHatchEffect _unitManagerRemoveHatchEffect;
+        private UnitManagerAddHatchEffect _unitManagerAddHatchEffect;
         private ControllerUnitAttackClosest _controllerUnitAttackClosest;
         private ChrysalisTimer _chrysalisTimer;
         public ChrysalisTimer ChryslaisTimer => _chrysalisTimer;
@@ -83,6 +84,7 @@ namespace Rechrysalis.Unit
             _targetPrioratizeByScore = GetComponent<TargetPrioratizeByScore>();
             _range = GetComponent<Range>();
             _unitManagerRemoveHatchEffect = GetComponent<UnitManagerRemoveHatchEffect>();
+            _unitManagerAddHatchEffect = GetComponent<UnitManagerAddHatchEffect>();
         }
         public void Initialize(ControllerManager controllerManager, int controllerIndex, UnitClass unitClass, int freeUnitIndex, int subUnitIndex, CompsAndUnitsSO compsAndUnits, bool isChrysalis)
         {
@@ -313,20 +315,21 @@ namespace Rechrysalis.Unit
         }
         public void AddHatchEffect(GameObject _hatchEffect)
         {
-            if (!_currentHatchEffects.Contains(_hatchEffect))
-            {
-                _currentHatchEffects.Add(_hatchEffect);
-            }
-            // ReCalculateStatChanges();
-            if (_hatchEffect.GetComponent<HEIncreaseDamage>() != null)
-            {
-                ReCalculateDamageChanges();                
-            }
-            HEIncreaseRange heIncreaseRange = _hatchEffect.GetComponent<HEIncreaseRange>();
-            if (heIncreaseRange != null)
-            {
-                _range?.AddRangeHE(heIncreaseRange);
-            }
+            _unitManagerAddHatchEffect?.AddHatchEffect(_hatchEffect);
+            // if (!_currentHatchEffects.Contains(_hatchEffect))
+            // {
+            //     _currentHatchEffects.Add(_hatchEffect);
+            // }
+            // // ReCalculateStatChanges();
+            // if (_hatchEffect.GetComponent<HEIncreaseDamage>() != null)
+            // {
+            //     ReCalculateDamageChanges();                
+            // }
+            // HEIncreaseRange heIncreaseRange = _hatchEffect.GetComponent<HEIncreaseRange>();
+            // if (heIncreaseRange != null)
+            // {
+            //     _range?.AddRangeHE(heIncreaseRange);
+            // }
         }
         public void ReCalculateDamageChanges()
         {
