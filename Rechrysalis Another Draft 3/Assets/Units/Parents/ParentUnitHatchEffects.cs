@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rechrysalis.HatchEffect;
 using System;
+using Rechrysalis.Controller;
 
 namespace Rechrysalis.Unit
 {
     public class ParentUnitHatchEffects : MonoBehaviour
     {
         private bool _debugBool = true;
+        private ControllerManager _controllerManager;
         private ParentUnitManager _parentUnitManager;
         [SerializeField] private List<GameObject> _hatchEffects;
         public List<GameObject> HatchEffects => _hatchEffects;
@@ -23,8 +25,9 @@ namespace Rechrysalis.Unit
 
             _parentUnitManager = GetComponent<ParentUnitManager>();
         }
-        public void Initialize (GameObject[] _subUnits, GameObject[] _subchrysalii)
+        public void Initialize (GameObject[] _subUnits, GameObject[] _subchrysalii, ControllerManager controllerManager)
         {
+            _controllerManager = controllerManager;
             _parentIndex = _parentUnitManager.ParentIndex;
             this._subUnits = _subUnits;
             this._subChrysalii =_subchrysalii;
@@ -43,7 +46,7 @@ namespace Rechrysalis.Unit
             }
             GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
             HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
-            _hatchEffectManager?.Initialize(null, _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass, _parentUnitManager.ChildUnitManagers[_unitIndex]);
+            _hatchEffectManager?.Initialize(null, _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass, _parentUnitManager.ChildUnitManagers[_unitIndex], _controllerManager);
             _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
         }
         public void AddHatchEffect(GameObject _hatchEffect)

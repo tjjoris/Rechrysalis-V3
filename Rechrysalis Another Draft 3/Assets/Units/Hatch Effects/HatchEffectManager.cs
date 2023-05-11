@@ -5,6 +5,7 @@ using TMPro;
 using System;
 using Rechrysalis.Unit;
 using Rechrysalis.AdvancedUpgrade;
+using Rechrysalis.Controller;
 
 namespace Rechrysalis.HatchEffect
 {
@@ -15,6 +16,8 @@ namespace Rechrysalis.HatchEffect
         private int _unitIndex;
         [SerializeField] private UnitManager _unitManager;
         public UnitManager UnitManager => _unitManager;
+        [SerializeField] private ControllerManager _controllerManager;
+        public ControllerManager ControllerManager => _controllerManager;
         [SerializeField] private HatchEffectSO _hatchEffectSO;
         [SerializeField] private UpgradeTypeClass _upgradeTypeClass;
         public UpgradeTypeClass UpgradeTypeClass => _upgradeTypeClass;
@@ -42,6 +45,8 @@ namespace Rechrysalis.HatchEffect
         public HEIncreaseDamage HEIncreaseDamage => _hEIncreaseDamage;
         [SerializeField] private HEIncreaseDefence _hEIncreaseDefence;
         public HEIncreaseDefence HEIncreaseDefence => _hEIncreaseDefence;
+        [SerializeField] private OnHatchAOEManager _onHatchAOEManager;
+        public OnHatchAOEManager OnHatchAOEManager => _onHatchAOEManager;
         [SerializeField] private UnitClass _unitClass;
         public Action<GameObject, int, int, bool> _hatchEffectDies;
         [SerializeField] private float _burstHealAmount;
@@ -66,10 +71,12 @@ namespace Rechrysalis.HatchEffect
             _hEHealth = GetComponent<HatchEffectHealth>();
             _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
             _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
+            _onHatchAOEManager = GetComponent<OnHatchAOEManager>();
         }
-        public void Initialize(HatchEffectSO hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass, UnitManager unitManager)
+        public void Initialize(HatchEffectSO hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass, UnitManager unitManager, ControllerManager controllerManager)
         {
             SetUpAwake();
+            _controllerManager = controllerManager;
             _unitClass = advUnitClass;
             if (_debugBool)
             {
@@ -95,7 +102,7 @@ namespace Rechrysalis.HatchEffect
             _hEIncreaseDamage?.Initialize(_hatchMult);
             // _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
             _hEIncreaseDefence?.Initialize(_hatchMult);
-
+            _onHatchAOEManager?.Initialize(_controllerManager);
         }
         // public void SetUpUnit(UnitManager unit)
         // {
@@ -113,6 +120,7 @@ namespace Rechrysalis.HatchEffect
         public void Tick(float _timeAmount)
         {
             TakeDamage(_timeAmount * _hpDrainPerTick);
+            _onHatchAOEManager?.Tick(_timeAmount);
         } 
         public void TakeDamage(float _damageAmount)
         {

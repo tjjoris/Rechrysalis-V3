@@ -100,7 +100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +SPD
+  m_text: AOE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -184,9 +184,9 @@ GameObject:
   - component: {fileID: 5162682908650232571}
   - component: {fileID: 1894819527670956384}
   - component: {fileID: 4948415442075945803}
-  - component: {fileID: -3878856401724483541}
+  - component: {fileID: -6412730221419934628}
   m_Layer: 0
-  m_Name: HatchEffectSpeed
+  m_Name: HatchEffectAoE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
     _controllerHeartUpgrade: {fileID: 0}
     _hatchEffectManager: {fileID: 5162682908650232571}
     _hatchEffectPrefab: {fileID: 4387173649336406545}
-    _buttonName: HE SPEED
+    _buttonName: HE AOE
   _HEHealthMax: 4
   _hatchMult: 0
   _hatchDurationMult: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
   _hpDrainPerTick: 1
   _hEIncreaseDamage: {fileID: 0}
   _hEIncreaseDefence: {fileID: 0}
-  _onHatchAOEManager: {fileID: 0}
+  _onHatchAOEManager: {fileID: -6412730221419934628}
   _unitClass:
     _manaCost: 0
     _unitName: 
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _HPMax: 70
---- !u!114 &-3878856401724483541
+--- !u!114 &-6412730221419934628
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -305,9 +305,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4387173649336406545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f5bfb9bb2a954465b8724e43bdf2c32, type: 3}
+  m_Script: {fileID: 11500000, guid: 0becca6d57de14ad4abda88389f97350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedToAdd: 1
   _hatchEffectManager: {fileID: 0}
-  _unitManager: {fileID: 0}
+  _controllerManager: {fileID: 0}
+  _damage: 5
+  _tickRate: 1
+  _tickCurrent: 0

@@ -112,7 +112,7 @@ namespace Rechrysalis.Controller
                         }
                     }
                     ParentUnitHatchEffects _pUHE = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
-                    _pUHE?.Initialize(pum.SubUnits, pum.SubChrysalii);
+                    _pUHE?.Initialize(pum.SubUnits, pum.SubChrysalii, _controllerManager);
                     pum.AddChrysalisAndUnitActions();   
                 }              
             }
