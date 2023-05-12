@@ -25,6 +25,10 @@ namespace Rechrysalis.Unit
         public float Range {get => _range; set => _range = value;}
         [SerializeField] private float _dps;
         public float DPS {get => _dps; set => _dps = value; }
+        [SerializeField] private float _percentDPSToUnitMult;
+        public float PercentDPSToUnitMult { get => _percentDPSToUnitMult; set => _percentDPSToUnitMult = value; }
+        [SerializeField] private float _percentDPSToChrysalisMult;
+        public float PercentDPSToChrysalisMult { get => _percentDPSToChrysalisMult; set => _percentDPSToChrysalisMult = value; }
         [SerializeField] private float _attackChargeUp;
         public float AttackChargeUp {get => _attackChargeUp; set  =>_attackChargeUp = value; }
         [SerializeField] private float _attackWindDown;

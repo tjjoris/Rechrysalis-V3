@@ -144,7 +144,8 @@ namespace Rechrysalis.Unit
                 _basicUnitClass.AttackChargeUp = baseMultiplierSO.AttackChargeUp * typeMultipler.AttackChargeUp * tierMultiplier.AttackChargeUp;
                 _basicUnitClass.AttackWindDown = baseMultiplierSO.AttackWindDown * typeMultipler.AttackWindDown * tierMultiplier.AttackWindDown;
                 _basicUnitClass.ControllerLifeCostMult = baseMultiplierSO.ControllerLifeCostMult * typeMultipler.ControllerLifeCostMult * tierMultiplier.ControllerLifeCostMult * _compsAndUnitsSO.FreeUnitToControllerLifeLostMult;
-
+                _basicUnitClass.PercentDPSToUnitMult = baseMultiplierSO.PercentDPSToUnitMult * typeMultipler.PercentDPSToUnitMult * tierMultiplier.PercentDPSToUnitMult;
+                _basicUnitClass.PercentDPSToChrysalisMult = baseMultiplierSO.PercentDPSToChrysalisMult * typeMultipler.PercentDPSToChrysalisMult * tierMultiplier.PercentDPSToChrysalisMult;
                 _basicUnitClass.UnitSprite = _utcBasicUnit.GetUnitStatsSO().UnitSprite;
                 _basicUnitClass.AmountToPool = _utcBasicUnit.GetUnitStatsSO().AmountToPool;
                 _basicUnitClass.ProjectileSpeed = baseMultiplierSO.ProjectileSpeed * typeMultipler.ProjectileSpeed;
@@ -180,6 +181,8 @@ namespace Rechrysalis.Unit
                 _advUnitClass.AttackChargeUp += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.AttackChargeUpAdd;
                 _advUnitClass.AttackWindDown = _basicUnitClass.AttackWindDown * _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.AttackWindDownMult;
                 _advUnitClass.AttackWindDown += _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.AttackWindDownAdd;
+                _advUnitClass.PercentDPSToUnitMult = _basicUnitClass.PercentDPSToUnitMult;
+                _advUnitClass.PercentDPSToChrysalisMult = _basicUnitClass.PercentDPSToChrysalisMult;
                 _advUnitClass.HatchEffectMult = _utcBasicUnit.GetUnitStatsSO().AdvUnitModifierSO.HatchEffectMultiplierAdd;
                 _advUnitClass.ControllerLifeCostMult = _basicUnitClass.ControllerLifeCostMult + advancedModifier.ControllerLifeCostMult;
                 _advUnitClass.UnitSprite = _utcBasicUnit.GetUnitStatsSO().UnitSprite;
