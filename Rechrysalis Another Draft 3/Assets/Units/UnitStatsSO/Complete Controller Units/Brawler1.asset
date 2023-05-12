@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Brawler1
   m_EditorClassIdentifier: 
   _upgradeTypeClass:
-    _upgradeType: 2
+    _upgradeType: 1
     _unitStatsSO: {fileID: 11400000}
     _hatchEffectSO: {fileID: 0}
     _advUnitModifierSO: {fileID: 0}
@@ -31,7 +31,7 @@ MonoBehaviour:
   _manaBase: 1
   _origionalBaseHealthMaxBasic: 1
   _healthMaxBase: 1
-  _healthMaxBasic: 143
+  _healthMaxBasic: 130
   _heathMaxAdvMult: 0
   _buildTimeBasic: 6
   _buildTimeBasicBase: 1
@@ -43,9 +43,9 @@ MonoBehaviour:
   _attackWindDownBasic: 1.19
   _attackWindDownAdvMult: 0
   _origionalBaseDPSBasic: 1
-  _baseDPSBasic: 14.3
+  _baseDPSBasic: 13
   _baseDPSAdvMult: 0
-  _baseDamageBasic: 25.025
+  _baseDamageBasic: 22.75
   _baseDamageAdvMult: 0
   _baseRangeBasic: 3
   _baseRangeAdvMult: 0
@@ -54,5 +54,5 @@ MonoBehaviour:
   _hatchEffectPrefab: {fileID: 0}
   _baseMultipler: {fileID: 11400000, guid: e09e798784a834a31ab1b26bfb160fda, type: 2}
   _typeMultipler: {fileID: 11400000, guid: 95843a30ae5df4e278fb90f53cc2e39e, type: 2}
-  _tierMultiplier: {fileID: 11400000, guid: 358c3f5584b7a4d7bb150431195c551f, type: 2}
+  _tierMultiplier: {fileID: 11400000, guid: 5a7eba2dca58d4b84bd3939ad2a43062, type: 2}
   _aiFocusFire: 0
