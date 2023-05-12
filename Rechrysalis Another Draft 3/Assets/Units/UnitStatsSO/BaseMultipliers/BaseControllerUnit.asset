@@ -15,11 +15,13 @@ MonoBehaviour:
   _healthMultiplier: 100
   _chrysalisHealthMultiplier: 1
   _dpsMultiplier: 10
+  _percentDPSToUnitMult: 1
+  _percentDPSToChrysalisMult: 1
   _range: 1
   _attackChargeUp: 0.8
   _attackWindDown: 1.7
   _manaMultiplier: 1
   _tier: 0
   _buildTimeMultiplier: 6
-  _projectileSpeed: 0.3
+  _projectileSpeed: 0.2
   _controllerLifeCostMult: 1

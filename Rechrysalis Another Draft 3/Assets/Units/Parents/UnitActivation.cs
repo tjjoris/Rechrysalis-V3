@@ -9,6 +9,8 @@ namespace Rechrysalis.Unit
 {
     public class UnitActivation : MonoBehaviour
     {
+        private ControllerManager _controllerManager;
+        private RecalculatePercentDPSTypesForController _recalculatePercentDPSTypesForController;
         private ParentUnitManager _parentUnitManager;
         private ParentHealth _parentHealth;
         private TargetScoreValue _targetScoreValue;
@@ -27,9 +29,11 @@ namespace Rechrysalis.Unit
             _parentUnitHatchEffects = GetComponent<ParentUnitHatchEffects>();
             _progressBarManager = GetComponent<ProgressBarManager>();
         }
-        public void Initialize(ParentUnitManager parentUnitManager)
+        public void Initialize(ParentUnitManager parentUnitManager, ControllerManager controllerManager)
         {
             _parentUnitManager = parentUnitManager;
+            _controllerManager = controllerManager;
+            _recalculatePercentDPSTypesForController = _controllerManager.GetComponent<RecalculatePercentDPSTypesForController>();
             // _freeChrysalisStoresHealth = GetComponent<FreeChrysalisStoresHealth>();
         }
         
@@ -80,6 +84,7 @@ namespace Rechrysalis.Unit
             _targetScoreValue.SetCurrentUnit(_parentUnitManager.CurrentSubUnit.GetComponent<Attack>());
             _hilightRingParentManager?.ActivateUnit(unitIndex);
             _parentUnitManager.CurrentSubUnit?.GetComponent<Attack>()?.ResetUnitAttack();
+            _recalculatePercentDPSTypesForController?.RecalculatePercents();
         }
         public void DeactivateUnit(int _unitIndex)
         {
@@ -94,6 +99,7 @@ namespace Rechrysalis.Unit
             {
                 _parentUnitManager.TheseUnits.ActiveUnits.Remove(_parentUnitManager.ChildUnitManagers[_unitIndex].gameObject);
             }
+            _recalculatePercentDPSTypesForController?.RecalculatePercents();
         }        
     }
 }

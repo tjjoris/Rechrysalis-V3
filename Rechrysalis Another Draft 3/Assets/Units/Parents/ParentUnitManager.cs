@@ -112,7 +112,7 @@ namespace Rechrysalis.Unit
             _enemyControllerManager = _controllerManager.EnemyController;
             _childUnitManagers = new List<UnitManager>();
             _childChrysaliiUnitManagers = new List<UnitManager>();
-            _unitActivation?.Initialize(this);
+            _unitActivation?.Initialize(this, _controllerManager);
             _chrysalisActivation?.Initialize(this);
             _upgradeUnit?.Initialize(this, _controllerManager.GetComponent<ManaGenerator>());
             this._parentIndex = _parentUnitIndex;
