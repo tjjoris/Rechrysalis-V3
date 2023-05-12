@@ -232,7 +232,7 @@ MonoBehaviour:
     _hatchEffectManager: {fileID: 5162682908650232571}
     _hatchEffectPrefab: {fileID: 4387173649336406545}
     _buttonName: HE DMG
-  _HEHealthMax: 4
+  _HEHealthMax: 6
   _hatchMult: 0
   _hatchDurationMult: 0
   _manaCostIncrease: 0
@@ -250,6 +250,8 @@ MonoBehaviour:
     _buildTime: 0
     _range: 0
     _dps: 0
+    _percentDPSToUnitMult: 0
+    _percentDPSToChrysalisMult: 0
     _attackChargeUp: 0
     _attackWindDown: 0
     _damage: 0
@@ -308,4 +310,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05b5da04c79044d29cd2972315b3ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageToAddBase: 14
+  _damageToAddBase: 10

@@ -15,8 +15,8 @@ MonoBehaviour:
   _healthMultiplier: 1.2
   _chrysalisHealthMultiplier: 1
   _dpsMultiplier: 1.2
-  _percentDPSToUnitMult: 0.1
-  _percentDPSToChrysalisMult: 0.3
+  _percentDPSToUnitMult: 0.02
+  _percentDPSToChrysalisMult: 0.06
   _range: 4.5
   _attackChargeUp: 0.7
   _attackWindDown: 1.1
