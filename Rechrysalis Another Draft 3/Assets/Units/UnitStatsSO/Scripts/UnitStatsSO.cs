@@ -108,7 +108,8 @@ namespace Rechrysalis.Unit
                 _upgradeTypeClass = new UpgradeTypeClass();
             }
             _upgradeTypeClass.SetUnitStatsSO(this);
-            if (_tierMultiplier.Tier == 0)
+            // if (_tierMultiplier.Tier == 0)
+            if (true)
             {
                 _upgradeTypeClass.SetUpgradeType(UpgradeTypeClass.UpgradeType.Basic);
             }
