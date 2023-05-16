@@ -12,6 +12,7 @@ namespace Rechrysalis.Unit
         private bool _debugBool = false;
         private ControllerManager _controllerManager;
         private ParentUnitManager _parentUnitManager;
+        private DisplayUnitHEIcon _displayUnitHEIcon;
         [SerializeField] private List<GameObject> _hatchEffects;
         public List<GameObject> HatchEffects => _hatchEffects;
         private GameObject[] _subUnits;
@@ -24,6 +25,7 @@ namespace Rechrysalis.Unit
         {
 
             _parentUnitManager = GetComponent<ParentUnitManager>();
+            _displayUnitHEIcon = GetComponent<DisplayUnitHEIcon>();
         }
         public void Initialize (GameObject[] _subUnits, GameObject[] _subchrysalii, ControllerManager controllerManager)
         {
@@ -32,7 +34,7 @@ namespace Rechrysalis.Unit
             this._subUnits = _subUnits;
             this._subChrysalii =_subchrysalii;
             _hatchEffects = new List<GameObject>();
-            // GetComponent<ParentClickManager>().Initialize(_controllerIndex);
+            // GetComponent<ParentClickManager>().Initialize(_controllerIndex);            
         }
 
         public void CreateHatchEffect(GameObject _hatchEffectPrefab, int _parentIndex, int _unitIndex, bool _affectAll)
