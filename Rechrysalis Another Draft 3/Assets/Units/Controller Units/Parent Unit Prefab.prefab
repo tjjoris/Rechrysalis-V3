@@ -71,32 +71,51 @@ MonoBehaviour:
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
+    _hatchEffectPrefabs: []
     _utcHatchEffect:
     - _upgradeType: 0
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
     - _upgradeType: 0
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
     - _upgradeType: 0
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
     - _upgradeType: 0
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
     - _upgradeType: 0
       _unitStatsSO: {fileID: 0}
       _hatchEffectSO: {fileID: 0}
       _advUnitModifierSO: {fileID: 0}
       _controllerHeartUpgrade: {fileID: 0}
+      _hatchEffectManager: {fileID: 0}
+      _hatchEffectPrefab: {fileID: 0}
+      _buttonName: 
     _basicUnitClass:
       _manaCost: 0
       _unitName: 
@@ -105,6 +124,8 @@ MonoBehaviour:
       _buildTime: 0
       _range: 0
       _dps: 0
+      _percentDPSToUnitMult: 0
+      _percentDPSToChrysalisMult: 0
       _attackChargeUp: 0
       _attackWindDown: 0
       _damage: 0
@@ -123,6 +144,7 @@ MonoBehaviour:
       _burstHeal: 0
       _projectileSprite: {fileID: 0}
       _controllerLifeCostMult: 1
+      _hatchBuildTimeMaxBaseAdd: 0
     _advUnitClass:
       _manaCost: 0
       _unitName: 
@@ -131,6 +153,8 @@ MonoBehaviour:
       _buildTime: 0
       _range: 0
       _dps: 0
+      _percentDPSToUnitMult: 0
+      _percentDPSToChrysalisMult: 0
       _attackChargeUp: 0
       _attackWindDown: 0
       _damage: 0
@@ -149,6 +173,7 @@ MonoBehaviour:
       _burstHeal: 0
       _projectileSprite: {fileID: 0}
       _controllerLifeCostMult: 1
+      _hatchBuildTimeMaxBaseAdd: 0
   _controllerIndex: 0
   _subUnits: []
   _subChrysalii: []
@@ -197,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 0
   _currentHealth: 0
+  _incomingDamageReductionMult: 0
   _hpBarFill: {fileID: 3090269855239971886}
   _hpBarSprite: {fileID: 3702267288155726483}
 --- !u!114 &8342931345726060697
@@ -277,7 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2f04af9b4b1427785687081e3a3420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particleEffectPrefab: {fileID: 7911281763207815054, guid: 2538756a4dcac4719bd9629ebba4c776, type: 3}
 --- !u!114 &8422274680845796423
 MonoBehaviour:
   m_ObjectHideFlags: 0

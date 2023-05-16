@@ -10,5 +10,7 @@ namespace Rechrysalis.Unit
     {
         [SerializeField] private List<UnitStatsSO> _controllerUnits;
         public List<UnitStatsSO> ControllerUnits => _controllerUnits;
+        [SerializeField] private UnitStatsSO _ffType;
+        public UnitStatsSO FFType => _ffType;
     }
 }

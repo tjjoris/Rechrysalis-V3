@@ -23,13 +23,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 43aecce1091d841f7a1dac2437150c60, type: 2}
   - {fileID: 11400000, guid: a6c19bccc0a8e4a869b8e35cb14ec561, type: 2}
   _speed: 2
-  _level: 0
+  _level: 4
   _compsSO:
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   - {fileID: 11400000, guid: 1c73e968458e942fe8361c1fa17f6d82, type: 2}
   _freeUnitCompSO:
   - {fileID: 0}
-  - {fileID: 11400000, guid: c9833ba1fa2074e7595ddc313d8bc154, type: 2}
+  - {fileID: 11400000, guid: 36896a1c563ed451e902bbf3e728b5b7, type: 2}
   _controllerManagers:
   - {fileID: 0}
   - {fileID: 0}
@@ -46,6 +46,6 @@ MonoBehaviour:
   _controllerHPTokensCurrent: 3
   _freeUnitToControllerLifeLostMult: 1.7
   _freeUnitControllerLifeGainedPerLevel: 4
-  _ratioOfFreeUnitsToBeFF: 0.4
+  _ratioOfFreeUnitsToBeFF: 0.5
   _controllerHPTokensMax: 3
   _controllerUnitsSOs: []

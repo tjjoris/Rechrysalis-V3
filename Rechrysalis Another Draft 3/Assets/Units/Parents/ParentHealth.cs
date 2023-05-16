@@ -16,6 +16,7 @@ namespace Rechrysalis.Unit
         public ParentUnitManager ParentUnitManager => _parentUnitManager;
         private ControllerManager _controllerManager;
         public ControllerManager ControllerManager => _controllerManager;
+        private RecalculatePercentDPSTypesForController _recalculatePercentDPSTypesForController;
         private FreeEnemyInitialize _freeEnemyInitialize;
         [SerializeField] private float _maxHealth;
         [SerializeField] private float _currentHealth;
@@ -52,6 +53,7 @@ namespace Rechrysalis.Unit
             _controllerManager = _parentUnitManager.ControllerManager;
             _freeEnemyInitialize = _controllerManager.FreeEnemyInitialize;
             _buildTimeFasterwithHigherHP = GetComponent<BuildTimeFasterWithHigherHP>();
+            _recalculatePercentDPSTypesForController = GameMaster.GetSingleton().ReferenceManager.CompsAndUnitsSO.ControllerManagers[GetOppositeController.ReturnOppositeController(_controllerManager.ControllerIndex)].GetComponent<RecalculatePercentDPSTypesForController>();
         }
 
         public void SetMaxHealth(float _maxHealth)
@@ -67,8 +69,11 @@ namespace Rechrysalis.Unit
         }
         public void TakeDamage(float _damage)
         {
-            // float _damageToTake = _damage * _currentUnit.GetIncomingDamageMultiplier();            
-            float damageToTake = _damage * (1 - _incomingDamageReductionMult);            
+            // float _damageToTake = _damage * _currentUnit.GetIncomingDamageMultiplier();
+            float damageToTake = AddDamageIfChrysalis(_damage);
+            damageToTake = AddDamageIfunit(damageToTake);            
+            damageToTake = _damage * (1 - _incomingDamageReductionMult); 
+           
             if ((_isChrysalis) && (_die == null))
             {
                 damageToTake *= (_chrysalisDefenceMult);
@@ -83,6 +88,22 @@ namespace Rechrysalis.Unit
             UpdateHpBar();
             // GetComponent<ParentUnitHatchEffects>()?.TakeDamage(_damage);
             CheckIfDead();
+        }
+        private float AddDamageIfChrysalis(float damage)
+        {
+            float damageOld = damage;
+            if ((!_isChrysalis) || (_recalculatePercentDPSTypesForController == null)) return damage;
+            damage = damage * (1 + _recalculatePercentDPSTypesForController.PercentDPSToChrysalis);
+            Debug.Log($"added chryaslis damage " + damage + " damage old " + damageOld);
+            return damage;
+        }
+        private float AddDamageIfunit(float damage)
+        {
+            float damageOld = damage;
+            if ((_isChrysalis) || (_recalculatePercentDPSTypesForController == null)) return damage;
+            damage = damage * (1 + _recalculatePercentDPSTypesForController.PercentDPSToUnit);
+            Debug.Log($"added unit damage " + damage + " damage old " + damageOld);
+            return damage;
         }
         public void Heal(float healAmount)
         {

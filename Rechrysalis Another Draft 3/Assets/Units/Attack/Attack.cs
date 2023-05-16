@@ -114,7 +114,7 @@ namespace Rechrysalis.Attacking
                     {
                         _projectile.SetActive(true);
                         _projectile.transform.position = gameObject.transform.position;
-                        _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target);
+                        _projectile.GetComponent<ProjectileHandler>()?.TurnOnProjectile(_targetHolder.Target, _unitClass.ProjectileSpeed);
                         _isWindingDown = true;     
                         // _isChargingUp = false;   
                         _progressBarManager?.TintWindDown();             

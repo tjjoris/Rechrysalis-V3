@@ -9,7 +9,7 @@ namespace Rechrysalis.Unit
     {
         private bool _debugBool = false;
         private ParentHealth _parentHealth;
-        private float _buildTimeMultMax = 0.5f;
+        private float _buildTimeMultMax = 0.75f;
         private float _buildTimeMult;
         private void Awake()
         {

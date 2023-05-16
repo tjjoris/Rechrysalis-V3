@@ -46,7 +46,8 @@ namespace Rechrysalis.Unit
             {
                 if (unitToChange != null)
                 {
-                    ChangeThisUnitType(tier, unitToChange);
+                    IfFFUnitChangeTypeToFFType(unitToChange, focusFireBool);
+                    ChangeThisUnitTypeNotFF(tier, unitToChange, focusFireBool);
                     ChangeThisUnitTIer(tier, unitToChange);
                     // if (i < 1)
                     // {
@@ -65,6 +66,10 @@ namespace Rechrysalis.Unit
                 parentUnitClass.Initialize(_compsAndUnitsSO);
                 parentUnitClass.ClearAllUpgrades();
                 parentUnitClass.SetUTCBasicUnit(unitToChange.UpgradeTypeClass);
+                // if (focusFireBool)
+                // {
+                //     parentUnitClass.SetUTCBasicUnit(changingUnits.ControllerUnits[0].UpgradeTypeClass);
+                // }
                 parentUnitClass.SetAllStats();
                 listOfParentUnitClasses.Add(parentUnitClass);
                 i++;
@@ -80,12 +85,26 @@ namespace Rechrysalis.Unit
         {
             unitToChange.AIFocusFire = ffBool;
         }
-        private void ChangeThisUnitType(int level, UnitStatsSO unitToChange)
+        private void ChangeThisUnitTypeNotFF(int level, UnitStatsSO unitToChange, bool ffBool)
         {
-            int randomNumber = Random.Range(0, _unitTypes.ControllerUnits.Count -1);            
-            unitToChange.TypeMultiplier = _unitTypes.ControllerUnits[randomNumber].TypeMultiplier;
-            unitToChange.UnitSprite = _unitTypes.ControllerUnits[randomNumber].UnitSprite;
-            unitToChange.UnitName = _unitTypes.ControllerUnits[randomNumber].UnitName;
+            if (ffBool) return;
+            int randomNumber = Random.Range(0, _unitTypes.ControllerUnits.Count -1);         
+            ChangeThisUnitTypeToType(unitToChange, _unitTypes.ControllerUnits[randomNumber]);   
+            // unitToChange.TypeMultiplier = _unitTypes.ControllerUnits[randomNumber].TypeMultiplier;
+            // unitToChange.UnitSprite = _unitTypes.ControllerUnits[randomNumber].UnitSprite;
+            // unitToChange.UnitName = _unitTypes.ControllerUnits[randomNumber].UnitName;
+        }
+        private void IfFFUnitChangeTypeToFFType(UnitStatsSO unitToChange, bool ffBool)
+        {
+            if (!ffBool) return;
+            ChangeThisUnitTypeToType(unitToChange, _unitTypes.FFType);
+
+        }
+        private void ChangeThisUnitTypeToType(UnitStatsSO unitToChange, UnitStatsSO unitStatsSO)
+        {
+            unitToChange.TypeMultiplier = unitStatsSO.TypeMultiplier;
+            unitToChange.UnitSprite = unitStatsSO.UnitSprite;
+            unitToChange.UnitName = unitStatsSO.UnitName;
         }
         private void ChangeThisUnitTIer(int tier, UnitStatsSO unitToChange)
         {

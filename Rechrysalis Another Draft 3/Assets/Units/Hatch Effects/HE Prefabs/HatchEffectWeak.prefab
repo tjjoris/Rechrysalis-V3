@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 4948415442075945803}
   - component: {fileID: -3631670784294215762}
   - component: {fileID: -371639564231658815}
+  - component: {fileID: -4096960107398396356}
   m_Layer: 0
   m_Name: HatchEffectWeak
   m_TagString: Untagged
@@ -251,6 +252,8 @@ MonoBehaviour:
     _buildTime: 0
     _range: 0
     _dps: 0
+    _percentDPSToUnitMult: 0
+    _percentDPSToChrysalisMult: 0
     _attackChargeUp: 0
     _attackWindDown: 0
     _damage: 0
@@ -324,3 +327,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _incomingDamageMultBase: 0.2
   _incomingDamageMult: 0
+--- !u!114 &-4096960107398396356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4387173649336406545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fa7c9c5b2c044ac799f85c76e67d3e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rangeToAdd: 0.5

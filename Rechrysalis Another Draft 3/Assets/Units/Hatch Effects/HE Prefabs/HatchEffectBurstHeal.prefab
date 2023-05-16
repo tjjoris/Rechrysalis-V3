@@ -248,6 +248,8 @@ MonoBehaviour:
     _buildTime: 0
     _range: 0
     _dps: 0
+    _percentDPSToUnitMult: 0
+    _percentDPSToChrysalisMult: 0
     _attackChargeUp: 0
     _attackWindDown: 0
     _damage: 0
@@ -267,7 +269,7 @@ MonoBehaviour:
     _projectileSprite: {fileID: 0}
     _controllerLifeCostMult: 1
     _hatchBuildTimeMaxBaseAdd: 0
-  _burstHealAmount: 10
+  _burstHealAmount: 20
 --- !u!114 &1894819527670956384
 MonoBehaviour:
   m_ObjectHideFlags: 0
