@@ -16,9 +16,16 @@ namespace Rechrysalis.HatchEffect
         [SerializeField] private GameObject _aoeIconPrefab;
         [SerializeField] private float _yDisplacement;
         [SerializeField] private float _xDisplacement;
+        [SerializeField] private float _xStartDisplacement;
         private Vector3 _iconPos;
+        private List<SpriteRenderer> _iconSprites;
+        [SerializeField] private Color _inactiveColour;
+        [SerializeField] private Color _activeColour;
 
-
+        private void Awake()
+        {
+            _iconSprites = new List<SpriteRenderer>();
+        }
         public void DisplayForHEGOList(List<GameObject> hatchEffectGOs)
         {
             if (_debugBool) Debug.Log($"hatchEffectGOs count " + hatchEffectGOs.Count);
@@ -34,8 +41,8 @@ namespace Rechrysalis.HatchEffect
         }
         public void DisplayForHE(HatchEffectManager hatchEffectManager)
         {
-            _iconPos = transform.position;
-            _iconPos.y += _yDisplacement;
+            _iconPos = (new Vector3 (_xStartDisplacement, _yDisplacement, 0));
+            // _iconPos.y += _yDisplacement;
             CreateBurstHealIcon(hatchEffectManager.BurstHealAmount);
             CreateDefenceIcon(hatchEffectManager.GetComponent<HEIncreaseDefence>());
             CreateOffenceIcon(hatchEffectManager.GetComponent<HEIncreaseDamage>());
@@ -51,44 +58,76 @@ namespace Rechrysalis.HatchEffect
         private void CreateBurstHealIcon(float burstHealAmount)
         {
             if (burstHealAmount <= 0) return;
-            Instantiate(_burstHealIconPrefab, _iconPos, Quaternion.identity, transform.parent);
-            IncrementIconPos();
+            InstantiateIcon(_burstHealIconPrefab);
+            // Instantiate(_burstHealIconPrefab, _iconPos, Quaternion.identity, transform);
+            // IncrementIconPos();
         }
         private void CreateDefenceIcon(HEIncreaseDefence heIncreaseDefence)
         {
             if (heIncreaseDefence == null) return;
-            Instantiate(_defenceIconPrefab, _iconPos, Quaternion.identity, transform.parent);
-            IncrementIconPos();
+            InstantiateIcon(_defenceIconPrefab);
+            // Instantiate(_defenceIconPrefab, _iconPos, Quaternion.identity, transform);
+            // IncrementIconPos();
         }
         private void CreateOffenceIcon(HEIncreaseDamage heIncreaseDamage)
         {
             if (heIncreaseDamage == null) return;
-            Instantiate(_damageIconPrefab, _iconPos, Quaternion.identity, transform.parent);
-            IncrementIconPos();
+            InstantiateIcon(_damageIconPrefab);
+            // Instantiate(_damageIconPrefab, _iconPos, Quaternion.identity, transform);
+            // IncrementIconPos();
         }
         private void CreateRangeIcon(HEIncreaseRange heIncreaseRange)
         {
             if (heIncreaseRange == null) return;
-            Instantiate(_rangeIconPrefab, _iconPos, Quaternion.identity, transform.parent);
-            IncrementIconPos();
+            InstantiateIcon(_rangeIconPrefab);
+            // Instantiate(_rangeIconPrefab, _iconPos, Quaternion.identity, transform);
+            // IncrementIconPos();
         }
         private void CreateSpeedIcon(HEIncreaseSpeed heIncreaseSpeed)
         {
             if (heIncreaseSpeed == null) return;
-            Instantiate(_speedIconPrefab, _iconPos, Quaternion.identity, transform.parent);
-            IncrementIconPos();
+            InstantiateIcon(_speedIconPrefab);
+            // Instantiate(_speedIconPrefab, _iconPos, Quaternion.identity, transform);
+            // IncrementIconPos();
         }
         private void CreateBuildSpeedIcon(HEIncreaseBuildSpeed heIncreaseBuildSpeed)
         {
             if (heIncreaseBuildSpeed == null) return;
-            Instantiate(_speedIconPrefab, _iconPos, Quaternion.identity, transform.parent);
-            IncrementIconPos();
+            InstantiateIcon(_buildSpeedIconPrefab);
+            // Instantiate(_buildSpeedIconPrefab, _iconPos, Quaternion.identity, transform);
+            // IncrementIconPos();
         }
         private void CreateAoEIcon(OnHatchAOEManager onHatchAOEManager)
         {
             if (onHatchAOEManager == null) return;
-            Instantiate(_aoeIconPrefab, _iconPos, Quaternion.identity, transform.parent);
+            InstantiateIcon(_aoeIconPrefab);
+            // Instantiate(_aoeIconPrefab, _iconPos, Quaternion.identity, transform);
+            // IncrementIconPos();
+        }
+        private void InstantiateIcon(GameObject iconPrefab)
+        {
+            GameObject icon = Instantiate(iconPrefab, transform.position, Quaternion.identity, transform);
+            icon.transform.localPosition = _iconPos;
             IncrementIconPos();
+            SpriteRenderer spriteRenderer = icon.GetComponent<SpriteRenderer>();
+            if (spriteRenderer == null) return;
+            _iconSprites.Add(spriteRenderer);            
+        }
+        public void SetIconsToActive()
+        {
+            foreach (SpriteRenderer spriteRenderer in _iconSprites)
+            {
+                if (spriteRenderer == null) continue;
+                spriteRenderer.color = _activeColour;
+            }
+        }
+        public void SetIconsToInactive()
+        {
+            foreach (SpriteRenderer spriteRenderer in _iconSprites)
+            {
+                if (spriteRenderer == null) continue;
+                spriteRenderer.color = _inactiveColour;
+            }
         }
     }
 }

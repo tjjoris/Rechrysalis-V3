@@ -424,8 +424,11 @@ MonoBehaviour:
   _buildSpeedIconPrefab: {fileID: 988983538736793340, guid: 61db182585f8544aebd58066a8938a5e, type: 3}
   _burstHealIconPrefab: {fileID: 3129762738353572570, guid: 8771226bdd0b647d5ad570ea39d80761, type: 3}
   _aoeIconPrefab: {fileID: 7892097113901659955, guid: 846afe083410e48869d6771a8a57de2a, type: 3}
-  _yDisplacement: 1
-  _xDisplacement: 0.5
+  _yDisplacement: -0.5
+  _xDisplacement: 0.4
+  _xStartDisplacement: -0.6
+  _inactiveColour: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
+  _activeColour: {r: 0, g: 1, b: 0.8881693, a: 1}
 --- !u!1 &8526505655396988532
 GameObject:
   m_ObjectHideFlags: 0
