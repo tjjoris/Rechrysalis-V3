@@ -84,6 +84,8 @@ namespace Rechrysalis.HatchEffect
         {
             HEIconChangeColour heIconChangeColour = createIconWithDelegate(hatchEffectManager);
             if (heIconChangeColour == null) return null;
+            heIconChangeColour.Initialize(this);
+            heIconChangeColour.SetColorToInactive();
             _heIconChangeColours.Add(heIconChangeColour);
             return heIconChangeColour;
         }

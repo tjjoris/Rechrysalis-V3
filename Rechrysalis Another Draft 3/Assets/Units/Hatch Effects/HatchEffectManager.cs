@@ -109,8 +109,10 @@ namespace Rechrysalis.HatchEffect
             // _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
             _hEIncreaseDefence?.Initialize(_hatchMult);
             _onHatchAOEManager?.Initialize(_controllerManager);
-            DisplayUnitHEIcon displayUnitHEIcon = _parentUnitManager.GetComponent<DisplayUnitHEIcon>();
-            _heIconChangeColour = displayUnitHEIcon.GetHEIconChangeColours(this);
+            // DisplayUnitHEIcon displayUnitHEIcon = _parentUnitManager.GetComponent<DisplayUnitHEIcon>();
+            // _heIconChangeColour = displayUnitHEIcon.GetHEIconChangeColours(this);
+            InitializeIconAndSetColour(null);
+            
         }
         // public void SetUpUnit(UnitManager unit)
         // {
@@ -123,7 +125,9 @@ namespace Rechrysalis.HatchEffect
         // }
         public void InitializeIconAndSetColour(List<HEIconChangeColour> heIconChangeColours)
         {
-            _heIconChangeColour = heIconChangeColours;
+            DisplayUnitHEIcon displayUnitHEIcon = _parentUnitManager.GetComponent<DisplayUnitHEIcon>();
+            _heIconChangeColour = displayUnitHEIcon.GetHEIconChangeColours(this);
+            // _heIconChangeColour = heIconChangeColours;
             foreach (HEIconChangeColour heIconChangeColour in _heIconChangeColour)
             {
                 heIconChangeColour.SetColourToActive();
