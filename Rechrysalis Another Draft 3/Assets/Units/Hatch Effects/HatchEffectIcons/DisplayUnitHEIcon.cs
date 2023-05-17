@@ -19,12 +19,16 @@ namespace Rechrysalis.HatchEffect
         [SerializeField] private float _xStartDisplacement;
         private Vector3 _iconPos;
         private List<SpriteRenderer> _iconSprites;
+        private List<HEIconChangeColour> _heIconChangeColours;
         [SerializeField] private Color _inactiveColour;
+        public Color InactiveColour => _inactiveColour;
         [SerializeField] private Color _activeColour;
+        public Color ActiveColour => _activeColour;
 
         private void Awake()
         {
             _iconSprites = new List<SpriteRenderer>();
+            _heIconChangeColours = new List<HEIconChangeColour>();
         }
         public void DisplayForHEGOList(List<GameObject> hatchEffectGOs)
         {
@@ -39,79 +43,115 @@ namespace Rechrysalis.HatchEffect
                 DisplayForHE(heManager);
             }
         }
-        public void DisplayForHE(HatchEffectManager hatchEffectManager)
+        delegate HEIconChangeColour CreateIconDelegate(HatchEffectManager hatchEffectManager);
+        // CreateIconDelegate CreateIconDeleagate;
+        public List<HEIconChangeColour> DisplayForHE(HatchEffectManager hatchEffectManager)
         {
             _iconPos = (new Vector3 (_xStartDisplacement, _yDisplacement, 0));
-            // _iconPos.y += _yDisplacement;
-            CreateBurstHealIcon(hatchEffectManager.BurstHealAmount);
-            CreateDefenceIcon(hatchEffectManager.GetComponent<HEIncreaseDefence>());
-            CreateOffenceIcon(hatchEffectManager.GetComponent<HEIncreaseDamage>());
-            CreateRangeIcon(hatchEffectManager.GetComponent<HEIncreaseRange>());
-            CreateSpeedIcon(hatchEffectManager.GetComponent<HEIncreaseSpeed>());
-            CreateBuildSpeedIcon(hatchEffectManager.GetComponent<HEIncreaseBuildSpeed>());
-            CreateAoEIcon(hatchEffectManager.GetComponent<OnHatchAOEManager>());
+            // List<HEIconChangeColour> heIconChangeColours = new List<HEIconChangeColour>();
+            _heIconChangeColours = new List<HEIconChangeColour>();
+            
+            // _heIconChangeColours.Add(CreateBurstHealIcon(hatchEffectManager.BurstHealAmount));
+            // _heIconChangeColours.Add(CreateDefenceIcon(hatchEffectManager.GetComponent<HEIncreaseDefence>()));
+            // _heIconChangeColours.Add(CreateOffenceIcon(hatchEffectManager.GetComponent<HEIncreaseDamage>()));
+            // _heIconChangeColours.Add(CreateRangeIcon(hatchEffectManager.GetComponent<HEIncreaseRange>()));
+            // _heIconChangeColours.Add(CreateSpeedIcon(hatchEffectManager.GetComponent<HEIncreaseSpeed>()));
+            // _heIconChangeColours.Add(CreateBuildSpeedIcon(hatchEffectManager.GetComponent<HEIncreaseBuildSpeed>()));
+            // _heIconChangeColours.Add(CreateAoEIcon(hatchEffectManager.GetComponent<OnHatchAOEManager>()));
+            // CreateIconDelegate createIconDelegate = CreateBurstHealIcon;
+            CreateIconWithDelegate(CreateBurstHealIcon, hatchEffectManager);
+            // createIconDelegate = CreateDefenceIcon;
+            CreateIconWithDelegate(CreateDefenceIcon, hatchEffectManager);
+            // createIconDelegate = 
+            CreateIconWithDelegate(CreateOffenceIcon, hatchEffectManager);
+            CreateIconWithDelegate(CreateRangeIcon, hatchEffectManager);
+            CreateIconWithDelegate(CreateSpeedIcon, hatchEffectManager);
+            CreateIconWithDelegate(CreateBuildSpeedIcon, hatchEffectManager);
+            CreateIconWithDelegate(CreateAoEIcon, hatchEffectManager);
+
+
+            return _heIconChangeColours;
+        }
+        public List<HEIconChangeColour> GetHEIconChangeColours (HatchEffectManager hatchEffectManager)          
+        {
+            return _heIconChangeColours;
         }
         private void IncrementIconPos()
         {
             _iconPos.x += _xDisplacement;
         }
-        private void CreateBurstHealIcon(float burstHealAmount)
+        private HEIconChangeColour CreateIconWithDelegate(CreateIconDelegate createIconWithDelegate, HatchEffectManager hatchEffectManager)
         {
-            if (burstHealAmount <= 0) return;
-            InstantiateIcon(_burstHealIconPrefab);
+            HEIconChangeColour heIconChangeColour = createIconWithDelegate(hatchEffectManager);
+            if (heIconChangeColour == null) return null;
+            _heIconChangeColours.Add(heIconChangeColour);
+            return heIconChangeColour;
+        }
+        private HEIconChangeColour CreateBurstHealIcon(HatchEffectManager hatchEffectManager)
+        {            
+            if (hatchEffectManager.BurstHealAmount <= 0) return null;
+            return InstantiateIcon(_burstHealIconPrefab);
             // Instantiate(_burstHealIconPrefab, _iconPos, Quaternion.identity, transform);
             // IncrementIconPos();
         }
-        private void CreateDefenceIcon(HEIncreaseDefence heIncreaseDefence)
+        private HEIconChangeColour CreateDefenceIcon(HatchEffectManager hatchEffectManager)
         {
-            if (heIncreaseDefence == null) return;
-            InstantiateIcon(_defenceIconPrefab);
+            HEIncreaseDefence heIncreaseDefence = hatchEffectManager.GetComponent<HEIncreaseDefence>();
+            if (heIncreaseDefence == null) return null;
+            return InstantiateIcon(_defenceIconPrefab);
             // Instantiate(_defenceIconPrefab, _iconPos, Quaternion.identity, transform);
             // IncrementIconPos();
         }
-        private void CreateOffenceIcon(HEIncreaseDamage heIncreaseDamage)
+        private HEIconChangeColour CreateOffenceIcon(HatchEffectManager hatchEffectManager)
         {
-            if (heIncreaseDamage == null) return;
-            InstantiateIcon(_damageIconPrefab);
+            HEIncreaseDamage heIncreaseDamage = hatchEffectManager.GetComponent<HEIncreaseDamage>();
+            if (heIncreaseDamage == null) return null;
+            return InstantiateIcon(_damageIconPrefab);
             // Instantiate(_damageIconPrefab, _iconPos, Quaternion.identity, transform);
             // IncrementIconPos();
         }
-        private void CreateRangeIcon(HEIncreaseRange heIncreaseRange)
+        private HEIconChangeColour CreateRangeIcon(HatchEffectManager hatchEffectManager)
         {
-            if (heIncreaseRange == null) return;
-            InstantiateIcon(_rangeIconPrefab);
+            HEIncreaseRange heIncreaseRange = hatchEffectManager.GetComponent<HEIncreaseRange>();
+            if (heIncreaseRange == null) return null;
+            return InstantiateIcon(_rangeIconPrefab);
             // Instantiate(_rangeIconPrefab, _iconPos, Quaternion.identity, transform);
             // IncrementIconPos();
         }
-        private void CreateSpeedIcon(HEIncreaseSpeed heIncreaseSpeed)
+        private HEIconChangeColour CreateSpeedIcon(HatchEffectManager hatchEffectManager)
         {
-            if (heIncreaseSpeed == null) return;
-            InstantiateIcon(_speedIconPrefab);
+            HEIncreaseSpeed heIncreaseSpeed = hatchEffectManager.GetComponent<HEIncreaseSpeed>();
+            if (heIncreaseSpeed == null) return null;
+            return InstantiateIcon(_speedIconPrefab);
             // Instantiate(_speedIconPrefab, _iconPos, Quaternion.identity, transform);
             // IncrementIconPos();
         }
-        private void CreateBuildSpeedIcon(HEIncreaseBuildSpeed heIncreaseBuildSpeed)
+        private HEIconChangeColour CreateBuildSpeedIcon(HatchEffectManager hatchEffectManager)
         {
-            if (heIncreaseBuildSpeed == null) return;
-            InstantiateIcon(_buildSpeedIconPrefab);
+            HEIncreaseBuildSpeed heIncreaseBuildSpeed = hatchEffectManager.GetComponent<HEIncreaseBuildSpeed>();
+            if (heIncreaseBuildSpeed == null) return null;
+            return InstantiateIcon(_buildSpeedIconPrefab);
             // Instantiate(_buildSpeedIconPrefab, _iconPos, Quaternion.identity, transform);
             // IncrementIconPos();
         }
-        private void CreateAoEIcon(OnHatchAOEManager onHatchAOEManager)
+        private HEIconChangeColour CreateAoEIcon(HatchEffectManager hatchEffectManager)
         {
-            if (onHatchAOEManager == null) return;
-            InstantiateIcon(_aoeIconPrefab);
+            OnHatchAOEManager onHatchAOEManager = hatchEffectManager.GetComponent<OnHatchAOEManager>();
+            if (onHatchAOEManager == null) return null;
+            return InstantiateIcon(_aoeIconPrefab);
             // Instantiate(_aoeIconPrefab, _iconPos, Quaternion.identity, transform);
             // IncrementIconPos();
         }
-        private void InstantiateIcon(GameObject iconPrefab)
+        private HEIconChangeColour InstantiateIcon(GameObject iconPrefab)
         {
             GameObject icon = Instantiate(iconPrefab, transform.position, Quaternion.identity, transform);
             icon.transform.localPosition = _iconPos;
             IncrementIconPos();
             SpriteRenderer spriteRenderer = icon.GetComponent<SpriteRenderer>();
-            if (spriteRenderer == null) return;
-            _iconSprites.Add(spriteRenderer);            
+            if (spriteRenderer == null) return null;
+            _iconSprites.Add(spriteRenderer); 
+            HEIconChangeColour heIconChangeColour = icon.GetComponent<HEIconChangeColour>();           
+            return heIconChangeColour;
         }
         public void SetIconsToActive()
         {

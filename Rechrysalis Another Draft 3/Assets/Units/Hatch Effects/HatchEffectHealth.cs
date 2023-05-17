@@ -13,6 +13,12 @@ namespace Rechrysalis.HatchEffect
         [SerializeField] private float _HPMax = 30f;
         private float _HPCurrent;
         // [SerializeField] private float _durationToHealthMult = 1;
+        // private HatchEffectManager _hatchEffectManager;
+
+        private void Awake()
+        {
+            // _hatchEffectManager = GetComponent<HatchEffectManager>();
+        }
 
         public void Initialize(float hatchMult, UnitClass advUnit, float hpMax)
         {

@@ -2,20 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rechrysalis
+namespace Rechrysalis.HatchEffect
 {
     public class HEIconChangeColour : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        private DisplayUnitHEIcon _displayUnitHEIcon;
+        private SpriteRenderer _spriteRenderer;
 
-        // Update is called once per frame
-        void Update()
+        private void Awake()
         {
-        
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+        public void Initialize (DisplayUnitHEIcon displayUnitHEIcon)
+        {
+            _displayUnitHEIcon = displayUnitHEIcon;
+        }
+        public void SetColourToActive()
+        {
+            _spriteRenderer.color = _displayUnitHEIcon.ActiveColour;
+        }
+        public void SetColorToInactive()
+        {
+            _spriteRenderer.color = _displayUnitHEIcon.InactiveColour;
         }
     }
 }
