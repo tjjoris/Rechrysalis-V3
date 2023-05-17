@@ -251,6 +251,7 @@ namespace Rechrysalis.Unit
                 // else 
                 {                                         
                     HatchEffectClass hatchEffectClass = new HatchEffectClass();
+                    _hatchEffectPrefabs.Add(upgradeTypeClassHE.HatchEffectPrefab);
                     hatchEffectClass.HatchEffectPrefab = upgradeTypeClassHE.HatchEffectPrefab;
                     hatchEffectClass.HatchEffectManager = upgradeTypeClassHE.HatchEffectPrefab.GetComponent<HatchEffectManager>();
                     // hatchEffectClass.HatchEffectHealth = upgradeTypeClassHE.HatchEffectManager.HEHealthMax;
