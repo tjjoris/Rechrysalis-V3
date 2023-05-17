@@ -427,8 +427,8 @@ MonoBehaviour:
   _yDisplacement: -0.5
   _xDisplacement: 0.4
   _xStartDisplacement: -0.6
-  _inactiveColour: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
-  _activeColour: {r: 0, g: 1, b: 0.8881693, a: 1}
+  _inactiveColour: {r: 1, g: 1, b: 1, a: 1}
+  _activeColour: {r: 0, g: 1, b: 0.7851589, a: 1}
 --- !u!1 &8526505655396988532
 GameObject:
   m_ObjectHideFlags: 0
