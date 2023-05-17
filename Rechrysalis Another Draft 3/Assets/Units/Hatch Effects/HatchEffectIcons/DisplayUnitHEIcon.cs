@@ -6,6 +6,7 @@ namespace Rechrysalis.HatchEffect
 {
     public class DisplayUnitHEIcon : MonoBehaviour
     {
+        private bool _debugBool = true;
         [SerializeField] private GameObject _damageIconPrefab;
         [SerializeField] private GameObject _defenceIconPrefab;
         [SerializeField] private GameObject _rangeIconPrefab;
@@ -20,11 +21,14 @@ namespace Rechrysalis.HatchEffect
 
         public void DisplayForHEGOList(List<GameObject> hatchEffectGOs)
         {
+            if (_debugBool) Debug.Log($"hatchEffectGOs count " + hatchEffectGOs.Count);
             foreach (GameObject he in hatchEffectGOs)
             {
                 if (he == null) continue;
+                if (_debugBool) Debug.Log($"he != null");
                 HatchEffectManager heManager = he.GetComponent<HatchEffectManager>();
                 if (heManager == null) continue;
+                if (_debugBool) Debug.Log($"heManager != null");
                 DisplayForHE(heManager);
             }
         }

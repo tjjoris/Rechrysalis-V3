@@ -233,7 +233,7 @@ namespace Rechrysalis.Controller
         private void CallUnitHEDisplayIcons(ParentUnitManager pum, ParentUnitClass puc)
         {
             DisplayUnitHEIcon displayUnitHEIcon = pum.GetComponent<DisplayUnitHEIcon>();
-                    if (displayUnitHEIcon != null) return;                    
+                    if (displayUnitHEIcon == null) return;                    
             displayUnitHEIcon.DisplayForHEGOList(puc.HatchEffectPrefabs);   
         }
         private void AddToStartingMana(CompSO compSO)
