@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BaseFreeUnit
   m_EditorClassIdentifier: 
   _healthMultiplier: 70
-  _chrysalisHealthMultiplier: 40
+  _chrysalisHealthMultiplier: 70
   _dpsMultiplier: 3.5
   _percentDPSToUnitMult: 1
   _percentDPSToChrysalisMult: 1
