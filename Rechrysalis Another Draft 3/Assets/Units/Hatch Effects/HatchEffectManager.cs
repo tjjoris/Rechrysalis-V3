@@ -148,12 +148,20 @@ namespace Rechrysalis.HatchEffect
             _hEHealth?.TakeDamage(_damageAmount);
             if (!_hEHealth.CheckIfAlive())
             {
-                foreach (HEIconChangeColour heIconChangeColour in _heIconChangeColour)
-                {
-                    heIconChangeColour.SetColorToInactive();
-                }                
+                // foreach (HEIconChangeColour heIconChangeColour in _heIconChangeColour)
+                // {
+                //     heIconChangeColour.SetColorToInactive();
+                // }   
+                SetHEIconToInactive();             
                 _hatchEffectDies?.Invoke(gameObject, _parentIndex, _unitIndex, _affectAll);
             }            
+        }
+        public void SetHEIconToInactive()
+        {
+            foreach (HEIconChangeColour heIconChangeColour in _heIconChangeColour)
+            {
+                heIconChangeColour.SetColorToInactive();
+            }
         }
     }
 }

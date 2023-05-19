@@ -74,10 +74,19 @@ namespace Rechrysalis.Unit
             {
                 if ((hatchEffect != null) && (hatchEffect.activeInHierarchy))
                 {
+                    SetHEIconToInactive(hatchEffect);
                     _removeHatchEffect?.Invoke(hatchEffect, _parentIndex, 0, true);
                 }
             }
         }
+
+        private static void SetHEIconToInactive(GameObject hatchEffect)
+        {
+            HatchEffectManager hem = hatchEffect.GetComponent<HatchEffectManager>();
+            if (hem == null) return;
+            hem.SetHEIconToInactive();
+        }
+
         public void RemoveHatchEffect(GameObject _hatchEffect)
         {
             if (_hatchEffects.Contains(_hatchEffect))

@@ -311,5 +311,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8388b984a251b4dad8e9a908050fb56d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _incomingDamageMultBase: 0.15
+  _incomingDamageMultBase: 0.3
   _incomingDamageMult: 0
