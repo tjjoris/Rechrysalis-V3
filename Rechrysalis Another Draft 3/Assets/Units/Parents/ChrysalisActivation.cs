@@ -4,6 +4,7 @@ using UnityEngine;
 using Rechrysalis.Attacking;
 using Rechrysalis.Controller;
 using Rechrysalis.Movement;
+using Rechrysalis.HatchEffect;
 
 namespace Rechrysalis.Unit
 {
@@ -70,6 +71,7 @@ namespace Rechrysalis.Unit
             {
                 _parentUnitHatchEffects.RemoveAllHatchEffectsOwnedByUnit();
             }
+            ActivateHatchOnChrysalis(_parentUnitManager.ChildUnitManagers[chrysalisIndex]);
             if (_parentUnitManager.CurrentSubUnit != null)
                 {            
                     chrysalisTimer = _parentUnitManager.CurrentSubUnit.GetComponent<ChrysalisTimer>();
@@ -151,6 +153,22 @@ namespace Rechrysalis.Unit
             }
             _freeUnitChrysalisMovementStop?.StopMovement();
             _targetScoreValue.SetEgg(true);
+        }
+        private void ActivateHatchOnChrysalis(UnitManager unitManager)
+        {
+            // if ((_parentUnitManager.ParentUnitClass.HatchEffectManagers == null) || (_parentUnitManager.ParentUnitClass.HatchEffectManagers.Count == 0)) return;
+            // foreach (HatchEffectManager hatchEffectManager in _parentUnitManager.ParentUnitClass.HatchEffectManagers)
+            // {
+            //     if (hatchEffectManager == null) continue;
+            //     if (!hatchEffectManager.IsActivatedOnUnit) continue;
+            //     _parentUnitHatchEffects.CreateHatchEffect(hatchEffectManager.gameObject, _parentUnitManager.ParentIndex, unitManager.ChildUnitIndex, true);
+            // }        
+            foreach (HatchEffectClass hatchEffectClass in unitManager.UnitClass.HatchEffectClasses)
+            {
+                if (!hatchEffectClass.HatchEffectManager.IsActivatedOnUnit) {continue;}
+                if (hatchEffectClass.HatchEffectManager.GetComponent<HatchEffectHealth>() == null) {continue;}
+                _parentUnitHatchEffects.CreateHatchEffect(hatchEffectClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitManager.ChildUnitIndex, true);
+            }
         }
     }
 }

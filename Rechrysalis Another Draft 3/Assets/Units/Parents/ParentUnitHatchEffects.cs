@@ -9,7 +9,7 @@ namespace Rechrysalis.Unit
 {
     public class ParentUnitHatchEffects : MonoBehaviour
     {
-        private bool _debugBool = false;
+        private bool _debugBool = true;
         private ControllerManager _controllerManager;
         private ParentUnitManager _parentUnitManager;
         private DisplayUnitHEIcon _displayUnitHEIcon;

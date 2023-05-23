@@ -104,6 +104,10 @@ namespace Rechrysalis.HatchEffect
             _unitManager = unitManager;
             _hatchMult = advUnitClass.HatchEffectMult;
             _hatchDurationMult = advUnitClass.HatchEffectDurationAdd;
+            Debug.Log($" hatch mult "+ _hatchMult);
+            Debug.Log($" adv unit class " + advUnitClass);
+            Debug.Log($"he health max " + _HEHealthMax);
+            Debug.Log($"he health " + _hEHealth);
             _hEHealth.Initialize(_hatchMult, advUnitClass, _HEHealthMax);
             }
             // _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
