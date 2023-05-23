@@ -51,6 +51,7 @@ namespace Rechrysalis.Unit
                     UI.DebugTextStatic.DebugText.DisplayText("hatcheffectclass == null");
                     continue;
                 }
+                if (hatcheffectClass.HatchEffectManager.IsActivatedOnUnit) continue;
                 if (hatcheffectClass.HatchEffectPrefab.GetComponent<HatchEffectHealth>() == null) 
                 {
                     UI.DebugTextStatic.DebugText.DisplayText("he health == null");

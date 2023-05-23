@@ -16,6 +16,8 @@ namespace Rechrysalis.Unit
         public UpgradeTypeClass UTCBasicUnit { get{ return _utcBasicUnit; } set{ _utcBasicUnit = value; } }
         [SerializeField] private List<GameObject> _hatchEffectPrefabs;
         public List<GameObject> HatchEffectPrefabs => _hatchEffectPrefabs;
+        // [SerializeField] private List<HatchEffectManager> _hatchEffectManagers;
+        // public List<HatchEffectManager> HatchEffectManagers => _hatchEffectManagers;
         [SerializeField] private List<UpgradeTypeClass> _utcHatchEffect = new List<UpgradeTypeClass>();
         public List<UpgradeTypeClass> UTCHatchEffects { get{ return _utcHatchEffect; } set{ _utcHatchEffect = value; } }
         private UpgradeTypeClass _replacedUTCBasicUnit;
@@ -34,6 +36,7 @@ namespace Rechrysalis.Unit
             _advancedUpgradesUTCList = new List<UpgradeTypeClass>();
             _advancedUpgradesUTCList.Clear();
             _hatchEffectPrefabs = new List<GameObject>();
+            // _hatchEffectManagers = new List<HatchEffectManager>();
             ClearUTCHEs();
             _utcBasicUnit = null;
             if (_debugBool)
@@ -252,6 +255,7 @@ namespace Rechrysalis.Unit
                 {                                         
                     HatchEffectClass hatchEffectClass = new HatchEffectClass();
                     _hatchEffectPrefabs.Add(upgradeTypeClassHE.HatchEffectPrefab);
+                    // _hatchEffectManagers.Add(upgradeTypeClassHE.HatchEffectManager);
                     hatchEffectClass.HatchEffectPrefab = upgradeTypeClassHE.HatchEffectPrefab;
                     hatchEffectClass.HatchEffectManager = upgradeTypeClassHE.HatchEffectPrefab.GetComponent<HatchEffectManager>();
                     // hatchEffectClass.HatchEffectHealth = upgradeTypeClassHE.HatchEffectManager.HEHealthMax;

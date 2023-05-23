@@ -55,6 +55,8 @@ namespace Rechrysalis.HatchEffect
         public Action<GameObject, int, int, bool> _hatchEffectDies;
         [SerializeField] private float _burstHealAmount;
         public float BurstHealAmount => _burstHealAmount;
+        [SerializeField] private bool _isActivatedOnUnit;
+        public bool IsActivatedOnUnit => _isActivatedOnUnit;
 
 
         private void OnValidate()

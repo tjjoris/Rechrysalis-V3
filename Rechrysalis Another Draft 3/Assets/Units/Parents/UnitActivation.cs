@@ -49,7 +49,8 @@ namespace Rechrysalis.Unit
                     _parentUnitManager.ChildUnitManagers[unitIndex].gameObject.SetActive(true);
                     _parentHealth.CurrentUnit = _parentUnitManager.ChildUnitManagers[unitIndex];
                     _parentHealth.SetChrysalis(false);
-                    UnitManager _unitManager = _parentUnitManager.ChildUnitManagers[unitIndex];
+                    UnitManager unitManager = _parentUnitManager.ChildUnitManagers[unitIndex];
+                    ActivateHatchOnUnit(unitManager);
                     // int _tier = _unitManager.UnitStats.TierMultiplier.Tier - 1;
                     // if ((_parentUnitManager.SubHatchEffects != null) && (_parentUnitManager.SubHatchEffects.Length > unitIndex))
                     // {
@@ -100,6 +101,22 @@ namespace Rechrysalis.Unit
                 _parentUnitManager.TheseUnits.ActiveUnits.Remove(_parentUnitManager.ChildUnitManagers[_unitIndex].gameObject);
             }
             _recalculatePercentDPSTypesForController?.RecalculatePercents();
-        }        
+        }    
+        private void ActivateHatchOnUnit(UnitManager unitManager)
+        {
+            // if ((_parentUnitManager.ParentUnitClass.HatchEffectManagers == null) || (_parentUnitManager.ParentUnitClass.HatchEffectManagers.Count == 0)) return;
+            // foreach (HatchEffectManager hatchEffectManager in _parentUnitManager.ParentUnitClass.HatchEffectManagers)
+            // {
+            //     if (hatchEffectManager == null) continue;
+            //     if (!hatchEffectManager.IsActivatedOnUnit) continue;
+            //     _parentUnitHatchEffects.CreateHatchEffect(hatchEffectManager.gameObject, _parentUnitManager.ParentIndex, unitManager.ChildUnitIndex, true);
+            // }        
+            foreach (HatchEffectClass hatchEffectClass in unitManager.UnitClass.HatchEffectClasses)
+            {
+                if (!hatchEffectClass.HatchEffectManager.IsActivatedOnUnit) continue;
+                _parentUnitHatchEffects.CreateHatchEffect(hatchEffectClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitManager.ChildUnitIndex, true);
+            }
+
+        }    
     }
 }
