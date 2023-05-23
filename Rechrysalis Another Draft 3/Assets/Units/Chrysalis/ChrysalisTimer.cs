@@ -89,7 +89,7 @@ namespace Rechrysalis.Unit
             {
                 _startUnit?.Invoke(_nextUnitBuilding);                
                 if (_debugBool) Debug.Log($"hatch {_nextUnitBuilding}");
-                _parentUnitManager.ChildUnitManagers[_nextUnitBuilding].Hatch?.ActivateHatch();
+                _parentUnitManager.ChildUnitManagers[_nextUnitBuilding].Hatch?.UnitActivateHatch();
             }
             CalculateProgressAndStrech();
         }

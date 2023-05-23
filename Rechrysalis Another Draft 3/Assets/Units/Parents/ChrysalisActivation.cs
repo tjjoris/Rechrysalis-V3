@@ -92,7 +92,7 @@ namespace Rechrysalis.Unit
             {
                 _unitActivation?.DeactivateUnit(_parentUnitManager.CurrentSubUnit.GetComponent<UnitManager>().ChildUnitIndex);
                 _unitActivation?.ActivateUnit(chrysalisIndex);
-                _parentUnitManager.ChildUnitManagers[chrysalisIndex].Hatch.ActivateHatch();
+                _parentUnitManager.ChildUnitManagers[chrysalisIndex].Hatch.UnitActivateHatch();
                 Debug.Log($"activate unit " + chrysalisIndex);
                 return;
             }
@@ -163,11 +163,17 @@ namespace Rechrysalis.Unit
             //     if (!hatchEffectManager.IsActivatedOnUnit) continue;
             //     _parentUnitHatchEffects.CreateHatchEffect(hatchEffectManager.gameObject, _parentUnitManager.ParentIndex, unitManager.ChildUnitIndex, true);
             // }        
-            foreach (HatchEffectClass hatchEffectClass in unitManager.UnitClass.HatchEffectClasses)
+            // foreach (HatchEffectClass hatchEffectClass in unitManager.UnitClass.HatchEffectClasses)
+            // {
+            //     if (!hatchEffectClass.HatchEffectManager.IsActivatedOnUnit) {continue;}
+            //     // if (hatchEffectClass.HatchEffectManager.GetComponent<HatchEffectHealth>() == null) {continue;}
+            //     // _parentUnitHatchEffects.CreateHatchEffect(hatchEffectClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitManager.ChildUnitIndex, true);
+
+            // }
+            if (unitManager.UnitClass.HatchEffectClasses.Count == 0) return;
+            if (unitManager.UnitClass.HatchEffectClasses[0].HatchEffectManager.IsActivatedOnUnit)
             {
-                if (!hatchEffectClass.HatchEffectManager.IsActivatedOnUnit) {continue;}
-                if (hatchEffectClass.HatchEffectManager.GetComponent<HatchEffectHealth>() == null) {continue;}
-                _parentUnitHatchEffects.CreateHatchEffect(hatchEffectClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitManager.ChildUnitIndex, true);
+                unitManager.Hatch.ChrysalisActivateHatch();
             }
         }
     }

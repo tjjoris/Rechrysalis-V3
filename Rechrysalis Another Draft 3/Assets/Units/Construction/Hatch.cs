@@ -23,7 +23,13 @@ namespace Rechrysalis.Unit
             _parentUnitManager = parentUnitManager;
             _parentUnitHatchEffects = parentUnitManager.GetComponent<ParentUnitHatchEffects>();
         }
-        public void ActivateHatch()
+        public void UnitActivateHatch()
+        {
+            if (_unitManager.UnitClass.HatchEffectClasses[0].HatchEffectManager.IsActivatedOnUnit) return;
+            ActivateHatch();
+        }
+
+        private void ActivateHatch()
         {
             Rechrysalis.UI.DebugTextStatic.DebugText.DisplayText("in unit hatch script, activate hatch");
             if (_debugBool) Debug.Log($"activate hatch in  hatch");
@@ -31,7 +37,13 @@ namespace Rechrysalis.Unit
             _unitManager.BurstHealManager?.Activate();
             _unitManager.HatchAdjustBuildTimerMaxBase?.Activate();
             ActivateHatchEffects(_unitManager.ChildUnitIndex);
-            Instantiate(_unitManager.ParticleEffectPrefab, transform.position, Quaternion.identity, transform.parent);            
+            Instantiate(_unitManager.ParticleEffectPrefab, transform.position, Quaternion.identity, transform.parent);
+        }
+
+        public void ChrysalisActivateHatch()
+        {
+            if (!_unitManager.UnitClass.HatchEffectClasses[0].HatchEffectManager.IsActivatedOnUnit) return;
+            ActivateHatch();
         }
         private void ActivateHatchEffects(int unitIndex)
         {
