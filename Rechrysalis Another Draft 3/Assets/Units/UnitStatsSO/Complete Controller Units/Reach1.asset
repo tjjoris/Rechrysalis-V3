@@ -26,7 +26,7 @@ MonoBehaviour:
   _projectileSprite: {fileID: 21300000, guid: acf2a1d752267428eaf137c494e17c8b, type: 3}
   _unitSprite: {fileID: 21300000, guid: ad44ee264d6a4427c83eac5491eed511, type: 3}
   _chrysalisSprite: {fileID: 21300000, guid: d1965b37883b044bc857f445c6720dce, type: 3}
-  _unitName: Reach 1
+  _unitName: RCH1
   _currencyCost: 0
   _manaBase: 1
   _origionalBaseHealthMaxBasic: 1

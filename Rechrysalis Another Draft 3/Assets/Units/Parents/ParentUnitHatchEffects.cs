@@ -12,6 +12,7 @@ namespace Rechrysalis.Unit
         private bool _debugBool = false;
         private ControllerManager _controllerManager;
         private ParentUnitManager _parentUnitManager;
+        private DisplayUnitHEIcon _displayUnitHEIcon;
         [SerializeField] private List<GameObject> _hatchEffects;
         public List<GameObject> HatchEffects => _hatchEffects;
         private GameObject[] _subUnits;
@@ -24,6 +25,7 @@ namespace Rechrysalis.Unit
         {
 
             _parentUnitManager = GetComponent<ParentUnitManager>();
+            _displayUnitHEIcon = GetComponent<DisplayUnitHEIcon>();
         }
         public void Initialize (GameObject[] _subUnits, GameObject[] _subchrysalii, ControllerManager controllerManager)
         {
@@ -32,7 +34,7 @@ namespace Rechrysalis.Unit
             this._subUnits = _subUnits;
             this._subChrysalii =_subchrysalii;
             _hatchEffects = new List<GameObject>();
-            // GetComponent<ParentClickManager>().Initialize(_controllerIndex);
+            // GetComponent<ParentClickManager>().Initialize(_controllerIndex);            
         }
 
         public void CreateHatchEffect(GameObject _hatchEffectPrefab, int _parentIndex, int _unitIndex, bool _affectAll)
@@ -46,7 +48,7 @@ namespace Rechrysalis.Unit
             }
             GameObject _hatchEffect = Instantiate(_hatchEffectPrefab, transform);
             HatchEffectManager _hatchEffectManager = _hatchEffect.GetComponent<HatchEffectManager>();
-            _hatchEffectManager?.Initialize(null, _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass, _parentUnitManager.ChildUnitManagers[_unitIndex], _controllerManager);
+            _hatchEffectManager?.Initialize(null, _parentIndex, _unitIndex, _affectAll, _parentUnitManager.ParentUnitClass.AdvUnitClass, _parentUnitManager.ChildUnitManagers[_unitIndex], _controllerManager, _parentUnitManager);
             _addHatchEffect?.Invoke(_hatchEffect, _parentIndex, _unitIndex, _hatchEffectManager.AffectAll);
         }
         public void AddHatchEffect(GameObject _hatchEffect)
@@ -72,10 +74,19 @@ namespace Rechrysalis.Unit
             {
                 if ((hatchEffect != null) && (hatchEffect.activeInHierarchy))
                 {
+                    SetHEIconToInactive(hatchEffect);
                     _removeHatchEffect?.Invoke(hatchEffect, _parentIndex, 0, true);
                 }
             }
         }
+
+        private static void SetHEIconToInactive(GameObject hatchEffect)
+        {
+            HatchEffectManager hem = hatchEffect.GetComponent<HatchEffectManager>();
+            if (hem == null) return;
+            hem.SetHEIconToInactive();
+        }
+
         public void RemoveHatchEffect(GameObject _hatchEffect)
         {
             if (_hatchEffects.Contains(_hatchEffect))

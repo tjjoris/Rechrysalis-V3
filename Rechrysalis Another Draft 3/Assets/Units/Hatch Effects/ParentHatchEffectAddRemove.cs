@@ -10,10 +10,12 @@ namespace Rechrysalis.HatchEffect
         private bool _debugBool = false;
         private ParentUnitManager _parentUnitManager;
         private ParentHealth _parentHealth;
+        // private DisplayUnitHEIcon _displayUnitHEIcon;
 
         private void Awake()
         {
             _parentHealth = GetComponent<ParentHealth>();
+            // _displayUnitHEIcon = GetComponent<DisplayUnitHEIcon>();
         }
         public void Initialzie(ParentUnitManager parentUnitManager)
         {

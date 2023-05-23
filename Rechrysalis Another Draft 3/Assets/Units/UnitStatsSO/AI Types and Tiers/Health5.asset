@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191532707fea54f3c9e0a215f3f68c3f, type: 3}
   m_Name: Health5
   m_EditorClassIdentifier: 
-  _healthMultiplier: 2.5
-  _chrysalisHealthMultiplier: 4
-  _dpsMultiplier: 1.65
+  _healthMultiplier: 1.25
+  _chrysalisHealthMultiplier: 1.25
+  _dpsMultiplier: 1.25
+  _percentDPSToUnitMult: 1
+  _percentDPSToChrysalisMult: 1
   _range: 1
   _attackChargeUp: 1
   _attackWindDown: 1

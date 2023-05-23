@@ -113,7 +113,8 @@ namespace Rechrysalis.Controller
                     }
                     ParentUnitHatchEffects _pUHE = parentUnitGO.GetComponent<ParentUnitHatchEffects>();
                     _pUHE?.Initialize(pum.SubUnits, pum.SubChrysalii, _controllerManager);
-                    pum.AddChrysalisAndUnitActions();   
+                    pum.AddChrysalisAndUnitActions();  
+                    CallUnitHEDisplayIcons(pum, unitComp.ParentUnitClassList[parentUnitIndex]);
                 }              
             }
 
@@ -228,6 +229,12 @@ namespace Rechrysalis.Controller
                     }
                 }
             }
+        }
+        private void CallUnitHEDisplayIcons(ParentUnitManager pum, ParentUnitClass puc)
+        {
+            DisplayUnitHEIcon displayUnitHEIcon = pum.GetComponent<DisplayUnitHEIcon>();
+            if (displayUnitHEIcon == null) return;                    
+            displayUnitHEIcon.DisplayForHEGOList(puc.HatchEffectPrefabs);   
         }
         private void AddToStartingMana(CompSO compSO)
         {

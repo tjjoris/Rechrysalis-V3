@@ -16,6 +16,8 @@ namespace Rechrysalis.HatchEffect
         private int _unitIndex;
         [SerializeField] private UnitManager _unitManager;
         public UnitManager UnitManager => _unitManager;
+        [SerializeField] private ParentUnitManager _parentUnitManager;
+        public ParentUnitManager ParentUnitManager => _parentUnitManager;
         [SerializeField] private ControllerManager _controllerManager;
         public ControllerManager ControllerManager => _controllerManager;
         [SerializeField] private HatchEffectSO _hatchEffectSO;
@@ -47,6 +49,8 @@ namespace Rechrysalis.HatchEffect
         public HEIncreaseDefence HEIncreaseDefence => _hEIncreaseDefence;
         [SerializeField] private OnHatchAOEManager _onHatchAOEManager;
         public OnHatchAOEManager OnHatchAOEManager => _onHatchAOEManager;
+        private  List<HEIconChangeColour> _heIconChangeColour;
+        public List<HEIconChangeColour> HEIconChangeColour => _heIconChangeColour;
         [SerializeField] private UnitClass _unitClass;
         public Action<GameObject, int, int, bool> _hatchEffectDies;
         [SerializeField] private float _burstHealAmount;
@@ -61,6 +65,7 @@ namespace Rechrysalis.HatchEffect
         {
             // _upgradeTypeClass.HatchEffectManager = this;
             SetUpAwake();
+            _heIconChangeColour = new List<HEIconChangeColour>();
         }
         private void SetUpAwake()
         {
@@ -73,8 +78,9 @@ namespace Rechrysalis.HatchEffect
             _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
             _onHatchAOEManager = GetComponent<OnHatchAOEManager>();
         }
-        public void Initialize(HatchEffectSO hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass, UnitManager unitManager, ControllerManager controllerManager)
+        public void Initialize(HatchEffectSO hatchEffectSO, int _parentIndex, int _unitIndex, bool _affectAll, UnitClass advUnitClass, UnitManager unitManager, ControllerManager controllerManager, ParentUnitManager pum)
         {
+            _parentUnitManager = pum;
             SetUpAwake();
             _controllerManager = controllerManager;
             _unitClass = advUnitClass;
@@ -103,6 +109,10 @@ namespace Rechrysalis.HatchEffect
             // _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
             _hEIncreaseDefence?.Initialize(_hatchMult);
             _onHatchAOEManager?.Initialize(_controllerManager);
+            // DisplayUnitHEIcon displayUnitHEIcon = _parentUnitManager.GetComponent<DisplayUnitHEIcon>();
+            // _heIconChangeColour = displayUnitHEIcon.GetHEIconChangeColours(this);
+            InitializeIconAndSetColour(null);
+            
         }
         // public void SetUpUnit(UnitManager unit)
         // {
@@ -113,6 +123,17 @@ namespace Rechrysalis.HatchEffect
         //     if (_burstHealAmount == 0) return;
         //     unit.gameObject.AddComponent<BurstHealManager>();
         // }
+        public void InitializeIconAndSetColour(List<HEIconChangeColour> heIconChangeColours)
+        {
+            DisplayUnitHEIcon displayUnitHEIcon = _parentUnitManager.GetComponent<DisplayUnitHEIcon>();
+            _heIconChangeColour = displayUnitHEIcon.GetHEIconChangeColours(this);
+            // _heIconChangeColour = heIconChangeColours;
+            foreach (HEIconChangeColour heIconChangeColour in _heIconChangeColour)
+            {
+                heIconChangeColour.SetColourToActive();
+            }
+        }
+        
         public void SetOffset(int _multiplier)
         {
             _hEDisplay?.PositionOffset(_multiplier);
@@ -127,8 +148,20 @@ namespace Rechrysalis.HatchEffect
             _hEHealth?.TakeDamage(_damageAmount);
             if (!_hEHealth.CheckIfAlive())
             {
+                // foreach (HEIconChangeColour heIconChangeColour in _heIconChangeColour)
+                // {
+                //     heIconChangeColour.SetColorToInactive();
+                // }   
+                SetHEIconToInactive();             
                 _hatchEffectDies?.Invoke(gameObject, _parentIndex, _unitIndex, _affectAll);
             }            
+        }
+        public void SetHEIconToInactive()
+        {
+            foreach (HEIconChangeColour heIconChangeColour in _heIconChangeColour)
+            {
+                heIconChangeColour.SetColorToInactive();
+            }
         }
     }
 }

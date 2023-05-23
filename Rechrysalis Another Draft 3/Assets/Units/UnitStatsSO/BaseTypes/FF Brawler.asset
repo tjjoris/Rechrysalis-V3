@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191532707fea54f3c9e0a215f3f68c3f, type: 3}
   m_Name: FF Brawler
   m_EditorClassIdentifier: 
-  _healthMultiplier: 3
-  _chrysalisHealthMultiplier: 1
-  _dpsMultiplier: 1.3
+  _healthMultiplier: 2
+  _chrysalisHealthMultiplier: 2
+  _dpsMultiplier: 1.2
   _percentDPSToUnitMult: 0.1
   _percentDPSToChrysalisMult: 0
   _range: 3

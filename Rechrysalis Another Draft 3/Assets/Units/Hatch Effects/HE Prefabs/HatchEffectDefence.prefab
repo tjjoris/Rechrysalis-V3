@@ -87,7 +87,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3458562561051780538}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitManager: {fileID: 0}
+  _parentUnitManager: {fileID: 0}
   _controllerManager: {fileID: 0}
   _hatchEffectSO: {fileID: 0}
   _upgradeTypeClass:
@@ -310,5 +311,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8388b984a251b4dad8e9a908050fb56d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _incomingDamageMultBase: 0.15
+  _incomingDamageMultBase: 0.3
   _incomingDamageMult: 0

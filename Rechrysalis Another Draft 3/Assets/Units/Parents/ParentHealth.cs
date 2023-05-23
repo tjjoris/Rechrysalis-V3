@@ -102,7 +102,7 @@ namespace Rechrysalis.Unit
             float damageOld = damage;
             if ((_isChrysalis) || (_recalculatePercentDPSTypesForController == null)) return damage;
             damage = damage * (1 + _recalculatePercentDPSTypesForController.PercentDPSToUnit);
-            Debug.Log($"added unit damage " + damage + " damage old " + damageOld);
+            if (_debugBool) Debug.Log($"added unit damage " + damage + " damage old " + damageOld);
             return damage;
         }
         public void Heal(float healAmount)

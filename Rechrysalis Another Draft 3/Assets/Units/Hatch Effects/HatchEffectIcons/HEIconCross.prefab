@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 691830177871964275}
   - component: {fileID: 3514454137147251956}
+  - component: {fileID: 7694953052439084323}
   m_Layer: 0
   m_Name: HEIconCross
   m_TagString: Untagged
@@ -84,3 +85,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7694953052439084323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3129762738353572570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52a19ce06342425c854ef5d59b0d335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

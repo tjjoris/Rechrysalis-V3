@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 5500866021502512126}
   - component: {fileID: 1676179976151722161}
   - component: {fileID: 2733411240452711532}
+  - component: {fileID: 3545663114234057185}
   m_Layer: 0
   m_Name: Parent Unit Prefab
   m_TagString: Untagged
@@ -404,6 +405,30 @@ MonoBehaviour:
   _backGSprite: {fileID: 6778500408042411300}
   _fillSprite: {fileID: 4824100114993928293}
   _fillTransform: {fileID: 6589158823588355800}
+--- !u!114 &3545663114234057185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6178309120940175549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19b2b1201a99842869722617d9617233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageIconPrefab: {fileID: 8763987241660184436, guid: 92db33551918149779bdec2f70b87eb4, type: 3}
+  _defenceIconPrefab: {fileID: 7313103899669739850, guid: 4dbc25c2b4c384dec955f9714b7c47e4, type: 3}
+  _rangeIconPrefab: {fileID: 425095721312136091, guid: a195cd87853a14b59a3963796f821028, type: 3}
+  _speedIconPrefab: {fileID: 5079125557331776693, guid: 3b2a8ae227c544026bc217a07372e08c, type: 3}
+  _buildSpeedIconPrefab: {fileID: 988983538736793340, guid: 61db182585f8544aebd58066a8938a5e, type: 3}
+  _burstHealIconPrefab: {fileID: 3129762738353572570, guid: 8771226bdd0b647d5ad570ea39d80761, type: 3}
+  _aoeIconPrefab: {fileID: 7892097113901659955, guid: 846afe083410e48869d6771a8a57de2a, type: 3}
+  _yDisplacement: -0.5
+  _xDisplacement: 0.4
+  _xStartDisplacement: -0.6
+  _inactiveColour: {r: 1, g: 1, b: 1, a: 1}
+  _activeColour: {r: 0, g: 1, b: 0.7851589, a: 1}
 --- !u!1 &8526505655396988532
 GameObject:
   m_ObjectHideFlags: 0
