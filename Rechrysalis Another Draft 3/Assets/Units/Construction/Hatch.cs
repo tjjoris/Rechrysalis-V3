@@ -64,7 +64,7 @@ namespace Rechrysalis.Unit
                     continue;
                 }
                 Debug.Log($"hem " + hatcheffectClass.HatchEffectManager + " hem is activated on unit " + hatcheffectClass.HatchEffectManager.IsActivatedOnUnit);
-                if (hatcheffectClass.HatchEffectManager.IsActivatedOnUnit) {continue;}
+                // if (hatcheffectClass.HatchEffectManager.IsActivatedOnUnit) {continue;}
                 if (hatcheffectClass.HatchEffectPrefab.GetComponent<HatchEffectHealth>() == null) 
                 {
                     UI.DebugTextStatic.DebugText.DisplayText("he health == null");
