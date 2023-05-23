@@ -223,7 +223,7 @@ namespace Rechrysalis.Controller
                         {
                             childIndex = 1;
                         }
-                        thisParentUnit.GetComponent<UnitActivation>().ActivateUnit(childIndex);
+                        thisParentUnit.GetComponent<UnitActivation>().ActivateUnitAtStartFromIndex(childIndex);
                         thisParentUnit.CurrentSubUnit = thisParentUnit.ChildUnitManagers[childIndex].gameObject;
 
                     }

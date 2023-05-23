@@ -36,7 +36,11 @@ namespace Rechrysalis.Unit
             _recalculatePercentDPSTypesForController = _controllerManager.GetComponent<RecalculatePercentDPSTypesForController>();
             // _freeChrysalisStoresHealth = GetComponent<FreeChrysalisStoresHealth>();
         }
-        
+        public void ActivateUnitAtStartFromIndex(int unitIndex)
+        {
+            SetActiveUnit(_parentUnitManager.ChildUnitManagers[unitIndex]);
+            _parentHealth.SetMaxHealth(_parentUnitManager.ChildUnitManagers[unitIndex].UnitClass.HPMax);
+        }
         public void ActivateUnit(int unitIndex)
         {
             // Debug.Log($"activating");
@@ -46,11 +50,12 @@ namespace Rechrysalis.Unit
                 {
                     _parentUnitManager.CurrentSubUnit = _parentUnitManager.ChildUnitManagers[unitIndex].gameObject;
                     // _parentUnitManager.SubUnits[unitIndex].SetActive(true);
-                    _parentUnitManager.ChildUnitManagers[unitIndex].gameObject.SetActive(true);
-                    _parentHealth.CurrentUnit = _parentUnitManager.ChildUnitManagers[unitIndex];
+                    SetActiveUnit(_parentUnitManager.ChildUnitManagers[unitIndex]);
+                    // _parentUnitManager.ChildUnitManagers[unitIndex].gameObject.SetActive(true);
+                    // _parentHealth.CurrentUnit = _parentUnitManager.ChildUnitManagers[unitIndex];
+                    // _parentUnitManager.CurrentSubUnit = _parentUnitManager.ChildUnitManagers[unitIndex].gameObject;
                     _parentHealth.SetChrysalis(false);
                     UnitManager unitManager = _parentUnitManager.ChildUnitManagers[unitIndex];
-                    ActivateHatchOnUnit(unitManager);
                     // int _tier = _unitManager.UnitStats.TierMultiplier.Tier - 1;
                     // if ((_parentUnitManager.SubHatchEffects != null) && (_parentUnitManager.SubHatchEffects.Length > unitIndex))
                     // {
@@ -87,6 +92,12 @@ namespace Rechrysalis.Unit
             _parentUnitManager.CurrentSubUnit?.GetComponent<Attack>()?.ResetUnitAttack();
             _recalculatePercentDPSTypesForController?.RecalculatePercents();
         }
+        private void SetActiveUnit(UnitManager unitManager)
+        {
+            unitManager.gameObject.SetActive(true);
+            _parentUnitManager.CurrentSubUnit = unitManager.gameObject;
+            _parentHealth.CurrentUnit = unitManager;
+        }
         public void DeactivateUnit(int _unitIndex)
         {
             if (_parentUnitManager.ChildUnitManagers[_unitIndex].gameObject != null)
@@ -102,21 +113,6 @@ namespace Rechrysalis.Unit
             }
             _recalculatePercentDPSTypesForController?.RecalculatePercents();
         }    
-        private void ActivateHatchOnUnit(UnitManager unitManager)
-        {
-            // if ((_parentUnitManager.ParentUnitClass.HatchEffectManagers == null) || (_parentUnitManager.ParentUnitClass.HatchEffectManagers.Count == 0)) return;
-            // foreach (HatchEffectManager hatchEffectManager in _parentUnitManager.ParentUnitClass.HatchEffectManagers)
-            // {
-            //     if (hatchEffectManager == null) continue;
-            //     if (!hatchEffectManager.IsActivatedOnUnit) continue;
-            //     _parentUnitHatchEffects.CreateHatchEffect(hatchEffectManager.gameObject, _parentUnitManager.ParentIndex, unitManager.ChildUnitIndex, true);
-            // }        
-            foreach (HatchEffectClass hatchEffectClass in unitManager.UnitClass.HatchEffectClasses)
-            {
-                if (!hatchEffectClass.HatchEffectManager.IsActivatedOnUnit) continue;
-                _parentUnitHatchEffects.CreateHatchEffect(hatchEffectClass.HatchEffectPrefab, _parentUnitManager.ParentIndex, unitManager.ChildUnitIndex, true);
-            }
-
-        }    
+        
     }
 }

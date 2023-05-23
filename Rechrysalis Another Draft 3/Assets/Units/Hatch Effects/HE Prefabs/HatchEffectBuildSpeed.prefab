@@ -273,6 +273,7 @@ MonoBehaviour:
     _controllerLifeCostMult: 1
     _hatchBuildTimeMaxBaseAdd: 0
   _burstHealAmount: 0
+  _isActivatedOnUnit: 1
 --- !u!114 &1894819527670956384
 MonoBehaviour:
   m_ObjectHideFlags: 0
