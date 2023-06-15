@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Rechrysalis.HatchEffect
 {
-    public class HEIncreaseBuildSpeed : MonoBehaviour
+    public class HEIncreaseBuildSpeed : HatchEffectFunctionParent
     {
         [SerializeField] private float _increaseBuildSpeed;
 
