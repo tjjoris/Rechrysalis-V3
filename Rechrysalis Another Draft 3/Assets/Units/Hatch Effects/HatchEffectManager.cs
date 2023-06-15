@@ -116,7 +116,7 @@ namespace Rechrysalis.HatchEffect
             _hatchEffectFunctionParent?.Initialize(_controllerManager, _hatchMult);
             // _hEIncreaseDamage?.Initialize(_hatchMult);
             // _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
-            _hEIncreaseDefence?.Initialize(_hatchMult);
+            // _hEIncreaseDefence?.Initialize(_hatchMult);
             // _onHatchAOEManager?.Initialize(_controllerManager);
             // DisplayUnitHEIcon displayUnitHEIcon = _parentUnitManager.GetComponent<DisplayUnitHEIcon>();
             // _heIconChangeColour = displayUnitHEIcon.GetHEIconChangeColours(this);
