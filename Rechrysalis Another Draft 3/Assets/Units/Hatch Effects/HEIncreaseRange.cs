@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Rechrysalis.HatchEffect
 {
-    public class HEIncreaseRange : MonoBehaviour
+    public class HEIncreaseRange : HatchEffectFunctionParent
     {
         [SerializeField] private float _rangeToAdd;
 
