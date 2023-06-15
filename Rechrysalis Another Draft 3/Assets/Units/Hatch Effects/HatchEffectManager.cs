@@ -43,6 +43,7 @@ namespace Rechrysalis.HatchEffect
         // private float _currentHP;
         [SerializeField] private float _hpDrainPerTick = 1f;
         private int _tier;
+        [SerializeField] private HatchEffectFunctionParent _hatchEffectFunctionParent;
         [SerializeField] private HEIncreaseDamage _hEIncreaseDamage;
         public HEIncreaseDamage HEIncreaseDamage => _hEIncreaseDamage;
         [SerializeField] private HEIncreaseDefence _hEIncreaseDefence;
@@ -76,6 +77,7 @@ namespace Rechrysalis.HatchEffect
             _hETimer = GetComponent<HETimer>();
             _hEDisplay = GetComponent<HEDisplay>();
             _hEHealth = GetComponent<HatchEffectHealth>();
+            _hatchEffectFunctionParent = GetComponent<HatchEffectFunctionParent>();
             _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
             _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
             _onHatchAOEManager = GetComponent<OnHatchAOEManager>();
@@ -111,10 +113,11 @@ namespace Rechrysalis.HatchEffect
             _hEHealth.Initialize(_hatchMult, advUnitClass, _HEHealthMax);
             }
             // _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
+            _hatchEffectFunctionParent?.Initialize(_controllerManager, _hatchMult);
             _hEIncreaseDamage?.Initialize(_hatchMult);
             // _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
             _hEIncreaseDefence?.Initialize(_hatchMult);
-            _onHatchAOEManager?.Initialize(_controllerManager);
+            // _onHatchAOEManager?.Initialize(_controllerManager);
             // DisplayUnitHEIcon displayUnitHEIcon = _parentUnitManager.GetComponent<DisplayUnitHEIcon>();
             // _heIconChangeColour = displayUnitHEIcon.GetHEIconChangeColours(this);
             InitializeIconAndSetColour(null);
@@ -147,7 +150,8 @@ namespace Rechrysalis.HatchEffect
         public void Tick(float _timeAmount)
         {
             TakeDamage(_timeAmount * _hpDrainPerTick);
-            _onHatchAOEManager?.Tick(_timeAmount);
+            _hatchEffectFunctionParent?.Tick(_timeAmount);
+            // _onHatchAOEManager?.Tick(_timeAmount);
         } 
         public void TakeDamage(float _damageAmount)
         {
@@ -158,7 +162,8 @@ namespace Rechrysalis.HatchEffect
                 // {
                 //     heIconChangeColour.SetColorToInactive();
                 // }   
-                SetHEIconToInactive();             
+                SetHEIconToInactive();    
+                _hatchEffectFunctionParent?.Die();         
                 _hatchEffectDies?.Invoke(gameObject, _parentIndex, _unitIndex, _affectAll);
             }            
         }

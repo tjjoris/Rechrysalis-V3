@@ -319,6 +319,8 @@ MonoBehaviour:
   _tickRate: 1
   _tickCurrent: 0
   _parentHealthList: []
+  _heAOEPrefab: {fileID: 7912530260717788840, guid: abfeee5dd0d0f4e099004d05ae795a32, type: 3}
+  _heAoeColliderManager: {fileID: 0}
 --- !u!58 &1691201436685925040
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -326,7 +328,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4387173649336406545}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1

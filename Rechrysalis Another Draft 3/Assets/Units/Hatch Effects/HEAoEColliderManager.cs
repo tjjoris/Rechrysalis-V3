@@ -18,7 +18,7 @@ namespace Rechrysalis.HatchEffect
         }
         public void Initialize(ControllerManager controllerManager)
         {
-            controllerManager = _controllerManager;
+            _controllerManager = controllerManager;
         }
 
         private 
@@ -68,6 +68,10 @@ namespace Rechrysalis.HatchEffect
 
                 if (_debugBool) Debug.Log($"take aoe damage");
             }
+        }
+        public void Die()
+        {
+            Destroy(gameObject);
         }
     }
 }

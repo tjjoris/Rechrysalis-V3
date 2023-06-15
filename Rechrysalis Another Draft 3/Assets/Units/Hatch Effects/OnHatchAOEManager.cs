@@ -6,11 +6,11 @@ using Rechrysalis.Controller;
 
 namespace Rechrysalis.HatchEffect
 {
-    public class OnHatchAOEManager : MonoBehaviour
+    public class OnHatchAOEManager : HatchEffectFunctionParent
     {
         private bool _debugBool = false;
         [SerializeField] private HatchEffectManager _hatchEffectManager;
-        [SerializeField] private ControllerManager _controllerManager;
+        // [SerializeField] private ControllerManager _controllerManager;
         [SerializeField] private float _damage;
         [SerializeField] private float _tickRate;
         [SerializeField] private float _tickCurrent;
@@ -23,14 +23,15 @@ namespace Rechrysalis.HatchEffect
         {
             _hatchEffectManager = GetComponent<HatchEffectManager>();
         }
-        public void Initialize(ControllerManager controllerManager)
+        public override void Initialize(ControllerManager controllerManager, float hatchMult)
         {
-            _controllerManager = controllerManager;
+            base.Initialize(controllerManager, hatchMult);
+            // _controllerManager = controllerManager;
             GameObject go = Instantiate (_heAOEPrefab, _controllerManager.transform.position, Quaternion.identity, _controllerManager.transform);
             _heAoeColliderManager = go.GetComponent<HEAoEColliderManager>();
             _heAoeColliderManager.Initialize(controllerManager);
         }
-        public void Tick(float timeAmount)
+        public override void Tick(float timeAmount)
         {
             _tickCurrent += timeAmount;
             if (_tickCurrent >= _tickRate)
@@ -88,5 +89,9 @@ namespace Rechrysalis.HatchEffect
         //     if (!_parentHealthList.Contains(parentHealth)) return;
         //     _parentHealthList.Remove(parentHealth);
         // }
+        public override void Die()
+        {
+            _heAoeColliderManager.Die();
+        }
     }
 }

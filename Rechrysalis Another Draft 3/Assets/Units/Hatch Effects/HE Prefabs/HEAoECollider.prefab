@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7978443942899557881}
   - component: {fileID: 1014267592398115316}
   - component: {fileID: 240839033529535371}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HEAoECollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,3 +61,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1733d3358a5a448e9a5e4744adbd4976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parentHealthList: []
