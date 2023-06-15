@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rechrysalis.Controller;
 
 namespace Rechrysalis.HatchEffect
 {
-    public class HEIncreaseDamage : MonoBehaviour
+    public class HEIncreaseDamage : HatchEffectFunctionParent
     {
         [SerializeField]private float _damageToAddBase = 20f;
         private float _damageToAdd;
 
-        public void Initialize(float hatchEffectMult)
+        public override void Initialize(ControllerManager controllerManager, float hatchEffectMult)
         {
+            base.Initialize(controllerManager, hatchEffectMult);
             _damageToAdd = _damageToAddBase * hatchEffectMult;
         }
 

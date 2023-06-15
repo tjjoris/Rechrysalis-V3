@@ -114,7 +114,7 @@ namespace Rechrysalis.HatchEffect
             }
             // _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
             _hatchEffectFunctionParent?.Initialize(_controllerManager, _hatchMult);
-            _hEIncreaseDamage?.Initialize(_hatchMult);
+            // _hEIncreaseDamage?.Initialize(_hatchMult);
             // _hEIncreaseDefence = GetComponent<HEIncreaseDefence>();
             _hEIncreaseDefence?.Initialize(_hatchMult);
             // _onHatchAOEManager?.Initialize(_controllerManager);
