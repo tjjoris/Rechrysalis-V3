@@ -20,12 +20,12 @@ namespace Rechrysalis.HatchEffect
             // _hatchEffectManager = GetComponent<HatchEffectManager>();
         }
 
-        public void Initialize(float hatchMult, UnitClass advUnit, float hpMax)
+        public void Initialize(float hatchMult, UnitClass advUnit)
         {
             if (debugBool) Debug.Log($"hatch mult " + hatchMult);
             // if (_healthMax != 0)
             // _healthMax = healthMax;
-            _HPMax = hpMax;
+            // _HPMax = hpMax;
             _healthMult = ((hatchMult - 1f) * _healthMultMult) + 1f;
             _HPMax *= _healthMult;
             _HPMax += advUnit.HatchEffectDurationAdd;

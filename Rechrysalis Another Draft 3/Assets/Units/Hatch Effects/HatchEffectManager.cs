@@ -28,8 +28,8 @@ namespace Rechrysalis.HatchEffect
         public HatchEffectHealth HEHealth => _hEHealth;
         private bool _affectAll = true;
         public bool AffectAll {get{return _affectAll;}}
-        [SerializeField] private float _HEHealthMax;
-        public float HEHealthMax => _HEHealthMax;
+        // [SerializeField] private float _HEHealthMax;
+        // public float HEHealthMax => _HEHealthMax;
         [SerializeField] private float _hatchMult;
         public float HatchMult => _hatchMult;
         [SerializeField] private float _hatchDurationMult;
@@ -108,9 +108,9 @@ namespace Rechrysalis.HatchEffect
             _hatchDurationMult = advUnitClass.HatchEffectDurationAdd;
             Debug.Log($" hatch mult "+ _hatchMult);
             Debug.Log($" adv unit class " + advUnitClass);
-            Debug.Log($"he health max " + _HEHealthMax);
+            // Debug.Log($"he health max " + _HEHealthMax);
             Debug.Log($"he health " + _hEHealth);
-            _hEHealth.Initialize(_hatchMult, advUnitClass, _HEHealthMax);
+            _hEHealth.Initialize(_hatchMult, advUnitClass);
             }
             // _hEIncreaseDamage = GetComponent<HEIncreaseDamage>();
             _hatchEffectFunctionParent?.Initialize(_controllerManager, _hatchMult);

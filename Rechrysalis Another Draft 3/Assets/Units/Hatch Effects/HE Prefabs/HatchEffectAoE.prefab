@@ -241,6 +241,7 @@ MonoBehaviour:
   _buildTimeIncrease: 0
   _name: {fileID: 5695291920276427103}
   _hpDrainPerTick: 1
+  _hatchEffectFunctionParent: {fileID: -6412730221419934628}
   _hEIncreaseDamage: {fileID: 0}
   _hEIncreaseDefence: {fileID: 0}
   _onHatchAOEManager: {fileID: -6412730221419934628}
@@ -300,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91a4339d2ccf4aa0b6dc4588eba2bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HPMax: 70
+  _HPMax: 150
 --- !u!114 &-6412730221419934628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +315,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hatchEffectManager: {fileID: 0}
-  _controllerManager: {fileID: 0}
   _damage: 10
   _tickRate: 1
   _tickCurrent: 0
