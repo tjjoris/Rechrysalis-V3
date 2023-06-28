@@ -46,23 +46,33 @@ namespace Rechrysalis.Background
         public void Tick ()
         {
             LoopToRemoveTiles();
+            LoopRows();
+            _verticalBoundsYUpdate.UpdateVerticalBoxColliders(Camera.main.transform);
+        }
+
+        private void LoopRows()
+        {
             for (int _xIndex = 0; _xIndex < _xCount; _xIndex++)
             {
-                for (int _yIndex = 0; _yIndex < _yCount; _yIndex++)
-                {
-                    bool _objectExists = false;
-                    float _xCameraCount = Camera.main.transform.position.x / _tileWidth;
-                    _xCameraCount = Mathf.Floor(_xCameraCount);
-                    float _xIndexToCheck = _xCameraCount + _xIndex - ((_xCount - 1) * 0.5f);
-                    float _yCameraCount = Camera.main.transform.position.y / _tileHeight;
-                    _yCameraCount = Mathf.Floor(_yCameraCount);
-                    float _yIndexToCheck = _yCameraCount + _yIndex - ((_yCount - 1) * 0.5f);
-                    Vector3 _vectorToCheck = new Vector3(((_xIndexToCheck * _tileWidth)), (_yIndexToCheck * _tileHeight), _zOffset);
-                    _objectExists = LoopActiveTilesCheckTileExistsAtTileToCheck(_objectExists, _vectorToCheck);
-                    IfTileDoesNotExistActivateTile(_objectExists, _vectorToCheck);
-                }
+                LoopColumns(_xIndex);
             }
-            _verticalBoundsYUpdate.UpdateVerticalBoxColliders(Camera.main.transform);
+        }
+
+        private void LoopColumns(int _xIndex)
+        {
+            for (int _yIndex = 0; _yIndex < _yCount; _yIndex++)
+            {
+                bool _objectExists = false;
+                float _xCameraCount = Camera.main.transform.position.x / _tileWidth;
+                _xCameraCount = Mathf.Floor(_xCameraCount);
+                float _xIndexToCheck = _xCameraCount + _xIndex - ((_xCount - 1) * 0.5f);
+                float _yCameraCount = Camera.main.transform.position.y / _tileHeight;
+                _yCameraCount = Mathf.Floor(_yCameraCount);
+                float _yIndexToCheck = _yCameraCount + _yIndex - ((_yCount - 1) * 0.5f);
+                Vector3 _vectorToCheck = new Vector3(((_xIndexToCheck * _tileWidth)), (_yIndexToCheck * _tileHeight), _zOffset);
+                _objectExists = LoopActiveTilesCheckTileExistsAtTileToCheck(_objectExists, _vectorToCheck);
+                IfTileDoesNotExistActivateTile(_objectExists, _vectorToCheck);
+            }
         }
 
         private bool LoopActiveTilesCheckTileExistsAtTileToCheck(bool _objectExists, Vector3 _vectorToCheck)
