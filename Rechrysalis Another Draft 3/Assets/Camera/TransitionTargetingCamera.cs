@@ -25,18 +25,8 @@ namespace Rechrysalis.CameraControl
                 if (_debugBool) Debug.Log($"transition to targeting");
             }
             _pauseScript.SetTargetingPause(true);
-            float xSum = 0;
-            float ySum = 0;
-            float count = 0;
-            for (int i=0; i<_enemyControllerManager.ParentUnitManagers.Count; i++)
-            {
-                if (_enemyControllerManager.ParentUnitManagers[i].gameObject.activeInHierarchy)
-                {
-                    xSum += _enemyControllerManager.ParentUnitManagers[i].transform.position.x;
-                    ySum += _enemyControllerManager.ParentUnitManagers[i].transform.position.y;
-                    count ++;
-                }
-            }
+            float xSum, ySum, count;
+            FindPositionSumsOfUnitLocationsAndCount(out xSum, out ySum, out count);
             xSum /= count;
             ySum /= count;
             Vector2 cameraFollowPos = new Vector2(xSum, ySum);
@@ -46,6 +36,32 @@ namespace Rechrysalis.CameraControl
             _inTargetMode = true;
             _returnToControllerButton.SetActive(true);
         }
+
+        private void FindPositionSumsOfUnitLocationsAndCount(out float xSum, out float ySum, out float count)
+        {
+            xSum = 0;
+            ySum = 0;
+            count = 0;
+            LoopEnemyParentUnitManagers(ref xSum, ref ySum, ref count);
+        }
+
+        private void LoopEnemyParentUnitManagers(ref float xSum, ref float ySum, ref float count)
+        {
+            for (int i = 0; i < _enemyControllerManager.ParentUnitManagers.Count; i++)
+            {
+                AddPositionSumAndCountForThisPUM(ref xSum, ref ySum, ref count, i);
+            }
+        }
+
+        private void AddPositionSumAndCountForThisPUM(ref float xSum, ref float ySum, ref float count, int i)
+        {
+            if (!_enemyControllerManager.ParentUnitManagers[i].gameObject.activeInHierarchy)
+                { return; }
+                xSum += _enemyControllerManager.ParentUnitManagers[i].transform.position.x;
+            ySum += _enemyControllerManager.ParentUnitManagers[i].transform.position.y;
+            count++;
+        }
+
         public void TransitionToController()
         {
             if (_debugBool)
