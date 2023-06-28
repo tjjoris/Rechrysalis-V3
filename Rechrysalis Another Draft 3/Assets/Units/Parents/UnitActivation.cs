@@ -4,6 +4,7 @@ using UnityEngine;
 using Rechrysalis.HatchEffect;
 using Rechrysalis.Attacking;
 using Rechrysalis.Controller;
+using Rechrysalis.UI;
 
 namespace Rechrysalis.Unit
 {
@@ -90,7 +91,8 @@ namespace Rechrysalis.Unit
             _targetScoreValue.SetCurrentUnit(_parentUnitManager.CurrentSubUnit.GetComponent<Attack>());
             _hilightRingParentManager?.ActivateUnit(unitIndex);
             _parentUnitManager.CurrentSubUnit?.GetComponent<Attack>()?.ResetUnitAttack();
-            _recalculatePercentDPSTypesForController?.RecalculatePercents();
+            // _recalculatePercentDPSTypesForController?.RecalculatePercents();
+            RecalculatePercentsIfActive();
         }
         private void SetActiveUnit(UnitManager unitManager)
         {
@@ -111,8 +113,15 @@ namespace Rechrysalis.Unit
             {
                 _parentUnitManager.TheseUnits.ActiveUnits.Remove(_parentUnitManager.ChildUnitManagers[_unitIndex].gameObject);
             }
-            _recalculatePercentDPSTypesForController?.RecalculatePercents();
+            // _recalculatePercentDPSTypesForController?.RecalculatePercents();
+            RecalculatePercentsIfActive();
         }    
+        private void RecalculatePercentsIfActive()
+        {
+            if (!PlayerPrefsInteract.GetChrysalisAndUnitDamageActive())
+            {return;}
+            _recalculatePercentDPSTypesForController?.RecalculatePercents();
+        }
         
     }
 }
