@@ -130,7 +130,6 @@ namespace Rechrysalis.Controller
             _controllerHatchEffect?.SubscribeToUnits();
             upgradeRingManager?.SetActiveUpgradeRing(-1);
             AddToStartingMana(unitComp);
-            SetChrysalisAndUnitDamageIfActive();
         }
         private void CreateChildUnitAndChrysalis(UnitClass unitClass, int childUnitIndex, ParentUnitManager pum, int parentUnitIndex, CompsAndUnitsSO compsAndUnits, bool isAdvUnit)
         {
@@ -230,6 +229,8 @@ namespace Rechrysalis.Controller
                     }
                 }
             }
+
+            SetChrysalisAndUnitDamageIfActive();
         }
         private void CallUnitHEDisplayIcons(ParentUnitManager pum, ParentUnitClass puc)
         {
