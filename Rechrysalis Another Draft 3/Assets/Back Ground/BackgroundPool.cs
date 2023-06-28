@@ -58,14 +58,8 @@ namespace Rechrysalis.Background
                     _yCameraCount = Mathf.Floor(_yCameraCount);
                     float _yIndexToCheck = _yCameraCount + _yIndex - ((_yCount - 1) * 0.5f);
                     Vector3 _vectorToCheck = new Vector3(((_xIndexToCheck * _tileWidth)), (_yIndexToCheck * _tileHeight), _zOffset);
-                    if (_activeTiles.Count > 0)
-                    {
-                        _objectExists = LoopActiveTilesCheckTileExistsAtTileToCheck(_objectExists, _vectorToCheck);
-                    }
-                    if (!_objectExists)
-                    {
-                        ActivateTile(_vectorToCheck);
-                    }
+                    _objectExists = LoopActiveTilesCheckTileExistsAtTileToCheck(_objectExists, _vectorToCheck);
+                    IfTileDoesNotExistActivateTile(_objectExists, _vectorToCheck);
                 }
             }
             _verticalBoundsYUpdate.UpdateVerticalBoxColliders(Camera.main.transform);
@@ -73,6 +67,7 @@ namespace Rechrysalis.Background
 
         private bool LoopActiveTilesCheckTileExistsAtTileToCheck(bool _objectExists, Vector3 _vectorToCheck)
         {
+            if (_activeTiles.Count == 0) return false;
             for (int _activeIndex = 0; _activeIndex < _activeTiles.Count; _activeIndex++)
             {
                 if (_objectExists)
@@ -83,7 +78,14 @@ namespace Rechrysalis.Background
             return _objectExists;
         }
 
-
+        private void IfTileDoesNotExistActivateTile(bool tileExists, Vector3 location)
+        {
+            if (tileExists)
+            {
+                return;
+            }
+            ActivateTile(location);
+        }
         private void ActivateTile (Vector3 _location)
         {
             GameObject go = GetPooledObject();
