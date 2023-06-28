@@ -72,15 +72,13 @@ namespace Rechrysalis.CompCustomizer
             Debug.Log($"vertical to set up " + parentIndex);
             _verticalMangers[parentIndex]?.Initialize(_movingButtonHolder, compsAndUnitsSO, controllerHPTokens, _instantiateButton);
             _verticalMangers[parentIndex]?.VerticalContainer.GetComponent<DropBackGround>()?.Initialize(compsAndUnitsSO);
-            if (playerComp.ParentUnitClassList.Count > parentIndex)
-            {
-                if (_debugBool)
+            if (!(playerComp.ParentUnitClassList.Count > parentIndex))
+            { return; }
+              if (_debugBool)
                 Debug.Log($"parent unit class count "+playerComp.ParentUnitClassList.Count);
-                {
+            
                     // _verticalMangers[parentIndex]?.CreateAndSetUpCompButtonsOld(playerComp, parentIndex, _compButtonPrefab, _movingButtonHolder, playerComp.ParentUnitClassList[parentIndex]);
-                    _verticalMangers[parentIndex]?.CreateAndSetUpCompButtons(playerComp.ParentUnitClassList[parentIndex], _compButtonPrefab);
-                }
-            }
+                    _verticalMangers[parentIndex]?.CreateAndSetUpCompButtons(playerComp.ParentUnitClassList[parentIndex], _compButtonPrefab);                        
         }
         public bool CheckIfCanContinue()
         {

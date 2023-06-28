@@ -11,7 +11,7 @@ namespace Rechrysalis.Unit
 {
     public class ParentHealth : MonoBehaviour
     {
-        bool _debugBool = false;
+        bool _debugBool = true;
         private ParentUnitManager _parentUnitManager;
         public ParentUnitManager ParentUnitManager => _parentUnitManager;
         private ControllerManager _controllerManager;
@@ -84,7 +84,13 @@ namespace Rechrysalis.Unit
             {
                 _currentHealth -= damageToTake;
             }
-            if (_debugBool) Debug.Log($"take damage " + damageToTake);
+            if (_debugBool) 
+            { 
+                if (_controllerManager.ControllerIndex == 1)
+                {
+                    Debug.Log($"take damage " + damageToTake);
+                }
+            }
             UpdateHpBar();
             // GetComponent<ParentUnitHatchEffects>()?.TakeDamage(_damage);
             CheckIfDead();
@@ -94,7 +100,7 @@ namespace Rechrysalis.Unit
             float damageOld = damage;
             if ((!_isChrysalis) || (_recalculatePercentDPSTypesForController == null)) return damage;
             damage = damage * (1 + _recalculatePercentDPSTypesForController.PercentDPSToChrysalis);
-            Debug.Log($"added chryaslis damage " + damage + " damage old " + damageOld);
+            // Debug.Log($"added chryaslis damage " + damage + " damage old " + damageOld);
             return damage;
         }
         private float AddDamageIfunit(float damage)
@@ -102,7 +108,7 @@ namespace Rechrysalis.Unit
             float damageOld = damage;
             if ((_isChrysalis) || (_recalculatePercentDPSTypesForController == null)) return damage;
             damage = damage * (1 + _recalculatePercentDPSTypesForController.PercentDPSToUnit);
-            if (_debugBool) Debug.Log($"added unit damage " + damage + " damage old " + damageOld);
+            // if (_debugBool) Debug.Log($"added unit damage " + damage + " damage old " + damageOld);
             return damage;
         }
         public void Heal(float healAmount)
@@ -150,7 +156,7 @@ namespace Rechrysalis.Unit
             }
             if (_debugBool)
             {
-                Debug.Log($"incoming damage mult " + _incomingDamageReductionMult);
+                // Debug.Log($"incoming damage mult " + _incomingDamageReductionMult);
             }
         }
         private void UpdateHpBar()

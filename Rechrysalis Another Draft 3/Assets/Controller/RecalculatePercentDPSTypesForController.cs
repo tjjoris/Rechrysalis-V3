@@ -7,6 +7,7 @@ namespace Rechrysalis.Controller
 {
     public class RecalculatePercentDPSTypesForController : MonoBehaviour
     {
+        private bool _debugBool = false;
         private ControllerManager _controllerManager;
         [SerializeField] private float _percentDPSToUnit;
         public float PercentDPSToUnit => _percentDPSToUnit;
@@ -20,7 +21,8 @@ namespace Rechrysalis.Controller
 
         public void RecalculatePercents()
         {
-            Debug.Log($"recaclulate percent dps");
+            if (_debugBool)
+            {Debug.Log($"recaclulate percent dps");}
             _percentDPSToChrysalis = 0;
             _percentDPSToUnit = 0;
             foreach (ParentUnitManager parentUnitManager in _controllerManager.ParentUnitManagers)

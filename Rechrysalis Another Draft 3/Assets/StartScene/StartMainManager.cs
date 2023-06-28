@@ -18,12 +18,14 @@ namespace Rechrysalis
         [SerializeField] private Toggle _customizeOnlyHEAndUnit;
         [SerializeField] private Toggle _onlyOneHatchEffect;
         [SerializeField] private TMP_Dropdown _healthToBuildTimeDropDown;
+        [SerializeField] private Toggle _chrysalisAndUnitDamageActive;
         private void Awake()
         {
-            PlayerPrefsChanged();
+            // PlayerPrefsChanged();
         }
         private void Start()
         {
+            PlayerPrefsChanged();
             SetNewGameStatus();
         }
         private void OnEnable()
@@ -41,6 +43,7 @@ namespace Rechrysalis
             _hasBasicUnitToggle.isOn = PlayerPrefsInteract.GetHasBasicUnit();
             _customizeOnlyHEAndUnit.isOn = PlayerPrefsInteract.GetCustomizeOnlyHEAndUnit();
             _onlyOneHatchEffect.isOn = PlayerPrefsInteract.GetOnlyOneHatchEffect();
+            _chrysalisAndUnitDamageActive.isOn = PlayerPrefsInteract.GetChrysalisAndUnitDamageActive();
         }
         public void LevelSelect()
         {
@@ -94,6 +97,10 @@ namespace Rechrysalis
         {
             PlayerPrefsInteract.SetOnlyOneHatchEffect(_onlyOneHatchEffect.isOn);
         }
+        public void ToggleChrysalisAndUnitDamageActive()
+        {
+            PlayerPrefsInteract.SetChrysalisAndUnitDamageActive(_chrysalisAndUnitDamageActive.isOn);
+        }
         public void HyperManaMode()
         {
             
@@ -107,6 +114,8 @@ namespace Rechrysalis
             ToggleCustomizeOnlyHEAndUnit();
             _onlyOneHatchEffect.isOn = false;
             ToggleOnlyOneHatchEffect();
+            _chrysalisAndUnitDamageActive.isOn = false;
+            ToggleChrysalisAndUnitDamageActive();
         }
         public void InfinityMode()
         {
@@ -120,6 +129,9 @@ namespace Rechrysalis
             ToggleCustomizeOnlyHEAndUnit();
             _onlyOneHatchEffect.isOn = true;
             ToggleOnlyOneHatchEffect();
+            _chrysalisAndUnitDamageActive.isOn = false;
+            ToggleChrysalisAndUnitDamageActive();
+
         }
     }
 }
