@@ -8,7 +8,7 @@ namespace Rechrysalis.Background
     {
         private List<GameObject> pooledObjects;
         [SerializeField] private GameObject objectToPool;
-        private List<GameObject> _activeObjects;
+        private List<GameObject> _activeTiles;
         // private GameObject _projectilesHolderGO;
         // private ProjectilesHolder _projectilesHolderScript;
         [SerializeField] private VerticalBoundsYUpdate _verticalBoundsYUpdate;
@@ -21,7 +21,7 @@ namespace Rechrysalis.Background
 
         public void CreatePool(int amountToPool)
         {
-            _activeObjects = new List<GameObject>();
+            _activeTiles = new List<GameObject>();
             this.amountToPool = amountToPool;
             pooledObjects = new List<GameObject>();
             GameObject tmp;
@@ -58,15 +58,9 @@ namespace Rechrysalis.Background
                     _yCameraCount = Mathf.Floor(_yCameraCount);
                     float _yIndexToCheck = _yCameraCount + _yIndex - ((_yCount - 1) * 0.5f);
                     Vector3 _vectorToCheck = new Vector3(((_xIndexToCheck * _tileWidth)), (_yIndexToCheck * _tileHeight), _zOffset);
-                    if (_activeObjects.Count > 0)
+                    if (_activeTiles.Count > 0)
                     {
-                        for (int _activeIndex = 0; _activeIndex < _activeObjects.Count; _activeIndex++)
-                        {
-                            if (!_objectExists)
-                            {
-                                _objectExists = CheckIfInRange(_activeObjects[_activeIndex].transform.position, _vectorToCheck);
-                            }
-                        }
+                        _objectExists = LoopActiveTilesCheckTileExistsAtTileToCheck(_objectExists, _vectorToCheck);
                     }
                     if (!_objectExists)
                     {
@@ -77,16 +71,27 @@ namespace Rechrysalis.Background
             _verticalBoundsYUpdate.UpdateVerticalBoxColliders(Camera.main.transform);
         }
 
-       
+        private bool LoopActiveTilesCheckTileExistsAtTileToCheck(bool _objectExists, Vector3 _vectorToCheck)
+        {
+            for (int _activeIndex = 0; _activeIndex < _activeTiles.Count; _activeIndex++)
+            {
+                if (_objectExists)
+                { return true; }
+                _objectExists = CheckTileInRangeOfVector(_activeTiles[_activeIndex].transform.position, _vectorToCheck);
+            }
+
+            return _objectExists;
+        }
+
 
         private void ActivateTile (Vector3 _location)
         {
             GameObject go = GetPooledObject();
             go.SetActive(true);
-            _activeObjects.Add(go);
+            _activeTiles.Add(go);
             go.transform.position = _location;
         }
-        private bool CheckIfInRange(Vector2 _objectVector,Vector2 _vectorToCheck)
+        private bool CheckTileInRangeOfVector(Vector2 _objectVector,Vector2 _vectorToCheck)
         {
             // Debug.Log($"check vector" + _objectVector + " " +  _vectorToCheck);
             if ((_objectVector - _vectorToCheck).magnitude < 0.1f)
@@ -97,11 +102,11 @@ namespace Rechrysalis.Background
         }
         private void LoopToRemoveTiles()
         {
-            if (_activeObjects.Count == 0) 
+            if (_activeTiles.Count == 0) 
             {return;}
-            for (int _activeIndex = 0; _activeIndex < _activeObjects.Count; _activeIndex++)
+            for (int _activeIndex = 0; _activeIndex < _activeTiles.Count; _activeIndex++)
             {
-                CheckToRemoveTile(_activeObjects[_activeIndex]);
+                CheckToRemoveTile(_activeTiles[_activeIndex]);
             }
         }
         private void CheckToRemoveTile (GameObject _tile)
@@ -128,9 +133,9 @@ namespace Rechrysalis.Background
 
             _tile.SetActive(false);
             // Debug.Log($"remove tile");
-            if (_activeObjects.Contains(_tile))
+            if (_activeTiles.Contains(_tile))
             {
-                _activeObjects.Remove(_tile);
+                _activeTiles.Remove(_tile);
             }
         }
     }
