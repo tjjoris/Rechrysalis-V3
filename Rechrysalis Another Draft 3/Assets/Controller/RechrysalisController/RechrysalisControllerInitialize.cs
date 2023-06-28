@@ -130,6 +130,7 @@ namespace Rechrysalis.Controller
             _controllerHatchEffect?.SubscribeToUnits();
             upgradeRingManager?.SetActiveUpgradeRing(-1);
             AddToStartingMana(unitComp);
+            SetChrysalisAndUnitDamageIfActive();
         }
         private void CreateChildUnitAndChrysalis(UnitClass unitClass, int childUnitIndex, ParentUnitManager pum, int parentUnitIndex, CompsAndUnitsSO compsAndUnits, bool isAdvUnit)
         {
@@ -253,6 +254,12 @@ namespace Rechrysalis.Controller
                     }
                 }
             }
+        }
+        private void SetChrysalisAndUnitDamageIfActive()
+        {
+            if (PlayerPrefsInteract.GetChrysalisAndUnitDamageActive() == 0)
+            { return;}
+            GetComponent<RecalculatePercentDPSTypesForController>()?.RecalculatePercents();
         }
         public List<GameObject> GetAllUnits()
         {

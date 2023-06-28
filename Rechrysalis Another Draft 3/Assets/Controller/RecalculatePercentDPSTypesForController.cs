@@ -7,7 +7,7 @@ namespace Rechrysalis.Controller
 {
     public class RecalculatePercentDPSTypesForController : MonoBehaviour
     {
-        private bool _debugBool = false;
+        private bool _debugBool = true;
         private ControllerManager _controllerManager;
         [SerializeField] private float _percentDPSToUnit;
         public float PercentDPSToUnit => _percentDPSToUnit;
@@ -29,7 +29,11 @@ namespace Rechrysalis.Controller
             {
                 // if (parentUnitManager == null) continue;
                 GameObject currentUnit = parentUnitManager.CurrentSubUnit;
-                if (currentUnit == null) continue;
+                if (currentUnit == null) 
+                {
+                    if (_debugBool) Debug.Log($"current sub unit == null");
+                    continue;
+                }
                 if (currentUnit.GetComponent<ChrysalisTimer>()) continue;
                 UnitManager unitManager =  currentUnit.GetComponent<UnitManager>();
                 _percentDPSToChrysalis += unitManager.UnitClass.PercentDPSToChrysalisMult;
