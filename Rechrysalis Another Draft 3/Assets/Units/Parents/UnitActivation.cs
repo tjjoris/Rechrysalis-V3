@@ -118,7 +118,7 @@ namespace Rechrysalis.Unit
         }    
         private void RecalculatePercentsIfActive()
         {
-            if (!PlayerPrefsInteract.GetChrysalisAndUnitDamageActive())
+            if (PlayerPrefsInteract.GetChrysalisAndUnitDamageActive() != 2)
             {return;}
             _recalculatePercentDPSTypesForController?.RecalculatePercents();
         }

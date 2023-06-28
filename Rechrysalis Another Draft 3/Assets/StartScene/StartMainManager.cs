@@ -18,7 +18,7 @@ namespace Rechrysalis
         [SerializeField] private Toggle _customizeOnlyHEAndUnit;
         [SerializeField] private Toggle _onlyOneHatchEffect;
         [SerializeField] private TMP_Dropdown _healthToBuildTimeDropDown;
-        [SerializeField] private Toggle _chrysalisAndUnitDamageActive;
+        [SerializeField] private TMP_Dropdown _chrysalisAndUnitDamageActive;
         private void Awake()
         {
             // PlayerPrefsChanged();
@@ -43,7 +43,7 @@ namespace Rechrysalis
             _hasBasicUnitToggle.isOn = PlayerPrefsInteract.GetHasBasicUnit();
             _customizeOnlyHEAndUnit.isOn = PlayerPrefsInteract.GetCustomizeOnlyHEAndUnit();
             _onlyOneHatchEffect.isOn = PlayerPrefsInteract.GetOnlyOneHatchEffect();
-            _chrysalisAndUnitDamageActive.isOn = PlayerPrefsInteract.GetChrysalisAndUnitDamageActive();
+            _chrysalisAndUnitDamageActive.value = PlayerPrefsInteract.GetChrysalisAndUnitDamageActive();
         }
         public void LevelSelect()
         {
@@ -97,9 +97,9 @@ namespace Rechrysalis
         {
             PlayerPrefsInteract.SetOnlyOneHatchEffect(_onlyOneHatchEffect.isOn);
         }
-        public void ToggleChrysalisAndUnitDamageActive()
+        public void SetChrysalisAndUnitDamageActive()
         {
-            PlayerPrefsInteract.SetChrysalisAndUnitDamageActive(_chrysalisAndUnitDamageActive.isOn);
+            PlayerPrefsInteract.SetChrysalisAndUnitDamageActive(_chrysalisAndUnitDamageActive.value);
         }
         public void HyperManaMode()
         {
@@ -114,8 +114,8 @@ namespace Rechrysalis
             ToggleCustomizeOnlyHEAndUnit();
             _onlyOneHatchEffect.isOn = false;
             ToggleOnlyOneHatchEffect();
-            _chrysalisAndUnitDamageActive.isOn = false;
-            ToggleChrysalisAndUnitDamageActive();
+            _chrysalisAndUnitDamageActive.value = 0;
+            SetChrysalisAndUnitDamageActive();
         }
         public void InfinityMode()
         {
@@ -129,8 +129,8 @@ namespace Rechrysalis
             ToggleCustomizeOnlyHEAndUnit();
             _onlyOneHatchEffect.isOn = true;
             ToggleOnlyOneHatchEffect();
-            _chrysalisAndUnitDamageActive.isOn = false;
-            ToggleChrysalisAndUnitDamageActive();
+            _chrysalisAndUnitDamageActive.value = 1;
+            SetChrysalisAndUnitDamageActive();
 
         }
     }

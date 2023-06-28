@@ -111,22 +111,13 @@ namespace Rechrysalis.UI
             }
             return false;
         }
-        public static void SetChrysalisAndUnitDamageActive(bool value)
+        public static void SetChrysalisAndUnitDamageActive(int value)
         {
-            if (value)
-            {
-                PlayerPrefs.SetInt(CHRYSALISANDUNITDAMAGEACTIVE, 1);
-                return;
-            }
-            PlayerPrefs.SetInt(CHRYSALISANDUNITDAMAGEACTIVE, 0);
+            PlayerPrefs.SetInt(CHRYSALISANDUNITDAMAGEACTIVE, value);
         }
-        public static bool GetChrysalisAndUnitDamageActive()
+        public static int GetChrysalisAndUnitDamageActive()
         {
-            if (PlayerPrefs.GetInt(CHRYSALISANDUNITDAMAGEACTIVE) == 1)
-            { 
-                return true;
-            }
-            return false;
+            return PlayerPrefs.GetInt(CHRYSALISANDUNITDAMAGEACTIVE);
         }
     }
 }
