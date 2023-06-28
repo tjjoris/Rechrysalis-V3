@@ -49,7 +49,7 @@ namespace Rechrysalis.CameraControl
         {
             for (int i = 0; i < _enemyControllerManager.ParentUnitManagers.Count; i++)
             {
-                AddPositionSumAndCountForThisPUM(ref xSum, ref ySum, ref count, i);
+                AddPositionSumAndCountForThisPUM(ref xSum, ref ySum, ref count, i);                
             }
         }
 
@@ -57,7 +57,7 @@ namespace Rechrysalis.CameraControl
         {
             if (!_enemyControllerManager.ParentUnitManagers[i].gameObject.activeInHierarchy)
                 { return; }
-                xSum += _enemyControllerManager.ParentUnitManagers[i].transform.position.x;
+            xSum += _enemyControllerManager.ParentUnitManagers[i].transform.position.x;
             ySum += _enemyControllerManager.ParentUnitManagers[i].transform.position.y;
             count++;
         }
